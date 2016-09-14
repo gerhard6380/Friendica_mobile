@@ -1,0 +1,1493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="de-DE" target-language="de" original="FRIENDICA MOBILE/STRINGS/DE-DE/RESOURCES.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1605.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="FRIENDICA MOBILE/STRINGS/DE-DE/RESOURCES.RESW" datatype="resx">
+        <trans-unit id="radioContacts.Content" translate="yes" xml:space="preserve">
+          <source>Kontakte</source>
+          <target state="final" state-qualifier="exact-match">Kontakte</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Navigationbutton for Contacts</note>
+        </trans-unit>
+        <trans-unit id="radioHome.Content" translate="yes" xml:space="preserve">
+          <source>Pinnwand
+</source>
+          <target state="final" state-qualifier="exact-match">Pinnwand</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Navigationbutton for Home (own entries)</note>
+        </trans-unit>
+        <trans-unit id="radioNetwork.Content" translate="yes" xml:space="preserve">
+          <source>Netzwerk</source>
+          <target state="final" state-qualifier="exact-match">Netzwerk</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Navigationbutton for Network (timeline)</note>
+        </trans-unit>
+        <trans-unit id="textBlockApplicationName.Text" translate="yes" xml:space="preserve">
+          <source>FRIENDICA MOBILE</source>
+          <target state="final">FRIENDICA MOBILE</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Show Appname on Mobile devices</note>
+        </trans-unit>
+        <trans-unit id="pageHome.FlowDirection" translate="yes" xml:space="preserve">
+          <source>LeftToRight</source>
+          <target state="final" state-qualifier="tm-suggestion">LeftToRight</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Defines Text direction for the language</note>
+        </trans-unit>
+        <trans-unit id="menuflyoutHelp.Text" translate="yes" xml:space="preserve">
+          <source>Hilfe</source>
+          <target state="final" state-qualifier="exact-match">Hilfe</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Navigationbutton for Help page</note>
+        </trans-unit>
+        <trans-unit id="menuflyoutSettings.Text" translate="yes" xml:space="preserve">
+          <source>Einstellungen</source>
+          <target state="final" state-qualifier="exact-match">Einstellungen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Navigationbutton for Settings</note>
+        </trans-unit>
+        <trans-unit id="radioEvents.Content" translate="yes" xml:space="preserve">
+          <source>Veranstaltungen</source>
+          <target state="final">Veranstaltungen
+</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Navigationbutton for Events (showing a calendar)</note>
+        </trans-unit>
+        <trans-unit id="radioMessages.Content" translate="yes" xml:space="preserve">
+          <source>Nachrichten</source>
+          <target state="final" state-qualifier="exact-match">Nachrichten</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Navigationbutton for Messages (private ones)</note>
+        </trans-unit>
+        <trans-unit id="radioOthers.Content" translate="yes" xml:space="preserve">
+          <source>Weitere</source>
+          <target state="final" state-qualifier="exact-match">Weitere</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Navigationbutton for showing a flyout with more options</note>
+        </trans-unit>
+        <trans-unit id="radioPersonalNotes.Content" translate="yes" xml:space="preserve">
+          <source>Persönliche Notizen</source>
+          <target state="final">Persönliche Notizen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Navigationbutton for Personal Notes</note>
+        </trans-unit>
+        <trans-unit id="radioPhotos.Content" translate="yes" xml:space="preserve">
+          <source>Bilder</source>
+          <target state="final" state-qualifier="exact-match">Bilder</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Navigationbutton for Photos (showing albums)</note>
+        </trans-unit>
+        <trans-unit id="radioProfile.Content" translate="yes" xml:space="preserve">
+          <source>Mein Profil</source>
+          <target state="final" state-qualifier="exact-match">Mein Profil</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Navigationbutton for Profile (own profile)</note>
+        </trans-unit>
+        <trans-unit id="radioVideos.Content" translate="yes" xml:space="preserve">
+          <source>Videos</source>
+          <target state="final" state-qualifier="tm-suggestion">Videos</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Navigationbutton for Videos</note>
+        </trans-unit>
+        <trans-unit id="menuflyoutAbout.Text" translate="yes" xml:space="preserve">
+          <source>Info</source>
+          <target state="final" state-qualifier="exact-match">Info</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Navigationbutton for showing more about the app</note>
+        </trans-unit>
+        <trans-unit id="menuflyoutExit.Text" translate="yes" xml:space="preserve">
+          <source>Beenden
+</source>
+          <target state="final" state-qualifier="exact-match">Beenden</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Navigationbutton for exiting the app</note>
+        </trans-unit>
+        <trans-unit id="pageSettings.FlowDirection" translate="yes" xml:space="preserve">
+          <source>LeftToRight</source>
+          <target state="final" state-qualifier="tm-suggestion">LeftToRight</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Defines Text direction for the language</note>
+        </trans-unit>
+        <trans-unit id="pageTitleHome.Text" translate="yes" xml:space="preserve">
+          <source>Pinnwand</source>
+          <target state="final" state-qualifier="exact-match">Pinnwand</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Name on top of view Home</note>
+        </trans-unit>
+        <trans-unit id="pageTitleSettings.Text" translate="yes" xml:space="preserve">
+          <source>Einstellungen</source>
+          <target state="final" state-qualifier="exact-match">Einstellungen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Name on top of view Settings</note>
+        </trans-unit>
+        <trans-unit id="sliderNavigationSide.Header" translate="yes" xml:space="preserve">
+          <source>Seite Navigation</source>
+          <target state="final">Seite Navigation</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">User can select on which side navigation shall be displayed on mobile devices</note>
+        </trans-unit>
+        <trans-unit id="sliderNavigationSide.OnContent" translate="yes" xml:space="preserve">
+          <source>Rechts</source>
+          <target state="final" state-qualifier="tm-suggestion">Rechts</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">caption for switch for navigation side (on = right)</note>
+        </trans-unit>
+        <trans-unit id="sliderNavigationSide.OffContent" translate="yes" xml:space="preserve">
+          <source>Links</source>
+          <target state="final" state-qualifier="tm-suggestion">Links</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">caption for switch for navigation side (off = left)</note>
+        </trans-unit>
+        <trans-unit id="textboxFriendicaPassword.Header" translate="yes" xml:space="preserve">
+          <source>Passwort</source>
+          <target state="final">Passwort
+</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: passwordbox header for password </note>
+        </trans-unit>
+        <trans-unit id="textboxFriendicaServer.Header" translate="yes" xml:space="preserve">
+          <source>Friendica Server</source>
+          <target state="final">Friendica Server</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: textbox header for server url</note>
+        </trans-unit>
+        <trans-unit id="textboxFriendicaUsername.Header" translate="yes" xml:space="preserve">
+          <source>Spitzname oder Mailadresse</source>
+          <target state="final">Spitzname oder Mailadresse</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: textbox header for username</note>
+        </trans-unit>
+        <trans-unit id="FriendicaServerHint" translate="yes" xml:space="preserve">
+          <source>Geben Sie die URL ihres Friendica Servers ein (zB http://www.tryfriendica.de).</source>
+          <target state="final">Geben Sie die URL ihres Friendica Servers ein (zB http://www.tryfriendica.de).</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: standard message displayed below Friendica server textbox</note>
+        </trans-unit>
+        <trans-unit id="FriendicaServerHintEmpty" translate="yes" xml:space="preserve">
+          <source>Friendica Server darf nicht leer sein.</source>
+          <target state="final">Friendica Server darf nicht leer sein.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: error message on empty Friendica server textbox</note>
+        </trans-unit>
+        <trans-unit id="FriendicaServerHintEndingSlash" translate="yes" xml:space="preserve">
+          <source>Friendica Server URL sollte nicht mit einem Schrägstrich ('/') enden. </source>
+          <target state="final">Friendica Server URL sollte nicht mit einem Schrägstrich ('/') enden. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: warning message if Friendica server ends with a slash</note>
+        </trans-unit>
+        <trans-unit id="FriendicaServerHintOnlyHttp" translate="yes" xml:space="preserve">
+          <source>Friendica Server muss eine vollständige URL-Adresse sein.</source>
+          <target state="final">Friendica Server muss eine vollständige URL-Adresse sein.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: error message if Friendica server textbox only contains http://</note>
+        </trans-unit>
+        <trans-unit id="FriendicaServerHintWrongStart" translate="yes" xml:space="preserve">
+          <source>Friendica Server muss mit 'http://' oder 'https://' beginnen.</source>
+          <target state="final">Friendica Server muss mit 'http://' oder 'https://' beginnen.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: error message if Friendica server string starts wrong</note>
+        </trans-unit>
+        <trans-unit id="FriendicaPasswordHint" translate="yes" xml:space="preserve">
+          <source>Bitte geben Sie Ihr Passwort für die Anmeldung an Ihrem Friendica-Server an.</source>
+          <target state="final">Bitte geben Sie Ihr Passwort für die Anmeldung an Ihrem Friendica-Server an.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: standard message displayed below Friendica password textbox</note>
+        </trans-unit>
+        <trans-unit id="FriendicaPasswordHintEmpty" translate="yes" xml:space="preserve">
+          <source>Friendica Passwort darf nicht leer sein.</source>
+          <target state="final">Friendica Passwort darf nicht leer sein.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: error message on empty Friendica password</note>
+        </trans-unit>
+        <trans-unit id="FriendicaUsernameHint" translate="yes" xml:space="preserve">
+          <source>Geben Sie bitte Ihren Spitznamen oder Ihre Mailadresse für die Anmeldung an Ihrem Friendica-Server an.</source>
+          <target state="final">Geben Sie bitte Ihren Spitznamen oder Ihre Mailadresse für die Anmeldung an Ihrem Friendica-Server an.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: standard message displayed below Friendica username textbox</note>
+        </trans-unit>
+        <trans-unit id="FriendicaUsernameHintEmpty" translate="yes" xml:space="preserve">
+          <source>Spitzname oder Mailadresse darf nicht leer sein.
+</source>
+          <target state="final">Spitzname oder Mailadresse darf nicht leer sein.
+</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: error message on empty Friendica username</note>
+        </trans-unit>
+        <trans-unit id="buttonNo" translate="yes" xml:space="preserve">
+          <source>Nein</source>
+          <target state="final" state-qualifier="tm-suggestion">Nein</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">dialog buttons: No</note>
+        </trans-unit>
+        <trans-unit id="buttonYes" translate="yes" xml:space="preserve">
+          <source>Ja</source>
+          <target state="final" state-qualifier="tm-suggestion">Ja</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">dialog buttons: Yes</note>
+        </trans-unit>
+        <trans-unit id="messageDialogSettingsNotSaved" translate="yes" xml:space="preserve">
+          <source>Einstellungen wurden geändert, aber nicht gespeichert (noch nicht getestet oder Test ist fehlgeschlagenen). Geänderte Einstellungen werden nicht gespeichert, wenn Sie die Seite verlassen. Wollen Sie dennoch die Seite verlassen?</source>
+          <target state="final">Einstellungen wurden geändert, aber nicht gespeichert (noch nicht getestet oder Test ist fehlgeschlagenen). Geänderte Einstellungen werden nicht gespeichert, wenn Sie die Seite verlassen. Wollen Sie dennoch die Seite verlassen?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Navigation: leaving settings page while there are unsaved changes.</note>
+        </trans-unit>
+        <trans-unit id="TestConnectionResultNotAnswered" translate="yes" xml:space="preserve">
+          <source>{0}: Server hat nicht geantwortet!</source>
+          <target state="final">{0}: Server hat nicht geantwortet!</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: connection test resulted in a server not answered</note>
+        </trans-unit>
+        <trans-unit id="TestConnectionResultNotAuthenticated" translate="yes" xml:space="preserve">
+          <source>Authentifizierung auf dem angegebenen Server ist fehlgeschlagen, bitte überprüfen Sie Ihre eingegebenen Anmeldeinformationen!</source>
+          <target state="final">Authentifizierung auf dem angegebenen Server ist fehlgeschlagen, bitte überprüfen Sie Ihre eingegebenen Anmeldeinformationen!</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: connection test resulted in a failed authentication</note>
+        </trans-unit>
+        <trans-unit id="TestConnectionResultOK" translate="yes" xml:space="preserve">
+          <source>Verbindungstest erfolgreich, neue Einstellungen wurden gespeichert!</source>
+          <target state="final">Verbindungstest erfolgreich, neue Einstellungen wurden gespeichert!</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: feedback to user when connection test succeded</note>
+        </trans-unit>
+        <trans-unit id="TestConnectionResultUnexpectedError" translate="yes" xml:space="preserve">
+          <source>{0}: ein unerwarteter Fehler ist aufgetreten. /n {1} ({2})</source>
+          <target state="final">{0}: ein unerwarteter Fehler ist aufgetreten. /n {1} ({2})</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: connectiontest resulted in an unexpected error</note>
+        </trans-unit>
+        <trans-unit id="buttonTestConnection.Content" translate="yes" xml:space="preserve">
+          <source>Verbindung testen</source>
+          <target state="final" state-qualifier="exact-match">Verbindung testen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: button to start the connection test</note>
+        </trans-unit>
+        <trans-unit id="textblockConnectionTestInProgress.Text" translate="yes" xml:space="preserve">
+          <source>Die Verbindung wird getestet...</source>
+          <target state="final" state-qualifier="tm-suggestion">Die Verbindung wird getestet...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: status text with progressring during connection test</note>
+        </trans-unit>
+        <trans-unit id="pageTitleNetwork.Text" translate="yes" xml:space="preserve">
+          <source>Netzwerk</source>
+          <target state="final" state-qualifier="exact-match">Netzwerk</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Name on top of view Network</note>
+        </trans-unit>
+        <trans-unit id="textblockDropArea.Text" translate="yes" xml:space="preserve">
+          <source>Text/Bilder für einen neuen Beitrag hier ablegen (oder Strg+V)...</source>
+          <target state="final">Text/Bilder für einen neuen Beitrag hier ablegen (oder Strg+V)...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: text in drop area (only in desktop version)</note>
+        </trans-unit>
+        <trans-unit id="comboboxStartPage.Header" translate="yes" xml:space="preserve">
+          <source>Erste Seite beim Öffnen der App</source>
+          <target state="final">Erste Seite beim Öffnen der App</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: user can select the preferred start page</note>
+        </trans-unit>
+        <trans-unit id="pageTitleNewPost.Text" translate="yes" xml:space="preserve">
+          <source>Neuer Beitrag</source>
+          <target state="final" state-qualifier="tm-suggestion">Neuer Beitrag</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Name on top of view NewEntry</note>
+        </trans-unit>
+        <trans-unit id="pageNetwork.FlowDirection" translate="yes" xml:space="preserve">
+          <source>LeftToRight</source>
+          <target state="final" state-qualifier="tm-suggestion">LeftToRight</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Defines Text direction for the language</note>
+        </trans-unit>
+        <trans-unit id="appBarNetworkAdd.Label" translate="yes" xml:space="preserve">
+          <source>Neuer Beitrag
+</source>
+          <target state="final" state-qualifier="tm-suggestion">Neuer Beitrag</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: caption of the appbarButton for a new post</note>
+        </trans-unit>
+        <trans-unit id="appBarNetworkAdd.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Neuen Beitrag hinzufügen</source>
+          <target state="final">Neuen Beitrag hinzufügen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: tooltip of the appbarButton for a new post</note>
+        </trans-unit>
+        <trans-unit id="appBarNetworkChronological.Label" translate="yes" xml:space="preserve">
+          <source>Chronologisch</source>
+          <target state="final" state-qualifier="tm-suggestion">Chronologisch</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: caption of the appbarButton to sort posts by time</note>
+        </trans-unit>
+        <trans-unit id="appBarNetworkChronological.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Sortiere Beiträge chronologisch</source>
+          <target state="final">Sortiere Beiträge chronologisch</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: tooltip of the appbarButton to sort posts by time</note>
+        </trans-unit>
+        <trans-unit id="appBarNetworkRefresh.Label" translate="yes" xml:space="preserve">
+          <source>Neu laden</source>
+          <target state="final">Neu laden</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: caption of the appbarButton for loading new posts</note>
+        </trans-unit>
+        <trans-unit id="appBarNetworkRefresh.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Neue Beiträge laden
+</source>
+          <target state="final">Neue Beiträge laden
+</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: tooltip of the appbarButton for loading new posts</note>
+        </trans-unit>
+        <trans-unit id="appBarNetworkThreads.Label" translate="yes" xml:space="preserve">
+          <source>Diskussionen
+</source>
+          <target state="final" state-qualifier="tm-suggestion">Diskussionen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: caption of the appbarButton to sort posts by threads</note>
+        </trans-unit>
+        <trans-unit id="appBarNetworkThreads.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Sortiere Beiträge nach Diskussionen</source>
+          <target state="final">Sortiere Beiträge nach Diskussionen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: tooltip of the appbarButton to sort posts by threads</note>
+        </trans-unit>
+        <trans-unit id="buttonDeleteLocalDatabase.Content" translate="yes" xml:space="preserve">
+          <source>Lokale Datenbank löschen</source>
+          <target state="final">Lokale Datenbank löschen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: button for deleting the local database</note>
+        </trans-unit>
+        <trans-unit id="messageDialogDeleteLocalDatabase" translate="yes" xml:space="preserve">
+          <source>Alle lokal gespeicherten Inhalte werden gelöscht. Manche Funktionen werden nicht mehr im gewohnten Umfang funktionieren (zB Link auf das Profil bei @-Tags im Eintragstext).
+
+Sind Sie sicher?</source>
+          <target state="final">Alle lokal gespeicherten Inhalte werden gelöscht. Manche Funktionen werden nicht mehr im gewohnten Umfang funktionieren (zB Link auf das Profil bei @-Tags im Eintragstext).
+
+Sind Sie sicher?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: message dialog after clicking button for deleting the local database</note>
+        </trans-unit>
+        <trans-unit id="messageDialogLocalDatabaseDeleted" translate="yes" xml:space="preserve">
+          <source>Datenbank wurde gelöscht.</source>
+          <target state="final">Datenbank wurde gelöscht.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: message after deleting the local database.</note>
+        </trans-unit>
+        <trans-unit id="messageDialogLocalDatabaseNotDeleted" translate="yes" xml:space="preserve">
+          <source>Löschen abgebrochen.</source>
+          <target state="final">Löschen abgebrochen.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: message after cancelling the deletion of the local database.</note>
+        </trans-unit>
+        <trans-unit id="pivotSettingsGeneral.Header" translate="yes" xml:space="preserve">
+          <source>Allgemein</source>
+          <target state="final" state-qualifier="exact-match">Allgemein</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: header for general settings</note>
+        </trans-unit>
+        <trans-unit id="pivotSettingsPrivacy.Header" translate="yes" xml:space="preserve">
+          <source>Datenschutz</source>
+          <target state="final" state-qualifier="exact-match">Datenschutz</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: header for privacy settings</note>
+        </trans-unit>
+        <trans-unit id="sliderSaveLocalAllowed.Header" translate="yes" xml:space="preserve">
+          <source>Daten lokal speichern</source>
+          <target state="final">Daten lokal speichern</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: user can decide whether local storage of data is allowed</note>
+        </trans-unit>
+        <trans-unit id="textblockSaveLocalAllowedHint.Text" translate="yes" xml:space="preserve">
+          <source>Für manche Funktionen ist es notwendig, einige Daten zu Kontakten oder Einträgen lokal auf dem Gerät zu speichern. Wenn Sie dies ausschalten, werden diese Funktionen nicht mehr möglich sein (zB Link auf das Profil bei @-Tags im Eintragstext).</source>
+          <target state="final">Für manche Funktionen ist es notwendig, einige Daten zu Kontakten oder Einträgen lokal auf dem Gerät zu speichern. Wenn Sie dies ausschalten, werden diese Funktionen nicht mehr möglich sein (zB Link auf das Profil bei @-Tags im Eintragstext).</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: hint on SaveLocalAllowed</note>
+        </trans-unit>
+        <trans-unit id="textblockIndicatorLoadingNextEntries.Text" translate="yes" xml:space="preserve">
+          <source>Lade weitere Einträge...</source>
+          <target state="final">Lade weitere Einträge...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: text next to progress ring indicating that app is loading next entries</note>
+        </trans-unit>
+        <trans-unit id="textblockIndicatorRefreshing.Text" translate="yes" xml:space="preserve">
+          <source>Lade neue Einträge...</source>
+          <target state="final">Lade neue Einträge...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: text next to progress ring indicating that app is refreshing new entries</note>
+        </trans-unit>
+        <trans-unit id="messageDialogErrorOnLoadingData" translate="yes" xml:space="preserve">
+          <source>Fehler beim Laden der Daten. (Fehlermeldung: {0})
+
+Möchten Sie es erneut versuchen?</source>
+          <target state="final">Fehler beim Laden der Daten. (Fehlermeldung: {0})
+
+Möchten Sie es erneut versuchen?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: error message on problems with data loading</note>
+        </trans-unit>
+        <trans-unit id="messageDialogHttpStatusNone" translate="yes" xml:space="preserve">
+          <source>Server antwortet nicht</source>
+          <target state="final">Server antwortet nicht</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: alternativ error message if httpStatus = None</note>
+        </trans-unit>
+        <trans-unit id="comboboxNetworkMode.Header" translate="yes" xml:space="preserve">
+          <source>Anzeigemodus auf Netzwerk-Seite</source>
+          <target state="final">Anzeigemodus auf Netzwerk-Seite</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: Header for display mode on network page</note>
+        </trans-unit>
+        <trans-unit id="textblockNetworkChronological.Text" translate="yes" xml:space="preserve">
+          <source>Chronologisch</source>
+          <target state="final" state-qualifier="tm-suggestion">Chronologisch</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: caption of the combobox item to select display mode for Network page</note>
+        </trans-unit>
+        <trans-unit id="textblockNetworkThreads.Text" translate="yes" xml:space="preserve">
+          <source>Diskussionen</source>
+          <target state="final" state-qualifier="tm-suggestion">Diskussionen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: caption of the combobox item to select display mode for Network page</note>
+        </trans-unit>
+        <trans-unit id="sliderShowMorePosts.OffContent" translate="yes" xml:space="preserve">
+          <source>Nur neueste Kommentare angezeigt</source>
+          <target state="final">Nur neueste Kommentare angezeigt</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: toggle in thread to show all comments or only newest one</note>
+        </trans-unit>
+        <trans-unit id="sliderShowMorePosts.OnContent" translate="yes" xml:space="preserve">
+          <source>Alle Kommentare angezeigt</source>
+          <target state="final">Alle Kommentare angezeigt</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: toggle in thread to show all comments or only newest</note>
+        </trans-unit>
+        <trans-unit id="textblockThreadLoading.Text" translate="yes" xml:space="preserve">
+          <source>Lade Unterhaltung...</source>
+          <target state="final">Lade Unterhaltung...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: text for progressRing on loading thread</note>
+        </trans-unit>
+        <trans-unit id="buttonShowThread.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Gesamte Unterhaltung anzeigen...</source>
+          <target state="final">Gesamte Unterhaltung anzeigen...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: tooltip for button to show complete thread in chronological mode</note>
+        </trans-unit>
+        <trans-unit id="pageTitleShowThread.Text" translate="yes" xml:space="preserve">
+          <source>Unterhaltung</source>
+          <target state="final" state-qualifier="exact-match">Unterhaltung</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ShowThread.xaml: show a single thread to the user in a separate page</note>
+        </trans-unit>
+        <trans-unit id="textblockShowThreadIsLoading.Text" translate="yes" xml:space="preserve">
+          <source>Die Einträge der Unterhaltung werden geladen...</source>
+          <target state="final">Die Einträge der Unterhaltung werden geladen...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ShowThread.xaml: show a progress ring and this text to indicate current loading process</note>
+        </trans-unit>
+        <trans-unit id="textblockShowThreadNoData.Text" translate="yes" xml:space="preserve">
+          <source>Ein Fehler ist passiert, der Server hat keine Einträge für diese Unterhaltung geliefert. </source>
+          <target state="final">Ein Fehler ist passiert, der Server hat keine Einträge für diese Unterhaltung geliefert. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ShowThread.xaml: show an error if there were no data retrieved from server</note>
+        </trans-unit>
+        <trans-unit id="pageShowThread.FlowDirection" translate="yes" xml:space="preserve">
+          <source>LeftToRight</source>
+          <target state="final" state-qualifier="tm-suggestion">LeftToRight</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Defines Text direction for the language</note>
+        </trans-unit>
+        <trans-unit id="appBarContactsFindGlobal.Label" translate="yes" xml:space="preserve">
+          <source>Global suchen</source>
+          <target state="final">Global suchen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: caption of the appbarButton for searching in global directory</note>
+        </trans-unit>
+        <trans-unit id="appBarContactsFindGlobal.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Im globalen Verzeichnis suchen</source>
+          <target state="final">Im globalen Verzeichnis suchen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: tooltip of the appbarButton for seraching in global directory</note>
+        </trans-unit>
+        <trans-unit id="appBarContactsFindLocal.Label" translate="yes" xml:space="preserve">
+          <source>Lokal suchen</source>
+          <target state="final">Lokal suchen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: caption of the appbarButton for searching local</note>
+        </trans-unit>
+        <trans-unit id="appBarContactsFindLocal.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>In den Kontakten des eigenen Hubs suchen</source>
+          <target state="final">In den Kontakten des eigenen Hubs suchen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: tooltip of the appbarButton for searching local</note>
+        </trans-unit>
+        <trans-unit id="appBarContactsRefresh.Label" translate="yes" xml:space="preserve">
+          <source>Neu laden</source>
+          <target state="final">Neu laden</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: caption of the appbarButton for reloading</note>
+        </trans-unit>
+        <trans-unit id="appBarContactsRefresh.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Kontake neu laden</source>
+          <target state="final">Kontake neu laden</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: tooltip of the appbarButton for reloading</note>
+        </trans-unit>
+        <trans-unit id="pageContacts.FlowDirection" translate="yes" xml:space="preserve">
+          <source>LeftToRight</source>
+          <target state="final" state-qualifier="tm-suggestion">LeftToRight</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Defines Text direction for the language</note>
+        </trans-unit>
+        <trans-unit id="pageTitleContacts.Text" translate="yes" xml:space="preserve">
+          <source>Kontakte</source>
+          <target state="final" state-qualifier="exact-match">Kontakte</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Name on top of view Contacts</note>
+        </trans-unit>
+        <trans-unit id="pivotContactsForums.Header" translate="yes" xml:space="preserve">
+          <source>Foren</source>
+          <target state="final" state-qualifier="tm-suggestion">Foren</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: showing the list of forums</note>
+        </trans-unit>
+        <trans-unit id="pivotContactsFriends.Header" translate="yes" xml:space="preserve">
+          <source>Freunde</source>
+          <target state="final" state-qualifier="exact-match">Freunde</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: showing the list of Friends</note>
+        </trans-unit>
+        <trans-unit id="pivotContactsGroups.Header" translate="yes" xml:space="preserve">
+          <source>Gruppen</source>
+          <target state="final" state-qualifier="exact-match">Gruppen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: showing the list of groups</note>
+        </trans-unit>
+        <trans-unit id="textblockContactsNoSettings.Text" translate="yes" xml:space="preserve">
+          <source>Sehen Sie Beispieldaten für die Darstellung von Kontakten.</source>
+          <target state="final">Sehen Sie Beispieldaten für die Darstellung von Kontakten.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: info for user if there are no settings</note>
+        </trans-unit>
+        <trans-unit id="textblockIndicatorLoadingContacts.Text" translate="yes" xml:space="preserve">
+          <source>Lade Kontakte...</source>
+          <target state="final">Lade Kontakte...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: text next to progress ring indicating that app is loading the contacts</note>
+        </trans-unit>
+        <trans-unit id="textblockNoDataAvailableForums.Text" translate="yes" xml:space="preserve">
+          <source>Der Server hat keine Daten zu Ihren Foren geliefert.</source>
+          <target state="final">Der Server hat keine Daten zu Ihren Foren geliefert.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: text shown if no data for forums is returned by server.</note>
+        </trans-unit>
+        <trans-unit id="textblockNoDataAvailableFriends.Text" translate="yes" xml:space="preserve">
+          <source>Der Server hat keine Daten zu Ihren Freunden geliefert.</source>
+          <target state="final">Der Server hat keine Daten zu Ihren Freunden geliefert.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: text shown if no data for friends is returned by server.</note>
+        </trans-unit>
+        <trans-unit id="pageAbout.FlowDirection" translate="yes" xml:space="preserve">
+          <source>LeftToRight</source>
+          <target state="final" state-qualifier="tm-suggestion">LeftToRight</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Defines Text direction for the language</note>
+        </trans-unit>
+        <trans-unit id="pageTitleAbout.Text" translate="yes" xml:space="preserve">
+          <source>Info</source>
+          <target state="final" state-qualifier="exact-match">Info</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Name on top of view About</note>
+        </trans-unit>
+        <trans-unit id="textAboutDataProtection1.Text" translate="yes" xml:space="preserve">
+          <source>Sie haben wahrscheinlich Friendica als Ihr bevorzugtes Social Network gewählt, weil Sie Zweifel am Datenschutz auf den bekannten globalen Netzwerken haben. Auch ich nehme Datenschutz sehr ernst. Die App wurde so entwickelt, dass so wenig Daten wie möglich auf dem Smartphone gespeichert werden müssen - dies führt dazu, dass die Daten bei jedem Starten der App neu vom Server geladen werden. </source>
+          <target state="final">Sie haben wahrscheinlich Friendica als Ihr bevorzugtes Social Network gewählt, weil Sie Zweifel am Datenschutz auf den bekannten globalen Netzwerken haben. Auch ich nehme Datenschutz sehr ernst. Die App wurde so entwickelt, dass so wenig Daten wie möglich auf dem Smartphone gespeichert werden müssen - dies führt dazu, dass die Daten bei jedem Starten der App neu vom Server geladen werden. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: general statement to data protection</note>
+        </trans-unit>
+        <trans-unit id="textAboutDataProtection2.Text" translate="yes" xml:space="preserve">
+          <source>Für einige Funktionen ist eine Speicherung von Benutzerdaten auf dem Endgerät notwendig, andere Apps dürfen jedoch nicht auf diese Daten zugreifen. Beim Roaming für die Verwendung der App auf mehreren Geräten ist es notwendig, dass einige Informationen auf Microsoft-Servern gespeichert werden um die Geräte synchron zu halten. Die App wurde jedoch so programmiert, dass die dort gespeicherten Informationen keine personenbezogenen Daten enthalten. 
+Diese Funktionen, sowie Interaktionen mit anderen Apps (Kontakte, Bilder, Cortana etc.), können Sie jederzeit in den Einstellungen ein- oder ausschalten. </source>
+          <target state="final">Für einige Funktionen ist eine Speicherung von Benutzerdaten auf dem Endgerät notwendig, andere Apps dürfen jedoch nicht auf diese Daten zugreifen. Beim Roaming für die Verwendung der App auf mehreren Geräten ist es notwendig, dass einige Informationen auf Microsoft-Servern gespeichert werden um die Geräte synchron zu halten. Die App wurde jedoch so programmiert, dass die dort gespeicherten Informationen keine personenbezogenen Daten enthalten. 
+Diese Funktionen, sowie Interaktionen mit anderen Apps (Kontakte, Bilder, Cortana etc.), können Sie jederzeit in den Einstellungen ein- oer ausschalten. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: description of data exchange function for system integration</note>
+        </trans-unit>
+        <trans-unit id="textAboutDataProtection3.Text" translate="yes" xml:space="preserve">
+          <source>Diese App sammelt keine Nutzungsstatistiken. Zudem werden keine Daten von Ihrem Friendica-Account an mich als Entwickler oder an eine mit mir assoziierte Homepage übermittelt! Die Werbepartner für die angezeigte Werbung im Test-Modus erhalten keine Informationen von Ihrem Friendica-Server übermittelt!</source>
+          <target state="final">Diese App sammelt keine Nutzungsstatistiken. Zudem werden keine Daten von Ihrem Friendica-Account an mich als Entwickler oder an eine mit mir assoziierte Homepage übermittelt! Die Werbepartner für die angezeigte Werbung im Test-Modus erhalten keine Informationen von Ihrem Friendica-Server übermittelt!</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: declaration of non-sending information from the user to the developer</note>
+        </trans-unit>
+        <trans-unit id="textAboutDescriptionPart1.Text" translate="yes" xml:space="preserve">
+          <source>Friendica (früher als Friendika bekannt) ist ein dezentrales Social Network, welches als Open Source Anwendung aufgebaut ist. Im Unterschied zu Facebook werden die persönlichen Daten nicht in einer zentralen Datenbank gesammelt und sind somit nicht einer zentralen Analyse zu Werbezwecken ausgesetzt. 
+
+Diese App für Windows benötigt die Anmeldedaten für ein bereits existierendes Friendica-Konto. Sollten Sie noch kein Friendica-Konto haben, müssen Sie sich vorher einen eigenen Server mit einen Account anlegen. Oder Sie registrieren sich auf einem der vorhandenen öffentlichen Server. Eine Liste der verfügbaren Server sowie weitere Informationen zum Friendica-Projekt finden Sie auf der offizielle Projekt-Homepage </source>
+          <target state="final">Friendica (früher als Friendika bekannt) ist ein dezentrales Social Network, welches als Open Source Anwendung aufgebaut ist. Im Unterschied zu Facebook werden die persönlichen Daten nicht in einer zentralen Datenbank gesammelt und sind somit nicht einer zentralen Analyse zu Werbezwecken ausgesetzt. 
+
+Diese App für Windows benötigt die Anmeldedaten für ein bereits existierendes Friendica-Konto. Sollten Sie noch kein Friendica-Konto haben, müssen Sie sich vorher einen eigenen Server mit einen Account anlegen. Oder Sie registrieren sich auf einem der vorhandenen öffentlichen Server. Eine Liste der verfügbaren Server sowie weitere Informationen zum Friendica-Projekt finden Sie auf der offizielle Projekt-Homepage </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: description text on Friendica project</note>
+        </trans-unit>
+        <trans-unit id="textAboutDescriptionPart2.Text" translate="yes" xml:space="preserve">
+          <source>Bitte beachten Sie, dass diese App NICHT vom Friendica-Projektteam veröffentlicht und betreut wird. Wenn Sie Probleme/Fehler berichten möchten oder Fragen haben, nutzen Sie bitte die folgende Kontaktmöglichkeit: </source>
+          <target state="final">Bitte beachten Sie, dass diese App NICHT vom Friendica-Projektteam veröffentlicht und betreut wird. Wenn Sie Probleme/Fehler berichten möchten oder Fragen haben, nutzen Sie bitte die folgende Kontaktmöglichkeit: </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: description text on App support</note>
+        </trans-unit>
+        <trans-unit id="textAboutDisclaimer.Text" translate="yes" xml:space="preserve">
+          <source>THIS SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN ANY ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</source>
+          <target state="final">THIS SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN ANY ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: disclaimer</note>
+        </trans-unit>
+        <trans-unit id="textblockAboutAppVersion.Text" translate="yes" xml:space="preserve">
+          <source>App-Version:</source>
+          <target state="final" state-qualifier="tm-suggestion">App-Version:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: show version of app to the user</note>
+        </trans-unit>
+        <trans-unit id="textblockAboutButtonSettings.Text" translate="yes" xml:space="preserve">
+          <source>Einstellungen</source>
+          <target state="final" state-qualifier="exact-match">Einstellungen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: text on button for jumping to Settings</note>
+        </trans-unit>
+        <trans-unit id="textblockAboutDataProtectionHeader.Text" translate="yes" xml:space="preserve">
+          <source>Datenschutz:</source>
+          <target state="final" state-qualifier="exact-match">Datenschutz</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: header for paragraph on data protection</note>
+        </trans-unit>
+        <trans-unit id="textblockAboutDbUpdateVersion.Text" translate="yes" xml:space="preserve">
+          <source>Datenbank-Version:</source>
+          <target state="final">Datenbank-Version:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: text before showing the version of the used database</note>
+        </trans-unit>
+        <trans-unit id="textblockAboutDescriptionHeader.Text" translate="yes" xml:space="preserve">
+          <source>Beschreibung:</source>
+          <target state="final">Beschreibung:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: header for short description on Friendica</note>
+        </trans-unit>
+        <trans-unit id="textblockAboutDeveloper.Text" translate="yes" xml:space="preserve">
+          <source>App-Entwickler:</source>
+          <target state="final">App-Entwickler:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: header for block showing address of app developer</note>
+        </trans-unit>
+        <trans-unit id="textblockAboutDfrnProtocolVersion.Text" translate="yes" xml:space="preserve">
+          <source>DFRN-Protokoll-Version:</source>
+          <target state="final">DFRN-Protokoll-Version:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: text before showing the version of the dfrn version</note>
+        </trans-unit>
+        <trans-unit id="textblockAboutDisclaimerHeader.Text" translate="yes" xml:space="preserve">
+          <source>Haftungsausschluss:</source>
+          <target state="final" state-qualifier="tm-suggestion">Haftungsausschluss:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: header for paragraph on disclaimer</note>
+        </trans-unit>
+        <trans-unit id="textblockAboutFriendicaPlatform.Text" translate="yes" xml:space="preserve">
+          <source>Friendica-Plattform:</source>
+          <target state="final">Friendica-Plattform:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: text before showing the Friendica platform of the server</note>
+        </trans-unit>
+        <trans-unit id="textblockAboutFriendicaVersion.Text" translate="yes" xml:space="preserve">
+          <source>Friendica-Version: </source>
+          <target state="final">Friendica-Version: </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: text before showing the version of the Friendica server</note>
+        </trans-unit>
+        <trans-unit id="textblockAboutNoSettings.Text" translate="yes" xml:space="preserve">
+          <source>Sie haben in den App-Einstellungen noch keinen Friendica-Server definiert.</source>
+          <target state="final">Sie haben in den App-Einstellungen noch keinen Friendica-Server definiert.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: show hint if no server is specified in Settings, so no information on Friendica server available</note>
+        </trans-unit>
+        <trans-unit id="textblockAboutServer.Text" translate="yes" xml:space="preserve">
+          <source>Friendica-Server:</source>
+          <target state="final">Friendica-Server:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: header for information on Friendica server (if already set)</note>
+        </trans-unit>
+        <trans-unit id="textblockAboutServerUrl.Text" translate="yes" xml:space="preserve">
+          <source>Server-Adresse:</source>
+          <target state="final">Server-Adresse:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: text before showing the url of the server</note>
+        </trans-unit>
+        <trans-unit id="buttonContactsAddGroup.Content" translate="yes" xml:space="preserve">
+          <source>Neue Gruppe anlegen</source>
+          <target state="final">Neue Gruppe anlegen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: button to add a new group of contacts on the server</note>
+        </trans-unit>
+        <trans-unit id="pageManageGroup.FlowDirection" translate="yes" xml:space="preserve">
+          <source>LeftToRight</source>
+          <target state="final" state-qualifier="tm-suggestion">LeftToRight</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Defines text direction for the language</note>
+        </trans-unit>
+        <trans-unit id="pageTitleChangeGroup.Text" translate="yes" xml:space="preserve">
+          <source>Gruppe ändern</source>
+          <target state="final" state-qualifier="tm-suggestion">Gruppe ändern</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ManageGroup.xaml: page header if user wants to change an existing group</note>
+        </trans-unit>
+        <trans-unit id="pageTitleCreateGroup.Text" translate="yes" xml:space="preserve">
+          <source>Gruppe erstellen</source>
+          <target state="final" state-qualifier="tm-suggestion">Gruppe erstellen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ManageGroup.xaml: page header if user wants to add a new group</note>
+        </trans-unit>
+        <trans-unit id="textblockManageGroupGid.Text" translate="yes" xml:space="preserve">
+          <source>Gruppen-Nummer: </source>
+          <target state="final">Gruppen-Nummer: </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ManageGroup.xaml: show group id (gid) if user wants to change a group</note>
+        </trans-unit>
+        <trans-unit id="textblockManageGroupName.Text" translate="yes" xml:space="preserve">
+          <source>Name der Gruppe:</source>
+          <target state="final" state-qualifier="tm-suggestion">Name der Gruppe</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ManageGroup.xaml: show group name and provide input field on new groups</note>
+        </trans-unit>
+        <trans-unit id="textBoxManageGroupGroupname.Header" translate="yes" xml:space="preserve">
+          <source>Name der Gruppe:</source>
+          <target state="final" state-qualifier="tm-suggestion">Name der Gruppe</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ManageGroup.xaml: show group name input field</note>
+        </trans-unit>
+        <trans-unit id="messageDialogGroupChangeNotSaved" translate="yes" xml:space="preserve">
+          <source>Die Änderungen an der Gruppe wurden noch nicht gespeichert. Sind Sie sicher, dass Sie die Seite verlassen wollen?</source>
+          <target state="final">Die Änderungen an der Gruppe wurden noch nicht gespeichert. Sind Sie sicher, dass Sie die Seite verlassen wollen?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Navigation: leaving group manage page while there are unsaved changes.</note>
+        </trans-unit>
+        <trans-unit id="messageDialogGroupReactivated" translate="yes" xml:space="preserve">
+          <source>Eine gelöschte Gruppe mit diesem Namen wurde wiederbelebt. Bestehende Berechtigungseinstellungen könnten auf diese Gruppe oder zukünftige Mitglieder angewandt werden. Falls Sie dies nicht möchten, erstellen Sie bitte eine andere Gruppe mit einem anderen Namen.</source>
+          <target state="final">Eine gelöschte Gruppe mit diesem Namen wurde wiederbelebt. Bestehende Berechtigungseinstellungen könnten auf diese Gruppe oder zukünftige Mitglieder angewandt werden. Falls Sie dies nicht möchten, erstellen Sie bitte eine andere Gruppe mit einem anderen Namen.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ManageGroup.xaml: warning to user if a group has been reactivated</note>
+        </trans-unit>
+        <trans-unit id="messageDialogManageGroupErrorResult" translate="yes" xml:space="preserve">
+          <source>Bei der Übertragung an den Server ist ein Fehler aufgetreten. Hier die Fehlermeldung: 
+HTML-Status: {0}
+Fehlermeldung: {1}</source>
+          <target state="final">Bei der Übertragung an den Server ist ein Fehler aufgetreten. Hier die Fehlermeldung: 
+HTML-Status: {0}
+Fehlermeldung: {1}</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ManageGroup.xaml: display error message if something went wrong on submitting changes to the server</note>
+        </trans-unit>
+        <trans-unit id="messageDialogWarningOnEmptyUserlist" translate="yes" xml:space="preserve">
+          <source>Sie haben keine Kontakte für diese Gruppe ausgewählt. Sind Sie sicher, dass eine Gruppe ohne Kontakte am Server gespeichert werden soll?</source>
+          <target state="final">Sie haben keine Kontakte für diese Gruppe ausgewählt. Sind Sie sicher, dass eine Gruppe ohne Kontakte am Server gespeichert werden soll?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ManageGroup.xaml: Warnhinweise, wenn die Liste der Benutzer leer ist</note>
+        </trans-unit>
+        <trans-unit id="textblockIndicatorSavingGroup.Text" translate="yes" xml:space="preserve">
+          <source>Speichere Änderungen an der Gruppe...</source>
+          <target state="final">Speichere Änderungen an der Gruppe...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ManageGroup.xaml: text next to progress ring indicating that app is saving changes to the group or a new group</note>
+        </trans-unit>
+        <trans-unit id="messageDialogGroupAlreadyExisting" translate="yes" xml:space="preserve">
+          <source>Die Gruppe mit dem Namen '{0}' ist bereits angelegt. Bitte wählen Sie einen anderen Namen für eine neue Gruppe.</source>
+          <target state="final">Die Gruppe mit dem Namen '{0}' ist bereits angelegt. Bitte wählen Sie einen anderen Namen für eine neue Gruppe.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ManageGroup.xaml: explain user to take another name if API returns "group already exists" on creating a new group</note>
+        </trans-unit>
+        <trans-unit id="messageDialogGroupAPIerror" translate="yes" xml:space="preserve">
+          <source>Der Friendica-Server hat eine unbekannte Fehlermeldung zurückgegeben.</source>
+          <target state="final">Der Friendica-Server hat eine unbekannte Fehlermeldung zurückgegeben.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ManageGroup.xaml: general error message if API returns "other API error" or "group name not specified" (which should not be possible as checked before sending)</note>
+        </trans-unit>
+        <trans-unit id="textblockGroupsSaved.Text" translate="yes" xml:space="preserve">
+          <source>Gespeichert. Mit dem Zurückbutton kommen Sie zur Liste der Gruppen zurück...</source>
+          <target state="final">Gespeichert. Mit dem Zurückbutton kommen Sie zur Liste der Gruppen zurück...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ManageGroup.xaml: showing info text next to save button after successful saving the changes</note>
+        </trans-unit>
+        <trans-unit id="textblockNoGroupsAvailable.Text" translate="yes" xml:space="preserve">
+          <source>Die Funktion zur Anzeige und Verwaltung der Gruppen ist nur in Verbindung mit einem Friendica Server ab 3.5 möglich. </source>
+          <target state="final">Die Funktion zur Anzeige und Verwaltung der Gruppen ist nur in Verbindung mit einem Friendica Server ab 3.5 möglich. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: info to user if he/she uses a Friendica server version below 3.5, as there are the API calls for the group management not yet implemented</note>
+        </trans-unit>
+        <trans-unit id="messageDialogGroupChangeSamples" translate="yes" xml:space="preserve">
+          <source>Änderungen an den Beispieldaten der Gruppen werden nicht gespeichert. </source>
+          <target state="final">Änderungen an den Beispieldaten der Gruppen werden nicht gespeichert. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ManageGroup.xaml: user get info that changes on sample group data will not be saved</note>
+        </trans-unit>
+        <trans-unit id="pageNewPost.FlowDirection" translate="yes" xml:space="preserve">
+          <source>LeftToRight</source>
+          <target state="final" state-qualifier="tm-suggestion">LeftToRight</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Defines Text direction for the language</note>
+        </trans-unit>
+        <trans-unit id="textBlockNewPostButtonBold.Text" translate="yes" xml:space="preserve">
+          <source>F</source>
+          <target state="final">F</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: caption of button for bold formatting</note>
+        </trans-unit>
+        <trans-unit id="textBlockNewPostButtonItalic.Text" translate="yes" xml:space="preserve">
+          <source>k</source>
+          <target state="final">k</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: caption of button for italic formatting</note>
+        </trans-unit>
+        <trans-unit id="textBlockNewPostButtonUnderline.Text" translate="yes" xml:space="preserve">
+          <source>u</source>
+          <target state="final">u</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: caption of button for underline formatting</note>
+        </trans-unit>
+        <trans-unit id="textBlockNewPostStatusHeader.Text" translate="yes" xml:space="preserve">
+          <source>Mitteilungstext:</source>
+          <target state="final">Mitteilungstext:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: header for the posting text input box</note>
+        </trans-unit>
+        <trans-unit id="textBoxNewPostTitle.Header" translate="yes" xml:space="preserve">
+          <source>Überschrift:</source>
+          <target state="final">Überschrift:
+</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: header for title input box</note>
+        </trans-unit>
+        <trans-unit id="textBlockNewPostButtonCode.Text" translate="yes" xml:space="preserve">
+          <source>Code</source>
+          <target state="final" state-qualifier="exact-match">Code</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: caption of button for code formatting</note>
+        </trans-unit>
+        <trans-unit id="textBlockNewPostButtonColor.Text" translate="yes" xml:space="preserve">
+          <source>Farbe</source>
+          <target state="final">Farbe</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: caption of button for color formatting</note>
+        </trans-unit>
+        <trans-unit id="textBlockNewPostButtonQuote.Text" translate="yes" xml:space="preserve">
+          <source>Zitat</source>
+          <target state="final" state-qualifier="exact-match">Zitat</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: caption of button for quote formatting</note>
+        </trans-unit>
+        <trans-unit id="buttonInsertLink.Content" translate="yes" xml:space="preserve">
+          <source>Einfügen</source>
+          <target state="final">Einfügen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: button text on flyout for entering the link target</note>
+        </trans-unit>
+        <trans-unit id="buttonLinkCaption.Text" translate="yes" xml:space="preserve">
+          <source>Link einfügen</source>
+          <target state="final" state-qualifier="tm-suggestion">Link einfügen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: caption of button for link insert</note>
+        </trans-unit>
+        <trans-unit id="inputlink.Header" translate="yes" xml:space="preserve">
+          <source>Link-Ziel:</source>
+          <target state="final">Link-Ziel:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: header on flyout for entering the link target</note>
+        </trans-unit>
+        <trans-unit id="buttonDeleteImage.Content" translate="yes" xml:space="preserve">
+          <source>Bild entfernen</source>
+          <target state="final">Bild entfernen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: caption of button to remove loaded image from new post</note>
+        </trans-unit>
+        <trans-unit id="buttonLoadImage.Content" translate="yes" xml:space="preserve">
+          <source>Bild laden</source>
+          <target state="final" state-qualifier="tm-suggestion">Bild laden</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: caption of button to load image from pictures library</note>
+        </trans-unit>
+        <trans-unit id="checkboxSendCoordinatesImage.Content" translate="yes" xml:space="preserve">
+          <source>GPS-Koordinaten vom Bild verwenden</source>
+          <target state="final">GPS-Koordinaten vom Bild verwenden</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: user can send the image coordinates instead of the coordinates of the current location</note>
+        </trans-unit>
+        <trans-unit id="radiobuttonPrivatePost.Content" translate="yes" xml:space="preserve">
+          <source>Sichtbar nur für</source>
+          <target state="final">Sichtbar nur für</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: caption of radiobutton for a private post followed by the selection dropdowns</note>
+        </trans-unit>
+        <trans-unit id="radiobuttonPublicPost.Content" translate="yes" xml:space="preserve">
+          <source>Öffentlicher Eintrag</source>
+          <target state="final">Öffentlicher Eintrag</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: caption of radiobutton for a public post</note>
+        </trans-unit>
+        <trans-unit id="textblockAccessRightsHeader.Text" translate="yes" xml:space="preserve">
+          <source>Berechtigungen:</source>
+          <target state="final">Berechtigungen:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: header for the access right selection block</note>
+        </trans-unit>
+        <trans-unit id="textBlockNewPostImageHeader.Text" translate="yes" xml:space="preserve">
+          <source>Bild:</source>
+          <target state="final">Bild:
+</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: header for the posting image selector</note>
+        </trans-unit>
+        <trans-unit id="textblockSendCoordinatesHint.Text" translate="yes" xml:space="preserve">
+          <source>Wenn aktiv werden neue Beiträge standardmäßig mit den GPS-Koordinaten versehen (entweder vom Bild oder von der aktuellen Position) - kann im Beitrag übersteuert werden. </source>
+          <target state="final">Wenn aktiv werden neue Beiträge standardmäßig mit den GPS-Koordinaten versehen (entweder vom Bild oder von der aktuellen Position) - kann im Beitrag übersteuert werden. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: hint to the toggle for sending GPS coordinates</note>
+        </trans-unit>
+        <trans-unit id="toggleSendCoordinates.Header" translate="yes" xml:space="preserve">
+          <source>GPS-Koordinaten senden (aktuelle Position)</source>
+          <target state="final">GPS-Koordinaten senden (aktuelle Position)</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: user can override the default setting for posting GPS coordinates (from AppSettings)</note>
+        </trans-unit>
+        <trans-unit id="toggleSendCoordinatesAllowed.Header" translate="yes" xml:space="preserve">
+          <source>GPS-Koordinaten für neue Beiträge</source>
+          <target state="final">GPS-Koordinaten für neue Beiträge</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: user can set the standard setting for coordinates in new posts</note>
+        </trans-unit>
+        <trans-unit id="buttonNewPostSend.Content" translate="yes" xml:space="preserve">
+          <source>Beitrag teilen</source>
+          <target state="final">Beitrag teilen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: caption of button for user to send the post to server</note>
+        </trans-unit>
+        <trans-unit id="checkboxSaveACLStandard.Content" translate="yes" xml:space="preserve">
+          <source>Einstellung als Standard für zukünftige Beiträge speichern</source>
+          <target state="final">Einstellung als Standard für zukünftige Beiträge speichern</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: user can save the current setting for access rights as a default setting for future posts</note>
+        </trans-unit>
+        <trans-unit id="textblockConversationHeader.Text" translate="yes" xml:space="preserve">
+          <source>Bisherige Unterhaltung:</source>
+          <target state="final">Bisherige Unterhaltung:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: caption for showing the current thread posts</note>
+        </trans-unit>
+        <trans-unit id="buttonCancelInsertQuote.Content" translate="yes" xml:space="preserve">
+          <source>Abbrechen</source>
+          <target state="final" state-qualifier="exact-match">Abbrechen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: cancel button on flyout shown if user has selected a historic post for quoting</note>
+        </trans-unit>
+        <trans-unit id="buttonInsertQuote.Content" translate="yes" xml:space="preserve">
+          <source>Einfügen</source>
+          <target state="final">Einfügen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: insert button on flyout shown if user has selected a historic post for quoting</note>
+        </trans-unit>
+        <trans-unit id="textblockFlyoutQuoteHeader.Text" translate="yes" xml:space="preserve">
+          <source>Zitat einfügen</source>
+          <target state="final" state-qualifier="tm-suggestion">Zitat einfügen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: header on flyout shown if user has selected a historic post for quoting</note>
+        </trans-unit>
+        <trans-unit id="textblockFlyoutQuoteHint.Text" translate="yes" xml:space="preserve">
+          <source>Markieren Sie den Text, der als Zitat übernommen werden soll.</source>
+          <target state="final">Markieren Sie den Text, der als Zitat übernommen werden soll.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: hint text on flyout shown if user has selected a historic post for quoting</note>
+        </trans-unit>
+        <trans-unit id="buttonCancel" translate="yes" xml:space="preserve">
+          <source>Abbrechen</source>
+          <target state="final" state-qualifier="exact-match">Abbrechen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">dialog buttons: Cancel</note>
+        </trans-unit>
+        <trans-unit id="buttonOK" translate="yes" xml:space="preserve">
+          <source>OK</source>
+          <target state="final">OK</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">dialog buttons: OK</note>
+        </trans-unit>
+        <trans-unit id="messageDialogNewPostQuoteLonger" translate="yes" xml:space="preserve">
+          <source>Der Text ist länger als 160 Zeichen, wollen Sie wirklich alles als Zitat übernehmen?</source>
+          <target state="final">Der Text ist länger als 160 Zeichen, wollen Sie wirklich alles als Zitat übernehmen?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: ask user if he wants to take a posting text into a qute even if text is longer than 160 chars</note>
+        </trans-unit>
+        <trans-unit id="textblockConversationHint.Text" translate="yes" xml:space="preserve">
+          <source>Sie können den Text eines Postings als Zitat in den neuen Beitrag übernehmen, indem Sie darauf tippen und halten bzw. rechtsklicken. </source>
+          <target state="final">Sie können den Text eines Postings als Zitat in den neuen Beitrag übernehmen, indem Sie darauf tippen und halten bzw. rechtsklicken. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: hint on user how to create a quote from an existing posting </note>
+        </trans-unit>
+        <trans-unit id="textblockNoContactsGroupsSelected.Text" translate="yes" xml:space="preserve">
+          <source>Sie haben weder einen Kontakt noch eine Gruppe ausgewählt. Dadurch wird der Beitrag zu einem öffentlichen.</source>
+          <target state="final">Sie haben weder einen Kontakt noch eine Gruppe ausgewählt. Dadurch wird der Beitrag zu einem öffentlichen.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: show hint to user if no contact and no group is selected</note>
+        </trans-unit>
+        <trans-unit id="messageDialogErrorOnSendingNewPostImage" translate="yes" xml:space="preserve">
+          <source>Der Beitrag mit dem Foto konnte nicht übertragen werden. Möglicherweise ist die Einstellung upload_max_filesize in der php.ini auf dem Server zu klein für die Übertragung der Bilder. Klären Sie das bitte mit dem Systemadministrator. </source>
+          <target state="final">Der Beitrag mit dem Foto konnte nicht übertragen werden. Möglicherweise ist die Einstellung upload_max_filesize in der php.ini auf dem Server zu klein für die Übertragung der Bilder. Klären Sie das bitte mit dem Systemadministrator. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: error message if server setting in php.ini is too small for uploading images</note>
+        </trans-unit>
+        <trans-unit id="textblockIndicatorSendingNewPost.Text" translate="yes" xml:space="preserve">
+          <source>Übertrage neuen Beitrag...</source>
+          <target state="final">Übertrage neuen Beitrag...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml/ShowThread.xaml: text next to progress ring indicating that app is currently sending the new post</note>
+        </trans-unit>
+        <trans-unit id="buttonAddComment.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Kommentar zum Beitrag hinzufügen...</source>
+          <target state="final">Kommentar zum Beitrag hinzufügen...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: tooltip for button to add a comment to the posting</note>
+        </trans-unit>
+        <trans-unit id="messageDialogNewPostNotSent" translate="yes" xml:space="preserve">
+          <source>Der neue Beitrag wurde noch nicht gesendet. Sind Sie sicher, dass Sie die Seite verlassen wollen?</source>
+          <target state="final">Der neue Beitrag wurde noch nicht gesendet. Sind Sie sicher, dass Sie die Seite verlassen wollen?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Navigation: leaving new post page while there are unsent changes.</note>
+        </trans-unit>
+        <trans-unit id="buttonLinkInsert" translate="yes" xml:space="preserve">
+          <source>Link einfügen</source>
+          <target state="final" state-qualifier="tm-suggestion">Link einfügen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: caption of button for link insert (insert if selection has no link yet)</note>
+        </trans-unit>
+        <trans-unit id="buttonLinkShow" translate="yes" xml:space="preserve">
+          <source>Link anzeigen</source>
+          <target state="final" state-qualifier="tm-suggestion">Link anzeigen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: caption of button for link insert (show if selection already contains link)</note>
+        </trans-unit>
+        <trans-unit id="messageDialogNewPostLinkError" translate="yes" xml:space="preserve">
+          <source>Es gab ein Problem beim Einfügen des Hyperlinks!</source>
+          <target state="final">Es gab ein Problem beim Einfügen des Hyperlinks!</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: show user that we had an error on inserting the hyperlink</note>
+        </trans-unit>
+        <trans-unit id="messageDialogNewPostLinkSelect" translate="yes" xml:space="preserve">
+          <source>Bitte markieren Sie den Text, der einen Hyperlink bekommen soll.</source>
+          <target state="final">Bitte markieren Sie den Text, der einen Hyperlink bekommen soll.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: show info to user if button for link is clicked without selecting text</note>
+        </trans-unit>
+        <trans-unit id="buttonRemoveLink.Content" translate="yes" xml:space="preserve">
+          <source>Löschen</source>
+          <target state="final" state-qualifier="exact-match">Löschen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: button text on flyout for deleting the link target</note>
+        </trans-unit>
+        <trans-unit id="StringAtTime" translate="yes" xml:space="preserve">
+          <source>um</source>
+          <target state="final" state-qualifier="tm-suggestion">um</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">BackgroundTask: the word "at" in the headline of the toasts ("name   (Friendica at hh:mm)")</note>
+        </trans-unit>
+        <trans-unit id="stringOnDate" translate="yes" xml:space="preserve">
+          <source>am</source>
+          <target state="final" state-qualifier="tm-suggestion">am</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">BackgroundTask: the word "at" in the headline of the toasts ("name   (Friendica on date at hh:mm)")</note>
+        </trans-unit>
+        <trans-unit id="messageDialogNewPostSentAppClosing" translate="yes" xml:space="preserve">
+          <source>Der Beitrag wurde erfolgreich an den Server übertragen. Die App schließt sich nun wieder.</source>
+          <target state="final">Der Beitrag wurde erfolgreich an den Server übertragen. Die App schließt sich nun wieder.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Navigation: new post was sent, app closes (after user tapped 'reply in app...' from toast notification</note>
+        </trans-unit>
+        <trans-unit id="checkboxNotificationActivated.Content" translate="yes" xml:space="preserve">
+          <source>Benachrichtigung bei neuen Postings</source>
+          <target state="final">Benachrichtigung bei neuen Postings</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: text at checkbox for activating toast notifications</note>
+        </trans-unit>
+        <trans-unit id="pivotSettingsNotification.Header" translate="yes" xml:space="preserve">
+          <source>Benachrichtungen</source>
+          <target state="final">Benachrichtungen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: header for notification settings</note>
+        </trans-unit>
+        <trans-unit id="sliderNotificationFreshnessTime.Header" translate="yes" xml:space="preserve">
+          <source>Aktualisierungsrate</source>
+          <target state="final" state-qualifier="exact-match">Aktualisierungsrate</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: text at slider to set the timer for the check if new posts are available (15 - 120 minutes)</note>
+        </trans-unit>
+        <trans-unit id="textblockNotificationActivatedHint.Text" translate="yes" xml:space="preserve">
+          <source>Die App kann in regelmäßigen Abständen am Server nachfragen, ob neue Beiträge vorhanden sind. In diesem Fall bekommen Sie eine Benachrichtung mit dem Absender, der Absendezeit sowie dem Start des Inhaltes. Die Nachrichten befinden sich im Windows-Infocenter. 
+
+Die Prüfung erfolgt im Hintergrund, die App muss dazu nicht gestartet sein. Bitte stellen Sie in den Windows-Einstellungen sicher, dass die App im Hintergrund ausgeführt werden darf (Datenschutz/Hintergrund-Apps) und Benachrichtungen angezeigt werden (System/Benachrichtigungen &amp; Infos). 
+
+Sie können zusätzlich die Anzahl der neuen Benachrichtigungen auf dem Sperrbildschirm anzeigen lassen. Wählen Sie dazu Friendica Mobile als eine der bis zu sieben Apps aus (Personalisierung/Sperrbildschirm). </source>
+          <target state="final">Die App kann in regelmäßigen Abständen am Server nachfragen, ob neue Beiträge vorhanden sind. In diesem Fall bekommen Sie eine Benachrichtung mit dem Absender, der Absendezeit sowie dem Start des Inhaltes. Die Nachrichten befinden sich im Windows-Infocenter. 
+
+Die Prüfung erfolgt im Hintergrund, die App muss dazu nicht gestartet sein. Bitte stellen Sie in den Windows-Einstellungen sicher, dass die App im Hintergrund ausgeführt werden darf (Datenschutz/Hintergrund-Apps) und Benachrichtungen angezeigt werden (System/Benachrichtigungen &amp; Infos). 
+
+Sie können zusätzlich die Anzahl der neuen Benachrichtigungen auf dem Sperrbildschirm anzeigen lassen. Wählen Sie dazu Friendica Mobile als eine der bis zu sieben Apps aus (Personalisierung/Sperrbildschirm). </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: hint on checkbox for activating toast notifications</note>
+        </trans-unit>
+        <trans-unit id="textblockNotificationFreshnessTimeHint" translate="yes" xml:space="preserve">
+          <source>Die App überprüft Ihr Konto alle {0} Minuten auf neue Nachrichten.</source>
+          <target state="final">Die App überprüft Ihr Konto alle {0} Minuten auf neue Nachrichten.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: </note>
+        </trans-unit>
+        <trans-unit id="menuflyoutNotificationOff" translate="yes" xml:space="preserve">
+          <source>Benachrichtigungen aus</source>
+          <target state="final">Benachrichtigungen aus</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">text on Shell/menuflyout if notification is currently on</note>
+        </trans-unit>
+        <trans-unit id="menuflyoutNotificationOn" translate="yes" xml:space="preserve">
+          <source>Benachrichtigungen ein</source>
+          <target state="final">Benachrichtigungen ein</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">text on Shell/menuflyout if notification is currently off</note>
+        </trans-unit>
+        <trans-unit id="messageDialogExitApplication" translate="yes" xml:space="preserve">
+          <source>Wollen Sie die Anwendung beenden?</source>
+          <target state="final">Wollen Sie die Anwendung beenden?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Navigation: asking user if he is sure to exit the application</note>
+        </trans-unit>
+        <trans-unit id="buttonLinkAppSupportpage.Content" translate="yes" xml:space="preserve">
+          <source>Friendica Mobile Support</source>
+          <target state="final">Friendica Mobile Support</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">A2_Help.xaml: button to show Friendica Mobile Support Fanpage in Browser</note>
+        </trans-unit>
+        <trans-unit id="pageHelp.FlowDirection" translate="yes" xml:space="preserve">
+          <source>LeftToRight</source>
+          <target state="final" state-qualifier="tm-suggestion">LeftToRight</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Defines Text direction for the language</note>
+        </trans-unit>
+        <trans-unit id="pageTitleHelp.Text" translate="yes" xml:space="preserve">
+          <source>Hilfe</source>
+          <target state="final" state-qualifier="exact-match">Hilfe</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Name on top of view Help</note>
+        </trans-unit>
+        <trans-unit id="textblockIndicatorLoadingWebpage.Text" translate="yes" xml:space="preserve">
+          <source>Webseite wird geladen...</source>
+          <target state="final">Webseite wird geladen...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">A3_Browser.xaml: text next to progress ring indicating that app is currently loading a webpage into webview control</note>
+        </trans-unit>
+        <trans-unit id="pageBrowser.FlowDirection" translate="yes" xml:space="preserve">
+          <source>LeftToRight</source>
+          <target state="final" state-qualifier="tm-suggestion">LeftToRight</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Defines Text direction for the language</note>
+        </trans-unit>
+        <trans-unit id="messageDialogBrowserHttpError" translate="yes" xml:space="preserve">
+          <source>Es ist ein Fehler in der Web-Navigation aufgetaucht. Sie können mit dem Zurückbutton auf die vorherige Seite zurückkehren.</source>
+          <target state="final">Es ist ein Fehler in der Web-Navigation aufgetaucht. Sie können mit dem Zurückbutton auf die vorherige Seite zurückkehren.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Browser.xaml: Info to user if there occured an error in webview navigation</note>
+        </trans-unit>
+        <trans-unit id="textblockHelpAppSupportpageHeader.Text" translate="yes" xml:space="preserve">
+          <source>Hilfe zur App:</source>
+          <target state="final">Hilfe zur App:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Help.xaml: header for the part with help to the app</note>
+        </trans-unit>
+        <trans-unit id="textblockHelpFriendicaSupportHeader.Text" translate="yes" xml:space="preserve">
+          <source>Hilfe zum Friendica-Projekt:</source>
+          <target state="final">Hilfe zum Friendica-Projekt:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Help.xaml: header for the part with help to Friendica in general</note>
+        </trans-unit>
+        <trans-unit id="textHelpAppSupport1.Text" translate="yes" xml:space="preserve">
+          <source>Hast du Fragen zu dieser App für Windows? Sind bei dir Probleme aufgetaucht, die du dem Entwickler mitteilen möchtest (Bug-Reporting)? Gibt es für dich wichtige Friendica-Funktionen, die dir in der Windows-App noch fehlen? Oder möchtest du dich einfach nur über die Weiterentwicklung der App auf dem Laufenden halten?</source>
+          <target state="final">Hast du Fragen zu dieser App für Windows? Sind bei dir Probleme aufgetaucht, die du dem Entwickler mitteilen möchtest (Bug-Reporting)? Gibt es für dich wichtige Friendica-Funktionen, die dir in der Windows-App noch fehlen? Oder möchtest du dich einfach nur über die Weiterentwicklung der App auf dem Laufenden halten?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Help.xaml: 1st paragraph introducing link to forum "Friendica Mobile Support"</note>
+        </trans-unit>
+        <trans-unit id="textHelpAppSupport2.Text" translate="yes" xml:space="preserve">
+          <source>Dann ist das Support-Forum zu Friendica Mobile die richtige Anlaufstelle für dich. Wenn du mit dem Forum verbunden bist, kannst du Beiträge erstellen, liken oder kommentieren. Neuigkeiten landen in deiner Timeline.</source>
+          <target state="final">Dann ist das Support-Forum zu Friendica Mobile die richtige Anlaufstelle für dich. Wenn du mit dem Forum verbunden bist, kannst du Beiträge erstellen, liken oder kommentieren. Neuigkeiten landen in deiner Timeline.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Help.xaml: 2nd paragraph introducing link to forum "Friendica Mobile Support"</note>
+        </trans-unit>
+        <trans-unit id="textHelpFriendicaDevelopers.Text" translate="yes" xml:space="preserve">
+          <source>Zudem gibt es ein Forum, wo sich die beteiligten Entwickler über Weiterentwicklungen und Fehlerbehebungen austauschen. Gerne kannst du hier auch deine Wünsche einbringen und bei den Themen mitdiskutieren. Wenn du Erfahrung im Programmieren mit PHP hast, kannst du dich gerne hier auch als Entwickler in der Community engagieren.</source>
+          <target state="final">Zudem gibt es ein Forum, wo sich die beteiligten Entwickler über Weiterentwicklungen und Fehlerbehebungen austauschen. Gerne kannst du hier auch deine Wünsche einbringen und bei den Themen mitdiskutieren. Wenn du Erfahrung im Programmieren mit PHP hast, kannst du dich gerne hier auch als Entwickler in der Community engagieren.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Help.xaml: paragraph introducing link to forum "Friendica Developers"</note>
+        </trans-unit>
+        <trans-unit id="textHelpFriendicaOthers1.Text" translate="yes" xml:space="preserve">
+          <source>Das ganze Open-Source-Projekt findest du auch auf</source>
+          <target state="final">Das ganze Open-Source-Projekt findest du auch auf</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Help.xaml: 1st sentence noting other resources - followed by link to github page</note>
+        </trans-unit>
+        <trans-unit id="textHelpFriendicaOthers2.Text" translate="yes" xml:space="preserve">
+          <source>Dort gibt es auch weiterführende Informationen und Dokumentationen. Weitere Informationen findest du auch auf</source>
+          <target state="final">Dort gibt es auch weiterführende Informationen und Dokumentationen. Weitere Informationen findest du auch auf</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Help.xaml: 2nd sentence noting other resources - followed by link to friendica.com (then paragraph ends)</note>
+        </trans-unit>
+        <trans-unit id="textHelpFriendicaSupport.Text" translate="yes" xml:space="preserve">
+          <source>Wenn du Fragen, Probleme, Anregungen etc. zu Friendica im Allgemeinen hast, kannst du dich gerne an das Support-Forum wenden. Dort wird dir von Leuten aus dem Entwicklerteam und von erfahrenen Anwendern geholfen. Wenn du dich als Anwender hier gerne helfend betätigen willst, bist du hier jederzeit gerne gesehen.</source>
+          <target state="final">Wenn du Fragen, Probleme, Anregungen etc. zu Friendica im Allgemeinen hast, kannst du dich gerne an das Support-Forum wenden. Dort wird dir von Leuten aus dem Entwicklerteam und von erfahrenen Anwendern geholfen. Wenn du dich als Anwender hier gerne helfend betätigen willst, bist du hier jederzeit gerne gesehen.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Help.xaml: paragraph introducing link to forum "Friendica Support"</note>
+        </trans-unit>
+        <trans-unit id="buttonOpenInBrowser.Content" translate="yes" xml:space="preserve">
+          <source>In Standardbrowser öffnen</source>
+          <target state="final">In Standardbrowser öffnen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">A3_Browser.xaml: give user the possibility to open the shown page in the standard browser</note>
+        </trans-unit>
+        <trans-unit id="messageDialogBrowserInvalidCertificate" translate="yes" xml:space="preserve">
+          <source>Das Profil hat kein gültiges Sicherheitszertifikat. Möchten Sie trotzdem die Seite aufrufen?</source>
+          <target state="final">Das Profil hat kein gültiges Sicherheitszertifikat. Möchten Sie trotzdem die Seite aufrufen?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Browser.xaml: question to user if he wants to load a profil page anyway, even if the certificate is invalid</note>
+        </trans-unit>
+        <trans-unit id="textblockShowProfile.Text" translate="yes" xml:space="preserve">
+          <source>Profil öffnen</source>
+          <target state="final" state-qualifier="tm-suggestion">Profil öffnen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: text for opening profile page of a contact shown in the flyout coming if user taps on a contact</note>
+        </trans-unit>
+        <trans-unit id="dragCaption" translate="yes" xml:space="preserve">
+          <source>Hier fallen lassen...</source>
+          <target state="final">Hier fallen lassen...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: text shown if user drag a content over the drop rectangle</note>
+        </trans-unit>
+        <trans-unit id="messageDialogAppContentConversionError" translate="yes" xml:space="preserve">
+          <source>Es ist ein Fehler bei der Verarbeitung der eingefügten Daten passiert!</source>
+          <target state="final">Es ist ein Fehler bei der Verarbeitung der eingefügten Daten passiert!</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">App.xaml: something went wrong on converting dropped or pasted content for inserting into a new post</note>
+        </trans-unit>
+        <trans-unit id="messageDialogAppContentMoreThanOneImage" translate="yes" xml:space="preserve">
+          <source>Es wurde mehr als ein Bild eingefügt, für den Beitrag wird nur das Bild mit dem Namen '{0}' übernommen.</source>
+          <target state="final">Es wurde mehr als ein Bild eingefügt, für den Beitrag wird nur das Bild mit dem Namen '{0}' übernommen.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">App.xaml: info to user that only one image can be included from dropped or pasted content into a new post, give filename of the used image for reference</note>
+        </trans-unit>
+        <trans-unit id="textblockNetworkSettings.Text" translate="yes" xml:space="preserve">
+          <source>Einstellungen</source>
+          <target state="final" state-qualifier="exact-match">Einstellungen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: caption on button for user to go to Settings page</note>
+        </trans-unit>
+        <trans-unit id="textblockNoSettings.Text" translate="yes" xml:space="preserve">
+          <source>Sie haben in den App-Einstellungen noch keinen Friendica-Server definiert. Unten zeigen wir Beispieldaten, wie Beiträge Ihrer Pinnwand- oder Netzwerk-Seite in der App angezeigt werden könnten.</source>
+          <target state="final">Sie haben in den App-Einstellungen noch keinen Friendica-Server definiert. Unten zeigen wir Beispieldaten, wie Beiträge Ihrer Pinnwand- oder Netzwerk-Seite in der App angezeigt werden könnten.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: show text if user has not set any app settings (we are showing only sample data)</note>
+        </trans-unit>
+        <trans-unit id="textblockHomeIsLoadingInitial.Text" translate="yes" xml:space="preserve">
+          <source>Die App lädt gerade die Beiträge Ihrer Pinnwand. Bitte haben Sie noch etwas Geduld.</source>
+          <target state="final">Die App lädt gerade die Beiträge Ihrer Pinnwand. Bitte haben Sie noch etwas Geduld.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Home.xaml: status update for user during loading initial 20 entries</note>
+        </trans-unit>
+        <trans-unit id="textblockNetworkIsLoadingInitial.Text" translate="yes" xml:space="preserve">
+          <source>Die App lädt gerade die Beiträge Ihres Netzwerks. Bitte haben Sie noch etwas Geduld.</source>
+          <target state="final">Die App lädt gerade die Beiträge Ihres Netzwerks. Bitte haben Sie noch etwas Geduld.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: status update for user during loading initial 20 entries</note>
+        </trans-unit>
+        <trans-unit id="messageDialogNewPostNoSettings" translate="yes" xml:space="preserve">
+          <source>Sie können im Testmodus keine Beiträge posten. Geben Sie bitte Ihren Server und Ihre Zugangsdaten in den Einstellungen an.</source>
+          <target state="final">Sie können im Testmodus keine Beiträge posten. Geben Sie bitte Ihren Server und Ihre Zugangsdaten in den Einstellungen an.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: if no settings user can play around with the editor, but on tapping the send button, they will get this error message</note>
+        </trans-unit>
+        <trans-unit id="messageDialogBrowserNoProfilePage" translate="yes" xml:space="preserve">
+          <source>Es gibt zu den Beispieldaten keine anzeigbaren Profile auf einem Server. Daher wird als Beispiel die Support-Seite zu Friendica Mobile angezeigt. </source>
+          <target state="final">Es gibt zu den Beispieldaten keine anzeigbaren Profile auf einem Server. Daher wird als Beispiel die Support-Seite zu Friendica Mobile angezeigt. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Browser.xaml: if user tries to jump to the profile in browser from the sample data, we tell him that there is no profile and we show the support instead.</note>
+        </trans-unit>
+        <trans-unit id="messageDialogContactsFindGlobalNotAvailable" translate="yes" xml:space="preserve">
+          <source>Diese Funtion ist in dieser App momentan noch nicht verfügbar. Bitte öffnen Sie zum Suchen von Kontakten im globalen Verzeichnis Ihr Profil oder das Verzeichnis im Internet Browser.</source>
+          <target state="final">Diese Funtion ist in dieser App momentan noch nicht verfügbar. Bitte öffnen Sie zum Suchen von Kontakten im globalen Verzeichnis Ihr Profil oder das Verzeichnis im Internet Browser.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: info for user on tapping on search global button - service not yet implemented.</note>
+        </trans-unit>
+        <trans-unit id="messageDialogContactsFindLocalNotAvailable" translate="yes" xml:space="preserve">
+          <source>Diese Funktion ist in dieser App momentan noch nicht verfügbar. Bitte öffnen Sie zum Suchen von Kontakten auf Ihrem Hub Ihr Profil im Internet Browser. </source>
+          <target state="final">Diese Funktion ist in dieser App momentan noch nicht verfügbar. Bitte öffnen Sie zum Suchen von Kontakten auf Ihrem Hub Ihr Profil im Internet Browser. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: info for user on tapping on search local button - service not yet implemented.</note>
+        </trans-unit>
+        <trans-unit id="buttonSave.Content" translate="yes" xml:space="preserve">
+          <source>Speichern</source>
+          <target state="final" state-qualifier="exact-match">Speichern</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ManageGroup.xaml: button for saving the changes on groups, can be used for other buttons with caption "Save"</note>
+        </trans-unit>
+        <trans-unit id="messageDialogContactsDeleteGroup" translate="yes" xml:space="preserve">
+          <source>Möchten Sie die Gruppe '{0}' wirklich löschen?</source>
+          <target state="final" state-qualifier="tm-suggestion">Möchten Sie die Gruppe "{0}" wirklich löschen?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: question to user after tapping the delete button of a group</note>
+        </trans-unit>
+        <trans-unit id="buttonCode.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Formatiert ausgewählten Text als Block mit Programmcode...</source>
+          <target state="final">Formatiert ausgewählten Text als Block mit Programmcode...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: tooltip if user hovers over button for setting code</note>
+        </trans-unit>
+        <trans-unit id="buttonColor.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Farbe des ausgewählten Textes ändern (Achtung: funktioniert auf Mobile-Geräten derzeit nicht)...</source>
+          <target state="final">Farbe des ausgewählten Textes ändern (Achtung: funktioniert auf Mobile-Geräten derzeit nicht)...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: tooltip if user hovers over button for setting color</note>
+        </trans-unit>
+        <trans-unit id="buttonList.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Formatiert ausgewählten Absatz als Liste...</source>
+          <target state="final">Formatiert ausgewählten Absatz als Liste...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: tooltip if user hovers over button for setting list</note>
+        </trans-unit>
+        <trans-unit id="buttonQuote.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Formatiert ausgewählten Text als Zitat...</source>
+          <target state="final">Formatiert ausgewählten Text als Zitat...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: tooltip if user hovers over button for setting quote</note>
+        </trans-unit>
+        <trans-unit id="textblockAdvertising.Text" translate="yes" xml:space="preserve">
+          <source>Werbung</source>
+          <target state="final">Werbung</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Shell.xaml: show a small wording "Advertising" in mobile view to indicate that here starts a non-integrated block</note>
+        </trans-unit>
+        <trans-unit id="textBlockSettingsRemoveAdvertisingHeader.Text" translate="yes" xml:space="preserve">
+          <source>Werbung deaktivieren:</source>
+          <target state="final">Werbung deaktivieren:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: header for button for user to buy the in-app product "RemoveAdvertising"</note>
+        </trans-unit>
+        <trans-unit id="buttonSettingsRemoveAdvertising.Content" translate="yes" xml:space="preserve">
+          <source>In-App-Produkt kaufen</source>
+          <target state="final">In-App-Produkt kaufen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: button for user to buy the in-app product "RemoveAdvertising"</note>
+        </trans-unit>
+        <trans-unit id="appBarMessagesAdd.Label" translate="yes" xml:space="preserve">
+          <source>Neue Nachricht</source>
+          <target state="final" state-qualifier="tm-suggestion">Neue Nachricht</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: caption of the appbarButton for a new message</note>
+        </trans-unit>
+        <trans-unit id="appBarMessagesAdd.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Neue private Nachricht an einen Freund schicken</source>
+          <target state="final">Neue private Nachricht an einen Freund schicken</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: tooltip of the appbarButton for a new message</note>
+        </trans-unit>
+        <trans-unit id="appBarMessagesRefresh.Label" translate="yes" xml:space="preserve">
+          <source>Neu laden</source>
+          <target state="final">Neu laden</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: caption of the appbarButton for loading new messages</note>
+        </trans-unit>
+        <trans-unit id="appBarMessagesRefresh.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Neue private Nachrichten laden
+</source>
+          <target state="final">Neue private Nachrichten laden
+</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: tooltip of the appbarButton for loading new mssages</note>
+        </trans-unit>
+        <trans-unit id="appBarMessagesSearch.Label" translate="yes" xml:space="preserve">
+          <source>Suchen</source>
+          <target state="final" state-qualifier="exact-match">Suchen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: caption of the appBarButton for searching the messages on the server</note>
+        </trans-unit>
+        <trans-unit id="appBarMessagesSearch.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Die privaten Nachrichten am Server nach einem bestimmten Text durchsuchen</source>
+          <target state="final">Die privaten Nachrichten am Server nach einem bestimmten Text durchsuchen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: tooltip of the appbarButton for a searching messages</note>
+        </trans-unit>
+        <trans-unit id="pageMessages.FlowDirection" translate="yes" xml:space="preserve">
+          <source>LeftToRight</source>
+          <target state="final" state-qualifier="tm-suggestion">LeftToRight</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Defines Text direction for the language</note>
+        </trans-unit>
+        <trans-unit id="pageTitleMessages.Text" translate="yes" xml:space="preserve">
+          <source>Nachrichten</source>
+          <target state="final" state-qualifier="exact-match">Nachrichten</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Name on top of view Messages.xaml</note>
+        </trans-unit>
+        <trans-unit id="appBarMessagesSend.Label" translate="yes" xml:space="preserve">
+          <source>Senden</source>
+          <target state="final">Senden</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: caption of the appBarButton for sending a new message</note>
+        </trans-unit>
+        <trans-unit id="appBarMessagesSend.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Neue Nachricht senden</source>
+          <target state="final" state-qualifier="tm-suggestion">Neue Nachricht senden</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: tooltip of the appbarButton for sending a new message</note>
+        </trans-unit>
+        <trans-unit id="textblockIndicatorLoadingNextMessages.Text" translate="yes" xml:space="preserve">
+          <source>Lade weitere Unterhaltungen...</source>
+          <target state="final">Lade weitere Unterhaltungen...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: text next to progress ring indicating that app is loading older conversations</note>
+        </trans-unit>
+        <trans-unit id="textblockIndicatorRefreshingMessages.Text" translate="yes" xml:space="preserve">
+          <source>Lade neue Unterhaltungen...</source>
+          <target state="final">Lade neue Unterhaltungen...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: text next to progress ring indicating that app is refreshing the conversations list</note>
+        </trans-unit>
+        <trans-unit id="textblockIndicatorSendingNewMessage.Text" translate="yes" xml:space="preserve">
+          <source>Übertrage neue Nachricht...</source>
+          <target state="final">Übertrage neue Nachricht...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: text next to progress ring indicating that app is currently sending the new message</note>
+        </trans-unit>
+        <trans-unit id="textblockNoSettingsMessages.Text" translate="yes" xml:space="preserve">
+          <source>Sie haben noch keinen Friendica-Server in den App-Einstellungen definiert. Unten zeigen wir Beispiele, wie private Nachrichten in der App angezeigt werden.</source>
+          <target state="final">Sie haben noch keinen Friendica-Server in den App-Einstellungen definiert. Unten zeigen wir Beispiele, wie private Nachrichten in der App angezeigt werden.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: show text if user has not set any app settings (we are showing only sample data)</note>
+        </trans-unit>
+        <trans-unit id="textblockMessagesIsLoading.Text" translate="yes" xml:space="preserve">
+          <source>Die App lädt gerade deine privaten Nachrichten vom Server. Dies dauert nur ein paar Augenblicke...</source>
+          <target state="final">Die App lädt gerade deine privaten Nachrichten vom Server. Dies dauert nur ein paar Augenblicke...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: status update for user during loading initial 20 messages and the corresponding conversations</note>
+        </trans-unit>
+        <trans-unit id="textblockNoMessagesAvailable.Text" translate="yes" xml:space="preserve">
+          <source>Der Server hat keine privaten Nachrichten auf deinem Server gefunden.</source>
+          <target state="final">Der Server hat keine privaten Nachrichten auf deinem Server gefunden.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: info shown to the user if no conversations are available on server</note>
+        </trans-unit>
+        <trans-unit id="textboxSearchString.Header" translate="yes" xml:space="preserve">
+          <source>Suchbegriff:</source>
+          <target state="final">Suchbegriff:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: header for textbox where user can input the string to be searched on his server</note>
+        </trans-unit>
+        <trans-unit id="textblockMessagesNoSearchResults.Text" translate="yes" xml:space="preserve">
+          <source>Zum eingegebenen Suchbegriff wurden keine privaten Nachrichten gefunden.</source>
+          <target state="final">Zum eingegebenen Suchbegriff wurden keine privaten Nachrichten gefunden. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: info for user if search has not returned any results</note>
+        </trans-unit>
+        <trans-unit id="textblockMessagesIsSearching.Text" translate="yes" xml:space="preserve">
+          <source>Die App durchsucht deine private Nachrichten gerade nach dem Suchbegriff...</source>
+          <target state="final">Die App durchsucht deine private Nachrichten gerade nach dem Suchbegriff...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: info shown to the user during search on server is in progress</note>
+        </trans-unit>
+        <trans-unit id="textblockMessagesCounterStart.Text" translate="yes" xml:space="preserve">
+          <source>(Anzahl: </source>
+          <target state="final">(Anzahl:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: listbox for conversation: show counter of messages (start of text)</note>
+        </trans-unit>
+        <trans-unit id="textblockMessagesCounterThereofNew.Text" translate="yes" xml:space="preserve">
+          <source>neu:</source>
+          <target state="final">neu:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: text for counter showing new message if there are any</note>
+        </trans-unit>
+        <trans-unit id="textblockMessagesLoadingConversation.Text" translate="yes" xml:space="preserve">
+          <source>Lade Unterhaltung...</source>
+          <target state="final">Lade Unterhaltung...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: text for progressRing on loading conversation</note>
+        </trans-unit>
+        <trans-unit id="textblockMessagesUpdatingServerStatus.Text" translate="yes" xml:space="preserve">
+          <source>Gelesen-Status auf deinem Server aktualisieren...</source>
+          <target state="final">Gelesen-Status auf deinem Server aktualisieren...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: text for progressRing on updating seen status on server for this conversation</note>
+        </trans-unit>
+        <trans-unit id="textblockMessagesDeletingOnServer.Text" translate="yes" xml:space="preserve">
+          <source>Lösche Unterhaltung vom Server...</source>
+          <target state="final">Lösche Unterhaltung vom Server...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: text for progressRing on deleting a conversation from server</note>
+        </trans-unit>
+        <trans-unit id="buttonMessagesLoadOlderMessages.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Ältere Nachrichten laden...</source>
+          <target state="final">Ältere Nachrichten laden...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: tooltip if user hovers over button for loading older messages</note>
+        </trans-unit>
+        <trans-unit id="textblockMessagesUserName.Text" translate="yes" xml:space="preserve">
+          <source>ich</source>
+          <target state="final">ich</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: text below icon for own user</note>
+        </trans-unit>
+        <trans-unit id="textblockMessagesEditorHeader.Text" translate="yes" xml:space="preserve">
+          <source>Neue Nachricht:</source>
+          <target state="final">Neue Nachricht:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: header for editor where user can create a new message</note>
+        </trans-unit>
+        <trans-unit id="appBarMessagesEnableEditor.Label" translate="yes" xml:space="preserve">
+          <source>Editor anzeigen</source>
+          <target state="final">Editor anzeigen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: caption of the appBarButton for opening the editor for a new message</note>
+        </trans-unit>
+        <trans-unit id="appBarMessagesEnableEditor.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Öffnet den Editor zum Erstellen einer neuen Nachricht...</source>
+          <target state="final">Öffnet den Editor zum Erstellen einer neuen Nachricht...
+</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: tooltip of the appbarButton for opening the editor for a new message</note>
+        </trans-unit>
+        <trans-unit id="buttonDeleteConversation.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Lösche gesamte Unterhaltung vom Server...</source>
+          <target state="final">Lösche gesamte Unterhaltung vom Server...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: tooltip show if users hovers over delete button of a conversation</note>
+        </trans-unit>
+        <trans-unit id="textblockMessagesContactsHeader.Text" translate="yes" xml:space="preserve">
+          <source>Empfänger:</source>
+          <target state="final">Empfänger:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: header for contact selector when starting a new conversation</note>
+        </trans-unit>
+        <trans-unit id="textboxMessagesTitle.Header" translate="yes" xml:space="preserve">
+          <source>Betreff:</source>
+          <target state="final">Betreff:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: header for inputbox to enter the title when starting a new conversation</note>
+        </trans-unit>
+        <trans-unit id="messageDialogMessagesDiscardNewConversation" translate="yes" xml:space="preserve">
+          <source>Die neu begonnene Nachricht wurde noch nicht abgeschickt. Wollen Sie die Eingaben verwerfen?</source>
+          <target state="final">Die neu begonnene Nachricht wurde noch nicht abgeschickt. Wollen Sie die Eingaben verwerfen?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: dialog asking user to discard the started but not yet sent new conversation</note>
+        </trans-unit>
+        <trans-unit id="textblockMessagesNoServerSupport.Text" translate="yes" xml:space="preserve">
+          <source>Dein Server unterstützt die Befehle noch nicht, die für die Benutzung der privaten Nachrichten in dieser App notwendig sind. </source>
+          <target state="final">Dein Server unterstützt die Befehle noch nicht, die für die Benutzung der privaten Nachrichten in dieser App notwendig sind. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: showing error message to user if the server is reachable but has no support for the API calls needed to display/edit private messages</note>
+        </trans-unit>
+        <trans-unit id="messageDialogMessagesNewNoSettings" translate="yes" xml:space="preserve">
+          <source>Sie können im Testmodus keine privaten Nachrichten senden. Geben Sie bitte Ihren Server und Ihre Zugangsdaten in den Einstellungen an.</source>
+          <target state="final">Sie können im Testmodus keine privaten Nachrichten senden. Geben Sie bitte Ihren Server und Ihre Zugangsdaten in den Einstellungen an.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messagesxaml: if no settings user can play around with the editor, but on tapping the send button, they will get this error message</note>
+        </trans-unit>
+        <trans-unit id="paragraphMessagesNoContent" translate="yes" xml:space="preserve">
+          <source>--- kein Nachrichtentext ---</source>
+          <target state="final">--- kein Nachrichtentext ---</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: placeholder if there is no content in a private message (should be a very rare case)</note>
+        </trans-unit>
+        <trans-unit id="messageDialogMessagesDeleteConversation" translate="yes" xml:space="preserve">
+          <source>Möchten Sie die Unterhaltung '{0}' wirklich löschen?</source>
+          <target state="final">Möchten Sie die Unterhaltung '{0}' wirklich löschen?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: ask user for confirmation if he clicks the delete button</note>
+        </trans-unit>
+        <trans-unit id="messageDialogMessagesDeletingInProgress" translate="yes" xml:space="preserve">
+          <source>Die App löscht gerade eine Unterhaltung vom Server, bitte haben Sie etwas Geduld bis dieser Vorgang abgeschlossen ist. </source>
+          <target state="final">Die App löscht gerade eine Unterhaltung vom Server, bitte haben Sie etwas Geduld bis dieser Vorgang abgeschlossen ist. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: inform user on deleting conversation in progress if he wants to navigate away before finished</note>
+        </trans-unit>
+        <trans-unit id="messageDialogMessagesConversationDeleted" translate="yes" xml:space="preserve">
+          <source>Die Unterhaltung '{0}' wurde mit allen enthaltenen Nachrichten vom Server gelöscht.</source>
+          <target state="final">Die Unterhaltung '{0}' wurde mit allen enthaltenen Nachrichten vom Server gelöscht.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: give feedback to user after all message of the deleted conversation have been deleted</note>
+        </trans-unit>
+        <trans-unit id="messageDialogMessagesErrorLoading" translate="yes" xml:space="preserve">
+          <source>Beim Laden der privaten Nachrichten ist ein Fehler aufgetreten ({0}). Möchten Sie es erneut versuchen?</source>
+          <target state="final">Beim Laden der privaten Nachrichten ist ein Fehler aufgetreten ({0}). Möchten Sie es erneut versuchen?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Mesages.xaml: info to user if there was an error on loading private messages, asking user for a new try</note>
+        </trans-unit>
+        <trans-unit id="messageDialogMessagesNewErrorSending" translate="yes" xml:space="preserve">
+          <source>Beim Senden der Nachricht ist ein Fehler aufgetreten: {0}</source>
+          <target state="final">Beim Senden der Nachricht ist ein Fehler aufgetreten: {0}</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: info to user if there was an error on sending a new private message</note>
+        </trans-unit>
+        <trans-unit id="textblockAllMessagesLoaded.Text" translate="yes" xml:space="preserve">
+          <source>Es werden alle Nachrichten vom Server angezeigt. </source>
+          <target state="final">Es werden alle Nachrichten vom Server angezeigt. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: show info to user if he has loaded all messages from server.</note>
+        </trans-unit>
+        <trans-unit id="switchNotificationShowMessageContent.Header" translate="yes" xml:space="preserve">
+          <source>Text von privaten Nachrichten anzeigen</source>
+          <target state="final">Text von privaten Nachrichten anzeigen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: user can decide whether content of private messages is included in notification</note>
+        </trans-unit>
+        <trans-unit id="textblockNotificationShowMessageContentHint.Text" translate="yes" xml:space="preserve">
+          <source>Benachrichtigungen werden auch bei gesperrtem Bildschirm kurz angezeigt und könnten somit von Fremden mitgelesen werden. Wenn du dies für private Nachrichten nicht möchtest, kannst du die Anzeige des Inhalts deaktivieren. Du wirst zwar weiterhin über neue Nachrichten informiert, aber du musst auf die Funktion des Direkt-Antwortens verzichten.</source>
+          <target state="final">Benachrichtigungen werden auch bei gesperrtem Bildschirm kurz angezeigt und könnten somit von Fremden mitgelesen werden. Wenn du dies für private Nachrichten nicht möchtest, kannst du die Anzeige des Inhalts deaktivieren. Du wirst zwar weiterhin über neue Nachrichten informiert, aber du musst auf die Funktion des Direkt-Antwortens verzichten.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: hint on NotificationShowMessageContent</note>
+        </trans-unit>
+        <trans-unit id="toastErrorPostMessageHeader" translate="yes" xml:space="preserve">
+          <source>Fehler beim Senden der Nachricht</source>
+          <target state="final" state-qualifier="tm-suggestion">Fehler beim Senden der Nachricht</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">BackgroundTask: header for toast to indicate user that instant reply has exited with an error</note>
+        </trans-unit>
+        <trans-unit id="toastErrorPostMessageText" translate="yes" xml:space="preserve">
+          <source>Beim Senden der Nachricht '{0}' zum Thema '{1}' ist ein Fehler passiert, möglicherweise ist der Server nicht erreichbar.</source>
+          <target state="final">Beim Senden der Nachricht '{0}' zum Thema '{1}' ist ein Fehler passiert, möglicherweise ist der Server nicht erreichbar.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">BackgroundTask: text for toast to indicate user that instant reply has exited with an error (0 = text of message, 1 = title of conversation)</note>
+        </trans-unit>
+        <trans-unit id="toastMessageAlternativeContent" translate="yes" xml:space="preserve">
+          <source>Neue private Nachricht</source>
+          <target state="final">Neue private Nachricht</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">BackgroundTask: alternative text if user has set to not include text of a private message into toast notification ("New private message arrived")</note>
+        </trans-unit>
+        <trans-unit id="toastMessageInputPlaceholder" translate="yes" xml:space="preserve">
+          <source>Sofortantwort ohne App...</source>
+          <target state="final">Sofortantwort ohne App...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">BackgroundTask: text shown to user in input box for instant reply to a private message</note>
+        </trans-unit>
+        <trans-unit id="toastMessageInputSendButton" translate="yes" xml:space="preserve">
+          <source>Senden</source>
+          <target state="final">Senden</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">BackgroundTask: text on button to send an instant reply to a private message (if not only symbol is shown)</note>
+        </trans-unit>
+        <trans-unit id="toastMessageStartOfMessage" translate="yes" xml:space="preserve">
+          <source>PN zu:</source>
+          <target state="final">PN zu:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">BackgroundTask: start text on beginning of a toast indicating a private message ("PM on:" topic), this is to differentiating PM from posts</note>
+        </trans-unit>
+        <trans-unit id="toastPostButtonCaption" translate="yes" xml:space="preserve">
+          <source>Antworten...</source>
+          <target state="final">Antworten...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">BackgroundTask: caption for button to open the post from a toast notification</note>
+        </trans-unit>
+        <trans-unit id="messageDialogMessagesNotImplemented" translate="yes" xml:space="preserve">
+          <source>Dein Friendica-Server unterstützt die notwendigen API-Befehle für die Anzeige von privaten Nachrichten noch nicht. Bitte aktualisiere deinen Server auf Friendica 3.5 oder frage deinen Administrator. </source>
+          <target state="final">Dein Friendica-Server unterstützt die notwendigen API-Befehle für die Anzeige von privaten Nachrichten noch nicht. Bitte aktualisiere deinen Server auf Friendica 3.5 oder frage deinen Administrator. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: info to user if there was an error on loading private messages, caused by missing API calls</note>
+        </trans-unit>
+        <trans-unit id="spActivities.FlowDirection" translate="yes" xml:space="preserve">
+          <source>LeftToRight</source>
+          <target state="final" state-qualifier="tm-suggestion">LeftToRight</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml/Home.xaml: change order of like/dislike buttons to LeftToRight independently from Setting on mobile device portrait</note>
+        </trans-unit>
+        <trans-unit id="buttonDislike.Content" translate="yes" xml:space="preserve">
+          <source>Ich mag das nicht.</source>
+          <target state="final">Ich mag das nicht.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml/Home.xaml: caption of flyout menu item to dislike a post</note>
+        </trans-unit>
+        <trans-unit id="buttonLike.Content" translate="yes" xml:space="preserve">
+          <source>Ich mag das.</source>
+          <target state="final">Ich mag das.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml/Home.xaml: caption of flyout menu item to like a post</note>
+        </trans-unit>
+        <trans-unit id="buttonUnDislike.Content" translate="yes" xml:space="preserve">
+          <source>Dislike zurücknehmen</source>
+          <target state="final">Dislike zurücknehmen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml/Home.xaml: caption of flyout menu item to undo disliking a post</note>
+        </trans-unit>
+        <trans-unit id="buttonUnLike.Content" translate="yes" xml:space="preserve">
+          <source>Like zurücknehmen</source>
+          <target state="final">Like zurücknehmen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml/Home.xaml: caption of flyout menu item to undo liking a post</note>
+        </trans-unit>
+        <trans-unit id="messageDialogLikesNotSentToServer" translate="yes" xml:space="preserve">
+          <source>Likes/Dislikes werden normalerweise an deinen Server gesendet. Du bist im Testmodus, daher können keine Aktualisierungen an einen Server geschickt werden. Deine Likes/Dislikes werden nur in der App angezeigt. </source>
+          <target state="final">Likes/Dislikes werden normalerweise an deinen Server gesendet. Du bist im Testmodus, daher können keine Aktualisierungen an einen Server geschickt werden. Deine Likes/Dislikes werden nur in der App angezeigt. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml/Home.xaml: error message if user likes/dislikes in testmode as server cannot get updates</note>
+        </trans-unit>
+        <trans-unit id="messageDialogErrorOnActivitySetting" translate="yes" xml:space="preserve">
+          <source>Der Server ist nicht erreichbar, dein Like/Dislike konnte nicht aktualisiert werden. 
+
+Möchtest du es erneut versuchen?</source>
+          <target state="final">Der Server ist nicht erreichbar, dein Like/Dislike konnte nicht aktualisiert werden. 
+
+Möchtest du es erneut versuchen?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: error message if server is not available to update like/dislike activity</note>
+        </trans-unit>
+        <trans-unit id="messageDialogErrorOnActivitySettingBadRequest" translate="yes" xml:space="preserve">
+          <source>Dein Like/Dislike konnte am Server nicht aktualisiert werden. Der Server hat diese Fehlermeldung zurückgegeben: {0}. </source>
+          <target state="final">Dein Like/Dislike konnte am Server nicht aktualisiert werden. Der Server hat diese Fehlermeldung zurückgegeben: {0}. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: error message if server returned a BadRequest on updating like/dislike activity</note>
+        </trans-unit>
+        <trans-unit id="textblockPostsLikedByMe" translate="yes" xml:space="preserve">
+          <source>ich</source>
+          <target state="final">ich</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml/Home.xaml: text show next to like/dislike icon if only user has liked/disliked</note>
+        </trans-unit>
+        <trans-unit id="textblockPostsLikedByMeAndOthers" translate="yes" xml:space="preserve">
+          <source>und ich</source>
+          <target state="final">und ich</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml/Home.xaml: text shown next to like/dislike icon if others and users liked/disliked the post</note>
+        </trans-unit>
+        <trans-unit id="toastErrorPostActivityHeader" translate="yes" xml:space="preserve">
+          <source>Fehler beim Senden des Like/Dislike</source>
+          <target state="final">Fehler beim Senden des Like/Dislike</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">BackgroundTask: header for toast to indicate user that instant like/dislike has exited with an error</note>
+        </trans-unit>
+        <trans-unit id="toastErrorPostActivityText" translate="yes" xml:space="preserve">
+          <source>Beim Senden des Like/Dislikes zum Beitrag mit der Id '{0}' ist ein Fehler passiert, möglicherweise ist der Server nicht erreichbar.</source>
+          <target state="needs-review-translation">Beim Senden des Like/Dislikes zum Beitrag mit der Id '{0}' ist ein Fehler passiert, möglicherweise ist der Server nicht erreichbar.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">BackgroundTask: text for toast to indicate user that instant like/dislike has exited with an error (0 = id of post)</note>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

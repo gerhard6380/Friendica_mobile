@@ -1,0 +1,408 @@
+﻿<Page
+    x:Class="Friendica_Mobile.Views.Shell"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:views="using:Friendica_Mobile.Views"
+    xmlns:conv="using:Friendica_Mobile.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:UI="using:Microsoft.Advertising.WinRT.UI"
+    xmlns:local="using:Friendica_Mobile"
+    xmlns:triggers="using:Friendica_Mobile.Triggers"
+    mc:Ignorable="d"
+    KeyUp="Page_KeyUp"
+    KeyDown="Page_KeyDown">
+
+    
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles/SplitViewStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <conv:BoolToVisibilityCollapsedConverter x:Key="BoolToVisibilityCollapsedConverter" />
+            <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <conv:CounterVisibilityConverter x:Key="CounterVisibilityConverter" />
+            <Style TargetType="RadioButton" BasedOn="{StaticResource SplitViewRadioButtonStyle}" />
+        </ResourceDictionary>      
+    </Page.Resources>
+
+
+    <RelativePanel Name="ShellPanel" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowSizeStatus">
+                <VisualState x:Name="MobilePortrait">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="MobilePortrait" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="gridAdvMobile.Visibility" Value="Visible" />
+                        <Setter Target="textblockAdvertising.Visibility" Value="Visible" />
+                        <Setter Target="gridAdvDesktop.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="MobileLandscape">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="MobileLandscape" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="gridAdvMobile.Visibility" Value="Collapsed" />
+                        <Setter Target="textblockAdvertising.Visibility" Value="Collapsed" />
+                        <Setter Target="gridAdvDesktop.Visibility" Value="Collapsed" />
+                        <Setter Target="ShellSplitView.FlowDirection" Value="LeftToRight" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="DesktopLandscape">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="510" />
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="DesktopLandscape" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="gridAdvMobile.Visibility" Value="Collapsed" />
+                        <Setter Target="textblockAdvertising.Visibility" Value="Collapsed" />
+                        <Setter Target="gridAdvDesktop.Visibility" Value="Visible" />
+                        <Setter Target="ShellSplitView.FlowDirection" Value="LeftToRight" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="DesktopPortrait">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="DesktopPortrait" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="gridAdvMobile.Visibility" Value="Visible" />
+                        <Setter Target="textblockAdvertising.Visibility" Value="Visible" />
+                        <Setter Target="gridAdvDesktop.Visibility" Value="Collapsed" />
+                        <Setter Target="ShellSplitView.FlowDirection" Value="LeftToRight" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <SplitView x:Name="ShellSplitView"
+                   HorizontalAlignment="Left"
+                   RelativePanel.Above="gridAdvMobile"
+               RelativePanel.AlignTopWithPanel="True"
+               RelativePanel.AlignLeftWithPanel="True"
+               RelativePanel.AlignRightWithPanel="True"
+                   Width="{Binding ShellWidth}">
+            <SplitView.FlowDirection>
+                <Binding Path="NavigationSide" />
+            </SplitView.FlowDirection>
+            <SplitView.Pane>
+                <Grid x:Name="masterGrid">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Opacity="1">
+                        <!-- back -->
+                        <RadioButton Checked="DontCheck" Command="{Binding BackCommand}"  Background="{StaticResource SystemControlBackgroundAccentBrush}">
+                            <RadioButton.Tag>
+                                <TextBlock Text="" FontSize="{StaticResource SplitViewLargeNavFontSize}" Style="{StaticResource SplitViewTextBlockStyle}" />
+                            </RadioButton.Tag>
+                        </RadioButton>
+
+                        <!-- hamburger -->
+                        <RadioButton Checked="DontCheck" Command="{Binding MenuCommand}">
+                            <RadioButton.Tag>
+                                <TextBlock Text="" FontSize="{StaticResource SplitViewLargeNavFontSize}" Style="{StaticResource SplitViewTextBlockStyle}" />
+                            </RadioButton.Tag>
+                        </RadioButton>
+
+                        <!-- scroll up button -->
+                        <RadioButton x:Name="radioUpButton" Visibility="Collapsed"
+                                     Checked="DontCheck" Command="{Binding MenuCommand}" Height="28" Background="DarkGray">
+                            <RadioButton.Tag>
+                                <RepeatButton x:Name="UpButton" Foreground="Black" Background="DarkGray" Click="UpButton_Click" 
+                                              VerticalAlignment="Top"
+                                HorizontalAlignment="Left" Width="48">
+                                    <RepeatButton.Content>
+                                        <FontIcon Glyph="&#xe010;" FontFamily="Segoe MDL2 Assets" FontSize="16" />
+                                    </RepeatButton.Content>
+                                </RepeatButton>
+                            </RadioButton.Tag>
+                        </RadioButton>
+                    </StackPanel>
+
+
+                    <ScrollViewer Grid.Row="1" 
+                                  HorizontalScrollBarVisibility="Hidden" 
+                                  VerticalScrollBarVisibility="Auto" 
+                                  Name="ScrollViewerRadioButtons">
+                        <StackPanel x:Name="RadioButtonContainer" Grid.Row="1 ">
+
+                            <!-- home -->
+                            <RadioButton x:Uid="radioHome" Command="{Binding NavCommand}" GroupName="Nav" 
+                                         IsEnabled="True" Foreground="{StaticResource SplitViewForegroundBrush}">
+                                <RadioButton.CommandParameter>
+                                    <views:NavType Type="views:Home" />
+                                </RadioButton.CommandParameter>
+                                <RadioButton.Tag>
+                                    <Grid>
+                                        <!--<TextBlock Text=""  Style="{StaticResource SplitViewTextBlockStyle}"/>-->
+                                        <TextBlock Text=""  Style="{StaticResource SplitViewTextBlockStyle}"/>
+                                        <Grid x:Name="counterUnseenHome" 
+                                              Width="20"
+                                              Height="20"
+                                              Visibility="{Binding CounterUnseenHome, Converter={StaticResource CounterVisibilityConverter}}"
+                                              Margin="24,24,4,4">
+                                            <Ellipse Fill="{ThemeResource SystemAccentColor}"/>
+                                            <TextBlock Text="{Binding CounterUnseenHome}"
+                                                       Foreground="White"
+                                                       HorizontalAlignment="Center" />
+                                        </Grid>
+                                    </Grid>
+                                </RadioButton.Tag>
+                            </RadioButton>
+                            
+                            <!-- network -->
+                            <RadioButton x:Uid="radioNetwork" Command="{Binding NavCommand}" GroupName="Nav" 
+                                         IsEnabled="True" Foreground="{StaticResource SplitViewForegroundBrush}">
+                                <RadioButton.CommandParameter>
+                                    <views:NavType Type="views:Network" />
+                                </RadioButton.CommandParameter>
+                                <RadioButton.Tag>
+                                    <Grid>
+                                        <TextBlock Text=""  Style="{StaticResource SplitViewTextBlockStyle}"/>
+                                        <Grid x:Name="counterUnseenNetwork" 
+                                              Width="20"
+                                              Height="20"
+                                              Visibility="{Binding CounterUnseenNetwork, Converter={StaticResource CounterVisibilityConverter}}"
+                                              Margin="24,24,4,4">
+                                            <Ellipse Fill="{ThemeResource SystemAccentColor}"/>
+                                            <TextBlock Text="{Binding CounterUnseenNetwork}"
+                                                       Foreground="White"
+                                                       HorizontalAlignment="Center" />
+                                        </Grid>
+                                    </Grid>
+                                </RadioButton.Tag>
+                            </RadioButton>
+
+                            <!-- contacts -->
+                            <RadioButton x:Uid="radioContacts" Command="{Binding NavCommand}" GroupName="Nav" 
+                                         IsEnabled="True" Foreground="{StaticResource SplitViewForegroundBrush}">
+                                <RadioButton.CommandParameter>
+                                    <views:NavType Type="views:Contacts" />
+                                </RadioButton.CommandParameter>
+                                <RadioButton.Tag>
+                                    <TextBlock Text=""  Style="{StaticResource SplitViewTextBlockStyle}"/>
+                                </RadioButton.Tag>
+                            </RadioButton>
+
+                            <!-- messages -->
+                            <RadioButton x:Uid="radioMessages" Command="{Binding NavCommand}" GroupName="Nav" 
+                                         IsEnabled="True" Foreground="{StaticResource SplitViewForegroundBrush}">
+                                <RadioButton.CommandParameter>
+                                    <views:NavType Type="views:Messages" />
+                                </RadioButton.CommandParameter>
+                                <RadioButton.Tag>
+                                    <Grid>
+                                        <TextBlock Text=""  Style="{StaticResource SplitViewTextBlockStyle}"/>
+                                        <Grid x:Name="counterUnseenMessages" 
+                                              Width="20"
+                                              Height="20"
+                                              Visibility="{Binding CounterUnseenMessages, Converter={StaticResource CounterVisibilityConverter}}"
+                                              Margin="24,24,4,4">
+                                            <Ellipse Fill="{ThemeResource SystemAccentColor}"/>
+                                            <TextBlock Text="{Binding CounterUnseenMessages}"
+                                                       Foreground="White"
+                                                       HorizontalAlignment="Center" />
+                                        </Grid>
+                                    </Grid>
+                                </RadioButton.Tag>
+                            </RadioButton>
+
+                            <!-- profile page -->
+                            <RadioButton x:Uid="radioProfile" Command="{Binding NavCommand}" GroupName="Nav" 
+                                         IsEnabled="False" Foreground="{StaticResource SplitViewForegroundBrush}">
+                                <RadioButton.CommandParameter>
+                                    <views:NavType Type="views:Profile" />
+                                </RadioButton.CommandParameter>
+                                <RadioButton.Tag>
+                                    <TextBlock Text=""  Style="{StaticResource SplitViewTextBlockStyle}"
+                                               Foreground="DarkGray"/>
+                                </RadioButton.Tag>
+                            </RadioButton>
+
+                            <!-- photos -->
+                            <RadioButton x:Uid="radioPhotos" Command="{Binding NavCommand}" GroupName="Nav" 
+                                         IsEnabled="False" Foreground="{StaticResource SplitViewForegroundBrush}">
+                                <RadioButton.CommandParameter>
+                                    <views:NavType Type="views:Photos" />
+                                </RadioButton.CommandParameter>
+                                <RadioButton.Tag>
+                                    <TextBlock Text=""  Style="{StaticResource SplitViewTextBlockStyle}"
+                                               Foreground="DarkGray" />
+                                </RadioButton.Tag>
+                            </RadioButton>
+
+                            <!-- videos -->
+                            <RadioButton x:Uid="radioVideos" Command="{Binding NavCommand}" GroupName="Nav" 
+                                         IsEnabled="False" Foreground="{StaticResource SplitViewForegroundBrush}">
+                                <RadioButton.CommandParameter>
+                                    <views:NavType Type="views:Videos" />
+                                </RadioButton.CommandParameter>
+                                <RadioButton.Tag>
+                                    <TextBlock Text=""  Style="{StaticResource SplitViewTextBlockStyle}"
+                                                Foreground="DarkGray" />
+                                </RadioButton.Tag>
+                            </RadioButton>
+
+                            <!-- events -->
+                            <RadioButton x:Uid="radioEvents" Command="{Binding NavCommand}" GroupName="Nav" 
+                                         IsEnabled="False" Foreground="{StaticResource SplitViewForegroundBrush}">
+                                <RadioButton.CommandParameter>
+                                    <views:NavType Type="views:Events" />
+                                </RadioButton.CommandParameter>
+                                <RadioButton.Tag>
+                                    <TextBlock Text=""  Style="{StaticResource SplitViewTextBlockStyle}"
+                                               Foreground="DarkGray" />
+                                </RadioButton.Tag>
+                            </RadioButton>
+
+                            <!-- personal notes -->
+                            <RadioButton x:Uid="radioPersonalNotes" Command="{Binding NavCommand}" GroupName="Nav"
+                                     IsEnabled="False" Foreground="{StaticResource SplitViewForegroundBrush}">
+                                <RadioButton.CommandParameter>
+                                    <views:NavType Type="views:PersonalNotes" />
+                                </RadioButton.CommandParameter>
+                                <RadioButton.Tag>
+                                    <TextBlock Text=""  Style="{StaticResource SplitViewTextBlockStyle}" 
+                                               Foreground="DarkGray"/>
+                                </RadioButton.Tag>
+                            </RadioButton>
+
+                        </StackPanel>
+                    </ScrollViewer>
+
+                    <StackPanel Grid.Row="2">
+
+                        <!-- scroll down button -->
+                        <RadioButton x:Name="radioDownButton" 
+                                     Visibility="Collapsed" 
+                                     Checked="DontCheck" Command="{Binding MenuCommand}" Height="28" Background="DarkGray">
+                            <RadioButton.Tag>
+                                <RepeatButton x:Name="DownButton" Foreground="Black" Background="DarkGray" Click="DownButton_Click"  
+                                HorizontalAlignment="Left" Width="48" VerticalAlignment="Top">
+                                    <RepeatButton.Content>
+                                        <FontIcon Glyph="&#xe011;" FontFamily="Segoe MDL2 Assets" FontSize="16" />
+                                    </RepeatButton.Content>
+                                </RepeatButton>
+                            </RadioButton.Tag>
+                        </RadioButton>
+                        
+                        <!-- other options -->
+                        <RadioButton Checked="DontCheck"
+                                     x:Name="radioOthers"
+                                     x:Uid="radioOthers"
+                                     Click="RadioOthersButton_Click"
+                                     Foreground="{StaticResource SplitViewForegroundBrush}">
+                            <RadioButton.Tag>
+                                <Button Style="{StaticResource SplitViewButtonStyle}">
+                                    <Button.Tag>
+                                        <Grid>
+                                        <TextBlock Text=""  Style="{StaticResource SplitViewTextBlockStyle}"/>
+                                        <FontIcon x:Name="iconNotificationActivated"
+                                                Glyph="&#x26D4;" FontSize="16" FontFamily="Segoe UI Emojis"
+                                                  VerticalAlignment="Bottom"
+                                                  HorizontalAlignment="Right"
+                                                  Visibility="{Binding NotificationActivated, Converter={StaticResource BoolToVisibilityCollapsedConverter}}"
+                                                  Margin="0,0,4,4"/>
+                                        </Grid>
+                                    </Button.Tag>
+                                    <Button.Flyout>
+                                        <MenuFlyout x:Name="menuFlyoutOthers">
+                                            <!-- settings -->
+                                            <MenuFlyoutItem x:Uid="menuflyoutSettings" Command="{Binding NavCommand}">
+                                                <MenuFlyoutItem.CommandParameter>
+                                                    <views:NavType Type="views:Settings" />
+                                                </MenuFlyoutItem.CommandParameter>
+                                            </MenuFlyoutItem>
+                                            <!-- toggle "flight modus" -->
+                                            <MenuFlyoutItem x:Name="menuflyoutNotification" 
+                                                            Text="{Binding NotificationActivatedString}"
+                                                            Command="{Binding FlightModeCommand}" />
+                                            <!-- help -->
+                                            <MenuFlyoutItem x:Uid="menuflyoutHelp" Command="{Binding NavCommand}">
+                                                <MenuFlyoutItem.CommandParameter>
+                                                    <views:NavType Type="views:Help" />
+                                                </MenuFlyoutItem.CommandParameter>
+                                            </MenuFlyoutItem>
+                                            <!-- about -->
+                                            <MenuFlyoutItem x:Uid="menuflyoutAbout" Command="{Binding NavCommand}">
+                                                <MenuFlyoutItem.CommandParameter>
+                                                    <views:NavType Type="views:About" />
+                                                </MenuFlyoutItem.CommandParameter>
+                                            </MenuFlyoutItem>
+                                            <!-- exit -->
+                                            <MenuFlyoutItem x:Uid="menuflyoutExit" Command="{Binding ExitCommand}" />
+                                        </MenuFlyout>
+                                    </Button.Flyout>
+                                </Button>
+                            </RadioButton.Tag>
+                        </RadioButton>
+                    </StackPanel>
+
+                </Grid>
+            </SplitView.Pane>
+        </SplitView>
+        
+        <!-- AdControl in Grid gekapselt, damit AdControl über IsTrial ein- und ausgeblendet werden kann,
+        während gridAdv* über VisualStateManager je nach Orientation ein- und ausgeblendet wird -->
+        <Grid x:Name="gridAdvMobile"
+              RelativePanel.AlignBottomWithPanel="True"
+              RelativePanel.AlignHorizontalCenterWithPanel="True">
+            <Border x:Name="borderAdvMobile" 
+                    BorderBrush="{ThemeResource SystemAccentColor}"
+              Visibility="{Binding PaidForRemovingAds, 
+                        Converter={StaticResource BoolToVisibilityCollapsedConverter}, Mode=OneWay}"
+                    Height="80"
+                    BorderThickness="0,4,0,0">
+                <!-- ApplicationId="3f83fe91-d6be-434d-a0ae-7351c5a997f1"
+                                  AdUnitId="10865272" -->
+                <UI:AdControl x:Name="advMobile" 
+                              Visibility="{Binding PaidForRemovingAds, 
+                                        Converter={StaticResource BoolToVisibilityCollapsedConverter}, Mode=OneWay}"
+                              ApplicationId="ab7e997a-5d5e-4698-9099-0a7a6d046753"
+                              AdUnitId="11611784"
+                              HorizontalAlignment="Center"
+                              Height="80"
+                              VerticalAlignment="Center"
+                              Width="480" />
+            </Border>
+        </Grid>
+
+        <TextBlock x:Uid="textblockAdvertising" x:Name="textblockAdvertising"
+                   RelativePanel.AlignLeftWith="gridAdvMobile"
+                   RelativePanel.AlignTopWith="gridAdvMobile"
+                   Visibility="{Binding PaidForRemovingAds, 
+                            Converter={StaticResource BoolToVisibilityCollapsedConverter}, Mode=OneWay}"
+                   Margin="0,4,0,0"
+                   FontSize="10"
+                   FontWeight="Bold"
+                   Foreground="{ThemeResource SystemAccentColor}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top" />
+
+        <!-- ApplicationId="d25517cb-12d4-4699-8bdc-52040c712cab"
+                          AdUnitId="10043122" -->
+        <Grid x:Name="gridAdvDesktop"
+              Visibility="{Binding PaidForRemovingAds, 
+                        Converter={StaticResource BoolToVisibilityCollapsedConverter}, Mode=OneWay}"
+              RelativePanel.AlignRightWithPanel="True"
+              RelativePanel.AlignVerticalCenterWithPanel="True">
+            <UI:AdControl x:Name="advDesktop" 
+                          Visibility="{Binding PaidForRemovingAds, 
+                                    Converter={StaticResource BoolToVisibilityCollapsedConverter}, Mode=OneWay}" 
+                          ApplicationId="e023e50b-facd-45f6-9609-13ddb73a5f82"
+                          AdUnitId="11611785"
+                          HorizontalAlignment="Left"
+                          Height="600"
+                          VerticalAlignment="Top"
+                          Width="300" />
+        </Grid>
+    </RelativePanel>
+</Page>

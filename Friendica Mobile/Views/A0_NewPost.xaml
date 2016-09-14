@@ -1,0 +1,537 @@
+﻿<Page
+    x:Class="Friendica_Mobile.Views.A0_NewPost"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Friendica_Mobile"
+    xmlns:views="using:Friendica_Mobile.Views"
+    xmlns:mvvm="using:Friendica_Mobile.Mvvm"
+    xmlns:triggers="using:Friendica_Mobile.Triggers"
+    xmlns:conv="using:Friendica_Mobile.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Name="pageNewPost" x:Uid="pageNewPost">
+
+    <Page.DataContext>
+        <mvvm:NewPostViewmodel x:Name="pageMvvm" />
+    </Page.DataContext>
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles/MainStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="TextBlock" BasedOn="{StaticResource GenericTextBlockStyle}" />
+            <Style TargetType="Grid" BasedOn="{StaticResource GenericGridStyle}" />
+            <Style TargetType="ScrollViewer" BasedOn="{StaticResource GenericScrollViewerStyle}" />
+            
+            <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <conv:SplitViewWidthNewPostConverter x:Key="SplitViewWidthNewPostConverter" />
+            <conv:FlowDirectionStringToBoolConverter x:Name="FlowDirectionStringToBoolConverter" />
+            <conv:MobileDeviceOnlyConverter x:Name="MobileDeviceOnlyConverter" />
+            
+            <Style x:Key="RichEditBoxStyle" TargetType="RichEditBox">
+                <Setter Property="MinWidth" Value="{ThemeResource TextControlThemeMinWidth}"/>
+                <Setter Property="MinHeight" Value="{ThemeResource TextControlThemeMinHeight}"/>
+                <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
+                <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundAltHighBrush}"/>
+                <Setter Property="SelectionHighlightColor" Value="{ThemeResource SystemControlHighlightAccentBrush}"/>
+                <Setter Property="BorderBrush" Value="{ThemeResource SystemControlForegroundChromeDisabledLowBrush}"/>
+                <Setter Property="BorderThickness" Value="{ThemeResource TextControlBorderThemeThickness}"/>
+                <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+                <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+                <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="False"/>
+                <Setter Property="TextWrapping" Value="Wrap"/>
+                <Setter Property="Padding" Value="{ThemeResource TextControlThemePadding}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="RichEditBox">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Disabled">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="HeaderContentPresenter">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="BackgroundElement">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledTransparentBrush}"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="BorderElement">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="BorderElement">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentElement">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledChromeDisabledLowBrush}"/>
+                                                </ObjectAnimationUsingKeyFrames>-->
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="PlaceholderTextContentPresenter">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledChromeDisabledLowBrush}"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Normal"/>
+                                        <VisualState x:Name="PointerOver">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="BorderElement">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightChromeAltLowBrush}"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BackgroundElement">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBackgroundHoverOpacity}"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Focused">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="PlaceholderTextContentPresenter">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlPageTextChromeBlackMediumLowBrush}"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="BackgroundElement">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundChromeWhiteBrush}"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BackgroundElement">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBackgroundFocusedOpacity}"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="BorderElement">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAccentBrush}"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentElement">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlForegroundChromeBlackHighBrush}"/>
+                                                </ObjectAnimationUsingKeyFrames>-->
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="RequestedTheme" Storyboard.TargetName="ContentElement">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Light"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Border x:Name="BackgroundElement" Background="{TemplateBinding Background}" Grid.ColumnSpan="2" Margin="{TemplateBinding BorderThickness}" Opacity="{ThemeResource TextControlBackgroundRestOpacity}" Grid.Row="1" Grid.RowSpan="1"/>
+                                <Border x:Name="BorderElement" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="1"/>
+                                <ContentPresenter x:Name="HeaderContentPresenter" Grid.ColumnSpan="2" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" FontWeight="Normal" Margin="0,0,0,8" Grid.Row="0" Visibility="Collapsed" x:DeferLoadStrategy="Lazy"/>
+                                <ScrollViewer x:Name="ContentElement" AutomationProperties.AccessibilityView="Raw" HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" IsTabStop="False" IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}" IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}" IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}" Margin="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" Grid.Row="1" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}" VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}" ZoomMode="Disabled"/>
+                                <ContentControl x:Name="PlaceholderTextContentPresenter" Grid.ColumnSpan="2" Content="{TemplateBinding PlaceholderText}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" IsHitTestVisible="False" IsTabStop="False" Margin="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" Grid.Row="1"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="MobilePortrait">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="MobilePortrait" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="textBlockApplicationName.Visibility" Value="Visible" />
+                        <Setter Target="textBlockPageName.Visibility" Value="Visible" />
+                        <Setter Target="spNewPostAddendum.(RelativePanel.Below)" Value="spNewPostEditor" />
+                        <Setter Target="spNewPostAddendum.(RelativePanel.AlignTopWithPanel)" Value="False" />
+                        <Setter Target="spNewPostAddendum.(RelativePanel.AlignLeftWithPanel)" Value="True" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="MobileLandscape">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="MobileLandscape" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="textBlockApplicationName.Visibility" Value="Collapsed" />
+                        <Setter Target="textBlockPageName.Visibility" Value="Visible" />
+                        <Setter Target="textBlockPageName.FontSize" Value="{StaticResource ApplicationNameFontSize}" />
+                        <Setter Target="spNewPostAddendum.(RelativePanel.Below)" Value="spNewPostEditor" />
+                        <Setter Target="spNewPostAddendum.(RelativePanel.AlignTopWithPanel)" Value="False" />
+                        <Setter Target="spNewPostAddendum.(RelativePanel.AlignLeftWithPanel)" Value="True" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="DesktopLandscape">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="DesktopLandscape" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="textBlockApplicationName.Visibility" Value="Collapsed" />
+                        <Setter Target="textBlockPageName.Visibility" Value="Visible" />
+                        <Setter Target="textBlockPageName.FontSize" Value="{StaticResource PageNameFontSize}" />
+                        <Setter Target="spNewPostAddendum.(RelativePanel.RightOf)" Value="spNewPostEditor" />
+                        <Setter Target="spNewPostAddendum.Margin" Value="24,0,0,0" />
+                        <Setter Target="spNewPostAddendum.(RelativePanel.AlignTopWithPanel)" Value="True" />
+                        <Setter Target="spNewPostAddendum.(RelativePanel.AlignLeftWithPanel)" Value="False" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="DesktopPortrait">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="DesktopPortrait" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="textBlockApplicationName.Visibility" Value="Collapsed" />
+                        <Setter Target="textBlockPageName.Visibility" Value="Visible" />
+                        <Setter Target="textBlockPageName.FontSize" Value="{StaticResource PageNameFontSize}" />
+                        <Setter Target="spNewPostAddendum.(RelativePanel.Below)" Value="spNewPostEditor" />
+                        <Setter Target="spNewPostAddendum.(RelativePanel.AlignTopWithPanel)" Value="False" />
+                        <Setter Target="spNewPostAddendum.(RelativePanel.AlignLeftWithPanel)" Value="True" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <ScrollViewer>
+            <StackPanel>
+                <RelativePanel>
+                    <TextBlock x:Name="textBlockApplicationName" x:Uid="textBlockApplicationName" 
+                               Visibility="Visible" 
+                               Style="{StaticResource ApplicationNameTextBlockStyle}"/>
+                    <TextBlock x:Name="textBlockPageName" x:Uid="pageTitleNewPost" 
+                               Visibility="Visible" 
+                               Style="{StaticResource PageNameTextBlockStyle}" 
+                               RelativePanel.Below="textBlockApplicationName"/>
+                </RelativePanel>
+
+                <!-- RelativePanel to arrange the 3 parts (editor, access rights, conversation) for different devices -->
+                <RelativePanel>
+                    <StackPanel x:Name="spNewPostEditor"
+                                Width="{Binding ListViewWidth, Converter={StaticResource SplitViewWidthNewPostConverter}, ConverterParameter=700}">
+
+                        <!-- title for new post -->
+                        <TextBox x:Name="textBoxNewPostTitle" x:Uid="textBoxNewPostTitle"
+                                 HeaderTemplate="{StaticResource SettingsHeaderTemplate}"
+                                 HorizontalAlignment="Stretch"
+                                 Margin="4,4,4,4"
+                                 Text="{Binding NewPostTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <!-- Input for the text of the posting -->
+                        <TextBlock x:Name="textBlockNewPostStatusHeader" x:Uid="textBlockNewPostStatusHeader"
+                                   Style="{StaticResource AboutHeaderTextBlockStyle}" />
+                        <StackPanel x:Name="spNewPostFormatButtons" 
+                                        Orientation="Horizontal"
+                                    Margin="0,0,0,12">
+
+                            <ToggleButton x:Name="buttonBold" 
+                                          Click="buttonBold_Click"
+                                          Width="28"
+                                          Height="36">
+                                <TextBlock x:Uid="textBlockNewPostButtonBold" 
+                                           FontWeight="Bold"
+                                           Margin="-4"/>
+                            </ToggleButton>
+
+                            <ToggleButton x:Name="buttonItalic" 
+                                          Click="buttonItalic_Click"
+                                          Width="28"
+                                          Height="36">
+                                <TextBlock x:Uid="textBlockNewPostButtonItalic"
+                                           FontStyle="Italic"
+                                           Margin="-4" />
+                            </ToggleButton>
+
+                            <ToggleButton x:Name="buttonUnderline" 
+                                          Click="buttonUnderline_Click" 
+                                          Width="28"
+                                          Height="36">
+                                <TextBlock Margin="-4">
+                                    <Underline>
+                                        <Run x:Uid="textBlockNewPostButtonUnderline" />
+                                    </Underline>
+                                </TextBlock>
+                            </ToggleButton>
+
+                            <Button x:Name="buttonColor" x:Uid="buttonColor"
+                                    Width="36"
+                                    Height="36">
+                                <FontIcon Glyph="&#xe73b;" FontFamily="Segoe MDL2 Assets" FontSize="16" Margin="-4"/>
+                                <Button.Flyout>
+                                    <Flyout>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="32" />
+                                                <RowDefinition Height="32" />
+                                                <RowDefinition Height="32" />
+                                                <RowDefinition Height="32" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="32" />
+                                                <ColumnDefinition Width="32" />
+                                                <ColumnDefinition Width="32" />
+                                                <ColumnDefinition Width="32" />
+                                            </Grid.ColumnDefinitions>
+                                            <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource ButtonColorPicker}" Click="Button_ColorSelector_Click" Background="Black" />
+                                            <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ButtonColorPicker}" Click="Button_ColorSelector_Click" Background="Gray" />
+                                            <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource ButtonColorPicker}" Click="Button_ColorSelector_Click" Background="Silver" />
+                                            <Button Grid.Row="0" Grid.Column="3" Style="{StaticResource ButtonColorPicker}" Click="Button_ColorSelector_Click" Background="White" />
+
+                                            <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource ButtonColorPicker}" Click="Button_ColorSelector_Click" Background="Purple" />
+                                            <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource ButtonColorPicker}" Click="Button_ColorSelector_Click" Background="Navy" />
+                                            <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource ButtonColorPicker}" Click="Button_ColorSelector_Click" Background="Blue" />
+                                            <Button Grid.Row="1" Grid.Column="3" Style="{StaticResource ButtonColorPicker}" Click="Button_ColorSelector_Click" Background="Aqua" />
+
+                                            <Button Grid.Row="2" Grid.Column="0" Style="{StaticResource ButtonColorPicker}" Click="Button_ColorSelector_Click" Background="Maroon" />
+                                            <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource ButtonColorPicker}" Click="Button_ColorSelector_Click" Background="Red" />
+                                            <Button Grid.Row="2" Grid.Column="2" Style="{StaticResource ButtonColorPicker}" Click="Button_ColorSelector_Click" Background="Orange" />
+                                            <Button Grid.Row="2" Grid.Column="3" Style="{StaticResource ButtonColorPicker}" Click="Button_ColorSelector_Click" Background="Yellow" />
+
+                                            <Button Grid.Row="3" Grid.Column="0" Style="{StaticResource ButtonColorPicker}" Click="Button_ColorSelector_Click" Background="Green" />
+                                            <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource ButtonColorPicker}" Click="Button_ColorSelector_Click" Background="Olive" />
+                                            <Button Grid.Row="3" Grid.Column="2" Style="{StaticResource ButtonColorPicker}" Click="Button_ColorSelector_Click" Background="Lime" />
+                                            <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource ButtonColorPicker}" Click="Button_ColorSelector_Click" Background="Fuchsia" />
+                                        </Grid>
+                                    </Flyout>
+                                </Button.Flyout>
+                            </Button>
+
+                            <ToggleButton x:Name="buttonCode" x:Uid="buttonCode"
+                                          Click="buttonCode_Click" 
+                                          MaxWidth="70"
+                                          Height="36">
+                                <TextBlock x:Uid="textBlockNewPostButtonCode"
+                                           TextWrapping="NoWrap"
+                                           Margin="-4"     
+                                           FontFamily="Courier New"/>
+                            </ToggleButton>
+
+                            <ToggleButton x:Name="buttonQuote" x:Uid="buttonQuote"
+                                          Click="buttonQuote_Click" 
+                                          MaxWidth="70"
+                                          Height="36">
+                                <Border x:Name="borderButtonQuote" 
+                                        BorderThickness="1"
+                                        BorderBrush="Gray">
+                                    <TextBlock x:Uid="textBlockNewPostButtonQuote"
+                                               FontStyle="Italic"
+                                               TextWrapping="NoWrap"
+                                               Margin="4,0,4,0" />
+                                </Border>
+                            </ToggleButton>
+
+                            <ToggleButton x:Name="buttonList" x:Uid="buttonList"
+                                          Click="buttonList_Click"
+                                          Width="36"
+                                          Height="36">
+                                <FontIcon Glyph="&#xe8fd;" FontFamily="Segoe MDL2 Assets" FontSize="16" Margin="-4"/>
+                            </ToggleButton>
+
+                        </StackPanel>
+
+                        <!-- input box for the status main text -->
+                        <RichEditBox x:Name="rebNewPostText" x:Uid="rebNewPostText"
+                                     HorizontalAlignment="Stretch"
+                                     IsColorFontEnabled="True"
+                                     Margin="4,4,4,4"
+                                     MinHeight="144"
+                                     SelectionChanged="rebNewPostText_SelectionChanged"
+                                     LostFocus="rebNewPostText_LostFocus"
+                                     GotFocus="rebNewPostText_GotFocus"
+                                     InputScope="Text" 
+                                     Style="{StaticResource RichEditBoxStyle}"/>
+
+                        <!-- Button for inserting an hyperlink -->
+                        <Button x:Name="buttonLink"
+                                IsTabStop="false"
+                                Click="buttonLink_Click">
+                            <TextBlock x:Name="buttonLinkCaption" x:Uid="buttonLinkCaption" />
+                            <Button.Flyout>
+                                <Flyout>
+                                    <StackPanel Width="300">
+                                        <TextBox x:Name="inputLink" x:Uid="inputLink"
+                                                 HeaderTemplate="{StaticResource SettingsHeaderTemplate}"
+                                                 InputScope="Url"
+                                                 PlaceholderText="https://"
+                                                 KeyUp="inputLink_KeyUp"
+                                                 TextWrapping="Wrap"/>
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button x:Name="buttonInsertLink" x:Uid="buttonInsertLink"
+                                                    Click="buttonInsertLink_Click"
+                                                    IsEnabled="false"/>
+                                            <Button x:Name="buttonRemoveLink" x:Uid="buttonRemoveLink"
+                                                    Click="buttonRemoveLink_Click"
+                                                    Margin="4,0,4,0"
+                                                    Visibility="Collapsed" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
+
+                        <!-- checkbox for GPS coordinates sending -->
+                        <ToggleSwitch x:Name="toggleSendCoordinates" x:Uid="toggleSendCoordinates"
+                                      HeaderTemplate="{StaticResource SettingsHeaderTemplate}"
+                                      IsOn="{Binding SendCoordinates,  Mode=TwoWay}" />
+                        <CheckBox x:Name="checkboxSendCoordinatesImage" x:Uid="checkboxSendCoordinatesImage"
+                                  Visibility="{Binding SendCoordinates, Converter={StaticResource BoolToVisibilityConverter}}"
+                                  IsEnabled="{Binding SendCoordinatesImageActive}"
+                                  IsChecked="{Binding SendCoordinatesImage, Mode=TwoWay}" 
+                                  Margin="56,-8,0,0"/>
+
+                        <!-- Input for the text of the posting -->
+                        <TextBlock x:Name="textBlockNewPostImageHeader" x:Uid="textBlockNewPostImageHeader"
+                                   Style="{StaticResource AboutHeaderTextBlockStyle}" />
+
+                        <Image x:Name="imageView"
+                               Source="{Binding NewPostImage}"
+                               MaxHeight="400"
+                               Margin="0,12,0,12"/>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="buttonLoadImage" x:Uid="buttonLoadImage"
+                                    Command="{Binding LoadImageCommand}"
+                                    Margin="0,4,4,12"/>
+                            <Button x:Name="buttonDeleteImage" x:Uid="buttonDeleteImage"
+                                    Visibility="{Binding ImageSelected, Converter={StaticResource BoolToVisibilityConverter}}"
+                                    Command="{Binding DeleteImageCommand}"
+                                    Margin="4,4,0,12" />
+                        </StackPanel>
+
+                        <!-- button for sending the new post to server -->
+                        <Button x:Name="buttonNewPostSend" x:Uid="buttonNewPostSend" 
+                                Background="{StaticResource AccentBrush}"
+                                Height="48"
+                                HorizontalAlignment="Right"
+                                Command="{Binding PostCommand}"
+                                Margin="12" />
+
+                    </StackPanel>
+
+                    <!-- combined StackPanel to move AccessRights and Conversation together -->
+                    <StackPanel x:Name="spNewPostAddendum" 
+                                Margin="4,0,0,0"
+                                RelativePanel.RightOf="spNewPostEditor"
+                                RelativePanel.AlignTopWithPanel="True"
+                                Width="{Binding ListViewWidth, Converter={StaticResource SplitViewWidthNewPostConverter}, ConverterParameter=440}">
+                        <StackPanel x:Name="spNewPostAccessRights"
+                                    Visibility="{Binding ShowACLVisible, Converter={StaticResource BoolToVisibilityConverter}}">
+
+                            <TextBlock x:Name="textblockAccessRightsHeader" x:Uid="textblockAccessRightsHeader"
+                                       Style="{StaticResource AboutHeaderTextBlockStyle}" />
+
+                            <!-- user can switch between public or private post, if private friends and groups appear -->
+                            <RadioButton x:Name="radiobuttonPublicPost" x:Uid="radiobuttonPublicPost"
+                                         GroupName="radioGroupACL" 
+                                         IsChecked="{Binding RadioButtonPublicPostChecked, Mode=TwoWay}"
+                                         Style="{StaticResource RadioButtonStyleNormal}" />
+                            <RadioButton x:Name="radiobuttonPrivatePost" x:Uid="radiobuttonPrivatePost" 
+                                         GroupName="radioGroupACL"
+                                         IsChecked="{Binding RadioButtonPrivatePostChecked, Mode=TwoWay}"
+                                         Style="{StaticResource RadioButtonStyleNormal}" />
+
+                            <!-- show a hint if user has not selected any contact or group -->
+                            <TextBlock x:Name="textblockNoContactsGroupsSelected" x:Uid="textblockNoContactsGroupsSelected"
+                                       TextWrapping="Wrap"
+                                       Foreground="Red"
+                                       Visibility="{Binding NoContactsGroupsSelectedVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                                       FontWeight="Light"
+                                       FontStyle="Italic" />
+
+                            <ListBox x:Name="listBoxPrivateSelectedContacts" 
+                                     ItemsSource="{Binding Contacts}"
+                                     SelectionMode="Multiple"
+                                     Margin="48,4,0,4"
+                                     MaxHeight="150"
+                                     IsEnabled="{Binding RadioButtonPrivatePostChecked}"
+                                     ItemTemplate="{StaticResource FriendicaUserTemplateACL}"
+                                     local:clsListBoxExtensionsContacts.SelectedItemList="{Binding SelectedContacts, Mode=TwoWay}"
+                                     SelectionChanged="listBoxPrivateSelectedContacts_SelectionChanged"/>
+
+                            <ListBox x:Name="listBoxPrivateSelectedGroups"
+                                     ItemsSource="{Binding Groups}"
+                                     SelectionMode="Multiple"
+                                     Margin="48,4,0,4"
+                                     MaxHeight="150"
+                                     IsEnabled="{Binding RadioButtonPrivatePostChecked}"
+                                     ItemTemplate="{StaticResource FriendicaGroupTemplateACL}" 
+                                     local:clsListBoxExtensionsGroups.SelectedItemList="{Binding SelectedGroups, Mode=TwoWay}"
+                                     SelectionChanged="listBoxPrivateSelectedGroups_SelectionChanged"/>
+
+                            <!-- user can decide if he want to use the changed selection as a new standard -->
+                            <CheckBox x:Name="checkboxSaveACLStandard" x:Uid="checkboxSaveACLStandard"
+                                      Margin="0,0,0,24"
+                                      IsEnabled="{Binding SaveACLActive}"
+                                      IsChecked="{Binding SaveACL, Mode=TwoWay}" />
+
+                        </StackPanel>
+
+                        <!-- show history of posts if we want to add a comment to an existing thread -->
+                        <StackPanel x:Name="spNewPostConversation"
+                                    Visibility="{Binding ShowThreadVisible, Converter={StaticResource BoolToVisibilityConverter}}">
+
+                            <!-- show a header and a hint to separate from the ACL settings above -->
+                            <TextBlock x:Name="textblockConversationHeader" x:Uid="textblockConversationHeader"
+                                       Style="{StaticResource AboutHeaderTextBlockStyle}"/>
+                            <TextBlock x:Name="textblockConversationHint" x:Uid="textblockConversationHint"
+                                       TextWrapping="Wrap"
+                                       FontStyle="Italic"
+                                       FontWeight="Light" />
+
+                            <!-- use conversations look even if there is only one conversation -->
+                            <!-- keep name "listviewNetworkPosts" as FriendicaPostsTemplate is referencing on this for width -->
+                            <ListView x:Name="listviewNetworkPosts" x:Uid="listviewNetworkPosts"
+                                      Width="{Binding ElementName=spNewPostAddendum, Path=Width}"
+                                      HorizontalAlignment="Left"
+                                      ItemsSource="{Binding ShowThread}"
+                                      IsRightTapEnabled="True"
+                                      RightTapped="listviewNetworkPosts_RightTapped"
+                                      ItemTemplate="{StaticResource FriendicaThreadsTemplate}">
+
+                                <!-- define flyout shown if user taps or right click a historic post -->
+                                <Flyout x:Name="flyoutQuoteBox">
+                                    <StackPanel Orientation="Vertical"
+                                                MaxWidth="300">
+
+                                        <!-- header and hint describing that user can mark the text for the quote -->
+                                        <TextBlock x:Name="textblockFlyoutQuoteHeader" x:Uid="textblockFlyoutQuoteHeader"
+                                                   FontWeight="Bold" />
+                                        <TextBlock x:Name="textblockFlyoutQuoteHint" x:Uid="textblockFlyoutQuoteHint"
+                                                   TextWrapping="Wrap"
+                                                   FontStyle="Italic"
+                                                   FontWeight="Light"
+                                                   Margin="0,8,0,8"/>
+
+                                        <!-- text from the selected post so user can select the wished text -->
+                                        <TextBox x:Name="textBoxTextForQuote" 
+                                                 TextWrapping="Wrap"/>
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button x:Name="buttonInsertQuote" x:Uid="buttonInsertQuote"
+                                                    Margin="0,8,4,24"
+                                                    Click="buttonInsertQuote_Click"/>
+                                            <Button x:Name="buttonCancelInsertQuote" x:Uid="buttonCancelInsertQuote"
+                                                    Margin="4,8,0,24"
+                                                    Click="buttonCancelInsertQuote_Click"/>
+                                        </StackPanel>
+
+                                    </StackPanel>
+                                </Flyout>
+                            </ListView>
+                        </StackPanel>
+                    </StackPanel>
+                </RelativePanel>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- red box indicating that system sends a new post to the server -->
+        <RelativePanel Background="Red"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Stretch"
+                       Visibility="{Binding IsSendingNewPost, Converter={StaticResource BoolToVisibilityConverter}}">
+            <ProgressRing x:Name="progressSendingNewPost"
+                          IsActive="True"
+                          Foreground="White"
+                          Margin="24,0,36,4"
+                          HorizontalAlignment="Left"
+                          RelativePanel.AlignBottomWithPanel="True"
+                          RelativePanel.AlignLeftWithPanel="True"/>
+            <TextBlock x:Name="textblockIndicatorSendingNewPost" x:Uid="textblockIndicatorSendingNewPost"
+                       Foreground="White"
+                       RelativePanel.RightOf="progressSendingNewPost" 
+                       RelativePanel.AlignBottomWithPanel="True"/>
+        </RelativePanel>
+        
+    </Grid>
+</Page>

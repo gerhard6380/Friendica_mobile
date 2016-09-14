@@ -1,0 +1,308 @@
+﻿<Page
+    x:Class="Friendica_Mobile.Views.Home"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Friendica_Mobile"
+    xmlns:views="using:Friendica_Mobile.Views"
+    xmlns:triggers="using:Friendica_Mobile.Triggers"
+    xmlns:conv="using:Friendica_Mobile.Converters"
+    xmlns:mvvm="using:Friendica_Mobile.Mvvm"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Name="pageHome" x:Uid="pageHome">
+
+    <Page.DataContext>
+        <mvvm:HomeViewmodel x:Name="pageMvvm" />
+    </Page.DataContext>
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles/MainStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="TextBlock" BasedOn="{StaticResource GenericTextBlockStyle}" />
+            <Style TargetType="Grid" BasedOn="{StaticResource GenericGridStyle}" />
+            <Style TargetType="ScrollViewer" BasedOn="{StaticResource GenericScrollViewerStyle}" />
+            <conv:BoolToVisibilityCollapsedConverter x:Key="BoolToVisibilityCollapsedConverter" />
+            <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <conv:BoolToPostOpacityConverter x:Key="BoolToPostOpacityConverter" />
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Page.TopAppBar>
+        <CommandBar x:Name="topAppBar" 
+                    Margin="48,0,0,0"
+                    Visibility="Visible"
+                    HorizontalAlignment="Left">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="topAppBarHomeRefresh" x:Uid="appBarNetworkRefresh" 
+                          Icon="Refresh"
+                          Command="{Binding RefreshHomeCommand}"/>
+                <AppBarButton x:Name="topAppBarHomeAdd" x:Uid="appBarNetworkAdd" 
+                          Icon="Add" 
+                          Command="{Binding AddNewEntryCommand}"
+                          Click="appBarHomeAdd_Click" />
+                <AppBarButton x:Name="topAppBarHomeChronological" x:Uid="appBarNetworkChronological" 
+                          Icon="Clock" 
+                          Command="{Binding ChronologicalModeCommand}"/>
+                <AppBarButton x:Name="topAppBarHomeThreads" x:Uid="appBarNetworkThreads" 
+                          Icon="Message" 
+                          Command="{Binding ThreadsModeCommand}"/>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.TopAppBar>
+
+    <Page.BottomAppBar>
+        <CommandBar x:Name="bottomAppBar" 
+                    Margin="{Binding BottomAppBarMargin}"
+                    Visibility="Collapsed">
+            <AppBarButton x:Name="bottomAppBarHomeRefresh" x:Uid="appBarNetworkRefresh" 
+                          Icon="Refresh" 
+                          Command="{Binding RefreshHomeCommand}"/>
+            <AppBarButton x:Name="bottomAppBarHomeAdd" x:Uid="appBarNetworkAdd" 
+                          Icon="Add" 
+                          Command="{Binding AddNewEntryCommand}"
+                          Click="appBarHomeAdd_Click" />
+            <AppBarButton x:Name="bottomAppBarHomeChronological" x:Uid="appBarNetworkChronological" 
+                          Icon="Clock" 
+                          Command="{Binding ChronologicalModeCommand}"/>
+            <AppBarButton x:Name="bottomAppBarHomeThreads" x:Uid="appBarNetworkThreads" 
+                          Icon="Message" 
+                          Command="{Binding ThreadsModeCommand}"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="MobilePortrait">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="MobilePortrait" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="textBlockApplicationName.Visibility" Value="Visible" />
+                        <Setter Target="textBlockPageName.Visibility" Value="Visible" />
+                        <Setter Target="pageHome.Margin" Value="0,0,0,0" />
+                        <!--<Setter Target="gridDropArea.Visibility" Value="Collapsed" />-->
+                        <Setter Target="topAppBar.Visibility" Value="Collapsed" />
+                        <Setter Target="bottomAppBar.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="MobileLandscape">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="MobileLandscape" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="textBlockApplicationName.Visibility" Value="Collapsed" />
+                        <Setter Target="textBlockPageName.Visibility" Value="Visible" />
+                        <Setter Target="textBlockPageName.FontSize" Value="{StaticResource ApplicationNameFontSize}" />
+                        <Setter Target="pageNetwork.Margin" Value="0,0,48,0" />
+                        <!--<Setter Target="gridDropArea.Visibility" Value="Collapsed" />-->
+                        <Setter Target="topAppBar.Visibility" Value="Collapsed" />
+                        <Setter Target="bottomAppBar.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Desktop">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="DesktopLandscape" />
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="DesktopPortrait" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="textBlockApplicationName.Visibility" Value="Collapsed" />
+                        <Setter Target="textBlockPageName.Visibility" Value="Visible" />
+                        <Setter Target="textBlockPageName.FontSize" Value="{StaticResource PageNameFontSize}" />
+                        <Setter Target="pageHome.Margin" Value="0,0,0,0" />
+                        <!--<Setter Target="gridDropArea.Visibility" Value="Visible" />-->
+                        <Setter Target="topAppBar.Visibility" Value="Visible" />
+                        <Setter Target="bottomAppBar.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <ScrollViewer x:Name="viewerHome" 
+                      ViewChanged="ScrollViewer_ViewChanged">
+            <StackPanel>
+                <RelativePanel>
+                    <TextBlock x:Name="textBlockApplicationName" x:Uid="textBlockApplicationName" 
+                           Visibility="Visible" 
+                           Style="{StaticResource ApplicationNameTextBlockStyle}"/>
+                    <TextBlock x:Name="textBlockPageName" x:Uid="pageTitleHome"  
+                           Visibility="Visible" 
+                           Style="{StaticResource PageNameTextBlockStyle}" 
+                           RelativePanel.Below="textBlockApplicationName"/>
+                </RelativePanel>
+
+
+                <!-- showing a rectangle where user can drop content for a new entry -->
+                <Grid x:Name="gridDropArea" x:Uid="gridDropArea" 
+                          AllowDrop="True"
+                          DragEnter="Grid_DragEnter"
+                          Drop="Rectangle_Drop"
+                          MinHeight="60"
+                      MaxWidth="600"
+                          Margin="32,0,32,40"
+                          Visibility="{Binding ShowDragArea, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Rectangle Stroke="DarkGray"  
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   StrokeThickness="4" 
+                                   StrokeDashArray="4"
+                                   Fill="LightGray" />
+                    <TextBlock x:Name="textblockDropArea" x:Uid="textblockDropArea"
+                                   Foreground="DarkGray"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Center"
+                                   HorizontalAlignment="Center"/>
+                </Grid>
+
+                <StackPanel x:Name="stackPanelHome">
+                    <!-- blank App-Settings: show info, button to Settings and sample data -->
+                    <StackPanel x:Name="stackpanelNoSettings"
+                                Visibility="{Binding NoSettings, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock x:Name="textblockNoSettings" x:Uid="textblockNoSettings"
+                                   Margin="4,4,4,12"
+                                   Foreground="Red"
+                                   FontStyle="Italic"
+                                   TextAlignment="Left" />
+                        <Button x:Name="buttonGotoSettings" x:Uid="buttonGotoSettings"
+                            Click="buttonGotoSettings_Click"
+                                Margin="4,4,4,4">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <FontIcon Glyph="&#xe713;" FontFamily="Segoe MDL2 Assets" FontSize="16"/>
+                                    <TextBlock x:Uid="textblockNetworkSettings" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <ListView x:Name="listviewHomePostsSample" x:Uid="listviewHomePostsSample"
+                              Width="{Binding ListViewWidth}"
+                              HorizontalAlignment="Left"
+                                  SelectionMode="None"
+                              Visibility="{Binding IsVisibleChronological, Converter={StaticResource BoolToVisibilityConverter}}"
+                              ItemsSource="{Binding HomePostsSample}"
+                              ItemTemplate="{StaticResource FriendicaPostsTemplate}" />
+                        <ListView x:Name="listviewHomeThreadsSample" x:Uid="listviewHomeThreadsSample"
+                              Width="{Binding ListViewWidth}"
+                              HorizontalAlignment="Left"
+                                  SelectionMode="None"
+                              Visibility="{Binding IsVisibleChronological, Converter={StaticResource BoolToVisibilityCollapsedConverter}}"
+                              ItemsSource="{Binding HomeThreadsSample}"
+                              ItemTemplate="{StaticResource FriendicaThreadsTemplate}" />
+                    </StackPanel>
+
+                    <!-- currently loading data, nothing to display yet -->
+                    <StackPanel x:Name="stackpanelIsLoadingInitial"
+                                Visibility="{Binding IsLoadingInitial, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock x:Name="textblockHomeIsLoadingInitial" x:Uid="textblockHomeIsLoadingInitial"
+                                   Margin="4,4,4,12"
+                                   TextAlignment="Left" />
+                        <ProgressBar x:Name="progressbarIsLoadingInitial"
+                                     IsIndeterminate="True" />
+                    </StackPanel>
+
+                    <!-- after loading data, if nothing to display returned -->
+                    <StackPanel x:Name="stackpanelNoDataAvailable"
+                                Visibility="{Binding NoDataAvailable, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock x:Name="textblockNoDataAvailable" x:Uid="textblockNoDataAvailable"
+                                   Margin="4,4,4,12"
+                                   Foreground="Gray"
+                                   FontStyle="Italic"
+                                   TextAlignment="Left"
+                                   Text="Der Server hat keine Einträge für die Netzwerk-Seite geliefert." />
+                    </StackPanel>
+
+                    <!-- after loading data, display returned data 
+                         Caution: chronological view in Home shows buttons for add and show conversation
+                                  -> button for profile not necessary on this page -->
+                    <ListView x:Name="listviewNetworkPosts" x:Uid="listviewNetworkPosts"
+                              Width="{Binding ListViewWidth}"
+                              HorizontalAlignment="Left"
+                              SelectionMode="None"
+                              Visibility="{Binding IsVisibleChronological, Converter={StaticResource BoolToVisibilityConverter}}"
+                              ItemsSource="{Binding HomePosts}"
+                              ItemTemplate="{StaticResource FriendicaPostsTemplate}" />
+
+                    <!-- alternative display in conversations look 
+                         Caution: thread view in Home shows only button for add (conversation not necessary, profile 
+                                  not useful in home) -->
+                    <ListView x:Name="listviewHomeConversations" x:Uid="listviewHomeConversations"
+                              Width="{Binding ListViewWidth}"
+                              HorizontalAlignment="Left"
+                              SelectionMode="None"
+                              ItemsSource="{Binding HomeThreads}"
+                              Visibility="{Binding IsVisibleChronological, Converter={StaticResource BoolToVisibilityCollapsedConverter}}"
+                              ItemTemplate="{StaticResource FriendicaThreadsTemplate}" />
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- show button if not on top of page to easily scroll back to the newest entries -->
+        <Button x:Name="buttonScrollToTop"
+                Margin="0,12,12,0"
+                Width="48"
+                Height="36"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right"
+                Visibility="{Binding ShowScrollToTop, Converter={StaticResource BoolToVisibilityConverter}}"
+                Tapped="buttonScrollToTop_Tapped">
+            <FontIcon Glyph="&#x23F6;" FontSize="36" FontFamily="Segoe UI Emoji"
+                      Margin="-8,-8,0,0"
+                      Foreground="{Binding ScrollToTopColor}"/>
+        </Button>
+
+        <!-- red box indicating that system refreshes the entries trying to load the newest entries -->
+        <RelativePanel Background="Red"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Stretch"
+                       Visibility="{Binding IsRefreshing, Converter={StaticResource BoolToVisibilityConverter}}">
+            <ProgressRing x:Name="progressRefreshing"
+                          IsActive="True"
+                          Foreground="White"
+                          Margin="36,0,36,4"
+                          RelativePanel.AlignBottomWithPanel="True"
+                          RelativePanel.AlignLeftWithPanel="True"/>
+            <TextBlock x:Name="textblockIndicatorRefreshing" x:Uid="textblockIndicatorRefreshing"
+                       Foreground="White"
+                       RelativePanel.RightOf="progressRefreshing" 
+                       RelativePanel.AlignBottomWithPanel="True"/>
+        </RelativePanel>
+
+        <!-- red box indicating that system sends a new post to the server -->
+        <RelativePanel Background="Red"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Stretch"
+                       Visibility="{Binding IsSendingNewPost, Converter={StaticResource BoolToVisibilityConverter}}">
+            <ProgressRing x:Name="progressSendingNewPost"
+                          IsActive="True"
+                          Foreground="White"
+                          Margin="24,0,36,4"
+                          HorizontalAlignment="Left"
+                          RelativePanel.AlignBottomWithPanel="True"
+                          RelativePanel.AlignLeftWithPanel="True"/>
+            <TextBlock x:Name="textblockIndicatorSendingNewPost" x:Uid="textblockIndicatorSendingNewPost"
+                       Foreground="White"
+                       RelativePanel.RightOf="progressSendingNewPost" 
+                       RelativePanel.AlignBottomWithPanel="True"/>
+        </RelativePanel>
+
+        <!-- red box indicating that system loads the next 20 entries after reaching the end of the listview -->
+        <RelativePanel Background="Red"
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Stretch"
+                       Visibility="{Binding IsLoadingNextEntries, Converter={StaticResource BoolToVisibilityConverter}}">
+            <ProgressRing x:Name="progressLoadingNextEntries"
+                          IsActive="True"
+                          Foreground="White"
+                          Margin="36,0,36,4"
+                          RelativePanel.AlignBottomWithPanel="True"
+                          RelativePanel.AlignLeftWithPanel="True"/>
+            <TextBlock x:Name="textblockIndicatorLoadingNextEntries" x:Uid="textblockIndicatorLoadingNextEntries"
+                       Foreground="White"
+                       RelativePanel.RightOf="progressLoadingNextEntries" 
+                       RelativePanel.AlignBottomWithPanel="True"/>
+        </RelativePanel>
+    </Grid>
+</Page>
