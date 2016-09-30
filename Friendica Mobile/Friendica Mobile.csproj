@@ -187,6 +187,7 @@
     <Compile Include="Models\FriendicaPost.cs" />
     <Compile Include="Models\FriendicaGroup.cs" />
     <Compile Include="Models\FriendicaConversation.cs" />
+    <Compile Include="Models\FriendicaProfile.cs" />
     <Compile Include="Models\FriendicaUserExtended.cs" />
     <Compile Include="Models\FriendicaThread.cs" />
     <Compile Include="Models\FriendicaPostExtended.cs" />
