@@ -181,6 +181,7 @@
     <Compile Include="Models\FriendicaErrorResult.cs" />
     <Compile Include="Models\FriendicaGroupResult.cs" />
     <Compile Include="Models\FriendicaActivities.cs" />
+    <Compile Include="Models\FriendicaProfile.cs" />
     <Compile Include="Models\FriendicaMessageNew.cs" />
     <Compile Include="Models\FriendicaNewPost.cs" />
     <Compile Include="Models\FriendicaMessage.cs" />
