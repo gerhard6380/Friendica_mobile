@@ -176,6 +176,7 @@
     <Compile Include="HttpRequests\GetOEmbedYouTube.cs" />
     <Compile Include="Models\FriendicaBaseModel.cs" />
     <Compile Include="Models\FriendicaConfig.cs" />
+    <Compile Include="Models\FriendicaProfileSamples.cs" />
     <Compile Include="Models\FriendicaConversationSamples.cs" />
     <Compile Include="Models\FriendicaGeo.cs" />
     <Compile Include="Models\FriendicaErrorResult.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="Mvvm\ContactsViewmodel.cs" />
     <Compile Include="Mvvm\HomeViewmodel.cs" />
     <Compile Include="Mvvm\ManageGroupViewmodel.cs" />
+    <Compile Include="Mvvm\ProfilesViewmodel.cs" />
     <Compile Include="Mvvm\MessagesViewmodel.cs" />
     <Compile Include="Mvvm\ShowThreadViewmodel.cs" />
     <Compile Include="Mvvm\NetworkViewmodel.cs" />
@@ -236,8 +238,8 @@
     <Compile Include="Views\25_Messages.xaml.cs">
       <DependentUpon>25_Messages.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\30_Profile.xaml.cs">
-      <DependentUpon>30_Profile.xaml</DependentUpon>
+    <Compile Include="Views\30_Profiles.xaml.cs">
+      <DependentUpon>30_Profiles.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\35_Photos.xaml.cs">
       <DependentUpon>35_Photos.xaml</DependentUpon>
@@ -340,7 +342,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\30_Profile.xaml">
+    <Page Include="Views\30_Profiles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
