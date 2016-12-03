@@ -62,8 +62,8 @@
     <comment>Navigationbutton for Photos (showing albums)</comment>
   </data>
   <data name="radioProfile.Content" xml:space="preserve">
-    <value>Mi perfil</value>
-    <comment>Navigationbutton for Profile (own profile)</comment>
+    <value>Mi perfiles</value>
+    <comment>Navigationbutton for Profiles (own profiles)</comment>
   </data>
   <data name="radioVideos.Content" xml:space="preserve">
     <value>Vídeos</value>
@@ -1181,5 +1181,261 @@ Puede mostrar además el número de nuevas notificaciones en la pantalla de bloq
   <data name="toastErrorPostActivityText" xml:space="preserve">
     <value>Un error ocurrió mientras que envía gusta/disgusta por el post con el identificador '{0}', el servidor puede no estar disponible.</value>
     <comment>BackgroundTask: text for toast to indicate user that instant like/dislike has exited with an error (0 = id of post)</comment>
+  </data>
+  <data name="messageDialogProfilesUnknown error" xml:space="preserve">
+    <value>Ha producido un error inesperado al cargar tu perfil (código HTTP: {0}, mensaje de error: {1}).</value>
+    <comment>Profiles.xaml: info to user on all other errors during loading of profiles (0 = Statuscode vom Server, 1 = error message)</comment>
+  </data>
+  <data name="pageProfiles.FlowDirection" xml:space="preserve">
+    <value>LeftToRight</value>
+    <comment>Defines Text direction for the language</comment>
+  </data>
+  <data name="appBarProfilesEnableEditor.Label" xml:space="preserve">
+    <value>Ver editor</value>
+    <comment>Profiles.xaml: caption of the appBarButton for opening the editor to change the profile</comment>
+  </data>
+  <data name="appBarProfilesEnableEditor.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Cambios en el modo para personalizar los perfiles de edición...</value>
+    <comment>Profiles.xaml: tooltip of the appbarButton for opening the editor to change the profile</comment>
+  </data>
+  <data name="appBarProfilesSend.Label" xml:space="preserve">
+    <value>Enviar</value>
+    <comment>Profiles.xaml: caption of the appBarButton for sending the changes in the profile</comment>
+  </data>
+  <data name="appBarProfilesSend.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Enviar los cambios al perfil en el servidor</value>
+    <comment>Profiles.xaml: tooltip of the appbarButton for sending the changes in the profile</comment>
+  </data>
+  <data name="appBarProfilesUserlist.Label" xml:space="preserve">
+    <value>usuarios</value>
+    <comment>Profiles.xaml: caption of the appBarButton to show the users who can see the selected profile</comment>
+  </data>
+  <data name="appBarProfilesUserlist.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Cambios en la lista de usuarios que pueden ver el perfil seleccionado</value>
+    <comment>Profiles.xaml: tooltip of the appBarButton to show the users who can see the selected profile</comment>
+  </data>
+  <data name="pageTitleProfiles.Text" xml:space="preserve">
+    <value>Mis perfiles</value>
+    <comment>Name on top of view Profiles.xaml</comment>
+  </data>
+  <data name="pivotProfilesGeneral.Header" xml:space="preserve">
+    <value>General</value>
+    <comment>Profiles.xaml: header of the 'General' pivotitem</comment>
+  </data>
+  <data name="pivotProfilesInterests.Header" xml:space="preserve">
+    <value>Intereses</value>
+    <comment>Profiles.xaml: header of the 'Interests' pivotitem</comment>
+  </data>
+  <data name="pivotProfilesLocation.Header" xml:space="preserve">
+    <value>Residencia</value>
+    <comment>Profiles.xaml: header of the 'Location' pivotitem</comment>
+  </data>
+  <data name="pivotProfilesRelationship.Header" xml:space="preserve">
+    <value>Relación</value>
+    <comment>Profiles.xaml: header of the 'Relationship' pivotitem</comment>
+  </data>
+  <data name="toggleProfileDateDefined.OffContent" xml:space="preserve">
+    <value>No hay fecha disponible</value>
+    <comment>UserControlProfileDatePicker.xaml: Switch to enable or disable the setting of a date in the profile field - shown text if no date is defined</comment>
+  </data>
+  <data name="toggleProfileDateDefined.OnContent" xml:space="preserve">
+    <value>Fecha de disponibilidad</value>
+    <comment>UserControlProfileDatePicker.xaml: Switch to enable or disable the setting of a date in the profile field - shown text if enabled</comment>
+  </data>
+  <data name="toggleProfileWithoutYear.OffContent" xml:space="preserve">
+    <value>No un año que presentan</value>
+    <comment>UserControlProfileDatePicker.xaml: Switch between DatePicker without year and CalendarDatePicker - shown text if year is defined</comment>
+  </data>
+  <data name="toggleProfileWithoutYear.OnContent" xml:space="preserve">
+    <value>Año disponible</value>
+    <comment>UserControProfileDatePicker.xaml: Switch between DatePicker without year and CalendarDatePicker - shown text if no year defined</comment>
+  </data>
+  <data name="textblockProfilesGender" xml:space="preserve">
+    <value>Género:</value>
+    <comment>Profiles/UserControlProfileComboBox.xaml: header for Gender combobox</comment>
+  </data>
+  <data name="textblockProfilesMarital" xml:space="preserve">
+    <value>Estado de la relación:</value>
+    <comment>Profiles/UserControlProfileComboBox.xaml: header for Marital combobox</comment>
+  </data>
+  <data name="textblockProfilesRegion" xml:space="preserve">
+    <value>País/región:</value>
+    <comment>Profiles/UserControlProfileComboBox.xaml: header for Country/Region combobox</comment>
+  </data>
+  <data name="textblockProfilesSexual" xml:space="preserve">
+    <value>Preferencias sexuales:</value>
+    <comment>Profiles/UserControlProfileComboBox.xaml: header for Sexual combobox</comment>
+  </data>
+  <data name="textblockProfilesDateOfBirth" xml:space="preserve">
+    <value>Fecha de nacimiento:</value>
+    <comment>Profiles/UserControlProfileDatePicker.xaml: header for Date of Birth date picker</comment>
+  </data>
+  <data name="textblockProfilesMaritalSince" xml:space="preserve">
+    <value>Relación desde: (si aplica)</value>
+    <comment>Profiles/UserControlProfileDatePicker.xaml: header for MaritalSince date picker</comment>
+  </data>
+  <data name="textblockProfilesAbout" xml:space="preserve">
+    <value>Acerca de mí:</value>
+    <comment>Profiles/UserControlProfileRichText.xaml: header for About RichText</comment>
+  </data>
+  <data name="textblockProfilesDislikes" xml:space="preserve">
+    <value>Le disgusta:</value>
+    <comment>Profiles/UserControlProfileRichText.xaml: header for Dislikes RichText</comment>
+  </data>
+  <data name="textblockProfilesHomepage" xml:space="preserve">
+    <value>Página Web:</value>
+    <comment>Profiles/UserControlProfileRichText.xaml: header for Homepage RichText</comment>
+  </data>
+  <data name="textblockProfilesLikes" xml:space="preserve">
+    <value>Le gusta:</value>
+    <comment>Profiles/UserControlProfileRichText.xaml: header for Likes RichText</comment>
+  </data>
+  <data name="textblockProfilesSocialNetworks" xml:space="preserve">
+    <value>Redes sociales:</value>
+    <comment>Profiles/UserControlProfileRichText.xaml: header for SocialNetworks RichText</comment>
+  </data>
+  <data name="textblockProfilesBook" xml:space="preserve">
+    <value>Libros de la literatura:</value>
+    <comment>Profiles/UserControlProfileRichText.xaml: header for Books RichText</comment>
+  </data>
+  <data name="textblockProfilesEducation" xml:space="preserve">
+    <value>Escuela y educación:</value>
+    <comment>Profiles/UserControlProfileRichText.xaml: header for Education RichText</comment>
+  </data>
+  <data name="textblockProfilesFilm" xml:space="preserve">
+    <value>Películas/bailes/cultura/entretenimiento:</value>
+    <comment>Profiles/UserControlProfileRichText.xaml: header for Film RichText</comment>
+  </data>
+  <data name="textblockProfilesInterest" xml:space="preserve">
+    <value>Hobbies/intereses:</value>
+    <comment>Profiles/UserControlProfileRichText.xaml: header for Interest RichText</comment>
+  </data>
+  <data name="textblockProfilesRomance" xml:space="preserve">
+    <value>Amor/Romance:</value>
+    <comment>Profiles/UserControlProfileRichText.xaml: header for Romance RichText</comment>
+  </data>
+  <data name="textblockProfilesTv" xml:space="preserve">
+    <value>Televisión:</value>
+    <comment>Profiles/UserControlProfileRichText.xaml: header for Tv RichText</comment>
+  </data>
+  <data name="textblockProfilesWork" xml:space="preserve">
+    <value>Empleo:</value>
+    <comment>Profiles/UserControlProfileRichText.xaml: header for Work RichText</comment>
+  </data>
+  <data name="textblockProfilesMusic" xml:space="preserve">
+    <value>Intereses musicales:</value>
+    <comment>Profiles/UserControlProfileRichText.xaml: header for Music RichText</comment>
+  </data>
+  <data name="textblockProfilesAddress" xml:space="preserve">
+    <value>Dirección:</value>
+    <comment>Profiles/UserControlProfileTextBox.xaml: header for Address Textbox</comment>
+  </data>
+  <data name="textblockProfilesCity" xml:space="preserve">
+    <value>Lugar de residencia:</value>
+    <comment>Profiles/UserControlProfileTextBox.xaml: header for City Textbox</comment>
+  </data>
+  <data name="textblockProfilesDescription" xml:space="preserve">
+    <value>Descripción:</value>
+    <comment>Profiles/UserControlProfileTextBox.xaml: header for Description Textbox</comment>
+  </data>
+  <data name="textblockProfilesHometown" xml:space="preserve">
+    <value>Ciudad natal:</value>
+    <comment>Profiles/UserControlProfileTextBox.xaml: header for Hometown Textbox</comment>
+  </data>
+  <data name="textblockProfilesMaritalWith" xml:space="preserve">
+    <value>Relación con: (si aplica)</value>
+    <comment>Profiles/UserControlProfileTextBox.xaml: header for MaritalWith Textbox</comment>
+  </data>
+  <data name="textblockProfilesName" xml:space="preserve">
+    <value>Nombre completo:</value>
+    <comment>Profiles/UserControlProfileTextBox.xaml: header for Name Textbox</comment>
+  </data>
+  <data name="textblockProfilesPolitic" xml:space="preserve">
+    <value>Opiniones políticas:</value>
+    <comment>Profiles/UserControlProfileTextBox.xaml: header for Politic Textbox</comment>
+  </data>
+  <data name="textblockProfilesPostalCode" xml:space="preserve">
+    <value>Código postal:</value>
+    <comment>Profiles/UserControlProfileTextBox.xaml: header for PostalCode Textbox</comment>
+  </data>
+  <data name="textblockProfilesPrivateKeywords" xml:space="preserve">
+    <value>Palabras clave privada:</value>
+    <comment>Profiles/UserControlProfileTextBox.xaml: header for PrivateKeywords Textbox</comment>
+  </data>
+  <data name="textblockProfilesPublicKeywords" xml:space="preserve">
+    <value>Palabras clave pública:</value>
+    <comment>Profiles/UserControlProfileTextBox.xaml: header for PublicKeywords Textbox</comment>
+  </data>
+  <data name="textblockProfilesReligion" xml:space="preserve">
+    <value>Ideas religiosas:</value>
+    <comment>Profiles/UserControlProfileTextBox.xaml: header for Religion Textbox</comment>
+  </data>
+  <data name="checkboxProfilesPublished.Content" xml:space="preserve">
+    <value>Publicado en el directorio global</value>
+    <comment>Profiles.xaml: checkbox indicating if profile is published in the global directory</comment>
+  </data>
+  <data name="messageDialogProfilesDeletingNotSupported" xml:space="preserve">
+    <value>Usted no puede eliminar actualmente perfiles, esta función se construye más adelante en la aplicación. Por favor utilice su acceso Friendica servidor Web para eliminar perfiles.</value>
+    <comment>Profiles.xaml: inform user that deleting of profiles is currently not implemented in the app</comment>
+  </data>
+  <data name="messageDialogProfilesAddingNotSupported" xml:space="preserve">
+    <value>Usted puede Agregar la actualmente no hay perfiles más adelante esta función está integrada en la aplicación. Utilice su acceso Friendica servidor Web para agregar perfiles.</value>
+    <comment>Profiles.xaml: inform user that adding profiles is currently not implemented in the app</comment>
+  </data>
+  <data name="messageDialogProfilesChangeImageNotSupported" xml:space="preserve">
+    <value>No puede cambiar su foto de perfil en el momento, esta función se construye más adelante en la aplicación. Utilice su Friendica servidor Web access para cambiar tu foto de perfil.</value>
+    <comment>Profiles.xaml: inform user that changing profile image is currently not implemented in the app</comment>
+  </data>
+  <data name="textblockProfilesHelp1.Text" xml:space="preserve">
+    <value>Con la información de su perfil puede saber más acerca de usted al público y a tus amigos.</value>
+    <comment>Profiles.xaml: detailed information about profiles in Friendica - part 1</comment>
+  </data>
+  <data name="textblockProfilesHelp2.Text" xml:space="preserve">
+    <value>Aquí se puede controlar muy bien, que puede ver cierta información sobre usted. Friendica tiene una forma inusual de la configuración de privacidad de un vistazo. Hay siempre un perfil público en Friendica, que básicamente todo el mundo puede ver en Internet. Además, usted puede conectar todos los perfiles privados. Contienen la información que puede ver sólo aquellas personas que permite el acceso a este perfil. Puede utilizar fotos de diferentes perfiles para los diferentes perfiles privados. Antes de utilizar esta opción, sólo necesitará activar esta función. Usted puede encontrar esto en su Web access bajo "configuración / características extra / varios perfiles" (de forma predeterminada, esta característica a menudo está desactivada).</value>
+    <comment>Profiles.xaml: detailed information about profiles in Friendica - part 2</comment>
+  </data>
+  <data name="textblockProfilesHelp3.Text" xml:space="preserve">
+    <value>El botón de usuario muestra a las personas que vean el perfil seleccionado en la barra de herramientas.</value>
+    <comment>Profiles.xaml: detailed information about profiles in Friendica - part 3</comment>
+  </data>
+  <data name="textblockProfilesHelp4.Text" xml:space="preserve">
+    <value>Con el cuadro de lista desplegable adyacente, puede seleccionar que perfil que desea que aparezca a continuación. Si el perfil seleccionado es generalmente visible públicamente en Internet, puede verlo en el borde rojo alrededor de la caja desplegable.</value>
+    <comment>Profiles.xaml: detailed information about profiles in Friendica - part 4</comment>
+  </data>
+  <data name="textblockProfilesHelp5.Text" xml:space="preserve">
+    <value>El perfil público es publicado por defecto en el Directorio Mundial de Friendica (para apagar: en el acceso al Web en configuración de cuenta/seguridad y privacidad de ajustes/usuario). Si este es el caso de tu perfil público, se puede ver en la verificación de la casilla de verificación siguiente. Puesto que hay mundial varios servidores del directorio global, usted encontrará un enlace al directorio, que se utiliza en el servidor como el directorio principal.</value>
+    <comment>Profiles.xaml: detailed information about profiles in Friendica - part 5</comment>
+  </data>
+  <data name="textblockProfilesNoServerSupport.Text" xml:space="preserve">
+    <value>Todavía, el servidor Friendica no permite los comandos de API necesarios para la visualización de perfiles. Por favor actualice su servidor en Friendica 3.5.1 o más tarde o consulte a su administrador. </value>
+    <comment>Profiles.xaml: info to user if there was an error on loading the profiles, caused by missing API calls</comment>
+  </data>
+  <data name="textblockProfilesNoSettings.Text" xml:space="preserve">
+    <value>Ha definido ningún servidor de Friendica en la configuración de la aplicación. A continuación, se muestran ejemplos de cómo se muestran los diferentes perfiles de usuario de la aplicación.</value>
+    <comment>Profiles.xaml: show text if user has not set any app settings (we are showing only sample data)</comment>
+  </data>
+  <data name="textblockProfilesIndicatorLoading.Text" xml:space="preserve">
+    <value>Perfiles de carga...</value>
+    <comment>Profiles.xaml: text next to progress ring indicating that app is loading the profiles</comment>
+  </data>
+  <data name="pageTitleProfileUsers.Text" xml:space="preserve">
+    <value>Permisos de perfil</value>
+    <comment>Name on top of view A4_ProfileUsers.xaml</comment>
+  </data>
+  <data name="textblockNoUsersAvailable.Text" xml:space="preserve">
+    <value>Hay ningún contacto fueron autorizado para el perfil seleccionado. </value>
+    <comment>ProfileUsers.xaml: show a hint if there are no users allowed to see the selected profile</comment>
+  </data>
+  <data name="textblockProfileUsersIndicatorUpdating" xml:space="preserve">
+    <value>Guardar los cambios...</value>
+    <comment>ProfileUsers.xaml: red indicator showing that app is saving changes in userlist</comment>
+  </data>
+  <data name="textblockProfileUsersName.Text" xml:space="preserve">
+    <value>Perfil:</value>
+    <comment>ProfileUsers.xaml: header for textblock showing the name of the selected profile</comment>
+  </data>
+  <data name="pageProfileUsers.FlowDirection" xml:space="preserve">
+    <value>LeftToRight</value>
+    <comment>Defines text direction for the language</comment>
   </data>
 </root>
