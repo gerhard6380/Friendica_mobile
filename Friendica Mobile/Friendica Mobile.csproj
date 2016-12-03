@@ -105,6 +105,7 @@
     <Content Include="Assets\BadgeLogo.scale-400.png" />
     <Content Include="Assets\dislike.png" />
     <Content Include="Assets\like.png" />
+    <Content Include="Assets\NoImage.jpg" />
     <Content Include="Assets\Square150x150Logo.scale-100.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square71x71Logo.scale-200.png" />
@@ -133,11 +134,14 @@
     <Compile Include="BindableClass.cs" />
     <Compile Include="clsDetectTrial.cs" />
     <Compile Include="clsHtmlToRichTextBlock.cs" />
+    <Compile Include="clsVariableGridView.cs" />
     <Compile Include="clsSQLiteConnection.cs" />
     <Compile Include="clsTileCounter.cs" />
     <Compile Include="Converters\IsReceivedMessageToMarginConverter.cs" />
     <Compile Include="Converters\MessagesSeenToThicknessConverter.cs" />
     <Compile Include="Converters\ScrollViewerMessagesToVisibilityConverter.cs" />
+    <Compile Include="Converters\EnumDisplayConverter.cs" />
+    <Compile Include="Converters\SplitViewWidthProfileConverter.cs" />
     <Compile Include="Converters\TransparentColorConverter.cs" />
     <Compile Include="Converters\GridWidthMessagesConverter.cs" />
     <Compile Include="Converters\MessagesNewToBrushConverter.cs" />
@@ -165,6 +169,7 @@
     <Compile Include="HttpRequests\clsHttpRequests_old.cs" />
     <Compile Include="HttpRequests\GetFriendicaConfig.cs" />
     <Compile Include="HttpRequests\GetFriendicaHome.cs" />
+    <Compile Include="HttpRequests\GetFriendicaProfiles.cs" />
     <Compile Include="HttpRequests\GetFriendicaMessages.cs" />
     <Compile Include="HttpRequests\PostFriendicaActivities.cs" />
     <Compile Include="HttpRequests\PostFriendicaMessage.cs" />
@@ -174,6 +179,7 @@
     <Compile Include="HttpRequests\GetFriendicaThread.cs" />
     <Compile Include="HttpRequests\GetFriendicaNetwork.cs" />
     <Compile Include="HttpRequests\GetOEmbedYouTube.cs" />
+    <Compile Include="Models\FriendicaCountry.cs" />
     <Compile Include="Models\FriendicaBaseModel.cs" />
     <Compile Include="Models\FriendicaConfig.cs" />
     <Compile Include="Models\FriendicaProfileSamples.cs" />
@@ -189,6 +195,7 @@
     <Compile Include="Models\FriendicaGroup.cs" />
     <Compile Include="Models\FriendicaConversation.cs" />
     <Compile Include="Models\FriendicaProfile.cs" />
+    <Compile Include="Models\FriendicaProfilesAttributes.cs" />
     <Compile Include="Models\FriendicaUserExtended.cs" />
     <Compile Include="Models\FriendicaThread.cs" />
     <Compile Include="Models\FriendicaPostExtended.cs" />
@@ -200,7 +207,14 @@
     <Compile Include="Mvvm\Command.cs" />
     <Compile Include="Mvvm\AboutViewmodel.cs" />
     <Compile Include="Mvvm\ContactsViewmodel.cs" />
+    <Compile Include="Mvvm\FriendicaEnumBaseViewmodel.cs" />
+    <Compile Include="Mvvm\FriendicaEnumSexualViewmodel.cs" />
+    <Compile Include="Mvvm\FriendicaEnumRegionViewmodel.cs" />
+    <Compile Include="Mvvm\FriendicaEnumCountryViewmodel.cs" />
+    <Compile Include="Mvvm\FriendicaEnumMaritalViewmodel.cs" />
+    <Compile Include="Mvvm\FriendicaEnumGenderViewmodel.cs" />
     <Compile Include="Mvvm\HomeViewmodel.cs" />
+    <Compile Include="Mvvm\ProfileUsersViewmodel.cs" />
     <Compile Include="Mvvm\ManageGroupViewmodel.cs" />
     <Compile Include="Mvvm\ProfilesViewmodel.cs" />
     <Compile Include="Mvvm\MessagesViewmodel.cs" />
@@ -211,6 +225,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="clsListBoxExtensions.cs" />
     <Compile Include="RichTextBlockHelper.cs" />
+    <Compile Include="Styles\UserControlProfileComboBox.xaml.cs">
+      <DependentUpon>UserControlProfileComboBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\UserControlProfileRichText.xaml.cs">
+      <DependentUpon>UserControlProfileRichText.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\UserControlProfileDatePicker.xaml.cs">
+      <DependentUpon>UserControlProfileDatePicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\UserControlProfileTextBox.xaml.cs">
+      <DependentUpon>UserControlProfileTextBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Styles\UserControlMessagesEditor.xaml.cs">
       <DependentUpon>UserControlMessagesEditor.xaml</DependentUpon>
     </Compile>
@@ -262,6 +288,9 @@
     <Compile Include="Views\93_About.xaml.cs">
       <DependentUpon>93_About.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\A4_ProfileUsers.xaml.cs">
+      <DependentUpon>A4_ProfileUsers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\A3_Browser.xaml.cs">
       <DependentUpon>A3_Browser.xaml</DependentUpon>
     </Compile>
@@ -298,6 +327,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Styles\ProfilesStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\MessagesStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -307,6 +340,22 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\SplitViewStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\UserControlProfileComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\UserControlProfileRichText.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\UserControlProfileDatePicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\UserControlProfileTextBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -371,6 +420,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\93_About.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\A4_ProfileUsers.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

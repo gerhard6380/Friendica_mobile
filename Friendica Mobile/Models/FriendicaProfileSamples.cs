@@ -13,7 +13,7 @@ namespace Friendica_Mobile.Models
         public FriendicaProfileSamples()
         {
             ProfileSamples = new ObservableCollection<FriendicaProfile>();
-            FriendicaOwner = new FriendicaUser("\"id\":1,\"id_str\":\"1\",\"name\":\"That's me\",\"screen_name\":\"test1\",\"location\":\"Friendica\",\"description\":null,\"profile_image_url\":\"http://www.clker.com/cliparts/5/7/4/8/13099629981030824019profile.svg.med.png\",\"profile_image_url_https\":\"http://www.clker.com/cliparts/5/7/4/8/13099629981030824019profile.svg.med.png\",\"url\":\"SAMPLE\",\"protected\":true,\"followers_count\":0,\"friends_count\":0,\"created_at\":\"Thu Jan 22 18:57:04 +0000 2015\",\"favourites_count\":0,\"utc_offset\":\"0\",\"time_zone\":\"UTC\",\"statuses_count\":2,\"following\":true,\"verified\":true,\"statusnet_blocking\":false,\"notifications\":false,\"statusnet_profile_url\":\"\",\"cid\":1,\"network\":\"dfrn\"");
+            FriendicaOwner = new FriendicaUser("{\"id\":1,\"id_str\":\"1\",\"name\":\"That's me\",\"screen_name\":\"test1\",\"location\":\"Friendica\",\"description\":null,\"profile_image_url\":\"http://www.clker.com/cliparts/5/7/4/8/13099629981030824019profile.svg.med.png\",\"profile_image_url_https\":\"http://www.clker.com/cliparts/5/7/4/8/13099629981030824019profile.svg.med.png\",\"url\":\"SAMPLE\",\"protected\":true,\"followers_count\":0,\"friends_count\":0,\"created_at\":\"Thu Jan 22 18:57:04 +0000 2015\",\"favourites_count\":0,\"utc_offset\":\"0\",\"time_zone\":\"UTC\",\"statuses_count\":2,\"following\":true,\"verified\":true,\"statusnet_blocking\":false,\"notifications\":false,\"statusnet_profile_url\":\"\",\"cid\":1,\"network\":\"dfrn\"}");
             FillSampleData();
         }
 
@@ -37,8 +37,8 @@ namespace Friendica_Mobile.Models
             profile2.ProfileHideFriends = false;
             profile2.ProfilePhoto = "http://www.clker.com/cliparts/5/7/4/8/13099629981030824019profile.svg.med.png";
             profile2.ProfileThumb = "http://www.clker.com/cliparts/5/7/4/8/13099629981030824019profile.svg.med.png";
-            profile2.ProfilePublish = true;
-            profile2.ProfileNetPublish = true;
+            profile2.ProfilePublish = false;
+            profile2.ProfileNetPublish = false;
             profile2.ProfileDescription = "Fan of Games of Thrones";
             profile2.ProfileDateOfBirth = "1948-02-29";
             profile2.ProfileAddress = "1477 Gandy Street";
@@ -50,8 +50,8 @@ namespace Friendica_Mobile.Models
             profile2.ProfileGender = "Male";
             profile2.ProfileMarital = "Partner";
             profile2.ProfileMaritalWith = "Dorothy";
-            profile2.ProfileMaritalSince = "2015-12-18";
-            profile2.ProfileSexual = "Women";
+            profile2.ProfileMaritalSince = "2015-12-18 00:00:00";
+            profile2.ProfileSexual = "Females";
             profile2.ProfilePolitic = "Descriptive words about the political views of the user.";
             profile2.ProfileReligion = "Descriptive words about the religious attitudes of the user.";
             profile2.ProfilePublicKeywords = "clash, of, kings, feast, for, crowns, games, of, thrones, storm, of, swords";
@@ -85,8 +85,8 @@ namespace Friendica_Mobile.Models
             profile3.ProfileHideFriends = false;
             profile3.ProfilePhoto = "http://howmanyarethere.net/wp-content/uploads/2012/06/game-of-thrones-poster.jpg";
             profile3.ProfileThumb = "http://howmanyarethere.net/wp-content/uploads/2012/06/game-of-thrones-poster.jpg";
-            profile3.ProfilePublish = true;
-            profile3.ProfileNetPublish = true;
+            profile3.ProfilePublish = false;
+            profile3.ProfileNetPublish = false;
             profile3.ProfileDateOfBirth = "0000-02-28";
             profile3.ProfileRegion = "New York";
             profile3.ProfileCountry = "USA";

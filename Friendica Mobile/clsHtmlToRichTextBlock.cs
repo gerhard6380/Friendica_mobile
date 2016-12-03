@@ -350,7 +350,9 @@ namespace Friendica_Mobile
             content = content.Replace("8-)", System.Net.WebUtility.HtmlDecode("&#x1F60E;"));
             // smiley spock
             content = content.Replace(">:-I", System.Net.WebUtility.HtmlDecode("&#x1F596;"));
-            
+
+            // generally replace smilies
+            content = System.Net.WebUtility.HtmlDecode(content.Replace("&##1", "&#1"));
             return content;
         }
 
@@ -367,7 +369,7 @@ namespace Friendica_Mobile
         public abstract string TagName { get; }
 
         public abstract void ApplyType(HtmlNode htmlNode, Block block);
-
+        
         #endregion
     } // end of public abstract class HtmlTypeBase : IHtmlType
 
@@ -770,7 +772,10 @@ namespace Friendica_Mobile
                     h.NavigateUri = new Uri(url.Value, UriKind.RelativeOrAbsolute);
                     Run r = new Run();
                     h.Inlines.Add(r);
-                    r.Foreground = new SolidColorBrush(Colors.Black);
+                    var myResourceDictionary = new ResourceDictionary();
+                    myResourceDictionary.Source = new Uri("ms-appx:///Styles/MainStyles.xaml", UriKind.RelativeOrAbsolute);
+                    var accentBrush = (SolidColorBrush)myResourceDictionary["AccentBrush"];
+                    r.Foreground = (Application.Current.RequestedTheme == ApplicationTheme.Light) ? new SolidColorBrush(Colors.Black) : new SolidColorBrush(Colors.LightGray);
                     r.Text = GetCleanContent(htmlNode.InnerText);
 
 
@@ -839,6 +844,9 @@ namespace Friendica_Mobile
 
             Image img = new Image();
 
+            // show placeholder image if loading is failing
+            img.ImageFailed += Img_ImageFailed;
+
             // Bei fremden Timeline-Einträgen gibt es keinen http-Link sondern einen base64-Datenstream, hier muss der Datenstream
             // verarbeitet werden. Bei einem http-Link wird die Source des Image im RichTextBox-Control auf den Link gesetzt
             if (src.Value.Contains("data:image/jpeg;base64") || src.Value.Contains("data:image/png;base64"))
@@ -876,6 +884,26 @@ namespace Friendica_Mobile
                 ToolTipService.SetToolTip(img, alt);
             ilContainer.Child = img;
             (block as Paragraph).Inlines.Add(ilContainer);
+        }
+
+        private void Img_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            var img = sender as Image;
+
+            if (e.ErrorMessage == "E_NETWORK_ERROR")
+            {
+                // if error is thrown it might be an issue with the IP address not recognized, so try again with the server name from settings
+                var uri = ((BitmapImage)img.Source).UriSource;
+                var server = new Uri(App.Settings.FriendicaServer, UriKind.RelativeOrAbsolute);
+                if (uri.Host != server.Host)
+                    img.Source = new BitmapImage(new Uri(uri.AbsoluteUri.Replace(uri.Host, server.Host)));
+                else
+                {
+                    img.Source = new BitmapImage(new Uri("ms-appx:///Assets/NoImage.jpg", UriKind.RelativeOrAbsolute));
+                    img.Width = 100;
+                    img.Height = 100;
+                }
+            }
         }
 
         private void Image_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
@@ -1158,9 +1186,26 @@ namespace Friendica_Mobile
             {
                 foreach (var childHtmlNode in htmlNode.ChildNodes)
                 {
-                    TextToRun("     " + System.Net.WebUtility.HtmlDecode("&#x2B25;") + "   " + childHtmlNode.InnerText, s, block);
+                    TextToRun("     " + System.Net.WebUtility.HtmlDecode("&#x2B25;") + "   ", s, block);
+                    foreach (var node in childHtmlNode.ChildNodes)
+                    {
+                        if (node.Name == "a")
+                        {
+                            var AInUl = new AToXaml();
+                            AInUl.ApplyType(node, block);
+                        }
+                        else
+                            TextToRun(node.InnerText, s, block);
+                    }
                     Br(block);
-                }
+                    //else
+                    //{
+                    //    TextToRun(childHtmlNode.InnerText, s, block);
+                    //    Br(block);
+                    //}
+                        //TextToRun("     " + System.Net.WebUtility.HtmlDecode("&#x2B25;") + "   " + childHtmlNode.InnerText, s, block);
+                        //Br(block);
+               }
             }
             else
             {

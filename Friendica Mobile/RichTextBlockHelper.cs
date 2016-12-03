@@ -41,7 +41,8 @@ namespace Friendica_Mobile
             {
                 Paragraph value = e.NewValue as Paragraph;
                 control.Blocks.Clear();
-                control.Blocks.Add(value);
+                if (value.Inlines.Count != 0)
+                    control.Blocks.Add(value);
             }
         }
     }

@@ -70,9 +70,9 @@
           <note from="MultilingualBuild" annotates="source" priority="2">Navigationbutton for Photos (showing albums)</note>
         </trans-unit>
         <trans-unit id="radioProfile.Content" translate="yes" xml:space="preserve">
-          <source>Mein Profil</source>
-          <target state="final" state-qualifier="exact-match">Mon profil</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Navigationbutton for Profile (own profile)</note>
+          <source>Meine Profile</source>
+          <target state="translated">Mon profils</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Navigationbutton for Profiles (own profiles)</note>
         </trans-unit>
         <trans-unit id="radioVideos.Content" translate="yes" xml:space="preserve">
           <source>Videos</source>
@@ -1481,9 +1481,328 @@ Voudrais vous essayer à nouveau ?</target>
         </trans-unit>
         <trans-unit id="toastErrorPostActivityText" translate="yes" xml:space="preserve">
           <source>Beim Senden des Like/Dislikes zum Beitrag mit der Id '{0}' ist ein Fehler passiert, möglicherweise ist der Server nicht erreichbar.</source>
-          <target state="needs-review-translation">Une erreur s’est produite lors de l’envoi du aime/l'aversion vers le message avec l’ID {0}, le serveur peut être indisponible.</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Une erreur s’est produite lors de l’envoi du aime/l'aversion vers le message avec l’ID {0}, le serveur peut être indisponible.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">BackgroundTask: text for toast to indicate user that instant like/dislike has exited with an error (0 = id of post)</note>
+        </trans-unit>
+        <trans-unit id="messageDialogProfilesUnknown error" translate="yes" xml:space="preserve">
+          <source>Ein unerwarteter Fehler trat beim Laden deiner Profile auf (HTTP-Code: {0}, Fehlermeldung: {1}).</source>
+          <target state="translated" state-qualifier="mt-suggestion">Une erreur inattendue s’est produite lors du chargement de votre profil (code HTTP : {0}, message d’erreur : {1}).</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles.xaml: info to user on all other errors during loading of profiles (0 = Statuscode vom Server, 1 = error message)</note>
+        </trans-unit>
+        <trans-unit id="pageProfiles.FlowDirection" translate="yes" xml:space="preserve">
+          <source>LeftToRight</source>
+          <target state="final" state-qualifier="tm-suggestion">LeftToRight</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Defines Text direction for the language</note>
+        </trans-unit>
+        <trans-unit id="appBarProfilesEnableEditor.Label" translate="yes" xml:space="preserve">
+          <source>Editor anzeigen</source>
+          <target state="translated" state-qualifier="tm-suggestion">Éditeur d'affichage</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles.xaml: caption of the appBarButton for opening the editor to change the profile</note>
+        </trans-unit>
+        <trans-unit id="appBarProfilesEnableEditor.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Wechselt in den Bearbeiten-Modus zum Anpassen des Profiles...</source>
+          <target state="translated" state-qualifier="mt-suggestion">Changements dans le mode pour personnaliser les profils édition...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles.xaml: tooltip of the appbarButton for opening the editor to change the profile</note>
+        </trans-unit>
+        <trans-unit id="appBarProfilesSend.Label" translate="yes" xml:space="preserve">
+          <source>Senden</source>
+          <target state="translated" state-qualifier="mt-suggestion">Envoyer</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles.xaml: caption of the appBarButton for sending the changes in the profile</note>
+        </trans-unit>
+        <trans-unit id="appBarProfilesSend.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Änderungen am Profil an den Server senden</source>
+          <target state="translated" state-qualifier="mt-suggestion">Communiquer les changements du profil sur le serveur</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles.xaml: tooltip of the appbarButton for sending the changes in the profile</note>
+        </trans-unit>
+        <trans-unit id="appBarProfilesUserlist.Label" translate="yes" xml:space="preserve">
+          <source>Benutzer</source>
+          <target state="translated">Utilisateurs</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles.xaml: caption of the appBarButton to show the users who can see the selected profile</note>
+        </trans-unit>
+        <trans-unit id="appBarProfilesUserlist.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Wechsel zur Liste der Benutzer, die das gewählte Profil sehen dürfen</source>
+          <target state="translated" state-qualifier="mt-suggestion">Modifications apportées à la liste des utilisateurs qui peuvent voir le profil sélectionné</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles.xaml: tooltip of the appBarButton to show the users who can see the selected profile</note>
+        </trans-unit>
+        <trans-unit id="pageTitleProfiles.Text" translate="yes" xml:space="preserve">
+          <source>Meine Profile</source>
+          <target state="translated" state-qualifier="mt-suggestion">Mes profils</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Name on top of view Profiles.xaml</note>
+        </trans-unit>
+        <trans-unit id="pivotProfilesGeneral.Header" translate="yes" xml:space="preserve">
+          <source>Allgemein</source>
+          <target state="translated" state-qualifier="exact-match">Général</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles.xaml: header of the 'General' pivotitem</note>
+        </trans-unit>
+        <trans-unit id="pivotProfilesInterests.Header" translate="yes" xml:space="preserve">
+          <source>Interessen</source>
+          <target state="translated">Centres d'intérêt</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles.xaml: header of the 'Interests' pivotitem</note>
+        </trans-unit>
+        <trans-unit id="pivotProfilesLocation.Header" translate="yes" xml:space="preserve">
+          <source>Wohnort</source>
+          <target state="translated">Résidence</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles.xaml: header of the 'Location' pivotitem</note>
+        </trans-unit>
+        <trans-unit id="pivotProfilesRelationship.Header" translate="yes" xml:space="preserve">
+          <source>Beziehung</source>
+          <target state="translated">Relation</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles.xaml: header of the 'Relationship' pivotitem</note>
+        </trans-unit>
+        <trans-unit id="toggleProfileDateDefined.OffContent" translate="yes" xml:space="preserve">
+          <source>Kein Datum vorhanden</source>
+          <target state="translated" state-qualifier="mt-suggestion">Aucune date disponible</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">UserControlProfileDatePicker.xaml: Switch to enable or disable the setting of a date in the profile field - shown text if no date is defined</note>
+        </trans-unit>
+        <trans-unit id="toggleProfileDateDefined.OnContent" translate="yes" xml:space="preserve">
+          <source>Datum vorhanden</source>
+          <target state="translated" state-qualifier="mt-suggestion">Date de</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">UserControlProfileDatePicker.xaml: Switch to enable or disable the setting of a date in the profile field - shown text if enabled</note>
+        </trans-unit>
+        <trans-unit id="toggleProfileWithoutYear.OffContent" translate="yes" xml:space="preserve">
+          <source>Kein Jahr vorhanden</source>
+          <target state="translated" state-qualifier="mt-suggestion">Pas une année qui présentent</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">UserControlProfileDatePicker.xaml: Switch between DatePicker without year and CalendarDatePicker - shown text if year is defined</note>
+        </trans-unit>
+        <trans-unit id="toggleProfileWithoutYear.OnContent" translate="yes" xml:space="preserve">
+          <source>Jahr vorhanden</source>
+          <target state="translated" state-qualifier="mt-suggestion">Année disponible</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">UserControProfileDatePicker.xaml: Switch between DatePicker without year and CalendarDatePicker - shown text if no year defined</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesGender" translate="yes" xml:space="preserve">
+          <source>Geschlecht:</source>
+          <target state="translated">Sexe :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileComboBox.xaml: header for Gender combobox</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesMarital" translate="yes" xml:space="preserve">
+          <source>Beziehungsstatus:</source>
+          <target state="translated">Statut de la relation :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileComboBox.xaml: header for Marital combobox</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesRegion" translate="yes" xml:space="preserve">
+          <source>Land/Region:</source>
+          <target state="translated">Pays/région :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileComboBox.xaml: header for Country/Region combobox</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesSexual" translate="yes" xml:space="preserve">
+          <source>Sexuelle Vorlieben:</source>
+          <target state="translated">Préférences sexuelles :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileComboBox.xaml: header for Sexual combobox</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesDateOfBirth" translate="yes" xml:space="preserve">
+          <source>Geburtstag:</source>
+          <target state="translated">Date de naissance :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileDatePicker.xaml: header for Date of Birth date picker</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesMaritalSince" translate="yes" xml:space="preserve">
+          <source>Beziehung seit: (falls anwendbar)</source>
+          <target state="translated" state-qualifier="mt-suggestion">Relation depuis : (si applicable)</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileDatePicker.xaml: header for MaritalSince date picker</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesAbout" translate="yes" xml:space="preserve">
+          <source>Über mich:</source>
+          <target state="translated" state-qualifier="mt-suggestion">À propos de moi :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileRichText.xaml: header for About RichText</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesDislikes" translate="yes" xml:space="preserve">
+          <source>Dislikes:</source>
+          <target state="translated">Aversiones :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileRichText.xaml: header for Dislikes RichText</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesHomepage" translate="yes" xml:space="preserve">
+          <source>Homepage:</source>
+          <target state="translated" state-qualifier="mt-suggestion">Page d’accueil :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileRichText.xaml: header for Homepage RichText</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesLikes" translate="yes" xml:space="preserve">
+          <source>Likes:</source>
+          <target state="translated" state-qualifier="mt-suggestion">Aime :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileRichText.xaml: header for Likes RichText</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesSocialNetworks" translate="yes" xml:space="preserve">
+          <source>Soziale Netzwerke:</source>
+          <target state="translated" state-qualifier="mt-suggestion">Réseaux sociaux :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileRichText.xaml: header for SocialNetworks RichText</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesBook" translate="yes" xml:space="preserve">
+          <source>Bücher, Literatur:</source>
+          <target state="translated" state-qualifier="mt-suggestion">Livres, littérature :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileRichText.xaml: header for Books RichText</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesEducation" translate="yes" xml:space="preserve">
+          <source>Schule/Ausbildung:</source>
+          <target state="translated" state-qualifier="mt-suggestion">Ecole/education :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileRichText.xaml: header for Education RichText</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesFilm" translate="yes" xml:space="preserve">
+          <source>Filme/Tänze/Kultur/Unterhaltung:</source>
+          <target state="translated" state-qualifier="mt-suggestion">Films/danses/culture/Loisirs :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileRichText.xaml: header for Film RichText</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesInterest" translate="yes" xml:space="preserve">
+          <source>Hobbies/Interessen:</source>
+          <target state="translated" state-qualifier="mt-suggestion">Loisirs/centres d’intérêt :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileRichText.xaml: header for Interest RichText</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesRomance" translate="yes" xml:space="preserve">
+          <source>Liebe/Romantik:</source>
+          <target state="translated" state-qualifier="mt-suggestion">Amour/Romance :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileRichText.xaml: header for Romance RichText</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesTv" translate="yes" xml:space="preserve">
+          <source>Fernsehen:</source>
+          <target state="translated" state-qualifier="mt-suggestion">Télévision :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileRichText.xaml: header for Tv RichText</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesWork" translate="yes" xml:space="preserve">
+          <source>Arbeit/Anstellung:</source>
+          <target state="translated" state-qualifier="mt-suggestion">Emploi :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileRichText.xaml: header for Work RichText</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesMusic" translate="yes" xml:space="preserve">
+          <source>Musikalische Interessen:</source>
+          <target state="translated" state-qualifier="mt-suggestion">Intérêts musicaux :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileRichText.xaml: header for Music RichText</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesAddress" translate="yes" xml:space="preserve">
+          <source>Addresse:</source>
+          <target state="translated" state-qualifier="mt-suggestion">Adresse :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileTextBox.xaml: header for Address Textbox</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesCity" translate="yes" xml:space="preserve">
+          <source>Wohnort:</source>
+          <target state="translated" state-qualifier="mt-suggestion">Lieu de résidence :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileTextBox.xaml: header for City Textbox</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesDescription" translate="yes" xml:space="preserve">
+          <source>Beschreibung:</source>
+          <target state="translated" state-qualifier="mt-suggestion">Description :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileTextBox.xaml: header for Description Textbox</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesHometown" translate="yes" xml:space="preserve">
+          <source>Heimatort:</source>
+          <target state="translated" state-qualifier="mt-suggestion">Ville natale :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileTextBox.xaml: header for Hometown Textbox</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesMaritalWith" translate="yes" xml:space="preserve">
+          <source>Beziehung mit: (falls anwendbar)</source>
+          <target state="translated" state-qualifier="mt-suggestion">Relation avec : (si applicable)</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileTextBox.xaml: header for MaritalWith Textbox</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesName" translate="yes" xml:space="preserve">
+          <source>Kompletter Name:</source>
+          <target state="translated" state-qualifier="mt-suggestion">Nom complet :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileTextBox.xaml: header for Name Textbox</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesPolitic" translate="yes" xml:space="preserve">
+          <source>Politische Ansichten:</source>
+          <target state="translated" state-qualifier="mt-suggestion">Opinions politiques :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileTextBox.xaml: header for Politic Textbox</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesPostalCode" translate="yes" xml:space="preserve">
+          <source>Postleitzahl:</source>
+          <target state="translated" state-qualifier="mt-suggestion">Code postal :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileTextBox.xaml: header for PostalCode Textbox</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesPrivateKeywords" translate="yes" xml:space="preserve">
+          <source>Private Schlüsselwörter:</source>
+          <target state="translated" state-qualifier="mt-suggestion">Mots clés privées :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileTextBox.xaml: header for PrivateKeywords Textbox</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesPublicKeywords" translate="yes" xml:space="preserve">
+          <source>Öffentliche Schlüsselwörter:</source>
+          <target state="translated" state-qualifier="mt-suggestion">Mots clés publiques :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileTextBox.xaml: header for PublicKeywords Textbox</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesReligion" translate="yes" xml:space="preserve">
+          <source>Religiöse Ansichten:</source>
+          <target state="translated" state-qualifier="mt-suggestion">Points de vue religieux :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles/UserControlProfileTextBox.xaml: header for Religion Textbox</note>
+        </trans-unit>
+        <trans-unit id="checkboxProfilesPublished.Content" translate="yes" xml:space="preserve">
+          <source>im globalen Verzeichnis veröffentlicht</source>
+          <target state="translated" state-qualifier="mt-suggestion">publié dans l’annuaire mondial</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles.xaml: checkbox indicating if profile is published in the global directory</note>
+        </trans-unit>
+        <trans-unit id="messageDialogProfilesDeletingNotSupported" translate="yes" xml:space="preserve">
+          <source>Du kannst momentan noch keine Profile löschen, diese Funktion wird erst später in die App eingebaut. Bitte verwende zum Löschen von Profilen den Webzugang deines Friendica-Servers.</source>
+          <target state="translated" state-qualifier="mt-suggestion">Vous ne pouvez supprimer actuellement aucun profil, cette fonction est ensuite intégrée à l’app. Veuillez utiliser votre accès Web Server Friendica pour supprimer des profils.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles.xaml: inform user that deleting of profiles is currently not implemented in the app</note>
+        </trans-unit>
+        <trans-unit id="messageDialogProfilesAddingNotSupported" translate="yes" xml:space="preserve">
+          <source>Du kannst momentan noch keine Profile hinzufügen, diese Funktion wird erst später in die App eingebaut. Bitte verwende zum Hinzufügen von Profilen den Webzugang deines Friendica-Servers.</source>
+          <target state="translated" state-qualifier="mt-suggestion">Vous pouvez ajouter l’actuellement aucun profil plus tard cette fonction est intégrée dans l’application. Veuillez utiliser votre accès Friendica serveur Web pour ajouter des profils.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles.xaml: inform user that adding profiles is currently not implemented in the app</note>
+        </trans-unit>
+        <trans-unit id="messageDialogProfilesChangeImageNotSupported" translate="yes" xml:space="preserve">
+          <source>Du kannst dein Profilbild momentan nicht ändern, diese Funktion wird erst später in die App eingebaut. Bitte verwende zum Ändern deines Profilbildes den Webzugang deines Friendica-Servers.</source>
+          <target state="translated" state-qualifier="mt-suggestion">Vous ne pouvez pas modifier votre photo de profil pour le moment, cette fonction est ensuite intégrée à l’app. Veuillez utiliser votre accès Web Server Friendica pour modifier votre photo de profil.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles.xaml: inform user that changing profile image is currently not implemented in the app</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesHelp1.Text" translate="yes" xml:space="preserve">
+          <source>Mit den Informationen in deinem Profil kannst du der Öffentlichkeit und deinen Freunden mehr über dich mitteilen.</source>
+          <target state="translated" state-qualifier="mt-suggestion">Avec les informations contenues dans votre profil vous pouvez Parlez vous du public et vos amis.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles.xaml: detailed information about profiles in Friendica - part 1</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesHelp2.Text" translate="yes" xml:space="preserve">
+          <source>Dabei kannst du sehr gut steuern, wer bestimmte Informationen über dich sehen darf. Friendica hat auf den ersten Blick einen ungewöhnlichen Weg für die Einstellungen der Privatsphäre. Es gibt immer ein öffentliches Profil in Friendica, welches grundsätzlich jeder im Internet sehen kann. Zusätzlich kannst du beliebig viele private Profile anlegen. Diese enthalten dann die Informationen, die nur jene Personen sehen dürfen, denen du den Zugriff auf dieses Profil erlaubst. Du kannst auch unterschiedliche Profilbilder für die verschiedenen privaten Profile verwenden. Bevor du diese Möglichkeit verwenden kannst, musst du diese Funktion eventuell erst aktivieren. Du findest dies in deinem Webzugang unter „Einstellungen/Zusätzliche Features/Mehrere Profile“ (standardmäßig ist diese Funktion oft deaktiviert).</source>
+          <target state="translated" state-qualifier="mt-suggestion">Ici, vous pouvez contrôler très bien, qui peut voir certaines informations vous concernant. Friendica a une manière inhabituelle de paramètres de confidentialité d’un coup de œil. Il y a toujours un profil public en Friendica, ce qui fondamentalement peut voir tout le monde sur Internet. En outre, vous pouvez joindre autant de profils privés. Ils contiennent les informations qui peuvent voir que les personnes que vous autorisez l’accès à ce profil. Vous pouvez utiliser des photos de profil différentes pour les différents profils privés. Avant de pouvoir utiliser cette option, vous devrez peut-être seulement activer cette fonctionnalité. Vous pouvez le trouver dans votre accès Web sous « paramètres / extra features / profils multiples » (par défaut, cette fonctionnalité est souvent désactivée).</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles.xaml: detailed information about profiles in Friendica - part 2</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesHelp3.Text" translate="yes" xml:space="preserve">
+          <source>Der Benutzer-Button in der Symbolleiste zeigt dir die Personen, welche das ausgewählte Profil sehen dürfen.</source>
+          <target state="translated" state-qualifier="mt-suggestion">Le bouton utilisateur indique les personnes qui peuvent voir le profil sélectionné dans la barre d’outils.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles.xaml: detailed information about profiles in Friendica - part 3</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesHelp4.Text" translate="yes" xml:space="preserve">
+          <source>Mit dem nebenstehenden Dropdown-Feld kannst du auswählen, welches Profil unten angezeigt werden soll. Falls das ausgewählte Profil grundsätzlich öffentlich im Internet sichtbar ist, erkennst du dies am roten Rahmen um das Dropdown-Feld.</source>
+          <target state="translated" state-qualifier="mt-suggestion">Avec la liste déroulante adjacente, vous pouvez sélectionner quel profil vous souhaitez voir apparaître ci-dessous. Si le profil sélectionné est généralement visible publiquement sur Internet, vous pouvez le voir sur la bordure rouge autour de la zone de liste déroulante.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles.xaml: detailed information about profiles in Friendica - part 4</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesHelp5.Text" translate="yes" xml:space="preserve">
+          <source>Das öffentliche Profil wird auch standardmäßig im globalen Verzeichnis von Friendica veröffentlicht (zum Deaktivieren: im Webzugang unter Einstellungen/Nutzerkonto/Sicherheits- und Privatsphäre-Einstellungen). Ob dies für dein öffentliches Profil der Fall ist, siehst du am Häkchen der nachfolgenden Checkbox. Da es global mehrere Server für das globale Verzeichnis gibt, findest du auch einen Link zum Verzeichnis, welches auf deinem Server als primäres Verzeichnis verwendet ist.</source>
+          <target state="translated" state-qualifier="mt-suggestion">Le profil public est publié par défaut dans le répertoire mondial de Friendica (pour éteindre : l’accès Web sous paramètres de compte/sécurité et confidentialité settings/utilisateur). Si c’est le cas pour votre profil public, vous pouvez le voir sur le contrôle de la case suivante. Étant donné que global plusieurs serveurs pour le répertoire mondial, vous trouverez un lien vers le répertoire qui est utilisé sur votre serveur dans le répertoire principal.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles.xaml: detailed information about profiles in Friendica - part 5</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesNoServerSupport.Text" translate="yes" xml:space="preserve">
+          <source>Dein Friendica-Server unterstützt die notwendigen API-Befehle für die Anzeige von Profilen noch nicht. Bitte aktualisiere deinen Server auf Friendica 3.5.1 oder höher oder frage deinen Administrator. </source>
+          <target state="translated" state-qualifier="mt-suggestion">Pourtant, votre serveur Friendica ne supporte pas les commandes API nécessaires pour afficher les profils. Veuillez mettre à jour votre serveur sur Friendica 3.5.1 ou version ultérieure ou demandez à votre administrateur. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles.xaml: info to user if there was an error on loading the profiles, caused by missing API calls</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesNoSettings.Text" translate="yes" xml:space="preserve">
+          <source>Sie haben noch keinen Friendica-Server in den App-Einstellungen definiert. Unten zeigen wir Beispiele, wie die verschiedenen Profile eines Benutzers in der App angezeigt werden.</source>
+          <target state="translated" state-qualifier="mt-suggestion">Vous avez défini un serveur Friendica dans les paramètres de l’application. Ci-dessous, nous montrent des exemples de la façon dont les différents profils d’un utilisateur dans l’application sont affichés.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles.xaml: show text if user has not set any app settings (we are showing only sample data)</note>
+        </trans-unit>
+        <trans-unit id="textblockProfilesIndicatorLoading.Text" translate="yes" xml:space="preserve">
+          <source>Lade Profile...</source>
+          <target state="translated" state-qualifier="mt-suggestion">Chargement des profils...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Profiles.xaml: text next to progress ring indicating that app is loading the profiles</note>
+        </trans-unit>
+        <trans-unit id="pageTitleProfileUsers.Text" translate="yes" xml:space="preserve">
+          <source>Profilberechtigungen</source>
+          <target state="translated" state-qualifier="mt-suggestion">Autorisations de profil</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Name on top of view A4_ProfileUsers.xaml</note>
+        </trans-unit>
+        <trans-unit id="textblockNoUsersAvailable.Text" translate="yes" xml:space="preserve">
+          <source>Es gibt keine Kontakte, die für das ausgewählte Profil berechtigt wurden. </source>
+          <target state="translated" state-qualifier="mt-suggestion">Il n’y a pas de contacts ont été autorisés pour le profil sélectionné. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ProfileUsers.xaml: show a hint if there are no users allowed to see the selected profile</note>
+        </trans-unit>
+        <trans-unit id="textblockProfileUsersIndicatorUpdating" translate="yes" xml:space="preserve">
+          <source>Speichere Änderungen...</source>
+          <target state="translated" state-qualifier="mt-suggestion">Enregistrer les modifications...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ProfileUsers.xaml: red indicator showing that app is saving changes in userlist</note>
+        </trans-unit>
+        <trans-unit id="textblockProfileUsersName.Text" translate="yes" xml:space="preserve">
+          <source>Profil:</source>
+          <target state="translated" state-qualifier="mt-suggestion">Profil :</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ProfileUsers.xaml: header for textblock showing the name of the selected profile</note>
+        </trans-unit>
+        <trans-unit id="pageProfileUsers.FlowDirection" translate="yes" xml:space="preserve">
+          <source>LeftToRight</source>
+          <target state="final" state-qualifier="tm-suggestion">LeftToRight</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Defines text direction for the language</note>
         </trans-unit>
       </group>
     </body>

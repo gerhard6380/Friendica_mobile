@@ -217,13 +217,12 @@
 
                             <!-- profile page -->
                             <RadioButton x:Uid="radioProfile" Command="{Binding NavCommand}" GroupName="Nav" 
-                                         IsEnabled="False" Foreground="{StaticResource SplitViewForegroundBrush}">
+                                         IsEnabled="True" Foreground="{StaticResource SplitViewForegroundBrush}">
                                 <RadioButton.CommandParameter>
-                                    <views:NavType Type="views:Profile" />
+                                    <views:NavType Type="views:Profiles" />
                                 </RadioButton.CommandParameter>
                                 <RadioButton.Tag>
-                                    <TextBlock Text=""  Style="{StaticResource SplitViewTextBlockStyle}"
-                                               Foreground="DarkGray"/>
+                                    <TextBlock Text=""  Style="{StaticResource SplitViewTextBlockStyle}"/>
                                 </RadioButton.Tag>
                             </RadioButton>
 

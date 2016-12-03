@@ -102,6 +102,9 @@ namespace Friendica_Mobile
         // container for the MessageViewmodel storing current data on navigating
         public static MessagesViewmodel MessagesVm;
 
+        // container for the ProfilesViewmodel storing current data on navigating
+        public static ProfilesViewmodel ProfilesVm;
+
         // indicator if we have navigated into a conversation of messages view
         public static bool MessagesNavigatedIntoConversation;
 
@@ -263,7 +266,8 @@ namespace Friendica_Mobile
                 }
                 else
                 {
-                    //rootFrame.Navigate(typeof(Views.Messages));
+                    // TODO back to normal behaviour
+                    //rootFrame.Navigate(typeof(Views.Profiles));
                     if (Settings.StartPage == "Home")
                         rootFrame.Navigate(typeof(Views.Home));
                     else if (Settings.StartPage == "Network")
@@ -279,6 +283,10 @@ namespace Friendica_Mobile
             // start loading messages in background
             MessagesVm = new MessagesViewmodel();
             MessagesVm.LoadMessagesInitialAfterTesting();
+
+            // start loading profiles in background - deactivated because of errors (already child of another element)
+            //ProfilesVm = new ProfilesViewmodel();
+            //ProfilesVm.LoadProfiles();
         }
 
         private void Shell_BackToConversationsRequested(object sender, EventArgs e)

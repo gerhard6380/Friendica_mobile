@@ -61,7 +61,6 @@ namespace Friendica_Mobile.Views
             {
                 // if user has dropped something on the DropArea in Network.xaml he will land here with a FriendicaNewPost instance filled with the data
                 // TODO: user could also land here from Cortana speech dictation of a new post (not yet implemented)
-                // TODO: if user answers a toast message directly in action center, the answer lands here - difference: not showing post but directly posting to server
                 if (e.Parameter.GetType() == typeof(clsConvertDroppedContent))
                 {
                     var convert = e.Parameter as clsConvertDroppedContent;

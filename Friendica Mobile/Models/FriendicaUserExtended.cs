@@ -142,6 +142,18 @@ namespace Friendica_Mobile.Models
                 ContactType = ContactTypes.Forums;
         }
 
+        public FriendicaUserExtended(FriendicaUser user)
+        {
+            User = user;
+            if (User.UserName != "")
+                CharacterGroup = User.UserName.Substring(0, 1).ToUpper();
+
+            if (User.UserFollowing)
+                ContactType = ContactTypes.Friends;
+            else
+                ContactType = ContactTypes.Forums;
+        }
+
         public JsonObject ToJsonObject()
         {
             return User.ToJsonObject();
