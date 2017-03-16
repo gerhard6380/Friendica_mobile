@@ -25,7 +25,7 @@
         <uap:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#1872A2" />
       </uap:VisualElements>
       <Extensions>
-        <Extension Category="windows.backgroundTasks" EntryPoint="BackgroundTasks.NotificationHistoryBackgroundTask">
+        <Extension Category="windows.backgroundTasks" EntryPoint="BackgroundTasks.NotificationReactionBackgroundTask">
           <BackgroundTasks>
             <Task Type="systemEvent" />
           </BackgroundTasks>
@@ -35,7 +35,7 @@
             <Task Type="timer" />
           </BackgroundTasks>
         </Extension>
-        <Extension Category="windows.backgroundTasks" EntryPoint="BackgroundTasks.NotificationReactionBackgroundTask">
+        <Extension Category="windows.backgroundTasks" EntryPoint="BackgroundTasks.NotificationHistoryBackgroundTask">
           <BackgroundTasks>
             <Task Type="systemEvent" />
           </BackgroundTasks>
@@ -45,6 +45,7 @@
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
+    <Capability Name="privateNetworkClientServer" />
     <DeviceCapability Name="location" />
   </Capabilities>
 </Package>

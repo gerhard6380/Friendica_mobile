@@ -241,24 +241,6 @@
     <value>Tri des messages par des discussions</value>
     <comment>Network.xaml: tooltip of the appbarButton to sort posts by threads</comment>
   </data>
-  <data name="buttonDeleteLocalDatabase.Content" xml:space="preserve">
-    <value>Supprimer la base de données locale</value>
-    <comment>Settings.xaml: button for deleting the local database</comment>
-  </data>
-  <data name="messageDialogDeleteLocalDatabase" xml:space="preserve">
-    <value>Tous les contenus stockés localement seront supprimés. Certaines fonctionnalités ne fonctionneront plus dans la mesure habituelle (par exemple un lien sur le profil lorsque @-Tags dans le texte de l'élément). 
- 
-Etes-vous sûr ?</value>
-    <comment>Settings.xaml: message dialog after clicking button for deleting the local database</comment>
-  </data>
-  <data name="messageDialogLocalDatabaseDeleted" xml:space="preserve">
-    <value>Base de données a été supprimée.</value>
-    <comment>Settings.xaml: message after deleting the local database.</comment>
-  </data>
-  <data name="messageDialogLocalDatabaseNotDeleted" xml:space="preserve">
-    <value>Supprimer les annulées.</value>
-    <comment>Settings.xaml: message after cancelling the deletion of the local database.</comment>
-  </data>
   <data name="pivotSettingsGeneral.Header" xml:space="preserve">
     <value>Général</value>
     <comment>Settings.xaml: header for general settings</comment>

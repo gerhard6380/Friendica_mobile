@@ -298,30 +298,6 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Post di sorta di discussioni</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: tooltip of the appbarButton to sort posts by threads</note>
         </trans-unit>
-        <trans-unit id="buttonDeleteLocalDatabase.Content" translate="yes" xml:space="preserve">
-          <source>Lokale Datenbank löschen</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Elimina il database locale</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: button for deleting the local database</note>
-        </trans-unit>
-        <trans-unit id="messageDialogDeleteLocalDatabase" translate="yes" xml:space="preserve">
-          <source>Alle lokal gespeicherten Inhalte werden gelöscht. Manche Funktionen werden nicht mehr im gewohnten Umfang funktionieren (zB Link auf das Profil bei @-Tags im Eintragstext).
-
-Sind Sie sicher?</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Verranno eliminati tutti i contenuti archiviati localmente. Alcune funzionalità non funzionerà in quanto usuale (ad esempio collegare sul profilo quando @ tag nel testo dell'elemento). 
- 
-Sei sicuro?</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: message dialog after clicking button for deleting the local database</note>
-        </trans-unit>
-        <trans-unit id="messageDialogLocalDatabaseDeleted" translate="yes" xml:space="preserve">
-          <source>Datenbank wurde gelöscht.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Database è stato eliminato.</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: message after deleting the local database.</note>
-        </trans-unit>
-        <trans-unit id="messageDialogLocalDatabaseNotDeleted" translate="yes" xml:space="preserve">
-          <source>Löschen abgebrochen.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Eliminazione annullata.</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: message after cancelling the deletion of the local database.</note>
-        </trans-unit>
         <trans-unit id="pivotSettingsGeneral.Header" translate="yes" xml:space="preserve">
           <source>Allgemein</source>
           <target state="final" state-qualifier="exact-match">Generale</target>
@@ -338,8 +314,9 @@ Sei sicuro?</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: user can decide whether local storage of data is allowed</note>
         </trans-unit>
         <trans-unit id="textblockSaveLocalAllowedHint.Text" translate="yes" xml:space="preserve">
-          <source>Für manche Funktionen ist es notwendig, einige Daten zu Kontakten oder Einträgen lokal auf dem Gerät zu speichern. Wenn Sie dies ausschalten, werden diese Funktionen nicht mehr möglich sein (zB Link auf das Profil bei @-Tags im Eintragstext).</source>
+          <source>Für manche Funktionen ist es notwendig, einige Daten zu Kontakten oder Einträgen in einer lokalen Datenbank auf dem Gerät zu speichern. Wenn Sie dies ausschalten, werden diese Funktionen nicht mehr möglich sein (zB Link auf das Profil bei @-Tags im Eintragstext).</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Per alcune funzioni, è necessario salvare alcuni dati ai contatti o voci localmente sul dispositivo. Se questo si spegne, queste funzioni non saranno possibili (ad esempio collegare sul profilo quando @ tag nel testo dell'elemento).</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
           <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: hint on SaveLocalAllowed</note>
         </trans-unit>
         <trans-unit id="textblockIndicatorLoadingNextEntries.Text" translate="yes" xml:space="preserve">
@@ -1237,8 +1214,9 @@ Test avviene in background, l'app deve non hanno iniziato a farlo. Si prega di a
           <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: status update for user during loading initial 20 messages and the corresponding conversations</note>
         </trans-unit>
         <trans-unit id="textblockNoMessagesAvailable.Text" translate="yes" xml:space="preserve">
-          <source>Der Server hat keine privaten Nachrichten auf deinem Server gefunden.</source>
-          <target state="translated">Il server non ha trovato nessun messaggio privato sul vostro server.</target>
+          <source>Die App hat keine privaten Nachrichten auf deinem Server gefunden.</source>
+          <target state="needs-review-translation">Il server non ha trovato nessun messaggio privato sul vostro server.</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
           <note from="MultilingualBuild" annotates="source" priority="2">Messages.xaml: info shown to the user if no conversations are available on server</note>
         </trans-unit>
         <trans-unit id="textboxSearchString.Header" translate="yes" xml:space="preserve">
@@ -1805,6 +1783,483 @@ Vuoi riprovarci?</target>
           <source>LeftToRight</source>
           <target state="final" state-qualifier="tm-suggestion">LeftToRight</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Defines text direction for the language</note>
+        </trans-unit>
+        <trans-unit id="pagePhotos.FlowDirection" translate="yes" xml:space="preserve">
+          <source>LeftToRight</source>
+          <target state="new">LeftToRight</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Defines Text direction for the language</note>
+        </trans-unit>
+        <trans-unit id="pageTitlePhotos.Text" translate="yes" xml:space="preserve">
+          <source>Bilder</source>
+          <target state="new">Bilder</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Name on top of view Photos.xaml</note>
+        </trans-unit>
+        <trans-unit id="appBarPhotosAlbumAdd.Label" translate="yes" xml:space="preserve">
+          <source>Neues Album</source>
+          <target state="new">Neues Album</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: caption of the appbarButton for a new album</note>
+        </trans-unit>
+        <trans-unit id="appBarPhotosAlbumAdd.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Neues Fotoalbum anlegen (Achtung: wird am Server erst erstellt, wenn ein Foto hochgeladen wird)</source>
+          <target state="new">Neues Fotoalbum anlegen (Achtung: wird am Server erst erstellt, wenn ein Foto hochgeladen wird)</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: tooltip of the appbarButton for a new album</note>
+        </trans-unit>
+        <trans-unit id="appBarPhotosPhotoAdd.Label" translate="yes" xml:space="preserve">
+          <source>Neues Foto</source>
+          <target state="new">Neues Foto</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: caption of the appbarButton for a new photo</note>
+        </trans-unit>
+        <trans-unit id="appBarPhotosPhotoAdd.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Neues Foto hinzufügen</source>
+          <target state="new">Neues Foto hinzufügen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: tooltip of the appbarButton for a new photo</note>
+        </trans-unit>
+        <trans-unit id="appBarPhotosAddFromCamera.Text" translate="yes" xml:space="preserve">
+          <source>Foto von Kamera...</source>
+          <target state="new">Foto von Kamera...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: caption of the menuFlyout under button 'add photo' for adding from camera</note>
+        </trans-unit>
+        <trans-unit id="appBarPhotosAddFromCamera.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Neues Foto mit Kamera aufnehmen und auf den Server hochladen</source>
+          <target state="new">Neues Foto mit Kamera aufnehmen und auf den Server hochladen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: tooltip of the menuFlyout under button 'add photo' for adding from camera</note>
+        </trans-unit>
+        <trans-unit id="appBarPhotosAddFromDevice.Text" translate="yes" xml:space="preserve">
+          <source>Foto von Gerät...</source>
+          <target state="new">Foto von Gerät...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: caption of the menuFlyout under button 'add photo' for adding from device</note>
+        </trans-unit>
+        <trans-unit id="appBarPhotosAddFromDevice.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Bestehendes Foto vom Computer neu auf den Server hochladen</source>
+          <target state="new">Bestehendes Foto vom Computer neu auf den Server hochladen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: tooltip of the menuFlyout under button 'add photo' for adding from device</note>
+        </trans-unit>
+        <trans-unit id="appBarPhotosProfileimageAdd.Label" translate="yes" xml:space="preserve">
+          <source>Neues Profilbild</source>
+          <target state="new">Neues Profilbild</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: caption of the appbarButton for a new profileimage</note>
+        </trans-unit>
+        <trans-unit id="appBarPhotosProfileimageAdd.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Neues Profilbild hinzufügen</source>
+          <target state="new">Neues Profilbild hinzufügen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: tooltip of the appbarButton for a new profileimage</note>
+        </trans-unit>
+        <trans-unit id="appBarPhotosEmptyInkAdd.Label" translate="yes" xml:space="preserve">
+          <source>Leere Zeichenblatt einfügen</source>
+          <target state="new">Leere Zeichenblatt einfügen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: caption of the appbarButton for an empty ink canvas area</note>
+        </trans-unit>
+        <trans-unit id="appBarPhotosEmptyInkAdd.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Öffnet einen leeren, weißen Bereich zum Schreiben oder Malen eines neues Bildes</source>
+          <target state="new">Öffnet einen leeren, weißen Bereich zum Schreiben oder Malen eines neues Bildes</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: tooltip of the appbarButton for an empty ink canvas area</note>
+        </trans-unit>
+        <trans-unit id="appBarPhotosAlbumDelete.Label" translate="yes" xml:space="preserve">
+          <source>Album löschen</source>
+          <target state="new">Album löschen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: caption of the appbarButton for deleting the selected album</note>
+        </trans-unit>
+        <trans-unit id="appBarPhotosAlbumDelete.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Ausgewähltes Fotoalbum mit allen enthaltenen Fotos vom Server löschen</source>
+          <target state="new">Ausgewähltes Fotoalbum mit allen enthaltenen Fotos vom Server löschen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: tooltip of the appbarButton for deleting the selected album</note>
+        </trans-unit>
+        <trans-unit id="appBarPhotosAlbumEdit.Label" translate="yes" xml:space="preserve">
+          <source>Album bearbeiten</source>
+          <target state="new">Album bearbeiten</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: caption of the appbarButton for editing the selected album</note>
+        </trans-unit>
+        <trans-unit id="appBarPhotosAlbumEdit.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Eigenschaften des ausgewählten Fotoalbums bearbeiten</source>
+          <target state="new">Eigenschaften des ausgewählten Fotoalbums bearbeiten</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: tooltip of the appbarButton for editing the selected album</note>
+        </trans-unit>
+        <trans-unit id="textblockPhotosNoServerSupport.Text" translate="yes" xml:space="preserve">
+          <source>Dein Server unterstützt die Befehle noch nicht, die für die Verwaltung der Bilder in dieser App notwendig sind. </source>
+          <target state="new">Dein Server unterstützt die Befehle noch nicht, die für die Verwaltung der Bilder in dieser App notwendig sind. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: showing error message to user if the server is reachable but has no support for the API calls needed to display/edit photos/profileimages</note>
+        </trans-unit>
+        <trans-unit id="textblockPhotosNoSettings.Text" translate="yes" xml:space="preserve">
+          <source>Du hast noch keinen Friendica-Server in den App-Einstellungen definiert. Unten zeigen wir Beispiele, wie Fotoalben und Bilder in der App angezeigt werden.</source>
+          <target state="new">Du hast noch keinen Friendica-Server in den App-Einstellungen definiert. Unten zeigen wir Beispiele, wie Fotoalben und Bilder in der App angezeigt werden.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: show text if user has not set any app settings (we are showing only sample images)</note>
+        </trans-unit>
+        <trans-unit id="appBarPhotosAddProfileimageFromCamera.Text" translate="yes" xml:space="preserve">
+          <source>Profilbild von Kamera...</source>
+          <target state="new">Profilbild von Kamera...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: caption of the menuFlyout under button 'add photo' for adding from camera</note>
+        </trans-unit>
+        <trans-unit id="appBarPhotosAddProfileimageFromCamera.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Neues Profilbild mit Kamera aufnehmen und auf den Server hochladen</source>
+          <target state="new">Neues Profilbild mit Kamera aufnehmen und auf den Server hochladen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: tooltip of the menuFlyout under button 'add photo' for adding from camera</note>
+        </trans-unit>
+        <trans-unit id="appBarPhotosAddProfileimageFromDevice.Text" translate="yes" xml:space="preserve">
+          <source>Profilbild von Gerät...</source>
+          <target state="new">Profilbild von Gerät...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: caption of the menuFlyout under button 'add photo' for adding from device</note>
+        </trans-unit>
+        <trans-unit id="appBarPhotosAddProfileimageFromDevice.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Bestehendes Profilbild vom Computer neu auf den Server hochladen</source>
+          <target state="new">Bestehendes Profilbild vom Computer neu auf den Server hochladen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: tooltip of the menuFlyout under button 'add photo' for adding from device</note>
+        </trans-unit>
+        <trans-unit id="textblockPhotosNewAlbumAdded.Text" translate="yes" xml:space="preserve">
+          <source>Neues Album - Achtung: Album wird auf dem Server erst erstellt, sobald das erste Bild hochgeladen wird. </source>
+          <target state="new">Neues Album - Achtung: Album wird auf dem Server erst erstellt, sobald das erste Bild hochgeladen wird. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: hint for user in a new album that the album is only created when 1st photo has been uploaded to server</note>
+        </trans-unit>
+        <trans-unit id="buttonPhotoInkCanvas.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Schreibe oder male etwas auf das Bild...</source>
+          <target state="new">Schreibe oder male etwas auf das Bild...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: tooltip of the button for opening the shown image in the ink canvas for painting on the image</note>
+        </trans-unit>
+        <trans-unit id="buttonPhotoEditAccessRights.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Berechtigungen deiner Kontake auf dieses Foto einsehen und bearbeiten...</source>
+          <target state="new">Berechtigungen deiner Kontake auf dieses Foto einsehen und bearbeiten...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: tooltip of the button for showing access rights on the shown image</note>
+        </trans-unit>
+        <trans-unit id="buttonPhotoCreateProfileimage.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Aktuelles Bild als neues Profilbild einstellen (Bereich des Bildes kann auf der nächsten Seite eingestellt werden)...</source>
+          <target state="new">Aktuelles Bild als neues Profilbild einstellen (Bereich des Bildes kann auf der nächsten Seite eingestellt werden)...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: tooltip of the button for creating a profileimage from the shown image</note>
+        </trans-unit>
+        <trans-unit id="buttonPhotoDelete.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Lösche das aktuelle Bild vom Server (Sicherheitsabfrage folgt)...</source>
+          <target state="new">Lösche das aktuelle Bild vom Server (Sicherheitsabfrage folgt)...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: tooltip of the button for deleting the shown image</note>
+        </trans-unit>
+        <trans-unit id="buttonPrintPhoto.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Druckt das aktuelle Bild auf einem angeschlossenen Drucker aus...</source>
+          <target state="new">Druckt das aktuelle Bild auf einem angeschlossenen Drucker aus...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: tooltip of the button for printing the shown image</note>
+        </trans-unit>
+        <trans-unit id="buttonShowPhotoConversation.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Zeigt die Kommentare und Likes zu einem Bild an...</source>
+          <target state="new">Zeigt die Kommentare und Likes zu einem Bild an...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: tooltip of the button for showing the conversation on the shown image</note>
+        </trans-unit>
+        <trans-unit id="appBarPhotosReload.Label" translate="yes" xml:space="preserve">
+          <source>Neu laden</source>
+          <target state="new">Neu laden</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: caption of the appbarButton for reloading from server</note>
+        </trans-unit>
+        <trans-unit id="appBarPhotosReload.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Liste der Fotoalben und Fotos neu vom Server laden.</source>
+          <target state="new">Liste der Fotoalben und Fotos neu vom Server laden.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: tooltip of the appbarButton for reloading from server</note>
+        </trans-unit>
+        <trans-unit id="messageDialogPhotosNewAlbumnameEmpty" translate="yes" xml:space="preserve">
+          <source>Der Name des Fotoalbums darf nicht leer sein.</source>
+          <target state="new">Der Name des Fotoalbums darf nicht leer sein.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: inform user if he wants to save an empty string as a new albumname</note>
+        </trans-unit>
+        <trans-unit id="messageDialogPhotosNewAlbumnameUnchanged" translate="yes" xml:space="preserve">
+          <source>Neuer Name für das Fotoalbum unterscheidet sich nicht vom aktuellen Namen, auf dem Server wurde nichts geändert.</source>
+          <target state="new">Neuer Name für das Fotoalbum unterscheidet sich nicht vom aktuellen Namen, auf dem Server wurde nichts geändert.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: inform user if the wants to save an unchanged name as a new albumname</note>
+        </trans-unit>
+        <trans-unit id="messageDialogPhotosNewPhotoDescriptionUnchanged" translate="yes" xml:space="preserve">
+          <source>Neuer Bildunterschrift unterscheidet sich nicht von der aktuellen Bildunterschrift, auf dem Server wurde nichts geändert.</source>
+          <target state="new">Neuer Bildunterschrift unterscheidet sich nicht von der aktuellen Bildunterschrift, auf dem Server wurde nichts geändert.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: inform user if the wants to save an unchanged text as a new photo description</note>
+        </trans-unit>
+        <trans-unit id="buttonConfirmDeletion.Content" translate="yes" xml:space="preserve">
+          <source>Freihand vollständig löschen</source>
+          <target state="new">Freihand vollständig löschen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">InkCanvas.xaml: caption for confirming the deletion of all made strokes in the painting area</note>
+        </trans-unit>
+        <trans-unit id="buttonSavingStrokes.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Die Freihand-Zeichnungen werden in das Hintergrund-Bild eingearbeitet. Das geänderte Bild ersetzt das vorhandene Bild auf dem Server. Bei weißem Hintergrnd wird es dem ausgewählten Fotoalbum als neues Bild hinzugefügt. </source>
+          <target state="new">Die Freihand-Zeichnungen werden in das Hintergrund-Bild eingearbeitet. Das geänderte Bild ersetzt das vorhandene Bild auf dem Server. Bei weißem Hintergrnd wird es dem ausgewählten Fotoalbum als neues Bild hinzugefügt. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">InkCanvas.xaml: tooltip for the save button</note>
+        </trans-unit>
+        <trans-unit id="textblockPhotosInkCanvasWarningSign.Text" translate="yes" xml:space="preserve">
+          <source>Die Zeichenfläche nutzt nicht den vollen möglichen Bereich aus. 
+
+Wenn möglich, solltest du die Fenstergröße so ändern, dass das Bild mehr vom vorhandenen Platz einnimmt (am Desktop Fenster maximieren, das Smartphone abdrehen). Ansonsten kann die Qualität der Freihand-Zeichnungen nach dem Zusammenfügen mit dem Hintergrund etwas schlechter sein. </source>
+          <target state="new">Die Zeichenfläche nutzt nicht den vollen möglichen Bereich aus. 
+
+Wenn möglich, solltest du die Fenstergröße so ändern, dass das Bild mehr vom vorhandenen Platz einnimmt (am Desktop Fenster maximieren, das Smartphone abdrehen). Ansonsten kann die Qualität der Freihand-Zeichnungen nach dem Zusammenfügen mit dem Hintergrund etwas schlechter sein. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">InkCanvas.xaml: if ink area is lower than 75% or even 50% of total space the user see a warning sing. This is the flyout description for the user. </note>
+        </trans-unit>
+        <trans-unit id="pageInkCanvas.FlowDirection" translate="yes" xml:space="preserve">
+          <source>LeftToRight</source>
+          <target state="new">LeftToRight</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Defines Text direction for the language</note>
+        </trans-unit>
+        <trans-unit id="messageDialogHttpStatusForbidden" translate="yes" xml:space="preserve">
+          <source>Server hat einen Fehler bei der Anmeldung gemeldet. Bitte die Verbindung zum Server und die Zugangsdaten in der App prüfen.</source>
+          <target state="new">Server hat einen Fehler bei der Anmeldung gemeldet. Bitte die Verbindung zum Server und die Zugangsdaten in der App prüfen.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: user get this error message if checking Server on supporting the new API calls returns a Forbidden answer (very unexpected return)</note>
+        </trans-unit>
+        <trans-unit id="messageDialogPhotosErrorOnLoading" translate="yes" xml:space="preserve">
+          <source>Das Laden deiner Fotos von deinem Server hat fehlgeschlagen, der Server hat diesen Fehler gemeldet: {0} 
+
+Möchtest du es erneut versuchen?</source>
+          <target state="new">Das Laden deiner Fotos von deinem Server hat fehlgeschlagen, der Server hat diesen Fehler gemeldet: {0} 
+
+Möchtest du es erneut versuchen?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: info to user that something went wrong when trying to load the photo list, asking user for a new try; 1 Parameter = error message</note>
+        </trans-unit>
+        <trans-unit id="messageDialogPhotosServerNotAnswered" translate="yes" xml:space="preserve">
+          <source>Das Laden deiner Fotos von deinem Server hat fehlgeschlagen, der Server hat nicht geantwortet. Möchtest du es erneut versuchen?</source>
+          <target state="new">Das Laden deiner Fotos von deinem Server hat fehlgeschlagen, der Server hat nicht geantwortet. Möchtest du es erneut versuchen?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: info to user that the server has not answered when trying to load the photo list, asking user for a new try</note>
+        </trans-unit>
+        <trans-unit id="textblockPhotosLoadingPhotoalbums.Text" translate="yes" xml:space="preserve">
+          <source>Lade Fotoalben vom Server...</source>
+          <target state="new">Lade Fotoalben vom Server...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: text shown to user during loading the photoalbums from server</note>
+        </trans-unit>
+        <trans-unit id="textblockPhotosCheckingServerSupport.Text" translate="yes" xml:space="preserve">
+          <source>Prüft ob dein Server die Foto-Verwaltung unterstützt...</source>
+          <target state="new">Prüft ob dein Server die Foto-Verwaltung unterstützt...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: text for progress ring indicating that app is currently checking if server knows the new API calls</note>
+        </trans-unit>
+        <trans-unit id="textblockPhotosNoPhotosAvailable.Text" translate="yes" xml:space="preserve">
+          <source>Du hast noch keine Fotos auf deinem Server. Lege dir gleich neue Alben an und lade Fotos auf deinen Server hoch...</source>
+          <target state="new">Du hast noch keine Fotos auf deinem Server. Lege dir gleich neue Alben an und lade Fotos auf deinen Server hoch...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: text shown to user if there are no photos on the server</note>
+        </trans-unit>
+        <trans-unit id="textblockPhotoDateEdited.Text" translate="yes" xml:space="preserve">
+          <source>Upload-Datum:</source>
+          <target state="new">Upload-Datum:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: header for the date uploaded/edited from server shown below the photo</note>
+        </trans-unit>
+        <trans-unit id="textblockPhotoDateShot.Text" translate="yes" xml:space="preserve">
+          <source>Aufnahme-Datum:</source>
+          <target state="new">Aufnahme-Datum:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: header for the date shown below the photo indicating the day when photo was shot </note>
+        </trans-unit>
+        <trans-unit id="textPhotosPrintDialogPhotoScalingCrop" translate="yes" xml:space="preserve">
+          <source>Abschneiden</source>
+          <target state="new">Abschneiden</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: print dialog allows user to scale photos, this is to use original size and crop to selected size</note>
+        </trans-unit>
+        <trans-unit id="textPhotosPrintDialogPhotoScalingHeader" translate="yes" xml:space="preserve">
+          <source>Skalierung</source>
+          <target state="new">Skalierung</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: print dialog allows user to scale photos, this is the header for the dropdown</note>
+        </trans-unit>
+        <trans-unit id="textPhotosPrintDialogPhotoScalingShrinkToFit" translate="yes" xml:space="preserve">
+          <source>Einpassen</source>
+          <target state="new">Einpassen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: print dialog allows user to scale photos, this is to fit photo into size</note>
+        </trans-unit>
+        <trans-unit id="textPhotosPrintDialogPhotoSize10x15" translate="yes" xml:space="preserve">
+          <source>10 x 15cm</source>
+          <target state="new">10 x 15cm</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: print dialog allows user to select photo size, this is 10x15cm/4x6in</note>
+        </trans-unit>
+        <trans-unit id="textPhotosPrintDialogPhotoSize13x18" translate="yes" xml:space="preserve">
+          <source>13 x 18cm</source>
+          <target state="new">13 x 18cm</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: print dialog allows user to select photo size, this is 13x18cm/5x7in</note>
+        </trans-unit>
+        <trans-unit id="textPhotosPrintDialogPhotoSize9x13" translate="yes" xml:space="preserve">
+          <source>9 x 13cm</source>
+          <target state="new">9 x 13cm</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: print dialog allows user to select photo size, this is 9x13cm/3.5x5.25in</note>
+        </trans-unit>
+        <trans-unit id="textPhotosPrintDialogPhotoSizeFullPage" translate="yes" xml:space="preserve">
+          <source>Vollbild</source>
+          <target state="new">Vollbild</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: print dialog allows user to select photo size, this is full page</note>
+        </trans-unit>
+        <trans-unit id="textPhotosPrintDialogPhotoSizeHeader" translate="yes" xml:space="preserve">
+          <source>Bildgröße</source>
+          <target state="new">Bildgröße</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: print dialog allows user to select photo size, this is the header for the dropdown</note>
+        </trans-unit>
+        <trans-unit id="textPhotosPrintDialogPlacementBottomLeft" translate="yes" xml:space="preserve">
+          <source>Unten links</source>
+          <target state="new">Unten links</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: print dialog allows user to place the photo, this is for bottom left placement</note>
+        </trans-unit>
+        <trans-unit id="textPhotosPrintDialogPlacementBottomRight" translate="yes" xml:space="preserve">
+          <source>Unten rechts</source>
+          <target state="new">Unten rechts</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: print dialog allows user to place the photo, this is for bottom right placement</note>
+        </trans-unit>
+        <trans-unit id="textPhotosPrintDialogPlacementCenter" translate="yes" xml:space="preserve">
+          <source>Zentriert</source>
+          <target state="new">Zentriert</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: print dialog allows user to place the photo, this is for central placement</note>
+        </trans-unit>
+        <trans-unit id="textPhotosPrintDialogPlacementHeader" translate="yes" xml:space="preserve">
+          <source>Platzierung</source>
+          <target state="new">Platzierung</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: print dialog allows user to place the photo, this is the header for the dropdown</note>
+        </trans-unit>
+        <trans-unit id="textPhotosPrintDialogPlacementTopLeft" translate="yes" xml:space="preserve">
+          <source>Oben links</source>
+          <target state="new">Oben links</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: print dialog allows user to place the photo, this is for top left placement</note>
+        </trans-unit>
+        <trans-unit id="textPhotosPrintDialogPlacementTopRight" translate="yes" xml:space="preserve">
+          <source>Oben rechts</source>
+          <target state="new">Oben rechts</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: print dialog allows user to place the photo, this is for top right placement</note>
+        </trans-unit>
+        <trans-unit id="messageDialogPhotosErrorOnPrinting" translate="yes" xml:space="preserve">
+          <source>Beim Drucken des Bildes ist ein Fehler aufgetreten. Bitte prüfe die Verbindung zu deinem Drucker und die Systemeinstellungen.</source>
+          <target state="new">Beim Drucken des Bildes ist ein Fehler aufgetreten. Bitte prüfe die Verbindung zu deinem Drucker und die Systemeinstellungen.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: inform user if printing activity has returned an error.</note>
+        </trans-unit>
+        <trans-unit id="textPhotosPrintSizeBiggerThanPhotoSize" translate="yes" xml:space="preserve">
+          <source>Das Bild ist kleiner als die gewählte Bildgröße, das Bild wird nicht vergrößert. </source>
+          <target state="new">Das Bild ist kleiner als die gewählte Bildgröße, das Bild wird nicht vergrößert. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: it can happen that small photos (mainly profile images) are not big enough for a selected print size, photo will be printed in smaller original size, inform user above size option dropdown</note>
+        </trans-unit>
+        <trans-unit id="textPhotosPrintPhotoSizeBiggerThanPage" translate="yes" xml:space="preserve">
+          <source>Das Bild passt leider nicht auf das ausgewählte Papierformat.</source>
+          <target state="new">Das Bild passt leider nicht auf das ausgewählte Papierformat.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: error message above print dialog's size option dropdown if selected photo size is bigger than the selected paper size</note>
+        </trans-unit>
+        <trans-unit id="textblockSettingsSaveLocalAllowedHint2.Text" translate="yes" xml:space="preserve">
+          <source>Bei aktivierter Funktion werden auch die Bilder deiner Fotoalben auf dem Gerät gespeichert (App-eigener Speicherplatz). Dies erlaubt ein schnelleres Wechseln zwischen deinen Fotoalben und durch die Bilder eines Albums, da nur noch neu hinzugekommene Bilder vom Server geladen werden müssen (hilfreich auch wenn dein Datenvolumen beim Mobilfunkbetreiber nicht sehr groß). </source>
+          <target state="new">Bei aktivierter Funktion werden auch die Bilder deiner Fotoalben auf dem Gerät gespeichert (App-eigener Speicherplatz). Dies erlaubt ein schnelleres Wechseln zwischen deinen Fotoalben und durch die Bilder eines Albums, da nur noch neu hinzugekommene Bilder vom Server geladen werden müssen (hilfreich auch wenn dein Datenvolumen beim Mobilfunkbetreiber nicht sehr groß). </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: 2nd hint on SaveLocalAllowed regarding caching of photos</note>
+        </trans-unit>
+        <trans-unit id="textblockSaveFullsizePhotosAllowedHint.Text" translate="yes" xml:space="preserve">
+          <source>Bei großen Fotosammlungen kann das lokale Speichern der Vollbild-Dateien viel Speicherplatz auf deinem Gerät verbrauchen. Du kannst hier das Speichern von Vollbildern abschalten, um den Speicherplatzverbrauch zu reduzieren. Die kleinere Vorschaubilder werden weiterhin lokal gespeichert, es dauert aber etwas länger bis die Vollbilder in guter Auflösung angezeigt werden. </source>
+          <target state="new">Bei großen Fotosammlungen kann das lokale Speichern der Vollbild-Dateien viel Speicherplatz auf deinem Gerät verbrauchen. Du kannst hier das Speichern von Vollbildern abschalten, um den Speicherplatzverbrauch zu reduzieren. Die kleinere Vorschaubilder werden weiterhin lokal gespeichert, es dauert aber etwas länger bis die Vollbilder in guter Auflösung angezeigt werden. </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: user can disable the saving of fullsize photos on the local device to save disk space, this is the hint for this option</note>
+        </trans-unit>
+        <trans-unit id="checkBoxDeleteFullsizePhotos.Content" translate="yes" xml:space="preserve">
+          <source>Vollbild-Dateien</source>
+          <target state="new">Vollbild-Dateien</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: content dialog shown on "delete local data" button- text on 1st checkbox for deleting the local database</note>
+        </trans-unit>
+        <trans-unit id="checkBoxDeleteLocalDatabase.Content" translate="yes" xml:space="preserve">
+          <source>Lokale Datenbank</source>
+          <target state="new">Lokale Datenbank</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: content dialog shown on "delete local data" button- text on 1st checkbox for deleting the local database</note>
+        </trans-unit>
+        <trans-unit id="checkBoxDeleteSmallMediumsizePhotos.Content" translate="yes" xml:space="preserve">
+          <source>Vorschaubilder</source>
+          <target state="new">Vorschaubilder</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: content dialog shown on "delete local data" button- text on 1st checkbox for deleting the local database</note>
+        </trans-unit>
+        <trans-unit id="contentDialogDeleteLocalData.PrimaryButtonText" translate="yes" xml:space="preserve">
+          <source>Löschen</source>
+          <target state="new">Löschen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: content dialog shown on "delete local data" button - text of delete button</note>
+        </trans-unit>
+        <trans-unit id="contentDialogDeleteLocalData.SecondaryButtonText" translate="yes" xml:space="preserve">
+          <source>Abbrechen</source>
+          <target state="new">Abbrechen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: content dialog shown on "delete local data" button - text of cancel button</note>
+        </trans-unit>
+        <trans-unit id="contentDialogDeleteLocalData.Title" translate="yes" xml:space="preserve">
+          <source>Lokale Daten löschen</source>
+          <target state="new">Lokale Daten löschen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: title of content dialog shown to user after clicking on the "delete local data" button</note>
+        </trans-unit>
+        <trans-unit id="textblockDeleteLocalData" translate="yes" xml:space="preserve">
+          <source>Lokal gespeicherten Inhalte werden gelöscht. Manche Funktionen werden nicht mehr im gewohnten Umfang funktionieren (zB Link auf das Profil bei @-Tags wenn die Datenbank gelöscht wird). Du kannst hier auswählen, welche Daten gelöscht werden sollen:</source>
+          <target state="new">Lokal gespeicherten Inhalte werden gelöscht. Manche Funktionen werden nicht mehr im gewohnten Umfang funktionieren (zB Link auf das Profil bei @-Tags wenn die Datenbank gelöscht wird). Du kannst hier auswählen, welche Daten gelöscht werden sollen:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: text in content dialog shown to user after clicking on the "delete local data" button</note>
+        </trans-unit>
+        <trans-unit id="buttonDeleteLocalData.Content" translate="yes" xml:space="preserve">
+          <source>Lokale Daten löschen</source>
+          <target state="new">Lokale Daten löschen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: button for deleting the local database</note>
+        </trans-unit>
+        <trans-unit id="messageDialogLocalDataDeleted" translate="yes" xml:space="preserve">
+          <source>Die folgenden Elemente wurden erfolgreich gelöscht:</source>
+          <target state="new">Die folgenden Elemente wurden erfolgreich gelöscht:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: message after deleting the local data showing a summary of the deleted elements.</note>
+        </trans-unit>
+        <trans-unit id="messageDialogDeletedFullsizePhotos" translate="yes" xml:space="preserve">
+          <source>Vollbild-Dateien</source>
+          <target state="new">Vollbild-Dateien</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: confirmation dialog after deleting uses this text (equal text to checkBoxDeleteFullsizePhotos)</note>
+        </trans-unit>
+        <trans-unit id="messageDialogDeletedLocalDatabase" translate="yes" xml:space="preserve">
+          <source>Lokale Datenbank</source>
+          <target state="new">Lokale Datenbank</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: confirmation dialog after deleting uses this text (equal text to checkBoxDeleteLocalDatabase)</note>
+        </trans-unit>
+        <trans-unit id="messageDialogDeletedSmallMediumsizePhotos" translate="yes" xml:space="preserve">
+          <source>Vorschaubilder</source>
+          <target state="new">Vorschaubilder</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: confirmation dialog after deleting uses this text (equal text to checkBoxDeleteSmallMediumsizePhotos)</note>
+        </trans-unit>
+        <trans-unit id="messageDialogLocalDataDeletedError" translate="yes" xml:space="preserve">
+          <source>Bei folgenden Elementen sind Fehler beim Löschen aufgetreten:</source>
+          <target state="new">Bei folgenden Elementen sind Fehler beim Löschen aufgetreten:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: message if error occurred on deleting of local data</note>
+        </trans-unit>
+        <trans-unit id="textblockSettingsDeleteLocalData.Text" translate="yes" xml:space="preserve">
+          <source>Lokale Dateien werden vom Gerät gelöscht...</source>
+          <target state="new">Lokale Dateien werden vom Gerät gelöscht...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: text next to progress ring shown during deleting local data (photo files could take some time on bigger collections)</note>
+        </trans-unit>
+        <trans-unit id="textPhotosNewAlbumName" translate="yes" xml:space="preserve">
+          <source>Neues Album</source>
+          <target state="new">Neues Album</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: initial name of a newly added album without photos</note>
+        </trans-unit>
+        <trans-unit id="messageDialogPhotosNewAlbumsNotSaved" translate="yes" xml:space="preserve">
+          <source>Du hast ein oder mehrere neue Album angelegt, die aber noch nicht auf dem Server erstellt wurden. Möchtest du die neuen Alben verwerfen und mit dem Neuladen fortfahren?</source>
+          <target state="new">Du hast ein oder mehrere neue Album angelegt, die aber noch nicht auf dem Server erstellt wurden. Möchtest du die neuen Alben verwerfen und mit dem Neuladen fortfahren?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: when user reloads photos but has still unsaved new albums, we want to inform him about this and ask to discard new albums or cancel operation</note>
+        </trans-unit>
+        <trans-unit id="messageDialogPhotosConfirmAlbumDelete" translate="yes" xml:space="preserve">
+          <source>Das Album '{0}' wird unwiderbringlich mit allen enthaltenden Bildern gelöscht. 
+
+Bist du dir absolut sicher?</source>
+          <target state="new">Das Album '{0}' wird unwiderbringlich mit allen enthaltenden Bildern gelöscht. 
+
+Bist du dir absolut sicher?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: ask user for confirmation when hitting button to delete a complete photoalbum, inform user that all photos will be deleted definitely</note>
+        </trans-unit>
+        <trans-unit id="messageDialogPhotosAlbumDeleted" translate="yes" xml:space="preserve">
+          <source>Das Album '{0}' wurde vom Server gelöscht.</source>
+          <target state="new">Das Album '{0}' wurde vom Server gelöscht.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: info to user that the selected album has been deleted from server (parameter 0 = name of album)</note>
+        </trans-unit>
+        <trans-unit id="messageDialogPhotosAlbumDeletingNoReaction" translate="yes" xml:space="preserve">
+          <source>Der Server hat beim Löschen des Albums '{0}' nicht reagiert. Willst du es nochmal versuchen?</source>
+          <target state="new">Der Server hat beim Löschen des Albums '{0}' nicht reagiert. Willst du es nochmal versuchen?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: info to user that the selected album was not deleted because server has not reacted (paramter 0 = name of album)</note>
+        </trans-unit>
+        <trans-unit id="messageDialogPhotosAlbumDeletingUnknownError" translate="yes" xml:space="preserve">
+          <source>Es gab ein unerwartetes Problem beim Löschen des Albums '{0}'.</source>
+          <target state="new">Es gab ein unerwartetes Problem beim Löschen des Albums '{0}'.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: info to user that the selected album was not deleted because of an unknown error (parameter 0 = name of album)</note>
+        </trans-unit>
+        <trans-unit id="messageDialogPhotosAlbumUpdatingNoReaction" translate="yes" xml:space="preserve">
+          <source>Der Server hat beim Umbenennen des Albums '{0}' nicht reagiert. Willst du es nochmal versuchen?</source>
+          <target state="new">Der Server hat beim Umbenennen des Albums '{0}' nicht reagiert. Willst du es nochmal versuchen?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: info to user that the selected album was not renamed because server has not reacted (paramter 0 = old name of album)</note>
+        </trans-unit>
+        <trans-unit id="messageDialogPhotosAlbumUpdatingUnknownError" translate="yes" xml:space="preserve">
+          <source>Es gab ein unerwartetes Problem beim Umbenennen des Albums '{0}'.</source>
+          <target state="new">Es gab ein unerwartetes Problem beim Umbenennen des Albums '{0}'.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: info to user that the selected album was not renamed because of an unknown error (parameter 0 = old name of album)</note>
+        </trans-unit>
+        <trans-unit id="textblockPhotosServerOperationPending.Text" translate="yes" xml:space="preserve">
+          <source>Führt Änderungen am Server durch...</source>
+          <target state="new">Führt Änderungen am Server durch...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: red info box to user showing that app is currently performing actions on server (renaming, deleting, uploading etc.)</note>
+        </trans-unit>
+        <trans-unit id="messageDialogPhotosUploadingInternalError" translate="yes" xml:space="preserve">
+          <source>Es gab ein Problem beim Hochladen oder Ändern des Photos '{0}'. Vielleicht liegt es an der in Friendica festgelegten Höchstgrenze für hochzuladende Bilder. Bitte kontaktieren den Administrator deines Friendica-Servers um diesen Grenzwert zu erhöhen (Achtung: es gibt jeweils einen PHP-Grenzwert und einen innerhalb von Friendica).</source>
+          <target state="new">Es gab ein Problem beim Hochladen oder Ändern des Photos '{0}'. Vielleicht liegt es an der in Friendica festgelegten Höchstgrenze für hochzuladende Bilder. Bitte kontaktieren den Administrator deines Friendica-Servers um diesen Grenzwert zu erhöhen (Achtung: es gibt jeweils einen PHP-Grenzwert und einen innerhalb von Friendica).</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: info to suer that the upload of a new photo or the change of details for an existing photo has not been performed because of an internal server error - most probably the size exceeeds the limit set by the admin (parameter 0 = filename of photo)</note>
+        </trans-unit>
+        <trans-unit id="messageDialogPhotosUploadingUnknownError" translate="yes" xml:space="preserve">
+          <source>Es gab ein unerwartetes Problem beim Hochladen oder Ändern des Photos '{0}'.</source>
+          <target state="new">Es gab ein unerwartetes Problem beim Hochladen oder Ändern des Photos '{0}'.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: info to user that the upload of a new photo or the change of details for an existing photo has not been performed because of an unknown error (parameter 0 = filename of photo)</note>
+        </trans-unit>
+        <trans-unit id="messageDialogPhotoUploadingNoReaction" translate="yes" xml:space="preserve">
+          <source>Der Server hat beim Hochladen oder Ändern des Photos '{0}' nicht reagiert. Willst du es nochmal versuchen?</source>
+          <target state="new">Der Server hat beim Hochladen oder Ändern des Photos '{0}' nicht reagiert. Willst du es nochmal versuchen?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: info to user that the upload of a new photo or the change of details for an existing photo has not been performed because server has not reacted (parameter 0 = filename of photo)</note>
         </trans-unit>
       </group>
     </body>

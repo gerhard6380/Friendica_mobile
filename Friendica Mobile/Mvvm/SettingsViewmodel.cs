@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.ApplicationModel.Resources;
+using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Popups;
@@ -412,6 +413,55 @@ namespace Friendica_Mobile.Mvvm
                 OnPropertyChanged("SaveLocalAllowed"); }
         }
 
+        public bool SaveFullsizePhotosAllowed
+        {
+            get { return App.Settings.SaveFullsizePhotosAllowed; }
+            set { App.Settings.SaveFullsizePhotosAllowed = value;
+                OnPropertyChanged("SaveFullsizePhotosAllowed"); }
+        }
+
+        // indicator used to show progress ring for user
+        private bool _isDeletingLocalData;
+        public bool IsDeletingLocalData
+        {
+            get { return _isDeletingLocalData; }
+            set { _isDeletingLocalData = value;
+                OnPropertyChanged("IsDeletingLocalData"); }
+        }
+
+        // checkbox for selecting to delete local database
+        private bool _deleteLocalDatabaseChecked = true;
+        public bool DeleteLocalDatabaseChecked
+        {
+            get { return _deleteLocalDatabaseChecked; }
+            set { _deleteLocalDatabaseChecked = value;
+                DeleteLocalDataCommand.RaiseCanExecuteChanged();
+                OnPropertyChanged("DeleteLocalDatabaseChecked");
+            }
+        }
+
+        // checkbox for selecting to delete fullsize photos
+        private bool _deleteFullsizePhotosChecked = true;
+        public bool DeleteFullsizePhotosChecked
+        {
+            get { return _deleteFullsizePhotosChecked; }
+            set { _deleteFullsizePhotosChecked = value;
+                DeleteLocalDataCommand.RaiseCanExecuteChanged();
+                OnPropertyChanged("DeleteFullsizePhotosChecked");
+            }
+        }
+
+        // checkbox for selecting to delete all other photo sizes
+        private bool _deleteSmallMediumsizePhotosChecked = true;
+        public bool DeleteSmallMediumsizePhotosChecked
+        {
+            get { return _deleteSmallMediumsizePhotosChecked; }
+            set { _deleteSmallMediumsizePhotosChecked = value;
+                DeleteLocalDataCommand.RaiseCanExecuteChanged();
+                OnPropertyChanged("DeleteSmallMediumsizePhotosChecked");
+            }
+        }
+        
         public String SendCoordinatesAllowed
         {
             get { return App.Settings.SendCoordinatesAllowed; }
@@ -617,38 +667,153 @@ namespace Friendica_Mobile.Mvvm
         }
 
         // Button DeleteLocalDatabase
-        Mvvm.Command _deleteLocalDatabaseCommand;
-        public Mvvm.Command DeleteLocalDatabaseCommand { get { return _deleteLocalDatabaseCommand ?? (_deleteLocalDatabaseCommand = new Mvvm.Command(ExecuteDeleteLocalDatabase)); } }
-        private async void ExecuteDeleteLocalDatabase()
+        Mvvm.Command _deleteLocalDataCommand;
+        public Mvvm.Command DeleteLocalDataCommand { get { return _deleteLocalDataCommand ?? (_deleteLocalDataCommand = new Mvvm.Command(ExecuteDeleteLocalData, CanDeleteLocalData)); } }
+        private bool CanDeleteLocalData()
         {
-            // Abfrage ob sicher
-            var dialog = new MessageDialog(loader.GetString("messageDialogDeleteLocalDatabase"));
-            dialog.Commands.Add(new UICommand(loader.GetString("buttonYes"), null, 0));
-            dialog.Commands.Add(new UICommand(loader.GetString("buttonNo"), null, 1));
-            dialog.DefaultCommandIndex = 1;
-            dialog.CancelCommandIndex = 1;
-            var result = await dialog.ShowAsync();
-            if ((int)result.Id == 0)
+            if (DeleteLocalDatabaseChecked || DeleteFullsizePhotosChecked || DeleteSmallMediumsizePhotosChecked)
+                return true;
+            else
+                return false;
+        }
+        private async void ExecuteDeleteLocalData()
+        {
+            IsDeletingLocalData = true;
+
+            string errorMsg = "";
+            bool deleted = true;
+            string localDatabaseError = "";
+            string fullsizePhotosError = "";
+            string smallMediumsizePhotosError = "";
+
+            // delete database entries
+            if (DeleteLocalDatabaseChecked)
             {
-                // wenn ja, Delete-Abfrage ausführen
                 var resultTruncate = App.sqliteConnection.TruncatetblAllKnownUser();
                 if (resultTruncate)
-                    dialog = new MessageDialog(loader.GetString("messageDialogLocalDatabaseDeleted"));
+                {
+                    if (deleted)
+                        deleted = true;   // don't overwrite if another element had an error
+                }
                 else
-                    dialog = new MessageDialog(loader.GetString("messageDialogLocalDatabaseNotDeleted"));
-                dialog.Commands.Add(new UICommand("OK", null, 0));
-                dialog.DefaultCommandIndex = 0;
-                dialog.CancelCommandIndex = 0;
-                result = await dialog.ShowAsync();
+                {
+                    deleted = false;
+                    localDatabaseError = "Unknown error on deleting table from database."; // no localization, is very unexpectable
+                }
+            }
+
+            // delete all fullsize images
+            if (DeleteFullsizePhotosChecked)
+            {
+                string folderPath = "";
+                try
+                {
+                    var folder = await GetScaleFolderAsync("0");
+                    folderPath = folder.Path;
+                    await folder.DeleteAsync();
+
+                    if (deleted)
+                        deleted = true;   // don't overwrite if another element had an error
+                }
+                catch
+                {
+                    deleted = false;
+                    // no localization, is very unexpectable
+                    fullsizePhotosError = String.Format("Error occurred on deleting the folder '{0}'.", folderPath);
+                }
+            }
+
+            // delete all medium size and small size images
+            if (DeleteSmallMediumsizePhotosChecked)
+            {
+                string folderPath = "";
+
+                try
+                {
+                    var folder = await GetScaleFolderAsync("1");
+                    folderPath = folder.Path;
+                    await folder.DeleteAsync();
+
+                    folder = await GetScaleFolderAsync("2");
+                    folderPath = folder.Path;
+                    await folder.DeleteAsync();
+
+                    folder = await GetScaleFolderAsync("4");
+                    folderPath = folder.Path;
+                    await folder.DeleteAsync();
+
+                    folder = await GetScaleFolderAsync("5");
+                    folderPath = folder.Path;
+                    await folder.DeleteAsync();
+
+                    folder = await GetScaleFolderAsync("6");
+                    folderPath = folder.Path;
+                    await folder.DeleteAsync();
+
+                    if (deleted)
+                        deleted = true;   // don't overwrite if another element had an error
+                }
+                catch
+                {
+                    deleted = false;
+                    // no localization, is very unexpectable
+                    fullsizePhotosError = String.Format("Error occurred on deleting the folder '{0}'.", folderPath);
+                }
+            }
+
+            // give success/error message to user
+            if (deleted)
+            {
+                // all successfully deleted
+                errorMsg = loader.GetString("messageDialogLocalDataDeleted") + "\n";
+                if (DeleteLocalDatabaseChecked)
+                    errorMsg += String.Format("\n     {0}", loader.GetString("messageDialogDeletedLocalDatabase"));
+                if (DeleteFullsizePhotosChecked)
+                    errorMsg += String.Format("\n     {0}", loader.GetString("messageDialogDeletedFullsizePhotos"));
+                if (DeleteSmallMediumsizePhotosChecked)
+                    errorMsg += String.Format("\n     {0}", loader.GetString("messageDialogDeletedSmallMediumsizePhotos"));
             }
             else
             {
-                dialog = new MessageDialog(loader.GetString("messageDialogLocalDatabaseNotDeleted"));
-                dialog.Commands.Add(new UICommand("OK", null, 0));
-                dialog.DefaultCommandIndex = 0;
-                dialog.CancelCommandIndex = 0;
-                result = await dialog.ShowAsync();
+                // all successfully deleted
+                errorMsg = loader.GetString("messageDialogLocalDataDeletedError") + "\n";
+                if (DeleteLocalDatabaseChecked && localDatabaseError != "")
+                    errorMsg += String.Format("\n     {0}: {1}", loader.GetString("messageDialogDeletedLocalDatabase"), localDatabaseError);
+                if (DeleteFullsizePhotosChecked && fullsizePhotosError != "")
+                    errorMsg += String.Format("\n     {0}: {1}", loader.GetString("messageDialogDeletedFullsizePhotos"), fullsizePhotosError);
+                if (DeleteSmallMediumsizePhotosChecked && smallMediumsizePhotosError != "")
+                    errorMsg += String.Format("\n     {0}: {1}", loader.GetString("messageDialogDeletedSmallMediumsizePhotos"), smallMediumsizePhotosError);
             }
+
+            IsDeletingLocalData = false;
+            var dialog = new MessageDialogMessage(errorMsg, "", "OK", null);
+            await dialog.ShowDialog(0, 0);
+
+
+            // set all options back to true after deleting was performed
+            DeleteLocalDatabaseChecked = true;
+            DeleteFullsizePhotosChecked = true;
+            DeleteSmallMediumsizePhotosChecked = true;
+        }
+
+        // Button DeleteLocalDatabase - Cancel
+        Mvvm.Command _cancelDeleteLocalDataCommand;
+        public Mvvm.Command CancelDeleteLocalDataCommand { get { return _cancelDeleteLocalDataCommand ?? (_cancelDeleteLocalDataCommand = new Mvvm.Command(ExecuteCancelDeleteLocalData)); } }
+        private void ExecuteCancelDeleteLocalData()
+        {
+            // set all options back to true after deleting was performed
+            DeleteLocalDatabaseChecked = true;
+            DeleteFullsizePhotosChecked = true;
+            DeleteSmallMediumsizePhotosChecked = true;
+        }
+
+        private async Task<StorageFolder> GetScaleFolderAsync(string scale)
+        {
+            scale = (scale == "false") ? "0" : scale;
+
+            StorageFolder cacheBaseFolder = ApplicationData.Current.LocalCacheFolder;
+            var folder = await cacheBaseFolder.CreateFolderAsync(scale, CreationCollisionOption.OpenIfExists);
+            return folder;
         }
 
     }

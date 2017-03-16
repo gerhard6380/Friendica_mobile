@@ -5,7 +5,7 @@ namespace Friendica_Mobile.Models
 {
     public abstract class FriendicaBaseModel
     {
-        public enum AttributeTypes { String, Number, Boolean, FriendicaPost, FriendicaUser, FriendicaGeo };
+        public enum AttributeTypes { String, Number, Boolean, StringArray, FriendicaPost, FriendicaUser, FriendicaGeo };
 
         protected virtual object CheckAttribute(JsonObject jsonObject, string key, AttributeTypes type)
         {
@@ -28,6 +28,21 @@ namespace Friendica_Mobile.Models
                         return null;
                     else
                         return jsonObject.GetNamedBoolean(key, false);
+                case AttributeTypes.StringArray:
+                    if (value == null || value.ValueType == JsonValueType.Null)
+                        return null;
+                    else if (value.ValueType == JsonValueType.Object)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        List<string> list = new List<string>();
+                        JsonArray array = jsonObject.GetNamedArray(key);
+                        foreach (JsonValue link in array)
+                            list.Add(link.GetString());
+                        return list;
+                    }
                 case AttributeTypes.FriendicaPost:
                     if (value == null || value.ValueType == JsonValueType.Null)
                         return null;

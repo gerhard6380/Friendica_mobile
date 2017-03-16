@@ -32,6 +32,9 @@ namespace Friendica_Mobile
         public static LaunchActivatedEventArgs LaunchedEventArgs;
         public static IActivatedEventArgs ActivatedEventArgs;
 
+        // indicator that device has camera capabilities
+        public static bool DeviceHasCamera = false;
+
         // NavStatus used for blocking from navigating away from a page with unsaved content
         public static NavigationStatus NavStatus = NavigationStatus.OK;
 
@@ -105,11 +108,22 @@ namespace Friendica_Mobile
         // container for the ProfilesViewmodel storing current data on navigating
         public static ProfilesViewmodel ProfilesVm;
 
+        // container for the PhotosViewmodel storing current data on navigating
+        public static PhotosViewmodel PhotosVm;
+        // set to true if the CheckServerSupport has taken place, just to avoid unnecessary web calls on reloads
+        public static bool HasServerSupportChecked = false;
+
         // indicator if we have navigated into a conversation of messages view
         public static bool MessagesNavigatedIntoConversation;
 
+        // indicator if we have navigated into a photoalbum of photos view
+        public static bool PhotosNavigatedIntoAlbum;
+
         // event used for triggering moving back from the conversation to the overview 
         public static event EventHandler BackToConversationsRequested;
+
+        // event used for triggering moving back from a photo album to the overview
+        public static event EventHandler BackToAlbumsRequested;
 
         // event used for triggering change for OrientationDeviceFamilyTrigger 
         public static event EventHandler NavigationCompleted;
@@ -172,6 +186,10 @@ namespace Friendica_Mobile
                 this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
+            // check if local device has a camera
+            // TODO: check if we are allowed to use the camera
+            var devices = await Windows.Devices.Enumeration.DeviceInformation.FindAllAsync(Windows.Devices.Enumeration.DeviceClass.VideoCapture);
+            DeviceHasCamera = (devices.Count < 1) ? false : true;
 
             // check if user allows sending toasts from this app
             if (App.Settings.NotificationActivated)
@@ -267,11 +285,11 @@ namespace Friendica_Mobile
                 else
                 {
                     // TODO back to normal behaviour
-                    //rootFrame.Navigate(typeof(Views.Profiles));
-                    if (Settings.StartPage == "Home")
-                        rootFrame.Navigate(typeof(Views.Home));
-                    else if (Settings.StartPage == "Network")
-                        rootFrame.Navigate(typeof(Views.Network));
+                    rootFrame.Navigate(typeof(Views.Photos));
+                    //if (Settings.StartPage == "Home")
+                    //    rootFrame.Navigate(typeof(Views.Home));
+                    //else if (Settings.StartPage == "Network")
+                    //    rootFrame.Navigate(typeof(Views.Network));
                 }
             }
             // Ensure the current window is active
@@ -279,6 +297,7 @@ namespace Friendica_Mobile
 
             var shell = Window.Current.Content as Views.Shell;
             shell.BackToConversationsRequested += Shell_BackToConversationsRequested;
+            shell.BackToAlbumsRequested += Shell_BackToAlbumsRequested;
 
             // start loading messages in background
             MessagesVm = new MessagesViewmodel();
@@ -287,6 +306,11 @@ namespace Friendica_Mobile
             // start loading profiles in background - deactivated because of errors (already child of another element)
             //ProfilesVm = new ProfilesViewmodel();
             //ProfilesVm.LoadProfiles();
+        }
+
+        private void Shell_BackToAlbumsRequested(object sender, EventArgs e)
+        {
+            BackToAlbumsRequested?.Invoke(this, EventArgs.Empty);
         }
 
         private void Shell_BackToConversationsRequested(object sender, EventArgs e)

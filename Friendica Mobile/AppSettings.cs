@@ -6,7 +6,7 @@ using Windows.UI.Xaml.Data;
 
 namespace Friendica_Mobile
 {
-    public enum OrientationDeviceFamily { MobileLandscape, MobilePortrait, DesktopLandscape, DesktopPortrait };
+    public enum OrientationDeviceFamily { MobileLandscape, MobilePortrait, MobileContinuum, DesktopLandscape, DesktopPortrait };
 
     public class AppSettings : BindableClass
     {
@@ -37,6 +37,7 @@ namespace Friendica_Mobile
             this._aclPrivateSelectedContacts = (string)localSettings.Values["ACLPrivateSelectedContacts"];
             this._aclPrivateSelectedGroups = (string)localSettings.Values["ACLPrivateSelectedGroups"];
             this._saveLocalAllowed = (string)localSettings.Values["SaveLocalAllowed"];
+            try { this._saveFullsizePhotosAllowed = (bool)localSettings.Values["SaveFullsizePhotosAllowed"]; } catch { this._saveFullsizePhotosAllowed = true; }
             this._sendCoordinatesAllowed = (string)localSettings.Values["SendCoordinatesAllowed"];
             if (SaveLocalAllowed == null)
                 SaveLocalAllowed = "true";
@@ -406,7 +407,7 @@ namespace Friendica_Mobile
         }
 
 
-        // user defines whether app may save Friendica content (Users, Posts) in the local database
+        // user defines whether app may save Friendica content (Users, Posts) in the local database or on local device
         private string _saveLocalAllowed;
         public string SaveLocalAllowed
         {
@@ -421,6 +422,17 @@ namespace Friendica_Mobile
                 OnPropertyChanged("SaveLocalAllowed");
             }
         }
+
+        private bool _saveFullsizePhotosAllowed;
+        public bool SaveFullsizePhotosAllowed
+        {
+            get { return _saveFullsizePhotosAllowed; }
+            set {
+                ApplicationData.Current.LocalSettings.Values["SaveFullsizePhotosAllowed"] = value;
+                _saveFullsizePhotosAllowed = value;
+                OnPropertyChanged("SaveFullsizePhotosAllowed"); }
+        }
+
 
         // user defines whether GPS coordinates are by default sent on each post (can be overwritten on posting)
         private string _sendCoordinatesAllowed;

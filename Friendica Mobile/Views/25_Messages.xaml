@@ -173,6 +173,7 @@
                                    Margin="4,4,4,12"
                                    Foreground="Red"
                                    FontStyle="Italic"
+                                   TextWrapping="Wrap"
                                    TextAlignment="Left"/>
                     </StackPanel>
                 </StackPanel>
@@ -186,6 +187,7 @@
                                    Margin="4,4,4,12"
                                    Foreground="Red"
                                    FontStyle="Italic"
+                                   TextWrapping="Wrap"
                                    TextAlignment="Left"/>
                         <Button x:Name="buttonGotoSettings" x:Uid="buttonGotoSettings"
                             Click="buttonGotoSettings_Click"

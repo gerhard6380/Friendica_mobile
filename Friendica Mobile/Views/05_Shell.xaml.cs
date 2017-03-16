@@ -77,6 +77,7 @@ namespace Friendica_Mobile.Views
         bool isAltKeyPressed = false;
         // react on back button of phones - fire event in App.xaml.cs
         public event EventHandler BackToConversationsRequested;
+        public event EventHandler BackToAlbumsRequested;
 
         public Shell(Frame frame)
         {
@@ -146,6 +147,15 @@ namespace Friendica_Mobile.Views
             {
                 if (navigationAllowed)
                     BackToConversationsRequested?.Invoke(this, EventArgs.Empty);
+                return;
+            }
+
+            // if we are in Photos and have navigated into a photoalbum we don't want to go back
+            // in that case fire event in order to navigate back to conversation overview
+            if (App.PhotosNavigatedIntoAlbum)
+            {
+                if (navigationAllowed)
+                    BackToAlbumsRequested?.Invoke(this, EventArgs.Empty);
                 return;
             }
 
@@ -232,6 +242,14 @@ namespace Friendica_Mobile.Views
                 if (navigationAllowed)
                     BackToConversationsRequested?.Invoke(this, EventArgs.Empty);
                 return;
+            }
+
+            // if we are in Photos and have navigated into a photoalbum we don't want to go back
+            // in that case fire event in order to navigate back to conversation overview
+            if (App.PhotosNavigatedIntoAlbum)
+            {
+                if (navigationAllowed)
+                    BackToAlbumsRequested?.Invoke(this, EventArgs.Empty);
             }
 
             if (this.contentFrame.CanGoBack)

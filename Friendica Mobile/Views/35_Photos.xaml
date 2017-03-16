@@ -2,12 +2,572 @@
     x:Class="Friendica_Mobile.Views.Photos"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Friendica_Mobile.Views"
+    xmlns:local="using:Friendica_Mobile"
+    xmlns:views="using:Friendica_Mobile.Views"
+    xmlns:mvvm="using:Friendica_Mobile.Mvvm"
+    xmlns:triggers="using:Friendica_Mobile.Triggers"
+    xmlns:conv="using:Friendica_Mobile.Converters"
+    xmlns:styles="using:Friendica_Mobile.Styles"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    x:Name="pagePhotos" x:Uid="pagePhotos">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="Photos - hier werden die Fotoalben des Anwenders dargestellt." />
+    <Page.DataContext>
+        <mvvm:PhotosViewmodel x:Name="pageMvvm" />
+    </Page.DataContext>
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles/PhotosStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <CollectionViewSource x:Name="selectedAlbumViewSource" 
+                                  Source="{Binding SelectedPhotoalbum.PhotosInAlbum}" />
+
+            <conv:PhotosViewVisibleConverter x:Key="PhotosViewVisibleConverter" />
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Page.TopAppBar>
+        <CommandBar x:Name="topAppBar" 
+                    Margin="48,0,0,0"
+                    Visibility="Visible">
+            <CommandBar.PrimaryCommands>
+                <!-- add album -->
+                <AppBarButton x:Name="topAppBarPhotosAlbumAdd" x:Uid="appBarPhotosAlbumAdd" 
+                              Visibility="{Binding PhotosView, Converter={StaticResource PhotosViewVisibleConverter}, ConverterParameter=fullmode|onlyalbums}"
+                              Command="{Binding AddPhotoalbumCommand}">
+                    <AppBarButton.Content>
+                        <Grid>
+                            <FontIcon Glyph="&#xE82D;" FontFamily="Segoe MDL2 Assets" FontSize="20" 
+                                      Margin="-12, -12, 0, 0"/>
+                            <FontIcon Glyph="&#xE710;" FontFamily="Segoe MDL2 Assets" FontSize="12" 
+                                      Margin="0, 0, -12, -12" />
+                        </Grid>
+                    </AppBarButton.Content>
+                </AppBarButton>
+
+                <!-- reload from server -->
+                <AppBarButton x:Name="topAppBarPhotosReload" x:Uid="appBarPhotosReload" 
+                              Visibility="{Binding PhotosView, Converter={StaticResource PhotosViewVisibleConverter}, ConverterParameter=fullmode|onlyalbums}"
+                              Command="{Binding ReloadPhotosCommand}"
+                              Icon="Refresh">
+                </AppBarButton>
+
+                <!-- separator for now following album manipulators -->
+                <AppBarSeparator Visibility="{Binding PhotosView, Converter={StaticResource PhotosViewVisibleConverter}, ConverterParameter=fullmode}" />
+
+                <!-- add picture from camera or device to selected album -->
+                <AppBarButton x:Name="topAppBarPhotosPhotoAdd" x:Uid="appBarPhotosPhotoAdd"
+                              Visibility="{Binding PhotosView, Converter={StaticResource PhotosViewVisibleConverter}, ConverterParameter=fullmode|onlyphotos}">
+                    <AppBarButton.Content>
+                        <Grid>
+                            <FontIcon Glyph="&#xEB9F;" FontFamily="Segoe MDL2 Assets" FontSize="20" 
+                                      Margin="-12, -12, 0, 0"/>
+                            <FontIcon Glyph="&#xE710;" FontFamily="Segoe MDL2 Assets" FontSize="12" 
+                                      Margin="0, 0, -12, -12" />
+                        </Grid>
+                    </AppBarButton.Content>
+                    <AppBarButton.Flyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem x:Name="topAppBarPhotosAddFromDevice" x:Uid="appBarPhotosAddFromDevice"
+                                                Command="{Binding AddFromDeviceCommand}"
+                                                CommandParameter="photo"/>
+                            <MenuFlyoutItem x:Name="topAppBarPhotosAddFromCamera" x:Uid="appBarPhotosAddFromCamera"
+                                                Command="{Binding AddFromCameraCommand}"
+                                                CommandParameter="photo"/>
+                        </MenuFlyout>
+                    </AppBarButton.Flyout>
+                </AppBarButton>
+
+                <!-- add profile picture from camera or device -->
+                <AppBarButton x:Name="topAppBarPhotosProfileimageAdd" x:Uid="appBarPhotosProfileimageAdd"
+                              Visibility="{Binding PhotosView, Converter={StaticResource PhotosViewVisibleConverter}, ConverterParameter=fullmode|onlyphotos}">
+                    <AppBarButton.Content>
+                        <Grid>
+                            <FontIcon Glyph="&#xE8D4;" FontFamily="Segoe MDL2 Assets" FontSize="20" 
+                                      Margin="-12, -12, 0, 0"/>
+                            <FontIcon Glyph="&#xE710;" FontFamily="Segoe MDL2 Assets" FontSize="12" 
+                                      Margin="0, 0, -12, -12" />
+                        </Grid>
+                    </AppBarButton.Content>
+                    <AppBarButton.Flyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem x:Name="topAppBarProfileimageAddFromDevice" x:Uid="appBarPhotosAddProfileimageFromDevice"
+                                            Command="{Binding AddFromDeviceCommand}"
+                                            CommandParameter="profileimage" />
+                            <MenuFlyoutItem x:Name="topAppBarProfileimageAddFromCamera" x:Uid="appBarPhotosAddProfileimageFromCamera"
+                                            Command="{Binding AddFromCameraCommand}"
+                                            CommandParameter="profileimage" />
+                        </MenuFlyout>
+                    </AppBarButton.Flyout>
+                </AppBarButton>
+
+                <!-- add new empty ink canvas area -->
+                <AppBarButton x:Name="topAppBarPhotosEmptyInkAdd" x:Uid="appBarPhotosEmptyInkAdd"
+                              Visibility="{Binding PhotosView, Converter={StaticResource PhotosViewVisibleConverter}, ConverterParameter=fullmode|onlyphotos}"
+                              Command="{Binding AddEmptyInkCanvasCommand}">
+                    <AppBarButton.Content>
+                        <Grid>
+                            <FontIcon Glyph="&#xEE56;" FontFamily="Segoe MDL2 Assets" FontSize="20" 
+                                      Margin="-12, -12, 0, 0"/>
+                            <FontIcon Glyph="&#xE710;" FontFamily="Segoe MDL2 Assets" FontSize="12" 
+                                      Margin="0, 0, -12, -12" />
+                        </Grid>
+                    </AppBarButton.Content>
+                </AppBarButton>
+
+                <!-- delete album -->
+                <AppBarButton x:Name="topAppBarPhotosAlbumDelete" x:Uid="appBarPhotosAlbumDelete"
+                              Visibility="{Binding PhotosView, Converter={StaticResource PhotosViewVisibleConverter}, ConverterParameter=fullmode|onlyphotos}"
+                              Command="{Binding DeletePhotoalbumCommand}">
+                    <AppBarButton.Content>
+                        <Grid>
+                            <FontIcon Glyph="&#xE82D;" FontFamily="Segoe MDL2 Assets" FontSize="20" 
+                                      Margin="-12, -12, 0, 0"/>
+                            <FontIcon Glyph="&#xE74D;" FontFamily="Segoe MDL2 Assets" FontSize="12" 
+                                      Margin="0, 0, -12, -12" />
+                        </Grid>
+                    </AppBarButton.Content>
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.TopAppBar>
+
+    <Page.BottomAppBar>
+        <CommandBar x:Name="bottomAppBar" 
+                    Margin="{Binding BottomAppBarMargin}"
+                    Visibility="Collapsed">
+            <CommandBar.PrimaryCommands>
+                <!-- add album -->
+                <AppBarButton x:Name="bottomAppBarPhotosAlbumAdd" x:Uid="appBarPhotosAlbumAdd" 
+                              Visibility="{Binding PhotosView, Converter={StaticResource PhotosViewVisibleConverter}, ConverterParameter=fullmode|onlyalbums}"
+                              Command="{Binding AddPhotoalbumCommand}">
+                    <AppBarButton.Content>
+                        <Grid>
+                            <FontIcon Glyph="&#xE82D;" FontFamily="Segoe MDL2 Assets" FontSize="20" 
+                                      Margin="-12, -12, 0, 0"/>
+                            <FontIcon Glyph="&#xE710;" FontFamily="Segoe MDL2 Assets" FontSize="12" 
+                                      Margin="0, 0, -12, -12" />
+                        </Grid>
+                    </AppBarButton.Content>
+                </AppBarButton>
+
+                <!-- reload from server -->
+                <AppBarButton x:Name="bottomAppBarPhotosReload" x:Uid="appBarPhotosReload" 
+                              Visibility="{Binding PhotosView, Converter={StaticResource PhotosViewVisibleConverter}, ConverterParameter=fullmode|onlyalbums}"
+                              Command="{Binding ReloadPhotosCommand}"
+                              Icon="Refresh">
+                </AppBarButton>
+
+                <!-- separator for now following album manipulators -->
+                <AppBarSeparator Visibility="{Binding PhotosView, Converter={StaticResource PhotosViewVisibleConverter}, ConverterParameter=fullmode}" />
+
+                <!-- add picture from camera or device to selected album -->
+                <AppBarButton x:Name="bottomAppBarPhotosPhotoAdd" x:Uid="appBarPhotosPhotoAdd"
+                              Visibility="{Binding PhotosView, Converter={StaticResource PhotosViewVisibleConverter}, ConverterParameter=fullmode|onlyphotos}">
+                    <AppBarButton.Content>
+                        <Grid>
+                            <FontIcon Glyph="&#xEB9F;" FontFamily="Segoe MDL2 Assets" FontSize="20" 
+                                      Margin="-12, -12, 0, 0"/>
+                            <FontIcon Glyph="&#xE710;" FontFamily="Segoe MDL2 Assets" FontSize="12" 
+                                      Margin="0, 0, -12, -12" />
+                        </Grid>
+                    </AppBarButton.Content>
+                    <AppBarButton.Flyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem x:Name="bottomAppBarPhotosAddFromDevice" x:Uid="appBarPhotosAddFromDevice"
+                                        Command="{Binding AddFromDeviceCommand}"
+                                        CommandParameter="photo"/>
+                            <MenuFlyoutItem x:Name="bottomAppBarPhotosAddFromCamera" x:Uid="appBarPhotosAddFromCamera"
+                                        Command="{Binding AddFromCameraCommand}"
+                                        CommandParameter="photo"/>
+                            <MenuFlyoutItem x:Name="bottomAppBarProfileimageAddFromDevice" x:Uid="appBarPhotosAddProfileimageFromDevice"
+                                        Command="{Binding AddFromDeviceCommand}"
+                                        CommandParameter="profileimage" />
+                            <MenuFlyoutItem x:Name="bottomAppBarProfileimageAddFromCamera" x:Uid="appBarPhotosAddProfileimageFromCamera"
+                                        Command="{Binding AddFromCameraCommand}"
+                                        CommandParameter="profileimage" />
+                        </MenuFlyout>
+                    </AppBarButton.Flyout>
+                </AppBarButton>
+
+                <!-- add new empty ink canvas area -->
+                <AppBarButton x:Name="bottomAppBarPhotosEmptyInkAdd" x:Uid="appBarPhotosEmptyInkAdd"
+                              Visibility="{Binding PhotosView, Converter={StaticResource PhotosViewVisibleConverter}, ConverterParameter=fullmode|onlyphotos}"
+                              Command="{Binding AddEmptyInkCanvasCommand}">
+                    <AppBarButton.Content>
+                        <Grid>
+                            <FontIcon Glyph="&#xEE56;" FontFamily="Segoe MDL2 Assets" FontSize="20" 
+                                      Margin="-12, -12, 0, 0"/>
+                            <FontIcon Glyph="&#xE710;" FontFamily="Segoe MDL2 Assets" FontSize="12" 
+                                      Margin="0, 0, -12, -12" />
+                        </Grid>
+                    </AppBarButton.Content>
+                </AppBarButton>
+
+                <!-- delete album -->
+                <AppBarButton x:Name="bottomAppBarPhotosAlbumDelete" x:Uid="appBarPhotosAlbumDelete"
+                              Visibility="{Binding PhotosView, Converter={StaticResource PhotosViewVisibleConverter}, ConverterParameter=fullmode|onlyphotos}"
+                              Command="{Binding DeletePhotoalbumCommand}">
+                    <AppBarButton.Content>
+                        <Grid>
+                            <FontIcon Glyph="&#xE82D;" FontFamily="Segoe MDL2 Assets" FontSize="20" 
+                                      Margin="-12, -12, 0, 0"/>
+                            <FontIcon Glyph="&#xE74D;" FontFamily="Segoe MDL2 Assets" FontSize="12" 
+                                      Margin="0, 0, -12, -12" />
+                        </Grid>
+                    </AppBarButton.Content>
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="MobilePortrait">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="MobilePortrait" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="textBlockApplicationName.Visibility" Value="Visible" />
+                        <Setter Target="textBlockPageName.Visibility" Value="Visible" />
+                        <Setter Target="pagePhotos.Margin" Value="0,0,0,0" />
+                        <Setter Target="topAppBar.Visibility" Value="Collapsed" />
+                        <Setter Target="bottomAppBar.Visibility" Value="Visible" />
+                        <!--<Setter Target="flipviewSelectedPhoto.ItemsPanel" Value="{StaticResource HorizontalFlipViewTemplate}" />
+                        <Setter Target="flipviewSelectedPhoto.(ScrollViewer.VerticalScrollMode)" Value="Disabled" />
+                        <Setter Target="flipviewSelectedPhoto.(ScrollViewer.HorizontalScrollMode)" Value="Enabled" />
+                        <Setter Target="flipviewSelectedPhoto.(ScrollViewer.IsHorizontalRailEnabled)" Value="True" />-->
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="MobileLandscape">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="MobileLandscape" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="textBlockApplicationName.Visibility" Value="Collapsed" />
+                        <Setter Target="textBlockPageName.Visibility" Value="Collapsed" />
+                        <Setter Target="textblockSelectedAlbumName.FontSize" Value="{StaticResource ApplicationNameFontSize}" />
+                        <Setter Target="fonticonEditPhotoalbum.FontSize" Value="{StaticResource ApplicationNameFontSize}" />
+                        <Setter Target="pagePhotos.Margin" Value="0,0,92,0" />
+                        <Setter Target="topAppBar.Visibility" Value="Collapsed" />
+                        <Setter Target="bottomAppBar.Visibility" Value="Visible" />
+                        <Setter Target="gridSelectedAlbumFlipView.(Grid.RowSpan)" Value="2" />
+                        <Setter Target="gridSelectedAlbumFlipView.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="gridSelectedAlbumListView.(Grid.Row)" Value="0" />
+                        <Setter Target="gridSelectedAlbumListView.(Grid.Column)" Value="1" />
+                        <Setter Target="gridSelectedAlbumListView.(Grid.RowSpan)" Value="2" />
+                        <Setter Target="listViewSelectedAlbum.ItemsPanel" Value="{StaticResource VerticalListViewTemplate}" />
+                        <Setter Target="listViewSelectedAlbum.(ScrollViewer.VerticalScrollMode)" Value="Enabled" />
+                        <Setter Target="listViewSelectedAlbum.(ScrollViewer.IsVerticalRailEnabled)" Value="True" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="DesktopLandscape">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="DesktopLandscape" />
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="MobileContinuum" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="textBlockApplicationName.Visibility" Value="Collapsed" />
+                        <Setter Target="textBlockPageName.Visibility" Value="Visible" />
+                        <Setter Target="textBlockPageName.FontSize" Value="{StaticResource PageNameFontSize}" />
+                        <Setter Target="pagePhotos.Margin" Value="0,0,0,0" />
+                        <Setter Target="topAppBar.Visibility" Value="Visible" />
+                        <Setter Target="bottomAppBar.Visibility" Value="Collapsed" />
+                        <Setter Target="gridAlbumList.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="gridAlbumView.(Grid.Column)" Value="1" />
+                        <Setter Target="gridAlbumView.(Grid.ColumnSpan)" Value="1" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="DesktopPortrait">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="DesktopPortrait" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="textBlockApplicationName.Visibility" Value="Collapsed" />
+                        <Setter Target="textBlockPageName.Visibility" Value="Visible" />
+                        <Setter Target="textBlockPageName.FontSize" Value="{StaticResource PageNameFontSize}" />
+                        <Setter Target="pagePhotos.Margin" Value="0,0,0,0" />
+                        <Setter Target="topAppBar.Visibility" Value="Visible" />
+                        <Setter Target="bottomAppBar.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <RelativePanel>
+            <!--heading for fullmode and conversation only-->
+            <StackPanel x:Name="stackPanelHeaders"
+                        RelativePanel.AlignLeftWithPanel="True"
+                        RelativePanel.AlignTopWithPanel="True">
+                <RelativePanel Visibility="{Binding PhotosView, Converter={StaticResource PhotosViewVisibleConverter}, ConverterParameter=fullmode|onlyalbums}"
+                               x:Name="relativePanelPageHeader">
+                    <TextBlock x:Name="textBlockApplicationName" x:Uid="textBlockApplicationName" 
+                               Visibility="Visible" 
+                               Style="{StaticResource ApplicationNameTextBlockStyle}"/>
+                    <TextBlock x:Name="textBlockPageName" x:Uid="pageTitlePhotos"  
+                               Visibility="Visible" 
+                               Style="{StaticResource PageNameTextBlockStyle}" 
+                               RelativePanel.Below="textBlockApplicationName"/>
+                </RelativePanel>
+
+                <!--info if server doesn't support photos (API calls on server not installed)-->
+                <StackPanel Visibility="{Binding PhotosView, Converter={StaticResource PhotosViewVisibleConverter}, ConverterParameter=fullmode|onlyalbums}">
+                    <StackPanel x:Name="stackpanelNoServerSupport"
+                                Visibility="{Binding NoServerSupport, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock x:Name="textblockPhotosNoServerSupport" x:Uid="textblockPhotosNoServerSupport"
+                                   Margin="4,4,4,12"
+                                   Foreground="Red"
+                                   FontStyle="Italic"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Left"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!--blank App-Settings: show info, button to Settings-->
+                <StackPanel Visibility="{Binding PhotosView, Converter={StaticResource PhotosViewVisibleConverter}, ConverterParameter=fullmode|onlyalbums}">
+                    <StackPanel x:Name="stackpanelNoSettings"
+                                Visibility="{Binding NoSettings, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock x:Name="textblockPhotosNoSettings" x:Uid="textblockPhotosNoSettings"
+                                   Margin="4,4,4,12"
+                                   Foreground="Red"
+                                   FontStyle="Italic"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Left"/>
+                        <Button x:Name="buttonGotoSettings" x:Uid="buttonGotoSettings"
+                                Click="buttonGotoSettings_Click"
+                                Margin="4,4,4,4">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <FontIcon Glyph="&#xE713;" FontFamily="Segoe MDL2 Assets" FontSize="16"/>
+                                    <TextBlock x:Uid="textblockNetworkSettings"
+                                               Margin="8,0,0,0"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+
+                <!--info if server has returned an empty photolist -->
+                <StackPanel Visibility="{Binding PhotosView, Converter={StaticResource PhotosViewVisibleConverter}, ConverterParameter=fullmode|onlyalbums}">
+                    <StackPanel x:Name="stackpanelNoPhotosAvailable"
+                                Visibility="{Binding NoPhotosAvailable, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock x:Name="textblockPhotosNoPhotosAvailable" x:Uid="textblockPhotosNoPhotosAvailable"
+                                   Margin="4,4,4,12"
+                                   Foreground="Gray"
+                                   FontStyle="Italic"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Left"/>
+                    </StackPanel>
+                </StackPanel>
+
+            </StackPanel>
+
+            <!-- grid for showing the albums -->
+            <Grid x:Name="gridContentTotal" 
+                  RelativePanel.Below="stackPanelHeaders"
+                  RelativePanel.AlignLeftWithPanel="True"
+                  RelativePanel.AlignRightWithPanel="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid x:Name="gridAlbumList"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      Visibility="{Binding PhotosView, Converter={StaticResource PhotosViewVisibleConverter}, ConverterParameter=fullmode|onlyalbums}">
+
+                    <!-- listview with all albums of the user-->
+                    <ListView x:Name="listviewPhotoalbums"
+                              ItemsSource="{Binding Albums}"
+                              SelectedItem="{Binding SelectedPhotoalbum, Mode=TwoWay}"
+                              SelectionChanged="listviewPhotoalbums_SelectionChanged"
+                              ItemTemplate="{StaticResource FriendicaPhotoalbumTemplate}"
+                              ItemContainerStyle="{StaticResource listViewItemAlbumStyle}">
+                    </ListView>
+                </Grid>
+                <Grid x:Name="gridAlbumView" 
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      Visibility="{Binding PhotosView, Converter={StaticResource PhotosViewVisibleConverter}, ConverterParameter=fullmode|onlyphotos}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <!-- showing albumname in first row -->
+                    <Grid x:Name="gridAlbumNameShow" 
+                          Visibility="{Binding AlbumEditingEnabled, Converter={StaticResource BoolToVisibilityCollapsedConverter}}"
+                          Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="textblockSelectedAlbumName" 
+                                   Style="{StaticResource PageNameTextBlockStyle}"
+                                   TextWrapping="Wrap"
+                                   Text="{Binding SelectedPhotoalbum.Albumname}"/>
+                        <Button x:Name="buttonEditPhotoDescription" 
+                                Grid.Column="1"
+                                Visibility="{Binding IsSelectedPhotoalbum, Converter={StaticResource BoolToVisibilityConverter}}"
+                                Margin="12,0,0,0"
+                                Padding="-4"
+                                Width="36" Height="36"
+                                Command="{Binding EditPhotoalbumCommand}" 
+                                Style="{StaticResource ButtonTransparentAccentStyle}">
+                            <FontIcon x:Name="fonticonEditPhotoalbum"
+                                Glyph="&#xE70F;" FontFamily="Segoe MDL2 Assets" FontSize="24" />
+                        </Button>
+                    </Grid>
+                    <!-- alternatively show editor box for albumname in first row -->
+                    <Grid x:Name="gridAlbumNameEdit" 
+                          Visibility="{Binding AlbumEditingEnabled, Converter={StaticResource BoolToVisibilityConverter}}"
+                          Grid.Row="0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox x:Name="textBoxAlbumnameEdit"
+                                     MinWidth="200" MaxWidth="400"
+                                     Height="48"
+                                     Text="{Binding SelectedPhotoalbum.AlbumnameNew, Mode=TwoWay}"
+                                     FontSize="24"
+                                     Foreground="{StaticResource AccentBrush}"
+                                     VerticalContentAlignment="Center"
+                                     InputScope="Text"
+                                     KeyDown="textBoxAlbumnameEdit_KeyDown"
+                                     IsEnabled="{Binding AlbumEditingEnabled}"
+                                     IsEnabledChanged="textBoxAlbumnameEdit_IsEnabledChanged"/>
+                            <Button x:Name="buttonAlbumnameSaveChangedName"
+                                    Height="48" Width="48"
+                                    Command="{Binding SaveChangedAlbumnameCommand}">
+                                <FontIcon Glyph="&#xE74E;" FontFamily="Segoe MDL2 Assets" FontSize="24" />
+                            </Button>
+                            <Button x:Name="buttonAlbumnameCancelNameChange"
+                                    Height="48" Width="48"
+                                    Click="buttonAlbumnameCancelNameChange_Click">
+                                <FontIcon Glyph="&#xE711;" FontFamily="Segoe MDL2 Assets" FontSize="24" />
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- flipview for displaying selected photo and listview for all photos of selected album -->
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="4*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid x:Name="gridSelectedAlbumFlipView" 
+                              Background="Transparent"
+                              Grid.ColumnSpan="2">
+
+                            <FlipView x:Name="flipviewSelectedPhoto"
+                                      Background="Transparent"
+                                      UseTouchAnimationsForAllNavigation="True"
+                                      ItemsSource="{Binding Source={StaticResource selectedAlbumViewSource}}"
+                                      ItemTemplate="{StaticResource FlipViewPhotoTemplate}"
+                                      ScrollViewer.HorizontalScrollMode="Enabled"
+                                      ScrollViewer.IsHorizontalRailEnabled="True"
+                                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                      ItemsPanel="{StaticResource HorizontalFlipViewTemplate}"
+                                      SelectedItem="{Binding SelectedPhotoalbum.SelectedPhoto, Mode=TwoWay}"
+                                      SelectionChanged="flipviewSelectedPhoto_SelectionChanged"  />
+                        </Grid>
+
+                        <Grid x:Name="gridSelectedAlbumListView" 
+                              Grid.Row="1" Grid.Column="0"
+                              Grid.ColumnSpan="2">
+                            <ListView x:Name="listViewSelectedAlbum"
+                                      ItemsSource="{Binding Source={StaticResource selectedAlbumViewSource}}"
+                                      SelectedItem="{Binding SelectedItem, ElementName=flipviewSelectedPhoto, Mode=TwoWay}"
+                                      SelectionChanged="listViewSelectedAlbum_SelectionChanged" 
+                                      ScrollViewer.HorizontalScrollMode="Enabled"
+                                      ScrollViewer.IsHorizontalRailEnabled="True"
+                                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                      ItemsPanel="{StaticResource HorizontalListViewTemplate}">
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border x:Name="borderPhoto"
+                                                BorderThickness="2"
+                                                BorderBrush="LightGray"
+                                                Background="AntiqueWhite"
+                                                Margin="4">
+                                            <Image Grid.Row="0" Grid.Column="0"
+                                                   Stretch="Uniform"
+                                                   Source="{Binding ThumbSizeData}" />
+                                        </Border>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </RelativePanel>
+
+        <!-- red box indicating that system checks if server is capable of the needed API calls -->
+        <RelativePanel Background="Red"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Stretch"
+                       Margin="4,0,4,0"
+                       Visibility="{Binding IsCheckingServerSupport, Converter={StaticResource BoolToVisibilityConverter}}">
+            <ProgressRing x:Name="progressCheckingServerSupport"
+                          IsActive="True"
+                          Foreground="White"
+                          Margin="36,0,36,4"
+                          RelativePanel.AlignVerticalCenterWithPanel="True"
+                          RelativePanel.AlignLeftWithPanel="True"/>
+            <TextBlock x:Name="textblockPhotosCheckingServerSupport" x:Uid="textblockPhotosCheckingServerSupport"
+                       Foreground="White"
+                       TextWrapping="Wrap"
+                       RelativePanel.RightOf="progressCheckingServerSupport" 
+                       RelativePanel.AlignVerticalCenterWithPanel="True"/>
+        </RelativePanel>
+
+        <!-- red box indicating that system loads photos from server -->
+        <RelativePanel Background="Red"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Stretch"
+                       Margin="4,0,4,0"
+                       Visibility="{Binding IsLoadingPhotoalbums, Converter={StaticResource BoolToVisibilityConverter}}">
+            <ProgressRing x:Name="progressLoadingPhotoalbums"
+                          IsActive="True"
+                          Foreground="White"
+                          Margin="36,0,36,4"
+                          RelativePanel.AlignVerticalCenterWithPanel="True"
+                          RelativePanel.AlignLeftWithPanel="True"/>
+            <TextBlock x:Name="textblockPhotosLoadingPhotoalbums" x:Uid="textblockPhotosLoadingPhotoalbums"
+                       Foreground="White"
+                       TextWrapping="Wrap"
+                       RelativePanel.RightOf="progressLoadingPhotoalbums" 
+                       RelativePanel.AlignVerticalCenterWithPanel="True" />
+        </RelativePanel>
+
+        <!-- red box indicating that system interacts with server -->
+        <RelativePanel Background="Red"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Stretch"
+                       Margin="4,0,4,0"
+                       Visibility="{Binding IsServerOperationPending, Converter={StaticResource BoolToVisibilityConverter}}">
+            <ProgressRing x:Name="progressPhotoServerOperation"
+                          IsActive="True"
+                          Foreground="White"
+                          Margin="36,0,36,4"
+                          RelativePanel.AlignVerticalCenterWithPanel="True"
+                          RelativePanel.AlignLeftWithPanel="True"/>
+            <TextBlock x:Name="textblockPhotosServerOperationPending" x:Uid="textblockPhotosServerOperationPending"
+                       Foreground="White"
+                       TextWrapping="Wrap"
+                       RelativePanel.RightOf="progressPhotoServerOperation" 
+                       RelativePanel.AlignVerticalCenterWithPanel="True" />
+        </RelativePanel>
     </Grid>
 </Page>
