@@ -234,11 +234,13 @@ namespace Friendica_Mobile.Models
             int countNew = 0;
             foreach (var post in NewPosts)
             {
+                // change 2017-MAR-16: PostInReplyToStatusIdStr is now always the same as ...id since Friendica 3.5.1
+                // use statusnet_conversation_id instead
                 double id = 0;
                 if (post.Post.PostInReplyToStatusId == 0)
                     id = post.Post.PostId;
-                else if (post.Post.PostInReplyToStatusId != 0)
-                    id = Convert.ToDouble(post.Post.PostInReplyToStatusIdStr);
+                else if (post.Post.PostStatusnetConversationId != "0")
+                    id = Convert.ToDouble(post.Post.PostStatusnetConversationId);
 
                 if (id == ThreadId)
                     countNew += 1;
