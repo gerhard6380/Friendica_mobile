@@ -974,11 +974,13 @@ namespace Friendica_Mobile.Mvvm
             foreach (var post in obscollPosts)
             {
                 // retrieve PostInReplyToStatusIdStr as the PostInReplyToStatusId might link to different id's which are not in database
+                // change 2017-MAR-16: PostInReplyToStatusIdStr is now always the same as ...id since Friendica 3.5.1
+                // use statusnet_conversation_id instead
                 double id = 0;
                 if (post.Post.PostInReplyToStatusId == 0)
                     id = post.Post.PostId;
-                else if (post.Post.PostInReplyToStatusId != 0)
-                    id = Convert.ToDouble(post.Post.PostInReplyToStatusIdStr);
+                else if (post.Post.PostStatusnetConversationId != "0")
+                    id = Convert.ToDouble(post.Post.PostStatusnetConversationId);
 
                 if (id != 0)
                 {

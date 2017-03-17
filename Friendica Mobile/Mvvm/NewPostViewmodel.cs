@@ -631,11 +631,13 @@ namespace Friendica_Mobile.Mvvm
 
         private double GetThreadId()
         {
+            // change 2017-MAR-16: PostInReplyToStatusIdStr is now always the same as ...id since Friendica 3.5.1
+            // use statusnet_conversation_id instead
             double id = 0;
             if (PostToShow.Post.PostInReplyToStatusId == 0)
                 id = PostToShow.Post.PostId;
-            else if (PostToShow.Post.PostInReplyToStatusId != 0)
-                id = Convert.ToDouble(PostToShow.Post.PostInReplyToStatusIdStr);
+            else if (PostToShow.Post.PostStatusnetConversationId != "0")
+                id = Convert.ToDouble(PostToShow.Post.PostStatusnetConversationId);
             return id;
         }
     }
