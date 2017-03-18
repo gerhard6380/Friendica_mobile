@@ -194,9 +194,19 @@ namespace Friendica_Mobile.Models
             var count = Posts.Count(m => m.IsComment);
             if (count > 2)
             {
+                // try/catch added to prevent crashes if there is a thread with only comments (when commenting photos, api misses the photo itself due to a bug)
+                FriendicaPostExtended firstPost = null;
+                try
+                {
+                    firstPost = Posts.Single(m => m.IsComment == false);
+                    firstPost.IsPostWithComments = true;
+                }
+                catch
+                {
+                    firstPost = Posts[0];
+                    firstPost.IsPostWithComments = true;
+                }
                 IsVisibleShowAllButton = true;
-                var firstPost = Posts.Single(m => m.IsComment == false);
-                firstPost.IsPostWithComments = true;
             }
             else
                 IsVisibleShowAllButton = false;
