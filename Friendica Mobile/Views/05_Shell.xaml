@@ -277,7 +277,9 @@
                         </StackPanel>
                     </ScrollViewer>
 
-                    <StackPanel Grid.Row="2">
+                    <StackPanel Grid.Row="2"
+                                Visibility="{Binding HideNavigationElements, Converter={StaticResource BoolToVisibilityCollapsedConverter}}"
+                                x:Name="stackpanelOtherOptions">
 
                         <!-- scroll down button -->
                         <RadioButton x:Name="radioDownButton" 
@@ -298,7 +300,6 @@
                                      x:Name="radioOthers"
                                      x:Uid="radioOthers"
                                      Click="RadioOthersButton_Click"
-                                     Visibility="{Binding HideNavigationElements, Converter={StaticResource BoolToVisibilityCollapsedConverter}}"
                                      Foreground="{StaticResource SplitViewForegroundBrush}">
                             <RadioButton.Tag>
                                 <Button Style="{StaticResource SplitViewButtonStyle}">

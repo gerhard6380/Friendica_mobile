@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Friendica_Mobile.Mvvm;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -79,6 +80,7 @@ namespace Friendica_Mobile.Views
         public event EventHandler BackToConversationsRequested;
         public event EventHandler BackToAlbumsRequested;
 
+
         public Shell(Frame frame)
         {
             App.Settings.PropertyChanged += Settings_PropertyChanged;
@@ -120,7 +122,10 @@ namespace Friendica_Mobile.Views
 
             // set datacontext to enable change of visibility on subpages where navigation is useless
             ScrollViewerRadioButtons.DataContext = App.Settings;
-            radioOthers.DataContext = App.Settings;
+            stackpanelOtherOptions.DataContext = App.Settings;
+            radioOthers.DataContext = this;
+            RadioButtonContainer.DataContext = this;
+
 
             this.SizeChanged += Shell_SizeChanged;
 
@@ -138,7 +143,9 @@ namespace Friendica_Mobile.Views
                 symbol.Changed();
             }
             if (e.PropertyName == "HideNavigationElements")
+            {
                 AdaptNavigationBar();
+            }
         }
 
         private async void HardwareButtons_BackPressed(object sender, Windows.Phone.UI.Input.BackPressedEventArgs e)
