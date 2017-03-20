@@ -131,7 +131,8 @@
                     <ScrollViewer Grid.Row="1" 
                                   HorizontalScrollBarVisibility="Hidden" 
                                   VerticalScrollBarVisibility="Auto" 
-                                  Name="ScrollViewerRadioButtons">
+                                  Name="ScrollViewerRadioButtons"
+                                  Visibility="{Binding HideNavigationElements, Converter={StaticResource BoolToVisibilityCollapsedConverter}}">
                         <StackPanel x:Name="RadioButtonContainer" Grid.Row="1 ">
 
                             <!-- home -->
@@ -297,6 +298,7 @@
                                      x:Name="radioOthers"
                                      x:Uid="radioOthers"
                                      Click="RadioOthersButton_Click"
+                                     Visibility="{Binding HideNavigationElements, Converter={StaticResource BoolToVisibilityCollapsedConverter}}"
                                      Foreground="{StaticResource SplitViewForegroundBrush}">
                             <RadioButton.Tag>
                                 <Button Style="{StaticResource SplitViewButtonStyle}">

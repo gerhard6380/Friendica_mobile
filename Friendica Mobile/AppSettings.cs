@@ -114,6 +114,16 @@ namespace Friendica_Mobile
             }
         }
 
+        // indicator which can be set by pages if the navigation element should not be shown (only back and menu displayed)
+        private bool _hideNavigationElements = false;
+        public bool HideNavigationElements
+        {
+            get { return _hideNavigationElements; }
+            set { _hideNavigationElements = value;
+                OnPropertyChanged("HideNavigationElements"); }
+        }
+
+
         private Thickness SetBottomAppBarMargin()
         {
             if (Orientation == ApplicationViewOrientation.Landscape)

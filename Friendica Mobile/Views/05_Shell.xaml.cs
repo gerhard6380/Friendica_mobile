@@ -118,6 +118,10 @@ namespace Friendica_Mobile.Views
 
             masterGrid.DataContext = this;
 
+            // set datacontext to enable change of visibility on subpages where navigation is useless
+            ScrollViewerRadioButtons.DataContext = App.Settings;
+            radioOthers.DataContext = App.Settings;
+
             this.SizeChanged += Shell_SizeChanged;
 
             if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
@@ -133,7 +137,8 @@ namespace Friendica_Mobile.Views
             {
                 symbol.Changed();
             }
-            
+            if (e.PropertyName == "HideNavigationElements")
+                AdaptNavigationBar();
         }
 
         private async void HardwareButtons_BackPressed(object sender, Windows.Phone.UI.Input.BackPressedEventArgs e)
@@ -162,6 +167,7 @@ namespace Friendica_Mobile.Views
             if (navigationAllowed)
             {
                 if (this.contentFrame == null)
+
                 {
                     return;
                 }
@@ -210,15 +216,15 @@ namespace Friendica_Mobile.Views
             var actualheight = RadioButtonContainer.ActualHeight;
 
             var desiredsize = RadioButtonContainer.DesiredSize;
-            if (actualheight > desiredsize.Height)
-            {
-                radioUpButton.Visibility = Visibility.Collapsed;
-                radioDownButton.Visibility = Visibility.Collapsed;
-            }
-            else
+            if (actualheight <= desiredsize.Height && !App.Settings.HideNavigationElements)
             {
                 radioUpButton.Visibility = Visibility.Visible;
                 radioDownButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                radioUpButton.Visibility = Visibility.Collapsed;
+                radioDownButton.Visibility = Visibility.Collapsed;
             }
         }
 
