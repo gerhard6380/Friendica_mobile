@@ -26,6 +26,10 @@ namespace Friendica_Mobile.Models
         private const string photoHeightKey = "height";
         private const string photoWidthKey = "width";
         private const string photoProfileKey = "profile";
+        private const string photoAllowCidKey = "allow_cid";
+        private const string photoDenyCidKey = "deny_cid";
+        private const string photoAllowGidKey = "allow_gid";
+        private const string photoDenyGidKey = "deny_gid";
         private const string photoLinkKey = "link";
         private const string photoDataKey = "data";
 
@@ -108,6 +112,34 @@ namespace Friendica_Mobile.Models
             set { _photoProfile = value; }
         }
 
+        private string _photoAllowCid;
+        public string PhotoAllowCid
+        {
+            get { return _photoAllowCid; }
+            set { _photoAllowCid = value; }
+        }
+
+        private string _photoDenyCid;
+        public string PhotoDenyCid
+        {
+            get { return _photoDenyCid; }
+            set { _photoDenyCid = value; }
+        }
+
+        private string _photoAllowGid;
+        public string PhotoAllowGid
+        {
+            get { return _photoAllowGid; }
+            set { _photoAllowGid = value; }
+        }
+
+        private string _photoDenyGid;
+        public string PhotoDenyGid
+        {
+            get { return _photoDenyGid; }
+            set { _photoDenyGid = value; }
+        }
+
         private List<string> _photoLink;
         public List<string> PhotoLink
         {
@@ -143,6 +175,10 @@ namespace Friendica_Mobile.Models
             PhotoHeight = "";
             PhotoWidth = "";
             PhotoProfile = "";
+            PhotoAllowCid = "";
+            PhotoDenyCid = "";
+            PhotoAllowGid = "";
+            PhotoDenyGid = "";
             PhotoLink = new List<string>();
             PhotoData = "";
         }
@@ -162,6 +198,10 @@ namespace Friendica_Mobile.Models
             PhotoHeight = (string)CheckAttribute(jsonObject, photoHeightKey, AttributeTypes.String);
             PhotoWidth = (string)CheckAttribute(jsonObject, photoWidthKey, AttributeTypes.String);
             PhotoProfile = (string)CheckAttribute(jsonObject, photoProfileKey, AttributeTypes.String);
+            PhotoAllowCid = (string)CheckAttribute(jsonObject, photoAllowCidKey, AttributeTypes.String);
+            PhotoDenyCid = (string)CheckAttribute(jsonObject, photoDenyCidKey, AttributeTypes.String);
+            PhotoAllowGid = (string)CheckAttribute(jsonObject, photoAllowGidKey, AttributeTypes.String);
+            PhotoDenyGid = (string)CheckAttribute(jsonObject, photoDenyCidKey, AttributeTypes.String);
             PhotoLink = (List<string>)CheckAttribute(jsonObject, photoLinkKey, AttributeTypes.StringArray);
             PhotoData = (string)CheckAttribute(jsonObject, photoDataKey, AttributeTypes.String);
         }
@@ -180,6 +220,10 @@ namespace Friendica_Mobile.Models
             PhotoHeight = (string)CheckAttribute(jsonObject, photoHeightKey, AttributeTypes.String);
             PhotoWidth = (string)CheckAttribute(jsonObject, photoWidthKey, AttributeTypes.String);
             PhotoProfile = (string)CheckAttribute(jsonObject, photoProfileKey, AttributeTypes.String);
+            PhotoAllowCid = (string)CheckAttribute(jsonObject, photoAllowCidKey, AttributeTypes.String);
+            PhotoDenyCid = (string)CheckAttribute(jsonObject, photoDenyCidKey, AttributeTypes.String);
+            PhotoAllowGid = (string)CheckAttribute(jsonObject, photoAllowGidKey, AttributeTypes.String);
+            PhotoDenyGid = (string)CheckAttribute(jsonObject, photoDenyCidKey, AttributeTypes.String);
             PhotoLink = (List<string>)CheckAttribute(jsonObject, photoLinkKey, AttributeTypes.StringArray);
             PhotoData = (string)CheckAttribute(jsonObject, photoDataKey, AttributeTypes.String);
         }

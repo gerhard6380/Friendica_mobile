@@ -33,11 +33,17 @@ namespace Friendica_Mobile.Models
             get { return _photo; }
             set { _photo = value;
                 if (value != null)
+                {
                     if (value.PhotoEdited != null && value.PhotoEdited != "")
                     {
                         _photoEditedDateTime = DateTime.ParseExact(value.PhotoEdited, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
                         PhotoEditedLocalized = _photoEditedDateTime.ToString("d") + " " + _photoEditedDateTime.ToString("t");
                     }
+                    if (value.PhotoAllowCid == "" && value.PhotoDenyCid == "" && value.PhotoAllowGid == "" && value.PhotoDenyGid == "")
+                        IsPubliclyVisible = true;
+                    else
+                        IsPubliclyVisible = false;
+                }
             }
         }
 
