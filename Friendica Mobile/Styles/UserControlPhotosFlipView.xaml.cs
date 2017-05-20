@@ -1,5 +1,7 @@
 ﻿using Friendica_Mobile.Models;
+using Friendica_Mobile.Mvvm;
 using Friendica_Mobile.Triggers;
+using Friendica_Mobile.Views;
 using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -60,6 +62,9 @@ namespace Friendica_Mobile.Styles
                 imageInFlipView.Height = gridImageInFlipView.ActualHeight - correction;
             else
                 imageInFlipView.Height = gridImageInFlipView.ActualHeight;
+
+            if (!Double.IsNaN(imageInFlipView.ActualWidth))
+                gridPhotoDescriptionShow.MaxWidth = imageInFlipView.ActualWidth;
         }
 
         private void textBoxPhotoDescriptionEdit_IsEnabledChanged(object sender, Windows.UI.Xaml.DependencyPropertyChangedEventArgs e)
@@ -83,11 +88,14 @@ namespace Friendica_Mobile.Styles
             else if (e.Key == Windows.System.VirtualKey.Enter)
             {
                 // check if we are allowed to execute to avoid multiple calling
-                mvvm.PhotoDescNew = textbox.Text;
+                mvvm.NewPhotoDesc = textbox.Text;
                 if (mvvm.SaveChangedPhotoDescriptionCommand.CanExecute(null))
                     mvvm.SaveChangedPhotoDescriptionCommand.Execute(null);
+                e.Handled = true;
+                mvvm.PhotoEditingEnabled = false;
             }
         }
+
 
         private void buttonPhotoCancelDescriptionChange_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
@@ -99,10 +107,11 @@ namespace Friendica_Mobile.Styles
         private void buttonPhotoDescriptionSaveChangedName_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             var mvvm = this.DataContext as FriendicaPhotoExtended;
-            mvvm.PhotoDescNew = textBoxPhotoDescriptionEdit.Text;
+            mvvm.NewPhotoDesc = textBoxPhotoDescriptionEdit.Text;
             // check if we are allowed to execute to avoid multiple calling
             if (mvvm.SaveChangedPhotoDescriptionCommand.CanExecute(null))
                 mvvm.SaveChangedPhotoDescriptionCommand.Execute(null);
+            mvvm.PhotoEditingEnabled = false;
         }
 
         private void buttonClosePhotoFullImage_Click(object sender, RoutedEventArgs e)
@@ -116,10 +125,22 @@ namespace Friendica_Mobile.Styles
             // saving at all, or limited local saving to only small images)
             var mvvm = this.DataContext as FriendicaPhotoExtended;
 
-            if (mvvm != null && !mvvm.FullSizeLoaded)
+            if (mvvm != null && !mvvm.FullSizeLoaded && !mvvm.NewUploadPlanned)
             {
                 mvvm.LoadFullSize();
             }
         }
+
+        private void imageFullView_Loaded(object sender, RoutedEventArgs e)
+        {
+            var photo = sender as Image;
+            var mvvm = photo.DataContext as FriendicaPhotoExtended;
+            if (mvvm == null)
+                return;
+
+            if (mvvm.IsLoadingFullSize)
+                mvvm.IsLoadingFullSize = false;
+        }
+
     }
 }

@@ -1,5 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 
 namespace Friendica_Mobile
 {
@@ -24,6 +28,22 @@ namespace Friendica_Mobile
             {
                 eventHandler(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+        // function to convert <x><y><z> into a list of double values
+        public List<double> ConvertContactListStringToList(string contacts)
+        {
+            if (contacts == null)
+                return null;
+
+            var list = new List<double>();
+            if (contacts == "")
+                return list;
+
+            string[] values = Regex.Split(contacts, @"\<([^<]+)\>").Where(s => !string.IsNullOrEmpty(s)).ToArray();
+            foreach (var value in values)
+                list.Add(Convert.ToDouble(value));
+            return list;
         }
     }
 }

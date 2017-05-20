@@ -6,18 +6,27 @@ using Windows.Data.Json;
 
 namespace Friendica_Mobile.HttpRequests
 {
-    class GetFriendicaPhotos : clsHttpRequests
+    public class GetFriendicaPhotos : clsHttpRequests
     {
         AppSettings appSettings = new AppSettings();
-        public enum PhotoErrors { OK, NoServerSupport, AuthenticationFailed, ServerNotAnswered, NoPhotosAvailable,
-                            NoPhotoDataReturned, NoPhotoFound, NoAlbumnameSpecified, AlbumNotAvailable, NoMediaDataSubmitted,
-                            ImageSizeLimitsExceeded, ProcessImageDataFailed, ImageUploadFailed, UnknownError };
+        public enum PhotoErrors { OK, NoServerSupport, AuthenticationFailed, ServerNotAnswered, NoPhotosAvailable, AclDataInvalid,
+                            NoPhotoDataReturned, NoPhotoFound, NoAlbumnameSpecified, NoPhotoIdSpecified, AlbumNotAvailable,
+                            NoMediaDataSubmitted, ImageSizeLimitsExceeded, ProcessImageDataFailed, ImageUploadFailed, UnknownError };
         public bool IsErrorOccurred { get; set; }
         public PhotoErrors ErrorPhotoFriendica { get; set; }
 
         // class data specific properties 
         public List<FriendicaPhotolist> PhotolistReturned { get; set; }
         public FriendicaPhoto PhotoReturned { get; set; }
+        public FriendicaUser UserReturned { get; set; }
+
+        // local error generated when parsing
+        private string _errorMessageOnParsing;
+        public string ErrorMessageOnParsing
+        {
+            get { return _errorMessageOnParsing; }
+        }
+
 
         public event EventHandler FriendicaPhotosLoaded;
         protected virtual void OnFriendicaPhotosLoaded()
@@ -186,7 +195,8 @@ namespace Friendica_Mobile.HttpRequests
                     }
                     catch (Exception ex)
                     {
-
+                        _errorMessageOnParsing = ex.Message;
+                        ErrorPhotoFriendica = PhotoErrors.UnknownError;
                     }
                     break;
                 case Windows.Web.Http.HttpStatusCode.None:
@@ -271,6 +281,12 @@ namespace Friendica_Mobile.HttpRequests
                         ErrorPhotoFriendica = PhotoErrors.AlbumNotAvailable;
                     IsErrorOccurred = true;
                     break;
+                case Windows.Web.Http.HttpStatusCode.InternalServerError:
+                    // "problem with deleting items occured" when no entry in items was found
+                    // "unknown error - deleting from database failed" --> should never occur as api checks against this and throw BadRequest
+                    ErrorPhotoFriendica = PhotoErrors.UnknownError;
+                    IsErrorOccurred = true;
+                    break;
                 default:
                     IsErrorOccurred = false;
                     ErrorPhotoFriendica = PhotoErrors.OK;
@@ -314,6 +330,11 @@ namespace Friendica_Mobile.HttpRequests
                         ErrorPhotoFriendica = PhotoErrors.AlbumNotAvailable;
                     IsErrorOccurred = true;
                     break;
+                case Windows.Web.Http.HttpStatusCode.InternalServerError:
+                    // "unknown error - updating in database failed" --> should never occur, checks throw BadRequest before
+                    ErrorPhotoFriendica = PhotoErrors.UnknownError;
+                    IsErrorOccurred = true;
+                    break;
                 default:
                     IsErrorOccurred = false;
                     ErrorPhotoFriendica = PhotoErrors.OK;
@@ -323,10 +344,29 @@ namespace Friendica_Mobile.HttpRequests
             return this;
         }
 
-        public async Task<GetFriendicaPhotos> PostNewPhotoAsync(Dictionary<string, object> data, string contentType, string filename)
+        public async Task<GetFriendicaPhotos> PostUpdatePhotoAsync(Dictionary<string, object> data, string contentType, string filename)
+        {
+            var url = String.Format("{0}/api/friendica/photo/update.json",
+                appSettings.FriendicaServer);
+            return await PostPhotoDataAsync(url, data, contentType, filename);
+        }
+
+        public async Task<GetFriendicaPhotos> PostCreatePhotoAsync(Dictionary<string, object> data, string contentType, string filename)
         {
             var url = String.Format("{0}/api/friendica/photo/create.json",
                 appSettings.FriendicaServer);
+            return await PostPhotoDataAsync(url, data, contentType, filename);
+        }
+
+        public async Task<GetFriendicaPhotos> PostCreateProfileimageAsync(Dictionary<string, object> data, string contentType, string filename)
+        {
+            var url = String.Format("{0}/api/account/update_profile_image.json",
+                appSettings.FriendicaServer);
+            return await PostPhotoDataAsync(url, data, contentType, filename);
+        }
+
+        private async Task<GetFriendicaPhotos> PostPhotoDataAsync(string url, Dictionary<string, object> data, string contentType, string filename)
+        {
             await this.PostMultipartAsync(url, appSettings.FriendicaUsername, appSettings.FriendicaPassword, data, contentType, filename);
 
             switch (this.StatusCode)
@@ -354,27 +394,103 @@ namespace Friendica_Mobile.HttpRequests
                         ErrorPhotoFriendica = PhotoErrors.NoAlbumnameSpecified;
                     else if (this.ReturnString.Contains("photo not available"))
                         ErrorPhotoFriendica = PhotoErrors.NoPhotoFound;
+                    else if (this.ReturnString.Contains("acl data invalid"))
+                        ErrorPhotoFriendica = PhotoErrors.AclDataInvalid;
                     IsErrorOccurred = true;
                     break;
                 case Windows.Web.Http.HttpStatusCode.InternalServerError:
                     // api return InternalServerError on errors with loading photo data into database
-                    if (this.ReturnString.Contains("image size exceeds Friendica config setting") || 
+                    if (this.ReturnString.Contains("image size exceeds Friendica config setting") ||
                         this.ReturnString.Contains("image size exceeds PHP config settings"))
                         ErrorPhotoFriendica = PhotoErrors.ImageSizeLimitsExceeded;
                     else if (this.ReturnString.Contains("unable to process image data"))
                         ErrorPhotoFriendica = PhotoErrors.ProcessImageDataFailed;
                     else if (this.ReturnString.Contains("image upload failed"))
                         ErrorPhotoFriendica = PhotoErrors.ImageUploadFailed;
+                    else if (this.ReturnString.Contains("unknown error"))
+                        ErrorPhotoFriendica = PhotoErrors.UnknownError;
                     IsErrorOccurred = true;
                     break;
                 default:
-                    IsErrorOccurred = false;
-                    ErrorPhotoFriendica = PhotoErrors.OK;
-                    PhotoReturned = new FriendicaPhoto(this.ReturnString);
+                    if (this.ReturnString == "")
+                    {
+                        IsErrorOccurred = true;
+                        ErrorPhotoFriendica = PhotoErrors.UnknownError;
+                        PhotoReturned = null;
+                    }
+                    else
+                    {
+                        IsErrorOccurred = false;
+                        ErrorPhotoFriendica = PhotoErrors.OK;
+                        // profileimage returns a user object, different reaction needed
+                        if (url.Contains("/api/friendica/photo/update.json"))
+                            PhotoReturned = null;
+                        else if (url.Contains("/api/account/update_profile_image.json"))
+                            UserReturned = new FriendicaUser(this.ReturnString);
+                        else
+                            PhotoReturned = new FriendicaPhoto(this.ReturnString);
+                    }
                     break;
-
             }
             return this;
         }
+
+        public async Task<GetFriendicaPhotos> DeletePhotoAsync(string photo_id)
+        {
+            var url = String.Format("{0}/api/friendica/photo/delete.json?photo_id={1}",
+                        appSettings.FriendicaServer, 
+                        photo_id);
+
+            await this.DeleteStringAsync(url, appSettings.FriendicaUsername, appSettings.FriendicaPassword);
+
+            switch (this.StatusCode)
+            {
+                case Windows.Web.Http.HttpStatusCode.None:
+                    // server has not answered
+                    IsErrorOccurred = true;
+                    ErrorPhotoFriendica = PhotoErrors.ServerNotAnswered;
+                    break;
+                case Windows.Web.Http.HttpStatusCode.NotImplemented:
+                    // api call is not available
+                    IsErrorOccurred = true;
+                    ErrorPhotoFriendica = PhotoErrors.NoServerSupport;
+                    break;
+                case Windows.Web.Http.HttpStatusCode.Forbidden:
+                    // api return 403 Forbidden (user not logged in)
+                    IsErrorOccurred = true;
+                    ErrorPhotoFriendica = PhotoErrors.AuthenticationFailed;
+                    break;
+                case Windows.Web.Http.HttpStatusCode.BadRequest:
+                    // api return BadRequest because no albumname or wrong albumname
+                    if (this.ReturnString.Contains("no photo_id specified"))
+                        ErrorPhotoFriendica = PhotoErrors.NoPhotoIdSpecified;
+                    else if (this.ReturnString.Contains("photo not available"))
+                        ErrorPhotoFriendica = PhotoErrors.NoPhotoFound;
+                    IsErrorOccurred = true;
+                    break;
+                case Windows.Web.Http.HttpStatusCode.InternalServerError:
+                    // api return InternalServerError on errors with loading photo data into database
+                    if (this.ReturnString.Contains("unknown error on deleting photo") ||
+                        this.ReturnString.Contains("problem with deleting items occured"))
+                        ErrorPhotoFriendica = PhotoErrors.UnknownError;
+                    IsErrorOccurred = true;
+                    break;
+                default:
+                    if (this.ReturnString == "")
+                    {
+                        IsErrorOccurred = true;
+                        ErrorPhotoFriendica = PhotoErrors.UnknownError;
+                    }
+                    else
+                    {
+                        IsErrorOccurred = false;
+                        ErrorPhotoFriendica = PhotoErrors.OK;
+                    }
+                    PhotoReturned = null;
+                    break;
+            }
+            return this;
+        }
+
     }
 }

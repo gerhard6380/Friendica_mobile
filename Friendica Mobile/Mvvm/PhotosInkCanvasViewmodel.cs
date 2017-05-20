@@ -1,18 +1,10 @@
-﻿using Friendica_Mobile.HttpRequests;
-using Friendica_Mobile.Models;
+﻿using Friendica_Mobile.Models;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using Windows.ApplicationModel.Resources;
 using Windows.Foundation.Metadata;
 using Windows.UI;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
-using Windows.Web.Http;
 
 
 namespace Friendica_Mobile.Mvvm
@@ -45,8 +37,36 @@ namespace Friendica_Mobile.Mvvm
         public bool IsNewImage
         {
             get { return _isNewImage; }
-            set { _isNewImage = value; }
+            set { _isNewImage = value;
+                OnPropertyChanged("IsNewImage"); }
         }
+
+        // object containing the photo
+        private FriendicaPhotoExtended _photo;
+        public FriendicaPhotoExtended Photo
+        {
+            get { return _photo; }
+            set
+            {
+                _photo = value;
+                if (value.FullSizeData != null)
+                {
+                    if (value.FullSizeData.GetType() == typeof(BitmapImage))
+                        OriginalImage = (BitmapImage)value.FullSizeData;
+                    else if (value.FullSizeData.GetType() == typeof(WriteableBitmap))
+                    {
+                        OriginalImage = (WriteableBitmap)value.FullSizeData;
+                        if (ChangedImage == null)
+                            ChangedImage = (WriteableBitmap)value.FullSizeData;
+                    }
+                    OriginalImageUrl = value.PhotolistThumb;
+                    IsNewImage = false;
+                }
+                else
+                    IsNewImage = true;
+            }
+        }
+
 
         // string with the url of the original image
         private string _originalImageUrl;
@@ -59,8 +79,8 @@ namespace Friendica_Mobile.Mvvm
         }
 
         // saving original image if provided to have a background for the strokes
-        private BitmapImage _originalImage;
-        public BitmapImage OriginalImage
+        private ImageSource _originalImage;
+        public ImageSource OriginalImage
         {
             get { return _originalImage; }
             set { _originalImage = value;
@@ -73,7 +93,9 @@ namespace Friendica_Mobile.Mvvm
         public bool IsRenderingImage
         {
             get { return _isRenderingImage; }
-            set { _isRenderingImage = value; }
+            set { _isRenderingImage = value;
+                OnPropertyChanged("IsRenderingImage");
+            }
         }
 
         // contains image with the rendered content for giving it back to Photos.xaml
@@ -131,35 +153,24 @@ namespace Friendica_Mobile.Mvvm
                 OnPropertyChanged("UsedSpaceWarningColor");
             }
         }
-        
-        #endregion
 
-
-        #region commands
-
-        // save strokes button
-        Mvvm.Command _saveStrokesCommand;
-        public Mvvm.Command SaveStrokesCommand { get { return _saveStrokesCommand ?? (_saveStrokesCommand = new Mvvm.Command(ExecuteSaveStrokes, CanSaveStrokes)); } }
-        private bool CanSaveStrokes()
+        // save current displayed widths/heights of image and inkcanvas - needed for placing invisible ink strokes in the corner
+        private double _shownWidth;
+        public double ShownWidth
         {
-            return true;
+            get { return _shownWidth; }
+            set { _shownWidth = value; }
         }
 
-        private async void ExecuteSaveStrokes()
+        private double _shownHeight;
+        public double ShownHeight
         {
-            // TODO implement correct function for saving strokes into image or into a new white background image
-            // TODO: convert strokes into writeablebitmap together with background image
-            // TODO: save this new image into the App.PhotosVm and start the upload to the server
-            // TODO: don't forget to set an indicator to show the user that we are loading an image
-            // TODO: avoid exiting app without finishing the upload
-            // TODO: test if navigating to another page might be possible while App is uploading data in background in App.PhotosVm
-
-            string errorMsg = "Damit werden die Strokes in das Bild eingefügt, Upload zum Server erfolgt erst im nächsten Bild.";
-            var dialog = new MessageDialogMessage(errorMsg, "", "OK", null);
-            await dialog.ShowDialog(0, 0);
+            get { return _shownHeight; }
+            set { _shownHeight = value; }
         }
 
         #endregion
+
 
         public PhotosInkCanvasViewmodel()
         {
@@ -210,5 +221,6 @@ namespace Friendica_Mobile.Mvvm
             SelectedColor = AvailableColors[7];
             PencilSize = 4;
         }
+
     }
 }

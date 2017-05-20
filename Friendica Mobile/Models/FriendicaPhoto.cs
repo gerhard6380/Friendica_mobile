@@ -32,6 +32,9 @@ namespace Friendica_Mobile.Models
         private const string photoDenyGidKey = "deny_gid";
         private const string photoLinkKey = "link";
         private const string photoDataKey = "data";
+        private const string photoRightsMismatchKey = "rights_mismatch";
+        private const string photoActivitiesKey = "friendica_activities";
+        private const string photoCommentsKey = "friendica_comments";
 
 
         // properties from API return (from JSON)
@@ -154,11 +157,31 @@ namespace Friendica_Mobile.Models
             set { _photoData = value; }
         }
 
+        private bool _photoRightsMismatch;
+        public bool PhotoRightsMismatch
+        {
+            get { return _photoRightsMismatch; }
+            set { _photoRightsMismatch = value; }
+        }
 
+        private FriendicaActivities _photoActivities;
+        public FriendicaActivities PhotoActivities
+        {
+            get { return _photoActivities; }
+            set { _photoActivities = value; }
+        }
+
+        private List<FriendicaPostExtended> _photoComments;
+        public List<FriendicaPostExtended> PhotoComments
+        {
+            get { return _photoComments; }
+            set { _photoComments = value; }
+        }
+
+        
         // other derived properties from API return
 
 
-        // TODO: created as Date, edited as Date, Height as int, width as int, profile as int?
 
         #region ClassConstructors
 
@@ -181,6 +204,9 @@ namespace Friendica_Mobile.Models
             PhotoDenyGid = "";
             PhotoLink = new List<string>();
             PhotoData = "";
+            PhotoRightsMismatch = false;
+            PhotoActivities = new FriendicaActivities();
+            PhotoComments = new List<FriendicaPostExtended>();
         }
 
 
@@ -204,6 +230,9 @@ namespace Friendica_Mobile.Models
             PhotoDenyGid = (string)CheckAttribute(jsonObject, photoDenyCidKey, AttributeTypes.String);
             PhotoLink = (List<string>)CheckAttribute(jsonObject, photoLinkKey, AttributeTypes.StringArray);
             PhotoData = (string)CheckAttribute(jsonObject, photoDataKey, AttributeTypes.String);
+            PhotoRightsMismatch = (bool)CheckAttribute(jsonObject, photoRightsMismatchKey, AttributeTypes.Boolean);
+            PhotoActivities = (FriendicaActivities)CheckAttribute(jsonObject, photoActivitiesKey, AttributeTypes.FriendicaActivities);
+            PhotoComments = (List<FriendicaPostExtended>)CheckAttribute(jsonObject, photoCommentsKey, AttributeTypes.FriendicaPhotoComments);
         }
 
 
@@ -226,6 +255,9 @@ namespace Friendica_Mobile.Models
             PhotoDenyGid = (string)CheckAttribute(jsonObject, photoDenyCidKey, AttributeTypes.String);
             PhotoLink = (List<string>)CheckAttribute(jsonObject, photoLinkKey, AttributeTypes.StringArray);
             PhotoData = (string)CheckAttribute(jsonObject, photoDataKey, AttributeTypes.String);
+            PhotoRightsMismatch = (bool)CheckAttribute(jsonObject, photoRightsMismatchKey, AttributeTypes.Boolean);
+            PhotoActivities = (FriendicaActivities)CheckAttribute(jsonObject, photoActivitiesKey, AttributeTypes.FriendicaActivities);
+            PhotoComments = (List<FriendicaPostExtended>)CheckAttribute(jsonObject, photoCommentsKey, AttributeTypes.FriendicaPost);
         }
 
         #endregion

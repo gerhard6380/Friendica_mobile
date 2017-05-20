@@ -37,7 +37,7 @@ namespace Friendica_Mobile
             this._aclPrivateSelectedContacts = (string)localSettings.Values["ACLPrivateSelectedContacts"];
             this._aclPrivateSelectedGroups = (string)localSettings.Values["ACLPrivateSelectedGroups"];
             this._saveLocalAllowed = (string)localSettings.Values["SaveLocalAllowed"];
-            try { this._saveFullsizePhotosAllowed = (bool)localSettings.Values["SaveFullsizePhotosAllowed"]; } catch { this._saveFullsizePhotosAllowed = true; }
+            try { this._saveFullsizePhotosAllowed = (bool)localSettings.Values["SaveFullsizePhotosAllowed"]; } catch { this._saveFullsizePhotosAllowed = false; }
             this._sendCoordinatesAllowed = (string)localSettings.Values["SendCoordinatesAllowed"];
             if (SaveLocalAllowed == null)
                 SaveLocalAllowed = "true";

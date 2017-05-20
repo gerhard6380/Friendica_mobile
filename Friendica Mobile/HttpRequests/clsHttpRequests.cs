@@ -160,6 +160,41 @@ namespace Friendica_Mobile.HttpRequests
             }
         }
 
+        public virtual async Task<string> DeleteStringAsync(string url, string username, string password)
+        {
+            _url = url;
+            _username = username;
+            _password = password;
+
+            var filter = new HttpBaseProtocolFilter();
+            filter.ServerCredential = new Windows.Security.Credentials.PasswordCredential(_url, _username, _password);
+            filter.AllowUI = false;
+
+            var httpClient = new HttpClient(filter);
+            var headers = httpClient.DefaultRequestHeaders;
+            headers.UserAgent.ParseAdd("ie");
+            headers.UserAgent.ParseAdd("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)");
+            var response = new HttpResponseMessage();
+            var uri = new Uri(_url);
+            try
+            {
+                response = await httpClient.DeleteAsync(uri);
+                _statusCode = response.StatusCode;
+                _returnString = await response.Content.ReadAsStringAsync();
+                _isSuccessStatusCode = response.IsSuccessStatusCode;
+                OnRequestFinishedChanged();
+                return _returnString;
+            }
+            catch (Exception ex)
+            {
+                _errorMessage = ex.Message;
+                _errorHresult = ex.HResult;
+                OnRequestFinishedChanged();
+                return "";
+            }
+        }
+
+
         public virtual async Task<string> GetStringAsync(string url, string username, string password)
         {
             _url = url;

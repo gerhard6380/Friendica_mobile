@@ -2,19 +2,12 @@
 using Friendica_Mobile.Mvvm;
 using Friendica_Mobile.Triggers;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.ApplicationModel.Resources;
+using Windows.Media.Capture;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
@@ -27,6 +20,7 @@ namespace Friendica_Mobile.Views
     /// </summary>
     public sealed partial class Photos : Page
     {
+        ResourceLoader loader = ResourceLoader.GetForCurrentView(); 
         private PrintHelper printHelper;
 
         public Photos()
@@ -48,6 +42,7 @@ namespace Friendica_Mobile.Views
             pageMvvm.NewPhotoalbumAdded += PageMvvm_NewPhotoalbumAdded;
             pageMvvm.PhotoalbumUpdated += PageMvvm_PhotoalbumUpdated;
         }
+
 
         private void PageMvvm_PhotoalbumUpdated(object sender, EventArgs e)
         {
@@ -112,26 +107,69 @@ namespace Friendica_Mobile.Views
             Frame.Navigate(typeof(Views.Settings));
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        protected override async void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-            App.PhotosVm = pageMvvm;
-            base.OnNavigatedFrom(e);
+            if (e.SourcePageType != typeof(A5_InkCanvas) && e.SourcePageType != typeof(A6_PhotoRights) 
+                        && e.SourcePageType != typeof(A7_PhotosCropping) && e.SourcePageType != typeof(A1_ShowThread))
+            {
+                pageMvvm.CheckLoadingStatus();
+                if (pageMvvm.HasUnsavedContent)
+                {
+                    // we have unsaved changes, don't navigate away and inform user about this
+                    e.Cancel = true;
+                    // "there are unsaved changes on photos, do you want to discard them"
+                    string errorMsg = loader.GetString("messageDialogPhotosAskForDiscardingChanges");
+                    var dialog = new MessageDialogMessage(errorMsg, "", loader.GetString("buttonYes"), loader.GetString("buttonNo"));
+                    await dialog.ShowDialog(0, 1);
+
+                    // if yes, remove new content and continue navigation
+                    if (dialog.Result == 0)
+                    {
+                        pageMvvm.ResetAllChanges();
+                        var frame = App.GetFrameForNavigation();
+                        frame.Navigate(e.SourcePageType);
+                    }
+                    // if no, jump to first unsaved content
+                    else
+                    {
+                        pageMvvm.SetFirstUnsavedElement();
+                    }
+                    return;
+                }
+            }
+            App.PhotosVm = (PhotosViewmodel)this.DataContext;
 
             // disconnect printing service
             if (printHelper != null)
                 printHelper.UnregisterForPrinting();
+
+            base.OnNavigatingFrom(e);
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             if (App.PhotosVm != null)
+            {
                 this.DataContext = App.PhotosVm;
+                pageMvvm = (PhotosViewmodel)this.DataContext;
+            }
 
             //// user could navigate from settings, so we might need to reload the settings indicator
             //if (e.NavigationMode != NavigationMode.Back)
             //pageMvvm.CheckServerSettings();
 
-            pageMvvm.LoadContentFromServer();
+            if (e.NavigationMode != NavigationMode.Back)
+            {
+                // don't load again if already available (as navigated away and back before), user can always manually reload
+                if (pageMvvm.Albums == null || pageMvvm.Albums.Count == 0)
+                    pageMvvm.LoadContentFromServer();
+            }
+            else
+                pageMvvm.SelectedPhotoalbum.SelectedPhoto.CheckForNeededServerUpdate();
+
+            // this will trigger the OrientationDeviceFamilyTrigger to rebuild correct display after loading page
+            App.Settings.ShellWidth = App.Settings.ShellWidth;
+
             base.OnNavigatedTo(e);
 
             // initialize common helper class and register for printing
@@ -178,7 +216,8 @@ namespace Friendica_Mobile.Views
             var selectedItem = flipview.SelectedItem as FriendicaPhotoExtended;
             listViewSelectedAlbum.ScrollIntoView(selectedItem);
             // load mediumsize image if user moves to the picture (data not yet loaded if user has disabled local saving at all)
-            if (selectedItem != null && !selectedItem.MediumSizeLoaded)
+            // and do not load if it is not yet uploaded to server
+            if (selectedItem != null && !selectedItem.MediumSizeLoaded && !selectedItem.NewUploadPlanned)
             {
                 selectedItem.LoadMediumSize();
             }
@@ -215,5 +254,6 @@ namespace Friendica_Mobile.Views
             var mvvm = this.DataContext as PhotosViewmodel;
             mvvm.AlbumEditingEnabled = false;
         }
-    }
+
+   }
 }

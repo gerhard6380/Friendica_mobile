@@ -127,6 +127,7 @@
     </Compile>
     <Compile Include="AppSettings.cs" />
     <Compile Include="clsConvertDroppedContent.cs" />
+    <Compile Include="clsCropBitmap.cs" />
     <Compile Include="clsListBoxExtensionsGroups.cs" />
     <Compile Include="clsListBoxExtensionsContacts.cs" />
     <Compile Include="clsManageBackgroundTasks.cs" />
@@ -134,9 +135,11 @@
     <Compile Include="BindableClass.cs" />
     <Compile Include="clsDetectTrial.cs" />
     <Compile Include="clsHtmlToRichTextBlock.cs" />
+    <Compile Include="clsRenderInkToImage.cs" />
     <Compile Include="clsVariableGridView.cs" />
     <Compile Include="clsSQLiteConnection.cs" />
     <Compile Include="clsTileCounter.cs" />
+    <Compile Include="clsWriteableBitmapExtensions.cs" />
     <Compile Include="Converters\IsReceivedMessageToMarginConverter.cs" />
     <Compile Include="Converters\MessagesSeenToThicknessConverter.cs" />
     <Compile Include="Converters\PhotosViewVisibleConverter.cs" />
@@ -221,6 +224,9 @@
     <Compile Include="Mvvm\FriendicaEnumMaritalViewmodel.cs" />
     <Compile Include="Mvvm\FriendicaEnumGenderViewmodel.cs" />
     <Compile Include="Mvvm\HomeViewmodel.cs" />
+    <Compile Include="Mvvm\PhotoCropper.cs" />
+    <Compile Include="Mvvm\PhotoRightsViewmodel.cs" />
+    <Compile Include="Mvvm\PhotoSelectedRegion.cs" />
     <Compile Include="Mvvm\PhotosInkCanvasViewmodel.cs" />
     <Compile Include="Mvvm\PhotosViewmodel.cs" />
     <Compile Include="Mvvm\ProfileUsersViewmodel.cs" />
@@ -271,6 +277,12 @@
     </Compile>
     <Compile Include="Views\10_Home.xaml.cs">
       <DependentUpon>10_Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\A7_PhotosCropping.xaml.cs">
+      <DependentUpon>A7_PhotosCropping.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\A6_PhotoRights.xaml.cs">
+      <DependentUpon>A6_PhotoRights.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\A5_InkCanvas.xaml.cs">
       <DependentUpon>A5_InkCanvas.xaml</DependentUpon>
@@ -414,6 +426,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\A7_PhotosCropping.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\A6_PhotoRights.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\A5_InkCanvas.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -493,8 +513,8 @@
     <SDKReference Include="SQLite.UWP.2015, Version=3.12.1">
       <Name>SQLite for Universal Windows Platform</Name>
     </SDKReference>
-    <SDKReference Include="WindowsMobile, Version=10.0.14393.0">
-      <Name>Windows Mobile Extensions for the UWP</Name>
+    <SDKReference Include="WindowsMobile, Version=10.0.10586.0">
+      <Name>Windows Mobile Extensions for the UWP %28WindowsMobile, Version=10.0.10586.0%29</Name>
     </SDKReference>
   </ItemGroup>
   <ItemGroup>

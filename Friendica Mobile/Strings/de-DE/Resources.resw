@@ -1887,7 +1887,7 @@ Bist du dir absolut sicher?</value>
     <value>Es gab ein unerwartetes Problem beim Umbenennen des Albums '{0}'.</value>
     <comment>Photos.xaml: info to user that the selected album was not renamed because of an unknown error (parameter 0 = old name of album)</comment>
   </data>
-  <data name="textblockPhotosServerOperationPending.Text" xml:space="preserve">
+  <data name="textblockPhotosServerOperationRunning.Text" xml:space="preserve">
     <value>Führt Änderungen am Server durch...</value>
     <comment>Photos.xaml: red info box to user showing that app is currently performing actions on server (renaming, deleting, uploading etc.)</comment>
   </data>
@@ -1896,11 +1896,221 @@ Bist du dir absolut sicher?</value>
     <comment>Photos.xaml: info to suer that the upload of a new photo or the change of details for an existing photo has not been performed because of an internal server error - most probably the size exceeeds the limit set by the admin (parameter 0 = filename of photo)</comment>
   </data>
   <data name="messageDialogPhotosUploadingUnknownError" xml:space="preserve">
-    <value>Es gab ein unerwartetes Problem beim Hochladen oder Ändern des Photos '{0}'.</value>
+    <value>Es gab ein unerwartetes Problem beim Hochladen, Ändern oder Löschen des Photos '{0}'.</value>
     <comment>Photos.xaml: info to user that the upload of a new photo or the change of details for an existing photo has not been performed because of an unknown error (parameter 0 = filename of photo)</comment>
   </data>
   <data name="messageDialogPhotoUploadingNoReaction" xml:space="preserve">
-    <value>Der Server hat beim Hochladen oder Ändern des Photos '{0}' nicht reagiert. Willst du es nochmal versuchen?</value>
+    <value>Der Server hat beim Hochladen, Ändern oder Löschen des Photos '{0}' nicht reagiert. Willst du es nochmal versuchen?</value>
     <comment>Photos.xaml: info to user that the upload of a new photo or the change of details for an existing photo has not been performed because server has not reacted (parameter 0 = filename of photo)</comment>
+  </data>
+  <data name="pagePhotoRights.FlowDirection" xml:space="preserve">
+    <value>LeftToRight</value>
+    <comment>Defines Text direction for the language</comment>
+  </data>
+  <data name="pageTitlePhotoRights.Text" xml:space="preserve">
+    <value>Bilderrechte</value>
+    <comment>Name on top of view A6_PhotoRights.xaml</comment>
+  </data>
+  <data name="checkboxPhotoACLMismatch.Content" xml:space="preserve">
+    <value>Abweichende Rechte</value>
+    <comment>PhotoRights.xaml: checkbox indicating that access rights of photo and access rights of comments are differeing</comment>
+  </data>
+  <data name="checkboxPhotoIsCommentedLiked.Content" xml:space="preserve">
+    <value>Bild kommentiert/geliked</value>
+    <comment>PhotoRights.xaml: checkbox indicating that photo has been commented or liked already (has implication on changing rights now)</comment>
+  </data>
+  <data name="checkboxPhotoUploadNew.Content" xml:space="preserve">
+    <value>Neu hochladen</value>
+    <comment>PhotoRights.xaml: checkbox where user can disable the new upload of a photo after changing rights (then it will only update photo rights on server)</comment>
+  </data>
+  <data name="textblockPhotoRightsHelp1.Text" xml:space="preserve">
+    <value>Das nachträgliche Ändern von Foto-Berechtigungen ist grundsätzlich problematisch. Bereits vorhandene Kommentare und Likes deiner Kontakte behalten die Sichtbarkeitseinstellungen auch nach der Änderung. Daher löscht die App bei der Änderung von Rechten normalerweise das bisherige Foto und lädt es für dich mit den neuen Berechtigungen erneut hoch. Dies hat aber zur Folge, dass bereits vorhandene Kommentare und Likes auch gelöscht werden. Zudem können bereits vorhandene Links auf das Foto (zB in einem Posting) unbrauchbar werden.</value>
+    <comment>PhotoRights.xaml: text shown in the flyout when user taps the help button - explaining the issue with photo rights when changing them</comment>
+  </data>
+  <data name="textblockPhotoRightsHelp2.Text" xml:space="preserve">
+    <value>Wenn du den Haken für "Neu hochladen" rausnimmst, werden die Berechtigungen für das Foto wie gewünscht angepasst, die Kommentare/Likes bleiben unverändert bestehen. Die Links in bestehenden Posts etc. bleiben dadurch auch erhalten, aber es können unerwünschte Nebeneffekte auftreten. Du siehst hier, ob für das gewählte Foto diese Abweichungen zwischen Foto-Rechten und Kommentar-Rechten bestehen.</value>
+    <comment>PhotoRights.xaml: text shown in the flyout when user taps the help button- explaining the issue wiht photo rights when changing them</comment>
+  </data>
+  <data name="textPhotoRightsAddContact" xml:space="preserve">
+    <value>Wird das Foto nicht neu hochgeladen, können die neu hinzugefügten Gruppen/Kontakte keine Kommentare/Likes abgeben. Sie sehen auch bereits vorhandene Kommentare/Likes nicht.</value>
+    <comment>PhotoRights.xaml: show hint after changing rights to what implications this change could have</comment>
+  </data>
+  <data name="textPhotoRightsChangePrivToPub" xml:space="preserve">
+    <value>Wird das Foto nicht neu hochgeladen, bleiben die bereits vorhandenen Kommentare und/oder Likes nur für die bisher berechtigten Gruppen/Kontakte sichtbar. Und auch nur diese können weitere Kommentare hinzufügen. Deine übrigen Kontakte sehen dein Foto nach der Änderung zwar in deinem Profil, jedoch ohne die bisherigen Kommentare/Likes und können auch keine eigenen Kommentare posten oder dein Foto liken.</value>
+    <comment>PhotoRights.xaml: show hint after changing rights to what implications this change could have</comment>
+  </data>
+  <data name="textPhotoRightsChangePubToPriv" xml:space="preserve">
+    <value>Wird das Foto nicht neu hochgeladen, bleiben die bereits vorhandenen Einträge öffentlich und werden somit auf der Gemeinschaftseite deines Server samt Foto sichtbar bleiben. Auch neue Kommentare/Likes werden weiterhin dort veröffentlicht.</value>
+    <comment>PhotoRights.xaml: show hint after changing rights to what implications this change could have</comment>
+  </data>
+  <data name="textPhotoRightsRemoveContact" xml:space="preserve">
+    <value>Wird das Foto nicht neu hochgeladen, bleibt es für die eigentlich nicht mehr berechtigten Gruppen/Kontakte trotzdem sichtbar, falls bereits Kommentare/Likes vorhanden waren. Sie können auch weiterhin Kommentare/Likes für das Foto einstellen.</value>
+    <comment>PhotoRights.xaml: show hint after changing rights to what implications this change could have</comment>
+  </data>
+  <data name="radiobuttonPhotoRightsPrivate.Content" xml:space="preserve">
+    <value>Eingeschränkt sichtbar für</value>
+    <comment>PhotoRights.xaml: radiobutton for selecting if photo is publicly or limited visible - limited</comment>
+  </data>
+  <data name="radiobuttonPhotoRightsPublic.Content" xml:space="preserve">
+    <value>Öffentlich sichtbar</value>
+    <comment>PhotoRights.xaml: radiobutton for selecting if photo is publicly or limited visible - public photo</comment>
+  </data>
+  <data name="textblockPhotoACLContacts.Text" xml:space="preserve">
+    <value>Kontakte:</value>
+    <comment>PhotoRights.xaml: header text for the contact selector</comment>
+  </data>
+  <data name="textblockPhotoACLContactsHint.Text" xml:space="preserve">
+    <value>Du kannst selbstverständlich auch Berechtigungen für einzelne Kontakte vergeben. Allerdings hat dies die Problematik, dass die Berechtigungen für das Kommentieren/Liken deiner Fotos im Nachhinein nicht mehr verändert werden können. Wenn du also im Nachhinein weitere Kontakte für das Foto berechtigst, werden diese zwar das Foto in deinem Profil sehen können, aber sie können die Kommentare/Likes andere Kontakte nicht sehen und dürfen selber nicht kommentieren. Wir raten dir dazu, die Berechtigungen für Fotos auf Gruppen einzurichten. Somit kannst du jederzeit neue Kontakte zur Gruppe hinzufügen oder Gruppenmitglieder entfernen.</value>
+    <comment>PhotoRights.xaml: hint on using contacts for photo access rights as these could cause issues, hint to use groups as they are better supported.</comment>
+  </data>
+  <data name="textblockPhotoACLContactsHintHeader.Text" xml:space="preserve">
+    <value>Hinweis zur Verwendung von einzelnen Kontakten bei der Berechtigung von Bildern....</value>
+    <comment>PhotoRights.xaml: text shown for user to click to show the flyout with the detailed explanation why single contacts are not good for photo rights</comment>
+  </data>
+  <data name="textblockPhotoACLGroups.Text" xml:space="preserve">
+    <value>Gruppen:</value>
+    <comment>PhotoRights.xaml: header text for the group selector</comment>
+  </data>
+  <data name="messageDialogPhotoRightsNoContactData" xml:space="preserve">
+    <value>Die Kontaktdaten wurden im Hintergrund noch nicht vollständig geladen, möchtest du es nochmal versuchen?</value>
+    <comment>PhotosRights.xaml: app loads all contact data into listboxes, if contacts haven't been loaded yet in background, ask user to retry</comment>
+  </data>
+  <data name="messageDialogPhotoRightsNoContactSelected" xml:space="preserve">
+    <value>Du möchtest das Bild eigentlich nicht öffentlich sichtbar machen, hast aber keine Gruppe und keinen Kontakt ausgewählt. Bitte wähle mindestens eine Gruppe oder einen Kontakt aus.</value>
+    <comment>PhotosRights.xaml: user has not selected any group or contact for a private visible photo. Ask him/her for making photo publicly visible or not?</comment>
+  </data>
+  <data name="textblockShowThreadNoDataPhoto.Text" xml:space="preserve">
+    <value>Zum ausgewählten Foto gibt es bis jetzt noch keine Kommentare, Likes oder Dislikes. </value>
+    <comment>ShowThread.xaml: show an info if there were no comments, likes, dislikes for a photo</comment>
+  </data>
+  <data name="buttonPhotoStartUpload.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Foto auf den Server hochladen...</value>
+    <comment>Photo.xaml: tooltip shown when user hovers over button for uploading a photo to server</comment>
+  </data>
+  <data name="textblockPhotosLoadingPhotos.Text" xml:space="preserve">
+    <value>Importiert die neuen Fotos in die App...</value>
+    <comment>Photos.xaml: red info box to user showing that app is currently importing the photos into app (upload to server is a separate step)</comment>
+  </data>
+  <data name="messageDialogPhotosAskForUploadConfirmation" xml:space="preserve">
+    <value>Bitte denke daran, dass eine nachträgliche Änderung der Berechtigungen zu unerwünschten Ergebnissen führen kann.
+
+Bist du dir sicher, dass du das Foto mit den getätigten Einstellungen hochladen willst?</value>
+    <comment>Photos.xaml: new photos are only stored in app in a first step. User can change several setting before hitting upload button. This is the confirmation question before definitely uploading to server. </comment>
+  </data>
+  <data name="messageDialogPhotosAskForConfirmationACLUpdateAsNew" xml:space="preserve">
+    <value>Achtung: das Foto wird mit den bisherigen Rechten unwiderbringlich gelöscht und mit den neuen Berechtigungen neu hochgeladen. 
+
+Willst du fortfahren?</value>
+    <comment>Photos.xaml: confirmation dialog if user changes ACL of a photo with checking "new upload" box</comment>
+  </data>
+  <data name="messageDialogPhotosAskForConfirmationACLUpdatePhoto" xml:space="preserve">
+    <value>Achtung: die Rechte werden ohne erneutes Hochladen geändert, das kann die Kommentare und Likes unbrauchbar machen. 
+
+Willst du fortfahren?</value>
+    <comment>Photos.xaml: confirmation dialog if user changes ACL of a photo without checking "new upload" box</comment>
+  </data>
+  <data name="messageDialogPhotosAskForConfirmationDelete" xml:space="preserve">
+    <value>Das Foto wird nun unwiderbringlich vom Server gelöscht. 
+
+Möchtest du fortfahren?</value>
+    <comment>Photos.xaml: confirmation dialog to ask user before deleting a photo from server</comment>
+  </data>
+  <data name="messageDialogPhotosAskForConfirmationDeleteLocal" xml:space="preserve">
+    <value>Das Foto wird unwiderbringlich gelöscht. 
+
+Möchtest du fortfahren?</value>
+    <comment>Photos.xaml: confirmation dialog to ask user before deleting a photo locally (not yet uploaded to server);</comment>
+  </data>
+  <data name="messageDialogPhotosAskForSavingStrokes" xml:space="preserve">
+    <value>Du hast deine Freihandzeichnungen noch nicht gespeichert. 
+
+Möchtest du diese jetzt speichern?</value>
+    <comment>InkCanvas.xaml: when navigating back having new strokes not yet saved, user will be asked to save strokes or not</comment>
+  </data>
+  <data name="textblockPhotosRenderingImage.Text" xml:space="preserve">
+    <value>Die App kombiniert deine Freihandzeichnungen in den Hintergrund...</value>
+    <comment>InkCanvas.xaml: showing red progress box with this text to inform user that app is currently working.</comment>
+  </data>
+  <data name="pagePhotosCropping.FlowDirection" xml:space="preserve">
+    <value>LeftToRight</value>
+    <comment>Defines Text direction for the language</comment>
+  </data>
+  <data name="appBarPhotosCroppingSave.Label" xml:space="preserve">
+    <value>Speichern</value>
+    <comment>PhotosCropping.xaml: caption of the appbarButton for saving the selected area as new profile image</comment>
+  </data>
+  <data name="appBarPhotosCroppingSave.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Den ausgewählten Bereich als Profilbild speichern...</value>
+    <comment>PhotosCropping.xaml: tooltip of the appbarButton for saving the selected area as new profile image</comment>
+  </data>
+  <data name="messageDialogPhotosAskForUploadConfirmationInked" xml:space="preserve">
+    <value>Wenn das Foto auf dem Server ausgetauscht wird, kannst du das nicht mehr rückgängig machen.  
+
+Bist du dir sicher, dass du das Foto mit den getätigten Einstellungen hochladen willst?</value>
+    <comment>Photos.xaml: new photos are only stored in app in a first step. User can change several setting before hitting upload button. This is the confirmation question before definitely uploading to server when changing the photo data (inking on image). </comment>
+  </data>
+  <data name="messageDialogPhotosShowRightsProfileimage" xml:space="preserve">
+    <value>Profilbilder sind immer öffentlich. Falls du verschiedene Profile mit unterschiedlichen Bildern verwendest, sehen aber nur die für das Profil berechtigten Kontakte auch das entsprechende Profilbild.</value>
+    <comment>Photos.xaml: info to user when trying to change acl settings on a profileimage (they are by default always public)</comment>
+  </data>
+  <data name="textblockPhotosCroppingHeaderFullsize.Text" xml:space="preserve">
+    <value>Vorschau (groß):</value>
+    <comment>PhotosCropping.xaml: header for the preview of 175x175 sized profile image</comment>
+  </data>
+  <data name="textblockPhotosCroppingHeaderMediumsize.Text" xml:space="preserve">
+    <value>Vorschau (mittel):</value>
+    <comment>PhotosCropping.xaml: header for the preview of 80x80 sized profile image</comment>
+  </data>
+  <data name="textblockPhotosCroppingHeaderOriginal.Text" xml:space="preserve">
+    <value>Originalbild:</value>
+    <comment>PhotosCropping.xaml: header for the original image where user can select the area for the profile image</comment>
+  </data>
+  <data name="textblockPhotosCroppingHeaderThumbsize.Text" xml:space="preserve">
+    <value>Vorschau (klein):</value>
+    <comment>PhotosCropping.xaml: header fro the preview of 48x48 sized profile image</comment>
+  </data>
+  <data name="buttonPhotoMoveToAlbum.Content" xml:space="preserve">
+    <value>Verschieben</value>
+    <comment>Photos.xaml: caption on the button in flyout to confirm moving the photo</comment>
+  </data>
+  <data name="buttonPhotoStartMoveToAlbum.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Verschiebt das Photo in ein anders Album...</value>
+    <comment>Photos.xaml: tooltip of the button for moving photo to another album</comment>
+  </data>
+  <data name="messageDialogPhotosMovingNoAlbumSelected" xml:space="preserve">
+    <value>Du hast kein Album ausgewählt, das Photo wurde nicht verschoben.</value>
+    <comment>Photos.xaml: message when user clicks the move button for moving a photo to another album but has not selected the new album</comment>
+  </data>
+  <data name="stringPhotoNewAlbumForMoving" xml:space="preserve">
+    <value>Neues Album</value>
+    <comment>Photos.xaml: when moving a photo to another album user can choose "New album" as the target - this string is used in the dropdown </comment>
+  </data>
+  <data name="textblockPhotosSelectNewAlbum.Text" xml:space="preserve">
+    <value>In welches Album soll das Photo verschoben werden:</value>
+    <comment>Photos.xaml: header text in flyout for selecting the target album for moving a photo</comment>
+  </data>
+  <data name="messageDialogPhotosAskForDiscardingChanges" xml:space="preserve">
+    <value>Es gibt Änderungen an einem oder mehreren Fotos, die noch nicht gespeichert wurden. 
+
+Möchten Sie diese Änderungen verwerfen?</value>
+    <comment>Photos.xaml: confirmation dialog to ask user before navigating away while unsaved changes are still there</comment>
+  </data>
+  <data name="messageDialogPhotosNoServerSupport" xml:space="preserve">
+    <value>Diese Aktion würde jetzt eine Änderung auf deinem Friendica-Server durchführen. Du hast noch keinen Server hinterlegt, mit den Beispieldaten ist diese Aktion also nur lokal in der App möglich. </value>
+    <comment>Photos.xaml: hint to user in sample mode when trying to execute a server operation. As no server no action possible. </comment>
+  </data>
+  <data name="textblockPhotosMetMuseum.Text" xml:space="preserve">
+    <value>Das New Yorker Metropolitan Museum or Art hat vor einiger Zeit eine große Anzahl von Bildern für die freie Verwendung freigegeben. Die hier abgebildeten Beispielbilder stammen aus dieser Sammlung.. Bitte besucht das Museum und unterstützt damit diese großzügige Aktion.</value>
+    <comment>Photos.xaml: hint in samples mode regarding the source of the pictures (Creative commons of Metropolitan Museum of Art, New York)</comment>
+  </data>
+  <data name="textblockPhotosMetMuseumPart2.Text" xml:space="preserve">
+    <value>Die Bilddateien sind recht groß, bitte habt etwas Geduld bei der Vollbildanzeige. </value>
+    <comment>Photos.xaml: hint in samples mode regarding the source of the pictures (Creative commons of Metropolitan Museum of Art, New York)</comment>
+  </data>
+  <data name="messageDialogPhotosAskForConfirmationCroppingOk" xml:space="preserve">
+    <value>Der Bildzuschnitt wird nun übernommen. 
+
+Bist du dir sicher?</value>
+    <comment>Photos.xaml: ask user for confirmation when leaving the cropping window</comment>
   </data>
 </root>

@@ -20,6 +20,9 @@ namespace Friendica_Mobile.Models
         private const string photolistFilenameKey = "filename";
         private const string photolistTypeKey = "type";
         private const string photolistThumbKey = "thumb";
+        private const string photolistCreatedKey = "created";
+        private const string photolistEditedKey = "edited";
+        private const string photolistDescKey = "desc";
 
 
         // properties from API return (from JSON)
@@ -58,6 +61,27 @@ namespace Friendica_Mobile.Models
             set { _photolistThumb = value; }
         }
 
+        private string _photolistCreated;
+        public string PhotolistCreated
+        {
+            get { return _photolistCreated; }
+            set { _photolistCreated = value; }
+        }
+
+        private string _photolistEdited;
+        public string PhotolistEdited
+        {
+            get { return _photolistEdited; }
+            set { _photolistEdited = value; }
+        }
+
+        private string _photolistDesc;
+        public string PhotolistDesc
+        {
+            get { return _photolistDesc; }
+            set { _photolistDesc = value; }
+        }
+
 
         // class constructors
 
@@ -68,6 +92,9 @@ namespace Friendica_Mobile.Models
             PhotolistFilename = "";
             PhotolistType = "";
             PhotolistThumb = "";
+            PhotolistCreated = "";
+            PhotolistEdited = "";
+            PhotolistDesc = "";
         }
 
 
@@ -79,6 +106,9 @@ namespace Friendica_Mobile.Models
             PhotolistFilename = (string)CheckAttribute(jsonObject, photolistFilenameKey, AttributeTypes.String);
             PhotolistType = (string)CheckAttribute(jsonObject, photolistTypeKey, AttributeTypes.String);
             PhotolistThumb = (string)CheckAttribute(jsonObject, photolistThumbKey, AttributeTypes.String);
+            PhotolistCreated = (string)CheckAttribute(jsonObject, photolistCreatedKey, AttributeTypes.String);
+            PhotolistEdited = (string)CheckAttribute(jsonObject, photolistEditedKey, AttributeTypes.String);
+            PhotolistDesc = (string)CheckAttribute(jsonObject, photolistDescKey, AttributeTypes.String);
         }
 
 
@@ -89,6 +119,9 @@ namespace Friendica_Mobile.Models
             PhotolistFilename = (string)CheckAttribute(jsonObject, photolistFilenameKey, AttributeTypes.String);
             PhotolistType = (string)CheckAttribute(jsonObject, photolistTypeKey, AttributeTypes.String);
             PhotolistThumb = (string)CheckAttribute(jsonObject, photolistThumbKey, AttributeTypes.String);
+            PhotolistCreated = (string)CheckAttribute(jsonObject, photolistCreatedKey, AttributeTypes.String);
+            PhotolistEdited = (string)CheckAttribute(jsonObject, photolistEditedKey, AttributeTypes.String);
+            PhotolistDesc = (string)CheckAttribute(jsonObject, photolistDescKey, AttributeTypes.String);
         }
 
     }

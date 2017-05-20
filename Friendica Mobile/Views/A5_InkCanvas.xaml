@@ -111,6 +111,7 @@
                 <!-- button for erasing all strokes, opening a flyout for questioning user -->
                 <Button x:Name="buttonDeleteStrokes"
                         Width="48" Height="48"
+                        Style="{StaticResource ButtonInkCanvasStyle}"
                         Visibility="{Binding IsInkToolBarPresent, Converter={StaticResource BoolToVisibilityCollapsedConverter}}">
                     <FontIcon Glyph="&#xEF17;" FontFamily="Segoe MDL2 Assets" FontSize="24" />
                     <Button.Flyout>
@@ -124,6 +125,7 @@
                 <!-- dropdown for pencil settings (thinkness and color) -->
                 <Button x:Name="buttonPencilSettings" 
                         Width="48" Height="48"
+                        Style="{StaticResource ButtonInkCanvasStyle}"
                         Visibility="{Binding IsInkToolBarPresent, Converter={StaticResource BoolToVisibilityCollapsedConverter}}">
                     <Grid>
                         <FontIcon Glyph="&#xE76D;" FontFamily="Segoe MDL2 Assets" FontSize="24" />
@@ -161,7 +163,8 @@
                 <!-- button for saving -->
                 <Button x:Name="buttonSavingStrokes" x:Uid="buttonSavingStrokes"
                         Width="48" Height="48"
-                        Command="{Binding SaveStrokesCommand}">
+                        Style="{StaticResource ButtonInkCanvasStyle}"
+                        Click="buttonSavingStrokes_Click">
                     <FontIcon Glyph="&#xE74E;" FontFamily="Segoe MDL2 Assets" FontSize="24" />
                 </Button>
             </StackPanel>
@@ -185,5 +188,25 @@
                 </Flyout>
             </Button.Flyout>
         </Button>
+
+        <!-- red box indicating that app is combining strokes into image -->
+        <RelativePanel Background="Red"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Stretch"
+                       Margin="4,0,4,0"
+                       Visibility="{Binding IsRenderingImage, Converter={StaticResource BoolToVisibilityConverter}}">
+            <ProgressRing x:Name="progressPhotoRenderingImage"
+                          IsActive="True"
+                          Foreground="White"
+                          Margin="36,0,36,4"
+                          RelativePanel.AlignVerticalCenterWithPanel="True"
+                          RelativePanel.AlignLeftWithPanel="True"/>
+            <TextBlock x:Name="textblockPhotosRenderingImage" x:Uid="textblockPhotosRenderingImage"
+                       Foreground="White"
+                       TextWrapping="Wrap"
+                       RelativePanel.RightOf="progressPhotoRenderingImage" 
+                       RelativePanel.AlignVerticalCenterWithPanel="True" />
+        </RelativePanel>
+
     </Grid>
 </Page>

@@ -1,18 +1,12 @@
-﻿using Friendica_Mobile.Mvvm;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
-using Windows.Storage;
-using Windows.UI.Notifications;
 using Windows.UI.Popups;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 namespace Friendica_Mobile.Views
 {
@@ -166,15 +160,13 @@ namespace Friendica_Mobile.Views
             // in that case fire event in order to navigate back to conversation overview
             if (App.PhotosNavigatedIntoAlbum)
             {
-                if (navigationAllowed)
-                    BackToAlbumsRequested?.Invoke(this, EventArgs.Empty);
+                BackToPhotoAlbumsIfAllowed(navigationAllowed);
                 return;
             }
 
             if (navigationAllowed)
             {
                 if (this.contentFrame == null)
-
                 {
                     return;
                 }
@@ -261,8 +253,7 @@ namespace Friendica_Mobile.Views
             // in that case fire event in order to navigate back to conversation overview
             if (App.PhotosNavigatedIntoAlbum)
             {
-                if (navigationAllowed)
-                    BackToAlbumsRequested?.Invoke(this, EventArgs.Empty);
+                BackToPhotoAlbumsIfAllowed(navigationAllowed);
             }
 
             if (this.contentFrame.CanGoBack)
@@ -271,8 +262,20 @@ namespace Friendica_Mobile.Views
                 {
                     App.NavStatus = NavigationStatus.OK;
                     if (this.contentFrame.CanGoBack)
-                        this.contentFrame.GoBack();
+                        contentFrame.GoBack();
                 }
+            }
+        }
+
+        private void BackToPhotoAlbumsIfAllowed(bool navigationAllowed)
+        {
+            // don't fire event when we are navigation between photo related pages, because event sets SelectedPhoto to null and goes back to album overview
+            if (navigationAllowed)
+            {
+                var pageType = App.GetFrameForNavigation().Content.GetType();
+                if (pageType != typeof(A5_InkCanvas) && pageType != typeof(A6_PhotoRights) 
+                    && pageType != typeof(A7_PhotosCropping) && pageType != typeof(A1_ShowThread))
+                    BackToAlbumsRequested?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -453,6 +456,10 @@ namespace Friendica_Mobile.Views
                         await dialog.ShowDialog(0, 0);
                         return false;
                     }
+                    // TODO: remove the following
+                //// photo changing is always return false
+                //case NavigationStatus.PhotosChanged:
+                //    return false;
                 // Fallback-Option für alle anderen Fälle
                 default:
                     {

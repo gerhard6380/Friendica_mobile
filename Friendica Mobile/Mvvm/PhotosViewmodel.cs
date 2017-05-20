@@ -1,17 +1,18 @@
 ﻿using Friendica_Mobile.HttpRequests;
 using Friendica_Mobile.Models;
+using Friendica_Mobile.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.Media.Capture;
+using Windows.Storage;
 using Windows.Storage.Pickers;
-using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Imaging;
-using Windows.Web.Http;
 
 
 namespace Friendica_Mobile.Mvvm
@@ -51,6 +52,16 @@ namespace Friendica_Mobile.Mvvm
             }
         }
 
+        // indicator if app is loading new photos into view for uploading (later started by user)
+        private bool _isLoadingNewPhotos;
+        public bool IsLoadingNewPhotos
+        {
+            get { return _isLoadingNewPhotos; }
+            set { _isLoadingNewPhotos = value;
+                OnPropertyChanged("IsLoadingNewPhotos"); }
+        }
+
+
         // local indicators if different processes are already running
         private bool _isSavingChangedAlbumname;
 
@@ -67,6 +78,13 @@ namespace Friendica_Mobile.Mvvm
             }
         }
 
+        // property with the localized captions for the profileimages album
+        private Dictionary<string, string> _profileimagesCaption;
+        public Dictionary<string, string> ProfileimagesCaption
+        {
+            get { return _profileimagesCaption; }
+            set { _profileimagesCaption = value; }
+        }
 
         // indicator if server is not supporting messages API for App
         private bool _noServerSupport;
@@ -105,7 +123,6 @@ namespace Friendica_Mobile.Mvvm
             }
         }
 
-
         // contains the albums from the server
         private ObservableCollection<FriendicaPhotoalbum> _albums;
         public ObservableCollection<FriendicaPhotoalbum> Albums
@@ -125,6 +142,15 @@ namespace Friendica_Mobile.Mvvm
             get { return _selectedPhotoalbum; }
             set
             {
+                if (SelectedPhotoalbum != null)
+                {
+                    IsSelectedPhotoalbum = false;
+                    SelectedPhotoalbum.PrintButtonClicked -= SelectedPhotoalbum_PrintButtonClicked;
+                    SelectedPhotoalbum.LastPhotoDeleted -= SelectedPhotoalbum_LastPhotoDeleted;
+                    SelectedPhotoalbum.NewProfileimageRequested -= SelectedPhotoalbum_NewProfileimageRequested;
+                    SelectedPhotoalbum.MovePhotoToAlbumRequested -= SelectedPhotoalbum_MovePhotoToAlbumRequested;
+                    SelectedPhotoalbum.CheckLoadingStatusRequested -= SelectedPhotoalbum_CheckLoadingStatusRequested;
+                }
                 _selectedPhotoalbum = value;
                 if (value == null)
                     IsSelectedPhotoalbum = false;
@@ -132,18 +158,20 @@ namespace Friendica_Mobile.Mvvm
                 {
                     IsSelectedPhotoalbum = true;
                     SelectedPhotoalbum.PrintButtonClicked += SelectedPhotoalbum_PrintButtonClicked;
+                    SelectedPhotoalbum.LastPhotoDeleted += SelectedPhotoalbum_LastPhotoDeleted;
+                    SelectedPhotoalbum.NewProfileimageRequested += SelectedPhotoalbum_NewProfileimageRequested;
+                    SelectedPhotoalbum.MovePhotoToAlbumRequested += SelectedPhotoalbum_MovePhotoToAlbumRequested;
+                    SelectedPhotoalbum.CheckLoadingStatusRequested += SelectedPhotoalbum_CheckLoadingStatusRequested;
+                    SetSelectablePhotoalbums();
+                    PhotoalbumUpdated?.Invoke(value, EventArgs.Empty);
                 }
                 EditPhotoalbumCommand.RaiseCanExecuteChanged();
                 DeletePhotoalbumCommand.RaiseCanExecuteChanged();
                 AddFromDeviceCommand.RaiseCanExecuteChanged();
                 AddFromCameraCommand.RaiseCanExecuteChanged();
+                AddEmptyInkCanvasCommand.RaiseCanExecuteChanged();
                 OnPropertyChanged("SelectedPhotoalbum");
             }
-        }
-
-        private void SelectedPhotoalbum_PrintButtonClicked(object sender, EventArgs e)
-        {
-            PrintButtonClicked?.Invoke(this, EventArgs.Empty);
         }
 
         // indicator if user has selected something
@@ -179,7 +207,13 @@ namespace Friendica_Mobile.Mvvm
             }
         }
 
-
+        // indicator which is set to true if there are still photos which are not uploaded to server
+        private bool _hasUnsavedContent;
+        public bool HasUnsavedContent
+        {
+            get { return _hasUnsavedContent; }
+            set { _hasUnsavedContent = value; }
+        }
 
         #endregion
 
@@ -218,7 +252,7 @@ namespace Friendica_Mobile.Mvvm
         public Mvvm.Command ReloadPhotosCommand { get { return _reloadPhotosCommand ?? (_reloadPhotosCommand = new Mvvm.Command(ExecuteReloadPhotos, CanReloadPhotos)); } }
         private bool CanReloadPhotos()
         {
-            return (!NoSettings && !NoServerSupport);
+            return (!NoServerSupport);
         }
 
         private async void ExecuteReloadPhotos()
@@ -251,64 +285,74 @@ namespace Friendica_Mobile.Mvvm
         public Mvvm.Command<string> AddFromDeviceCommand { get { return _addFromDeviceCommand ?? (_addFromDeviceCommand = new Mvvm.Command<string>(ExecuteAddFromDevice, CanAddFromDevice)); } }
         private bool CanAddFromDevice(string imageType)
         {
-            // only active if user has selected an album (for profileimage always true as album there will be profileimages)
-            if (imageType.ToLower() == "photo" && SelectedPhotoalbum == null)
+            // only active if user has selected an album
+            if (SelectedPhotoalbum == null)
                 return false;
             else
-                return true;
+            {
+                // retrieve correct localized profileimages folder
+                var localizedProfileimagesName = ProfileimagesCaption.Where(l => l.Key == CultureInfo.CurrentCulture.TwoLetterISOLanguageName).ToList();
+                string albumProfileimages = "Profile Photos";
+                if (localizedProfileimagesName.Count == 1)
+                    albumProfileimages = localizedProfileimagesName[0].Value;
+
+                if (SelectedPhotoalbum.Albumname == albumProfileimages && imageType.ToLower() == "photo")
+                    return false;
+                else if (SelectedPhotoalbum.Albumname != albumProfileimages && imageType.ToLower() == "profileimage")
+                    return false;
+                else
+                    return true;
+            }
         }
 
         private async void ExecuteAddFromDevice(string imageType)
         {
-            // TODO: if new album -> change indicator NewAlbumVisible to false and add photo to preview stack
-            // TODO: if profilimage adding, change to the album after uploading, provide rectangle selector before
-
             // show dialog to open one or more images
             FileOpenPicker openPicker = new FileOpenPicker();
             openPicker.ViewMode = PickerViewMode.Thumbnail;
             openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
             openPicker.FileTypeFilter.Add(".jpg");
             openPicker.FileTypeFilter.Add(".png");
-            var fileList = await openPicker.PickMultipleFilesAsync();
 
-            // operate on picked images
-            IsServerOperationPending = true;
-
-            foreach (var image in fileList)
+            if (imageType == "profileimage")
             {
-                var photo = new FriendicaPhotoExtended();
-                photo.NewPhotoUploaded += Photo_NewPhotoUploaded;
-                photo.NewPhotoStorageFile = image;
-
-                if (imageType.ToLower() == "photo")
-                {
-                    await photo.PrepareNewPhotoFromDeviceAsync(image, SelectedPhotoalbum.Albumname);
-                    SelectedPhotoalbum.PhotosInAlbum.Add(photo);
-                }
-                else if (imageType.ToLower() == "profileimage")
-                {
-                    // TODO: retrieve correct localized profileimages folder
-                    await photo.PrepareNewPhotoFromDeviceAsync(image, "Profilbilder");
-                    var profileimagesAlbum = Albums.SingleOrDefault(a => a.Albumname == "Profilbilder");
-                    if (profileimagesAlbum == null)
-                    {
-                        profileimagesAlbum = new FriendicaPhotoalbum() { Albumname = "Profilbilder", NewAlbumVisible = true };
-                        Albums.Insert(0, profileimagesAlbum);
-                    }
-                    profileimagesAlbum.PhotosInAlbum.Add(photo);
-                }
-
-                // await here for each photo, so we can set IsServerOperationPending after the last uploaded picture
-                await photo.UploadNewPhotoToServerAsync();
+                var image = await openPicker.PickSingleFileAsync();
+                if (image == null)
+                    return;
+                IsLoadingNewPhotos = true;
+                await PreparePhotoFileForUploadAsync(image, imageType);
             }
-            IsServerOperationPending = false;
+            else
+            {
+                var fileList = await openPicker.PickMultipleFilesAsync();
+                IsLoadingNewPhotos = true;
+                foreach (var image in fileList)
+                {
+                    await PreparePhotoFileForUploadAsync(image, imageType);
+                }
+            }
+            IsLoadingNewPhotos = false;
+
+            // navigate to cropper if we are working on a profileimage
+            if (imageType == "profileimage")
+            {
+                var frame = App.GetFrameForNavigation();
+                frame.Navigate(typeof(A7_PhotosCropping));
+            }
         }
+
+
 
         private void Photo_NewPhotoUploaded(object sender, EventArgs e)
         {
             // set selected photo to the newly uploaded photo
             var photo = sender as FriendicaPhotoExtended;
             SelectedPhotoalbum.SelectedPhoto = photo;
+            if (SelectedPhotoalbum.NewAlbumVisible)
+                SelectedPhotoalbum.NewAlbumVisible = false;
+
+            // recreate 
+            SelectedPhotoalbum.SetPhotosForAlbumView();
         }
 
 
@@ -317,20 +361,28 @@ namespace Friendica_Mobile.Mvvm
         public Mvvm.Command<string> AddFromCameraCommand { get { return _addFromCameraCommand ?? (_addFromCameraCommand = new Mvvm.Command<string>(ExecuteAddFromCamera, CanAddFromCamera)); } }
         private bool CanAddFromCamera(string imageType)
         {
-            // check if an album is selected when photo (profileimage has always the same album profilimages)
-            if (imageType.ToLower() == "photo" && SelectedPhotoalbum == null)
+            // check if an album is selected
+            if (SelectedPhotoalbum == null)
                 return false;
             else
-                return App.DeviceHasCamera;
+            {
+                // retrieve correct localized profileimages folder
+                var localizedProfileimagesName = ProfileimagesCaption.Where(l => l.Key == CultureInfo.CurrentCulture.TwoLetterISOLanguageName).ToList();
+                string albumProfileimages = "Profile Photos";
+                if (localizedProfileimagesName.Count == 1)
+                    albumProfileimages = localizedProfileimagesName[0].Value;
 
-            // TODO: Prüfung ob Gerät überhaupt eine Kamera hat (muss noch um Erlaubnis-Prüfung ergänzt werden).
+                if (SelectedPhotoalbum.Albumname == albumProfileimages && imageType.ToLower() == "photo")
+                    return false;
+                else if (SelectedPhotoalbum.Albumname != albumProfileimages && imageType.ToLower() == "profileimage")
+                    return false;
+                else
+                    return App.DeviceHasCamera;
+            }
         }
 
         private async void ExecuteAddFromCamera(string imageType)
         {
-            // TODO: if new album -> change indicator NewAlbumVisible to false and add photo to preview stack
-            // TODO: if profilimage adding, change to the album after uploading, provide rectangle selector before
-
             // show dialog to shoot photo with camera
             var cameraCapture = new CameraCaptureUI();
             cameraCapture.PhotoSettings.Format = CameraCaptureUIPhotoFormat.Jpeg;
@@ -339,45 +391,17 @@ namespace Friendica_Mobile.Mvvm
             // operate on returned image
             if (file != null)
             {
-                IsServerOperationPending = true;
-
-                var photo = new FriendicaPhotoExtended();
-                photo.NewPhotoUploaded += Photo_NewPhotoUploaded;
-                photo.NewPhotoStorageFile = file;
-
-                if (imageType.ToLower() == "photo")
-                {
-                    await photo.PrepareNewPhotoFromDeviceAsync(file, SelectedPhotoalbum.Albumname);
-                    SelectedPhotoalbum.PhotosInAlbum.Add(photo);
-                }
-                else if (imageType.ToLower() == "profileimage")
-                {
-                    // TODO: retrieve correct localized profileimages folder
-                    await photo.PrepareNewPhotoFromDeviceAsync(file, "Profilbilder");
-                    var profileimagesAlbum = Albums.SingleOrDefault(a => a.Albumname == "Profilbilder");
-                    if (profileimagesAlbum == null)
-                    {
-                        profileimagesAlbum = new FriendicaPhotoalbum() { Albumname = "Profilbilder", NewAlbumVisible = true };
-                        Albums.Insert(0, profileimagesAlbum);
-                    }
-                    profileimagesAlbum.PhotosInAlbum.Add(photo);
-                }
-
-                // await here for finishing the upload photo, so we can set IsServerOperationPending after upload
-                await photo.UploadNewPhotoToServerAsync();
-
-                IsServerOperationPending = false;
+                IsLoadingNewPhotos = true;
+                await PreparePhotoFileForUploadAsync(file, imageType);
+                IsLoadingNewPhotos = false;
             }
 
-
-            string errorMsg = "Fehler!";
-            if (imageType.ToLower() == "photo")
-                errorMsg = "Damit wird ein neues Foto mit der Kamera erstellt.";
-            else if (imageType.ToLower() == "profileimage")
-                errorMsg = "Damit wird ein neues Profilbild mit der Kamera erstellt.";
-
-            var dialog = new MessageDialogMessage(errorMsg, "", "OK", null);
-            await dialog.ShowDialog(0, 0);
+            // navigate to cropper if we are working on a profileimage
+            if (imageType == "profileimage")
+            {
+                var frame = App.GetFrameForNavigation();
+                frame.Navigate(typeof(A7_PhotosCropping));
+            }
         }
 
 
@@ -386,17 +410,33 @@ namespace Friendica_Mobile.Mvvm
         public Mvvm.Command AddEmptyInkCanvasCommand { get { return _addEmptyInkCanvasCommand ?? (_addEmptyInkCanvasCommand = new Mvvm.Command(ExecuteAddEmptyInkCanvas, CanAddEmptyInkCanvas)); } }
         private bool CanAddEmptyInkCanvas()
         {
-            // TODO: prüfung ob überhaupt ein Album ausgewählt wurde
-            return true;
+            // only provide option if an album has been selected
+            if (SelectedPhotoalbum == null)
+                return false;
+            else
+                return true;
         }
 
-        private async void ExecuteAddEmptyInkCanvas()
+        private void ExecuteAddEmptyInkCanvas()
         {
-            // TODO implement correct function for adding a new empty ink canvas (navigate to InkCanvas view but without providing a background image)
+            // adding a new empty photo and set album and acl
+            var photo = new FriendicaPhotoExtended();
+            photo.NewPhotoUploaded += Photo_NewPhotoUploaded;
+            photo.CheckLoadingStatusRequested += Photo_CheckLoadingStatusRequested;
+            photo.NewUploadPlanned = true;
+            photo.Photo.PhotoAlbum = SelectedPhotoalbum.Albumname;
+            photo.GetDefaultACL();
+            SelectedPhotoalbum.PhotosInAlbum.Add(photo);
+            SelectedPhotoalbum.SelectedPhoto = photo;
 
-            string errorMsg = "Damit wird ein leerer InkCanvas-Arbeitsbereich geöffnet. Der Anwender kann dort kreativ werden.";
-            var dialog = new MessageDialogMessage(errorMsg, "", "OK", null);
-            await dialog.ShowDialog(0, 0);
+            // navigate to A5_InkCanvas
+            var frame = App.GetFrameForNavigation();
+            frame.Navigate(typeof(A5_InkCanvas), photo);
+        }
+
+        private void Photo_CheckLoadingStatusRequested(object sender, EventArgs e)
+        {
+            CheckLoadingStatus();
         }
 
 
@@ -465,6 +505,19 @@ namespace Friendica_Mobile.Mvvm
                 return;
             }
 
+            // if we are in sample mode just inform user
+            if (NoSettings)
+            {
+                // "this would now perform a server operation, in sample mode not possible"
+                var errorMsg = loader.GetString("messageDialogPhotosNoServerSupport");
+                var dialog = new MessageDialogMessage(errorMsg, "", "OK", null);
+                await dialog.ShowDialog(0, 0);
+                SelectedPhotoalbum.Albumname = SelectedPhotoalbum.AlbumnameNew;
+                AlbumEditingEnabled = false;
+                _isSavingChangedAlbumname = false;
+                return;
+            }
+
             // now we are in the loop to change the albumname on server
             IsServerOperationPending = true;
             var getHttpUpdatePhotoalbum = new GetFriendicaPhotos();
@@ -476,6 +529,9 @@ namespace Friendica_Mobile.Mvvm
                     // successfully changed name on server, change it now in the app too
                     var newName = SelectedPhotoalbum;
                     SelectedPhotoalbum.Albumname = SelectedPhotoalbum.AlbumnameNew;
+                    // change the name within all photos in the album too
+                    foreach (var photo in SelectedPhotoalbum.PhotosInAlbum)
+                        photo.Photo.PhotoAlbum = SelectedPhotoalbum.Albumname;
                     SelectedPhotoalbum.AlbumnameNew = "";
                     SortAlbums();
                     PhotoalbumUpdated?.Invoke(newName, EventArgs.Empty);
@@ -505,7 +561,6 @@ namespace Friendica_Mobile.Mvvm
             AlbumEditingEnabled = false;
             _isSavingChangedAlbumname = false;
         }
-
 
 
         // delete photoalbum button
@@ -577,23 +632,22 @@ namespace Friendica_Mobile.Mvvm
                     }
                     IsServerOperationPending = false;
                 }
+                else
+                {
+                    // "this would now perform a server operation, in sample mode not possible"
+                    errorMsg = loader.GetString("messageDialogPhotosNoServerSupport");
+                    dialog = new MessageDialogMessage(errorMsg, "", "OK", null);
+                    await dialog.ShowDialog(0, 0);
+
+                    // anyway, we can remove album from Albums here on app
+                    Albums.Remove(SelectedPhotoalbum);
+                    SelectedPhotoalbum = null;
+                }
             }
 
             if (PhotosView == PhotosViewStates.OnlyPhotos)
                 PhotosView = PhotosViewStates.OnlyAlbums;
         }
-
-        private void DeletePhotosFromDevice(FriendicaPhotoalbum album)
-        {
-            if (album != null && album.PhotosInAlbum != null)
-            {
-                foreach (var photo in album.PhotosInAlbum)
-                {
-                    photo.DeleteAllScalesFromDevice();
-                }
-            }
-        }
-
 
         #endregion
 
@@ -606,13 +660,22 @@ namespace Friendica_Mobile.Mvvm
         public event EventHandler NewPhotoalbumAdded;
         // event fired when album has been renamed for reselecting it after new sorting
         public event EventHandler PhotoalbumUpdated;
+
         #endregion
 
 
         public PhotosViewmodel()
         {
             Albums = new ObservableCollection<FriendicaPhotoalbum>();
-            _saveAlbums = new List<FriendicaPhotoalbum>(); // TODO: brauchen wir das?
+
+            // build ProfileimageCaptions with localized strings
+            ProfileimagesCaption = new Dictionary<string, string>();
+            ProfileimagesCaption.Add("en", "Profile Photos");
+            ProfileimagesCaption.Add("de", "Profilbilder");
+            ProfileimagesCaption.Add("es", "Foto del perfil");
+            ProfileimagesCaption.Add("it", "Foto del profilo");
+            ProfileimagesCaption.Add("pt", "Fotos do perfil");
+            ProfileimagesCaption.Add("fr", "Photos du profil");
 
             // react on changes in App.Settings.BottomAppBarMargin (otherwise not recognized by XAML)
             App.Settings.PropertyChanged += Settings_PropertyChanged;
@@ -620,22 +683,13 @@ namespace Friendica_Mobile.Mvvm
 
             // check if there is a setting for the server, otherwise we will use sample data for the user
             CheckServerSettings();
-                      
-
-            // TODO: remove the following old code
-            SearchConversations = new ObservableCollection<FriendicaConversation>();
-            RetrievedMessages = new List<FriendicaMessage>();
-            IsSendingNewMessage = App.IsSendingNewMessage;
-            App.ContactsLoaded += App_ContactsLoaded;
-            App.SendingNewMessageChanged += App_SendingNewMessageChanged;
-            _updateConversationsEvent += MessagesViewmodel__updateConversationsEvent;
         }
 
 
         #region functions
 
         // set PhotosView which is used for triggering the different view kinds
-        private void SetPhotosView()
+        public void SetPhotosView()
         {
             if (App.Settings.OrientationDevice == OrientationDeviceFamily.DesktopLandscape ||
                 App.Settings.OrientationDevice == OrientationDeviceFamily.MobileContinuum)
@@ -673,15 +727,11 @@ namespace Friendica_Mobile.Mvvm
         }
 
 
+        // load sample data from separate class and save it in Observable Collection
         private void PrepareSampleData()
         {
-            // load sample data from separate class and save it in Observable Collection
             var sampleData = new FriendicaPhotoalbumSamples();
             Albums = sampleData.PhotoalbumSamples;
-
-            // TODO: brauchen wir das?
-            foreach (var album in sampleData.PhotoalbumSamples)
-                _saveAlbums.Add(album);
         }
 
 
@@ -721,6 +771,7 @@ namespace Friendica_Mobile.Mvvm
         }
 
 
+        // create a new album with a localized album name and a counter if name is already used on server
         private string GetNewAlbumname()
         {
             string newAlbumName = loader.GetString("textPhotosNewAlbumName");
@@ -729,7 +780,6 @@ namespace Friendica_Mobile.Mvvm
             {
                 if (i > 0)
                     newAlbumName = loader.GetString("textPhotosNewAlbumname") + String.Format(" ({0})", i);
-                var test = Albums.Any(a => a.Albumname == newAlbumName);
                 i++;
             }
             while (Albums.Any(a => a.Albumname == newAlbumName));
@@ -738,6 +788,7 @@ namespace Friendica_Mobile.Mvvm
         }
 
 
+        // load photo list from server or sample data if not yet defined a server
         public async void LoadContentFromServer()
         {
             await CheckServerSupportAsync();
@@ -750,6 +801,8 @@ namespace Friendica_Mobile.Mvvm
                 getHttpLoadPhotoalbums.FriendicaPhotosLoaded += GetHttpLoadPhotoalbums_FriendicaPhotosLoaded;
                 getHttpLoadPhotoalbums.LoadPhotoalbums();
             }
+            else if (NoSettings)
+                PrepareSampleData();
         }
 
         private async void GetHttpLoadPhotoalbums_FriendicaPhotosLoaded(object sender, EventArgs e)
@@ -769,19 +822,11 @@ namespace Friendica_Mobile.Mvvm
                     // extract albumnames from list of photos from server
                     GetAlbumsFromPhotolist(getHttpLoadPhotoalbums.PhotolistReturned);
 
-                    // sort photo information from photolist into Albums
+                    // sort photo information from photolist into Albums and sort photos by edited date descending
                     await GetPhotosFromPhotolistAsync(getHttpLoadPhotoalbums.PhotolistReturned);
 
                     // randomize images for the images stack of each album
-                    await GetPhotosForAlbumViewAsync();
-
-                    // sortiere nach jüngstem Bilddatum; scheiße: wir kennen das datum der Bilder ja jetzt noch nicht
-                    // Sortieren nach jüngstem Bilddatum machen wir also erst wenn wir alle Bilder geladen haben
-                    // alle Bilder jedesmal laden ist sicher aufwendig, macht also nur sinn wenn wir cachen dürfen (dann aber auch die Photo-Infos cachen)
-                    // Test ob das nachträgliche Sortieren funktioniert
-
-                    // TODO nächsten Schritt mit weiteren Codeschnippseln weiterschieben
-                    IsLoadingPhotoalbums = false;
+                    GetPhotosForAlbumViewAsync();
                     break;
                 case GetFriendicaPhotos.PhotoErrors.NoPhotosAvailable:
                     // photo/list has not returned any fotos - nothing yet on server
@@ -805,7 +850,8 @@ namespace Friendica_Mobile.Mvvm
                 default:
                     // message to user: "there was an error on loading the photo list"
                     IsLoadingPhotoalbums = false;
-                    errorMsg = String.Format(loader.GetString("messageDialogPhotosErrorOnLoading"), getHttpLoadPhotoalbums.ErrorMessage);
+                    var errorDetail = (getHttpLoadPhotoalbums.ErrorMessageOnParsing != "") ? getHttpLoadPhotoalbums.ErrorMessageOnParsing : getHttpLoadPhotoalbums.ErrorMessage;
+                    errorMsg = String.Format(loader.GetString("messageDialogPhotosErrorOnLoading"), errorDetail);
                     dialog = new MessageDialogMessage(errorMsg, "", loader.GetString("buttonYes"), loader.GetString("buttonNo"));
                     await dialog.ShowDialog(0, 1);
 
@@ -816,6 +862,7 @@ namespace Friendica_Mobile.Mvvm
         }
 
 
+        // create list of albums from photolist returned by server
         private void GetAlbumsFromPhotolist(List<FriendicaPhotolist> photolist)
         {
             // select all albumnames and sort them ascending by alphabet
@@ -833,6 +880,8 @@ namespace Friendica_Mobile.Mvvm
             }
         }
 
+
+        // sort albums by name and reorder list of albums
         private void SortAlbums()
         {
             var albumSorted = Albums.OrderBy(album => album.Albumname);
@@ -845,19 +894,37 @@ namespace Friendica_Mobile.Mvvm
             }
         }
 
+
+        // sort photos in an album by date descending and reorder list of photos
+        private void SortPhotos(FriendicaPhotoalbum album)
+        { 
+            var photosSorted = album.PhotosInAlbum.OrderByDescending(photo => photo.PhotoEditedDateTime);
+            int i = 0;
+            foreach (var photo in photosSorted)
+            {
+                var indexOld = album.PhotosInAlbum.IndexOf(photo);
+                album.PhotosInAlbum.Move(indexOld, i);
+                i++;
+            }
+        }
+
+
+        // sort photos from photolist of server into created albums
         private async Task GetPhotosFromPhotolistAsync(List<FriendicaPhotolist> photolist)
         {
             foreach (var photo in photolist)
             {
                 var photoClass = new FriendicaPhotoExtended();
+                photoClass.CheckLoadingStatusRequested += PhotoClass_CheckLoadingStatusRequested;
                 photoClass.Photo.PhotoId = photo.PhotolistId;
                 photoClass.Photo.PhotoFilename = photo.PhotolistFilename;
                 photoClass.Photo.PhotoType = photo.PhotolistType;
                 photoClass.Photo.PhotoAlbum = photo.PhotolistAlbum;
+                photoClass.Photo.PhotoCreated = photo.PhotolistCreated;
+                photoClass.Photo.PhotoEdited = photo.PhotolistEdited;
+                photoClass.Photo.PhotoDesc = photo.PhotolistDesc;
+                photoClass.Photo = photoClass.Photo;
                 photoClass.PhotolistThumb = photo.PhotolistThumb;
-
-                // TODO: Probleme wenn Image.Source auf 192.168.1.3 zeigt, daher für diesen Test ersetzen
-                photoClass.PhotolistThumb = photo.PhotolistThumb.Replace("192.168.1.3", "mozartweg.dyndns.org");
 
                 photoClass.ThumbSizeData = new BitmapImage(new Uri(photoClass.PhotolistThumb, UriKind.RelativeOrAbsolute));
                 photoClass.MediumSizeData = photoClass.ThumbSizeData;
@@ -870,499 +937,204 @@ namespace Friendica_Mobile.Mvvm
                 var album = Albums.Single(alb => alb.Albumname == photo.PhotolistAlbum);
                 album.PhotosInAlbum.Add(photoClass);
             }
+
+            // sort photos descending by edited date
+            foreach (var album in Albums)
+                SortPhotos(album);
         }
-        
-        private async Task GetPhotosForAlbumViewAsync()
+
+        private void PhotoClass_CheckLoadingStatusRequested(object sender, EventArgs e)
+        {
+            CheckLoadingStatus();
+        }
+
+
+        // perform a check if now all photos have been loaded or all uploads/updates have been done to remove red indicator for user
+        public void CheckLoadingStatus()
+        {
+            // activities on photos etc. can request this function to check if there are still loading photos or not-uploaded photos
+            int countInitialLoading = 0;
+            foreach (var album in Albums)
+                countInitialLoading += album.PhotosInAlbum.Count(p => p.IsLoadingThumbSize || p.IsLoadingMediumSize || p.IsLoadingFullSize);
+
+            IsLoadingPhotoalbums = (countInitialLoading > 0);
+            if (IsLoadingPhotoalbums)
+                return;
+
+            // check if there are still open uploads or updates
+            int countWorkingItems = 0;
+            foreach (var album in Albums)
+                countWorkingItems += album.PhotosInAlbum.Count(p => p.NewUploadPlanned || p.UpdatePlanned);
+
+            HasUnsavedContent = (countWorkingItems > 0);
+        }
+
+
+        // remove all new but not performed uploads or updates (called when user navigates away and wants to discard changes)
+        public void ResetAllChanges()
         {
             foreach (var album in Albums)
             {
-                // TODO: we have still an issue with private images (forbidden sign instead of image)
-                // TODO: take cached image if available or load photo from server with authentication 
-
-                // fallback if collection is null, which should not occur
-                if (album.PhotosInAlbum == null)
-                    return;
-
-                album.Photo1Visible = false;
-                album.Photo2Visible = false;
-                album.Photo3Visible = false;
-
-                if (album.PhotosInAlbum.Count > 0)
+                foreach (var photo in album.PhotosInAlbum)
                 {
-                    album.Photo1Visible = true;
-                    album.StackPhoto1 = album.PhotosInAlbum[0];
-                }
-                if (album.PhotosInAlbum.Count > 1)
-                {
-                    album.Photo2Visible = true;
-                    album.StackPhoto2 = album.PhotosInAlbum[1];
-                }
-                if (album.PhotosInAlbum.Count > 2)
-                {
-                    // if we have 3 or more sort list of photos randomly and take first three entries 
-                    // random does not make sense with only 3 but code can be reused
-                    album.Photo3Visible = true;
-                    var randomPhotos = RandomImageSelector(album.PhotosInAlbum);
-                    album.StackPhoto1 = randomPhotos[0];
-                    album.StackPhoto2 = randomPhotos[1];
-                    album.StackPhoto3 = randomPhotos[2];
+                    if (photo.NewUploadPlanned || photo.UpdatePlanned)
+                        photo.ResetChangedData();
                 }
             }
         }
 
-        private List<FriendicaPhotoExtended> RandomImageSelector(ObservableCollection<FriendicaPhotoExtended> photosInAlbum)
-        {
-            var list = new List<FriendicaPhotoExtended>();
 
-            return list = (from photo in photosInAlbum
-                       orderby Guid.NewGuid()
-                       select photo).ToList();
+        // select the first unsaved element so user can start the upload/update
+        public void SetFirstUnsavedElement()
+        {
+            foreach (var album in Albums)
+            {
+                try
+                {
+                    var photo = album.PhotosInAlbum.First(p => p.NewUploadPlanned || p.UpdatePlanned);
+                    SelectedPhotoalbum = album;
+                    SelectedPhotoalbum.SelectedPhoto = photo;
+                    return;
+                }
+                catch { continue; }
+            }
+        }
+
+
+        // select up to three new photos from album randomly for viewing in stack representing the album
+        private void GetPhotosForAlbumViewAsync()
+        {
+            foreach (var album in Albums)
+            {
+                album.SetPhotosForAlbumView();
+            }
+        }
+
+
+        // create list of selectable albums for moving a photo away from the current album
+        private void SetSelectablePhotoalbums()
+        {
+            // get all albums from list without currently selected one and order ascending
+            var albums = Albums.Where(a => a.Albumname != SelectedPhotoalbum.Albumname).OrderBy(a => a.Albumname);
+
+            var albumList = new List<string>();
+            foreach (var album in albums)
+            {
+                // test if albumname is existing in list of translations for "profile photos"
+                var lang = ProfileimagesCaption.Where(l => l.Value == album.Albumname).ToList();
+                // in this case we ignore this album for the list of selectable target albums
+                if (lang.Count > 0)
+                    continue;
+                albumList.Add(album.Albumname);
+            }
+
+            // add "New Album" (localized) as first list element
+            albumList.Insert(0, loader.GetString("stringPhotoNewAlbumForMoving"));
+
+            // insert this list into a property in the selected album from where we can fill each of the containing photo
+            SelectedPhotoalbum.SelectableAlbums = albumList;
+        }
+
+
+        // user wants to upload a profile photo from an existing photo
+        private void DuplicatePhotoForProfileImage(FriendicaPhotoExtended original)
+        {
+            var photo = new FriendicaPhotoExtended();
+            photo.Photo = original.Photo;
+            photo.NewPhotoUploaded += Photo_NewPhotoUploaded;
+            // transfer more information if we want to crop a sample photo
+            if (NoSettings)
+            {
+                photo.PhotolistThumb = original.PhotolistThumb;
+                photo.FullSizeData = original.FullSizeData;
+                photo.FullSizeLoaded = original.FullSizeLoaded;
+                photo.MediumSizeData = original.MediumSizeData;
+                photo.MediumSizeLoaded = original.MediumSizeLoaded;
+                photo.ThumbSizeData = original.ThumbSizeData;
+                photo.ThumbSizeLoaded = original.ThumbSizeLoaded;
+            }
+            photo.NewUploadPlanned = true;
+
+            // retrieve correct localized profileimages folder
+            var localizedProfileimagesName = ProfileimagesCaption.Where(l => l.Key == CultureInfo.CurrentCulture.TwoLetterISOLanguageName).ToList();
+            string albumProfileimages = "Profile Photos";
+            if (localizedProfileimagesName.Count == 1)
+                albumProfileimages = localizedProfileimagesName[0].Value;
+            photo.PhotoCategory = FriendicaPhotoExtended.PhotoCategories.FriendicaProfileImage;
+            photo.Photo.PhotoAlbum = albumProfileimages;
+
+            var profileimagesAlbum = Albums.SingleOrDefault(a => a.Albumname == albumProfileimages);
+            if (profileimagesAlbum == null)
+            {
+                profileimagesAlbum = new FriendicaPhotoalbum() { Albumname = albumProfileimages, NewAlbumVisible = true };
+                Albums.Insert(0, profileimagesAlbum);
+            }
+            profileimagesAlbum.PhotosInAlbum.Add(photo);
+            SelectedPhotoalbum = profileimagesAlbum;
+            // change view to the newly updated photo
+            SelectedPhotoalbum.SelectedPhoto = photo;
+        }
+
+
+        // preparing for the upload
+        private async Task PreparePhotoFileForUploadAsync(StorageFile image, string imageType)
+        {
+            var photo = new FriendicaPhotoExtended();
+            // add selection for albums if user wants to change album afterwards
+            photo.SelectableAlbums = new ObservableCollection<string>();
+            foreach (var album in SelectedPhotoalbum.SelectableAlbums)
+                photo.SelectableAlbums.Add(album);
+
+            photo.NewPhotoStorageFile = image;
+            photo.NewUploadPlanned = true;
+
+            if (imageType.ToLower() == "photo")
+            {
+                photo.PhotoCategory = FriendicaPhotoExtended.PhotoCategories.FriendicaPhoto;
+                await photo.PrepareNewPhotoFromDeviceAsync(image, SelectedPhotoalbum.Albumname);
+                SelectedPhotoalbum.PhotosInAlbum.Add(photo);
+            }
+            else if (imageType.ToLower() == "profileimage")
+            {
+                // retrieve correct localized profileimages folder
+                var localizedProfileimagesName = ProfileimagesCaption.Where(l => l.Key == CultureInfo.CurrentCulture.TwoLetterISOLanguageName).ToList();
+                string albumProfileimages = "Profile Photos";
+                if (localizedProfileimagesName.Count == 1)
+                    albumProfileimages = localizedProfileimagesName[0].Value;
+                photo.PhotoCategory = FriendicaPhotoExtended.PhotoCategories.FriendicaProfileImage;
+                await photo.PrepareNewPhotoFromDeviceAsync(image, albumProfileimages);
+                var profileimagesAlbum = Albums.SingleOrDefault(a => a.Albumname == albumProfileimages);
+                if (profileimagesAlbum == null)
+                {
+                    profileimagesAlbum = new FriendicaPhotoalbum() { Albumname = albumProfileimages, NewAlbumVisible = true };
+                    Albums.Insert(0, profileimagesAlbum);
+                }
+                profileimagesAlbum.PhotosInAlbum.Add(photo);
+
+                SelectedPhotoalbum = profileimagesAlbum;
+            }
+
+            // change view to the newly updated photo
+            SelectedPhotoalbum.SelectedPhoto = photo;
+        }
+
+
+        // delete all photos with all scales of a specified album from device
+        private void DeletePhotosFromDevice(FriendicaPhotoalbum album)
+        {
+            if (album != null && album.PhotosInAlbum != null)
+            {
+                foreach (var photo in album.PhotosInAlbum)
+                {
+                    photo.DeleteAllScalesFromDevice();
+                }
+            }
         }
 
         #endregion
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // TODO: bis hierher bereits überarbeitet
-
-
-
-
-
-        // contains the albums from the server
-        private ObservableCollection<FriendicaConversation> _conversations;
-        public ObservableCollection<FriendicaConversation> Conversations
-        {
-            get { return _conversations; }
-            set
-            {
-                _conversations = value;
-                OnPropertyChanged("Conversations");
-            }
-        }
-
-        // contains the returned messages from server as a list (to have original returns from server stored)
-        private List<FriendicaMessage> _retrievedMessages;
-        public List<FriendicaMessage> RetrievedMessages
-        {
-            get { return _retrievedMessages; }
-            set { _retrievedMessages = value; }
-        }
-
-
-        // following used to save conversations on navigating from and restoring on navigating to messages.xaml
-        private List<FriendicaPhotoalbum> _saveAlbums;
-
-
-
-        
-
-        // selected conversation for updating on server
-        private List<FriendicaConversation> _conversationsForUpdating = new List<FriendicaConversation>();
-        private FriendicaConversation _conversationUpdating;
-
-
-        // indicator if no conversations are available
-        private bool _noMessagesAvailable;
-        public bool NoMessagesAvailable
-        {
-            get { return _noMessagesAvailable; }
-            set { _noMessagesAvailable = value;
-                OnPropertyChanged("NoMessagesAvailable"); }
-        }
-
-        // indicator if searchmode is enabled (then display input box and search results instead of conversation list)
-        private bool _isSearchModeEnabled;
-        public bool IsSearchModeEnabled
-        {
-            get { return _isSearchModeEnabled; }
-            set { _isSearchModeEnabled = value;
-                if (!value)
-                {
-                    SearchConversations = new ObservableCollection<FriendicaConversation>();
-                    SearchResults = new ObservableCollection<FriendicaMessage>();
-                    SelectedPhotoalbum = null;
-                }
-                OnPropertyChanged("IsSearchModeEnabled");
-            }
-        }
-
-
-        // search string
-        private string _searchString;
-        public string SearchString
-        {
-            get { return _searchString; }
-            set { _searchString = value;
-                OnPropertyChanged("SearchString"); }
-        }
-
-        // contains the search results from the server
-        private ObservableCollection<FriendicaMessage> _searchResults;
-        public ObservableCollection<FriendicaMessage> SearchResults
-        {
-            get { return _searchResults; }
-            set { _searchResults = value;
-                SearchResults.CollectionChanged += SearchResults_CollectionChanged;
-                OnPropertyChanged("SearchResults"); }
-        }
-
-        private void SearchResults_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            foreach (FriendicaMessage message in e.NewItems)
-                SearchResults.Single(m => m.MessageId == message.MessageId).ConvertHtmlToParagraph();
-        }
-
-        // contains the conversations from the server
-        private ObservableCollection<FriendicaConversation> _searchConversations;
-        public ObservableCollection<FriendicaConversation> SearchConversations
-        {
-            get { return _searchConversations; }
-            set
-            {
-                _searchConversations = value;
-                OnPropertyChanged("SearchConversations");
-            }
-        }
-
-        // indicator if no search results are returned
-        private bool _noSearchResults;
-        public bool NoSearchResults
-        {
-            get { return _noSearchResults; }
-            set { _noSearchResults = value;
-                OnPropertyChanged("NoSearchResults"); }
-        }
-
-
-        // indicator on top for loading older conversations
-        private bool _isLoadingOlderMessages;
-        public bool IsLoadingOlderMessages
-        {
-            get { return _isLoadingOlderMessages; }
-            set { _isLoadingOlderMessages = value;
-                OnPropertyChanged("IsLoadingOlderMessages"); }
-        }
-
-        // indicator that all messages have been loaded from server
-        private bool _allMessagesLoaded;
-        public bool AllMessagesLoaded
-        {
-            get { return _allMessagesLoaded; }
-            set { _allMessagesLoaded = value;
-                OnPropertyChanged("AllMessagesLoaded"); }
-        }
-
-        // set Property if refresh is currently in progress (showing progress bar and preventing from clicking Refresh again)
-        private bool _isRefreshing;
-        public bool IsRefreshing
-        {
-            get { return _isRefreshing; }
-            set
-            {
-                _isRefreshing = value;
-                OnPropertyChanged("IsRefreshing");
-            }
-        }
-
-        // indicator showing that app is querying server for the searchstring
-        private bool _isSearching;
-        public bool IsSearching
-        {
-            get { return _isSearching; }
-            set { _isSearching = value;
-                OnPropertyChanged("IsSearching"); }
-        }
-
-        // indicator for showing the editor for new messages
-        private bool _isEditorEnabled;
-        public bool IsEditorEnabled
-        {
-            get { return _isEditorEnabled; }
-            set { _isEditorEnabled = value;
-                OnPropertyChanged("IsEditorEnabled"); }
-        }
-
-        // indicator for the editor mode
-        private bool _isEditorInFullscreenMode;
-        public bool IsEditorInFullscreenMode
-        {
-            get { return _isEditorInFullscreenMode; }
-            set
-            {
-                _isEditorInFullscreenMode = value;
-                OnPropertyChanged("IsEditorInFullscreenMode");
-            }
-        }
-
-        // indicator for starting a new conversation (for add button)
-        private bool _isStartingNewConversation;
-        public bool IsStartingNewConversation
-        {
-            get { return _isStartingNewConversation; }
-            set { _isStartingNewConversation = value;
-                OnPropertyChanged("IsStartingNewConversation"); }
-        }
-
-        // list of possible contacts for selecting one
-        public ObservableCollection<FriendicaUserExtended> Contacts
-        {
-            get { return App.ContactsFriends; }
-        }
-
-        // save selected contact
-        private FriendicaUserExtended _selectedContact;
-        public FriendicaUserExtended SelectedContact
-        {
-            get { return _selectedContact; }
-            set
-            {
-                _selectedContact = value;
-                SetNavigationStatus();
-                OnPropertyChanged("SelectedContact");
-            }
-        }
-
-        // string with title of new conversation
-        private string _newMessageTitle;
-        public string NewMessageTitle
-        {
-            get { return _newMessageTitle; }
-            set { _newMessageTitle = value;
-                SetNavigationStatus();
-                OnPropertyChanged("NewMessageTitle"); }
-        }
-
-        // string with message content
-        private string _newMessageContent;
-        public string NewMessageContent
-        {
-            get { return _newMessageContent; }
-            set { _newMessageContent = value;
-                SetNavigationStatus();  }
-        }
-
-        // indicator showing that app is sending a new message to server
-        private bool _isSendingNewMessage;
-        public bool IsSendingNewMessage
-        {
-            get { return _isSendingNewMessage; }
-            set { _isSendingNewMessage = value;
-                OnPropertyChanged("IsSendingNewMessage"); }
-        }
-
-        // indicator that user came from clicking on a toast notification
-        private bool _isNavigationFromToast;
-        public bool IsNavigationFromToast
-        {
-            get { return _isNavigationFromToast; }
-            set { _isNavigationFromToast = value; }
-        }
-
-        // saving conversation parenturi from toast notification
-        private string _toastConversationUri;
-        public string ToastConversationUri
-        {
-            get { return _toastConversationUri; }
-            set { _toastConversationUri = value; }
-        }
-
-        // event handlers for 
-        //      starting a new conversation
-        public event EventHandler ButtonAddConversationClicked;
-        //      enabling search mode
-        public event EventHandler ButtonEnableSearchClicked;
-        //      updating messages of a conversation (only used in this class)
-        private event EventHandler _updateConversationsEvent;
-        //      fired when a new conversation has been started to update the listview selection
-        public event EventHandler NewMessageAdded;
-        //      fired when we want to clear out the richeditboxes
-        public event EventHandler ClearOutRicheditboxesRequested;
-        //      fired when user clicks the enable editor button to scroll down to bottom
-        public event EventHandler GoToBottomListViewRequested;
-
-
-
-        
-        
-        
-
-        // toggle button - enabling editor
-        Mvvm.Command _enableEditorCommand;
-        public Mvvm.Command EnableEditorCommand { get { return _enableEditorCommand ?? (_enableEditorCommand = new Mvvm.Command(ExecuteEnableEditor, CanEnableEditor)); } }
-        private bool CanEnableEditor()
-        {
-            if (IsSendingNewMessage)
-                return false;
-            else
-                return true;
-        }
-
-        private void ExecuteEnableEditor()
-        {
-            GoToBottomListViewRequested?.Invoke(this, EventArgs.Empty);
-            //IsEditorEnabled = !IsEditorEnabled;
-        }
-
-
-        // send message command
-        Mvvm.Command _sendMessageCommand;
-        public Mvvm.Command SendMessageCommand { get { return _sendMessageCommand ?? (_sendMessageCommand = new Mvvm.Command(ExecuteSendMessage, CanSendMessage)); } }
-        private bool CanSendMessage()
-        {
-            if (NewMessageContent != null && NewMessageContent != "\r\r")
-            {
-                if (IsStartingNewConversation && SelectedContact == null)
-                    return false;
-                else
-                {
-                    App.NavStatus = NavigationStatus.NewMessageChanged;
-                    return true;
-                }
-            }
-            else
-                return false;
-        }
-
-        private async void ExecuteSendMessage()
-        {
-            // if we are displaying sample data we cannot send a message to the server
-            if (NoSettings)
-            {
-                // message to user: "no sending possible in test mode"
-                string errorMsg;
-                errorMsg = loader.GetString("messageDialogMessagesNewNoSettings");
-                var dialog = new MessageDialogMessage(errorMsg, "", "OK", null);
-                await dialog.ShowDialog(0, 0);
-            }
-            else
-            {
-                var message = CreateMessage();
-                ClearOutRicheditboxesRequested?.Invoke(this, EventArgs.Empty);
-
-                IsSendingNewMessage = true;
-                // sending new message to server
-                var postMessage = new PostFriendicaMessage();
-                postMessage.FriendicaMessageSent += PostMessage_FriendicaMessageSent;
-                postMessage.PostFriendicaMessageNew(message);
-            }
-        }
-
-        private async void PostMessage_FriendicaMessageSent(object sender, EventArgs e)
-        {
-            var postMessage = sender as PostFriendicaMessage;
-            if (!postMessage.IsSuccessStateCode)
-            {
-                IsSendingNewMessage = false;
-                // message to user: "there was an error in sending the message"
-                string errorMsg;
-                errorMsg = String.Format(loader.GetString("messageDialogMessagesNewErrorSending"), postMessage.ErrorMessage);
-                var dialog = new MessageDialogMessage(errorMsg, "", "OK", null);
-                await dialog.ShowDialog(0, 0);
-            }
-            else
-            {
-                IsSendingNewMessage = false;
-                IsEditorEnabled = false;
-                App.NavStatus = NavigationStatus.OK;
-                ClearOutRicheditboxesRequested?.Invoke(this, EventArgs.Empty);
-
-                if (postMessage.NewMessage.NewMessageReplyTo != "")
-                {
-                    // we were answering an existing message - reload conversation messages
-                    //SelectedConversation.NewMessageAdded += Conv_NewMessageAdded;
-                    //SelectedConversation.ReloadConversation();
-                }
-                else
-                {
-                    // we were creating a new conversation - load new conversations and set selection
-                    LoadMessagesNew();
-                    IsStartingNewConversation = false;
-                }
-            }
-        }
-
-
-        //public PhotosViewmodel()
-        //{
-        //    Conversations = new ObservableCollection<FriendicaConversation>();
-        //    _saveConversations = new List<FriendicaConversation>();
-        //    SearchConversations = new ObservableCollection<FriendicaConversation>();
-        //    RetrievedMessages = new List<FriendicaMessage>();
-
-        //    // react on changes in App.Settings.BottomAppBarMargin (otherwise not recognized by XAML)
-        //    App.Settings.PropertyChanged += Settings_PropertyChanged;
-        //    SetPhotosView();
-            
-        //    // check if there is a setting for the server, otherwise we will use sample data for the user
-        //    CheckServerSettings();
-        //    // TODO: implement check if server is supporting (the initial load call /api/friendica/photos/list is on older machine present, we need to check newer calls like /api/friendica/photo/create
-             
-
-        //    IsSendingNewMessage = App.IsSendingNewMessage;
-        //    App.ContactsLoaded += App_ContactsLoaded;
-        //    App.SendingNewMessageChanged += App_SendingNewMessageChanged;
-        //    _updateConversationsEvent += MessagesViewmodel__updateConversationsEvent;
-        //}
-
-
-
-
-        private void SetNavigationStatus()
-        {
-            if (NewMessageTitle != null || (NewMessageContent != null && NewMessageContent != "\r\r") || SelectedContact != null)
-            {
-                App.NavStatus = NavigationStatus.NewMessageChanged;
-            }
-            else
-            {
-                if (App.NavStatus == NavigationStatus.NewMessageChanged)
-                    App.NavStatus = NavigationStatus.OK;
-            }
-            SendMessageCommand.RaiseCanExecuteChanged();
-        }
-
-        private FriendicaMessageNew CreateMessage()
-        {
-            var newMessage = new FriendicaMessageNew();
-            //if (SelectedConversation != null)
-            //{
-            //    FriendicaUser user = null;
-            //    if (SelectedConversation.NewestMessage.MessageSenderScreenName.ToLower() == App.Settings.FriendicaUsername.ToLower())
-            //        user = SelectedConversation.NewestMessage.MessageRecipient;
-            //    else if (SelectedConversation.NewestMessage.MessageRecipientScreenName.ToLower() == App.Settings.FriendicaUsername.ToLower())
-            //        user = SelectedConversation.NewestMessage.MessageSender;
-            //    newMessage.NewMessageUserUrl = user.UserUrl;
-
-            //    newMessage.NewMessageReplyTo = SelectedConversation.NewestMessage.MessageId;
-            //    newMessage.NewMessageTitle = SelectedConversation.Title;
-            //}
-            //else
-            //{
-            //    newMessage.NewMessageUserUrl = SelectedContact.User.UserUrl;
-            //    newMessage.NewMessageTitle = NewMessageTitle;
-            //}
-            //newMessage.NewMessageText = NewMessageContent;
-            return newMessage;
-        }
+        #region eventhandlers
 
         private async void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -1372,10 +1144,6 @@ namespace Friendica_Mobile.Mvvm
             {
                 OnPropertyChanged("ListViewWidth");
                 SetPhotosView();
-            }
-            if (e.PropertyName == "OrientationDevice")
-            {
-                OnPropertyChanged("ListViewWidth");
             }
 
             // reload indicators if user has changed the settings for the server
@@ -1388,457 +1156,88 @@ namespace Friendica_Mobile.Mvvm
         }
 
 
-        private void App_ContactsLoaded(object sender, EventArgs e)
+        private void SelectedPhotoalbum_CheckLoadingStatusRequested(object sender, EventArgs e)
         {
-            OnPropertyChanged("Contacts");
+            CheckLoadingStatus();
         }
 
 
-        private void App_SendingNewMessageChanged(object sender, EventArgs e)
+        private async void SelectedPhotoalbum_MovePhotoToAlbumRequested(object sender, EventArgs e)
         {
-            IsSendingNewMessage = App.IsSendingNewPost;
-        }
+            var photo = sender as FriendicaPhotoExtended;
+            var oldAlbumname = photo.Photo.PhotoAlbum;
 
-
-        public void SaveAlbums()
-        {
-            _saveAlbums = new List<FriendicaPhotoalbum>();
-            foreach (var album in Albums)
-                _saveAlbums.Add(album);
-            Albums = new ObservableCollection<FriendicaPhotoalbum>();
-        }
-
-
-        public void RestoreAlbums()
-        {
-            Albums = new ObservableCollection<FriendicaPhotoalbum>();
-            foreach (var album in _saveAlbums)
-                Albums.Add(album);
-        }
-
-
-
-
-        //private void GetMessagesTestServer_FriendicaMessagesLoaded(object sender, EventArgs e)
-        //{
-        //    var getMessagesInitial = sender as GetFriendicaMessages;
-
-        //    if (getMessagesInitial.StatusCode == HttpStatusCode.Ok && !getMessagesInitial.IsErrorOccurred)
-        //    {
-        //        LoadConte();
-        //    }
-        //    else
-        //    {
-        //        IsLoadingMessages = false;
-
-        //        if (getMessagesInitial.StatusCode == HttpStatusCode.NotImplemented || getMessagesInitial.StatusCode == HttpStatusCode.NotFound)
-        //        {
-        //            // message to user: "server is not supporting private messages for the app - please update server to Friendica 3.5"
-        //            NoServerSupport = true;
-        //            //string errorMsg;
-        //            //errorMsg = String.Format(loader.GetString("messageDialogMessagesNotImplemented"));
-        //            //var dialog = new MessageDialogMessage(errorMsg, "", "OK", null);
-        //            //await dialog.ShowDialog(0, 0);
-        //        }
-        //    }
-        //}
-
-        public async void UpdateStatusOnServer()
-        {
-            // save currently SelectedConversation for into queue of conversations for updating the messages
-            //if (!_conversationsForUpdating.Contains(SelectedConversation))
-              //  _conversationsForUpdating.Add(SelectedConversation);
-
-            // give user time to see the new messages
-            await Task.Delay(3000);
-
-            // fire event which is working on the queue of conversations
-            if (_updateConversationsEvent != null)
-                _updateConversationsEvent.Invoke(this, EventArgs.Empty);
-        }
-
-
-        private void MessagesViewmodel__updateConversationsEvent(object sender, EventArgs e)
-        {
-            // load next conversation for updating
-            var conv = _conversationsForUpdating.FirstOrDefault();
-            if (conv != null)
+            // string "New album"
+            if (photo.NewAlbumName == loader.GetString("stringPhotoNewAlbumForMoving"))
             {
-                // select the corresponding conversation in Conversations list for setting indicator
-                _conversationUpdating = Conversations.Single(c => c.ConversationUri == conv.ConversationUri);
-                _conversationUpdating.IsUpdatingServerStatus = true;
-
-                // go through all new message for updating them on server
-                var MessagesUpdate = _conversationUpdating.MessagesForUpdate();
-
-                if (MessagesUpdate.Count == 0)
-                    _conversationUpdating.IsUpdatingServerStatus = false;
-
-                foreach (var message in MessagesUpdate)
-                {
-                    if (App.Settings.FriendicaServer != null)
-                    {
-
-                        var getMessages = new GetFriendicaMessages();
-                        getMessages.RequestFinished += GetMessages_RequestFinished;
-                        getMessages.SetSeenMessage(message.MessageId);
-
-                    }
-                    else
-                    {
-                        message.MessageSeen = "1";
-                    }
-                }
-
-                if (App.Settings.FriendicaServer == null)
-                {
-                    _conversationUpdating.IsUpdatingServerStatus = false;
-                    _conversationUpdating.CounterMessagesUnseen = _conversationUpdating.Messages.Count(m => m.MessageSeen == "0");
-                }
-
-                // we can now remove the conversation as we have started all updating processes
-                _conversationsForUpdating.Remove(conv);
+                // create a new album and add it into the list
+                ExecuteAddPhotoalbum();
+                photo.NewAlbumName = SelectedPhotoalbum.Albumname;
             }
-        }
 
-
-        private void GetMessages_RequestFinished(object sender, EventArgs e)
-        {
-            var getMessages = sender as GetFriendicaMessages;
-            if (!getMessages.IsErrorOccurred)
+            // if we are im sample mode we cannot execute something on server
+            if (NoSettings)
             {
-                foreach (var conv in Conversations)
-                {
-                    try
-                    {
-                        var message = conv.Messages.Single(m => m.MessageId == getMessages.MessageId);
-                        message.MessageSeen = "1";
-                        conv.CounterMessagesUnseen = conv.Messages.Count(m => m.MessageSeen == "0");
-                    }
-                    catch { }
-                }
-
+                // simulate what server operation would normally do
+                photo.Photo.PhotoAlbum = photo.NewAlbumName;
             }
-            CheckMessagesUpdating();
-        }
-
-
-
-
-        private void Conv_NewMessageAdded(object sender, EventArgs e)
-        {
-            IsSendingNewMessage = false;
-        }
-
-        private void Conv_ConversationDeleted(object sender, EventArgs e)
-        {
-            var conv = sender as FriendicaConversation;
-            //if (SelectedConversation != null && conv.ConversationUri == SelectedConversation.ConversationUri)
-            //    SelectedConversation = null;
-            // remove the messages from the retrievedMessages otherwise we have a problem with loading new messages
-            RetrievedMessages.RemoveAll(m => m.MessageParentUri == conv.ConversationUri);
-            Conversations.Remove(conv);
-        }
-
-        private void GetMessagesConv_FriendicaMessagesLoaded(object sender, EventArgs e)
-        {
-            var getMessagesConv = sender as GetFriendicaMessages;
-            if (!getMessagesConv.IsErrorOccurred)
+            else
             {
-                var conv = Conversations.Single(c => c.ConversationUri == getMessagesConv.ConversationUri);
-                if (conv.Messages == null)
-                    conv.Messages = new ObservableCollection<FriendicaMessage>();
-
-                if (getMessagesConv.MessagesReturned == null)
+                // upload image to server, cancel if upload produces an error
+                var result = await photo.UpdatePhotoOnServerAsync();
+                if (result != GetFriendicaPhotos.PhotoErrors.OK)
                     return;
-
-                var messages = getMessagesConv.MessagesReturned.OrderBy(m => m.MessageCreatedAtDateTime);
-                foreach (var message in messages)
-                {
-                    conv.Messages.Add(message);
-                }
-                conv.IsLoaded = true;
-                conv.IsLoading = false;
             }
-            CheckConversationsLoading();
+
+            // insert photo in newly selected album
+            SelectedPhotoalbum = Albums.Single(a => a.Albumname == photo.Photo.PhotoAlbum);
+            SelectedPhotoalbum.PhotosInAlbum.Add(photo);
+            SetSelectablePhotoalbums();
+            SelectedPhotoalbum.SelectedPhoto = photo;
+
+            // change identifier for a new album if necessary
+            if (SelectedPhotoalbum.NewAlbumVisible)
+                SelectedPhotoalbum.NewAlbumVisible = false;
+
+            // recreate preview stack
+            SelectedPhotoalbum.SetPhotosForAlbumView();
+
+            // remove from old album
+            var oldAlbum = Albums.Single(a => a.Albumname == oldAlbumname);
+            oldAlbum.PhotosInAlbum.Remove(photo);
+            // remove album from list if there is no more photo left
+            if (oldAlbum.PhotosInAlbum.Count == 0)
+                Albums.Remove(oldAlbum);
+            oldAlbum.SetPhotosForAlbumView();
         }
 
 
-        private void CheckConversationsLoading()
+        private void SelectedPhotoalbum_NewProfileimageRequested(object sender, EventArgs e)
         {
-            bool isStillLoading = false;
-            foreach (var conv in Conversations)
-                isStillLoading |= conv.IsLoading;
-
-            //if (IsLoadingMessages)
-            //    IsLoadingMessages = isStillLoading;
-            //else if (IsRefreshing)
-            //    IsRefreshing = isStillLoading;
-            //else if (IsLoadingOlderMessages)
-            //{
-            //    IsLoadingOlderMessages = isStillLoading;
-            //    LoadOlderMessagesCommand.RaiseCanExecuteChanged();
-            //}
-
-            if (!isStillLoading && IsNavigationFromToast)
-            {
-                //SelectedConversation = Conversations.SingleOrDefault(c => c.ConversationUri == ToastConversationUri);
-            }
+            var photo = sender as FriendicaPhotoExtended;
+            DuplicatePhotoForProfileImage(photo);
+            // navigate to cropper
+            var frame = App.GetFrameForNavigation();
+            frame.Navigate(typeof(A7_PhotosCropping));
         }
 
-        private void CheckMessagesUpdating()
+
+        private void SelectedPhotoalbum_LastPhotoDeleted(object sender, EventArgs e)
         {
-            // retrieve correct conversation
-            var conv = Conversations.Single(c => c.ConversationUri == _conversationUpdating.ConversationUri);
-            if (conv.IsUpdatingServerStatus)
-            {
-                // only false if all messages are seen
-                bool isStillUpdating = false;
-                foreach (var message in _conversationUpdating.Messages)
-                    isStillUpdating |= (message.MessageSeen == "0" ? true : false);
-                conv.IsUpdatingServerStatus = isStillUpdating;
+            var album = sender as FriendicaPhotoalbum;
+            Albums.Remove(album);
 
-                if (!isStillUpdating)
-                {
-                    // all messages have been seen - we can change the indicator in the conversation
-                    conv.HasNewMessages = false;
-                    _conversationUpdating = null;
-
-                    // fire event if still open conversations for updating available
-                    if (_conversationsForUpdating.Count != 0)
-                    {
-                        if (_updateConversationsEvent != null)
-                            _updateConversationsEvent.Invoke(this, EventArgs.Empty);
-                    }
-                }
-            }
+            if (PhotosView == PhotosViewStates.OnlyPhotos)
+                PhotosView = PhotosViewStates.OnlyAlbums;
         }
 
-        public void LoadMessagesNext()
+
+        private void SelectedPhotoalbum_PrintButtonClicked(object sender, EventArgs e)
         {
-            if (!IsLoadingOlderMessages)
-            {
-                var getMessagesNext = new GetFriendicaMessages();
-                getMessagesNext.FriendicaMessagesLoaded += GetMessagesNext_FriendicaMessagesLoaded;
-
-                // reduce minimum ID by 1 to avoid retrieving the oldest post again
-                //var oldestId = RetrievedMessages.Min(m => m.MessageIdInt) - 1;
-                int oldestId;
-                if (Conversations.Count == 0)
-                    oldestId = 0;
-                else
-                    oldestId = Conversations.SelectMany(m => m.Messages).Min(m => m.MessageIdInt) - 1;
-                // oldestId may not be negative or zero, otherwise API returns the newest posts again
-                if (oldestId > 0)
-                {
-                    IsLoadingOlderMessages = true;
-                    getMessagesNext.LoadMessagesNext(oldestId, 20);
-                }
-                else if (oldestId == 0)
-                    AllMessagesLoaded = true;
-            }
+            PrintButtonClicked?.Invoke(this, EventArgs.Empty);
         }
 
+        #endregion
 
-        private async void GetMessagesNext_FriendicaMessagesLoaded(object sender, EventArgs e)
-        {
-            var getMessagesNext = sender as GetFriendicaMessages;
-
-            if (getMessagesNext.StatusCode == HttpStatusCode.Ok && !getMessagesNext.IsErrorOccurred)
-            {
-                var convs = getMessagesNext.RetrieveConversations();
-                foreach (var conv in convs)
-                {
-                    conv.IsLoading = true;
-                    conv.ConversationDeleted += Conv_ConversationDeleted;
-                    var getMessagesConv = new GetFriendicaMessages();
-                    getMessagesConv.FriendicaMessagesLoaded += GetMessagesConv_FriendicaMessagesLoaded;
-                    getMessagesConv.LoadConversation(conv.ConversationUri);
-                    ClearOutRicheditboxesRequested?.Invoke(this, EventArgs.Empty);
-                    Conversations.Add(conv);
-                }
-            }
-            else
-            {
-                if (getMessagesNext.ErrorMessageFriendica != GetFriendicaMessages.MessageErrors.NoMailsAvailable)
-                {
-                    // message to user: "there was an error on loading the private messages"
-                    string errorMsg;
-                    errorMsg = String.Format(loader.GetString("messageDialogMessagesErrorLoading"), getMessagesNext.ErrorMessage);
-                    var dialog = new MessageDialogMessage(errorMsg, "", loader.GetString("buttonYes"), loader.GetString("buttonNo"));
-                    await dialog.ShowDialog(0, 1);
-
-                    if (dialog.Result == 0)
-                        LoadMessagesNext();
-                }
-                else
-                    AllMessagesLoaded = true;
-
-                IsLoadingOlderMessages = false;
-            }
-
-        }
-
-
-        public void LoadMessagesNew()
-        {
-            var getMessagesNew = new GetFriendicaMessages();
-            getMessagesNew.FriendicaMessagesLoaded += GetMessagesNew_FriendicaMessagesLoaded;
-
-            double newestId = 0;
-            if (RetrievedMessages.Count != 0)
-                newestId = Conversations.SelectMany(m => m.Messages).Max(m => m.MessageIdInt);
-            IsRefreshing = true;
-            getMessagesNew.LoadMessagesNew(newestId, 20);
-        }
-
-
-        private async void GetMessagesNew_FriendicaMessagesLoaded(object sender, EventArgs e)
-        {
-            var getMessagesNew = sender as GetFriendicaMessages;
-
-            if (getMessagesNew.StatusCode == HttpStatusCode.Ok && !getMessagesNew.IsErrorOccurred)
-            {
-                // save loaded messages into variable
-                foreach (var message in getMessagesNew.MessagesReturned)
-                    RetrievedMessages.Insert(0, message);
-
-                // set indicator back if we had no conversation in the list before
-                if (NoMessagesAvailable)
-                    NoMessagesAvailable = false;
-
-                var convs = getMessagesNew.RetrieveConversations();
-                foreach (var conv in convs)
-                {
-                    if (Conversations.Where(c => c.ConversationUri == conv.ConversationUri).Any())
-                    {
-                        var conversation = Conversations.Single(c => c.ConversationUri == conv.ConversationUri);
-                        conversation.IsLoading = true;
-                        conversation.NewMessageAdded += Conv_NewMessageAdded;
-                        conversation.ReloadConversation();
-                        //if (PhotosView != PhotosViewStates.OnlyAlbums)
-                            //SelectedConversation = conversation;
-                    }
-                    else
-                    {
-                        conv.IsLoading = true;
-                        conv.ConversationDeleted += Conv_ConversationDeleted;
-                        var getMessagesConv = new GetFriendicaMessages();
-                        getMessagesConv.FriendicaMessagesLoaded += GetMessagesConv_FriendicaMessagesLoaded;
-                        getMessagesConv.LoadConversation(conv.ConversationUri);
-                        Conversations.Insert(0, conv);
-                        //if (PhotosView != PhotosViewStates.OnlyAlbums)
-                            //SelectedConversation = conv;
-                    }
-                    ClearOutRicheditboxesRequested?.Invoke(this, EventArgs.Empty);
-                    if (PhotosView == PhotosViewStates.OnlyPhotos)
-                    {
-                        App.MessagesNavigatedIntoConversation = true;
-                    }
-                    if (NewMessageAdded != null)
-                        NewMessageAdded.Invoke(this, EventArgs.Empty);
-                }
-                IsRefreshing = false;
-            }
-            else
-            {
-                if (getMessagesNew.ErrorMessageFriendica != GetFriendicaMessages.MessageErrors.NoMailsAvailable)
-                {
-                    // message to user: "there was an error on loading the private messages"
-                    string errorMsg;
-                    errorMsg = String.Format(loader.GetString("messageDialogMessagesErrorLoading"), getMessagesNew.ErrorMessage);
-                    var dialog = new MessageDialogMessage(errorMsg, "", loader.GetString("buttonYes"), loader.GetString("buttonNo"));
-                    await dialog.ShowDialog(0, 1);
-
-                    if (dialog.Result == 0)
-                        LoadMessagesNew();
-                }
-                IsRefreshing = false;
-            }
-
-        }
-
-
-        public void SearchMessages()
-        {
-            var searchMessages = new GetFriendicaMessages();
-            searchMessages.FriendicaMessagesLoaded += SearchMessages_FriendicaMessagesLoaded;
-
-            IsSearching = true;
-            SearchResults = new ObservableCollection<FriendicaMessage>();
-            SearchConversations = new ObservableCollection<FriendicaConversation>();
-            searchMessages.SearchMessage(SearchString.ToLower());
-        }
-
-        private async void SearchMessages_FriendicaMessagesLoaded(object sender, EventArgs e)
-        {
-            var searchMessages = sender as GetFriendicaMessages;
-
-            if (searchMessages.StatusCode == HttpStatusCode.Ok && !searchMessages.IsErrorOccurred)
-            {
-                if (searchMessages.NoSearchResultsReturned)
-                    NoSearchResults = true;
-                else
-                {
-                    NoSearchResults = false;
-                    foreach (var message in searchMessages.SearchResults)
-                        SearchResults.Add(message);
-
-                    // retrieve conversations of search results
-                    var convs = searchMessages.RetrieveSearchConversations();
-                    foreach (var conv in convs)
-                    {
-                        conv.IsLoading = true;
-                        conv.NewMessageAdded += Conv_NewMessageAdded;
-                        var getSearchConv = new GetFriendicaMessages();
-                        getSearchConv.FriendicaMessagesLoaded += GetSearchConv_FriendicaMessagesLoaded;
-                        getSearchConv.LoadConversation(conv.ConversationUri);
-                        SearchConversations.Add(conv);
-                    }
-                }
-            }
-            else
-            {
-                if (searchMessages.NoSearchResultsReturned)
-                {
-                    NoSearchResults = true;
-                }
-                else
-                {
-                    // message to user: "there was an error on loading the private messages"
-                    string errorMsg;
-                    errorMsg = String.Format(loader.GetString("messageDialogMessagesErrorLoading"), searchMessages.ErrorMessage);
-                    var dialog = new MessageDialogMessage(errorMsg, "", loader.GetString("buttonYes"), loader.GetString("buttonNo"));
-                    await dialog.ShowDialog(0, 1);
-
-                    if (dialog.Result == 0)
-                        LoadMessagesNew();
-                }
-            }
-            IsSearching = false;
-
-        }
-
-        private void GetSearchConv_FriendicaMessagesLoaded(object sender, EventArgs e)
-        {
-            var getSearchConv = sender as GetFriendicaMessages;
-            if (!getSearchConv.IsErrorOccurred)
-            {
-                var conv = SearchConversations.Single(c => c.ConversationUri == getSearchConv.ConversationUri);
-                if (conv.Messages == null)
-                    conv.Messages = new ObservableCollection<FriendicaMessage>();
-
-                if (getSearchConv.MessagesReturned == null)
-                    return;
-
-                var messages = getSearchConv.MessagesReturned.OrderBy(m => m.MessageCreatedAtDateTime);
-                foreach (var message in messages)
-                {
-                    conv.Messages.Add(message);
-                }
-                conv.IsLoaded = true;
-                conv.IsLoading = false;
-            }
-        }
     }
 }

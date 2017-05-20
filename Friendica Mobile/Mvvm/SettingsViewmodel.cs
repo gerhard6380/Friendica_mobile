@@ -366,7 +366,7 @@ namespace Friendica_Mobile.Mvvm
         {
             var selectedContacts = new List<FriendicaUserExtended>();
             var settings = App.Settings.ACLPrivateSelectedContacts;
-            if (settings != null && settings != "")
+            if (settings != null && settings != "" && App.ContactsFriends != null)
             {
                 string[] cids = Regex.Split(settings, @"<");
                 foreach (var cid in cids)
@@ -388,7 +388,7 @@ namespace Friendica_Mobile.Mvvm
         {
             var selectedGroups = new List<FriendicaGroup>();
             var settings = App.Settings.ACLPrivateSelectedGroups;
-            if (settings != null && settings != "")
+            if (settings != null && settings != "" && App.ContactsGroups != null)
             {
                 string[] gids = Regex.Split(settings, @"<");
                 foreach (var gid in gids)
@@ -572,7 +572,7 @@ namespace Friendica_Mobile.Mvvm
 
 
 
-        private void Authenticationtest_UserAuthenticated(object sender, EventArgs e)
+        private async void Authenticationtest_UserAuthenticated(object sender, EventArgs e)
         {
             TestConnectionInProgress = false;
             var httpRequest = sender as AuthenticationTest;
@@ -593,6 +593,11 @@ namespace Friendica_Mobile.Mvvm
                     App.IsSendingNewMessage = false;
                     App.MessagesNavigatedIntoConversation = false;
                     App.MessagesVm = null;
+                    // clear everything related to photos
+                    App.PhotosNavigatedIntoAlbum = false;
+                    App.PhotosVm = null;
+                    // delete locally stored data of the old user@server
+                    await DeleteLocalDataAsync();
                 }
                 App.Settings.FriendicaServer = _friendicaServer;
                 App.Settings.FriendicaUsername = _friendicaUsername;
@@ -677,6 +682,11 @@ namespace Friendica_Mobile.Mvvm
                 return false;
         }
         private async void ExecuteDeleteLocalData()
+        {
+            await DeleteLocalDataAsync();
+        }
+
+        public async Task DeleteLocalDataAsync()
         {
             IsDeletingLocalData = true;
 
