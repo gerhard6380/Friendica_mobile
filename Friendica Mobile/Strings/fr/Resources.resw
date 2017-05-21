@@ -2007,4 +2007,20 @@ Veulent ignorer ces modifications ?</value>
 Etes-vous sûr ?</value>
     <comment>Photos.xaml: ask user for confirmation when leaving the cropping window</comment>
   </data>
+  <data name="appBarPhotosShowPreviews.Label" xml:space="preserve">
+    <value>Aperçu</value>
+    <comment>PhotosCropping.xaml: caption of the appbarButton for displaying the preview images on mobile devices</comment>
+  </data>
+  <data name="appBarPhotosShowPreviews.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Affiche l’aperçu des images Profil dans les tailles respectives...</value>
+    <comment>PhotosCropping.xaml: tooltip of the appbarButton for displaying the preview images on mobile devices</comment>
+  </data>
+  <data name="textblockPhotosLoadingCroppingArea.Text" xml:space="preserve">
+    <value>Importe la version de haute résolution de l’image dans la zone de culture...</value>
+    <comment>PhotosCropping.xaml: red info box to user showing that app is currently importing the photo in high resolution into cropping area</comment>
+  </data>
+  <data name="messageDialogPhotosPrintingNotPossible" xml:space="preserve">
+    <value>Il n’est pas possible d’imprimer!</value>
+    <comment>Photos.xaml: dialog message to user when printing throws an error</comment>
+  </data>
 </root>

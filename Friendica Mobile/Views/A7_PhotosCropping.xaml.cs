@@ -9,17 +9,16 @@ using System.IO;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
 using Windows.Storage.Streams;
 using Windows.Graphics.Imaging;
 using Windows.Web.Http;
+using Windows.UI.Xaml.Media;
 
 namespace Friendica_Mobile.Views
 {
     public sealed partial class A7_PhotosCropping : Page
     {
         ResourceLoader loader = ResourceLoader.GetForCurrentView();
-
 
         public A7_PhotosCropping()
         {
@@ -35,6 +34,8 @@ namespace Friendica_Mobile.Views
         {
             if (e.SourcePageType.Name == "A7_PhotosCropping")
             {
+                panelIndicatorLoading.Visibility = Visibility.Visible;
+
                 var photo = App.PhotosVm.SelectedPhotoalbum.SelectedPhoto;
                 WriteableBitmap wb;
                 // when coming from a new photo for profileimage we do have a Storagefile
@@ -68,6 +69,7 @@ namespace Friendica_Mobile.Views
                 this.PhotoCropper.SourceImage = wb;
                 this.PhotoCropper.UpdateLayout();
                 App.Settings.HideNavigationElements = true;
+                panelIndicatorLoading.Visibility = Visibility.Collapsed;            
             }
             base.OnNavigatedTo(e);
         }
@@ -88,7 +90,7 @@ namespace Friendica_Mobile.Views
                 // save strokes if user has confirmed with yes
                 if (dialog.Result == 0)
                 {
-                await SaveCroppedPhotoAsync();
+                    await SaveCroppedPhotoAsync();
                     frame.GoBack();
                 }
             }
@@ -136,6 +138,9 @@ namespace Friendica_Mobile.Views
             App.PhotosVm.SelectedPhotoalbum.SelectedPhoto.ThumbSizeData = PhotoCropper.CroppedImage;
             App.PhotosVm.SelectedPhotoalbum.SelectedPhoto.MediumSizeData = PhotoCropper.CroppedImage;
             App.PhotosVm.SelectedPhotoalbum.SelectedPhoto.FullSizeData = PhotoCropper.CroppedImage;
+            App.PhotosVm.SelectedPhotoalbum.SelectedPhoto.ThumbSizeLoaded = true;
+            App.PhotosVm.SelectedPhotoalbum.SelectedPhoto.MediumSizeLoaded = true;
+            App.PhotosVm.SelectedPhotoalbum.SelectedPhoto.FullSizeLoaded = true;
 
             this.PhotoCropper.HasUnsavedChanges = false;
         }
@@ -146,9 +151,17 @@ namespace Friendica_Mobile.Views
             await SaveCroppedPhotoAsync();
         }
 
-        private void borderOriginalImage_PointerPressed(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+
+        private void bottomAppBarPhotosShowPreviews_Click(object sender, RoutedEventArgs e)
         {
-            e.Handled = true;
+            // load cropped images as binding is not working on this elements
+            imageFullsizePreviewMobile.Source = this.PhotoCropper.CroppedImage;
+            imageMediumPreviewMobile.Source = this.PhotoCropper.CroppedImage;
+            imageThumbPreviewMobile.Source = this.PhotoCropper.CroppedImage;
+
+            // show the flyout
+            var button = sender as AppBarButton;
+            button.Flyout.ShowAt(button);
         }
     }
 }

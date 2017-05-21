@@ -64,7 +64,10 @@ namespace Friendica_Mobile.Styles
                 imageInFlipView.Height = gridImageInFlipView.ActualHeight;
 
             if (!Double.IsNaN(imageInFlipView.ActualWidth))
+            {
                 gridPhotoDescriptionShow.MaxWidth = imageInFlipView.ActualWidth;
+                gridPhotoDescriptionShow.Width = imageInFlipView.ActualWidth;
+            }
         }
 
         private void textBoxPhotoDescriptionEdit_IsEnabledChanged(object sender, Windows.UI.Xaml.DependencyPropertyChangedEventArgs e)
@@ -141,6 +144,5 @@ namespace Friendica_Mobile.Styles
             if (mvvm.IsLoadingFullSize)
                 mvvm.IsLoadingFullSize = false;
         }
-
     }
 }

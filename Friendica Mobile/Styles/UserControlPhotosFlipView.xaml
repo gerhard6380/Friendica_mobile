@@ -70,30 +70,30 @@
                         Grid.Row="1" Grid.Column="1">
                     <Border Background="{Binding ShowUploadButtonBrush}">
                         <Grid>
-                            <StackPanel Margin="4">
+                            <StackPanel Margin="4,4,4,12">
                                 <Grid>
                                     <!-- image to be shown -->
                                     <Button Background="Transparent"
-                                        BorderBrush="Transparent">
+                                            BorderBrush="Transparent">
                                         <Image x:Name="imageInFlipView"
                                                Source="{Binding MediumSizeData}"
                                                Stretch="Uniform"
                                                Height="{Binding ActualHeight, ElementName=gridImageInFlipView}" />
                                         <Button.Flyout>
                                             <Flyout x:Name="flyoutFullImage"
-                                                Placement="Full"
-                                                Opened="flyoutFullImage_Opened"
-                                                FlyoutPresenterStyle="{StaticResource FlyoutPresenterPhotosStyle}">
+                                                    Placement="Full"
+                                                    Opened="flyoutFullImage_Opened"
+                                                    FlyoutPresenterStyle="{StaticResource FlyoutPresenterPhotosStyle}">
                                                 <Grid>
                                                     <!-- image in full view in a zoomable scrollviewer -->
                                                     <ScrollViewer x:Name="scrollViewerFullImage" 
-                                                              HorizontalAlignment="Left"
-                                                              VerticalAlignment="Top"
-                                                              Margin="12"
-                                                              ZoomMode="Enabled"
-                                                              MinZoomFactor="0.7"
-                                                              HorizontalScrollBarVisibility="Auto"
-                                                              VerticalScrollBarVisibility="Auto">
+                                                                  HorizontalAlignment="Left"
+                                                                  VerticalAlignment="Top"
+                                                                  Margin="12"
+                                                                  ZoomMode="Enabled"
+                                                                  MinZoomFactor="0.7"
+                                                                  HorizontalScrollBarVisibility="Auto"
+                                                                  VerticalScrollBarVisibility="Auto">
                                                         <Grid>
                                                             <Image x:Name="imageFullView" 
                                                                    MinWidth="200"
@@ -102,32 +102,32 @@
                                                                    Loaded="imageFullView_Loaded"
                                                                    Stretch="Uniform"/>
                                                             <ProgressRing x:Name="progressRingLoadingFullViewImage"
-                                                                      MinWidth="96" MinHeight="96"
-                                                                      IsActive="{Binding IsLoadingFullSize}" />
+                                                                          MinWidth="96" MinHeight="96"
+                                                                          IsActive="{Binding IsLoadingFullSize}" />
                                                         </Grid>
                                                     </ScrollViewer>
 
                                                     <!-- buttons for close and print -->
                                                     <StackPanel Orientation="Horizontal"
-                                                            Margin="12"
-                                                            VerticalAlignment="Top"
-                                                            HorizontalAlignment="Left">
+                                                                Margin="12"
+                                                                VerticalAlignment="Top"
+                                                                HorizontalAlignment="Left">
                                                         <!-- button for closing the flyout -->
                                                         <Button x:Name="buttonClosePhotoFullImage"
-                                                            Width="36" Height="36"
-                                                            Padding="-4"
-                                                            Opacity="1"
-                                                            Style="{StaticResource ButtonOrginalStyle}"
-                                                            Click="buttonClosePhotoFullImage_Click">
+                                                                Width="36" Height="36"
+                                                                Padding="-4"
+                                                                Opacity="1"
+                                                                Style="{StaticResource ButtonOrginalStyle}"
+                                                                Click="buttonClosePhotoFullImage_Click">
                                                             <FontIcon Glyph="&#xE711;" FontFamily="Segoe MDL2 Assets" FontSize="24" />
                                                         </Button>
                                                         <!-- button for printing the image -->
                                                         <Button x:Name="buttonPrintPhoto" x:Uid="buttonPrintPhoto"
-                                                            Command="{Binding PrintPhotoCommand}"
-                                                            Width="36" Height="36"
-                                                            Margin="4, 0, 0, 0"
-                                                            Padding="-4"
-                                                            Style="{StaticResource ButtonOrginalStyle}">
+                                                                Command="{Binding PrintPhotoCommand}"
+                                                                Width="36" Height="36"
+                                                                Margin="4, 0, 0, 0"
+                                                                Padding="-4"
+                                                                Style="{StaticResource ButtonOrginalStyle}">
                                                             <FontIcon Glyph="&#xE2F6;" FontFamily="Segoe MDL2 Assets" FontSize="24" />
                                                         </Button>
                                                     </StackPanel>
@@ -137,87 +137,88 @@
                                     </Button>
                                     <!-- showing progressring when image in this resolution is loaded from server -->
                                     <ProgressRing x:Name="progressRingLoadingFlipViewImage"
-                                              MinWidth="96" MinHeight="96"
-                                              IsActive="{Binding IsLoadingMediumSize}" />
+                                                  MinWidth="96" MinHeight="96"
+                                                  IsActive="{Binding IsLoadingMediumSize}" />
 
                                     <!-- button to start upload to server on new photos -->
                                     <Button x:Name="buttonPhotoStartUpload" x:Uid="buttonPhotoStartUpload"
-                                        Command="{Binding UploadPhotoCommand}"
-                                        Visibility="{Binding ShowUploadButton, Converter={StaticResource BoolToVisibilityConverter}}"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"
-                                        Background="Transparent">
+                                            Command="{Binding UploadPhotoCommand}"
+                                            Visibility="{Binding ShowUploadButton, Converter={StaticResource BoolToVisibilityConverter}}"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"
+                                            Background="Transparent">
                                         <Grid>
                                             <Ellipse Fill="Red" />
                                             <FontIcon Glyph="&#xE898;" FontFamily="Segoe MDL2 Assets" 
-                                                  FontSize="32"
-                                                  Foreground="White"
-                                                  Margin="8"/>
+                                                      FontSize="32"
+                                                      Foreground="White"
+                                                      Margin="8"/>
                                         </Grid>
                                     </Button>
 
                                 </Grid>
                                 <!-- showing photo description -->
                                 <Grid x:Name="gridPhotoDescriptionShow"
+                                      MinWidth="200"
                                       MaxWidth="300"
-                                        Visibility="{Binding PhotoEditingEnabled, Converter={StaticResource BoolToVisibilityCollapsedConverter}}">
+                                      Visibility="{Binding PhotoEditingEnabled, Converter={StaticResource BoolToVisibilityCollapsedConverter}}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <TextBlock x:Name="textblockPhotoDescription" 
-                                       Grid.Column="0" 
-                                       MaxHeight="48"
-                                       Margin="0,12,0,0"
-                                       FontFamily="Segoe Script"
-                                       Foreground="SaddleBrown"
-                                       TextTrimming="WordEllipsis"
-                                       TextWrapping="Wrap"
-                                       Text="{Binding NewPhotoDesc}"/>
+                                               Grid.Column="0" 
+                                               MaxHeight="48"
+                                               Margin="0,12,0,0"
+                                               FontFamily="Segoe Script"
+                                               Foreground="SaddleBrown"
+                                               TextTrimming="WordEllipsis"
+                                               TextWrapping="Wrap"
+                                               Text="{Binding NewPhotoDesc}"/>
                                     <Button x:Name="buttonEditPhotoDescription" 
-                                    Grid.Column="1"
-                                    Padding="-4"
-                                    Margin="12,0,0,0"
-                                    Width="36" Height="36"
-                                    Command="{Binding EditPhotoDescriptionCommand}" 
-                                    Style="{StaticResource ButtonTransparentPhotoStyle}">
+                                            Grid.Column="1"
+                                            Padding="-4"
+                                            Margin="12,0,0,0"
+                                            Width="36" Height="36"
+                                            Command="{Binding EditPhotoDescriptionCommand}" 
+                                            Style="{StaticResource ButtonTransparentPhotoStyle}">
                                         <FontIcon Glyph="&#xE70F;" FontFamily="Segoe MDL2 Assets" FontSize="24" />
                                     </Button>
                                 </Grid>
                                 <!-- alternatively show editor for photo description -->
                                 <Grid x:Name="gridPhotoDescriptionEdit" 
-                              Visibility="{Binding PhotoEditingEnabled, Converter={StaticResource BoolToVisibilityConverter}}">
+                                      Visibility="{Binding PhotoEditingEnabled, Converter={StaticResource BoolToVisibilityConverter}}">
                                     <RelativePanel>
                                         <TextBox x:Name="textBoxPhotoDescriptionEdit"
-                                         RelativePanel.LeftOf="stackPanelEditPhotoDescriptionButtons"
-                                         RelativePanel.AlignTopWithPanel="True"
-                                         RelativePanel.AlignBottomWithPanel="True"
-                                         RelativePanel.AlignLeftWithPanel="True"
-                                         Text="{Binding NewPhotoDesc, Mode=TwoWay}"
-                                         MaxHeight="72"
-                                         FontFamily="Segoe Script"
-                                         Foreground="SaddleBrown"
-                                         TextWrapping="Wrap"
-                                         VerticalContentAlignment="Center"
-                                         InputScope="Text"
-                                         KeyDown="textBoxPhotoDescriptionEdit_KeyDown"
-                                         IsEnabled="{Binding PhotoEditingEnabled}"
-                                         IsEnabledChanged="textBoxPhotoDescriptionEdit_IsEnabledChanged"/>
+                                                 RelativePanel.LeftOf="stackPanelEditPhotoDescriptionButtons"
+                                                 RelativePanel.AlignTopWithPanel="True"
+                                                 RelativePanel.AlignBottomWithPanel="True"
+                                                 RelativePanel.AlignLeftWithPanel="True"
+                                                 Text="{Binding NewPhotoDesc, Mode=TwoWay}"
+                                                 MaxHeight="72"
+                                                 FontFamily="Segoe Script"
+                                                 Foreground="SaddleBrown"
+                                                 TextWrapping="Wrap"
+                                                 VerticalContentAlignment="Center"
+                                                 InputScope="Text"
+                                                 KeyDown="textBoxPhotoDescriptionEdit_KeyDown"
+                                                 IsEnabled="{Binding PhotoEditingEnabled}"
+                                                 IsEnabledChanged="textBoxPhotoDescriptionEdit_IsEnabledChanged"/>
                                         <StackPanel x:Name="stackPanelEditPhotoDescriptionButtons" 
-                                            Orientation="Vertical"
-                                            RelativePanel.AlignRightWithPanel="True">
+                                                    Orientation="Vertical"
+                                                    RelativePanel.AlignRightWithPanel="True">
                                             <Button x:Name="buttonPhotoDescriptionSaveChangedName"
-                                                Height="36" Width="36"
-                                                Padding="-4"
-                                                Click="buttonPhotoDescriptionSaveChangedName_Click"
-                                                Style="{StaticResource ButtonTransparentPhotoStyle}">
+                                                    Height="36" Width="36"
+                                                    Padding="-4"
+                                                    Click="buttonPhotoDescriptionSaveChangedName_Click"
+                                                    Style="{StaticResource ButtonTransparentPhotoStyle}">
                                                 <FontIcon Glyph="&#xE74E;" FontFamily="Segoe MDL2 Assets" FontSize="24" />
                                             </Button>
                                             <Button x:Name="buttonPhotoCancelDescriptionChange"
-                                            Height="36" Width="36"
-                                            Padding="-4"
-                                            Click="buttonPhotoCancelDescriptionChange_Click"
-                                            Style="{StaticResource ButtonTransparentPhotoStyle}">
+                                                    Height="36" Width="36"
+                                                    Padding="-4"
+                                                    Click="buttonPhotoCancelDescriptionChange_Click"
+                                                    Style="{StaticResource ButtonTransparentPhotoStyle}">
                                                 <FontIcon Glyph="&#xE711;" FontFamily="Segoe MDL2 Assets" FontSize="24" />
                                             </Button>
                                         </StackPanel>
@@ -231,40 +232,39 @@
                                     </Grid.ColumnDefinitions>
                                     <!-- date when photos was uploaded to server (last edited date) -->
                                     <StackPanel x:Name="stackpanelPhotoDateEdited" 
-                                            Grid.Column="0"
-                                            Margin="-8,-4,4,-8"
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Bottom">
+                                                Grid.Column="0"
+                                                Margin="0,-4,4,-8"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Bottom">
                                         <TextBlock x:Name="textblockPhotoDateEdited" x:Uid="textblockPhotoDateEdited"
-                                               FontWeight="ExtraBold"
-                                               Margin="0,0,4,0"
-                                               Foreground="SaddleBrown"
-                                               FontSize="8" />
+                                                   FontWeight="ExtraBold"
+                                                   Margin="0,0,4,0"
+                                                   Foreground="SaddleBrown"
+                                                   FontSize="8" />
                                         <TextBlock Text="{Binding PhotoEditedLocalized}"
-                                               Foreground="SaddleBrown"
-                                               FontWeight="SemiBold"
-                                               TextWrapping="Wrap"
-                                               FontSize="8" />
+                                                   Foreground="SaddleBrown"
+                                                   FontWeight="SemiBold"
+                                                   TextWrapping="Wrap"
+                                                   FontSize="8" />
                                     </StackPanel>
                                     <!-- date when photo was shot -->
                                     <StackPanel x:Name="stackpanelPhotoDateShot" 
-                                            Grid.Column="1"
-                                            Margin="4,-4,-8,-8"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Bottom">
+                                                Grid.Column="1"
+                                                Margin="4,-4,0,-8"
+                                                HorizontalAlignment="Right"
+                                                VerticalAlignment="Bottom">
                                         <TextBlock x:Name="textblockPhotoDateShot" x:Uid="textblockPhotoDateShot"
-                                               FontWeight="ExtraBold"
-                                               Margin="0,0,4,0"
-                                               Foreground="SaddleBrown"
-                                               FontSize="8" />
+                                                   FontWeight="ExtraBold"
+                                                   Margin="0,0,4,0"
+                                                   Foreground="SaddleBrown"
+                                                   FontSize="8" />
                                         <TextBlock Text="{Binding PhotoDateShotLocalized}"
-                                               FontWeight="SemiBold"
-                                               Foreground="SaddleBrown"
-                                               TextWrapping="Wrap"
-                                               FontSize="8" />
+                                                   FontWeight="SemiBold"
+                                                   Foreground="SaddleBrown"
+                                                   TextWrapping="Wrap"
+                                                   FontSize="8" />
                                     </StackPanel>
                                 </Grid>
-
                             </StackPanel>
                         </Grid>
                     </Border>
@@ -301,9 +301,9 @@
             <GridViewItem>
                 <!-- button for showing the access rights of this image (red border if publicly visible) -->
                 <Button x:Name="buttonPhotoEditAccessRights" x:Uid="buttonPhotoEditAccessRights"
-                            Command="{Binding EditPhotoAccessRightsCommand}"
-                            Width="36" Height="36"
-                            Padding="-4">
+                        Command="{Binding EditPhotoAccessRightsCommand}"
+                        Width="36" Height="36"
+                        Padding="-4">
                     <Grid>
                         <!-- open lock for publicly visible photo -->
                         <FontIcon Glyph="&#xE1F7;" FontFamily="Segoe MDL2 Assets" FontSize="24" 
@@ -334,16 +334,16 @@
                         Padding="-4">
                     <Grid>
                         <FontIcon Glyph="&#xE82D;" FontFamily="Segoe MDL2 Assets" FontSize="24" 
-                                      Margin="0, 0, 0, 0"/>
+                                  Margin="0, 0, 0, 0"/>
                         <FontIcon Glyph="&#xE0D5;" FontFamily="Segoe MDL2 Assets" FontSize="16"
                                   FontWeight="ExtraBold"
-                                      Margin="0, 0, -8, -20" />
+                                  Margin="0, 0, -8, -20" />
                     </Grid>
                     <Button.Flyout>
                         <Flyout>
                             <StackPanel>
                                 <TextBlock x:Name="textblockPhotosSelectNewAlbum" x:Uid="textblockPhotosSelectNewAlbum"
-                                    Text="Album auswählen:" />
+                                           Text="Album auswählen:" />
                                 <ComboBox x:Name="comboBoxSelectableAlbums"
                                           ItemsSource="{Binding SelectableAlbums}"
                                           SelectedItem="{Binding NewAlbumName, Mode=TwoWay}"
