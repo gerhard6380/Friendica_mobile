@@ -172,9 +172,13 @@ namespace Friendica_Mobile.Views
 
             base.OnNavigatedTo(e);
 
-            // initialize common helper class and register for printing
-            printHelper = new PrintHelper(this);
-            printHelper.RegisterForPrinting();
+            // initialize common helper class and register for printing, include in try/catch to prevent exception when moving away from app and returning
+            try
+            {
+                printHelper = new PrintHelper(this);
+                printHelper.RegisterForPrinting();
+            }
+            catch { }
         }
 
 
