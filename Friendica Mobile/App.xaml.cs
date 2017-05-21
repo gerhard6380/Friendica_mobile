@@ -156,8 +156,7 @@ namespace Friendica_Mobile
             this.InitializeComponent();
             this.Suspending += OnSuspending;
             // trying to get more information on the unknown crashes after store update
-            // TODO: remove the following for App publication
-            UnhandledException += App_UnhandledException;
+            //UnhandledException += App_UnhandledException;
         }
 
 
@@ -203,18 +202,17 @@ namespace Friendica_Mobile
             var contacts = new ContactsViewmodel();
             contacts.InitialLoad();
 
-// TODO remove comments
-            // start loading the non loaded part of the app (if user wants to start into network, we load home; and vice versa)
-            //if (Settings.StartPage == "Home")
-            //{
-            //    var network = new NetworkViewmodel();
-            //    network.LoadInitial();
-            //}
-            //else if (Settings.StartPage == "Network")
-            //{
-            //    var home = new HomeViewmodel();
-            //    home.LoadInitial();
-            //}
+            //start loading the non loaded part of the app(if user wants to start into network, we load home; and vice versa)
+            if (Settings.StartPage == "Home")
+            {
+                var network = new NetworkViewmodel();
+                network.LoadInitial();
+            }
+            else if (Settings.StartPage == "Network")
+            {
+                var home = new HomeViewmodel();
+                home.LoadInitial();
+            }
 
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -287,12 +285,11 @@ namespace Friendica_Mobile
                 }
                 else
                 {
-                    // TODO back to normal behaviour
-                    rootFrame.Navigate(typeof(Views.Photos));
-                    //if (Settings.StartPage == "Home")
-                    //    rootFrame.Navigate(typeof(Views.Home));
-                    //else if (Settings.StartPage == "Network")
-                    //    rootFrame.Navigate(typeof(Views.Network));
+                    //rootFrame.Navigate(typeof(Views.Photos));
+                    if (Settings.StartPage == "Home")
+                        rootFrame.Navigate(typeof(Views.Home));
+                    else if (Settings.StartPage == "Network")
+                        rootFrame.Navigate(typeof(Views.Network));
                 }
             }
             // Ensure the current window is active
