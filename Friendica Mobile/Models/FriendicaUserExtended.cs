@@ -162,7 +162,8 @@ namespace Friendica_Mobile.Models
         private bool SetIsAuthenticatedUser()
         {
             // no authenticated user if there is no server set so far (sample mode)
-            if (_appSettings.FriendicaServer == null || _appSettings.FriendicaServer == "")
+            if (_appSettings.FriendicaServer == null || _appSettings.FriendicaServer == "" 
+                    || _appSettings.FriendicaUsername == null || _appSettings.FriendicaUsername == "")
                 return false;
 
             // check url as well as there could be users with identic screen names on different servers

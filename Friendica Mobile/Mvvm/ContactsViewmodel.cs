@@ -609,19 +609,23 @@ namespace Friendica_Mobile.Mvvm
         private ObservableCollection<FriendicaUserExtended> ConvertJsonToObsColl(GetFriendicaFriends httpResult, ContactTypes type)
         {
             var obscoll = new ObservableCollection<FriendicaUserExtended>();
-            JsonArray resultArray = JsonArray.Parse(httpResult.ReturnString);
-            int arraySize = resultArray.Count;
-            for (int i = 0; i < arraySize; i++)
+            JsonArray resultArray = null;
+            var testArray = JsonArray.TryParse(httpResult.ReturnString, out resultArray);
+            if (testArray)
             {
-                IJsonValue element = resultArray.GetArray()[i];
-                switch (element.ValueType)
+                int arraySize = resultArray.Count;
+                for (int i = 0; i < arraySize; i++)
                 {
-                    case JsonValueType.Object:
-                        var result = new FriendicaUserExtended(element.ToString());
-                        result.ButtonShowProfileClicked += Result_ButtonShowProfileClicked;
-                        if (result.ContactType == type)
-                            obscoll.Add(result);
-                        break;
+                    IJsonValue element = resultArray.GetArray()[i];
+                    switch (element.ValueType)
+                    {
+                        case JsonValueType.Object:
+                            var result = new FriendicaUserExtended(element.ToString());
+                            result.ButtonShowProfileClicked += Result_ButtonShowProfileClicked;
+                            if (result.ContactType == type)
+                                obscoll.Add(result);
+                            break;
+                    }
                 }
             }
             return obscoll;
@@ -637,22 +641,28 @@ namespace Friendica_Mobile.Mvvm
         private ObservableCollection<FriendicaGroup> ConvertJsonToObsCollGroup(GetFriendicaGroups httpResult)
         {
             var groups = new List<FriendicaGroup>();
-            JsonArray resultArray = JsonArray.Parse(httpResult.ReturnString);
-            int arraySize = resultArray.Count;
-            for (int i = 0; i < arraySize; i++)
-            {
-                IJsonValue element = resultArray.GetArray()[i];
-                switch (element.ValueType)
-                {
-                    case JsonValueType.Object:
-                        var result = new FriendicaGroup(element.ToString());
-                        groups.Add(result);
-                        break;
-                }
-            }
             var obscoll = new ObservableCollection<FriendicaGroup>();
-            foreach (var group in groups.OrderBy(group => group.GroupName))
-                obscoll.Add(group);
+
+            JsonArray resultArray = null;
+            var testArray = JsonArray.TryParse(httpResult.ReturnString, out resultArray);
+
+            if (testArray)
+            {
+                int arraySize = resultArray.Count;
+                for (int i = 0; i < arraySize; i++)
+                {
+                    IJsonValue element = resultArray.GetArray()[i];
+                    switch (element.ValueType)
+                    {
+                        case JsonValueType.Object:
+                            var result = new FriendicaGroup(element.ToString());
+                            groups.Add(result);
+                            break;
+                    }
+                }
+                foreach (var group in groups.OrderBy(group => group.GroupName))
+                    obscoll.Add(group);
+            }
             return obscoll;
         }
 

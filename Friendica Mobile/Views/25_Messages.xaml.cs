@@ -46,6 +46,7 @@ namespace Friendica_Mobile.Views
             var inputPane = InputPane.GetForCurrentView();
             inputPane.Showing += InputPane_Showing;
             inputPane.Hiding += InputPane_Hiding;
+
             var mvvm = this.DataContext as MessagesViewmodel;
             mvvm.ButtonAddConversationClicked += Mvvm_ButtonAddConversationClicked;
             mvvm.ButtonEnableSearchClicked += Mvvm_ButtonEnableSearchClicked;

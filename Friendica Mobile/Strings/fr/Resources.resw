@@ -241,24 +241,6 @@
     <value>Tri des messages par des discussions</value>
     <comment>Network.xaml: tooltip of the appbarButton to sort posts by threads</comment>
   </data>
-  <data name="buttonDeleteLocalDatabase.Content" xml:space="preserve">
-    <value>Supprimer la base de données locale</value>
-    <comment>Settings.xaml: button for deleting the local database</comment>
-  </data>
-  <data name="messageDialogDeleteLocalDatabase" xml:space="preserve">
-    <value>Tous les contenus stockés localement seront supprimés. Certaines fonctionnalités ne fonctionneront plus dans la mesure habituelle (par exemple un lien sur le profil lorsque @-Tags dans le texte de l'élément). 
- 
-Etes-vous sûr ?</value>
-    <comment>Settings.xaml: message dialog after clicking button for deleting the local database</comment>
-  </data>
-  <data name="messageDialogLocalDatabaseDeleted" xml:space="preserve">
-    <value>Base de données a été supprimée.</value>
-    <comment>Settings.xaml: message after deleting the local database.</comment>
-  </data>
-  <data name="messageDialogLocalDatabaseNotDeleted" xml:space="preserve">
-    <value>Supprimer les annulées.</value>
-    <comment>Settings.xaml: message after cancelling the deletion of the local database.</comment>
-  </data>
   <data name="pivotSettingsGeneral.Header" xml:space="preserve">
     <value>Général</value>
     <comment>Settings.xaml: header for general settings</comment>
@@ -272,7 +254,7 @@ Etes-vous sûr ?</value>
     <comment>Settings.xaml: user can decide whether local storage of data is allowed</comment>
   </data>
   <data name="textblockSaveLocalAllowedHint.Text" xml:space="preserve">
-    <value>Pour certaines fonctions, il est nécessaire d'enregistrer des données de contacts ou des entrées localement sur l'appareil. Si vous désactiver cette option, ces fonctions ne sera plus possibles (par exemple un lien sur le profil lorsque @-Tags dans le texte de l'élément).</value>
+    <value>Pour certaines fonctions, il est nécessaire d’enregistrer des données de contacts ou des entrées localement sur l’appareil. Si vous désactiver cette option, ces fonctions ne sera plus possibles (par exemple un lien sur le profil lorsque @-Tags dans le texte de l’élément).</value>
     <comment>Settings.xaml: hint on SaveLocalAllowed</comment>
   </data>
   <data name="textblockIndicatorLoadingNextEntries.Text" xml:space="preserve">
@@ -984,7 +966,7 @@ Vous pouvez afficher en outre le nombre de nouvelles notifications sur l'écran 
     <comment>Messages.xaml: status update for user during loading initial 20 messages and the corresponding conversations</comment>
   </data>
   <data name="textblockNoMessagesAvailable.Text" xml:space="preserve">
-    <value>Le serveur n’a trouvé aucun message privé sur votre serveur.</value>
+    <value>L’app n’a trouvé aucun message privé sur votre serveur.</value>
     <comment>Messages.xaml: info shown to the user if no conversations are available on server</comment>
   </data>
   <data name="textboxSearchString.Header" xml:space="preserve">
@@ -1436,5 +1418,609 @@ Voudrais vous essayer à nouveau ?</value>
   <data name="pageProfileUsers.FlowDirection" xml:space="preserve">
     <value>LeftToRight</value>
     <comment>Defines text direction for the language</comment>
+  </data>
+  <data name="pagePhotos.FlowDirection" xml:space="preserve">
+    <value>LeftToRight</value>
+    <comment>Defines Text direction for the language</comment>
+  </data>
+  <data name="pageTitlePhotos.Text" xml:space="preserve">
+    <value>Images</value>
+    <comment>Name on top of view Photos.xaml</comment>
+  </data>
+  <data name="appBarPhotosAlbumAdd.Label" xml:space="preserve">
+    <value>Nouvel album</value>
+    <comment>Photos.xaml: caption of the appbarButton for a new album</comment>
+  </data>
+  <data name="appBarPhotosAlbumAdd.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Création d’un nouvel album photos (Note : est créée uniquement sur le serveur, lorsqu’une photo est téléchargée)</value>
+    <comment>Photos.xaml: tooltip of the appbarButton for a new album</comment>
+  </data>
+  <data name="appBarPhotosPhotoAdd.Label" xml:space="preserve">
+    <value>Nouvelle photo</value>
+    <comment>Photos.xaml: caption of the appbarButton for a new photo</comment>
+  </data>
+  <data name="appBarPhotosPhotoAdd.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Ajouter une nouvelle photo</value>
+    <comment>Photos.xaml: tooltip of the appbarButton for a new photo</comment>
+  </data>
+  <data name="appBarPhotosAddFromCamera.Text" xml:space="preserve">
+    <value>Photo de la caméra...</value>
+    <comment>Photos.xaml: caption of the menuFlyout under button 'add photo' for adding from camera</comment>
+  </data>
+  <data name="appBarPhotosAddFromCamera.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Nouvelle photo avec appareil photo et télécharger vers le serveur</value>
+    <comment>Photos.xaml: tooltip of the menuFlyout under button 'add photo' for adding from camera</comment>
+  </data>
+  <data name="appBarPhotosAddFromDevice.Text" xml:space="preserve">
+    <value>Photo de l’appareil...</value>
+    <comment>Photos.xaml: caption of the menuFlyout under button 'add photo' for adding from device</comment>
+  </data>
+  <data name="appBarPhotosAddFromDevice.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Dispositif existant nouvellement sur la photo de téléchargement du serveur</value>
+    <comment>Photos.xaml: tooltip of the menuFlyout under button 'add photo' for adding from device</comment>
+  </data>
+  <data name="appBarPhotosProfileimageAdd.Label" xml:space="preserve">
+    <value>Nouvelle photo de profil</value>
+    <comment>Photos.xaml: caption of the appbarButton for a new profileimage</comment>
+  </data>
+  <data name="appBarPhotosProfileimageAdd.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Ajouter une nouvelle photo de profil</value>
+    <comment>Photos.xaml: tooltip of the appbarButton for a new profileimage</comment>
+  </data>
+  <data name="appBarPhotosEmptyInkAdd.Label" xml:space="preserve">
+    <value>Insérer une page vierge</value>
+    <comment>Photos.xaml: caption of the appbarButton for an empty ink canvas area</comment>
+  </data>
+  <data name="appBarPhotosEmptyInkAdd.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Ouvre une zone vierge blanche pour écrire ou peindre un nouveau tableau</value>
+    <comment>Photos.xaml: tooltip of the appbarButton for an empty ink canvas area</comment>
+  </data>
+  <data name="appBarPhotosAlbumDelete.Label" xml:space="preserve">
+    <value>Supprimer l’album</value>
+    <comment>Photos.xaml: caption of the appbarButton for deleting the selected album</comment>
+  </data>
+  <data name="appBarPhotosAlbumDelete.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Supprimer album photo sélectionnée avec photos tout compris à partir du serveur</value>
+    <comment>Photos.xaml: tooltip of the appbarButton for deleting the selected album</comment>
+  </data>
+  <data name="appBarPhotosAlbumEdit.Label" xml:space="preserve">
+    <value>modifier l’album</value>
+    <comment>Photos.xaml: caption of the appbarButton for editing the selected album</comment>
+  </data>
+  <data name="appBarPhotosAlbumEdit.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Modifier les propriétés de l’album photo sélectionnée</value>
+    <comment>Photos.xaml: tooltip of the appbarButton for editing the selected album</comment>
+  </data>
+  <data name="textblockPhotosNoServerSupport.Text" xml:space="preserve">
+    <value>Votre serveur ne supporte pas les commandes encore, qui sont nécessaires pour la gestion des images dans ce soft. </value>
+    <comment>Photos.xaml: showing error message to user if the server is reachable but has no support for the API calls needed to display/edit photos/profileimages</comment>
+  </data>
+  <data name="textblockPhotosNoSettings.Text" xml:space="preserve">
+    <value>Vous avez défini un serveur Friendica dans les paramètres de l’application. Ci-dessous, nous montrent des exemples de comment les écrans photo albums et images dans l’application.</value>
+    <comment>Photos.xaml: show text if user has not set any app settings (we are showing only sample images)</comment>
+  </data>
+  <data name="appBarPhotosAddProfileimageFromCamera.Text" xml:space="preserve">
+    <value>Photo de profil de la caméra...</value>
+    <comment>Photos.xaml: caption of the menuFlyout under button 'add photo' for adding from camera</comment>
+  </data>
+  <data name="appBarPhotosAddProfileimageFromCamera.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Nouvelle image de profil caméra de capturer et de télécharger vers le serveur</value>
+    <comment>Photos.xaml: tooltip of the menuFlyout under button 'add photo' for adding from camera</comment>
+  </data>
+  <data name="appBarPhotosAddProfileimageFromDevice.Text" xml:space="preserve">
+    <value>Photo de profil d’appareil...</value>
+    <comment>Photos.xaml: caption of the menuFlyout under button 'add photo' for adding from device</comment>
+  </data>
+  <data name="appBarPhotosAddProfileimageFromDevice.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Télécharger photo de profil existant entre l’appareil de nouveau sur le serveur</value>
+    <comment>Photos.xaml: tooltip of the menuFlyout under button 'add photo' for adding from device</comment>
+  </data>
+  <data name="textblockPhotosNewAlbumAdded.Text" xml:space="preserve">
+    <value>Nouvel album - AVERTISSEMENT : album est créé uniquement sur le serveur dès que la première image est téléchargée. </value>
+    <comment>Photos.xaml: hint for user in a new album that the album is only created when 1st photo has been uploaded to server</comment>
+  </data>
+  <data name="buttonPhotoInkCanvas.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Écrire ou dessiner quelque chose sur l’écran...</value>
+    <comment>Photos.xaml: tooltip of the button for opening the shown image in the ink canvas for painting on the image</comment>
+  </data>
+  <data name="buttonPhotoEditAccessRights.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Autorisations de vos contacts sur cette photo pour voir et éditer...</value>
+    <comment>Photos.xaml: tooltip of the button for showing access rights on the shown image</comment>
+  </data>
+  <data name="buttonPhotoCreateProfileimage.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Set image actuelle comme une nouvelle image de profil (zone de l’image peut être sélectionné sur la page suivante).</value>
+    <comment>Photos.xaml: tooltip of the button for creating a profileimage from the shown image</comment>
+  </data>
+  <data name="buttonPhotoDelete.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Supprimer l’image actuelle du serveur (confirmation question ci-dessous)...</value>
+    <comment>Photos.xaml: tooltip of the button for deleting the shown image</comment>
+  </data>
+  <data name="buttonPrintPhoto.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Pour imprimer l’image sur une imprimante...</value>
+    <comment>Photos.xaml: tooltip of the button for printing the shown image</comment>
+  </data>
+  <data name="buttonShowPhotoConversation.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Affiche les commentaires et les aime pour une photo...</value>
+    <comment>Photos.xaml: tooltip of the button for showing the conversation on the shown image</comment>
+  </data>
+  <data name="appBarPhotosReload.Label" xml:space="preserve">
+    <value>Recharger</value>
+    <comment>Photos.xaml: caption of the appbarButton for reloading from server</comment>
+  </data>
+  <data name="appBarPhotosReload.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Liste des albums photos et photos recharger à partir du serveur.</value>
+    <comment>Photos.xaml: tooltip of the appbarButton for reloading from server</comment>
+  </data>
+  <data name="messageDialogPhotosNewAlbumnameEmpty" xml:space="preserve">
+    <value>Le nom de l’album photo ne peut pas être vide.</value>
+    <comment>Photos.xaml: inform user if he wants to save an empty string as a new albumname</comment>
+  </data>
+  <data name="messageDialogPhotosNewAlbumnameUnchanged" xml:space="preserve">
+    <value>Nouveau nom pour l’album photo n’est pas différent du nom actuel, rien n’a été changé sur le serveur.</value>
+    <comment>Photos.xaml: inform user if the wants to save an unchanged name as a new albumname</comment>
+  </data>
+  <data name="messageDialogPhotosNewPhotoDescriptionUnchanged" xml:space="preserve">
+    <value>Nouvelle légende n’est pas différente de la légende en cours, rien n’a été changé sur le serveur.</value>
+    <comment>Photos.xaml: inform user if the wants to save an unchanged text as a new photo description</comment>
+  </data>
+  <data name="buttonConfirmDeletion.Content" xml:space="preserve">
+    <value>Effacer toutes les entrées manuscrites</value>
+    <comment>InkCanvas.xaml: caption for confirming the deletion of all made strokes in the painting area</comment>
+  </data>
+  <data name="buttonSavingStrokes.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Les dessins à l’encre sont insérés dans l’image d’arrière-plan. L’image modifiée remplace l’image existante sur le serveur. Fond, blanc il est ajouté à l’album photo sélectionné dans un nouveau fichier. </value>
+    <comment>InkCanvas.xaml: tooltip for the save button</comment>
+  </data>
+  <data name="textblockPhotosInkCanvasWarningSign.Text" xml:space="preserve">
+    <value>La planche graphique n'exploite pas la gamme complète possible. 
+ 
+Si possible, vous devez modifier la taille de la fenêtre pour que l’image occupe plus de la quantité d’espace disponible (sur la fenêtre du Bureau maximiser, allumez le téléphone de l’appareil). Dans le cas contraire, la qualité des dessins peut être mauvaise, après la fusion avec le fond. </value>
+    <comment>InkCanvas.xaml: if ink area is lower than 75% or even 50% of total space the user see a warning sing. This is the flyout description for the user. </comment>
+  </data>
+  <data name="pageInkCanvas.FlowDirection" xml:space="preserve">
+    <value>LeftToRight</value>
+    <comment>Defines Text direction for the language</comment>
+  </data>
+  <data name="messageDialogHttpStatusForbidden" xml:space="preserve">
+    <value>Serveur a signalé une erreur lors de l’inscription. S’il vous plaît vérifier la connexion aux données dans l’application server et access.</value>
+    <comment>Photos.xaml: user get this error message if checking Server on supporting the new API calls returns a Forbidden answer (very unexpected return)</comment>
+  </data>
+  <data name="messageDialogPhotosErrorOnLoading" xml:space="preserve">
+    <value>Importer vos photos depuis votre serveur a échoué, le serveur a renvoyé cette erreur : {0} 
+ 
+vous voulez essayer à nouveau ?</value>
+    <comment>Photos.xaml: info to user that something went wrong when trying to load the photo list, asking user for a new try; 1 Parameter = error message</comment>
+  </data>
+  <data name="messageDialogPhotosServerNotAnswered" xml:space="preserve">
+    <value>Importer vos photos depuis votre serveur a échoué, le serveur n’a pas répondu. Vous voulez essayer à nouveau ?</value>
+    <comment>Photos.xaml: info to user that the server has not answered when trying to load the photo list, asking user for a new try</comment>
+  </data>
+  <data name="textblockPhotosLoadingPhotoalbums.Text" xml:space="preserve">
+    <value>Albums photos de chargement du serveur...</value>
+    <comment>Photos.xaml: text shown to user during loading the photoalbums from server</comment>
+  </data>
+  <data name="textblockPhotosCheckingServerSupport.Text" xml:space="preserve">
+    <value>Vérifie si votre serveur prend en charge la gestion des photos...</value>
+    <comment>Photos.xaml: text for progress ring indicating that app is currently checking if server knows the new API calls</comment>
+  </data>
+  <data name="textblockPhotosNoPhotosAvailable.Text" xml:space="preserve">
+    <value>Vous n’avez aucuns photos sur votre serveur. Créer de nouveaux albums et télécharger des photos sur votre serveur...</value>
+    <comment>Photos.xaml: text shown to user if there are no photos on the server</comment>
+  </data>
+  <data name="textblockPhotoDateEdited.Text" xml:space="preserve">
+    <value>Télécharger date :</value>
+    <comment>Photos.xaml: header for the date uploaded/edited from server shown below the photo</comment>
+  </data>
+  <data name="textblockPhotoDateShot.Text" xml:space="preserve">
+    <value>Date d’inscription :</value>
+    <comment>Photos.xaml: header for the date shown below the photo indicating the day when photo was shot </comment>
+  </data>
+  <data name="textPhotosPrintDialogPhotoScalingCrop" xml:space="preserve">
+    <value>Tronquer</value>
+    <comment>Photos.xaml: print dialog allows user to scale photos, this is to use original size and crop to selected size</comment>
+  </data>
+  <data name="textPhotosPrintDialogPhotoScalingHeader" xml:space="preserve">
+    <value>mise à l'échelle</value>
+    <comment>Photos.xaml: print dialog allows user to scale photos, this is the header for the dropdown</comment>
+  </data>
+  <data name="textPhotosPrintDialogPhotoScalingShrinkToFit" xml:space="preserve">
+    <value>ajustement de texte</value>
+    <comment>Photos.xaml: print dialog allows user to scale photos, this is to fit photo into size</comment>
+  </data>
+  <data name="textPhotosPrintDialogPhotoSize10x15" xml:space="preserve">
+    <value>10 x 15cm</value>
+    <comment>Photos.xaml: print dialog allows user to select photo size, this is 10x15cm/4x6in</comment>
+  </data>
+  <data name="textPhotosPrintDialogPhotoSize13x18" xml:space="preserve">
+    <value>13 x 18cm</value>
+    <comment>Photos.xaml: print dialog allows user to select photo size, this is 13x18cm/5x7in</comment>
+  </data>
+  <data name="textPhotosPrintDialogPhotoSize9x13" xml:space="preserve">
+    <value>9 x 13cm</value>
+    <comment>Photos.xaml: print dialog allows user to select photo size, this is 9x13cm/3.5x5.25in</comment>
+  </data>
+  <data name="textPhotosPrintDialogPhotoSizeFullPage" xml:space="preserve">
+    <value>plein écran</value>
+    <comment>Photos.xaml: print dialog allows user to select photo size, this is full page</comment>
+  </data>
+  <data name="textPhotosPrintDialogPhotoSizeHeader" xml:space="preserve">
+    <value>Paramètres de la taille de l’image</value>
+    <comment>Photos.xaml: print dialog allows user to select photo size, this is the header for the dropdown</comment>
+  </data>
+  <data name="textPhotosPrintDialogPlacementBottomLeft" xml:space="preserve">
+    <value>En bas à gauche</value>
+    <comment>Photos.xaml: print dialog allows user to place the photo, this is for bottom left placement</comment>
+  </data>
+  <data name="textPhotosPrintDialogPlacementBottomRight" xml:space="preserve">
+    <value>En bas à droite</value>
+    <comment>Photos.xaml: print dialog allows user to place the photo, this is for bottom right placement</comment>
+  </data>
+  <data name="textPhotosPrintDialogPlacementCenter" xml:space="preserve">
+    <value>Centres</value>
+    <comment>Photos.xaml: print dialog allows user to place the photo, this is for central placement</comment>
+  </data>
+  <data name="textPhotosPrintDialogPlacementHeader" xml:space="preserve">
+    <value>sélection élective</value>
+    <comment>Photos.xaml: print dialog allows user to place the photo, this is the header for the dropdown</comment>
+  </data>
+  <data name="textPhotosPrintDialogPlacementTopLeft" xml:space="preserve">
+    <value>Supérieur gauche</value>
+    <comment>Photos.xaml: print dialog allows user to place the photo, this is for top left placement</comment>
+  </data>
+  <data name="textPhotosPrintDialogPlacementTopRight" xml:space="preserve">
+    <value>En haut à droite</value>
+    <comment>Photos.xaml: print dialog allows user to place the photo, this is for top right placement</comment>
+  </data>
+  <data name="messageDialogPhotosErrorOnPrinting" xml:space="preserve">
+    <value>Une erreur s’est produite lors de l’impression de l’image. S’il vous plaît vérifiez le branchement de votre imprimante et les paramètres du système.</value>
+    <comment>Photos.xaml: inform user if printing activity has returned an error.</comment>
+  </data>
+  <data name="textPhotosPrintSizeBiggerThanPhotoSize" xml:space="preserve">
+    <value>L’image est plus petite que la taille sélectionnée de l’image, l’image n’est pas développée. </value>
+    <comment>Photos.xaml: it can happen that small photos (mainly profile images) are not big enough for a selected print size, photo will be printed in smaller original size, inform user above size option dropdown</comment>
+  </data>
+  <data name="textPhotosPrintPhotoSizeBiggerThanPage" xml:space="preserve">
+    <value>Malheureusement, l’image ne tient pas sur le format de papier sélectionné.</value>
+    <comment>Photos.xaml: error message above print dialog's size option dropdown if selected photo size is bigger than the selected paper size</comment>
+  </data>
+  <data name="textblockSettingsSaveLocalAllowedHint2.Text" xml:space="preserve">
+    <value>Lorsque la fonction est activée, les images de vos albums photo sur l’appareil sont stockées (app son propre espace). Cela permet une commutation plus rapide entre vos albums photos et les images d’un album, parce que seulement encore nouvellement ajouté images sont chargées à partir du serveur (utile même si votre volume de données à l’opérateur de téléphonie mobile n’est pas très grand). </value>
+    <comment>Settings.xaml: 2nd hint on SaveLocalAllowed regarding caching of photos</comment>
+  </data>
+  <data name="textblockSaveFullsizePhotosAllowedHint.Text" xml:space="preserve">
+    <value>Collections de grandes photos, stockage local des fichiers plein écran peut consommer beaucoup d’espace sur votre appareil. Ici, vous pouvez désactiver le stockage des images complètes pour réduire la consommation de mémoire. Les vignettes plus petites sont toujours enregistrés, il faut mais un peu plus longtemps jusqu'à ce que vous pouvez voir les images pleins de bonne résolution. </value>
+    <comment>Settings.xaml: user can disable the saving of fullsize photos on the local device to save disk space, this is the hint for this option</comment>
+  </data>
+  <data name="checkBoxDeleteFullsizePhotos.Content" xml:space="preserve">
+    <value>Fichiers de plein écran</value>
+    <comment>Settings.xaml: content dialog shown on "delete local data" button- text on 1st checkbox for deleting the local database</comment>
+  </data>
+  <data name="checkBoxDeleteLocalDatabase.Content" xml:space="preserve">
+    <value>Base de données locale</value>
+    <comment>Settings.xaml: content dialog shown on "delete local data" button- text on 1st checkbox for deleting the local database</comment>
+  </data>
+  <data name="checkBoxDeleteSmallMediumsizePhotos.Content" xml:space="preserve">
+    <value>Images d’aperçu</value>
+    <comment>Settings.xaml: content dialog shown on "delete local data" button- text on 1st checkbox for deleting the local database</comment>
+  </data>
+  <data name="contentDialogDeleteLocalData.PrimaryButtonText" xml:space="preserve">
+    <value>Supprimer</value>
+    <comment>Settings.xaml: content dialog shown on "delete local data" button - text of delete button</comment>
+  </data>
+  <data name="contentDialogDeleteLocalData.SecondaryButtonText" xml:space="preserve">
+    <value>Annuler</value>
+    <comment>Settings.xaml: content dialog shown on "delete local data" button - text of cancel button</comment>
+  </data>
+  <data name="contentDialogDeleteLocalData.Title" xml:space="preserve">
+    <value>Supprimer les données locales</value>
+    <comment>Settings.xaml: title of content dialog shown to user after clicking on the "delete local data" button</comment>
+  </data>
+  <data name="textblockDeleteLocalData" xml:space="preserve">
+    <value>Contenu stocké localement sera supprimé. Certaines fonctionnalités ne fonctionneront plus dans la mesure habituelle (par exemple le lien sur le profil sur @-Tags lorsque la base de données est supprimé). Ici, vous pouvez choisir quelles données devraient être supprimées :</value>
+    <comment>Settings.xaml: text in content dialog shown to user after clicking on the "delete local data" button</comment>
+  </data>
+  <data name="buttonDeleteLocalData.Content" xml:space="preserve">
+    <value>Supprimer les données locales</value>
+    <comment>Settings.xaml: button for deleting the local database</comment>
+  </data>
+  <data name="messageDialogLocalDataDeleted" xml:space="preserve">
+    <value>Les éléments suivants ont été supprimés avec succès :</value>
+    <comment>Settings.xaml: message after deleting the local data showing a summary of the deleted elements.</comment>
+  </data>
+  <data name="messageDialogDeletedFullsizePhotos" xml:space="preserve">
+    <value>Fichiers de plein écran</value>
+    <comment>Settings.xaml: confirmation dialog after deleting uses this text (equal text to checkBoxDeleteFullsizePhotos)</comment>
+  </data>
+  <data name="messageDialogDeletedLocalDatabase" xml:space="preserve">
+    <value>Base de données locale</value>
+    <comment>Settings.xaml: confirmation dialog after deleting uses this text (equal text to checkBoxDeleteLocalDatabase)</comment>
+  </data>
+  <data name="messageDialogDeletedSmallMediumsizePhotos" xml:space="preserve">
+    <value>Images d’aperçu</value>
+    <comment>Settings.xaml: confirmation dialog after deleting uses this text (equal text to checkBoxDeleteSmallMediumsizePhotos)</comment>
+  </data>
+  <data name="messageDialogLocalDataDeletedError" xml:space="preserve">
+    <value>Erreurs se sont produites lors de la suppression des éléments suivants :</value>
+    <comment>Settings.xaml: message if error occurred on deleting of local data</comment>
+  </data>
+  <data name="textblockSettingsDeleteLocalData.Text" xml:space="preserve">
+    <value>Les fichiers locaux sont supprimés de l’appareil...</value>
+    <comment>Settings.xaml: text next to progress ring shown during deleting local data (photo files could take some time on bigger collections)</comment>
+  </data>
+  <data name="textPhotosNewAlbumName" xml:space="preserve">
+    <value>Nouvel album</value>
+    <comment>Photos.xaml: initial name of a newly added album without photos</comment>
+  </data>
+  <data name="messageDialogPhotosNewAlbumsNotSaved" xml:space="preserve">
+    <value>Vous avez créé un ou plusieurs nouvel album, mais n’étaient pas créés sur le serveur. Vous jetez les nouveaux albums et continuer avec reload ?</value>
+    <comment>Photos.xaml: when user reloads photos but has still unsaved new albums, we want to inform him about this and ask to discard new albums or cancel operation</comment>
+  </data>
+  <data name="messageDialogPhotosConfirmAlbumDelete" xml:space="preserve">
+    <value>L’album « {0} » est irrémédiablement éliminé avec toutes les images contenant. 
+ 
+Vous êtes absolument sûr ?</value>
+    <comment>Photos.xaml: ask user for confirmation when hitting button to delete a complete photoalbum, inform user that all photos will be deleted definitely</comment>
+  </data>
+  <data name="messageDialogPhotosAlbumDeleted" xml:space="preserve">
+    <value>L’album « {0} » a été supprimé du serveur.</value>
+    <comment>Photos.xaml: info to user that the selected album has been deleted from server (parameter 0 = name of album)</comment>
+  </data>
+  <data name="messageDialogPhotosAlbumDeletingNoReaction" xml:space="preserve">
+    <value>Le serveur n’a pas répondu lors de la suppression de l’album « {0} ». Vous voulez essayer à nouveau ?</value>
+    <comment>Photos.xaml: info to user that the selected album was not deleted because server has not reacted (paramter 0 = name of album)</comment>
+  </data>
+  <data name="messageDialogPhotosAlbumDeletingUnknownError" xml:space="preserve">
+    <value>Il y avait un problème inattendu lors de la suppression de l’album « {0} ».</value>
+    <comment>Photos.xaml: info to user that the selected album was not deleted because of an unknown error (parameter 0 = name of album)</comment>
+  </data>
+  <data name="messageDialogPhotosAlbumUpdatingNoReaction" xml:space="preserve">
+    <value>Le serveur ne répond pas lorsque vous renommez l’album « {0} ». Vous voulez essayer à nouveau ?</value>
+    <comment>Photos.xaml: info to user that the selected album was not renamed because server has not reacted (paramter 0 = old name of album)</comment>
+  </data>
+  <data name="messageDialogPhotosAlbumUpdatingUnknownError" xml:space="preserve">
+    <value>Il y avait un problème inattendu lorsque vous renommez l’album « {0} ».</value>
+    <comment>Photos.xaml: info to user that the selected album was not renamed because of an unknown error (parameter 0 = old name of album)</comment>
+  </data>
+  <data name="messageDialogPhotosUploadingInternalError" xml:space="preserve">
+    <value>Il y avait un problème lors de téléchargement ou de modification des photos « {0} ». C’est peut-être la teneur maximale fixée à Friendica pour les images téléchargées. Veuillez contacter votre administrateur de serveur Friendica pour augmenter cette limite (AVERTISSEMENT : il y a une limite de PHP et l’autre au sein de Friendica).</value>
+    <comment>Photos.xaml: info to suer that the upload of a new photo or the change of details for an existing photo has not been performed because of an internal server error - most probably the size exceeeds the limit set by the admin (parameter 0 = filename of photo)</comment>
+  </data>
+  <data name="messageDialogPhotosUploadingUnknownError" xml:space="preserve">
+    <value>Il y avait un problème inattendu lors de télécharger, modifier ou supprimer les photos « {0} ».</value>
+    <comment>Photos.xaml: info to user that the upload of a new photo or the change of details for an existing photo has not been performed because of an unknown error (parameter 0 = filename of photo)</comment>
+  </data>
+  <data name="messageDialogPhotoUploadingNoReaction" xml:space="preserve">
+    <value>Le serveur n’a pas répondu avec telechargement, modifier ou supprimer les photos « {0} ». Vous voulez essayer à nouveau ?</value>
+    <comment>Photos.xaml: info to user that the upload of a new photo or the change of details for an existing photo has not been performed because server has not reacted (parameter 0 = filename of photo)</comment>
+  </data>
+  <data name="pagePhotoRights.FlowDirection" xml:space="preserve">
+    <value>LeftToRight</value>
+    <comment>Defines Text direction for the language</comment>
+  </data>
+  <data name="pageTitlePhotoRights.Text" xml:space="preserve">
+    <value>Droit à l’image</value>
+    <comment>Name on top of view A6_PhotoRights.xaml</comment>
+  </data>
+  <data name="checkboxPhotoIsCommentedLiked.Content" xml:space="preserve">
+    <value>Image a commenté out/geliked</value>
+    <comment>PhotoRights.xaml: checkbox indicating that photo has been commented or liked already (has implication on changing rights now)</comment>
+  </data>
+  <data name="checkboxPhotoACLMismatch.Content" xml:space="preserve">
+    <value>Droits différents</value>
+    <comment>PhotoRights.xaml: checkbox indicating that access rights of photo and access rights of comments are differeing</comment>
+  </data>
+  <data name="textblockPhotoRightsHelp1.Text" xml:space="preserve">
+    <value>La modification ultérieure des autorisations de photo est fondamentalement problématique. Commentaires existants et les goûts de vos contacts gardent les paramètres de visibilité même après le changement. Par conséquent, l’application supprime la photo précédente habituellement et télécharger pour vous avec les nouvelles autorisations à nouveau. Il en résulte que les observations déjà existantes et les goûts sont également supprimés. En outre, les liens existants sur la photo (par exemple, dans un message affiché) peuvent devenir inutilisables.</value>
+    <comment>PhotoRights.xaml: text shown in the flyout when user taps the help button - explaining the issue with photo rights when changing them</comment>
+  </data>
+  <data name="textblockPhotoRightsHelp2.Text" xml:space="preserve">
+    <value>Si vous désactivez « Nouveau téléchargement », l’application personnalise les autorisations sur la photo comme vous le souhaitez, mais les commentaires/goûts restent inchangés. Les liens dans les messages existants etc. aussi restent ainsi, mais des effets secondaires indésirables peuvent survenir. Ici vous pouvez voir s’il y a ces variations entre droits photo et commentaire de la photo sélectionnée.</value>
+    <comment>PhotoRights.xaml: text shown in the flyout when user taps the help button- explaining the issue wiht photo rights when changing them</comment>
+  </data>
+  <data name="checkboxPhotoUploadNew.Content" xml:space="preserve">
+    <value>Nouveau téléchargement</value>
+    <comment>PhotoRights.xaml: checkbox where user can disable the new upload of a photo after changing rights (then it will only update photo rights on server)</comment>
+  </data>
+  <data name="textPhotoRightsAddContact" xml:space="preserve">
+    <value>Si la photo n’est pas nouvellement téléchargée, les groupe/contacts nouvellement ajoutés peuvent soumettre des commentaires/aime. Vous ne voyez pas de commentaires/goûts existants.</value>
+    <comment>PhotoRights.xaml: show hint after changing rights to what implications this change could have</comment>
+  </data>
+  <data name="textPhotoRightsChangePrivToPub" xml:space="preserve">
+    <value>Si la photo n’est pas nouvellement téléchargée, le déjà existant commente ou aime rester visible uniquement pour les groupe/contacts précédemment autorisés. Et seulement ils peuvent ajouter plus de commentaires. Vos autres contacts voir votre photo après le changement dans votre profil, mais sans les commentaires précédents/goûts et peuvent poster également des commentaires propres ou assimiler votre photo.</value>
+    <comment>PhotoRights.xaml: show hint after changing rights to what implications this change could have</comment>
+  </data>
+  <data name="textPhotoRightsChangePubToPriv" xml:space="preserve">
+    <value>Si la photo n’est pas nouvellement téléchargée, les entrées déjà existantes restent publiques et resteront donc sur la page Communauté visible votre serveur avec photo. Nouveaux commentaires/aime paraîtront toujours là.</value>
+    <comment>PhotoRights.xaml: show hint after changing rights to what implications this change could have</comment>
+  </data>
+  <data name="textPhotoRightsRemoveContact" xml:space="preserve">
+    <value>Si la photo n’est pas nouvellement téléchargée, elle reste toujours visible aux n’est plus légitimes groupe/contacts s’il y a déjà des commentaires/aime. Cela peut ajouter des commentaires/aime encore pour la photo.</value>
+    <comment>PhotoRights.xaml: show hint after changing rights to what implications this change could have</comment>
+  </data>
+  <data name="radiobuttonPhotoRightsPrivate.Content" xml:space="preserve">
+    <value>Limité à</value>
+    <comment>PhotoRights.xaml: radiobutton for selecting if photo is publicly or limited visible - limited</comment>
+  </data>
+  <data name="radiobuttonPhotoRightsPublic.Content" xml:space="preserve">
+    <value>Visible publiquement</value>
+    <comment>PhotoRights.xaml: radiobutton for selecting if photo is publicly or limited visible - public photo</comment>
+  </data>
+  <data name="textblockPhotoACLContacts.Text" xml:space="preserve">
+    <value>Contacts :</value>
+    <comment>PhotoRights.xaml: header text for the contact selector</comment>
+  </data>
+  <data name="textblockPhotoACLGroups.Text" xml:space="preserve">
+    <value>Groupe :</value>
+    <comment>PhotoRights.xaml: header text for the group selector</comment>
+  </data>
+  <data name="textblockPhotoACLContactsHint.Text" xml:space="preserve">
+    <value>Vous pouvez définir des autorisations de cours pour les contacts individuels. Toutefois, il a le problème que les autorisations pour le commentaire/assimiler de vos photos peuvent être changées par la suite n’est plus. Si vous voulez ajouter donc plusieurs contacts pour la photo avec le recul, ils sont pouvez voir la photo dans votre profil, mais ils ne peuvent pas voir commentaires/aime autre contacte et ne peut pas commenter sur vous-même. Nous vous conseillons de mettre en place les autorisations sur les photos de groupes. Ainsi, vous pouvez ajouter de nouveaux contacts au groupe ou supprimer des membres du groupe.</value>
+    <comment>PhotoRights.xaml: hint on using contacts for photo access rights as these could cause issues, hint to use groups as they are better supported.</comment>
+  </data>
+  <data name="textblockPhotoACLContactsHintHeader.Text" xml:space="preserve">
+    <value>Note sur l’utilisation des contacts individuels avec la permission d’images...</value>
+    <comment>PhotoRights.xaml: text shown for user to click to show the flyout with the detailed explanation why single contacts are not good for photo rights</comment>
+  </data>
+  <data name="messageDialogPhotoRightsNoContactData" xml:space="preserve">
+    <value>Les coordonnées n’étaient pas encore entièrement chargées, vous voulez essayer à nouveau ?</value>
+    <comment>PhotosRights.xaml: app loads all contact data into listboxes, if contacts haven't been loaded yet in background, ask user to retry</comment>
+  </data>
+  <data name="messageDialogPhotoRightsNoContactSelected" xml:space="preserve">
+    <value>Vous voulez pas publiquement visible pour rendre l’image, mais ne sélectionné aucun groupe ou les contacts. Veuillez sélectionner au moins un groupe ou un contact.</value>
+    <comment>PhotosRights.xaml: user has not selected any group or contact for a private visible photo. Ask him/her for making photo publicly visible or not?</comment>
+  </data>
+  <data name="textblockShowThreadNoDataPhoto.Text" xml:space="preserve">
+    <value>Pour la photo, il n’y a toujours aucun commentaires, aime ou Hasst. </value>
+    <comment>ShowThread.xaml: show an info if there were no comments, likes, dislikes for a photo</comment>
+  </data>
+  <data name="buttonPhotoStartUpload.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Télécharger la photo sur le serveur...</value>
+    <comment>Photo.xaml: tooltip shown when user hovers over button for uploading a photo to server</comment>
+  </data>
+  <data name="textblockPhotosLoadingPhotos.Text" xml:space="preserve">
+    <value>Importe les nouvelles photos dans l’app...</value>
+    <comment>Photos.xaml: red info box to user showing that app is currently importing the photos into app (upload to server is a separate step)</comment>
+  </data>
+  <data name="messageDialogPhotosAskForUploadConfirmation" xml:space="preserve">
+    <value>N’oubliez pas qu’un changement ultérieur dans les autorisations peut conduire à des résultats indésirables. 
+ 
+Etes-vous sûr de vouloir télécharger la photo avec les paramètres ?</value>
+    <comment>Photos.xaml: new photos are only stored in app in a first step. User can change several setting before hitting upload button. This is the confirmation question before definitely uploading to server. </comment>
+  </data>
+  <data name="textblockPhotosServerOperationRunning.Text" xml:space="preserve">
+    <value>Fait modifie vers le serveur...</value>
+    <comment>Photos.xaml: red info box to user showing that app is currently performing actions on server (renaming, deleting, uploading etc.)</comment>
+  </data>
+  <data name="messageDialogPhotosAskForConfirmationACLUpdateAsNew" xml:space="preserve">
+    <value>ATTENTION : la photo est avec les droits antérieurs irrémédiablement éliminée et avec les nouvelles autorisations nouvellement téléchargées. 
+ 
+Vous voulez continuer ?</value>
+    <comment>Photos.xaml: confirmation dialog if user changes ACL of a photo with checking "new upload" box</comment>
+  </data>
+  <data name="messageDialogPhotosAskForConfirmationACLUpdatePhoto" xml:space="preserve">
+    <value>ATTENTION : les droits sont modifiés sans rechargement haut qui peut désactiver les commentaires et les goûts. 
+ 
+Vous voulez continuer ?</value>
+    <comment>Photos.xaml: confirmation dialog if user changes ACL of a photo without checking "new upload" box</comment>
+  </data>
+  <data name="messageDialogPhotosAskForConfirmationDelete" xml:space="preserve">
+    <value>La photo est maintenant été irrémédiablement supprimée du serveur. 
+ 
+Vous voulez continuer ?</value>
+    <comment>Photos.xaml: confirmation dialog to ask user before deleting a photo from server</comment>
+  </data>
+  <data name="messageDialogPhotosAskForConfirmationDeleteLocal" xml:space="preserve">
+    <value>La photo est irrémédiablement éliminée. 
+ 
+Vous voulez continuer ?</value>
+    <comment>Photos.xaml: confirmation dialog to ask user before deleting a photo locally (not yet uploaded to server);</comment>
+  </data>
+  <data name="textblockPhotosRenderingImage.Text" xml:space="preserve">
+    <value>L’application combine la main libre de dessin dans le fond...</value>
+    <comment>InkCanvas.xaml: showing red progress box with this text to inform user that app is currently working.</comment>
+  </data>
+  <data name="messageDialogPhotosAskForSavingStrokes" xml:space="preserve">
+    <value>Vous n’avez pas encore enregistré votre dessin à main libre. 
+ 
+Vous enregistrer maintenant ?</value>
+    <comment>InkCanvas.xaml: when navigating back having new strokes not yet saved, user will be asked to save strokes or not</comment>
+  </data>
+  <data name="pagePhotosCropping.FlowDirection" xml:space="preserve">
+    <value>LeftToRight</value>
+    <comment>Defines Text direction for the language</comment>
+  </data>
+  <data name="appBarPhotosCroppingSave.Label" xml:space="preserve">
+    <value>Enregistrer</value>
+    <comment>PhotosCropping.xaml: caption of the appbarButton for saving the selected area as new profile image</comment>
+  </data>
+  <data name="appBarPhotosCroppingSave.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Enregistrer la zone sélectionnée comme photo de profil...</value>
+    <comment>PhotosCropping.xaml: tooltip of the appbarButton for saving the selected area as new profile image</comment>
+  </data>
+  <data name="textblockPhotosCroppingHeaderFullsize.Text" xml:space="preserve">
+    <value>Aperçu (grand) :</value>
+    <comment>PhotosCropping.xaml: header for the preview of 175x175 sized profile image</comment>
+  </data>
+  <data name="textblockPhotosCroppingHeaderMediumsize.Text" xml:space="preserve">
+    <value>Aperçu (moyen) :</value>
+    <comment>PhotosCropping.xaml: header for the preview of 80x80 sized profile image</comment>
+  </data>
+  <data name="textblockPhotosCroppingHeaderOriginal.Text" xml:space="preserve">
+    <value>Image originale :</value>
+    <comment>PhotosCropping.xaml: header for the original image where user can select the area for the profile image</comment>
+  </data>
+  <data name="textblockPhotosCroppingHeaderThumbsize.Text" xml:space="preserve">
+    <value>Aperçu (petit) :</value>
+    <comment>PhotosCropping.xaml: header fro the preview of 48x48 sized profile image</comment>
+  </data>
+  <data name="messageDialogPhotosShowRightsProfileimage" xml:space="preserve">
+    <value>Photos de profil sont toujours publics. Si vous utilisez des profils différents avec différentes images, mais seuls les contacts qui sont éligibles pour le profil Voirégalement aussi la photo de profil.</value>
+    <comment>Photos.xaml: info to user when trying to change acl settings on a profileimage (they are by default always public)</comment>
+  </data>
+  <data name="messageDialogPhotosAskForUploadConfirmationInked" xml:space="preserve">
+    <value>Si la photo sur le serveur est modifiée, vous pouvez faire cela ne sera pas annuler.  
+ 
+Etes-vous sûr de vouloir télécharger la photo avec les paramètres ?</value>
+    <comment>Photos.xaml: new photos are only stored in app in a first step. User can change several setting before hitting upload button. This is the confirmation question before definitely uploading to server when changing the photo data (inking on image). </comment>
+  </data>
+  <data name="buttonPhotoMoveToAlbum.Content" xml:space="preserve">
+    <value>Se déplacer</value>
+    <comment>Photos.xaml: caption on the button in flyout to confirm moving the photo</comment>
+  </data>
+  <data name="buttonPhotoStartMoveToAlbum.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Déplace la photo d’un album différent.</value>
+    <comment>Photos.xaml: tooltip of the button for moving photo to another album</comment>
+  </data>
+  <data name="textblockPhotosSelectNewAlbum.Text" xml:space="preserve">
+    <value>Dans quel album devrais je me suis déplacé la photo :</value>
+    <comment>Photos.xaml: header text in flyout for selecting the target album for moving a photo</comment>
+  </data>
+  <data name="messageDialogPhotosMovingNoAlbumSelected" xml:space="preserve">
+    <value>Vous n’avez sélectionné aucun album, la photo n’a pas bougée.</value>
+    <comment>Photos.xaml: message when user clicks the move button for moving a photo to another album but has not selected the new album</comment>
+  </data>
+  <data name="stringPhotoNewAlbumForMoving" xml:space="preserve">
+    <value>Nouvel album</value>
+    <comment>Photos.xaml: when moving a photo to another album user can choose "New album" as the target - this string is used in the dropdown </comment>
+  </data>
+  <data name="messageDialogPhotosAskForDiscardingChanges" xml:space="preserve">
+    <value>Il y a des changements à une ou plusieurs photos, qui n’ont pas encore été enregistrés. 
+ 
+Veulent ignorer ces modifications ?</value>
+    <comment>Photos.xaml: confirmation dialog to ask user before navigating away while unsaved changes are still there</comment>
+  </data>
+  <data name="messageDialogPhotosNoServerSupport" xml:space="preserve">
+    <value>Cette action se ferait un changement maintenant sur votre serveur de Friendica. Vous définissez un serveur, avec les exemples de données, cette action est possible seulement ici dans l’application. </value>
+    <comment>Photos.xaml: hint to user in sample mode when trying to execute a server operation. As no server no action possible. </comment>
+  </data>
+  <data name="textblockPhotosMetMuseum.Text" xml:space="preserve">
+    <value>Le New York Metropolitan Museum of art a publié il y a quelque temps un grand nombre d’images pour un usage gratuit. Les images de l’échantillon montrés ici proviennent de cette collection. S’il vous plaît visitez le Musée et prend en charge cette action généreuse.</value>
+    <comment>Photos.xaml: hint in samples mode regarding the source of the pictures (Creative commons of Metropolitan Museum of Art, New York)</comment>
+  </data>
+  <data name="textblockPhotosMetMuseumPart2.Text" xml:space="preserve">
+    <value>Les fichiers image sont assez grandes, s’il vous plaît ont peu de patience lorsque vous affichez la vue plein écran.</value>
+    <comment>Photos.xaml: hint in samples mode regarding the source of the pictures (Creative commons of Metropolitan Museum of Art, New York)</comment>
+  </data>
+  <data name="messageDialogPhotosAskForConfirmationCroppingOk" xml:space="preserve">
+    <value>L’image sera coupé à l’endroit désiré (il n’y a encore aucun upload sur le serveur, suivi d’une étape 2). 
+ 
+Etes-vous sûr ?</value>
+    <comment>Photos.xaml: ask user for confirmation when leaving the cropping window</comment>
+  </data>
+  <data name="appBarPhotosShowPreviews.Label" xml:space="preserve">
+    <value>Aperçu</value>
+    <comment>PhotosCropping.xaml: caption of the appbarButton for displaying the preview images on mobile devices</comment>
+  </data>
+  <data name="appBarPhotosShowPreviews.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Affiche l’aperçu des images Profil dans les tailles respectives...</value>
+    <comment>PhotosCropping.xaml: tooltip of the appbarButton for displaying the preview images on mobile devices</comment>
+  </data>
+  <data name="textblockPhotosLoadingCroppingArea.Text" xml:space="preserve">
+    <value>Importe la version de haute résolution de l’image dans la zone de culture...</value>
+    <comment>PhotosCropping.xaml: red info box to user showing that app is currently importing the photo in high resolution into cropping area</comment>
+  </data>
+  <data name="messageDialogPhotosPrintingNotPossible" xml:space="preserve">
+    <value>Il n’est pas possible d’imprimer!</value>
+    <comment>Photos.xaml: dialog message to user when printing throws an error</comment>
   </data>
 </root>

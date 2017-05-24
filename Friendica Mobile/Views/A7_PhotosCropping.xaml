@@ -1,0 +1,301 @@
+﻿<Page
+    x:Class="Friendica_Mobile.Views.A7_PhotosCropping"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Friendica_Mobile"
+    xmlns:views="using:Friendica_Mobile.Views"
+    xmlns:mvvm="using:Friendica_Mobile.Mvvm"
+    xmlns:triggers="using:Friendica_Mobile.Triggers"
+    xmlns:conv="using:Friendica_Mobile.Converters"
+    xmlns:styles="using:Friendica_Mobile.Styles"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Name="pagePhotosCropping" x:Uid="pagePhotosCropping">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles/PhotosStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Page.TopAppBar>
+        <CommandBar x:Name="topAppBar" 
+                    Margin="48,0,0,0"
+                    Visibility="Visible">
+            <CommandBar.PrimaryCommands>
+                <!-- save button -->
+                <AppBarButton x:Name="topAppBarPhotosCroppingSave" x:Uid="appBarPhotosCroppingSave" 
+                              Click="topAppBarPhotosCroppingSave_Click"
+                              Icon="Save">
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.TopAppBar>
+
+    <Page.BottomAppBar>
+        <CommandBar x:Name="bottomAppBar" 
+                    Margin="{Binding BottomAppBarMargin}"
+                    Visibility="Collapsed">
+            <CommandBar.PrimaryCommands>
+                <!-- toggle visibility of preview images -->
+                <AppBarButton x:Name="bottomAppBarPhotosShowPreviews" x:Uid="appBarPhotosShowPreviews"
+                                    Click="bottomAppBarPhotosShowPreviews_Click">
+                    <AppBarButton.Content>
+                        <Grid>
+                            <FontIcon Glyph="&#xEB9F;" FontFamily="Segoe MDL2 Assets" FontSize="12" />
+                            <FontIcon Glyph="&#xE8ff;" FontFamily="Segoe MDL2 Assets" FontSize="24" />
+                        </Grid>
+                    </AppBarButton.Content>
+                    <AppBarButton.Flyout>
+                        <Flyout>
+                            <StackPanel>
+                                <StackPanel x:Name="stackpanelPhotoFullsizePreviewMobile"
+                                    Margin="0,0,24,0">
+                                    <TextBlock x:Name="textblockPhotosCroppingHeaderFullsizeMobile" x:Uid="textblockPhotosCroppingHeaderFullsize"
+                                       Margin="0,24,0,12"
+                                       Style="{StaticResource ProfileHeaderTextBlockStyle}"/>
+                                    <Border x:Name="borderFullsizePreviewMobile"
+                                    Background="AntiqueWhite"
+                                    BorderBrush="LightGray"
+                                    Width="200" Height="200"
+                                    BorderThickness="2">
+                                        <StackPanel Margin="12">
+                                            <Image x:Name="imageFullsizePreviewMobile"
+                                           Stretch="Fill"
+                                           Width="175"
+                                           Height="175" />
+                                        </StackPanel>
+                                    </Border>
+                                </StackPanel>
+                                <StackPanel x:Name="stackpanelPhotoMediumPreviewMobile" >
+                                    <TextBlock x:Name="textblockPhotosCroppingHeaderMediumsizeMobile" x:Uid="textblockPhotosCroppingHeaderMediumSize"
+                                       Margin="0,24,0,12"
+                                       Style="{StaticResource ProfileHeaderTextBlockStyle}"/>
+                                    <Border x:Name="borderMediumPreviewMobile"
+                                    Background="AntiqueWhite"
+                                    BorderBrush="LightGray"
+                                    Width="104" Height="104"
+                                    HorizontalAlignment="Left"
+                                    BorderThickness="2">
+                                        <StackPanel Margin="12">
+                                            <Image x:Name="imageMediumPreviewMobile"
+                                                   Stretch="Fill"
+                                                   Width="80"
+                                                   Height="80"
+                                                   Margin="0,0,-4,0"/>
+                                        </StackPanel>
+                                    </Border>
+                                </StackPanel>
+                                <StackPanel x:Name="stackpanelPhotoThumbPreviewMobile" >
+                                    <TextBlock x:Name="textblockPhotosCroppingHeaderThumbsizeMobile" x:Uid="textblockPhotosCroppingHeaderThumbsize"
+                                       Margin="0,24,0,12"
+                                       Style="{StaticResource ProfileHeaderTextBlockStyle}"/>
+                                    <Border x:Name="borderThumbPreviewMobile"
+                                    Background="AntiqueWhite"
+                                    BorderBrush="LightGray"
+                                    Width="72" Height="72"
+                                    HorizontalAlignment="Left"
+                                    BorderThickness="2">
+                                        <StackPanel Margin="12">
+                                            <Image x:Name="imageThumbPreviewMobile"
+                                           Stretch="Fill"
+                                           Width="48"
+                                           Height="48"/>
+                                            <!--Source="{Binding CroppedImage, ElementName=PhotoCropper}"-->
+                                        </StackPanel>
+                                    </Border>
+                                </StackPanel>
+                            </StackPanel>
+                        </Flyout>
+                    </AppBarButton.Flyout>
+                </AppBarButton>
+                <!-- save button -->
+                <AppBarButton x:Name="bottomAppBarPhotosCroppingSave" x:Uid="appBarPhotosCroppingSave" 
+                              Click="topAppBarPhotosCroppingSave_Click"
+                              Icon="Save">
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="MobilePortrait">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="MobilePortrait" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="pagePhotosCropping.Margin" Value="0,0,0,0" />
+                        <Setter Target="topAppBar.Visibility" Value="Collapsed" />
+                        <Setter Target="bottomAppBar.Visibility" Value="Visible" />
+                        <Setter Target="gridviewPreviews.Visibility" Value="Collapsed" />
+                        <Setter Target="scrollviewer.VerticalScrollMode" Value="Disabled" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="MobileLandscape">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="MobileLandscape" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="pagePhotosCropping.Margin" Value="0,0,92,0" />
+                        <Setter Target="topAppBar.Visibility" Value="Collapsed" />
+                        <Setter Target="bottomAppBar.Visibility" Value="Visible" />
+                        <Setter Target="gridviewPreviews.Visibility" Value="Collapsed" />
+                        <Setter Target="scrollviewer.VerticalScrollMode" Value="Disabled" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="DesktopLandscape">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="DesktopLandscape" />
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="MobileContinuum" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="pagePhotosCropping.Margin" Value="0,0,0,0" />
+                        <Setter Target="topAppBar.Visibility" Value="Visible" />
+                        <Setter Target="bottomAppBar.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="DesktopPortrait">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="DesktopPortrait" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="pagePhotosCropping.Margin" Value="0,0,0,0" />
+                        <Setter Target="topAppBar.Visibility" Value="Visible" />
+                        <Setter Target="bottomAppBar.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <ScrollViewer x:Name="scrollviewer" 
+                      VerticalScrollMode="Enabled"
+                      VerticalScrollBarVisibility="Visible">
+            <Grid x:Name="gridTotalCroppingPage"
+                  SizeChanged="gridTotalCroppingPage_SizeChanged"
+                  Margin="12,12,24,12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!--original image from which user shall select the wished rectangle-->
+                <StackPanel x:Name="stackpanelPhotoFrameOriginal" 
+                            Grid.Row="0"
+                            ScrollViewer.IsVerticalScrollChainingEnabled="False"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <TextBlock x:Name="textblockPhotosCroppingHeaderOriginal" x:Uid="textblockPhotosCroppingHeaderOriginal"
+                               Margin="0,24,0,12"
+                               Style="{StaticResource ProfileHeaderTextBlockStyle}"/>
+                    <Border x:Name="borderOriginalImage"
+                                Background="AntiqueWhite"
+                                BorderBrush="LightGray"
+                                BorderThickness="2">
+                        <StackPanel Margin="12">
+                            <mvvm:PhotoCropper x:Name="PhotoCropper"
+                                   Style="{StaticResource PhotoCropperCustomStyle}" />
+
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- gridview with the previews on desktop devices -->
+                <GridView x:Name="gridviewPreviews" 
+                          Grid.Row="1">
+                    <GridViewItem>
+                        <StackPanel x:Name="stackpanelPhotoFullsizePreview"
+                                    Margin="0,0,24,0">
+                            <TextBlock x:Name="textblockPhotosCroppingHeaderFullsize" x:Uid="textblockPhotosCroppingHeaderFullsize"
+                                       Margin="0,24,0,12"
+                                       Style="{StaticResource ProfileHeaderTextBlockStyle}"/>
+                            <Border x:Name="borderFullsizePreview"
+                                    Background="AntiqueWhite"
+                                    BorderBrush="LightGray"
+                                    Width="200" Height="200"
+                                    BorderThickness="2">
+                                <StackPanel Margin="12">
+                                    <Image x:Name="imageFullsizePreview"
+                                           Stretch="Fill"
+                                           Width="175"
+                                           Height="175"
+                                           Source="{Binding CroppedImage, ElementName=PhotoCropper}"/>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </GridViewItem>
+                    <GridViewItem VerticalAlignment="Top"
+                                  HorizontalAlignment="Left">
+                        <StackPanel x:Name="stackpanelPhotoMediumPreview" >
+                            <TextBlock x:Name="textblockPhotosCroppingHeaderMediumsize" x:Uid="textblockPhotosCroppingHeaderMediumSize"
+                                       Margin="0,24,0,12"
+                                       Style="{StaticResource ProfileHeaderTextBlockStyle}"/>
+                            <Border x:Name="borderMediumPreview"
+                                    Background="AntiqueWhite"
+                                    BorderBrush="LightGray"
+                                    Width="104" Height="104"
+                                    HorizontalAlignment="Left"
+                                    BorderThickness="2">
+                                <StackPanel Margin="12">
+                                    <Image x:Name="imageMediumPreview"
+                                           Stretch="Fill"
+                                           Width="80"
+                                           Height="80"
+                                           Source="{Binding CroppedImage, ElementName=PhotoCropper}"/>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </GridViewItem>
+                    <GridViewItem VerticalAlignment="Top"
+                                  HorizontalAlignment="Left">
+                        <StackPanel x:Name="stackpanelPhotoThumbPreview" >
+                            <TextBlock x:Name="textblockPhotosCroppingHeaderThumbsize" x:Uid="textblockPhotosCroppingHeaderThumbsize"
+                                       Margin="0,24,0,12"
+                                       Style="{StaticResource ProfileHeaderTextBlockStyle}"/>
+                            <Border x:Name="borderThumbPreview"
+                                    Background="AntiqueWhite"
+                                    BorderBrush="LightGray"
+                                    Width="72" Height="72"
+                                    HorizontalAlignment="Left"
+                                    BorderThickness="2">
+                                <StackPanel Margin="12">
+                                    <Image x:Name="imageThumbPreview"
+                                           Stretch="Fill"
+                                           Width="48"
+                                           Height="48"           
+                                           Source="{Binding CroppedImage, ElementName=PhotoCropper}"/>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </GridViewItem>
+                </GridView>
+            </Grid>
+        </ScrollViewer>
+
+        <!-- red box indicating that app loads the fullsize photo for cropping -->
+        <RelativePanel x:Name="panelIndicatorLoading" 
+                       Background="Red"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Stretch"
+                       Margin="4,0,4,0"
+                       Visibility="Collapsed">
+            <ProgressRing x:Name="progressPhotoLoadingPhotos"
+                          IsActive="True"
+                          Foreground="White"
+                          Margin="36,0,36,4"
+                          RelativePanel.AlignVerticalCenterWithPanel="True"
+                          RelativePanel.AlignLeftWithPanel="True"/>
+            <TextBlock x:Name="textblockPhotosLoadingCroppingArea" x:Uid="textblockPhotosLoadingCroppingArea"
+                       Foreground="White"
+                       TextWrapping="Wrap"
+                       RelativePanel.RightOf="progressPhotoLoadingPhotos" 
+                       RelativePanel.AlignVerticalCenterWithPanel="True" />
+        </RelativePanel>
+
+    </Grid>
+</Page>

@@ -233,23 +233,27 @@ namespace Friendica_Mobile.HttpRequests
         private List<FriendicaMessage> ConvertJsonToObjects(JsonArray array = null)
         {
             JsonArray resultArray;
+            bool testArray = false;
+            var list = new List<FriendicaMessage>();
 
             if (array != null)
                 resultArray = array;
             else
-                resultArray = JsonArray.Parse(this.ReturnString);
+                testArray = JsonArray.TryParse(this.ReturnString, out resultArray);
 
-            var list = new List<FriendicaMessage>();
-            int arraySize = resultArray.Count;
-            for (int i = 0; i < arraySize; i++)
+            if (testArray)
             {
-                IJsonValue element = resultArray.GetArray()[i];
-                switch (element.ValueType)
+                int arraySize = resultArray.Count;
+                for (int i = 0; i < arraySize; i++)
                 {
-                    case JsonValueType.Object:
-                        var result = new FriendicaMessage(element.ToString());
-                        list.Add(result);
-                        break;
+                    IJsonValue element = resultArray.GetArray()[i];
+                    switch (element.ValueType)
+                    {
+                        case JsonValueType.Object:
+                            var result = new FriendicaMessage(element.ToString());
+                            list.Add(result);
+                            break;
+                    }
                 }
             }
             return list;

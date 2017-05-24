@@ -115,6 +115,7 @@ namespace Friendica_Mobile.HttpRequests
             {
                 response = await httpClient.GetAsync(uri);
                 _statusCode = response.StatusCode;
+                _errorMessage = response.ReasonPhrase;
                 _returnString = await response.Content.ReadAsStringAsync();
                 _isSuccessStatusCode = response.IsSuccessStatusCode;
                 OnRequestFinishedChanged();
@@ -158,6 +159,41 @@ namespace Friendica_Mobile.HttpRequests
                 OnRequestFinishedChanged();
             }
         }
+
+        public virtual async Task<string> DeleteStringAsync(string url, string username, string password)
+        {
+            _url = url;
+            _username = username;
+            _password = password;
+
+            var filter = new HttpBaseProtocolFilter();
+            filter.ServerCredential = new Windows.Security.Credentials.PasswordCredential(_url, _username, _password);
+            filter.AllowUI = false;
+
+            var httpClient = new HttpClient(filter);
+            var headers = httpClient.DefaultRequestHeaders;
+            headers.UserAgent.ParseAdd("ie");
+            headers.UserAgent.ParseAdd("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)");
+            var response = new HttpResponseMessage();
+            var uri = new Uri(_url);
+            try
+            {
+                response = await httpClient.DeleteAsync(uri);
+                _statusCode = response.StatusCode;
+                _returnString = await response.Content.ReadAsStringAsync();
+                _isSuccessStatusCode = response.IsSuccessStatusCode;
+                OnRequestFinishedChanged();
+                return _returnString;
+            }
+            catch (Exception ex)
+            {
+                _errorMessage = ex.Message;
+                _errorHresult = ex.HResult;
+                OnRequestFinishedChanged();
+                return "";
+            }
+        }
+
 
         public virtual async Task<string> GetStringAsync(string url, string username, string password)
         {
@@ -229,6 +265,44 @@ namespace Friendica_Mobile.HttpRequests
         }
 
 
+        public virtual async Task<string> PostStringAsync(string url, string username, string password, string content)
+        {
+            _url = url;
+            _username = username;
+            _password = password;
+
+            var filter = new HttpBaseProtocolFilter();
+            filter.ServerCredential = new Windows.Security.Credentials.PasswordCredential(_url, _username, _password);
+            filter.AllowUI = false;
+
+            using (var httpClient = new HttpClient(filter))
+            {
+                var headers = httpClient.DefaultRequestHeaders;
+                headers.UserAgent.ParseAdd("ie");
+                headers.UserAgent.ParseAdd("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)");
+                var uri = new Uri(_url);
+                try
+                {
+                    var multipartContent = new HttpMultipartFormDataContent(_boundary);
+                    multipartContent.Add(new HttpStringContent(content), "json");
+                    var response = await httpClient.PostAsync(uri, multipartContent);
+                    _statusCode = response.StatusCode;
+                    _returnString = await response.Content.ReadAsStringAsync();
+                    _isSuccessStatusCode = response.IsSuccessStatusCode;
+                    OnRequestFinishedChanged();
+                    return _returnString;
+                }
+                catch (Exception ex)
+                {
+                    _errorMessage = ex.Message;
+                    _errorHresult = ex.HResult;
+                    OnRequestFinishedChanged();
+                    return "";
+                }
+            }
+        }
+
+
         public virtual async void PostMultipart(string url, string username, string password, Dictionary<string, object> data, object newPost = null)
         {
             _url = url;
@@ -283,6 +357,67 @@ namespace Friendica_Mobile.HttpRequests
                     _errorMessage = ex.Message;
                     _errorHresult = ex.HResult;
                     OnRequestFinishedChanged();
+                }
+            }
+        }
+
+
+        public virtual async Task<string> PostMultipartAsync(string url, string username, string password, Dictionary<string, object> data, string contentType = "image/jpeg", string filename = "image.jpg")
+        {
+            _url = url;
+            _username = username;
+            _password = password;
+
+            var filter = new HttpBaseProtocolFilter();
+            filter.ServerCredential = new Windows.Security.Credentials.PasswordCredential(_url, _username, _password);
+            filter.AllowUI = false;
+
+            using (var httpClient = new HttpClient(filter))
+            {
+                var headers = httpClient.DefaultRequestHeaders;
+                headers.UserAgent.ParseAdd("ie");
+                headers.UserAgent.ParseAdd("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)");
+                var uri = new Uri(_url);
+
+                try
+                {
+                    var multipartContent = new HttpMultipartFormDataContent(_boundary);
+
+                    if (data != null)
+                    {
+                        foreach (var entry in data)
+                        {
+                            if (entry.Value is byte[])
+                            {
+                                byte[] bytes = entry.Value as byte[];
+                                var inputstream = bytes.AsBuffer().AsStream().AsInputStream();
+                                var stream = new HttpStreamContent(inputstream);
+                                stream.Headers.ContentType = HttpMediaTypeHeaderValue.Parse(contentType);
+                                await stream.BufferAllAsync();
+                                multipartContent.Add(stream, entry.Key, filename);
+                            }
+                            else
+                            {
+                                string value = entry.Value as string;
+                                if (value != null)
+                                    multipartContent.Add(new HttpStringContent(value), entry.Key);
+                            }
+                        }
+                    }
+
+                    var response = await httpClient.PostAsync(uri, multipartContent);
+                    _statusCode = response.StatusCode;
+                    _returnString = await response.Content.ReadAsStringAsync();
+                    _isSuccessStatusCode = response.IsSuccessStatusCode;
+                    OnRequestFinishedChanged();
+                    return _returnString;
+                }
+                catch (Exception ex)
+                {
+                    _errorMessage = ex.Message;
+                    _errorHresult = ex.HResult;
+                    OnRequestFinishedChanged();
+                    return "";
                 }
             }
         }

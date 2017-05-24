@@ -295,12 +295,25 @@
                             <ToggleSwitch x:Name="sliderSaveLocalAllowed" x:Uid="sliderSaveLocalAllowed" 
                                           HeaderTemplate="{StaticResource SettingsHeaderTemplate}"
                                           Visibility="Visible"
-                                          IsOn="{Binding SaveLocalAllowed, Converter={StaticResource BoolStringToBoolConverter}, Mode=TwoWay}" />
+                                          IsOn="{Binding SaveLocalAllowed, Converter={StaticResource BoolStringToBoolConverter}, Mode=TwoWay}"
+                                          Toggled="sliderSaveLocalAllowed_Toggled" />
                             <TextBlock x:Name="textblockSaveLocalAllowedHint" x:Uid="textblockSaveLocalAllowedHint"
                                        TextWrapping="Wrap" />
-                            <Button x:Name="buttonDeleteLocalDatabase" x:Uid="buttonDeleteLocalDatabase"
+                            <TextBlock x:Name="textblockSettingsSaveLocalAllowedHint2" x:Uid="textblockSettingsSaveLocalAllowedHint2"
+                                       TextWrapping="Wrap" />
+                            <ToggleSwitch x:Name="sliderSaveFullsizePhotosAllowed"
+                                          Margin="24,0,0,0"
+                                          Visibility="{Binding IsOn, ElementName=sliderSaveLocalAllowed, Converter={StaticResource BoolToVisibilityConverter}}"
+                                          IsOn="{Binding SaveFullsizePhotosAllowed, Mode=TwoWay}"
+                                          Toggled="sliderSaveFullsizePhotosAllowed_Toggled"/>
+                            <TextBlock x:Name="textblockSaveFullsizePhotosAllowedHint" x:Uid="textblockSaveFullsizePhotosAllowedHint"
+                                       TextWrapping="Wrap"
+                                       Visibility="{Binding IsOn, ElementName=sliderSaveLocalAllowed, Converter={StaticResource BoolToVisibilityConverter}}"
+                                       Margin="24,0,0,0" />
+                            <Button x:Name="buttonDeleteLocalData" x:Uid="buttonDeleteLocalData"
                                 Margin="0,12,0,0"
-                                Command="{Binding DeleteLocalDatabaseCommand}" />
+                                    Click="buttonDeleteLocalDatabase_Click"/>
+
 
                             <!-- checkbox for sending GPS coordinates on each post -->
                             <ToggleSwitch x:Name="toogleSendCoordinatesAllowed" x:Uid="toggleSendCoordinatesAllowed" 
@@ -309,7 +322,28 @@
                                           IsOn="{Binding SendCoordinatesAllowed, Converter={StaticResource BoolStringToBoolConverter}, Mode=TwoWay}" />
                             <TextBlock x:Name="textblockSendCoordinatesHint" x:Uid="textblockSendCoordinatesHint"
                                        TextWrapping="Wrap" />
-
+                            
+                            <!-- content dialog for asking which data should be deleted -->
+                            <ContentDialog x:Name="contentDialogDeleteLocalData" x:Uid="contentDialogDeleteLocalData"
+                                           PrimaryButtonCommand="{Binding DeleteLocalDataCommand}"
+                                           SecondaryButtonCommand="{Binding CancelDeleteLocalDataCommand}">
+                                <StackPanel>
+                                    <TextBlock x:Name="textblockDeleteLocalData" x:Uid="textblockDeleteLocalData"
+                                               TextWrapping="Wrap" />
+                                    <CheckBox x:Name="checkBoxDeleteLocalDatabase" x:Uid="checkBoxDeleteLocalDatabase"
+                                              Checked="checkBoxDeleteContentDialog_Checked" 
+                                              Unchecked="checkBoxDeleteContentDialog_Checked"
+                                              IsChecked="{Binding DeleteLocalDatabaseChecked, Mode=TwoWay}" />
+                                    <CheckBox x:Name="checkBoxDeleteFullsizePhotos" x:Uid="checkBoxDeleteFullsizePhotos"
+                                              Checked="checkBoxDeleteContentDialog_Checked"
+                                              Unchecked="checkBoxDeleteContentDialog_Checked"
+                                              IsChecked="{Binding DeleteFullsizePhotosChecked, Mode=TwoWay}" />
+                                    <CheckBox x:Name="checkBoxDeleteSmallMediumsizePhotos" x:Uid="checkBoxDeleteSmallMediumsizePhotos"
+                                              Checked="checkBoxDeleteContentDialog_Checked"
+                                              Unchecked="checkBoxDeleteContentDialog_Checked"
+                                              IsChecked="{Binding DeleteSmallMediumsizePhotosChecked, Mode=TwoWay}" />
+                                </StackPanel>
+                            </ContentDialog>
                         </StackPanel>
                     </PivotItem>
                     <PivotItem x:Uid="pivotSettingsNotification">
@@ -347,5 +381,27 @@
                 </Pivot>
             </StackPanel>
         </ScrollViewer>
+
+        <!-- red box indicating that app delete local data from device (big photo collection could take some time) -->
+        <RelativePanel Background="Red"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Stretch"
+                       Margin="4,0,4,0"
+                       Visibility="{Binding IsDeletingLocalData, Converter={StaticResource BoolToVisibilityConverter}}">
+            <ProgressRing x:Name="progressDeletingLocalData"
+                          IsActive="True"
+                          Foreground="White"
+                          Margin="36,0,36,4"
+                          RelativePanel.AlignVerticalCenterWithPanel="True"
+                          RelativePanel.AlignLeftWithPanel="True"/>
+            <TextBlock x:Name="textblockSettingsDeleteLocalData" x:Uid="textblockSettingsDeleteLocalData"
+                       Foreground="White"
+                       TextWrapping="Wrap"
+                       RelativePanel.RightOf="progressDeletingLocalData" 
+                       RelativePanel.AlignVerticalCenterWithPanel="True" />
+        </RelativePanel>
+
     </Grid>
 </Page>
+    
+        

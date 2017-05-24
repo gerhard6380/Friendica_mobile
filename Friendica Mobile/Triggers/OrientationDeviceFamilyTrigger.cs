@@ -78,7 +78,13 @@ namespace Friendica_Mobile.Triggers
 
             OrientationDeviceFamily currentOrientationDevice;
             if (currentDeviceFamily == "Mobile" && currentOrientation == ApplicationViewOrientation.Landscape)
-                currentOrientationDevice = OrientationDeviceFamily.MobileLandscape;
+            {
+                var currentUIMode = UIViewSettings.GetForCurrentView().UserInteractionMode;
+                if (currentUIMode == UserInteractionMode.Mouse)
+                    currentOrientationDevice = OrientationDeviceFamily.MobileContinuum;
+                else 
+                    currentOrientationDevice = OrientationDeviceFamily.MobileLandscape;
+            }
             else if (currentDeviceFamily == "Mobile" && currentOrientation == ApplicationViewOrientation.Portrait)
                 currentOrientationDevice = OrientationDeviceFamily.MobilePortrait;
             else if (currentDeviceFamily == "Desktop" && currentOrientation == ApplicationViewOrientation.Landscape)

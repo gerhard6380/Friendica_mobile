@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
-using Windows.Storage;
-using Windows.UI.Notifications;
 using Windows.UI.Popups;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 namespace Friendica_Mobile.Views
 {
@@ -77,6 +72,8 @@ namespace Friendica_Mobile.Views
         bool isAltKeyPressed = false;
         // react on back button of phones - fire event in App.xaml.cs
         public event EventHandler BackToConversationsRequested;
+        public event EventHandler BackToAlbumsRequested;
+
 
         public Shell(Frame frame)
         {
@@ -117,6 +114,13 @@ namespace Friendica_Mobile.Views
 
             masterGrid.DataContext = this;
 
+            // set datacontext to enable change of visibility on subpages where navigation is useless
+            ScrollViewerRadioButtons.DataContext = App.Settings;
+            stackpanelOtherOptions.DataContext = App.Settings;
+            radioOthers.DataContext = this;
+            RadioButtonContainer.DataContext = this;
+
+
             this.SizeChanged += Shell_SizeChanged;
 
             if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
@@ -132,7 +136,10 @@ namespace Friendica_Mobile.Views
             {
                 symbol.Changed();
             }
-            
+            if (e.PropertyName == "HideNavigationElements")
+            {
+                AdaptNavigationBar();
+            }
         }
 
         private async void HardwareButtons_BackPressed(object sender, Windows.Phone.UI.Input.BackPressedEventArgs e)
@@ -146,6 +153,14 @@ namespace Friendica_Mobile.Views
             {
                 if (navigationAllowed)
                     BackToConversationsRequested?.Invoke(this, EventArgs.Empty);
+                return;
+            }
+
+            // if we are in Photos and have navigated into a photoalbum we don't want to go back
+            // in that case fire event in order to navigate back to conversation overview
+            if (App.PhotosNavigatedIntoAlbum)
+            {
+                BackToPhotoAlbumsIfAllowed(navigationAllowed);
                 return;
             }
 
@@ -200,15 +215,15 @@ namespace Friendica_Mobile.Views
             var actualheight = RadioButtonContainer.ActualHeight;
 
             var desiredsize = RadioButtonContainer.DesiredSize;
-            if (actualheight > desiredsize.Height)
-            {
-                radioUpButton.Visibility = Visibility.Collapsed;
-                radioDownButton.Visibility = Visibility.Collapsed;
-            }
-            else
+            if (actualheight <= desiredsize.Height && !App.Settings.HideNavigationElements)
             {
                 radioUpButton.Visibility = Visibility.Visible;
                 radioDownButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                radioUpButton.Visibility = Visibility.Collapsed;
+                radioDownButton.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -234,14 +249,33 @@ namespace Friendica_Mobile.Views
                 return;
             }
 
+            // if we are in Photos and have navigated into a photoalbum we don't want to go back
+            // in that case fire event in order to navigate back to conversation overview
+            if (App.PhotosNavigatedIntoAlbum)
+            {
+                BackToPhotoAlbumsIfAllowed(navigationAllowed);
+            }
+
             if (this.contentFrame.CanGoBack)
             {
                 if (navigationAllowed)
                 {
                     App.NavStatus = NavigationStatus.OK;
                     if (this.contentFrame.CanGoBack)
-                        this.contentFrame.GoBack();
+                        contentFrame.GoBack();
                 }
+            }
+        }
+
+        private void BackToPhotoAlbumsIfAllowed(bool navigationAllowed)
+        {
+            // don't fire event when we are navigation between photo related pages, because event sets SelectedPhoto to null and goes back to album overview
+            if (navigationAllowed)
+            {
+                var pageType = App.GetFrameForNavigation().Content.GetType();
+                if (pageType != typeof(A5_InkCanvas) && pageType != typeof(A6_PhotoRights) 
+                    && pageType != typeof(A7_PhotosCropping) && pageType != typeof(A1_ShowThread))
+                    BackToAlbumsRequested?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -422,6 +456,10 @@ namespace Friendica_Mobile.Views
                         await dialog.ShowDialog(0, 0);
                         return false;
                     }
+                    // TODO: remove the following
+                //// photo changing is always return false
+                //case NavigationStatus.PhotosChanged:
+                //    return false;
                 // Fallback-Option für alle anderen Fälle
                 default:
                     {

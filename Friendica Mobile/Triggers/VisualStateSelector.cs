@@ -25,5 +25,22 @@ namespace Friendica_Mobile.Triggers
                     break;
             }
         }
+
+        public void VisualStateSelectorPhotosFlipView(Control page)
+        {
+            switch (App.Settings.OrientationDevice)
+            {
+                case OrientationDeviceFamily.MobilePortrait:
+                    VisualStateManager.GoToState(page, "PhotoCommandsHorizontal", true);
+                    break;
+                case OrientationDeviceFamily.DesktopPortrait:
+                    VisualStateManager.GoToState(page, "PhotoCommandsHorizontal", true);
+                    break;
+                default:
+                    VisualStateManager.GoToState(page, "PhotoCommandsVertical", true);
+                    break;
+            }
+        }
+
     }
 }

@@ -1,17 +1,11 @@
-﻿using Friendica_Mobile.HttpRequests;
-using Friendica_Mobile.Models;
-using Friendica_Mobile.Views;
+﻿using Friendica_Mobile.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.ApplicationModel.Resources;
-using Windows.Data.Json;
 using Windows.UI;
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
-using Windows.Web.Http;
 
 namespace Friendica_Mobile.Mvvm
 {
@@ -90,6 +84,19 @@ namespace Friendica_Mobile.Mvvm
                 OnPropertyChanged("NoDataAvailable"); }
         }
 
+        // show or hide info text if photo has no comments yet
+        private bool _noDataAvailablePhoto;
+        public bool NoDataAvailablePhoto
+        {
+            get { return _noDataAvailablePhoto; }
+            set { _noDataAvailablePhoto = value;
+                AddNewEntryCommand.RaiseCanExecuteChanged();
+                OnPropertyChanged("NoDataAvailablePhoto");
+            }
+        }
+
+        // internal indicator when photo comments were loaded (no add or refresh button in this case available)
+        private bool _photoCommentsLoaded;
 
         // show or hide button to scroll back to the top
         private bool _showScrollToTop;
@@ -116,7 +123,8 @@ namespace Friendica_Mobile.Mvvm
         public Mvvm.Command RefreshShowThreadCommand { get { return _refreshShowThreadCommand ?? (_refreshShowThreadCommand = new Mvvm.Command(ExecuteRefresh, CanRefresh)); } }
         private bool CanRefresh()
         {
-            if (_isLoading || IsSendingNewPost)
+            // at the moment we will not allow commenting on photos where no comment is yet available (NewPost.xaml needs an id which we do not have at this moment)
+            if (_isLoading || IsSendingNewPost || NoDataAvailablePhoto || _photoCommentsLoaded)
                 return false;
             else
                 return true;
@@ -142,7 +150,8 @@ namespace Friendica_Mobile.Mvvm
         public Mvvm.Command AddNewEntryCommand { get { return _addNewEntryCommand ?? (_addNewEntryCommand = new Mvvm.Command(ExecuteAddNewEntry, CanAddNewEntry)); } }
         private bool CanAddNewEntry()
         {
-            if (_isLoading)
+            // at the moment we will not allow commenting on photos where no comment is yet available (NewPost.xaml needs an id which we do not have at this moment)
+            if (_isLoading || NoDataAvailablePhoto || _photoCommentsLoaded)
                 return false;
             else
                 return true;
@@ -237,15 +246,41 @@ namespace Friendica_Mobile.Mvvm
                         thread.ShowAllComments();
                     }
                 }
+                else if (NavigationSourcePage == "Photos")
+                {
+                    // load posts for this thread from App.PhotosVm if possible, we do not need to reload from server again
+                    if (App.PhotosVm != null && App.PhotosVm.SelectedPhotoalbum != null && App.PhotosVm.SelectedPhotoalbum.SelectedPhoto != null)
+                    {
+                        var thread = new FriendicaThread();
+                        thread.ButtonShowProfileClicked += Thread_ButtonShowProfileClicked;
+                        thread.PostsDisplay = new ObservableCollection<FriendicaPostExtended>(App.PhotosVm.SelectedPhotoalbum.SelectedPhoto.Photo.PhotoComments);
+                        // show information if there are no elements (no comments or likes yet posted)
+                        if (thread.PostsDisplay.Count == 0)
+                            NoDataAvailablePhoto = true;
+                        else
+                        {
+                            NoDataAvailablePhoto = false;
+                            _photoCommentsLoaded = true;
+                            thread.Posts = thread.PostsDisplay;
+                            foreach (var post in thread.PostsDisplay)
+                            {
+                                post.ButtonShowProfileClicked += Post_ButtonShowProfileClicked;
+                                post.ConvertHtmlToParagraph(post.Post.PostStatusnetHtml);
+                            }
+                        }
+                        thread.IsLoaded = true;
+                        ShowThread.Add(thread);
+                    }
+                }
             }
             else
             {
                 // load data from App.NetworkThreads
                 IsLoading = true;
-                var threadId = GetThreadId();
 
                 if (NavigationSourcePage == "Network")
                 {
+                    var threadId = GetThreadId();
                     foreach (var thread in App.NetworkThreads)
                     {
                         if (thread.ThreadId == threadId)
@@ -263,6 +298,7 @@ namespace Friendica_Mobile.Mvvm
                 }
                 else if (NavigationSourcePage == "Home")
                 {
+                    var threadId = GetThreadId();
                     foreach (var thread in App.HomeThreads)
                     {
                         if (thread.ThreadId == threadId)
@@ -278,12 +314,45 @@ namespace Friendica_Mobile.Mvvm
                         thread.ShowAllComments();
                     }
                 }
+                else if (NavigationSourcePage == "Photos")
+                {
+                    // load posts for this thread from App.PhotosVm if possible, we do not need to reload from server again
+                    if (App.PhotosVm != null && App.PhotosVm.SelectedPhotoalbum != null && App.PhotosVm.SelectedPhotoalbum.SelectedPhoto != null)
+                    {
+                        var thread = new FriendicaThread();
+                        thread.ButtonShowProfileClicked += Thread_ButtonShowProfileClicked;
+                        thread.PostsDisplay = new ObservableCollection<FriendicaPostExtended>(App.PhotosVm.SelectedPhotoalbum.SelectedPhoto.Photo.PhotoComments);
+                        // show information if there are no elements (no comments or likes yet posted)
+                        if (thread.PostsDisplay.Count == 0)
+                            NoDataAvailablePhoto = true;
+                        else
+                        {
+                            NoDataAvailablePhoto = false;
+                            _photoCommentsLoaded = true;
+                            thread.Posts = thread.PostsDisplay;
+                            foreach (var post in thread.PostsDisplay)
+                            {
+                                post.ButtonShowProfileClicked += Post_ButtonShowProfileClicked;
+                                post.ConvertHtmlToParagraph(post.Post.PostStatusnetHtml);
+                            }
+                        }
+                        thread.IsLoaded = true;
+                        ShowThread.Add(thread);
+                    }
+                }
             }
 
             // in loading page we are always on top, so hide scroll button
             ShowScrollToTop = false;
 
             IsLoading = false;
+        }
+
+        private void Post_ButtonShowProfileClicked(object sender, EventArgs e)
+        {
+            SelectedPostForAction = sender as FriendicaPostExtended;
+            if (ButtonShowProfileClicked != null)
+                ButtonShowProfileClicked(this, EventArgs.Empty);
         }
 
         private void Thread_ButtonShowProfileClicked(object sender, EventArgs e)
@@ -310,6 +379,8 @@ namespace Friendica_Mobile.Mvvm
         private double GetThreadId()
         {
             double id = 0;
+            if (PostToShow == null)
+                return id;
             if (PostToShow.Post.PostInReplyToStatusId == 0)
                 id = PostToShow.Post.PostId;
             else if (PostToShow.Post.PostInReplyToStatusId != 0)

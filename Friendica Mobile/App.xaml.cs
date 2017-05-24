@@ -12,6 +12,7 @@ using BackgroundTasks;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.Resources;
+using Windows.Storage;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=402347&clcid=0x409
 
@@ -19,7 +20,7 @@ namespace Friendica_Mobile
 {
     //public enum OrientationDeviceFamily { MobileLandscape, MobilePortrait, DesktopLandscape, DesktopPortrait };
     // possible states for NavStatus, currently only used in 91_Settings.xaml
-    public enum NavigationStatus {  OK, SettingsChanged, GroupChanged, NewPostChanged, NewPostExternal, NewMessageChanged, ConversationDeleting };
+    public enum NavigationStatus {  OK, SettingsChanged, GroupChanged, NewPostChanged, NewPostExternal, NewMessageChanged, ConversationDeleting, PhotosChanged };
     public enum ContactTypes { Friends, Forums, Groups }
     public enum NewPostTrigger {  None, ToastNotification, SpeechCommand }
 
@@ -32,6 +33,9 @@ namespace Friendica_Mobile
         public static LaunchActivatedEventArgs LaunchedEventArgs;
         public static IActivatedEventArgs ActivatedEventArgs;
 
+        // indicator that device has camera capabilities
+        public static bool DeviceHasCamera = false;
+
         // NavStatus used for blocking from navigating away from a page with unsaved content
         public static NavigationStatus NavStatus = NavigationStatus.OK;
 
@@ -40,6 +44,7 @@ namespace Friendica_Mobile
         public static clsTileCounter TileCounter = new clsTileCounter();
         public static FriendicaConfig friendicaConfig = new FriendicaConfig();
         public static clsSQLiteConnection sqliteConnection = new clsSQLiteConnection();
+
         public static clsManageBadgeStatus Badge = new clsManageBadgeStatus();
         public static clsManageBackgroundTasks BackgroundTasks = new clsManageBackgroundTasks();
 
@@ -105,11 +110,22 @@ namespace Friendica_Mobile
         // container for the ProfilesViewmodel storing current data on navigating
         public static ProfilesViewmodel ProfilesVm;
 
+        // container for the PhotosViewmodel storing current data on navigating
+        public static PhotosViewmodel PhotosVm;
+        // set to true if the CheckServerSupport has taken place, just to avoid unnecessary web calls on reloads
+        public static bool HasServerSupportChecked = false;
+
         // indicator if we have navigated into a conversation of messages view
         public static bool MessagesNavigatedIntoConversation;
 
+        // indicator if we have navigated into a photoalbum of photos view
+        public static bool PhotosNavigatedIntoAlbum;
+
         // event used for triggering moving back from the conversation to the overview 
         public static event EventHandler BackToConversationsRequested;
+
+        // event used for triggering moving back from a photo album to the overview
+        public static event EventHandler BackToAlbumsRequested;
 
         // event used for triggering change for OrientationDeviceFamilyTrigger 
         public static event EventHandler NavigationCompleted;
@@ -139,18 +155,18 @@ namespace Friendica_Mobile
             //TelemetryClient = new Microsoft.ApplicationInsights.TelemetryClient();
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-
             // trying to get more information on the unknown crashes after store update
             //UnhandledException += App_UnhandledException;
         }
 
-        //private async void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-        //{
-        //    var errorMsg = String.Format("Unhandled exception on starting Friendica Mobile\n\nMessage:\n{0}\n\nSource:\n{1}\n\nStack Trace:\n{2}", e.Message + "///" + e.Exception.Message, e.Exception.Source, e.Exception.StackTrace);
-        //    var dialog = new MessageDialogMessage(errorMsg, "", "OK", null);
-        //    await dialog.ShowDialog(0, 0);
-        //    Application.Current.Exit();
-        //}
+
+        private async void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            var errorMsg = String.Format("Unhandled exception on starting Friendica Mobile\n\nMessage:\n{0}\n\nSource:\n{1}\n\nStack Trace:\n{2}", e.Message + "///" + e.Exception.Message, e.Exception.Source, e.Exception.StackTrace);
+            var dialog = new MessageDialogMessage(errorMsg, "", "OK", null);
+            await dialog.ShowDialog(0, 0);
+            Application.Current.Exit();
+        }
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -172,6 +188,9 @@ namespace Friendica_Mobile
                 this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
+            // check if local device has a camera (no need to check allowance as user can decide to use it directly)
+            var devices = await Windows.Devices.Enumeration.DeviceInformation.FindAllAsync(Windows.Devices.Enumeration.DeviceClass.VideoCapture);
+            DeviceHasCamera = (devices.Count < 1) ? false : true;
 
             // check if user allows sending toasts from this app
             if (App.Settings.NotificationActivated)
@@ -183,7 +202,7 @@ namespace Friendica_Mobile
             var contacts = new ContactsViewmodel();
             contacts.InitialLoad();
 
-            // start loading the non loaded part of the app (if user wants to start into network, we load home; and vice versa)
+            //start loading the non loaded part of the app(if user wants to start into network, we load home; and vice versa)
             if (Settings.StartPage == "Home")
             {
                 var network = new NetworkViewmodel();
@@ -266,8 +285,7 @@ namespace Friendica_Mobile
                 }
                 else
                 {
-                    // TODO back to normal behaviour
-                    //rootFrame.Navigate(typeof(Views.Profiles));
+                    //rootFrame.Navigate(typeof(Views.Photos));
                     if (Settings.StartPage == "Home")
                         rootFrame.Navigate(typeof(Views.Home));
                     else if (Settings.StartPage == "Network")
@@ -279,6 +297,7 @@ namespace Friendica_Mobile
 
             var shell = Window.Current.Content as Views.Shell;
             shell.BackToConversationsRequested += Shell_BackToConversationsRequested;
+            shell.BackToAlbumsRequested += Shell_BackToAlbumsRequested;
 
             // start loading messages in background
             MessagesVm = new MessagesViewmodel();
@@ -287,6 +306,11 @@ namespace Friendica_Mobile
             // start loading profiles in background - deactivated because of errors (already child of another element)
             //ProfilesVm = new ProfilesViewmodel();
             //ProfilesVm.LoadProfiles();
+        }
+
+        private void Shell_BackToAlbumsRequested(object sender, EventArgs e)
+        {
+            BackToAlbumsRequested?.Invoke(this, EventArgs.Empty);
         }
 
         private void Shell_BackToConversationsRequested(object sender, EventArgs e)
@@ -316,7 +340,13 @@ namespace Friendica_Mobile
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
-            
+
+            // delete all files in temp folder
+            var folder = ApplicationData.Current.TemporaryFolder;
+            var files = await folder.GetFilesAsync();
+            foreach (var file in files)
+                await file.DeleteAsync();
+
             // set badge number to zero if suspending
             var currentView = App.GetNameOfCurrentView();
             // if we are in A0_NewPost and have no CanGoBack, App has started from Toast Notification into A0_NewPost

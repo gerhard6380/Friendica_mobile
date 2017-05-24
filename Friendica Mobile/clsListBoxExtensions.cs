@@ -47,6 +47,7 @@ namespace Friendica_Mobile
                     foreach (var item in selectedItems)
                         gridview.SelectedItems.Add(item);
                 }
+                gridview.UpdateLayout();
             }
         }
     }

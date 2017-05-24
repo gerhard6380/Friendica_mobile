@@ -118,5 +118,43 @@ namespace Friendica_Mobile.Views
             mvvm.SelectedGroups = mvvm.SelectedGroups;
         }
 
+        private async void buttonDeleteLocalDatabase_Click(object sender, RoutedEventArgs e)
+        {
+            // show content dialog, no reaction here on input, this is done in SettingsViewmodel
+            await contentDialogDeleteLocalData.ShowAsync();
+        }
+
+        private void checkBoxDeleteContentDialog_Checked(object sender, RoutedEventArgs e)
+        {
+            // disable delete button when nothing was selected by user (was not updating when set in SettingsViewmodel)
+            if (checkBoxDeleteLocalDatabase.IsChecked == true || checkBoxDeleteFullsizePhotos.IsChecked == true || checkBoxDeleteSmallMediumsizePhotos.IsChecked == true)
+                contentDialogDeleteLocalData.IsPrimaryButtonEnabled = true;
+            else
+                contentDialogDeleteLocalData.IsPrimaryButtonEnabled = false;
+        }
+
+        private async void sliderSaveFullsizePhotosAllowed_Toggled(object sender, RoutedEventArgs e)
+        {
+            // ask user to delete the fullsize photos when toggling to disable the function
+            var toggle = sender as ToggleSwitch;
+            if (!toggle.IsOn)
+            {
+                pageMvvm.DeleteLocalDatabaseChecked = false;
+                pageMvvm.DeleteSmallMediumsizePhotosChecked = false;
+                // show content dialog, no reaction here on input, this is done in SettingsViewmodel
+                await contentDialogDeleteLocalData.ShowAsync();
+            }
+        }
+
+        private async void sliderSaveLocalAllowed_Toggled(object sender, RoutedEventArgs e)
+        {
+            // ask user to delete local data when toggling to disable the function
+            var toggle = sender as ToggleSwitch;
+            if (!toggle.IsOn)
+            {
+                // show content dialog, no reaction here on input, this is done in SettingsViewmodel
+                await contentDialogDeleteLocalData.ShowAsync();
+            }
+        }
     }
 }

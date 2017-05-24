@@ -40,8 +40,9 @@
                           Icon="Refresh"
                           Command="{Binding RefreshShowThreadCommand}"/>
                 <AppBarButton x:Name="topAppBarThreadAdd" x:Uid="appBarNetworkAdd" 
-                          Icon="Add" 
-                          Click="appBarThreadAdd_Click" />
+                              Icon="Add" 
+                              Click="appBarThreadAdd_Click"
+                              Command="{Binding AddNewEntryCommand}"/>
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.TopAppBar>
@@ -134,6 +135,16 @@
                     <StackPanel x:Name="stackpanelNoDataAvailable"
                                 Visibility="{Binding NoDataAvailable, Converter={StaticResource BoolToVisibilityConverter}}">
                         <TextBlock x:Name="textblockShowThreadNoData" x:Uid="textblockShowThreadNoData"
+                                   Margin="4,4,4,12"
+                                   Foreground="Gray"
+                                   FontStyle="Italic"
+                                   TextAlignment="Left" />
+                    </StackPanel>
+
+                    <!-- after loading data, if nothing to display returned for photo comment (here we do not have an error) -->
+                    <StackPanel x:Name="stackpanelNoDataAvailablePhoto"
+                                Visibility="{Binding NoDataAvailablePhoto, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock x:Name="textblockShowThreadNoDataPhoto" x:Uid="textblockShowThreadNoDataPhoto"
                                    Margin="4,4,4,12"
                                    Foreground="Gray"
                                    FontStyle="Italic"
