@@ -515,6 +515,10 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Friendica Mobile.PCL\Friendica Mobile.PCL.csproj">
+      <Project>{6d25d629-13a8-4320-8e59-28b05319668e}</Project>
+      <Name>Friendica Mobile.PCL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NotificationBackgroundTask\BackgroundTasks.csproj">
       <Project>{19b67307-020b-46d8-b69b-7307376f8ef4}</Project>
       <Name>BackgroundTasks</Name>
