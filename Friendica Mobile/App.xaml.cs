@@ -29,6 +29,10 @@ namespace Friendica_Mobile
     /// </summary>
     sealed partial class App : Application
     {
+        // central element for use in PCL viewmodels
+        internal static LocalizeUWP localizeHelper = new LocalizeUWP();
+        internal static MessageDialogUWP messageDialog = new MessageDialogUWP();
+
         public EventHandler<IActivatedEventArgs> Activated;
         public static LaunchActivatedEventArgs LaunchedEventArgs;
         public static IActivatedEventArgs ActivatedEventArgs;

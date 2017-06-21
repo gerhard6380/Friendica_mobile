@@ -39,14 +39,10 @@
     <SuppressPseudoWarning Condition="'$(Configuration)' == 'Debug'">true</SuppressPseudoWarning>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-    <XliffResource Include="MultilingualResources\Friendica Mobile.PCL.de.xlf" />
-    <XliffResource Include="MultilingualResources\Friendica Mobile.PCL.es.xlf" />
-    <XliffResource Include="MultilingualResources\Friendica Mobile.PCL.fr.xlf" />
-    <XliffResource Include="MultilingualResources\Friendica Mobile.PCL.it.xlf" />
-    <XliffResource Include="MultilingualResources\Friendica Mobile.PCL.pt.xlf" />
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="Helpers\ILocalize.cs" />
+    <Compile Include="Helpers\IMessageDialog.cs" />
+    <Compile Include="Helpers\PlatformCulture.cs" />
+    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Strings\AppResources.de.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -78,6 +74,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.pt.resx</DependentUpon>
     </Compile>
+    <Compile Include="Viewmodels\TestViewmodel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Strings\AppResources.de.resx">
@@ -101,9 +98,28 @@
       <LastGenOutput>AppResources.pt.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Strings\AppResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Plugin.Settings, Version=2.5.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugins.Settings.2.5.8\lib\portable-net45+wp80+win8+wpa81\Plugin.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings.Abstractions, Version=2.5.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugins.Settings.2.5.8\lib\portable-net45+wp80+win8+wpa81\Plugin.Settings.Abstractions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <XliffResource Include="MultilingualResources\Friendica Mobile.PCL.de.xlf" />
+    <XliffResource Include="MultilingualResources\Friendica Mobile.PCL.es.xlf" />
+    <XliffResource Include="MultilingualResources\Friendica Mobile.PCL.fr.xlf" />
+    <XliffResource Include="MultilingualResources\Friendica Mobile.PCL.it.xlf" />
+    <XliffResource Include="MultilingualResources\Friendica Mobile.PCL.pt.xlf" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets" Label="MultilingualAppToolkit" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\v$(MultilingualAppToolkitVersion)\Microsoft.Multilingual.ResxResources.targets')" />
