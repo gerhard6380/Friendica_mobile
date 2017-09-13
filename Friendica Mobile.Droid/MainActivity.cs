@@ -10,29 +10,36 @@ namespace Friendica_Mobile.Droid
     public class MainActivity : Activity
     {
         
-        TestViewmodel mvvm;
+        NetworkViewmodel mvvm;
 
-        protected override void OnCreate(Bundle bundle)
+        protected override async void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
             // Set our view from the "main" layout resource
             SetContentView (Resource.Layout.Main);
 
-            var localize = new LocalizeDroid();
-            var dialog = new MessageDialogDroid(this);
-            mvvm = new TestViewmodel(dialog, localize);
+            PCL.StaticMessageDialog.Dialog = new MessageDialogDroid(this);
+            AppResources.Culture = new LocalizeDroid().GetCurrentCultureInfo();
+            mvvm = new NetworkViewmodel();
 
-            mvvm.Testen();
+
+            PCL.Settings.FriendicaServer = "http://mozartweg.dyndns.org/friendica";
+            PCL.Settings.FriendicaUsername = "gerhard";
+            PCL.Settings.FriendicaPassword = "30031982";
+
+            await mvvm.LoadInitial();
 
             Button button1 = FindViewById<Button>(Resource.Id.button1);
             button1.Text = AppResources.buttonLike_Content;
+            button1.Text = PCL.Settings.FriendicaServer;
             button1.Click += Button1_Click;
         }
 
         private void Button1_Click(object sender, System.EventArgs e)
         {
-            mvvm.ShowDialog();
+            var test = mvvm.Posts[0];
+            //test.Testen();
         }
     }
 }
