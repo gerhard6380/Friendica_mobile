@@ -280,6 +280,24 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Set as seen ähnelt.
+        /// </summary>
+        public static string appBarNewsfeedSetAllSeen_Label {
+            get {
+                return ResourceManager.GetString("appBarNewsfeedSetAllSeen.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Mark all posts as seen ähnelt.
+        /// </summary>
+        public static string appBarNewsfeedSetAllSeen_ToolTipService_ToolTip {
+            get {
+                return ResourceManager.GetString("appBarNewsfeedSetAllSeen.ToolTipService.ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Photo from camera... ähnelt.
         /// </summary>
         public static string appBarPhotosAddFromCamera_Text {
@@ -1575,6 +1593,24 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You cannot load older or newer posts in the test mode. Please specify in the settings your server and credentials. ähnelt.
+        /// </summary>
+        public static string messageDialogNetworkNoSettings {
+            get {
+                return ResourceManager.GetString("messageDialogNetworkNoSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This symbol like a flower represents the original content inserted in your post when you are sending it. You cannot change the symbol. ähnelt.
+        /// </summary>
+        public static string messageDialogNewPostDontSelectRetweetContent {
+            get {
+                return ResourceManager.GetString("messageDialogNewPostDontSelectRetweetContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die There was a problem when inserting the hyperlink! ähnelt.
         /// </summary>
         public static string messageDialogNewPostLinkError {
@@ -1625,6 +1661,28 @@ namespace Friendica_Mobile.PCL.Strings {
         public static string messageDialogNewPostSentAppClosing {
             get {
                 return ResourceManager.GetString("messageDialogNewPostSentAppClosing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This is a RSS/Atom item. Your contacts will not see when you like/dislike on this item directly. The app could retweet this item with your default privacy settings for new posts and then set your like/dislike on this new retweet. 
+        ///
+        ///Currently this is not possible, because you haven&apos;t yet set default privacy settings. ähnelt.
+        /// </summary>
+        public static string messageDialogNewsfeedLikesNoDefault {
+            get {
+                return ResourceManager.GetString("messageDialogNewsfeedLikesNoDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This is a RSS/Atom item. Your contacts will not see when you like/dislike on this item directly. The app will retweet this item with your default privacy settings for new posts ({0}). The like/dislike will then be set on this new retweet. 
+        ///
+        ///Do you want to continue? ähnelt.
+        /// </summary>
+        public static string messageDialogNewsfeedNotLikable {
+            get {
+                return ResourceManager.GetString("messageDialogNewsfeedNotLikable", resourceCulture);
             }
         }
         
@@ -1876,7 +1934,7 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Drucken ist derzeit nicht möglich! ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Printing is not possible at the moment! ähnelt.
         /// </summary>
         public static string messageDialogPhotosPrintingNotPossible {
             get {
@@ -2076,6 +2134,15 @@ namespace Friendica_Mobile.PCL.Strings {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die LeftToRight ähnelt.
         /// </summary>
+        public static string pageNewsfeed_FlowDirection {
+            get {
+                return ResourceManager.GetString("pageNewsfeed.FlowDirection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die LeftToRight ähnelt.
+        /// </summary>
         public static string pagePhotoRights_FlowDirection {
             get {
                 return ResourceManager.GetString("pagePhotoRights.FlowDirection", resourceCulture);
@@ -2214,6 +2281,15 @@ namespace Friendica_Mobile.PCL.Strings {
         public static string pageTitleNewPost_Text {
             get {
                 return ResourceManager.GetString("pageTitleNewPost.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die RSS feeds ähnelt.
+        /// </summary>
+        public static string pageTitleNewsfeed_Text {
+            get {
+                return ResourceManager.GetString("pageTitleNewsfeed.Text", resourceCulture);
             }
         }
         
@@ -3275,6 +3351,33 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The app is loading your newsfeed items. Please have some patience. ähnelt.
+        /// </summary>
+        public static string textblockNewsfeedIsLoadingInitial_Text {
+            get {
+                return ResourceManager.GetString("textblockNewsfeedIsLoadingInitial.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No newsfeed items returned from your server. ähnelt.
+        /// </summary>
+        public static string textblockNewsfeedNoDataAvailable_Text {
+            get {
+                return ResourceManager.GetString("textblockNewsfeedNoDataAvailable.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You have not defined in the app settings a Friendica server. Below we will show example data, showing you how your feed items could look in the app. ähnelt.
+        /// </summary>
+        public static string textblockNewsfeedNoSettings_Text {
+            get {
+                return ResourceManager.GetString("textblockNewsfeedNoSettings.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die You have neither selected a contact nor a group. As a result, the posting will be a public one. ähnelt.
         /// </summary>
         public static string textblockNoContactsGroupsSelected_Text {
@@ -3505,7 +3608,7 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Importiert die hochauflösende Version des Bildes in den Zuschnittsbereich... ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Import the high-resolution version of the image into the cropping area ... ähnelt.
         /// </summary>
         public static string textblockPhotosLoadingCroppingArea_Text {
             get {

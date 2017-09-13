@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Friendica_Mobile.PCL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
@@ -39,6 +40,7 @@ namespace Friendica_Mobile.Views
             set { _notificationActivatedString = value;
                 OnPropertyChanged("NotificationActivatedString"); }
         }
+
 
         public void Changed()
         {
@@ -107,7 +109,7 @@ namespace Friendica_Mobile.Views
             textblockAdvertising.DataContext = App.Settings;
             borderAdvMobile.DataContext = App.Settings;
             counterUnseenHome.DataContext = App.TileCounter;
-            counterUnseenNetwork.DataContext = App.TileCounter;
+            //counterUnseenNetwork.DataContext = App.TileCounter;
             counterUnseenMessages.DataContext = App.TileCounter;
             iconNotificationActivated.DataContext = symbol;
             menuflyoutNotification.DataContext = symbol;
@@ -120,6 +122,10 @@ namespace Friendica_Mobile.Views
             radioOthers.DataContext = this;
             RadioButtonContainer.DataContext = this;
 
+            // react on changes in the pcl class
+            StaticGlobalParameters.CounterNetworkChanged += StaticGlobalParameters_CounterNetworkChanged;
+            StaticGlobalParameters.CounterNewsfeedChanged += StaticGlobalParameters_CounterNewsfeedChanged;
+
 
             this.SizeChanged += Shell_SizeChanged;
 
@@ -129,6 +135,27 @@ namespace Friendica_Mobile.Views
             }
 
         }
+
+        private void StaticGlobalParameters_CounterNetworkChanged(object sender, EventArgs e)
+        {
+            // display counter from pcl class if there is a change there (done this way as the counters are stored there in a static class without BindingClass connection)
+            if (StaticGlobalParameters.ShowCounterUnseenNetwork)
+                counterUnseenNetwork.Visibility = Visibility.Visible;
+            else
+                counterUnseenNetwork.Visibility = Visibility.Collapsed;
+            counterUnseenNetworkCount.Text = StaticGlobalParameters.CounterUnseenNetwork.ToString();
+        }
+
+        private void StaticGlobalParameters_CounterNewsfeedChanged(object sender, EventArgs e)
+        {
+            // display counter from pcl class if there is a change there (done this way as the counters are stored there in a static class without BindingClass connection)
+            if (StaticGlobalParameters.ShowCounterUnseenNewsfeed)
+                counterUnseenNewsfeed.Visibility = Visibility.Visible;
+            else
+                counterUnseenNewsfeed.Visibility = Visibility.Collapsed;
+            counterUnseenNewsfeedCount.Text = StaticGlobalParameters.CounterUnseenNewsfeed.ToString();
+        }
+
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -295,7 +322,7 @@ namespace Friendica_Mobile.Views
         {
             var navigationAllowed = await TestNavigationState();
             if (navigationAllowed)
-            {
+            { 
                 App.NavStatus = NavigationStatus.OK;
                 var type = navType.Type;
                 this.contentFrame.Navigate(navType.Type);

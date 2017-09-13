@@ -2022,4 +2022,52 @@ Bist du dir sicher?</value>
     <value>Drucken ist derzeit nicht möglich!</value>
     <comment>Photos.xaml: dialog message to user when printing throws an error</comment>
   </data>
+  <data name="appBarNewsfeedSetAllSeen.Label" xml:space="preserve">
+    <value>Alles auf Gelesen</value>
+    <comment>Newsfeed.xaml: caption of the appbarButton for setting all posts as seen</comment>
+  </data>
+  <data name="appBarNewsfeedSetAllSeen.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Markieren Sie alle Beiträge als gelesen</value>
+    <comment>Newsfeed.xaml: tooltip of the appbarButton for setting all posts as seen</comment>
+  </data>
+  <data name="textblockNewsfeedIsLoadingInitial.Text" xml:space="preserve">
+    <value>Die App lädt gerade deine Newsfeed-Artikel. Bitte habe etwas Geduld.</value>
+    <comment>Newsfeed.xaml: status update for user during loading initial entries of newsfeed/network</comment>
+  </data>
+  <data name="textblockNewsfeedNoDataAvailable.Text" xml:space="preserve">
+    <value>Der Server hat keine Newsfeed-Artikel gemeldet.</value>
+    <comment>Newsfeed.xaml: showing info text to user if there are no newsfeed items in the network timeline of the user</comment>
+  </data>
+  <data name="textblockNewsfeedNoSettings.Text" xml:space="preserve">
+    <value>Du hast keinen Friendica-Server in den Appeinstellungen definiert. Die folgenden Beispieldaten zeigen dir, wie deine Newsfeed-Artikel in der App angezeigt werden könnten. </value>
+    <comment>Newsfeed.xaml: show text if user has not set any app settings (we are showing only sample data for news feed items)</comment>
+  </data>
+  <data name="messageDialogNetworkNoSettings" xml:space="preserve">
+    <value>Ältere oder neuere Beiträge können im Test-Modus nicht geladen werden. Bitte gib in den Einstellungen deinen Server und deine Anmeldeinformationen an.</value>
+    <comment>Newsfeed.xaml/Network.xaml: if no settings users can look at samples, but when they try to refresh or load older posts, they will get this error message</comment>
+  </data>
+  <data name="messageDialogNewPostDontSelectRetweetContent" xml:space="preserve">
+    <value>Dieses Symbol wie eine Blume repräsentiert den ursprünglichen Inhalt, der eingefügt wird, wenn du deinen neuen Beitrag sendest. Du kannst das Symbol nicht ändern. </value>
+    <comment>NewPost.xaml: information displayed to user when clicking on the flower symbol for the retweeting content</comment>
+  </data>
+  <data name="messageDialogNewsfeedNotLikable" xml:space="preserve">
+    <value>Dies ist ein RSS/Atom-Element. Deine Kontakte werden nicht sehen wenn du dieses Element direkt likest/dislikest. Die App wird daher dieses Element mit deinen Standard-Datenschutzeinstellungen für neue Beiträge ({0}) retweeten. Das Like/dislike wird dann auf diesen neuen Retweet festgelegt werden. 
+ 
+Möchtest du fortfahren?</value>
+    <comment>Newsfeed.xaml: likes/dislikes on newsfeed items do not work directly, app will perform a retweet with the standard settings for privacy of new posts (standard setting will be displayed in {0} parameter</comment>
+  </data>
+  <data name="messageDialogNewsfeedLikesNoDefault" xml:space="preserve">
+    <value>Dies ist ein RSS/Atom-Element. Deine Kontakte werden nicht sehen wenn du dieses Element direkt likest/dislikest. Die App könnte dieses Element mit deinen Standard-Datenschutzeinstellungen für neue Beiträge retweeten und dann dein Like/Dislike auf dieses neue Retweet festlegen. 
+ 
+Dies ist derzeit nicht möglich, weil du noch keine Standard-Datenschutzeinstellungen festgelegt hast.</value>
+    <comment>Newsfeed.xaml: likes/dislikes on newsfeed items do not work directly, inform user that he needs to define standard access rights in the settings. </comment>
+  </data>
+  <data name="pageTitleNewsfeed.Text" xml:space="preserve">
+    <value>RSS-Feeds</value>
+    <comment>Name on top of view Newsfeed</comment>
+  </data>
+  <data name="pageNewsfeed.FlowDirection" xml:space="preserve">
+    <value>LeftToRight</value>
+    <comment>Defines Text direction for the language</comment>
+  </data>
 </root>

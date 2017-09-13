@@ -135,11 +135,15 @@
     <Compile Include="clsSQLiteConnection.cs" />
     <Compile Include="clsTileCounter.cs" />
     <Compile Include="clsWriteableBitmapExtensions.cs" />
+    <Compile Include="Converters\BoolToNewEntryThicknessConverter.cs" />
+    <Compile Include="Converters\FlowDirectionConverter.cs" />
+    <Compile Include="Converters\HtmlToParagraphConverter.cs" />
     <Compile Include="Converters\IsReceivedMessageToMarginConverter.cs" />
     <Compile Include="Converters\MessagesSeenToThicknessConverter.cs" />
     <Compile Include="Converters\PhotosViewVisibleConverter.cs" />
     <Compile Include="Converters\ScrollViewerMessagesToVisibilityConverter.cs" />
     <Compile Include="Converters\EnumDisplayConverter.cs" />
+    <Compile Include="Converters\RetweetButtonVisibilityConverter.cs" />
     <Compile Include="Converters\SplitViewWidthProfileConverter.cs" />
     <Compile Include="Converters\TransparentColorConverter.cs" />
     <Compile Include="Converters\GridWidthMessagesConverter.cs" />
@@ -275,6 +279,12 @@
     <Compile Include="Views\10_Home.xaml.cs">
       <DependentUpon>10_Home.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\15_Network.xaml.cs">
+      <DependentUpon>15_Network.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\16_Newsfeed.xaml.cs">
+      <DependentUpon>16_Newsfeed.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\A7_PhotosCropping.xaml.cs">
       <DependentUpon>A7_PhotosCropping.xaml</DependentUpon>
     </Compile>
@@ -286,9 +296,6 @@
     </Compile>
     <Compile Include="Views\A1_ShowThread.xaml.cs">
       <DependentUpon>A1_ShowThread.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\15_Network.xaml.cs">
-      <DependentUpon>15_Network.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\20_Contacts.xaml.cs">
       <DependentUpon>20_Contacts.xaml</DependentUpon>
@@ -367,6 +374,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\PostsStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
     <Page Include="Styles\ProfilesStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -423,6 +435,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\15_Network.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\16_Newsfeed.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\A7_PhotosCropping.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -436,10 +456,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\A1_ShowThread.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\15_Network.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -9,6 +9,7 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.Resources;
 using Friendica_Mobile.Mvvm;
 using System.Collections.ObjectModel;
+using Friendica_Mobile.PCL;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -27,7 +28,12 @@ namespace Friendica_Mobile.Views
             // wählt den entsprechenden VisualState für die aktuelle Orientation und das Device aus (sollte eigentlich
             // über OrientationDeviceFamilyTrigger funktioniert, wird aber beim Wechsel zwischen den Views nicht richtig angestoßen)
             VisualStateSelector selector = new VisualStateSelector(this);
+
+            // reload the static parameters to show the number of new items correctly (at least in sample mode)
+            StaticGlobalParameters.CounterUnseenNetwork = StaticGlobalParameters.CounterUnseenNetwork;
+            StaticGlobalParameters.CounterUnseenNewsfeed = StaticGlobalParameters.CounterUnseenNewsfeed;
         }
+
 
         private void Rectangle_Drop(object sender, DragEventArgs e)
         {

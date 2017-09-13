@@ -158,7 +158,7 @@
                                     </Grid>
                                 </RadioButton.Tag>
                             </RadioButton>
-                            
+
                             <!-- network -->
                             <RadioButton x:Uid="radioNetwork" Command="{Binding NavCommand}" GroupName="Nav" 
                                          IsEnabled="True" Foreground="{StaticResource SplitViewForegroundBrush}">
@@ -171,10 +171,33 @@
                                         <Grid x:Name="counterUnseenNetwork" 
                                               Width="20"
                                               Height="20"
-                                              Visibility="{Binding CounterUnseenNetwork, Converter={StaticResource CounterVisibilityConverter}}"
                                               Margin="24,24,4,4">
                                             <Ellipse Fill="{ThemeResource SystemAccentColor}"/>
-                                            <TextBlock Text="{Binding CounterUnseenNetwork}"
+                                            <TextBlock x:Name="counterUnseenNetworkCount"
+                                                       Foreground="White"
+                                                       HorizontalAlignment="Center" />
+                                        </Grid>
+                                    </Grid>
+                                </RadioButton.Tag>
+                            </RadioButton>
+
+                            <!-- newsfeed -->
+                            <RadioButton x:Uid="radioNewsfeed" Command="{Binding NavCommand}" GroupName="Nav" 
+                                         IsEnabled="True" Foreground="{StaticResource SplitViewForegroundBrush}">
+                                <RadioButton.CommandParameter>
+                                    <views:NavType Type="views:Newsfeed" />
+                                </RadioButton.CommandParameter>
+                                <RadioButton.Tag>
+                                    <Grid>
+                                        <TextBlock Text="&#xEC05;" FontFamily="Segoe MDL2 Assets"  
+                                                   Style="{StaticResource SplitViewTextBlockStyle}"/>
+                                        <Grid x:Name="counterUnseenNewsfeed"
+                                              Visibility="Collapsed"
+                                              Width="20"
+                                              Height="20"
+                                              Margin="24,24,4,4">
+                                            <Ellipse Fill="{ThemeResource SystemAccentColor}"/>
+                                            <TextBlock x:Name="counterUnseenNewsfeedCount"
                                                        Foreground="White"
                                                        HorizontalAlignment="Center" />
                                         </Grid>
@@ -294,7 +317,7 @@
                                 </RepeatButton>
                             </RadioButton.Tag>
                         </RadioButton>
-                        
+
                         <!-- other options -->
                         <RadioButton Checked="DontCheck"
                                      x:Name="radioOthers"
@@ -305,8 +328,8 @@
                                 <Button Style="{StaticResource SplitViewButtonStyle}">
                                     <Button.Tag>
                                         <Grid>
-                                        <TextBlock Text=""  Style="{StaticResource SplitViewTextBlockStyle}"/>
-                                        <FontIcon x:Name="iconNotificationActivated"
+                                            <TextBlock Text=""  Style="{StaticResource SplitViewTextBlockStyle}"/>
+                                            <FontIcon x:Name="iconNotificationActivated"
                                                 Glyph="&#x26D4;" FontSize="16" FontFamily="Segoe UI Emojis"
                                                   VerticalAlignment="Bottom"
                                                   HorizontalAlignment="Right"
@@ -350,7 +373,7 @@
                 </Grid>
             </SplitView.Pane>
         </SplitView>
-        
+
         <!-- AdControl in Grid gekapselt, damit AdControl über IsTrial ein- und ausgeblendet werden kann,
         während gridAdv* über VisualStateManager je nach Orientation ein- und ausgeblendet wird -->
         <Grid x:Name="gridAdvMobile"
@@ -406,4 +429,5 @@
                           Width="300" />
         </Grid>
     </RelativePanel>
+
 </Page>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
+using Windows.Data.Json;
 
 namespace Friendica_Mobile.HttpRequests
 {
@@ -58,6 +59,23 @@ namespace Friendica_Mobile.HttpRequests
                 }
             }
         }
+
+        public async Task<string> PostFriendicaStatusAsync(FriendicaNewPost newPost)
+        {
+            // set indicator that app starts to send the post
+            App.IsSendingNewPost = true;
+
+            NewPost = newPost;
+            var data = PrepareData();
+
+            var url = String.Format("{0}/api/statuses/update", App.Settings.FriendicaServer);
+            var result = await this.PostMultipartAsync(url, App.Settings.FriendicaUsername, App.Settings.FriendicaPassword, data);
+
+            App.IsSendingNewPost = false;
+            return result;
+        }
+
+
 
         private Dictionary<string, object> PrepareData()
         {

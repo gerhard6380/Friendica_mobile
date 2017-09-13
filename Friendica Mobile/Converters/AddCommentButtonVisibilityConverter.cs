@@ -11,7 +11,7 @@ namespace Friendica_Mobile.Converters
         {
             var parent = App.GetNameOfCurrentView();
             // don't show the elements if we are in NewPost view
-            if (parent == "A0_NewPost" || parent == "A1_ShowThread")
+            if (parent == "A0_NewPost" || parent == "A1_ShowThread" || parent == "Newsfeed")
                 return Visibility.Collapsed;
             else
                 return Visibility.Visible;

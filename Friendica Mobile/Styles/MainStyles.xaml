@@ -9,12 +9,16 @@
     x:Class="Friendica_Mobile.Styles.MainStyles" >
 
     <conv:BoolToPostOpacityConverter x:Key="BoolToPostOpacityConverter" />
+    <conv:BoolToNewEntryThicknessConverter x:Key="BoolToNewEntryThicknessConverter" />
     <conv:SplitViewWidthConverter x:Key="SplitViewWidthConverter" />
     <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     <conv:BoolToVisibilityCollapsedConverter x:Key="BoolToVisibilityCollapsedConverter" />
     <conv:NetworkModeToVisibilityConverter x:Key="NetworkModeToVisibilityConverter" />
     <conv:AddCommentButtonVisibilityConverter x:Key="AddCommentButtonVisibilityConverter" />
     <conv:ShowProfileButtonVisibilityConverter x:Key="ShowProfileButtonVisibilityConverter" />
+    <conv:RetweetButtonVisibilityConverter x:Key="RetweetButtonVisibilityConverter" />
+    <conv:HtmlToParagraphConverter x:Key="HtmlToParagraphConverter" />
+    <conv:FlowDirectionConverter x:Key="FlowDirectionConverter" />
 
     <SolidColorBrush x:Key="AccentBrush" Color="{ThemeResource SystemAccentColor}" />
     

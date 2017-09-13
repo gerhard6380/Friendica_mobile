@@ -2015,11 +2015,59 @@ Sei sicuro?</value>
     <comment>PhotosCropping.xaml: tooltip of the appbarButton for displaying the preview images on mobile devices</comment>
   </data>
   <data name="textblockPhotosLoadingCroppingArea.Text" xml:space="preserve">
-    <value>Importiert die hochauflösende versione dell'immagine in den Zuschnittsbereich...</value>
+    <value>Importare la versione ad alta risoluzione dell'immagine al'area di ritaglio...</value>
     <comment>PhotosCropping.xaml: red info box to user showing that app is currently importing the photo in high resolution into cropping area</comment>
   </data>
   <data name="messageDialogPhotosPrintingNotPossible" xml:space="preserve">
-    <value>Drucken ist derzeit nicht möglich!</value>
+    <value>Al momento non è possibile stampare!</value>
     <comment>Photos.xaml: dialog message to user when printing throws an error</comment>
+  </data>
+  <data name="appBarNewsfeedSetAllSeen.Label" xml:space="preserve">
+    <value>Impostare come visto</value>
+    <comment>Newsfeed.xaml: caption of the appbarButton for setting all posts as seen</comment>
+  </data>
+  <data name="appBarNewsfeedSetAllSeen.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Contrassegnare tutti i messaggi, come si è visto</value>
+    <comment>Newsfeed.xaml: tooltip of the appbarButton for setting all posts as seen</comment>
+  </data>
+  <data name="textblockNewsfeedIsLoadingInitial.Text" xml:space="preserve">
+    <value>L'app sta caricando i tuoi articoli di RSS feed. Abbiate un po' di pazienza.</value>
+    <comment>Newsfeed.xaml: status update for user during loading initial entries of newsfeed/network</comment>
+  </data>
+  <data name="textblockNewsfeedNoDataAvailable.Text" xml:space="preserve">
+    <value>Nessun RSS feed articoli restituiti dal server.</value>
+    <comment>Newsfeed.xaml: showing info text to user if there are no newsfeed items in the network timeline of the user</comment>
+  </data>
+  <data name="textblockNewsfeedNoSettings.Text" xml:space="preserve">
+    <value>Non è stato definito nelle impostazioni dell'applicazione un server Friendica. Qui di seguito vi mostreremo i dati di esempio, che vi mostra come i vostri articoli de RSS feed potrebbero apparire nell'app.</value>
+    <comment>Newsfeed.xaml: show text if user has not set any app settings (we are showing only sample data for news feed items)</comment>
+  </data>
+  <data name="messageDialogNetworkNoSettings" xml:space="preserve">
+    <value>Non è possibile caricare più recenti o precedenti post in modalità test. Si prega di specificare nelle impostazioni del tuo server e le credenziali.</value>
+    <comment>Newsfeed.xaml/Network.xaml: if no settings users can look at samples, but when they try to refresh or load older posts, they will get this error message</comment>
+  </data>
+  <data name="messageDialogNewPostDontSelectRetweetContent" xml:space="preserve">
+    <value>Questo simbolo come un fiore rappresenta il contenuto originale inserito nel tuo post quando si inviano esso. Non è possibile modificare il simbolo.</value>
+    <comment>NewPost.xaml: information displayed to user when clicking on the flower symbol for the retweeting content</comment>
+  </data>
+  <data name="messageDialogNewsfeedNotLikable" xml:space="preserve">
+    <value>Si tratta di un elemento RSS/Atom. I tuoi contatti non vedranno quando piace/antipatia questo elemento direttamente. L'app sarà retweet questo prodotto con le impostazioni di privacy predefinite per i nuovi posti ({0}). Il piace/antipatia verrà quindi impostato su questo nuovo retweet. 
+ 
+Si desidera continuare?</value>
+    <comment>Newsfeed.xaml: likes/dislikes on newsfeed items do not work directly, app will perform a retweet with the standard settings for privacy of new posts (standard setting will be displayed in {0} parameter</comment>
+  </data>
+  <data name="messageDialogNewsfeedLikesNoDefault" xml:space="preserve">
+    <value>Si tratta di un elemento RSS/Atom. I tuoi contatti non vedranno quando piace/antipatia questo elemento direttamente. L'app potrebbe retweet questo prodotto con le impostazioni di privacy predefinite per i nuovi posti e quindi impostare il tuo piace/antipatia su questo nuovo retweet. 
+ 
+Attualmente ciò non è possibile, perché non hai ancora impostato predefinite le impostazioni di privacy.</value>
+    <comment>Newsfeed.xaml: likes/dislikes on newsfeed items do not work directly, inform user that he needs to define standard access rights in the settings. </comment>
+  </data>
+  <data name="pageTitleNewsfeed.Text" xml:space="preserve">
+    <value>RSS feed</value>
+    <comment>Name on top of view Newsfeed</comment>
+  </data>
+  <data name="pageNewsfeed.FlowDirection" xml:space="preserve">
+    <value>LeftToRight</value>
+    <comment>Defines Text direction for the language</comment>
   </data>
 </root>

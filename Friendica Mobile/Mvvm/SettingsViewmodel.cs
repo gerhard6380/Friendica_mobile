@@ -46,9 +46,10 @@ namespace Friendica_Mobile.Mvvm
 
         public bool IsVisibleNetworkMode
         {
+            // selection now disabled because we do not enable the chronological selection anymore
             get
             {
-                if (StartPage == "Network")
+                if (StartPage == "Network_old")
                     return true;
                 else
                     return false;

@@ -12,7 +12,7 @@ namespace Friendica_Mobile.Converters
             var parent = App.GetNameOfCurrentView();
             // don't show the elements if we are in NewPost view
             // don't show profile page element in home, as postings are mostly from user itself and comments from his/her friends
-            if (parent == "A0_NewPost" || parent == "Home")
+            if (parent == "A0_NewPost" || parent == "Home"|| parent == "Newsfeed")
                 return Visibility.Collapsed;
             else
                 return Visibility.Visible;

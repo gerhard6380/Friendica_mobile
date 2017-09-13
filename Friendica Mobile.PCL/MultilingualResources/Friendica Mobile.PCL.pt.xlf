@@ -2540,14 +2540,77 @@ Tem certeza?</target>
           <note from="MultilingualBuild" annotates="source" priority="2">PhotosCropping.xaml: tooltip of the appbarButton for displaying the preview images on mobile devices</note>
         </trans-unit>
         <trans-unit id="textblockPhotosLoadingCroppingArea.Text" translate="yes" xml:space="preserve">
-          <source>Importiert die hochauflösende Version des Bildes in den Zuschnittsbereich...</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Importiert morrer hochauflösende versão des Bildes em den Zuschnittsbereich...</target>
+          <source>Import the high-resolution version of the image into the cropping area ...</source>
+          <target state="translated">Importe a versão de alta resolução da imagem para a área de recorte...</target>
           <note from="MultilingualBuild" annotates="source" priority="2">PhotosCropping.xaml: red info box to user showing that app is currently importing the photo in high resolution into cropping area</note>
         </trans-unit>
         <trans-unit id="messageDialogPhotosPrintingNotPossible" translate="yes" xml:space="preserve">
-          <source>Drucken ist derzeit nicht möglich!</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Drucken ist derzeit nicht möglich!</target>
+          <source>Printing is not possible at the moment!</source>
+          <target state="translated" state-qualifier="mt-suggestion">Impressão não é possível no momento!</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Photos.xaml: dialog message to user when printing throws an error</note>
+        </trans-unit>
+        <trans-unit id="appBarNewsfeedSetAllSeen.Label" translate="yes" xml:space="preserve">
+          <source>Set as seen</source>
+          <target state="translated" state-qualifier="mt-suggestion">Definir como visto</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Newsfeed.xaml: caption of the appbarButton for setting all posts as seen</note>
+        </trans-unit>
+        <trans-unit id="appBarNewsfeedSetAllSeen.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Mark all posts as seen</source>
+          <target state="translated">Marcar todas as itens como visto</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Newsfeed.xaml: tooltip of the appbarButton for setting all posts as seen</note>
+        </trans-unit>
+        <trans-unit id="textblockNewsfeedIsLoadingInitial.Text" translate="yes" xml:space="preserve">
+          <source>The app is loading your newsfeed items. Please have some patience.</source>
+          <target state="translated">O app está carregando seus itens de RSS feeds. Por favor, tenho um pouco de paciência.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Newsfeed.xaml: status update for user during loading initial entries of newsfeed/network</note>
+        </trans-unit>
+        <trans-unit id="textblockNewsfeedNoDataAvailable.Text" translate="yes" xml:space="preserve">
+          <source>No newsfeed items returned from your server.</source>
+          <target state="translated">Não há itens de RSS feeds retornados de seu servidor.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Newsfeed.xaml: showing info text to user if there are no newsfeed items in the network timeline of the user</note>
+        </trans-unit>
+        <trans-unit id="textblockNewsfeedNoSettings.Text" translate="yes" xml:space="preserve">
+          <source>You have not defined in the app settings a Friendica server. Below we will show example data, showing you how your feed items could look in the app.</source>
+          <target state="translated">Você não tiver definido nas configurações do app, um servidor de Friendica. Abaixo vamos mostrar dados de exemplo, mostrando-lhe como seu itens de RSS feeds poderia olhar no app.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Newsfeed.xaml: show text if user has not set any app settings (we are showing only sample data for news feed items)</note>
+        </trans-unit>
+        <trans-unit id="messageDialogNetworkNoSettings" translate="yes" xml:space="preserve">
+          <source>You cannot load older or newer posts in the test mode. Please specify in the settings your server and credentials.</source>
+          <target state="translated" state-qualifier="mt-suggestion">Você não pode carregar mais velhas ou mais novas mensagens no modo de teste. Por favor especifica nas configurações do seu servidor e as credenciais.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Newsfeed.xaml/Network.xaml: if no settings users can look at samples, but when they try to refresh or load older posts, they will get this error message</note>
+        </trans-unit>
+        <trans-unit id="messageDialogNewPostDontSelectRetweetContent" translate="yes" xml:space="preserve">
+          <source>This symbol like a flower represents the original content inserted in your post when you are sending it. You cannot change the symbol.</source>
+          <target state="translated" state-qualifier="mt-suggestion">Este símbolo como uma flor representa o conteúdo original, inserido no seu post quando você está enviando. Não é possível alterar o símbolo.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: information displayed to user when clicking on the flower symbol for the retweeting content</note>
+        </trans-unit>
+        <trans-unit id="messageDialogNewsfeedNotLikable" translate="yes" xml:space="preserve">
+          <source>This is a RSS/Atom item. Your contacts will not see when you like/dislike on this item directly. The app will retweet this item with your default privacy settings for new posts ({0}). The like/dislike will then be set on this new retweet. 
+
+Do you want to continue?</source>
+          <target state="translated">Este é um item RSS/Atom. Seus contatos não verá quando você gosta/não gosta neste item diretamente. O app será retweet este item com suas configurações de privacidade padrão para novas mensagens ({0}). O gosta/não gosta será então definido sobre este novo retweet. 
+ 
+Você quer continuar?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Newsfeed.xaml: likes/dislikes on newsfeed items do not work directly, app will perform a retweet with the standard settings for privacy of new posts (standard setting will be displayed in {0} parameter</note>
+        </trans-unit>
+        <trans-unit id="messageDialogNewsfeedLikesNoDefault" translate="yes" xml:space="preserve">
+          <source>This is a RSS/Atom item. Your contacts will not see when you like/dislike on this item directly. The app could retweet this item with your default privacy settings for new posts and then set your like/dislike on this new retweet. 
+
+Currently this is not possible, because you haven't yet set default privacy settings.</source>
+          <target state="translated" state-qualifier="mt-suggestion">Este é um item RSS/Atom. Seus contatos não verá quando você gosta/não gosta neste item diretamente. O app pode retweet este item com suas configurações de privacidade padrão para novas mensagens e em seguida, defina sua gosta/não gosta sobre este novo retweet. 
+ 
+Atualmente isto não é possível, porque você ainda não definir as configurações de privacidade padrão.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Newsfeed.xaml: likes/dislikes on newsfeed items do not work directly, inform user that he needs to define standard access rights in the settings. </note>
+        </trans-unit>
+        <trans-unit id="pageTitleNewsfeed.Text" translate="yes" xml:space="preserve">
+          <source>RSS feeds</source>
+          <target state="final">RSS feeds</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Name on top of view Newsfeed</note>
+        </trans-unit>
+        <trans-unit id="pageNewsfeed.FlowDirection" translate="yes" xml:space="preserve">
+          <source>LeftToRight</source>
+          <target state="final" state-qualifier="tm-suggestion">LeftToRight</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Defines Text direction for the language</note>
         </trans-unit>
       </group>
     </body>

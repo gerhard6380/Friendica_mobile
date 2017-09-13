@@ -1,6 +1,8 @@
+using Newtonsoft.Json;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 using System;
+using System.Collections.Generic;
 
 namespace Friendica_Mobile.PCL
 {
@@ -78,12 +80,15 @@ namespace Friendica_Mobile.PCL
 
         private const string LastNotifiedMessageKey = "LastNotifiedMessage";
         private static readonly string LastNotifiedMessageDefault = string.Empty;
-        
+
+        private const string UnseenNewsfeedItemsKey = "UnseenNewsfeedItems";
+        private static readonly string UnseenNewsfeedItemsDefault = string.Empty;
+
     #endregion
 
 
-    // url of Friendica server to which user wants to connect
-    public static string FriendicaServer
+        // url of Friendica server to which user wants to connect
+        public static string FriendicaServer
         {
             get { return AppSettings.GetValueOrDefault<string>(FriendicaServerKey, FriendicaServerDefault); }
             set { AppSettings.AddOrUpdateValue<string>(FriendicaServerKey, value); }
@@ -267,6 +272,25 @@ namespace Friendica_Mobile.PCL
             set
             {
                 AppSettings.AddOrUpdateValue<string>(LastNotifiedMessageKey, value.ToString());
+            }
+        }
+
+
+        // store the id's of the unseen newsfeed posts for marking them as unseen until user manually set the seen flag
+        public static List<int> UnseenNewsfeedItems
+        {
+            get
+            {
+                var setting = AppSettings.GetValueOrDefault<string>(UnseenNewsfeedItemsKey, UnseenNewsfeedItemsDefault);
+                if (setting == null)
+                    return new List<int>();
+                else
+                    return JsonConvert.DeserializeObject<List<int>>(setting);
+            }
+            set
+            {
+                var serializedList = JsonConvert.SerializeObject(value);
+                AppSettings.AddOrUpdateValue<string>(UnseenNewsfeedItemsKey, serializedList);
             }
         }
 
