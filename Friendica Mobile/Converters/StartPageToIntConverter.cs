@@ -11,6 +11,8 @@ namespace Friendica_Mobile.Converters
                 return 0;
             if (value as string == "Network")
                 return 1;
+            if (value as string == "Newsfeed")
+                return 2;
             else
                 throw new ArgumentOutOfRangeException();
         }
@@ -21,6 +23,8 @@ namespace Friendica_Mobile.Converters
                 return "Home";
             else if ((int)value == 1)
                 return "Network";
+            else if ((int)value == 2)
+                return "Newsfeed";
             else
                 throw new ArgumentOutOfRangeException();
         }

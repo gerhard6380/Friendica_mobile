@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.Devices.Geolocation;
 using Windows.Storage;
@@ -30,6 +31,25 @@ namespace Friendica_Mobile.Mvvm
             get { return _postToShow; }
             set { _postToShow = value; }
         }
+
+
+        // selected post if user wants to retweet the post
+        private PCL.Models.FriendicaPost _retweetPost;
+        public PCL.Models.FriendicaPost RetweetPost
+        {
+            get { return _retweetPost; }
+            set { _retweetPost = value; }
+        }
+
+        // converted string of a retweeted post to be used in posting data
+        private string _retweetedContent;
+        public string RetweetedContent
+        {
+            get { return _retweetedContent; }
+            set { _retweetedContent = value; }
+        }
+
+
 
         public string NewPostTitle
         {
@@ -309,6 +329,7 @@ namespace Friendica_Mobile.Mvvm
                 OnPropertyChanged("ShowThread");
             }
         }
+
 
         // show indicator for sending a post if answering directly to a toast notification/Cortana speech in put
         private bool _isSendingNewPost;
@@ -640,5 +661,108 @@ namespace Friendica_Mobile.Mvvm
                 id = Convert.ToDouble(PostToShow.Post.PostStatusnetConversationId);
             return id;
         }
+
+
+        // function to generate the bbcode for retweeting from the chosen original post 
+        public bool GenerateRetweetContent()
+        {
+            if (RetweetPost != null)
+            {
+                //extract needed infos from the post
+                var username = RetweetPost.Post.PostUser.UserName;
+                var profile = RetweetPost.Post.PostUser.UserUrl;
+                var avatar = RetweetPost.Post.PostUser.UserProfileImageUrl;
+                var guid = "";
+                var posted = RetweetPost.CreatedAtDateTime.ToString("yyyy-MM-dd hh:mm:ss");
+                var htmlContent = new clsHtmlToRichTextBlock(RetweetPost.Post.PostStatusnetHtml);
+                var retweetData = htmlContent.ConvertRetweetStatus();
+
+                // create string - share: author, profile, avatar, guid, posted, link
+                string content = "";
+                content += "[share";
+                if (!String.IsNullOrEmpty(username))
+                    content += " author='" + username + "'";
+                if (!String.IsNullOrEmpty(profile))
+                    content += " profile='" + profile + "'";
+                if (!String.IsNullOrEmpty(avatar))
+                    content += " avatar='" + avatar + "'";
+                if (!String.IsNullOrEmpty(guid))
+                    content += " guid='" + guid + "'";
+                if (!String.IsNullOrEmpty(posted))
+                    content += " posted='" + posted + "'";
+                if (!String.IsNullOrEmpty(retweetData["link"]))
+                    content += " link='" + retweetData["link"] + "'";
+                content += "]";
+
+                // create string - headline
+                if (!String.IsNullOrEmpty(retweetData["header"]))
+                    content += retweetData["header"];
+
+                // create string - attachement: type, url, title
+                content += "[attachment type='link'";
+                if (!String.IsNullOrEmpty(retweetData["link"]))
+                    content += " url='" + retweetData["link"] + "'";
+                if (!String.IsNullOrEmpty(retweetData["header"]))
+                    content += " title='" + retweetData["header"] + "'";
+                content += "]";
+
+                // create string - content text
+                if (!String.IsNullOrEmpty(retweetData["body"]))
+                    content += retweetData["body"];
+                content += "[/attachment]";
+                content += "[/share]";
+
+                RetweetedContent = content;
+
+                // return true if content was generated
+                return true;
+            }
+            else
+                return false;
+        }
+
+
+        public async Task<FriendicaPostExtended> RetweetNewsfeedItem()
+        {
+            // set final lat and long from the two different sets
+            if (SendCoordinates && SendCoordinatesImageActive && SendCoordinatesImage)
+            {
+                newPost.NewPostLatitude = ImageLatitude;
+                newPost.NewPostLongitude = ImageLongitude;
+            }
+            else if (SendCoordinates)
+            {
+                newPost.NewPostLatitude = LocationLatitude;
+                newPost.NewPostLongitude = LocationLongitude;
+            }
+
+            // set acl depending on selections (if public post is selected save empty strings as selections are kept in background)
+            if (RadioButtonPrivatePostChecked)
+            {
+                newPost.NewPostContactAllow = GetSelectedContactsString();
+                newPost.NewPostGroupAllow = GetSelectedGroupsString();
+            }
+            else
+            {
+                newPost.NewPostContactAllow = "";
+                newPost.NewPostGroupAllow = "";
+            }
+
+            // save ACL change to App.Settings if user wishes to do so
+            if (SaveACL)
+            {
+                App.Settings.ACLPrivateSelectedContacts = GetSelectedContactsString();
+                App.Settings.ACLPrivateSelectedGroups = GetSelectedGroupsString();
+            }
+
+            // transfer newPost to App.PostFriendica and start sending
+            App.PostFriendica = new PostFriendicaNewPost();
+            IsSendingNewPost = true;
+            var result = await App.PostFriendica.PostFriendicaStatusAsync(newPost);
+            var post = new FriendicaPostExtended(result);
+            return post;
+        }
+
     }
+
 }

@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
+using Friendica_Mobile.PCL.Strings;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=402347&clcid=0x409
 
@@ -29,6 +30,11 @@ namespace Friendica_Mobile
     /// </summary>
     sealed partial class App : Application
     {
+        // central element for use in PCL viewmodels
+        internal static LocalizeUWP localizeHelper = new LocalizeUWP();
+        //internal static MessageDialogUWP messageDialog = new MessageDialogUWP();
+        
+
         public EventHandler<IActivatedEventArgs> Activated;
         public static LaunchActivatedEventArgs LaunchedEventArgs;
         public static IActivatedEventArgs ActivatedEventArgs;
@@ -104,6 +110,9 @@ namespace Friendica_Mobile
         // container for getting the data of a new post and to start the sending process (see NewPostViewmodel.cs)
         public static PostFriendicaNewPost PostFriendica;
 
+        // container for the NetworkViewmodel used in Network and Newsfeed views
+        internal static PCL.Viewmodels.NetworkViewmodel NetworkVm;
+
         // container for the MessageViewmodel storing current data on navigating
         public static MessagesViewmodel MessagesVm;
 
@@ -157,11 +166,18 @@ namespace Friendica_Mobile
             this.Suspending += OnSuspending;
             // trying to get more information on the unknown crashes after store update
             //UnhandledException += App_UnhandledException;
+
+            // inject the platform-specific implementation for dialogs into the PCL
+            PCL.StaticMessageDialog.Dialog = new MessageDialogUWP();
+
+            // inject the platform-specific implementation for localization into the PCL
+            AppResources.Culture = new LocalizeUWP().GetCurrentCultureInfo();
         }
 
 
         private async void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+            e.Handled = true;
             var errorMsg = String.Format("Unhandled exception on starting Friendica Mobile\n\nMessage:\n{0}\n\nSource:\n{1}\n\nStack Trace:\n{2}", e.Message + "///" + e.Exception.Message, e.Exception.Source, e.Exception.StackTrace);
             var dialog = new MessageDialogMessage(errorMsg, "", "OK", null);
             await dialog.ShowDialog(0, 0);
@@ -202,13 +218,13 @@ namespace Friendica_Mobile
             var contacts = new ContactsViewmodel();
             contacts.InitialLoad();
 
-            //start loading the non loaded part of the app(if user wants to start into network, we load home; and vice versa)
+            // start loading the non loaded part of the app(if user wants to start into network, we load home; and vice versa)
             if (Settings.StartPage == "Home")
             {
-                var network = new NetworkViewmodel();
-                network.LoadInitial();
+                NetworkVm = new PCL.Viewmodels.NetworkViewmodel();
+                NetworkVm.LoadInitial();
             }
-            else if (Settings.StartPage == "Network")
+            else if (Settings.StartPage == "Network" || Settings.StartPage == "Newsfeed")
             {
                 var home = new HomeViewmodel();
                 home.LoadInitial();
@@ -285,11 +301,13 @@ namespace Friendica_Mobile
                 }
                 else
                 {
-                    //rootFrame.Navigate(typeof(Views.Photos));
+                    //rootFrame.Navigate(typeof(Views.Newsfeed));
                     if (Settings.StartPage == "Home")
                         rootFrame.Navigate(typeof(Views.Home));
                     else if (Settings.StartPage == "Network")
                         rootFrame.Navigate(typeof(Views.Network));
+                    else if (Settings.StartPage == "Newsfeed")
+                        rootFrame.Navigate(typeof(Views.Newsfeed));
                 }
             }
             // Ensure the current window is active

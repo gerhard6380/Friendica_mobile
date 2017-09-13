@@ -165,7 +165,10 @@ namespace Friendica_Mobile.Views
                     pageMvvm.LoadContentFromServer();
             }
             else
-                pageMvvm.SelectedPhotoalbum.SelectedPhoto.CheckForNeededServerUpdate();
+            {
+                if (pageMvvm.SelectedPhotoalbum != null)
+                    pageMvvm.SelectedPhotoalbum.SelectedPhoto.CheckForNeededServerUpdate();
+            }
 
             // this will trigger the OrientationDeviceFamilyTrigger to rebuild correct display after loading page
             App.Settings.ShellWidth = App.Settings.ShellWidth;

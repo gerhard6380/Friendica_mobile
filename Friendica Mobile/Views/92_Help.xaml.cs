@@ -63,7 +63,7 @@ namespace Friendica_Mobile.Views
         private async void buttonLinkFriendicaDevelopers_Click(object sender, RoutedEventArgs e)
         {
             // build link to the support forum incl. zrl link to the own profile
-            string baseUrl = "https://friendika.openmindspace.org/profile/friendicadevelopers?zrl={0}&timestamp={1}";
+            string baseUrl = "https://helpers.pyxis.uberspace.de/profile/developers?zrl={0}&timestamp={1}";
             string profile = App.Settings.FriendicaServer + "/profile/" + App.Settings.FriendicaUsername;
             var url = String.Format(baseUrl, Uri.EscapeDataString(profile), Uri.EscapeDataString(DateTime.Now.ToString()));
 

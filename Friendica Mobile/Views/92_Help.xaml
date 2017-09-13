@@ -130,8 +130,8 @@
                         </Hyperlink>
                         <Run Text=". " />
                         <Run x:Uid="textHelpFriendicaOthers2" />
-                        <Hyperlink NavigateUri="http://friendica.com/">
-                            <Run Text="friendica.com" />
+                        <Hyperlink NavigateUri="http://friendi.ca/">
+                            <Run Text="friendi.ca" />
                         </Hyperlink>
                         <Run Text="." />
                         <LineBreak />

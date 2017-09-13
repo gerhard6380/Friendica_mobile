@@ -201,8 +201,8 @@ namespace Friendica_Mobile.Models
             UserScreenName = jsonObject.GetNamedString(userScreenNameKey, "");
             UserLocation = (string)CheckAttribute(jsonObject, userLocationKey, AttributeTypes.String);
             UserDescription = (string)CheckAttribute(jsonObject, userDescriptionKey, AttributeTypes.String);
-            UserProfileImageUrl = jsonObject.GetNamedString(userProfileImageUrlKey, "");
-            UserProfileImageUrlHttps = jsonObject.GetNamedString(userProfileImageUrlHttpsKey, "");
+            UserProfileImageUrl = (string)CheckAttribute(jsonObject, userProfileImageUrlKey, AttributeTypes.String);
+            UserProfileImageUrlHttps = (string)CheckAttribute(jsonObject, userProfileImageUrlHttpsKey, AttributeTypes.String);
             UserUrl = jsonObject.GetNamedString(userUrlKey, "");
             UserProtected = jsonObject.GetNamedBoolean(userProtectedKey, false);
             UserFollowersCount = jsonObject.GetNamedNumber(userFollowersCountKey, 0);

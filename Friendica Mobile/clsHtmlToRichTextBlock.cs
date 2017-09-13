@@ -22,6 +22,7 @@ namespace Friendica_Mobile
     {
         HtmlDocument htmlDoc;
         Dictionary<string, IHtmlType> ruleDic = new Dictionary<string, IHtmlType>();
+        bool preparingSharedContainer = false;
 
         public clsHtmlToRichTextBlock(string html)
         {
@@ -80,6 +81,34 @@ namespace Friendica_Mobile
         }
 
 
+        // function to convert retweeted status into data used for bbcode generation in NewPost
+        public Dictionary<string, string> ConvertRetweetStatus()
+        {
+            var data = new Dictionary<string, string>();
+            data["link"] = "";
+            data["header"] = "";
+            data["body"] = "";
+
+            foreach (var node in htmlDoc.DocumentNode.ChildNodes)
+            {
+                string htmlNodeName = node.Name.ToLower();
+                if (new[] { "span" }.Contains(htmlNodeName) && node.GetAttributeValue("class", "") == "type-link")
+                {
+                    foreach (var childNode in node.ChildNodes)
+                    {
+                        if (childNode.Name.ToLower() == "a")
+                        {
+                            data["link"] = childNode.GetAttributeValue("href", "");
+                            data["header"] = childNode.InnerText;
+                        }
+                        if (childNode.Name.ToLower() == "blockquote")
+                            data["body"] = childNode.InnerText;
+                    }
+                }
+            }
+            return data;
+        }
+
         public Paragraph ApplyHtmlToParagraph()
         {
             Paragraph block = new Paragraph();
@@ -98,11 +127,31 @@ namespace Friendica_Mobile
         }
 
 
-        private void ConvertHtmlNode(HtmlNode htmlNode, Block block)
+        public void ConvertHtmlNode(HtmlNode htmlNode, Block block)
         {
             string htmlNodeName = htmlNode.Name.ToLower();
 
             if (new[] { "p", "div" }.Contains(htmlNodeName))
+            {
+                if (htmlNode.GetAttributeValue("class", "") == "shared-wrapper")
+                {
+                    preparingSharedContainer = true;
+                    PrepareSharedContent(htmlNode, block);
+                }
+                else
+                {
+                    foreach (var childHtmlNode in htmlNode.ChildNodes)
+                    {
+                        if (string.IsNullOrEmpty(htmlNode.InnerHtml))
+                            continue;
+                        ConvertHtmlNode(childHtmlNode, block);
+                    }
+                    var br = new LineBreak();
+                    (block as Paragraph).Inlines.Add(br);
+                }
+            }
+            
+            if (new[] { "small" }.Contains(htmlNodeName))
             {
                 foreach (var childHtmlNode in htmlNode.ChildNodes)
                 {
@@ -110,8 +159,6 @@ namespace Friendica_Mobile
                         continue;
                     ConvertHtmlNode(childHtmlNode, block);
                 }
-                var br = new LineBreak();
-                (block as Paragraph).Inlines.Add(br);
             }
 
             if (new[] { "span" }.Contains(htmlNodeName))
@@ -128,9 +175,9 @@ namespace Friendica_Mobile
                 }
                 else
                 {
-                    var line = new Run();
-                    line.Text = "______________________________";
-                    (block as Paragraph).Inlines.Add(line);
+                    //var line = new Run();
+                    //line.Text = "______________________________";
+                    //(block as Paragraph).Inlines.Add(line);
                     var br = new LineBreak();
                     (block as Paragraph).Inlines.Add(br);
                     foreach (var childHtmlNode in htmlNode.ChildNodes)
@@ -141,9 +188,9 @@ namespace Friendica_Mobile
                     }
                     var br2 = new LineBreak();
                     (block as Paragraph).Inlines.Add(br2);
-                    var line2 = new Run();
-                    line2.Text = "______________________________";
-                    (block as Paragraph).Inlines.Add(line2);
+                    //var line2 = new Run();
+                    //line2.Text = "______________________________";
+                    //(block as Paragraph).Inlines.Add(line2);
                 }
             }
 
@@ -151,6 +198,100 @@ namespace Friendica_Mobile
                 ruleDic[htmlNodeName].ApplyType(htmlNode, block);
         }
 
+        private void PrepareSharedContent(HtmlNode htmlNode, Block block)
+        {
+            // container for displaying the data
+            InlineUIContainer container = new InlineUIContainer();
+
+            var grid = new Grid();
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+            grid.HorizontalAlignment = HorizontalAlignment.Stretch;
+            grid.Background = new SolidColorBrush(Colors.Transparent);
+            grid.BorderBrush = new SolidColorBrush(Colors.LightGray);
+            grid.BorderThickness = new Thickness(2);
+            grid.Padding = new Thickness(0, 0, 0, 4);
+
+            foreach (var childHtmlNode in htmlNode.ChildNodes)
+            {
+                if (string.IsNullOrEmpty(htmlNode.InnerHtml))
+                    continue;
+                if (childHtmlNode.GetAttributeValue("class", "") == "shared_header")
+                {
+                    foreach (var childHtmlNode2 in childHtmlNode.ChildNodes)
+                    {
+                        if (string.IsNullOrEmpty(htmlNode.InnerHtml))
+                            continue;
+
+                        // add user image
+                        if (childHtmlNode2.GetAttributeValue("class", "") == "shared-userinfo")
+                        {
+                            var paragraph = new Paragraph();
+                            ConvertHtmlNode(childHtmlNode2, paragraph);
+                            var rtb = new RichTextBlock();
+                            rtb.Blocks.Add(paragraph);
+                            grid.Children.Add(rtb);
+                            Grid.SetColumn(rtb, 0);
+                            Grid.SetRowSpan(rtb, 2);
+                        }
+                        // add date, time
+                        else if (childHtmlNode2.GetAttributeValue("class", "") == "shared-wall-item-ago")
+                        {
+                            var paragraphTime = new Paragraph();
+                            if (childHtmlNode2.Name == "small")
+                            {
+                                foreach (var childHtmlNode3 in childHtmlNode2.ChildNodes)
+                                {
+                                    var defaultText = new DefaultToXaml();
+                                    defaultText.ApplyType(childHtmlNode3, paragraphTime);
+                                }
+                            }
+                            else
+                                ConvertHtmlNode(childHtmlNode2, paragraphTime);
+                            var rtbTime = new RichTextBlock();
+                            rtbTime.Blocks.Add(paragraphTime);
+                            Grid.SetColumn(rtbTime, 1);
+                            Grid.SetRow(rtbTime, 1);
+                            grid.Children.Add(rtbTime);
+                        }
+                        else
+                        {
+                            foreach (var childHtmlNode3 in childHtmlNode2.ChildNodes)
+                            {
+                                // add user name
+                                if (childHtmlNode3.GetAttributeValue("class", "") == "shared-wall-item-name")
+                                {
+                                    var paragraph = new Paragraph();
+                                    ConvertHtmlNode(childHtmlNode3, paragraph);
+                                    var rtb = new RichTextBlock();
+                                    rtb.Blocks.Add(paragraph);
+                                    grid.Children.Add(rtb);
+                                    Grid.SetColumn(rtb, 1);
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (childHtmlNode.GetAttributeValue("class", "") == "shared_content")
+                {
+                    var paragraph = new Paragraph();
+                    ConvertHtmlNode(childHtmlNode, paragraph);
+                    var rtb = new RichTextBlock();
+                    rtb.Blocks.Add(paragraph);
+                    grid.Children.Add(rtb);
+                    Grid.SetColumn(rtb, 1);
+                    Grid.SetRow(rtb, 2);
+                }
+            }
+
+            container.Child = grid;
+
+            // add grid to the UI
+            (block as Paragraph).Inlines.Add(container);
+        }
     }
 
 
@@ -767,17 +908,38 @@ namespace Friendica_Mobile
                 }
                 else
                 {
-                    // normal Hyperlinks without youtube or video or audio tags
-                    Hyperlink h = new Hyperlink();
-                    h.NavigateUri = new Uri(url.Value, UriKind.RelativeOrAbsolute);
-                    Run r = new Run();
-                    h.Inlines.Add(r);
-                    var myResourceDictionary = new ResourceDictionary();
-                    myResourceDictionary.Source = new Uri("ms-appx:///Styles/MainStyles.xaml", UriKind.RelativeOrAbsolute);
-                    var accentBrush = (SolidColorBrush)myResourceDictionary["AccentBrush"];
-                    r.Foreground = (Application.Current.RequestedTheme == ApplicationTheme.Light) ? new SolidColorBrush(Colors.Black) : new SolidColorBrush(Colors.LightGray);
-                    r.Text = GetCleanContent(htmlNode.InnerText);
+                    // remove \n\t from shared content and place hyperlink only if there is a normal text remaining
+                    // if not remained we get a line with hyperlink for each \t destroying the displayed content
+                    var textCleaned = htmlNode.InnerText.Replace("\n", "");
+                    textCleaned = textCleaned.Replace("\t", "");
 
+                    if (textCleaned != "")
+                    {
+                        // in case the link is containing the time of a retweeted item, ignore the link (it is placed in blockquote),
+                        // but display the time smaller and in italic and light gray
+                        if (htmlNode.ParentNode.Name == "small")
+                        {
+                            s = RichTextBlockStyle.GetDefault(htmlNode);
+                            s.FontSize = 12;
+                            s.FontStyle = FontStyle.Italic;
+                            s.Foreground = new SolidColorBrush(Colors.LightGray);
+                            TextToRun(htmlNode.InnerText, s, block);
+                        }
+                        else
+                        {
+                            // normal Hyperlinks without youtube or video or audio tags
+                            Hyperlink h = new Hyperlink();
+                            h.NavigateUri = new Uri(url.Value, UriKind.RelativeOrAbsolute);
+                            Run r = new Run();
+                            h.Inlines.Add(r);
+                            var myResourceDictionary = new ResourceDictionary();
+                            myResourceDictionary.Source = new Uri("ms-appx:///Styles/MainStyles.xaml", UriKind.RelativeOrAbsolute);
+                            var accentBrush = (SolidColorBrush)myResourceDictionary["AccentBrush"];
+                            r.Foreground = (Application.Current.RequestedTheme == ApplicationTheme.Light) ? new SolidColorBrush(Colors.Black) : new SolidColorBrush(Colors.LightGray);
+                            r.Text = GetCleanContent(htmlNode.InnerText);
+                            (block as Paragraph).Inlines.Add(h);
+                        }
+                    }
 
                     // Prüfung ob Child-Element mit img vorhanden ist
                     if (htmlNode.HasChildNodes)
@@ -791,7 +953,6 @@ namespace Friendica_Mobile
                             }
                         }
                     }
-                    (block as Paragraph).Inlines.Add(h);
                 }
             }
             catch (Exception)
@@ -870,10 +1031,23 @@ namespace Friendica_Mobile
                 // images from remote server may be used without reading base64 data or loading through api
                 ImageSource imgSource = new BitmapImage(new Uri(src.Value, UriKind.RelativeOrAbsolute));
                 img.Source = imgSource;
-                if (img.Height > img.Width)
-                    img.MaxHeight = Window.Current.Bounds.Height / 2;
+                if (htmlNode.ParentNode.Name == "a")
+                {
+                    // in case we have a user profile foto in a retweet we want to show it as a small icon only
+                    var classType = htmlNode.ParentNode.GetAttributeValue("class", "");
+                    if (classType == "shared-userinfo")
+                    {
+                        img.Width = htmlNode.GetAttributeValue("width", 48);
+                        img.Height = htmlNode.GetAttributeValue("height", 48);
+                    }
+                }
                 else
-                    img.MaxHeight = Window.Current.Bounds.Height / 3;
+                {
+                    if (img.Height > img.Width)
+                        img.MaxHeight = Window.Current.Bounds.Height / 2;
+                    else
+                        img.MaxHeight = Window.Current.Bounds.Height / 3;
+                }
                 img.Margin = new Thickness(4, 4, 4, 4);
             }
             // Klick auf das Image führt zu einer Fullscreen-Anzeige
@@ -985,40 +1159,62 @@ namespace Friendica_Mobile
 
         public override void ApplyType(HtmlNode htmlNode, Block block)
         {
-            if (htmlNode.InnerText == "")
-                return;
+            // different handling when we want to display a retweeted item
+            if (htmlNode.GetAttributeValue("class", "") == "shared_content")
+            {
+                foreach (var childHtmlNode in htmlNode.ChildNodes)
+                {
+                    if (childHtmlNode.Name == "#text")
+                    {
+                        // the first line in the retweeted text should be displayed as header
+                        var defaultText = new HToXaml("h1");
+                        defaultText.ApplyType(childHtmlNode, block);
+                    }
+                    if (childHtmlNode.Name == "span")
+                    {
+                        // the remainder of the retweeted text can be displayed as usual (blockqoute style)
+                        var remainingText = new clsHtmlToRichTextBlock(childHtmlNode.InnerHtml);
+                        remainingText.ConvertHtmlNode(childHtmlNode, block);
+                    }
+                }
+            }
+            else
+            {
+                if (htmlNode.InnerText == "")
+                    return;
 
-            // grap central setting for displaying content in RichTextBlock from MainStyles.xaml
-            var myResourceDictionary = new ResourceDictionary();
-            myResourceDictionary.Source = new Uri("ms-appx:///Styles/MainStyles.xaml", UriKind.RelativeOrAbsolute);
-            var baseFontSize = (double)myResourceDictionary["RunFontSizeBlockquote"];
+                // grap central setting for displaying content in RichTextBlock from MainStyles.xaml
+                var myResourceDictionary = new ResourceDictionary();
+                myResourceDictionary.Source = new Uri("ms-appx:///Styles/MainStyles.xaml", UriKind.RelativeOrAbsolute);
+                var baseFontSize = (double)myResourceDictionary["RunFontSizeBlockquote"];
 
-            InlineUIContainer ilContainer = new InlineUIContainer();
+                InlineUIContainer ilContainer = new InlineUIContainer();
 
-            Border border = new Border();
-            border.Background = new SolidColorBrush(Colors.AntiqueWhite);
-            border.Opacity = 0.5;
-            border.Padding = new Thickness(8, 0, 8, 0);
-            // Margin with max. 4 in order to display the quotes nicely in a line with normal text
-            border.Margin = new Thickness(4, 4, 4, 0);
-            // set bottom to align nicely in a line with normal text
-            border.VerticalAlignment = VerticalAlignment.Bottom;
-            // black border on the right side to sign that this is a quote
-            border.BorderThickness = new Thickness(4, 0, 0, 0);
-            border.BorderBrush = new SolidColorBrush(Colors.Black);
+                Border border = new Border();
+                border.Background = new SolidColorBrush(Colors.AntiqueWhite);
+                border.Opacity = 0.5;
+                border.Padding = new Thickness(8, 0, 8, 0);
+                // Margin with max. 4 in order to display the quotes nicely in a line with normal text
+                border.Margin = new Thickness(4, 4, 4, 0);
+                // set bottom to align nicely in a line with normal text
+                border.VerticalAlignment = VerticalAlignment.Bottom;
+                // black border on the right side to sign that this is a quote
+                border.BorderThickness = new Thickness(4, 0, 0, 0);
+                border.BorderBrush = new SolidColorBrush(Colors.Black);
 
-            TextBlock tb = new TextBlock();
-            tb.FontSize = baseFontSize;
-            var cContent = GetCleanContent(htmlNode.InnerText);
-            // show emojis in quotes, too
-            tb.Text = ChangeIcons(cContent);
-            tb.Foreground = new SolidColorBrush(Colors.Black);
-            tb.TextWrapping = TextWrapping.Wrap;
-            tb.FontStyle = FontStyle.Italic;
+                TextBlock tb = new TextBlock();
+                tb.FontSize = baseFontSize;
+                var cContent = GetCleanContent(htmlNode.InnerText);
+                // show emojis in quotes, too
+                tb.Text = ChangeIcons(cContent);
+                tb.Foreground = new SolidColorBrush(Colors.Black);
+                tb.TextWrapping = TextWrapping.Wrap;
+                tb.FontStyle = FontStyle.Italic;
 
-            border.Child = tb;
-            ilContainer.Child = border;
-            (block as Paragraph).Inlines.Add(ilContainer);
+                border.Child = tb;
+                ilContainer.Child = border;
+                (block as Paragraph).Inlines.Add(ilContainer);
+            }
         }
     }  // end of public class BlockQuoteToXaml : HtmlTypeBase
 

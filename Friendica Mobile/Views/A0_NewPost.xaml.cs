@@ -1,5 +1,6 @@
 ﻿using Friendica_Mobile.Models;
 using Friendica_Mobile.Mvvm;
+using Friendica_Mobile.PCL;
 using Friendica_Mobile.Triggers;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,13 @@ namespace Friendica_Mobile.Views
                                                                   "800080", "000080", "0000FF", "00FFFF",
                                                                   "800000", "FF0000", "FFA500", "FFFF00",
                                                                   "008000", "808000", "00FF00", "FF00FF" });
+
+        private bool _selectionChangedByCode;
+        public bool SelectionChangedByCode
+        {
+            get { return _selectionChangedByCode; }
+            set { _selectionChangedByCode = value; }
+        }
 
 
         public A0_NewPost()
@@ -131,6 +139,58 @@ namespace Friendica_Mobile.Views
                     thread.IsLoaded = true;
                     pageMvvm.ReloadThreadData();
                 }
+
+                // user clicked a post in network to send a comment
+                else if (e.Parameter.GetType() == typeof(PCL.Viewmodels.FriendicaThread))
+                {
+                    var thread = e.Parameter as PCL.Viewmodels.FriendicaThread;
+                    // collapse ACL setter box on a reply
+                    pageMvvm.ShowACLVisible = false;
+                    pageMvvm.ShowThreadVisible = true;
+                    // TODO: convert NewPostViewmodel to PCL before adding the thread here again
+                    pageMvvm.ShowThread = new ObservableCollection<FriendicaThread>();
+                    if (CheckSettings.ServerSettingsAvailable())
+                    {
+                        // we can continue to load the thread from server
+                        var threadNew = new FriendicaThread() { ThreadId = thread.ThreadId };
+                        threadNew.PostsLoaded += ThreadNew_PostsLoaded;
+                        threadNew.LoadThread();
+                        pageMvvm.ShowThread.Add(threadNew);
+                    }
+                    else
+                    {
+                        // take the thread again from samples is not working because of different classes in PCL (Samples) and in pageMvvm.ShowThread
+                        // TODO: implement this correctly when moving NewPostViewmodel to PCL
+                    }
+                    // set id of post where we want to reply to
+                    newPost.NewPostInReplyToStatusId = thread.MainPost[0].Post.PostId;
+                    //thread.CollapseComments();
+                    //thread.IsThreadLoaded = true;
+                }
+
+                // user clicked the retweet icon on a post item 
+                else if (e.Parameter.GetType() == typeof(PCL.Models.FriendicaPost))
+                {
+                    // insert data into NewPost
+                    pageMvvm.RetweetPost = e.Parameter as PCL.Models.FriendicaPost;
+
+                    // generate content in bbcode for posting (false if there was an error)
+                    var contentGenerated = pageMvvm.GenerateRetweetContent();
+
+                    if (contentGenerated)
+                    {
+                        // insert a flower-like symbol from Segoe UI font into the RichTextBox (there is one empty row before the symbol)
+                        rebNewPostText.Document.SetText(TextSetOptions.None, "\r\u058D ");
+                        var textFound = rebNewPostText.Document.Selection.FindText("\u058D", TextConstants.MaxUnitCount, FindOptions.Word);
+                        if (textFound != 0)
+                        {
+                            ITextCharacterFormat tcf = rebNewPostText.Document.Selection.CharacterFormat;
+                            tcf.ForegroundColor = Colors.White;
+                            tcf.BackgroundColor = Colors.Purple;
+                            rebNewPostText.Document.Selection.CharacterFormat = tcf;
+                        }
+                    }
+                }
             }
 
             newPost.NewPostSource = "Friendica";
@@ -141,6 +201,10 @@ namespace Friendica_Mobile.Views
             VisualStateSelector selector = new VisualStateSelector(this);
         }
 
+        private void ThreadNew_PostsLoaded(object sender, EventArgs e)
+        {
+            pageMvvm.ReloadThreadData();
+        }
 
         private string PrepareBBCode()
         {
@@ -220,6 +284,15 @@ namespace Friendica_Mobile.Views
             {
                 // Select current character
                 tr.SetRange(intCount, intCount + 1);
+
+                // ignore when retweet content
+                string character;
+                tr.GetText(TextGetOptions.None, out character);
+                if (character == "֍")
+                {
+                    bbCode += tr.Character;
+                    continue;
+                }
 
                 // jump over if still within link
                 if (linkActive && tr.Link == strLink)
@@ -402,6 +475,12 @@ namespace Friendica_Mobile.Views
             // Restore original RichTextBox selection
             tr.SetRange(lngOriginalStart, lngOriginalLength);
 
+            // replace retweet symbol with the correct
+            if (text.Contains("֍"))
+            {
+                bbCode = bbCode.Replace("֍", pageMvvm.RetweetedContent);
+            }
+
             return bbCode;
         }
 
@@ -496,11 +575,22 @@ namespace Friendica_Mobile.Views
         }
 
 
-        private void rebNewPostText_SelectionChanged(object sender, RoutedEventArgs e)
+        private async void rebNewPostText_SelectionChanged(object sender, RoutedEventArgs e)
         {
+            // check if user has selected the retweet icon as well
+            var clicked = CheckSelectionRetweet();
+
+            // if yes, we want to inform user if there was no information before
+            if (clicked && !PCL.StaticGlobalParameters.NewPostDontSelectRetweetContentAlreadyShown)
+            {
+                PCL.StaticGlobalParameters.NewPostDontSelectRetweetContentAlreadyShown = true;
+                var result = await PCL.StaticMessageDialog.ShowDialogAsync("", loader.GetString("messageDialogNewPostDontSelectRetweetContent"), loader.GetString("buttonOK"), null, null, 0, 0);
+            }
+
             // change checked/unchecked state of the editor buttons if user changed the selected text
             var reb = sender as RichEditBox;
             ITextRange tr = reb.Document.Selection;
+
             bool boxFocused;
 
             if (reb.FocusState == FocusState.Keyboard || reb.FocusState == FocusState.Pointer || reb.FocusState == FocusState.Programmatic)
@@ -508,6 +598,22 @@ namespace Friendica_Mobile.Views
             else
                 boxFocused = false;
             SetButtonStates(tr, boxFocused);
+        }
+
+        private bool CheckSelectionRetweet()
+        {
+            // get text from selection
+            string text;
+            rebNewPostText.Document.Selection.GetText(TextGetOptions.None, out text);
+
+            // if the selection contains the Unicode \u058D (flower like symbol) we set the cursor to the beginning of the selection range
+            if (text.Contains("֍"))
+            {
+                rebNewPostText.Document.Selection.SetRange(rebNewPostText.Document.Selection.StartPosition, rebNewPostText.Document.Selection.StartPosition);
+                // return true as next step will check if user should get a message dialog to inform about this
+                return true;
+            }
+            return false;
         }
 
 
@@ -647,6 +753,8 @@ namespace Friendica_Mobile.Views
         private async void buttonLink_Click(object sender, RoutedEventArgs e)
         {
             ITextRange tr = rebNewPostText.Document.Selection;
+            string test;
+            tr.GetText(TextGetOptions.FormatRtf, out test);
             var text = tr.Text;
             if (text.Contains("HYPERLINK"))
             {

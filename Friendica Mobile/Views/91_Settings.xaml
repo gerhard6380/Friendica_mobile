@@ -210,22 +210,28 @@
                                       Visibility="{Binding DeviceFamily, Converter={StaticResource MobileDeviceOnlyConverter}, Mode=OneWay}"
                                       IsOn="{Binding NavigationSide, Converter={StaticResource FlowDirectionStringToBoolConverter}, Mode=TwoWay}" />
 
-                                <ComboBox x:Name="comboboxStartPage" x:Uid="comboboxStartPage"
+                            <ComboBox x:Name="comboboxStartPage" x:Uid="comboboxStartPage"
                                   HeaderTemplate="{StaticResource SettingsHeaderTemplate}"
                                   SelectedIndex="{Binding StartPage, Converter={StaticResource StartPageToIntConverter}, Mode=TwoWay}">
-                                    <ComboBoxItem>
-                                        <StackPanel Orientation="Horizontal">
-                                            <FontIcon Glyph="&#xEC25;" FontFamily="Segoe MDL2 Assets" FontSize="16"/>
-                                            <TextBlock x:Uid="pageTitleHome" />
-                                        </StackPanel>
-                                    </ComboBoxItem>
-                                    <ComboBoxItem>
-                                        <StackPanel Orientation="Horizontal">
-                                            <FontIcon Glyph="&#xe12A;" FontFamily="Segoe MDL2 Assets" FontSize="16"/>
-                                            <TextBlock x:Uid="pageTitleNetwork" />
-                                        </StackPanel>
-                                    </ComboBoxItem>
-                                </ComboBox>
+                                <ComboBoxItem>
+                                    <StackPanel Orientation="Horizontal">
+                                        <FontIcon Glyph="&#xEC25;" FontFamily="Segoe MDL2 Assets" FontSize="16"/>
+                                        <TextBlock x:Uid="pageTitleHome" />
+                                    </StackPanel>
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    <StackPanel Orientation="Horizontal">
+                                        <FontIcon Glyph="&#xe12A;" FontFamily="Segoe MDL2 Assets" FontSize="16"/>
+                                        <TextBlock x:Uid="pageTitleNetwork" />
+                                    </StackPanel>
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    <StackPanel Orientation="Horizontal">
+                                        <FontIcon Glyph="&#xEC05;" FontFamily="Segoe MDL2 Assets" FontSize="16"/>
+                                        <TextBlock x:Uid="pageTitleNewsfeed" />
+                                    </StackPanel>
+                                </ComboBoxItem>
+                            </ComboBox>
 
                                 <ComboBox x:Name="comboboxNetworkMode" x:Uid="comboboxNetworkMode"
                                       HeaderTemplate="{StaticResource SettingsHeaderTemplate}"

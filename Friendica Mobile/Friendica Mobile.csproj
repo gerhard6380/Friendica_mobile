@@ -21,7 +21,7 @@
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
-    <PackageCertificateThumbprint>E4D59B4982D095DF2E73AA7846F710891948ABE1</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>CE8C7A39286178A496A29731DD1D4F417A3E946F</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -92,10 +92,6 @@
     <Prefer32Bit>true</Prefer32Bit>
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
-  <PropertyGroup Label="MultilingualAppToolkit">
-    <MultilingualAppToolkitVersion>4.0</MultilingualAppToolkitVersion>
-    <MultilingualFallbackLanguage>de-DE</MultilingualFallbackLanguage>
-  </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <Content Include="ApplicationInsights.config">
@@ -119,7 +115,6 @@
     <PRIResource Include="Strings\fr\Resources.resw" />
     <PRIResource Include="Strings\de\Resources.resw" />
     <PRIResource Include="Strings\en\Resources.resw" />
-    <PRIResource Include="Strings\de-DE\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -140,11 +135,15 @@
     <Compile Include="clsSQLiteConnection.cs" />
     <Compile Include="clsTileCounter.cs" />
     <Compile Include="clsWriteableBitmapExtensions.cs" />
+    <Compile Include="Converters\BoolToNewEntryThicknessConverter.cs" />
+    <Compile Include="Converters\FlowDirectionConverter.cs" />
+    <Compile Include="Converters\HtmlToParagraphConverter.cs" />
     <Compile Include="Converters\IsReceivedMessageToMarginConverter.cs" />
     <Compile Include="Converters\MessagesSeenToThicknessConverter.cs" />
     <Compile Include="Converters\PhotosViewVisibleConverter.cs" />
     <Compile Include="Converters\ScrollViewerMessagesToVisibilityConverter.cs" />
     <Compile Include="Converters\EnumDisplayConverter.cs" />
+    <Compile Include="Converters\RetweetButtonVisibilityConverter.cs" />
     <Compile Include="Converters\SplitViewWidthProfileConverter.cs" />
     <Compile Include="Converters\TransparentColorConverter.cs" />
     <Compile Include="Converters\GridWidthMessagesConverter.cs" />
@@ -184,6 +183,8 @@
     <Compile Include="HttpRequests\GetFriendicaThread.cs" />
     <Compile Include="HttpRequests\GetFriendicaNetwork.cs" />
     <Compile Include="HttpRequests\GetOEmbedYouTube.cs" />
+    <Compile Include="LocalizeUWP.cs" />
+    <Compile Include="MessageDialogUWP.cs" />
     <Compile Include="Models\FriendicaPhotolist.cs" />
     <Compile Include="Models\FriendicaPhotoalbumSamples.cs" />
     <Compile Include="Models\FriendicaCountry.cs" />
@@ -278,6 +279,12 @@
     <Compile Include="Views\10_Home.xaml.cs">
       <DependentUpon>10_Home.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\15_Network.xaml.cs">
+      <DependentUpon>15_Network.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\16_Newsfeed.xaml.cs">
+      <DependentUpon>16_Newsfeed.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\A7_PhotosCropping.xaml.cs">
       <DependentUpon>A7_PhotosCropping.xaml</DependentUpon>
     </Compile>
@@ -289,9 +296,6 @@
     </Compile>
     <Compile Include="Views\A1_ShowThread.xaml.cs">
       <DependentUpon>A1_ShowThread.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\15_Network.xaml.cs">
-      <DependentUpon>15_Network.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\20_Contacts.xaml.cs">
       <DependentUpon>20_Contacts.xaml</DependentUpon>
@@ -370,6 +374,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\PostsStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
     <Page Include="Styles\ProfilesStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -426,6 +435,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\15_Network.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\16_Newsfeed.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\A7_PhotosCropping.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -439,10 +456,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\A1_ShowThread.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\15_Network.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -510,36 +523,33 @@
     <SDKReference Include="Microsoft.VCLibs, Version=14.0">
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
     </SDKReference>
-    <SDKReference Include="SQLite.UWP.2015, Version=3.12.1">
-      <Name>SQLite for Universal Windows Platform</Name>
-    </SDKReference>
     <SDKReference Include="WindowsMobile, Version=10.0.10586.0">
       <Name>Windows Mobile Extensions for the UWP %28WindowsMobile, Version=10.0.10586.0%29</Name>
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Friendica Mobile.PCL\Friendica Mobile.PCL.csproj">
+      <Project>{6d25d629-13a8-4320-8e59-28b05319668e}</Project>
+      <Name>Friendica Mobile.PCL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NotificationBackgroundTask\BackgroundTasks.csproj">
       <Project>{19b67307-020b-46d8-b69b-7307376f8ef4}</Project>
       <Name>BackgroundTasks</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <XliffResource Include="MultilingualResources\Friendica Mobile.de.xlf" />
-    <XliffResource Include="MultilingualResources\Friendica Mobile.en.xlf" />
-    <XliffResource Include="MultilingualResources\Friendica Mobile.es.xlf" />
-    <XliffResource Include="MultilingualResources\Friendica Mobile.fr.xlf" />
-    <XliffResource Include="MultilingualResources\Friendica Mobile.it.xlf" />
-    <XliffResource Include="MultilingualResources\Friendica Mobile.pt.xlf" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets" Label="MultilingualAppToolkit" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets')" />
-  <Target Name="MATPrerequisite" BeforeTargets="PrepareForBuild" Condition="!Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets')" Label="MultilingualAppToolkit">
-    <Warning Text="$(MSBuildProjectFile) is Multilingual build enabled, but the Multilingual App Toolkit is unavailable during the build. If building with Visual Studio, please check to ensure that toolkit is properly installed." />
-  </Target>
+  <PropertyGroup>
+    <PreBuildEvent>xcopy "D:\Programme\Visual Studio 2017\Projects\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.de.resx" "$(ProjectDir)Strings\de\Resources.resw*" /Y
+xcopy "D:\Programme\Visual Studio 2017\Projects\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.resx" "$(ProjectDir)Strings\en\Resources.resw*" /Y
+xcopy "D:\Programme\Visual Studio 2017\Projects\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.es.resx" "$(ProjectDir)Strings\es\Resources.resw*" /Y
+xcopy "D:\Programme\Visual Studio 2017\Projects\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.fr.resx" "$(ProjectDir)Strings\fr\Resources.resw*" /Y
+xcopy "D:\Programme\Visual Studio 2017\Projects\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.it.resx" "$(ProjectDir)Strings\it\Resources.resw*" /Y
+xcopy "D:\Programme\Visual Studio 2017\Projects\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.pt.resx" "$(ProjectDir)Strings\pt\Resources.resw*" /Y</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

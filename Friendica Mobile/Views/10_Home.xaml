@@ -98,7 +98,7 @@
                         <Setter Target="textBlockApplicationName.Visibility" Value="Collapsed" />
                         <Setter Target="textBlockPageName.Visibility" Value="Visible" />
                         <Setter Target="textBlockPageName.FontSize" Value="{StaticResource ApplicationNameFontSize}" />
-                        <Setter Target="pageNetwork.Margin" Value="0,0,48,0" />
+                        <Setter Target="pageHome.Margin" Value="0,0,48,0" />
                         <!--<Setter Target="gridDropArea.Visibility" Value="Collapsed" />-->
                         <Setter Target="topAppBar.Visibility" Value="Collapsed" />
                         <Setter Target="bottomAppBar.Visibility" Value="Visible" />
@@ -217,7 +217,7 @@
                     <!-- after loading data, display returned data 
                          Caution: chronological view in Home shows buttons for add and show conversation
                                   -> button for profile not necessary on this page -->
-                    <ListView x:Name="listviewNetworkPosts" x:Uid="listviewNetworkPosts"
+                    <ListView x:Name="listviewHomePosts" x:Uid="listviewHomePosts"
                               Width="{Binding ListViewWidth}"
                               HorizontalAlignment="Left"
                               SelectionMode="None"

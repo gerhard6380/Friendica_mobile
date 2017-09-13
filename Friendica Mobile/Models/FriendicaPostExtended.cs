@@ -309,6 +309,26 @@ namespace Friendica_Mobile.Models
 
         }
 
+        public void UpdateActivityOnServerRetweet(FriendicaActivity activity)
+        {
+            var postActivity = new PostFriendicaActivities();
+            if (activity == FriendicaActivity.like)
+            {
+                if (IsLikedByMe)
+                    postActivity.PostFriendicaActivity(Post.PostId, FriendicaActivity.unlike);
+                else
+                    postActivity.PostFriendicaActivity(Post.PostId, FriendicaActivity.like);
+            }
+            else if (activity == FriendicaActivity.dislike)
+            {
+                if (IsDislikedByMe)
+                    postActivity.PostFriendicaActivity(Post.PostId, FriendicaActivity.undislike);
+                else
+                    postActivity.PostFriendicaActivity(Post.PostId, FriendicaActivity.dislike);
+            }
+        }
+
+
         private async void PostActivity_FriendicaActivitySent(object sender, EventArgs e)
         {
             var postActivity = sender as PostFriendicaActivities;
