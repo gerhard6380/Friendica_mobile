@@ -281,6 +281,9 @@ namespace Friendica_Mobile.PCL.Viewmodels
                                 var maxId = Posts.Max(p => p.Post.PostId);
                                 var minId = Posts.Min(p => p.Post.PostId);
 
+                                if (Settings.UnseenNewsfeedItems == null)
+                                    Settings.UnseenNewsfeedItems = new List<int>();
+
                                 // on new installations, saved id is still zero
                                 if ((maxId > Settings.LastReadNetworkPost 
                                     && minId > Settings.LastReadNetworkPost 

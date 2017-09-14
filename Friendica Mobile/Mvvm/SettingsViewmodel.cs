@@ -1,5 +1,6 @@
 ﻿using Friendica_Mobile.HttpRequests;
 using Friendica_Mobile.Models;
+using Friendica_Mobile.PCL;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -540,7 +541,8 @@ namespace Friendica_Mobile.Mvvm
             var authenticationtest = new AuthenticationTest();
             TestConnectionInProgress = true;
             authenticationtest.UserAuthenticated += Authenticationtest_UserAuthenticated;
-            await authenticationtest.GetString(_friendicaServer + "/api/account/verify_credentials", _friendicaUsername, _friendicaPassword);
+            var url = String.Format("{0}/api/account/verify_credentials?timestamp={1}", _friendicaServer, DateTime.Now.ToString());
+            await authenticationtest.GetString(url, _friendicaUsername, _friendicaPassword);
         }
 
         Mvvm.Command _removeAdCommand;
@@ -590,10 +592,17 @@ namespace Friendica_Mobile.Mvvm
                     App.Settings.LastReadNetworkPost = 0.0;
                     App.Settings.LastNotifiedNetworkPost = 0.0;
                     App.Settings.LastNotifiedMessage = 0.0;
+                    App.TileCounter.CounterUnseenHome = 0;
+                    StaticGlobalParameters.CounterUnseenHome = 0;
+                    StaticGlobalParameters.CounterUnseenNetwork = 0;
+                    StaticGlobalParameters.CounterUnseenNewsfeed = 0;
+                    StaticGlobalParameters.CounterUnseenMessages = 0;
+                    App.NetworkVm = null;
                     // clear everything related to private messages
                     App.IsSendingNewMessage = false;
                     App.MessagesNavigatedIntoConversation = false;
                     App.MessagesVm = null;
+                    App.TileCounter.CounterUnseenMessages = 0;
                     // clear everything related to photos
                     App.PhotosNavigatedIntoAlbum = false;
                     App.PhotosVm = null;
@@ -626,8 +635,6 @@ namespace Friendica_Mobile.Mvvm
                 App.HomeThreads = new ObservableCollection<FriendicaThread>();
                 App.NetworkPosts = new ObservableCollection<FriendicaPostExtended>();
                 App.NetworkThreads = new ObservableCollection<FriendicaThread>();
-                App.TileCounter.CounterUnseenHome = 0;
-                App.TileCounter.CounterUnseenNetwork = 0;
             }
             else if (!httpRequest.ServerAnswered)
             {
