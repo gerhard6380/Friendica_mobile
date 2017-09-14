@@ -1,1 +1,1 @@
-D:\Programme\Visual Studio 2017\Projects\Friendica Mobile\Friendica Mobile\bin\ARM\Release\Upload\Friendica Mobile_2.5.0.0\Friendica Mobile_2.5.0.0_x86_x64_arm.appxbundle
+D:\Programme\Visual Studio 2017\Projects\Friendica Mobile\Friendica Mobile\bin\ARM\Release\Upload\Friendica Mobile_2.5.1.0\Friendica Mobile_2.5.1.0_x86_x64_arm.appxbundle
