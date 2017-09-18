@@ -74,12 +74,24 @@ namespace Friendica_Mobile.PCL.Viewmodels
         }
 
         // indicator showing that we have not get any datasets from server
-        private bool _noDataAvailable;
-        public bool NoDataAvailable
+        private bool _noDataAvailableNetwork;
+        public bool NoDataAvailableNetwork
         {
-            get { return _noDataAvailable; }
-            set { _noDataAvailable = value;
-                OnPropertyChanged("NoDataAvailable"); }
+            get { return _noDataAvailableNetwork; }
+            set { _noDataAvailableNetwork = value;
+                OnPropertyChanged("NoDataAvailableNetwork"); }
+        }
+
+        // indicator showing that we have not get any newsfeed items from server
+        private bool _noDataAvailableNewsfeed;
+        public bool NoDataAvailableNewsfeed
+        {
+            get { return _noDataAvailableNewsfeed; }
+            set
+            {
+                _noDataAvailableNewsfeed = value;
+                OnPropertyChanged("NoDataAvailableNewsfeed");
+            }
         }
 
         // container saving the results from http requests
@@ -260,12 +272,14 @@ namespace Friendica_Mobile.PCL.Viewmodels
 
                     switch (getNetworkInitial.StatusCode)
                     {
-                        case System.Net.HttpStatusCode.OK:   
+                        case System.Net.HttpStatusCode.OK:
                             if (getNetworkInitial.Posts == null || getNetworkInitial.Posts.Count == 0)
-                                NoDataAvailable = true;
+                            {
+                                NoDataAvailableNetwork = true;
+                                NoDataAvailableNewsfeed = true;
+                            }
                             else
                             {
-                                NoDataAvailable = false;
                                 // save results of http requests to a List<FriendicaPost> 
                                 Posts = getNetworkInitial.Posts;
 
@@ -273,6 +287,9 @@ namespace Friendica_Mobile.PCL.Viewmodels
                                 {
                                     WorkOnEachPost(post);
                                 }
+
+                                // update NoDataAvailable indicators
+                                UpdateNoDataAvailable();
 
                                 // update counters for displaying numbers of new items on navigation bar
                                 UpdateCounters();
@@ -285,12 +302,12 @@ namespace Friendica_Mobile.PCL.Viewmodels
                                     Settings.UnseenNewsfeedItems = new List<int>();
 
                                 // on new installations, saved id is still zero
-                                if ((maxId > Settings.LastReadNetworkPost 
-                                    && minId > Settings.LastReadNetworkPost 
-                                    && Settings.LastReadNetworkPost != 0 
+                                if ((maxId > Settings.LastReadNetworkPost
+                                    && minId > Settings.LastReadNetworkPost
+                                    && Settings.LastReadNetworkPost != 0
                                     && StaticGlobalParameters.CounterUnseenNetwork < 99) ||
-                                    (Settings.UnseenNewsfeedItems.Count > 0 
-                                    && minId > Settings.UnseenNewsfeedItems.Min() 
+                                    (Settings.UnseenNewsfeedItems.Count > 0
+                                    && minId > Settings.UnseenNewsfeedItems.Min()
                                     && StaticGlobalParameters.CounterUnseenNewsfeed < 99))
                                     await LoadNext();
 
@@ -310,7 +327,10 @@ namespace Friendica_Mobile.PCL.Viewmodels
                             if (result == 0)
                                 await LoadInitial();
                             else
-                                NoDataAvailable = true;
+                            {
+                                NoDataAvailableNetwork = true;
+                                NoDataAvailableNewsfeed = true;
+                            }
                             break;
                     }
                     IsLoadingInitial = false;
@@ -433,6 +453,9 @@ namespace Friendica_Mobile.PCL.Viewmodels
                         WorkOnEachPost(post);
                     }
 
+                    // update NoDataAvailable indicators
+                    UpdateNoDataAvailable();
+
                     // update counters for displaying numbers of new items on navigation bar
                     UpdateCounters();
 
@@ -510,9 +533,12 @@ namespace Friendica_Mobile.PCL.Viewmodels
 
                         // Anzeige einer Info triggern, die dem User anzeigt, dass die Daten geladen wurden, aber nichts gekommen ist
                         if (Posts == null || Posts.Count == 0)
-                            NoDataAvailable = true;
+                        {
+                            NoDataAvailableNetwork = true;
+                            NoDataAvailableNewsfeed = true;
+                        }
                         else
-                            NoDataAvailable = false;
+                            UpdateNoDataAvailable();
 
                         // update counters for displaying numbers of new items on navigation bar
                         UpdateCounters();
@@ -542,7 +568,10 @@ namespace Friendica_Mobile.PCL.Viewmodels
                         {
                             IsRefreshing = false;
                             if (Posts.Count == 0)
-                                NoDataAvailable = true;
+                            {
+                                NoDataAvailableNetwork = true;
+                                NoDataAvailableNewsfeed = true;
+                            }
                         }
                         break;
                 }
@@ -625,6 +654,18 @@ namespace Friendica_Mobile.PCL.Viewmodels
                     thread.LoadThreadData();
                 }
             }
+        }
+
+        private void UpdateNoDataAvailable()
+        {
+            int countNetwork = 0;
+            int countNewsfeed = 0;
+
+            countNetwork = (NetworkThreads == null) ? NetworkThreadsContainer.Count : NetworkThreads.Count;
+            countNewsfeed = (NewsfeedThreads == null) ? NewsfeedThreadsContainer.Count : NewsfeedThreads.Count;
+
+            NoDataAvailableNetwork = (countNetwork == 0);
+            NoDataAvailableNewsfeed = (countNewsfeed == 0);
         }
 
 

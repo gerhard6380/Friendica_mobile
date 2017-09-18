@@ -2529,6 +2529,15 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die RSS feeds ähnelt.
+        /// </summary>
+        public static string radioNewsfeed_Content {
+            get {
+                return ResourceManager.GetString("radioNewsfeed.Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die More ähnelt.
         /// </summary>
         public static string radioOthers_Content {
@@ -3257,6 +3266,15 @@ namespace Friendica_Mobile.PCL.Strings {
         public static string textblockNetworkIsLoadingInitial_Text {
             get {
                 return ResourceManager.GetString("textblockNetworkIsLoadingInitial.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No network items returned from your server. ähnelt.
+        /// </summary>
+        public static string textblockNetworkNoDataAvailable_Text {
+            get {
+                return ResourceManager.GetString("textblockNetworkNoDataAvailable.Text", resourceCulture);
             }
         }
         

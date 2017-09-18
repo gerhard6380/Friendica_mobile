@@ -160,7 +160,7 @@
 
                 <!--after loading data, if nothing to display returned-->
                 <StackPanel x:Name="stackpanelNoDataAvailable"
-                                Visibility="{Binding NoDataAvailable, Converter={StaticResource BoolToVisibilityConverter}}">
+                                Visibility="{Binding NoDataAvailableNewsfeed, Converter={StaticResource BoolToVisibilityConverter}}">
                     <TextBlock x:Name="textblockNoDataAvailable" x:Uid="textblockNewsfeedNoDataAvailable"
                                Margin="4,4,4,12"
                                Foreground="Gray"

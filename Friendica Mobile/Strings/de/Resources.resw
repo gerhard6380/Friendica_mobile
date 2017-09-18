@@ -2070,4 +2070,12 @@ Dies ist derzeit nicht möglich, weil du noch keine Standard-Datenschutzeinstell
     <value>LeftToRight</value>
     <comment>Defines Text direction for the language</comment>
   </data>
+  <data name="radioNewsfeed.Content" xml:space="preserve">
+    <value>RSS-Feeds</value>
+    <comment>Navigationbutton for Newsfeed (RSS feeds in timeline)</comment>
+  </data>
+  <data name="textblockNetworkNoDataAvailable.Text" xml:space="preserve">
+    <value>Keine Netzwerk-Elemente vom Server zurückgegeben.</value>
+    <comment>Network.xaml: showing info text to user if there are no items in the network timeline of the user</comment>
+  </data>
 </root>

@@ -2069,4 +2069,12 @@ Atualmente isto não é possível, porque você ainda não definir as configura�
     <value>LeftToRight</value>
     <comment>Defines Text direction for the language</comment>
   </data>
+  <data name="radioNewsfeed.Content" xml:space="preserve">
+    <value>RSS feeds</value>
+    <comment>Navigationbutton for Newsfeed (RSS feeds in timeline)</comment>
+  </data>
+  <data name="textblockNetworkNoDataAvailable.Text" xml:space="preserve">
+    <value>Não há itens de rede retornados de seu servidor.</value>
+    <comment>Network.xaml: showing info text to user if there are no items in the network timeline of the user</comment>
+  </data>
 </root>

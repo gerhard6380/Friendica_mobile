@@ -2613,6 +2613,16 @@ Dies ist derzeit nicht möglich, weil du noch keine Standard-Datenschutzeinstell
           <target state="final" state-qualifier="tm-suggestion">LeftToRight</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Defines Text direction for the language</note>
         </trans-unit>
+        <trans-unit id="radioNewsfeed.Content" translate="yes" xml:space="preserve">
+          <source>RSS feeds</source>
+          <target state="final" state-qualifier="tm-suggestion">RSS-Feeds</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Navigationbutton for Newsfeed (RSS feeds in timeline)</note>
+        </trans-unit>
+        <trans-unit id="textblockNetworkNoDataAvailable.Text" translate="yes" xml:space="preserve">
+          <source>No network items returned from your server.</source>
+          <target state="final">Keine Netzwerk-Elemente vom Server zurückgegeben.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: showing info text to user if there are no items in the network timeline of the user</note>
+        </trans-unit>
       </group>
     </body>
   </file>
