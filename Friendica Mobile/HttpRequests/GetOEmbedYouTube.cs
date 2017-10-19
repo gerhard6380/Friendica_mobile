@@ -25,6 +25,21 @@ namespace Friendica_Mobile.HttpRequests
         {
             if (url != null)
             {
+                // some links might not show the usual www.youtube.com/watch?v=... style, so we need to reformat them
+                if (url.Contains("https://www.youtube.com/embed/"))
+                {
+                    var uri = new Uri(url, UriKind.RelativeOrAbsolute);
+                    string video = "";
+                    foreach (var part in uri.Segments)
+                    {
+                        if (part == "/" || part == "embed/")
+                            continue;
+                        else
+                            video = part;
+                    }
+                    url = String.Format("https://www.youtube.com/watch?v={0}", video);
+                }
+                // url is already coded correctly
                 url = System.Net.WebUtility.UrlEncode(url);  
                 var urlEmbed = string.Format("http://www.youtube.com/oembed?url={0}&format=json", url);
                 var resultString = await this.GetStringWithoutCredentials(urlEmbed);
