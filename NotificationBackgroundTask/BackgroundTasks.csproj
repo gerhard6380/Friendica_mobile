@@ -108,30 +108,16 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FriendicaErrorResult.cs" />
-    <Compile Include="FriendicaMessage.cs" />
-    <Compile Include="FriendicaMessageNew.cs" />
-    <Compile Include="GetFriendicaMessages.cs" />
+    <Compile Include="NotificationBackgroundTask.cs" />
     <Compile Include="NotificationReactionBackgroundTask.cs" />
     <Compile Include="NotificationHistoryBackgroundTask.cs" />
-    <Compile Include="AppSettings.cs" />
-    <Compile Include="clsHtmlToXml.cs" />
     <Compile Include="clsManageBadgeStatus.cs" />
-    <Compile Include="FriendicaGeo.cs" />
-    <Compile Include="FriendicaNewPost.cs" />
-    <Compile Include="FriendicaPost.cs" />
-    <Compile Include="FriendicaUser.cs" />
-    <Compile Include="GetFriendicaNetwork.cs" />
-    <Compile Include="GetOEmbedYouTube.cs" />
-    <Compile Include="NotificationBackgroundTask.cs" />
-    <Compile Include="OEmbedYoutube.cs" />
-    <Compile Include="PostFriendicaActivities.cs" />
-    <Compile Include="PostFriendicaMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\dislike.png" />
     <Content Include="Assets\like.png" />
+    <Content Include="Assets\rssfeed.png" />
     <Content Include="Assets\send.png" />
   </ItemGroup>
   <ItemGroup>

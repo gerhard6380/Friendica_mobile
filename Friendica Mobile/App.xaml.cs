@@ -14,6 +14,8 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 using Friendica_Mobile.PCL.Strings;
+using Windows.UI;
+using Windows.UI.Xaml.Media;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=402347&clcid=0x409
 
@@ -301,7 +303,7 @@ namespace Friendica_Mobile
                 }
                 else
                 {
-                    //rootFrame.Navigate(typeof(Views.Newsfeed));
+                    //rootFrame.Navigate(typeof(Views.Help));
                     if (Settings.StartPage == "Home")
                         rootFrame.Navigate(typeof(Views.Home));
                     else if (Settings.StartPage == "Network")

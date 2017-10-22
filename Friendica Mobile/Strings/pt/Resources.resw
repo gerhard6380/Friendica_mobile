@@ -2069,4 +2069,20 @@ Atualmente isto não é possível, porque você ainda não definir as configura�
     <value>LeftToRight</value>
     <comment>Defines Text direction for the language</comment>
   </data>
+  <data name="switchNotificationEachNewsfeedAllowed.Header" xml:space="preserve">
+    <value>Mostrar notificação para cada que RSS post elemento</value>
+    <comment>Settings.xaml: user can decide whether app should notify about each RSS feed element separately or send a summary notification when there are some new elements</comment>
+  </data>
+  <data name="textblockNotificationEachNewsfeedAllowedHint.Text" xml:space="preserve">
+    <value>Quando tendo registrado para alguns feeds, pode ser chato se o app é notificá-lo sobre cada post RSS separadamente. O app enviará apenas uma notificação geral em cada execução se houver um ou mais novos postos RSS, se alternar é desabilitado aqui.</value>
+    <comment>Settings.xaml: hint on NotificationEachNewsfeedAllowed</comment>
+  </data>
+  <data name="toastNewsfeedGeneralNotification" xml:space="preserve">
+    <value>{0} posts novos canais RSS chegou no servidor...</value>
+    <comment>BackgroundTask: alternative text if user don't want to get notified about each rss feed post separately ("New RSS feed posts arrived") - {0} = number of new elements</comment>
+  </data>
+  <data name="radioNewsfeed.Content" xml:space="preserve">
+    <value>RSS feeds</value>
+    <comment>Navigationbutton for RSS feeds (newsfeed)</comment>
+  </data>
 </root>

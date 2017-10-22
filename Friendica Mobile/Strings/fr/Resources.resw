@@ -2070,4 +2070,20 @@ Actuellement ce n’est pas possible, parce que vous n’avez pas encore configu
     <value>LeftToRight</value>
     <comment>Defines Text direction for the language</comment>
   </data>
+  <data name="switchNotificationEachNewsfeedAllowed.Header" xml:space="preserve">
+    <value>Voir la notification pour chaque flux RSS post élément</value>
+    <comment>Settings.xaml: user can decide whether app should notify about each RSS feed element separately or send a summary notification when there are some new elements</comment>
+  </data>
+  <data name="textblockNotificationEachNewsfeedAllowedHint.Text" xml:space="preserve">
+    <value>Lorsque après avoir enregistré pour certains aliments, il peut être ennuyeux si l’app est vous informe de chaque post RSS séparément. L’app vous enverra seulement une notification générale dans chaque série s’il existe un ou plusieurs nouveaux postes RSS, si la bascule est désactivée ici.</value>
+    <comment>Settings.xaml: hint on NotificationEachNewsfeedAllowed</comment>
+  </data>
+  <data name="toastNewsfeedGeneralNotification" xml:space="preserve">
+    <value>{0} flux RSS nouveaux messages sont arrivé sur le serveur...</value>
+    <comment>BackgroundTask: alternative text if user don't want to get notified about each rss feed post separately ("New RSS feed posts arrived") - {0} = number of new elements</comment>
+  </data>
+  <data name="radioNewsfeed.Content" xml:space="preserve">
+    <value>Flux RSS</value>
+    <comment>Navigationbutton for RSS feeds (newsfeed)</comment>
+  </data>
 </root>

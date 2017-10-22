@@ -2612,6 +2612,26 @@ Atualmente isto não é possível, porque você ainda não definir as configura�
           <target state="final" state-qualifier="tm-suggestion">LeftToRight</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Defines Text direction for the language</note>
         </trans-unit>
+        <trans-unit id="switchNotificationEachNewsfeedAllowed.Header" translate="yes" xml:space="preserve">
+          <source>Show notification for each RSS post element</source>
+          <target state="translated" state-qualifier="mt-suggestion">Mostrar notificação para cada que RSS post elemento</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: user can decide whether app should notify about each RSS feed element separately or send a summary notification when there are some new elements</note>
+        </trans-unit>
+        <trans-unit id="textblockNotificationEachNewsfeedAllowedHint.Text" translate="yes" xml:space="preserve">
+          <source>When having registered for some feeds, it can be annoying if the app is notifying you about each RSS post separately. The app will send you only one general notification in each run if there are one or more new RSS posts, if toggle is disabled here.</source>
+          <target state="translated" state-qualifier="mt-suggestion">Quando tendo registrado para alguns feeds, pode ser chato se o app é notificá-lo sobre cada post RSS separadamente. O app enviará apenas uma notificação geral em cada execução se houver um ou mais novos postos RSS, se alternar é desabilitado aqui.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: hint on NotificationEachNewsfeedAllowed</note>
+        </trans-unit>
+        <trans-unit id="toastNewsfeedGeneralNotification" translate="yes" xml:space="preserve">
+          <source>{0} new RSS feed posts arrived on server...</source>
+          <target state="translated" state-qualifier="mt-suggestion">{0} posts novos canais RSS chegou no servidor...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">BackgroundTask: alternative text if user don't want to get notified about each rss feed post separately ("New RSS feed posts arrived") - {0} = number of new elements</note>
+        </trans-unit>
+        <trans-unit id="radioNewsfeed.Content" translate="yes" xml:space="preserve">
+          <source>RSS feeds</source>
+          <target state="final" state-qualifier="tm-suggestion">RSS feeds</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Navigationbutton for RSS feeds (newsfeed)</note>
+        </trans-unit>
       </group>
     </body>
   </file>
