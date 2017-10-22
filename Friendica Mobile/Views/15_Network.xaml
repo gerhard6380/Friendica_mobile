@@ -1,6 +1,8 @@
 ﻿<Page
     x:Class="Friendica_Mobile.Views.Network"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:contract5Present="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
+    xmlns:contract5NotPresent="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,5)"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mvvm="using:Friendica_Mobile.PCL.Viewmodels"
     xmlns:triggers="using:Friendica_Mobile.Triggers"
@@ -24,14 +26,22 @@
         <CommandBar x:Name="topAppBar" 
                     Margin="48,0,0,0"
                     Visibility="Visible"
+                    Background="Gray"
+                    Foreground="White"
+                    contract5NotPresent:Style="{StaticResource CommandBarTopStyle}"
+                    contract5Present:Style="{ThemeResource CommandBarRevealStyle}"
                     HorizontalAlignment="Left">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="topAppBarNetworkRefresh" x:Uid="appBarNetworkRefresh" 
-                          Icon="Refresh"
-                          Command="{Binding RefreshCommand}"/>
+                              Icon="Refresh"  
+                              Foreground="White"
+                              contract5Present:Style="{ThemeResource AppBarButtonRevealStyle}"
+                              Command="{Binding RefreshCommand}"/>
                 <AppBarButton x:Name="topAppBarNetworkAdd" x:Uid="appBarNetworkAdd" 
-                          Icon="Add" 
-                          Command="{Binding AddNewEntryCommand}" />
+                              Icon="Add" 
+                              Foreground="White" 
+                              contract5Present:Style="{ThemeResource AppBarButtonRevealStyle}"
+                              Command="{Binding AddNewEntryCommand}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.TopAppBar>
@@ -41,9 +51,11 @@
                     Visibility="Collapsed">
             <AppBarButton x:Name="bottomAppBarNetworkRefresh" x:Uid="appBarNetworkRefresh" 
                           Icon="Refresh" 
+                          contract5Present:Style="{ThemeResource AppBarButtonRevealStyle}"
                           Command="{Binding RefreshCommand}"/>
             <AppBarButton x:Name="bottomAppBarNetworkAdd" x:Uid="appBarNetworkAdd" 
                           Icon="Add" 
+                          contract5Present:Style="{ThemeResource AppBarButtonRevealStyle}"
                           Command="{Binding AddNewEntryCommand}" />
         </CommandBar>
     </Page.BottomAppBar>
@@ -192,6 +204,7 @@
                 Margin="0,12,24,0"
                 Width="48"
                 Height="36"
+                contract5Present:Style="{ThemeResource ButtonRevealStyle}"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Right"
                 Visibility="Collapsed"
