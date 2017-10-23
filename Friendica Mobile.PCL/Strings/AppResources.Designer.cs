@@ -3279,6 +3279,15 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No network items returned from your server. ähnelt.
+        /// </summary>
+        public static string textblockNetworkNoDataAvailable_Text {
+            get {
+                return ResourceManager.GetString("textblockNetworkNoDataAvailable.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Settings ähnelt.
         /// </summary>
         public static string textblockNetworkSettings_Text {
