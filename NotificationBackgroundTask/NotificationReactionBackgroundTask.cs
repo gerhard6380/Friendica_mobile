@@ -2,7 +2,10 @@
 using Windows.UI.Notifications;
 using System;
 using Windows.ApplicationModel.Resources;
-
+using Friendica_Mobile.PCL.Models;
+using Friendica_Mobile.PCL.HttpRequests;
+using System.Threading.Tasks;
+using Friendica_Mobile.PCL.Viewmodels;
 
 namespace BackgroundTasks
 {
@@ -14,7 +17,7 @@ namespace BackgroundTasks
         private ToastNotificationActionTriggerDetail _action;
         private string[] _parameter;
 
-        public void Run(IBackgroundTaskInstance taskInstance)
+        public async void Run(IBackgroundTaskInstance taskInstance)
         {
             // get deferral for async operations
             _deferral = taskInstance.GetDeferral();
@@ -27,15 +30,15 @@ namespace BackgroundTasks
                 _parameter = argument.Split(new char[] { '|' });
 
                 if (_parameter[0] == "pm_instantreply")
-                    ReplyMessage();
+                    await ReplyMessageAsync();
                 else if (_parameter[0] == "post_like")
-                    ActivityPost(PostFriendicaActivities.FriendicaActivity.like);
+                    ActivityPost(FriendicaActivity.like);
                 else if (_parameter[0] == "post_dislike")
-                    ActivityPost(PostFriendicaActivities.FriendicaActivity.dislike);
+                    ActivityPost(FriendicaActivity.dislike);
             }
         }
 
-        private void ReplyMessage()
+        private async Task ReplyMessageAsync()
         {
             string messageText = "";
             try { messageText = _action.UserInput["pm_message"].ToString(); } catch { }
@@ -46,29 +49,25 @@ namespace BackgroundTasks
 
             // set seen for the message to which user replied
             var getMessages = new GetFriendicaMessages();
-            getMessages.SetSeenMessage(messageId);
+            await getMessages.SetSeenMessageAsync(messageId);
 
             // create new message for sending
-            var newMessage = new FriendicaMessageNew();
-            newMessage.NewMessageUserUrl = recipient;
-            newMessage.NewMessageReplyTo = messageId;
-            newMessage.NewMessageText = messageText;
+            var newMessage = new FriendicaMessageNew()
+            {
+                NewMessageUserUrl = recipient,
+                NewMessageReplyTo = messageId,
+                NewMessageText = messageText
+            };
 
             // sending new message to server
             var postMessage = new PostFriendicaMessage();
-            postMessage.FriendicaMessageSent += PostMessage_FriendicaMessageSent;
-            postMessage.PostFriendicaMessageNew(newMessage);
-        }
-
-        private void PostMessage_FriendicaMessageSent(object sender, EventArgs e)
-        {
-            var postMessage = sender as PostFriendicaMessage;
+            await postMessage.PostFriendicaMessageNewAsync(newMessage);
 
             // if server returns an error we will post a toast to user to indicate the error
             if (!postMessage.IsSuccessStateCode)
             {
                 var loader = ResourceLoader.GetForViewIndependentUse();
-                
+
                 // The getTemplateContent method returns a Windows.Data.Xml.Dom.XmlDocument object
                 // that contains the toast notification XML content.
                 var template = ToastTemplateType.ToastText02;
@@ -88,19 +87,13 @@ namespace BackgroundTasks
         }
 
 
-        private void ActivityPost(PostFriendicaActivities.FriendicaActivity activity)
+        private async void ActivityPost(FriendicaActivity activity)
         {
             var postId = Convert.ToDouble(_parameter[1]);
 
             // sending activity to server
             var postActivity = new PostFriendicaActivities();
-            postActivity.FriendicaActivitySent += PostActivity_FriendicaActivitySent;
-            postActivity.PostFriendicaActivity(postId, activity);
-        }
-
-        private void PostActivity_FriendicaActivitySent(object sender, EventArgs e)
-        {
-            var postActivity = sender as PostFriendicaActivities;
+            await postActivity.PostFriendicaActivityAsync(postId, activity);
 
             // if server returns an error we will post a toast to user to indicate the error
             if (!postActivity.IsSuccessStateCode)
@@ -124,5 +117,6 @@ namespace BackgroundTasks
             }
             _deferral.Complete();
         }
+
     }
 }

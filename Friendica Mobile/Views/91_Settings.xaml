@@ -359,6 +359,14 @@
                             <TextBlock x:Name="textblockNotificationActivatedHint" x:Uid="textblockNotificationActivatedHint"
                                        TextWrapping="Wrap" />
 
+                            <!-- get allowance of user to show a notification for each newsfeed item -->
+                            <ToggleSwitch x:Name="switchNotificationEachNewsfeedAllowed" x:Uid="switchNotificationEachNewsfeedAllowed"
+                                          HeaderTemplate="{StaticResource SettingsHeaderTemplate}"
+                                          Visibility="Visible"
+                                          IsOn="{Binding NotificationEachNewsfeedAllowed, Mode=TwoWay}" />
+                            <TextBlock x:Name="textblockNotificationEachNewsfeedAllowedHint" x:Uid="textblockNotificationEachNewsfeedAllowedHint"
+                                       TextWrapping="Wrap" />
+                            
                             <!-- get allowance of user to show content of private messages in notification -->
                             <ToggleSwitch x:Name="switchNotificationShowMessgeContent" x:Uid="switchNotificationShowMessageContent" 
                                           HeaderTemplate="{StaticResource SettingsHeaderTemplate}"

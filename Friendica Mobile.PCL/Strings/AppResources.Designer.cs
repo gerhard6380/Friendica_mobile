@@ -20,7 +20,7 @@ namespace Friendica_Mobile.PCL.Strings {
     // -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
     // Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
     // mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class AppResources {
@@ -2682,6 +2682,15 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show notification for each RSS post element ähnelt.
+        /// </summary>
+        public static string switchNotificationEachNewsfeedAllowed_Header {
+            get {
+                return ResourceManager.GetString("switchNotificationEachNewsfeedAllowed.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Show text body of private messages ähnelt.
         /// </summary>
         public static string switchNotificationShowMessageContent_Header {
@@ -3467,6 +3476,15 @@ namespace Friendica_Mobile.PCL.Strings {
         public static string textblockNotificationActivatedHint_Text {
             get {
                 return ResourceManager.GetString("textblockNotificationActivatedHint.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die When having registered for some feeds, it can be annoying if the app is notifying you about each RSS post separately. The app will send you only one general notification in each run if there are one or more new RSS posts, if toggle is disabled here. ähnelt.
+        /// </summary>
+        public static string textblockNotificationEachNewsfeedAllowedHint_Text {
+            get {
+                return ResourceManager.GetString("textblockNotificationEachNewsfeedAllowedHint.Text", resourceCulture);
             }
         }
         
@@ -4585,6 +4603,15 @@ namespace Friendica_Mobile.PCL.Strings {
         public static string toastMessageStartOfMessage {
             get {
                 return ResourceManager.GetString("toastMessageStartOfMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die {0} new RSS feed posts arrived on server... ähnelt.
+        /// </summary>
+        public static string toastNewsfeedGeneralNotification {
+            get {
+                return ResourceManager.GetString("toastNewsfeedGeneralNotification", resourceCulture);
             }
         }
         

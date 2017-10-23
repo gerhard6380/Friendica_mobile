@@ -7,6 +7,7 @@ namespace Friendica_Mobile.PCL.Viewmodels
     public enum ContactTypes { Friends, Forums, Groups }
     public enum PostTypes { UserGenerated, Newsfeed }
     public enum FriendicaActivity { like, dislike, unlike, undislike };
+    public enum MessageErrors { OK, NoMailsAvailable, MessageIdNotSpecified, MessageSetToSeen, MessageIdOrParentUriNotSpecified, MessageDeleted, MessageIdNotInDatabase, ParentUriNotInDatabase, SearchstringNotSpecified, UnknownError };
 
 
     public abstract class BindableClass : INotifyPropertyChanged
