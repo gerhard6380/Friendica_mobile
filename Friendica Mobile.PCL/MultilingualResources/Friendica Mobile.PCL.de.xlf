@@ -2613,15 +2613,25 @@ Dies ist derzeit nicht möglich, weil du noch keine Standard-Datenschutzeinstell
           <target state="final" state-qualifier="tm-suggestion">LeftToRight</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Defines Text direction for the language</note>
         </trans-unit>
+        <trans-unit id="switchNotificationEachNewsfeedAllowed.Header" translate="yes" xml:space="preserve">
+          <source>Show notification for each RSS post element</source>
+          <target state="final">Benachrichtigung für jedes RSS-Post-Element anzeigen</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: user can decide whether app should notify about each RSS feed element separately or send a summary notification when there are some new elements</note>
+        </trans-unit>
+        <trans-unit id="textblockNotificationEachNewsfeedAllowedHint.Text" translate="yes" xml:space="preserve">
+          <source>When having registered for some feeds, it can be annoying if the app is notifying you about each RSS post separately. The app will send you only one general notification in each run if there are one or more new RSS posts, if toggle is disabled here.</source>
+          <target state="final">Wenn Sie sich für einige Feeds registriert haben, kann es ärgerlich sein, wenn die App Sie über jeden RSS-Beitrag separat informiert. Die App sendet Ihnen in jedem Durchgang nur eine allgemeine Benachrichtigung, wenn es einen oder mehrere neue RSS-Beiträge gibt, sofern hier deaktiviert ist.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: hint on NotificationEachNewsfeedAllowed</note>
+        </trans-unit>
+        <trans-unit id="toastNewsfeedGeneralNotification" translate="yes" xml:space="preserve">
+          <source>{0} new RSS feed posts arrived on server...</source>
+          <target state="final">{0} neue RSS-Feed-Beiträge sind auf dem Server angekommen ...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">BackgroundTask: alternative text if user don't want to get notified about each rss feed post separately ("New RSS feed posts arrived") - {0} = number of new elements</note>
+        </trans-unit>
         <trans-unit id="radioNewsfeed.Content" translate="yes" xml:space="preserve">
           <source>RSS feeds</source>
           <target state="final" state-qualifier="tm-suggestion">RSS-Feeds</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Navigationbutton for Newsfeed (RSS feeds in timeline)</note>
-        </trans-unit>
-        <trans-unit id="textblockNetworkNoDataAvailable.Text" translate="yes" xml:space="preserve">
-          <source>No network items returned from your server.</source>
-          <target state="final">Keine Netzwerk-Elemente vom Server zurückgegeben.</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: showing info text to user if there are no items in the network timeline of the user</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">Navigationbutton for RSS feeds (newsfeed)</note>
         </trans-unit>
       </group>
     </body>

@@ -70,6 +70,8 @@ namespace Friendica_Mobile.PCL
         private const string NotificationFreshnessTimeKey = "NotificationFreshnessTime";
         private static readonly int NotificationFreshnessTimeDefault = 15;
 
+        private const string NotificationEachNewsfeedAllowedKey = "NotificationEachNewsfeedAllowed";
+        private static readonly bool NotificationEachNewsfeedAllowedDefault = true;
 
         // app defined settings
         private const string LastReadNetworkPostKey = "LastReadNetworkPost";
@@ -226,6 +228,13 @@ namespace Friendica_Mobile.PCL
         {
             get { return AppSettings.GetValueOrDefault<int>(NotificationFreshnessTimeKey, NotificationFreshnessTimeDefault); }
             set { AppSettings.AddOrUpdateValue<int>(NotificationFreshnessTimeKey, value); }
+        }
+
+        // user can tell the app if he wants to get notifications for each newsfeed item or only on summary notification
+        public static bool NotificationEachNewsfeedAllowed
+        {
+            get { return AppSettings.GetValueOrDefault<bool>(NotificationEachNewsfeedAllowedKey, NotificationEachNewsfeedAllowedDefault); }
+            set { AppSettings.AddOrUpdateValue<bool>(NotificationEachNewsfeedAllowedKey, value); }
         }
 
 

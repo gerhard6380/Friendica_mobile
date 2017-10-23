@@ -496,6 +496,14 @@ namespace Friendica_Mobile.Mvvm
                 OnPropertyChanged("NotificationFreshnessTimeHint"); }
         }
 
+        public bool NotificationEachNewsfeedAllowed
+        {
+            get { return Settings.NotificationEachNewsfeedAllowed; }
+            set { Settings.NotificationEachNewsfeedAllowed = value;
+                OnPropertyChanged("NotificationEachNewsfeedAllowed");
+            }
+        }
+
         public string NotificationFreshnessTimeHint
         {
             get { return String.Format(loader.GetString("textblockNotificationFreshnessTimeHint"), NotificationFreshnessTime); }
