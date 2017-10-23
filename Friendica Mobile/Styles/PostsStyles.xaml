@@ -1,5 +1,7 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:contract5Present="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
+    xmlns:contract5NotPresent="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,5)"
     xmlns:local="using:Friendica_Mobile"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
@@ -105,6 +107,7 @@
                                 Background="Transparent"
                                 Padding="0,4,0,4"
                                 Margin="12,0,4,0"
+                                    contract5Present:Style="{ThemeResource ButtonRevealStyle}"
                                 Visibility="{Binding PostHasLocation, Converter={StaticResource BoolToVisibilityConverter}}"
                                 Command="{Binding LoadMapCommand}"
                                 CommandParameter="{Binding}"
@@ -147,13 +150,13 @@
                                     Grid.Column="0"
                                     Grid.ColumnSpan="2"
                                     FlowDirection="{Binding IsVisible, Converter={StaticResource FlowDirectionConverter}}">
-                            <!-- TODO: here we had "FlowDirection="{Binding FlowButton}"-->
                             <TextBlock Width="4" />
 
                             <!--Button for adding a comment to the selected item-->
                             <Button x:Name="buttonAddComment" x:Uid="buttonAddComment"
                                     Command="{Binding AddCommentCommand}"
                                     Margin="0,0,4,4"
+                                    contract5Present:Style="{ThemeResource ButtonRevealStyle}"
                                     Visibility="{Binding IsVisible, Converter={StaticResource AddCommentButtonVisibilityConverter}}">
                                 <FontIcon Glyph="&#xE710;"
                                           FontFamily="Segoe MDL2 Assets"
@@ -163,6 +166,7 @@
                             <!--Button for showing the profile of the author of the selected item-->
                             <Button x:Name="buttonShowProfile" x:Uid="buttonShowProfile"
                                     Margin="0,0,4,4"
+                                    contract5Present:Style="{ThemeResource ButtonRevealStyle}"
                                     Command="{Binding ShowProfileCommand}"
                                     Visibility="{Binding IsVisible, Converter={StaticResource ShowProfileButtonVisibilityConverter}}">
                                 <FontIcon Glyph="&#xEC25;"
@@ -172,6 +176,7 @@
 
                             <!--Button for retweeting the selected item-->
                             <Button x:Name="buttonRetweet" x:Uid="buttonRetweet"
+                                    contract5Present:Style="{ThemeResource ButtonRevealStyle}"
                                     Command="{Binding RetweetCommand}"
                                     Margin="0,0,4,4"
                                     Visibility="{Binding PostType, Converter={StaticResource RetweetButtonVisibilityConverter}}">
@@ -186,6 +191,7 @@
                                         Visibility="{Binding ActivitiesNotSupported, Converter={StaticResource BoolToVisibilityCollapsedConverter}}"
                                         Orientation="Horizontal">
                                 <Button Background="Transparent"
+                                        contract5Present:Style="{ThemeResource ButtonRevealStyle}"
                                         Margin="0,0,4,4">
                                     <StackPanel Orientation="Horizontal">
                                         <Grid>
@@ -216,11 +222,13 @@
                                             <StackPanel>
                                                 <Button x:Name="buttonLike" x:Uid="buttonLike" 
                                                         HorizontalAlignment="Center"
+                                                        contract5Present:Style="{ThemeResource ButtonRevealStyle}"
                                                         Visibility="{Binding IsLikedByMe, Converter={StaticResource BoolToVisibilityCollapsedConverter}}"
                                                         Command="{Binding LikeCommand}"
                                                         Background="Transparent"/>
                                                 <Button x:Name="buttonUnLike" x:Uid="buttonUnLike"
                                                         HorizontalAlignment="Center"
+                                                        contract5Present:Style="{ThemeResource ButtonRevealStyle}"
                                                         Visibility="{Binding IsLikedByMe, Converter={StaticResource BoolToVisibilityConverter}}"
                                                         Command="{Binding LikeCommand}"
                                                         Background="Transparent" />
@@ -236,6 +244,7 @@
                                     </Button.Flyout>
                                 </Button>
                                 <Button Background="Transparent"
+                                        contract5Present:Style="{ThemeResource ButtonRevealStyle}"
                                         Margin="0,0,4,4">
                                     <StackPanel Orientation="Horizontal">
                                         <Grid>
@@ -266,11 +275,13 @@
                                             <StackPanel>
                                                 <Button x:Name="buttonDislike" x:Uid="buttonDislike" 
                                                         HorizontalAlignment="Center"
+                                                        contract5Present:Style="{ThemeResource ButtonRevealStyle}"
                                                         Visibility="{Binding IsDislikedByMe, Converter={StaticResource BoolToVisibilityCollapsedConverter}}"
                                                         Command="{Binding DislikeCommand}"
                                                         Background="Transparent"/>
                                                 <Button x:Name="buttonUnDislike" x:Uid="buttonUnDislike"
                                                         HorizontalAlignment="Center"
+                                                        contract5Present:Style="{ThemeResource ButtonRevealStyle}"
                                                         Visibility="{Binding IsDislikedByMe, Converter={StaticResource BoolToVisibilityConverter}}"
                                                         Command="{Binding DislikeCommand}"
                                                         Background="Transparent" />

@@ -1,6 +1,8 @@
 ﻿<Page
     x:Class="Friendica_Mobile.Views.Profiles"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:contract5Present="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
+    xmlns:contract5NotPresent="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,5)"    
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Friendica_Mobile"
     xmlns:views="using:Friendica_Mobile.Views"
@@ -39,18 +41,28 @@
         <CommandBar x:Name="topAppBar" 
                     Margin="48,0,0,0"
                     Visibility="Visible"
+                    Background="Gray"
+                    Foreground="White"
+                    contract5NotPresent:Style="{StaticResource CommandBarTopStyle}"
+                    contract5Present:Style="{ThemeResource CommandBarRevealStyle}"
                     HorizontalAlignment="Left">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="topAppBarProfileUserlist" x:Uid="appBarProfilesUserlist" 
                               Icon="People"
+                              Foreground="White"
+                              contract5Present:Style="{ThemeResource AppBarButtonRevealStyle}"
                               Command="{Binding ShowUserlistCommand}"/>
                 <AppBarToggleButton x:Name="topAppBarProfileEnableEditor" x:Uid="appBarProfilesEnableEditor"
                                     IsChecked="{Binding IsEditorEnabled, Mode=TwoWay}"
                                     Icon="Edit"
+                                    Foreground="White"
+                                    contract5Present:Style="{ThemeResource AppBarToggleButtonRevealStyle}"
                                     Command="{Binding EnableEditorCommand}" />
                 <AppBarButton x:Name="topAppBarProfileSend" x:Uid="appBarProfilesSend"
                               Icon="Send"
                               IsEnabled="False"
+                              Foreground="White"
+                              contract5Present:Style="{ThemeResource AppBarButtonRevealStyle}"
                               Command="{Binding SendMessageCommand}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
@@ -61,16 +73,19 @@
                     Margin="{Binding BottomAppBarMargin}"
                     Visibility="Collapsed">
             <AppBarButton x:Name="bottomAppBarProfileUserlist" x:Uid="appBarProfilesUserlist" 
-                              Icon="People"
-                              Command="{Binding ShowUserlistCommand}"/>
+                          Icon="People"
+                          contract5Present:Style="{ThemeResource AppBarButtonRevealStyle}"
+                          Command="{Binding ShowUserlistCommand}"/>
             <AppBarToggleButton x:Name="bottomAppBarProfileEnableEditor" x:Uid="appBarProfilesEnableEditor"
-                                    IsChecked="{Binding IsEditorEnabled, Mode=TwoWay}"
-                                    Icon="Edit"
-                                    Command="{Binding EnableEditorCommand}" />
+                                IsChecked="{Binding IsEditorEnabled, Mode=TwoWay}"
+                                Icon="Edit"
+                                contract5Present:Style="{ThemeResource AppBarToggleButtonRevealStyle}"
+                                Command="{Binding EnableEditorCommand}" />
             <AppBarButton x:Name="bottomAppBarProfileSend" x:Uid="appBarProfilesSend"
-                              Icon="Send"
-                              IsEnabled="False"
-                              Command="{Binding SendMessageCommand}" />
+                          Icon="Send"
+                          IsEnabled="False"
+                          contract5Present:Style="{ThemeResource AppBarButtonRevealStyle}"
+                          Command="{Binding SendMessageCommand}" />
         </CommandBar>
     </Page.BottomAppBar>
 

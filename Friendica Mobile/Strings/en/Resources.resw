@@ -2175,12 +2175,20 @@ Do you want to continue?</value>
     <value>LeftToRight</value>
     <comment>Defines Text direction for the language</comment>
   </data>
+  <data name="switchNotificationEachNewsfeedAllowed.Header" xml:space="preserve">
+    <value>Show notification for each RSS post element</value>
+    <comment>Settings.xaml: user can decide whether app should notify about each RSS feed element separately or send a summary notification when there are some new elements</comment>
+  </data>
+  <data name="textblockNotificationEachNewsfeedAllowedHint.Text" xml:space="preserve">
+    <value>When having registered for some feeds, it can be annoying if the app is notifying you about each RSS post separately. The app will send you only one general notification in each run if there are one or more new RSS posts, if toggle is disabled here.</value>
+    <comment>Settings.xaml: hint on NotificationEachNewsfeedAllowed</comment>
+  </data>
+  <data name="toastNewsfeedGeneralNotification" xml:space="preserve">
+    <value>{0} new RSS feed posts arrived on server...</value>
+    <comment>BackgroundTask: alternative text if user don't want to get notified about each rss feed post separately ("New RSS feed posts arrived") - {0} = number of new elements</comment>
+  </data>
   <data name="radioNewsfeed.Content" xml:space="preserve">
     <value>RSS feeds</value>
-    <comment>Navigationbutton for Newsfeed (RSS feeds in timeline)</comment>
-  </data>
-  <data name="textblockNetworkNoDataAvailable.Text" xml:space="preserve">
-    <value>No network items returned from your server.</value>
-    <comment>Network.xaml: showing info text to user if there are no items in the network timeline of the user</comment>
+    <comment>Navigationbutton for RSS feeds (newsfeed)</comment>
   </data>
 </root>

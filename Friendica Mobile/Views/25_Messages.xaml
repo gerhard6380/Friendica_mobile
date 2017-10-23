@@ -1,6 +1,8 @@
 ﻿<Page
     x:Class="Friendica_Mobile.Views.Messages"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:contract5Present="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
+    xmlns:contract5NotPresent="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,5)"    
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Friendica_Mobile"
     xmlns:views="using:Friendica_Mobile.Views"
@@ -40,30 +42,44 @@
         <CommandBar x:Name="topAppBar" 
                     Margin="48,0,0,0"
                     Visibility="Visible"
+                    Background="Gray"
+                    Foreground="White"
+                    contract5NotPresent:Style="{StaticResource CommandBarTopStyle}"
+                    contract5Present:Style="{ThemeResource CommandBarRevealStyle}"
                     HorizontalAlignment="Left">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="topAppBarMessagesRefresh" x:Uid="appBarMessagesRefresh" 
                               Visibility="{Binding MessagesView, Converter={StaticResource MessagesViewVisibleConverter}, ConverterParameter=fullmode|onlyconversations}"
                               Icon="Refresh"
+                              Foreground="White"
+                              contract5Present:Style="{ThemeResource AppBarButtonRevealStyle}"
                               Command="{Binding RefreshConversationsCommand}"/>
                 <AppBarButton x:Name="topAppBarMessagesAdd" x:Uid="appBarMessagesAdd" 
                               Visibility="{Binding MessagesView, Converter={StaticResource MessagesViewVisibleConverter}, ConverterParameter=fullmode|onlyconversations}"
                               Icon="Add" 
+                              Foreground="White"
+                              contract5Present:Style="{ThemeResource AppBarButtonRevealStyle}"
                               Command="{Binding AddNewConversationCommand}"/>
                 <AppBarToggleButton x:Name="topAppBarMessagesSearch" x:Uid="appBarMessagesSearch" 
                                     IsChecked="{Binding IsSearchModeEnabled, Mode=TwoWay}"
                                     Visibility="{Binding MessagesView, Converter={StaticResource MessagesViewVisibleConverter}, ConverterParameter=fullmode|onlyconversations}"
                                     Icon="Find" 
+                                    Foreground="White"
+                                    contract5Present:Style="{ThemeResource AppBarToggleButtonRevealStyle}"
                                     Command="{Binding EnableSearchCommand}"/>
                 <AppBarToggleButton x:Name="topAppBarMessagesEnableEditor" x:Uid="appBarMessagesEnableEditor"
-                                Visibility="{Binding MessagesView, Converter={StaticResource MessagesViewVisibleConverter}, ConverterParameter=onlymessages}"
-                                IsChecked="{Binding IsEditorEnabled, Mode=TwoWay}"
-                                Icon="Edit"
-                                Command="{Binding EnableEditorCommand}" />
+                                    Visibility="{Binding MessagesView, Converter={StaticResource MessagesViewVisibleConverter}, ConverterParameter=onlymessages}"
+                                    IsChecked="{Binding IsEditorEnabled, Mode=TwoWay}"
+                                    Icon="Edit"
+                                    Foreground="White"
+                                    contract5Present:Style="{ThemeResource AppBarToggleButtonRevealStyle}"
+                                    Command="{Binding EnableEditorCommand}" />
                 <AppBarButton x:Name="topAppBarMessagesSend" x:Uid="appBarMessagesSend"
-                          Visibility="{Binding MessagesView, Converter={StaticResource MessagesViewVisibleConverter}, ConverterParameter=onlymessages}"
-                          Icon="Send"
-                          Command="{Binding SendMessageCommand}" />
+                              Visibility="{Binding MessagesView, Converter={StaticResource MessagesViewVisibleConverter}, ConverterParameter=onlymessages}"
+                              Icon="Send"
+                              Foreground="White"
+                              contract5Present:Style="{ThemeResource AppBarButtonRevealStyle}"
+                              Command="{Binding SendMessageCommand}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.TopAppBar>
@@ -75,24 +91,29 @@
             <AppBarButton x:Name="bottomAppBarMessagesRefresh" x:Uid="appBarMessagesRefresh" 
                           Visibility="{Binding MessagesView, Converter={StaticResource MessagesViewVisibleConverter}, ConverterParameter=fullmode|onlyconversations}"
                           Icon="Refresh" 
+                          contract5Present:Style="{ThemeResource AppBarButtonRevealStyle}"
                           Command="{Binding RefreshConversationsCommand}"/>
             <AppBarButton x:Name="bottomAppBarMessagesAdd" x:Uid="appBarMessagesAdd" 
                           Visibility="{Binding MessagesView, Converter={StaticResource MessagesViewVisibleConverter}, ConverterParameter=fullmode|onlyconversations}"
                           Icon="Add" 
+                          contract5Present:Style="{ThemeResource AppBarButtonRevealStyle}"
                           Command="{Binding AddNewConversationCommand}" />
             <AppBarToggleButton x:Name="bottomAppBarMessagesSearch" x:Uid="appBarMessagesSearch" 
                                 IsChecked="{Binding IsSearchModeEnabled, Mode=TwoWay}"
                                 Visibility="{Binding MessagesView, Converter={StaticResource MessagesViewVisibleConverter}, ConverterParameter=fullmode|onlyconversations}"
                                 Icon="Find" 
+                                contract5Present:Style="{ThemeResource AppBarToggleButtonRevealStyle}"
                                 Command="{Binding EnableSearchCommand}"/>
             <AppBarToggleButton x:Name="bottomAppBarMessagesEnableEditor" x:Uid="appBarMessagesEnableEditor"
                                 Visibility="{Binding MessagesView, Converter={StaticResource MessagesViewVisibleConverter}, ConverterParameter=onlymessages}"
                                 IsChecked="{Binding IsEditorEnabled, Mode=TwoWay}"
                                 Icon="Edit"
+                                contract5Present:Style="{ThemeResource AppBarToggleButtonRevealStyle}"
                                 Command="{Binding EnableEditorCommand}" />
             <AppBarButton x:Name="bottomAppBarMessagesSend" x:Uid="appBarMessagesSend"
                           Visibility="{Binding MessagesView, Converter={StaticResource MessagesViewVisibleConverter}, ConverterParameter=onlymessages}"
                           Icon="Send"
+                              contract5Present:Style="{ThemeResource AppBarButtonRevealStyle}"
                           Command="{Binding SendMessageCommand}" />
         </CommandBar>
     </Page.BottomAppBar>

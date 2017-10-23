@@ -40,6 +40,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Helpers\CheckSettings.cs" />
+    <Compile Include="Helpers\StaticHtmlToXml.cs" />
+    <Compile Include="Helpers\NotificationHelper.cs" />
     <Compile Include="Helpers\StaticSQLiteConn.cs" />
     <Compile Include="Helpers\Command.cs" />
     <Compile Include="Helpers\ILocalize.cs" />
@@ -48,17 +50,26 @@
     <Compile Include="Helpers\StaticMessageDialog.cs" />
     <Compile Include="Helpers\PlatformCulture.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="HttpRequests\GetFriendicaMessages.cs" />
     <Compile Include="HttpRequests\GetFriendicaNetwork.cs" />
+    <Compile Include="HttpRequests\GetOEmbedYoutube.cs" />
     <Compile Include="HttpRequests\HttpRequestsBase.cs" />
     <Compile Include="HttpRequests\PostFriendicaActivities.cs" />
+    <Compile Include="HttpRequests\PostFriendicaMessage.cs" />
+    <Compile Include="Models\FriendicaMessage.cs" />
+    <Compile Include="Models\FriendicaMessageNew.cs" />
     <Compile Include="Models\FriendicaPost.cs" />
     <Compile Include="Models\FriendicaSampleData.cs" />
     <Compile Include="Models\FriendicaUser.cs" />
     <Compile Include="Models\FriendicaActivities.cs" />
     <Compile Include="Models\JsonFriendicaActivities.cs" />
     <Compile Include="Models\JsonFriendicaGeo.cs" />
+    <Compile Include="Models\JsonFriendicaError.cs" />
+    <Compile Include="Models\JsonFriendicaMessage.cs" />
     <Compile Include="Models\JsonFriendicaPost.cs" />
     <Compile Include="Models\JsonFriendicaUser.cs" />
+    <Compile Include="Models\JsonOEmbedYoutube.cs" />
+    <Compile Include="Models\NotificationElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Strings\AppResources.de.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -121,8 +132,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.5.0\lib\portable-net45+netcore45+wp8+MonoAndroid+MonoTouch\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLStorage, Version=1.0.2.0, Culture=neutral, PublicKeyToken=286fe515a2c35b64, processorArchitecture=MSIL">
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac\PCLStorage.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLStorage.Abstractions, Version=1.0.2.0, Culture=neutral, PublicKeyToken=286fe515a2c35b64, processorArchitecture=MSIL">
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac\PCLStorage.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.Settings, Version=2.5.8.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xam.Plugins.Settings.2.5.8\lib\portable-net45+wp80+win8+wpa81\Plugin.Settings.dll</HintPath>

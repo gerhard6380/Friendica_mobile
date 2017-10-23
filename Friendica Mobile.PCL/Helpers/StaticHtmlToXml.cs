@@ -1,34 +1,35 @@
-﻿using HtmlAgilityPack;
+﻿using Friendica_Mobile.PCL.HttpRequests;
+using HtmlAgilityPack;
+using PCLStorage;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Storage;
-using Windows.UI.Xaml.Documents;
 
-namespace BackgroundTasks
+
+namespace Friendica_Mobile.PCL
 {
-    public sealed class clsHtmlToXml
+    public static class StaticHtmlToXml
     {
-        HtmlDocument htmlDoc;
-        string xmlString;
-        List<string> formatEntities = new List<string>(new string[] { "em", "b", "u", "i", "strong", "#text", "span" });
+        static HtmlDocument htmlDoc;
+        static string xmlString;
+        static List<string> formatEntities = new List<string>(new string[] { "em", "b", "u", "i", "strong", "#text", "span" });
 
 
-        public clsHtmlToXml()
+        //public clsHtmlToXml()
+        //{
+        //}
+
+
+        public static Task<string> TransformHtmlToXml(string html)
         {
+            return TransformHtmlToXmlHelper(html);
         }
 
 
-        public IAsyncOperation<string> TransformHtmlToXml(string html)
-        {
-            return this.TransformHtmlToXmlHelper(html).AsAsyncOperation();
-        }
-
-
-        private async Task<string> TransformHtmlToXmlHelper(string html)
+        private static async Task<string> TransformHtmlToXmlHelper(string html)
         {
             xmlString = "";
             Init(html);
@@ -37,7 +38,7 @@ namespace BackgroundTasks
         }
 
 
-        private void Init(string html)
+        private static void Init(string html)
         {
             htmlDoc = new HtmlDocument();
             htmlDoc.OptionCheckSyntax = true;
@@ -47,8 +48,9 @@ namespace BackgroundTasks
         }
 
 
-        private async Task CreateXml()
+        private static async Task CreateXml()
         {
+            int _maxLength = 250;
             //xmlString = "";
             if (htmlDoc.DocumentNode.HasChildNodes)
             {
@@ -65,10 +67,14 @@ namespace BackgroundTasks
                         else if (child.Name == "span" && child.FirstChild != null && child.FirstChild.Name == "a")
                         {
                             xmlString += CreateTextElement("Link: " + child.FirstChild.Attributes["href"].Value);
+                            if (xmlString.Length > _maxLength)
+                                return;
                         }
                         else
                             collectText += child.InnerText;
                         xmlString += CreateTextElement(collectText);
+                        if (xmlString.Length > _maxLength)
+                            return;
                         collectText = "";
                     }
                     else if (child.Name == "br") { }
@@ -83,6 +89,8 @@ namespace BackgroundTasks
                         else
                             collectText += child.InnerText;
                         xmlString += CreateTextElement("Code: " + collectText);
+                        if (xmlString.Length > _maxLength)
+                            return;
                         collectText = "";
                     }
                     // blockquote Block separat darstellen: 
@@ -96,6 +104,8 @@ namespace BackgroundTasks
                         else
                             collectText += child.InnerText;
                         xmlString += CreateTextElement("Zitat: " + collectText);
+                        if (xmlString.Length > _maxLength)
+                            return;
                         collectText = "";
                     }
                     // list Block separat darstellen: 
@@ -105,6 +115,8 @@ namespace BackgroundTasks
                         {
                             if (childList.Name == "li")
                                 xmlString += CreateTextElement("* " + childList.InnerText);
+                            if (xmlString.Length > _maxLength)
+                                return;
                         }
                     }
                     else if (child.Name == "a" && child.HasChildNodes && child.FirstChild.Name == "img")
@@ -123,21 +135,17 @@ namespace BackgroundTasks
                             byte[] bytes = Convert.FromBase64String(source.Value);
                             string fileName = Path.GetRandomFileName() + fileSuffix;
                             string fileNamePath = "ms-appdata:///local/Toastimages/" + fileName;
-                            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+                            //StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+                            var localFolder = FileSystem.Current.LocalStorage;
                             await localFolder.CreateFolderAsync("Toastimages", CreationCollisionOption.OpenIfExists);
                             var file = await localFolder.CreateFileAsync("Toastimages\\" + fileName, CreationCollisionOption.ReplaceExisting);
-                            using (MemoryStream ms = new MemoryStream(bytes))
-                                {
-                                    using (FileStream fileStream = new FileStream(file.Path, FileMode.Create, FileAccess.Write))
-                                    {
-                                        // Write the data to the file, byte by byte.
-                                        for (int i = 0; i < bytes.Length; i++)
-                                        {
-                                            fileStream.WriteByte(bytes[i]);
-                                        }
-                                    }
-                                }
+                            using (var stream = await file.OpenAsync(FileAccess.ReadAndWrite))
+                            {
+                                await stream.WriteAsync(bytes, 0, bytes.Length);
+                            }
                             xmlString += CreateImageElement(fileNamePath);
+                            if (xmlString.Length > _maxLength)
+                                return;
                         }
                     }
                     // Links which are not nested in a span tag or having an image as child
@@ -146,39 +154,45 @@ namespace BackgroundTasks
                         if (child.Attributes["href"].Value.Contains("youtube.com/"))
                         {
                             var getYoutube = new GetOEmbedYoutube();
-                            var oembed = await getYoutube.GetOEmbedYoutubeByUrl(child.Attributes["href"].Value);
+                            var oembed = await getYoutube.GetOEmbedYoutubeByUrlAsync(child.Attributes["href"].Value);
                             if (oembed != null)
                             {
                                 xmlString += CreateTextElement("Link - Youtube: " + oembed.Title.Replace("&", "&amp;"));
                                 xmlString += CreateImageElement(oembed.ThumbnailUrl);
+                                if (xmlString.Length > _maxLength)
+                                    return;
                             }
                         }
                         else
                             xmlString += CreateTextElement(child.InnerText);
+                        if (xmlString.Length > _maxLength)
+                            return;
                     }
                     // alternative for all other tags - display innertext
                     else
                         xmlString += CreateTextElement(child.InnerText);
+                    if (xmlString.Length > _maxLength)
+                        return;
                 }
             }
         }
 
 
-        private string CreateTextElement(string displayText)
+        private static string CreateTextElement(string displayText)
         {
             var baseText = "<text>{0}</text>";
             return String.Format(baseText, ChangeIcons(displayText));
         }
 
 
-        private string CreateImageElement(string imgSource)
+        private static string CreateImageElement(string imgSource)
         {
             var baseText = "<image placement =\"inline\" src=\"{0}\" />";
             return String.Format(baseText, imgSource);
         }
 
 
-        internal string ChangeIcons(string content)
+        internal static string ChangeIcons(string content)
         {
             // Caution: order of replacements can be important, i.e. the 2nd devil smiley needs to be replaced before the happy smiley :-)
             //content = content.Replace("&uuml;", "ü");
@@ -191,6 +205,11 @@ namespace BackgroundTasks
             //content = content.Replace("rsquo;", "'");
             //content = content.Replace("&", "&amp;");
             content = System.Net.WebUtility.HtmlDecode(content);
+
+            // need to escape back some special characters for xml parsing
+            content = content.Replace("&", "&amp;");
+            content = content.Replace("<", "&lt;");
+            
             // symbol for like/dislike
             content = content.Replace(":like", System.Net.WebUtility.HtmlDecode("&#x1F44D;"));
             content = content.Replace(":dislike", System.Net.WebUtility.HtmlDecode("&#x1F44E;"));

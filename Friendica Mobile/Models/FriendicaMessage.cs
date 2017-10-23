@@ -1,9 +1,5 @@
-﻿using BackgroundTasks;
+﻿using Friendica_Mobile.PCL;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.Data.Json;
 using Windows.UI.Xaml.Documents;
@@ -296,8 +292,8 @@ namespace Friendica_Mobile.Models
 
         private async void ConvertHtmlToXml()
         {
-            var htmlToXml = new clsHtmlToXml();
-            MessageTextNotification = await htmlToXml.TransformHtmlToXml(MessageText);
+            //var htmlToXml = new clsHtmlToXml();
+            MessageTextNotification = await StaticHtmlToXml.TransformHtmlToXml(MessageText);
         }
 
         private void SetCreatedAtNotification(DateTime createdAt)

@@ -2070,12 +2070,20 @@ Dies ist derzeit nicht möglich, weil du noch keine Standard-Datenschutzeinstell
     <value>LeftToRight</value>
     <comment>Defines Text direction for the language</comment>
   </data>
+  <data name="switchNotificationEachNewsfeedAllowed.Header" xml:space="preserve">
+    <value>Benachrichtigung für jedes RSS-Post-Element anzeigen</value>
+    <comment>Settings.xaml: user can decide whether app should notify about each RSS feed element separately or send a summary notification when there are some new elements</comment>
+  </data>
+  <data name="textblockNotificationEachNewsfeedAllowedHint.Text" xml:space="preserve">
+    <value>Wenn Sie sich für einige Feeds registriert haben, kann es ärgerlich sein, wenn die App Sie über jeden RSS-Beitrag separat informiert. Die App sendet Ihnen in jedem Durchgang nur eine allgemeine Benachrichtigung, wenn es einen oder mehrere neue RSS-Beiträge gibt, sofern hier deaktiviert ist.</value>
+    <comment>Settings.xaml: hint on NotificationEachNewsfeedAllowed</comment>
+  </data>
+  <data name="toastNewsfeedGeneralNotification" xml:space="preserve">
+    <value>{0} neue RSS-Feed-Beiträge sind auf dem Server angekommen ...</value>
+    <comment>BackgroundTask: alternative text if user don't want to get notified about each rss feed post separately ("New RSS feed posts arrived") - {0} = number of new elements</comment>
+  </data>
   <data name="radioNewsfeed.Content" xml:space="preserve">
     <value>RSS-Feeds</value>
-    <comment>Navigationbutton for Newsfeed (RSS feeds in timeline)</comment>
-  </data>
-  <data name="textblockNetworkNoDataAvailable.Text" xml:space="preserve">
-    <value>Keine Netzwerk-Elemente vom Server zurückgegeben.</value>
-    <comment>Network.xaml: showing info text to user if there are no items in the network timeline of the user</comment>
+    <comment>Navigationbutton for RSS feeds (newsfeed)</comment>
   </data>
 </root>

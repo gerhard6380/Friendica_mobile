@@ -2070,12 +2070,20 @@ Attualmente ciò non è possibile, perché non hai ancora impostato predefinite 
     <value>LeftToRight</value>
     <comment>Defines Text direction for the language</comment>
   </data>
+  <data name="switchNotificationEachNewsfeedAllowed.Header" xml:space="preserve">
+    <value>Visualizza notifica per ogni che elemento di post RSS</value>
+    <comment>Settings.xaml: user can decide whether app should notify about each RSS feed element separately or send a summary notification when there are some new elements</comment>
+  </data>
+  <data name="textblockNotificationEachNewsfeedAllowedHint.Text" xml:space="preserve">
+    <value>Dopo aver registrato per alcuni feed, può essere fastidioso se l'app è informarvi su ogni post RSS separatamente. L'app ti invierà solo una notifica generale in ogni esecuzione se ci sono uno o più nuovi messaggi RSS, se toggle è disabilitato qui.</value>
+    <comment>Settings.xaml: hint on NotificationEachNewsfeedAllowed</comment>
+  </data>
+  <data name="toastNewsfeedGeneralNotification" xml:space="preserve">
+    <value>{0} nuovo RSS feed post arrivati sul server...</value>
+    <comment>BackgroundTask: alternative text if user don't want to get notified about each rss feed post separately ("New RSS feed posts arrived") - {0} = number of new elements</comment>
+  </data>
   <data name="radioNewsfeed.Content" xml:space="preserve">
     <value>RSS feed</value>
-    <comment>Navigationbutton for Newsfeed (RSS feeds in timeline)</comment>
-  </data>
-  <data name="textblockNetworkNoDataAvailable.Text" xml:space="preserve">
-    <value>Nessun elemento di rete restituito dal server.</value>
-    <comment>Network.xaml: showing info text to user if there are no items in the network timeline of the user</comment>
+    <comment>Navigationbutton for RSS feeds (newsfeed)</comment>
   </data>
 </root>
