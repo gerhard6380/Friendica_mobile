@@ -83,18 +83,20 @@
         <!--contract5NotPresent:PaneBackground="{ThemeResource SplitViewBackgroundBrush}"-->
         <SplitView x:Name="ShellSplitView"
                    contract5NotPresent:PaneBackground="LightGray"
-                contract5Present:PaneBackground="{StaticResource SystemControlBaseHighAcrylicWindowBrush}"
+                   contract5Present:PaneBackground="{StaticResource FriendicaBackgroundAcrylicWindowBrush}"
                    HorizontalAlignment="Left"
                    RelativePanel.Above="gridAdvMobile"
-               RelativePanel.AlignTopWithPanel="True"
-               RelativePanel.AlignLeftWithPanel="True"
-               RelativePanel.AlignRightWithPanel="True"
+                   RelativePanel.AlignTopWithPanel="True"
+                   RelativePanel.AlignLeftWithPanel="True"
+                   RelativePanel.AlignRightWithPanel="True"
                    Width="{Binding ShellWidth}">
             <SplitView.FlowDirection>
                 <Binding Path="NavigationSide" />
             </SplitView.FlowDirection>
             <SplitView.Pane>
-                <Grid x:Name="masterGrid">
+                <Grid x:Name="masterGrid" 
+                      contract5Present:Background="{ThemeResource FriendicaBackgroundAcrylicWindowBrush}"
+                      contract5NotPresent:Background="LightGray">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
