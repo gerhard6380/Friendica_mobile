@@ -13,15 +13,22 @@
 
     <!--<SolidColorBrush x:Key="SplitViewBackgroundBrush" Color="{ThemeResource SystemBaseMediumColor}" />-->
     <SolidColorBrush x:Key="SplitViewBackgroundBrush" Color="DarkGray" />
-    <!--<SolidColorBrush x:Key="SplitViewForegroundBrush" Color="{ThemeResource SystemBaseHighColor}" />-->
-    <SolidColorBrush x:Key="SplitViewForegroundBrush" Color="Black" />
+    <SolidColorBrush x:Key="SplitViewForegroundBrush" 
+                     contract5Present:Color="{StaticResource SystemBaseHighColor}"
+                     contract5NotPresent:Color="Black"/>
     <SolidColorBrush x:Key="RadioButtonContentDisabledForegroundThemeBrush" Color="DarkGray" />
     <SolidColorBrush x:Key="NavButtonPressedBackgroundBrush" Color="{ThemeResource SystemListMediumColor}" />
     <SolidColorBrush x:Key="NavButtonHoverBackgroundBrush" Color="{ThemeResource SystemListLowColor}" />
     <SolidColorBrush x:Key="NavButtonCheckedBackgroundBrush" Color="{ThemeResource SystemListAccentLowColor}" />
     <SolidColorBrush x:Key="NavButtonCheckedPressedBackgroundBrush" Color="{ThemeResource SystemListAccentMediumColor}" />
     <SolidColorBrush x:Key="NavButtonCheckedHoverBackgroundBrush" Color="{ThemeResource SystemListAccentHighColor}" />
-    
+
+    <contract5Present:AcrylicBrush x:Key="FriendicaBackgroundAcrylicWindowBrush" 
+                                   BackgroundSource="HostBackdrop" 
+                                   TintColor="{StaticResource SystemChromeAltHighColor}" 
+                                   TintOpacity="0.8" 
+                                   FallbackColor="{StaticResource SystemChromeMediumColor}" />
+
     <x:Double x:Key="SplitViewNormalNavFontSize">16</x:Double>
     <x:Double x:Key="SplitViewLargeNavFontSize">20</x:Double>
     <x:Double x:Key="SplitViewBackButtonHeight">32</x:Double>
@@ -44,7 +51,7 @@
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
-        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Foreground" Value="{StaticResource SplitViewForegroundBrush}" />
         <Setter Property="FontSize" Value="{ThemeResource SplitViewNormalNavFontSize}" />
     </Style>
 
@@ -192,8 +199,7 @@
     </Style>
 
     <Style TargetType="RadioButton" x:Key="SplitViewRadioButtonStyle">
-        <!--<Setter Property="Background" Value="Transparent" />-->
-        <Setter Property="Background" Value="LightGray" />
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{StaticResource SplitViewForegroundBrush}" />
         <Setter Property="Padding" Value="1,4,0,0" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -206,7 +212,7 @@
                     <!--BorderBrush="{TemplateBinding BorderBrush}"
                     Background="{StaticResource SystemControlBaseHighAcrylicWindowBrush}" 
                     Background="{TemplateBinding Background}"-->
-                    <Border contract5Present:Background="{StaticResource SystemControlBaseHighAcrylicWindowBrush}"
+                    <Border contract5Present:Background="{StaticResource FriendicaBackgroundAcrylicWindowBrush}"
                             contract5NotPresent:Background="{TemplateBinding Background}" 
                             contract5NotPresent:BorderBrush="{TemplateBinding BorderBrush}"
                             contract5Present:BorderBrush="{ThemeResource ButtonRevealBorderBrush}"
