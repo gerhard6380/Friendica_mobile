@@ -69,6 +69,7 @@
     <Compile Include="Models\JsonFriendicaPost.cs" />
     <Compile Include="Models\JsonFriendicaUser.cs" />
     <Compile Include="Models\JsonOEmbedYoutube.cs" />
+    <Compile Include="Models\LiveTileContent.cs" />
     <Compile Include="Models\NotificationElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Strings\AppResources.de.Designer.cs">

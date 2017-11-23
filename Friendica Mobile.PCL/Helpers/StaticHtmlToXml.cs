@@ -1,11 +1,10 @@
 ﻿using Friendica_Mobile.PCL.HttpRequests;
+using Friendica_Mobile.PCL.Models;
 using HtmlAgilityPack;
 using PCLStorage;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 
 
@@ -16,11 +15,23 @@ namespace Friendica_Mobile.PCL
         static HtmlDocument htmlDoc;
         static string xmlString;
         static List<string> formatEntities = new List<string>(new string[] { "em", "b", "u", "i", "strong", "#text", "span" });
+        static List<string> headerEntities = new List<string>(new string[] { "h1", "h2", "h3", "h4", "h5", "h6" });
 
 
-        //public clsHtmlToXml()
-        //{
-        //}
+        // call this to create the content for a livetile from the html parameter
+        public static async Task<LiveTileContent> TransformHtmlToLiveTileContent(string html)
+        {
+            var liveTile = new LiveTileContent
+            {
+                UserProfileImageSource = "",
+                PeekImageSource = "",
+                Title = "",
+                Content = new List<string>()
+            };
+            Init(html);
+            await CreateLiveTile(liveTile);
+            return liveTile;
+        }
 
 
         public static Task<string> TransformHtmlToXml(string html)
@@ -173,6 +184,140 @@ namespace Friendica_Mobile.PCL
                         xmlString += CreateTextElement(child.InnerText);
                     if (xmlString.Length > _maxLength)
                         return;
+                }
+            }
+        }
+
+        private static async Task CreateLiveTile(LiveTileContent liveTile)
+        {
+            if (htmlDoc.DocumentNode.HasChildNodes)
+            {
+                string collectText = "";
+                foreach (var child in htmlDoc.DocumentNode.ChildNodes)
+                {
+                    if (headerEntities.Contains(child.Name))
+                    {
+                        liveTile.Title = ChangeIcons(child.InnerText);
+                    }
+                    else if (formatEntities.Contains(child.Name))
+                    {
+                        if (child.NextSibling != null && formatEntities.Contains(child.NextSibling.Name))
+                        {
+                            collectText += ChangeIcons(child.InnerText);
+                            continue;
+                        }
+                        else if (child.Name == "span" && child.HasChildNodes)
+                        {
+                            foreach (var child2 in child.ChildNodes)
+                            {
+                                if (child2.Name == "a")
+                                {
+                                    if (child.FirstChild.FirstChild.Name == "img")
+                                        liveTile.PeekImageSource = child.FirstChild.FirstChild.Attributes["src"].Value;
+                                    else
+                                        xmlString += CreateTextElement("Link: " + child.FirstChild.Attributes["href"].Value);
+                                }
+                                else if (child2.Name == "blockquote")
+                                {
+                                    if (child2.NextSibling != null && formatEntities.Contains(child2.NextSibling.Name))
+                                    {
+                                        collectText += ChangeIcons(child2.InnerText);
+                                        continue;
+                                    }
+                                    else
+                                        collectText += ChangeIcons(child2.InnerText);
+                                    liveTile.Content.Add(collectText);
+                                    collectText = "";
+                                }
+                            }
+                        }
+                        //else if (child.Name == "span" && child.FirstChild != null && child.FirstChild.Name == "a")
+                        //{
+                        //    if (child.FirstChild.FirstChild.Name == "img")
+                        //        liveTile.PeekImageSource = child.FirstChild.FirstChild.Attributes["src"].Value;
+                        //    else
+                        //        xmlString += CreateTextElement("Link: " + child.FirstChild.Attributes["href"].Value);
+                        //}
+                        else
+                            collectText += ChangeIcons(child.InnerText);
+                        liveTile.Content.Add(collectText);
+                        collectText = "";
+                    }
+                    else if (child.Name == "br") { }
+                    // code Block separat darstellen: 
+                    else if (child.Name == "key")
+                    {
+                        if (child.NextSibling != null && formatEntities.Contains(child.NextSibling.Name))
+                        {
+                            collectText += ChangeIcons(child.InnerText);
+                            continue;
+                        }
+                        else
+                            collectText += ChangeIcons(child.InnerText);
+                        liveTile.Content.Add("Code: " + collectText);
+                        collectText = "";
+                    }
+                    // blockquote Block separat darstellen: 
+                    else if (child.Name == "blockquote")
+                    {
+                        if (child.NextSibling != null && formatEntities.Contains(child.NextSibling.Name))
+                        {
+                            collectText += ChangeIcons(child.InnerText);
+                            continue;
+                        }
+                        else
+                            collectText += ChangeIcons(child.InnerText);
+                        liveTile.Content.Add("Zitat: " + collectText);
+                        collectText = "";
+                    }
+                    // list Block separat darstellen: 
+                    else if (child.Name == "ul")
+                    {
+                        foreach (var childList in child.ChildNodes)
+                        {
+                            if (childList.Name == "li")
+                                liveTile.Content.Add("* " + ChangeIcons(childList.InnerText));
+                        }
+                    }
+                    else if (child.Name == "a" && child.HasChildNodes && child.FirstChild.Name == "img")
+                    {
+                        var source = child.FirstChild.Attributes["src"];
+                        if (source.Value.Contains("data:image/jpeg;base64") || source.Value.Contains("data:image/png;base64"))
+                        {
+                            string fileSuffix = ".jpg";
+                            if (source.Value.Contains("data:image/jpeg;base64"))
+                                fileSuffix = ".jpg";
+                            if (source.Value.Contains("data:image/png;base64"))
+                                fileSuffix = ".png";
+                            // Lade base64-Stream in Variable bytes und erzeuge daraus einen MemoryStream
+                            source.Value = source.Value.Replace("data:image/jpeg;base64,", "");
+                            source.Value = source.Value.Replace("data:image/png;base64,", "");
+                            byte[] bytes = Convert.FromBase64String(source.Value);
+                            string fileName = Path.GetRandomFileName() + fileSuffix;
+                            string fileNamePath = "ms-appdata:///local/LiveTileImages/" + fileName;
+                            //StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+                            var localFolder = FileSystem.Current.LocalStorage;
+                            await localFolder.CreateFolderAsync("LiveTileImages", CreationCollisionOption.OpenIfExists);
+                            var file = await localFolder.CreateFileAsync("LiveTileImages\\" + fileName, CreationCollisionOption.ReplaceExisting);
+                            using (var stream = await file.OpenAsync(FileAccess.ReadAndWrite))
+                            {
+                                await stream.WriteAsync(bytes, 0, bytes.Length);
+                            }
+                            liveTile.PeekImageSource = fileNamePath;
+                        }
+                        else
+                        {
+                            liveTile.PeekImageSource = source.Value;
+                        }
+                    }
+                    // Links which are not nested in a span tag or having an image as child
+                    else if (child.Name == "a" && child.FirstChild.Name == "#text")
+                    {
+                        liveTile.Content.Add("Link: " + ChangeIcons(child.InnerText));
+                    }
+                    // alternative for all other tags - display innertext
+                    else
+                        liveTile.Content.Add(ChangeIcons(child.InnerText));
                 }
             }
         }

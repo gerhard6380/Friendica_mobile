@@ -14,6 +14,7 @@ namespace Friendica_Mobile.PCL
         public List<NotificationElement> UnseenPostsFromServer = new List<NotificationElement>();
         public List<NotificationElement> UnseenNewsfeedsFromServer = new List<NotificationElement>();
         public List<NotificationElement> UnseenMessagesFromServer = new List<NotificationElement>();
+        public List<LiveTileContent> NewsfeedLiveTiles = new List<LiveTileContent>();
         private string _authenticatedUser = Settings.FriendicaServer + "/profile/" + Settings.FriendicaUsername;
         private GetFriendicaMessages _getMessages;
 
@@ -75,6 +76,8 @@ namespace Friendica_Mobile.PCL
                                 continue;
                             UnseenNewsfeedsFromServer.Add(notification);
                         }
+
+                        // no need to provide live tile contents if user gets a notification for each rss post
                     }
                     else
                     {
@@ -87,6 +90,18 @@ namespace Friendica_Mobile.PCL
                                 GeneralInfoNewsfeed = true
                             };
                             UnseenNewsfeedsFromServer.Add(notification);
+
+                            // we will provide live tile contents for each rss feed post instead
+                            foreach (var post in newsfeedPosts.OrderBy(p => p.CreatedAtDateTime))
+                            {
+                                // transform html content into LiveTileContent
+                                var liveTile = await StaticHtmlToXml.TransformHtmlToLiveTileContent(post.Post.PostStatusnetHtml);
+                                // get profileimage from posting user (rss feed)
+                                liveTile.UserProfileImageSource = post.User.User.UserProfileImageUrl;
+                                // ad post id to the livetile
+                                liveTile.Id = post.Post.PostIdStr;
+                                NewsfeedLiveTiles.Add(liveTile);
+                            }
                         }
                     }                    
                     return StatusCode.Ok;
