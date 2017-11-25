@@ -1,4 +1,5 @@
-﻿using Friendica_Mobile.Mvvm;
+﻿using BackgroundTasks;
+using Friendica_Mobile.Mvvm;
 using Friendica_Mobile.PCL;
 using Friendica_Mobile.PCL.Strings;
 using Friendica_Mobile.PCL.Viewmodels;
@@ -76,10 +77,11 @@ namespace Friendica_Mobile.Views
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            
+
             var mvvm = this.DataContext as PCL.Viewmodels.NetworkViewmodel;
             mvvm.ButtonRetweetClicked += Mvvm_ButtonRetweetClicked;
             mvvm.LikeNewsfeedClicked += Mvvm_LikeNewsfeedClicked;
+            mvvm.SetAllSeenClicked += Mvvm_SetAllSeenClicked;
 
             if (mvvm.NewsfeedThreadsContainer != null)
             {
@@ -104,6 +106,13 @@ namespace Friendica_Mobile.Views
             }
 
             await mvvm.LoadInitial();
+        }
+
+
+        private void Mvvm_SetAllSeenClicked(object sender, EventArgs e)
+        {
+            // clear all live tiles after user has clicked on SetAllSeen in Newsfeed.xaml
+            StaticLiveTileHelper.ClearNotifications();
         }
 
 

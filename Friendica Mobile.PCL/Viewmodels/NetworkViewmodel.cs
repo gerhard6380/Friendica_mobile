@@ -145,7 +145,7 @@ namespace Friendica_Mobile.PCL.Viewmodels
         public event EventHandler ButtonAddNewEntryClicked;
         public event EventHandler ButtonShowMapClicked;
         public event EventHandler UserShowProfileClicked;
-
+        public event EventHandler SetAllSeenClicked;
 
         // constructor
         public NetworkViewmodel()
@@ -228,6 +228,9 @@ namespace Friendica_Mobile.PCL.Viewmodels
 
             // update setting with the id's of unseen posts to an empty string
             Settings.UnseenNewsfeedItems = new List<int>();
+
+            // clear live tiles
+            SetAllSeenClicked?.Invoke(this, EventArgs.Empty);
         }
 
 

@@ -6,6 +6,8 @@ using System.Collections.Generic;
 
 namespace Friendica_Mobile.PCL
 {
+    public enum AppState { Running, NotRunning };
+
     /// <summary>
     /// This is the Settings static class that can be used in your Core solution or in any
     /// of your client applications. All settings are laid out the same exact way with getters
@@ -74,6 +76,9 @@ namespace Friendica_Mobile.PCL
         private static readonly bool NotificationEachNewsfeedAllowedDefault = true;
 
         // app defined settings
+        private const string CurrentAppStateKey = "CurrentAppState";
+        private static readonly string CurrentAppStateDefault = "NotRunning";
+
         private const string LastReadNetworkPostKey = "LastReadNetworkPost";
         private static readonly string LastReadNetworkPostDefault = string.Empty;
 
@@ -237,6 +242,20 @@ namespace Friendica_Mobile.PCL
             set { AppSettings.AddOrUpdateValue<bool>(NotificationEachNewsfeedAllowedKey, value); }
         }
 
+
+        // app state to determine when app is in foreground
+        public static AppState CurrentAppState
+        {
+            get { var state = AppSettings.GetValueOrDefault<string>(CurrentAppStateKey, CurrentAppStateDefault);
+                if (state == "Running")
+                    return AppState.Running;
+                else if (state == "NotRunning")
+                    return AppState.NotRunning;
+                else
+                    return AppState.NotRunning;
+            }
+            set { AppSettings.AddOrUpdateValue<string>(CurrentAppStateKey, value.ToString()); }
+        }
 
         // Store id of last post read by user on this device
         // keep storing as string for backward compatability

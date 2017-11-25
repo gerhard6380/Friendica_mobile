@@ -1,7 +1,9 @@
 ﻿using Friendica_Mobile.PCL;
 using Friendica_Mobile.PCL.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Resources;
 using Windows.Data.Xml.Dom;
@@ -14,7 +16,6 @@ namespace BackgroundTasks
         BackgroundTaskDeferral _deferral = null;
         clsManageBadgeStatus badge = new clsManageBadgeStatus();
         NotificationHelper _notificationHelper = null;
-        //clsHtmlToXml htmlToXml = new clsHtmlToXml();
 
         // indicators for silent audio after first post
         private bool _firstLoopDonePosts = false;
@@ -25,6 +26,9 @@ namespace BackgroundTasks
 
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
+            if (Settings.CurrentAppState == AppState.Running)
+                return;
+
             // get deferral for async operations
             _deferral = taskInstance.GetDeferral();
 
@@ -93,6 +97,12 @@ namespace BackgroundTasks
                     count = ToastNotificationManager.History.GetHistory().Count;
                     await badge.SetNewBadgeNumberAsync(count);
 
+                    // create live tiles for newsfeed items
+                    if (_notificationHelper.NewsfeedLiveTiles.Count > 0)
+                    {
+                        CreateLiveTile(_notificationHelper.NewsfeedLiveTiles);
+                    }
+
                     _deferral.Complete();
                     return;
                 case NotificationHelper.StatusCode.NoResponse:
@@ -106,12 +116,27 @@ namespace BackgroundTasks
 
         private void CreateToasts(NotificationElement notification)
         {
+            string xmlBaseString = "";
             var xml = new XmlDocument();
-            string xmlBaseString = "<toast launch=\"general|{0}|{1}\" " +
-                "displayTimestamp=\"{2}\"><visual><binding template=\"ToastGeneric\">"
-                + "<image placement =\"appLogoOverride\" src=\"{3}\" hint-crop=\"None\"/>"
-                + "<text>{4}</text>"
-                + "{5}</binding></visual>";
+
+            // differentiate between newsfeed and normal posts
+            if (notification.GeneralInfoNewsfeed == true || notification.Post.PostType == Friendica_Mobile.PCL.Viewmodels.PostTypes.Newsfeed)
+            {
+                xmlBaseString = "<toast launch=\"newsfeed|{0}|{1}\" " +
+                    "displayTimestamp=\"{2}\"><visual><binding template=\"ToastGeneric\">"
+                    + "<image placement =\"appLogoOverride\" src=\"{3}\" hint-crop=\"None\"/>"
+                    + "<text>{4}</text>"
+                    + "{5}</binding></visual>";
+            }
+            else
+            {
+                xmlBaseString = "<toast launch=\"general|{0}|{1}\" " +
+                    "displayTimestamp=\"{2}\"><visual><binding template=\"ToastGeneric\">"
+                    + "<image placement =\"appLogoOverride\" src=\"{3}\" hint-crop=\"None\"/>"
+                    + "<text>{4}</text>"
+                    + "{5}</binding></visual>";
+            }
+
             // make notifications silent after 1st notification
             if (_firstLoopDonePosts)
                 xmlBaseString += "<audio silent=\"true\" />";
@@ -158,7 +183,11 @@ namespace BackgroundTasks
                 Tag = notification.PostId.ToString(),
                 Group = "Post"
             };
-            ToastNotificationManager.CreateToastNotifier().Show(toast);
+            try
+            {
+                ToastNotificationManager.CreateToastNotifier().Show(toast);
+            }
+            catch { }
         }
 
 
@@ -216,6 +245,142 @@ namespace BackgroundTasks
             };
             ToastNotificationManager.CreateToastNotifier().Show(toast);
         }
+
+        private void CreateLiveTile(List<LiveTileContent> content)
+        {
+            foreach (var liveTile in content)
+            {
+                var index = content.IndexOf(liveTile);
+                var liveTile2 = (index + 1 < content.Count) ? content.ElementAt(index + 1) : null;
+                var liveTile3 = (index + 2 < content.Count) ? content.ElementAt(index + 2) : null;
+                // create xml from content
+                var xmlString = CreateTileContent(liveTile, liveTile2, liveTile3);
+
+                // update livetile to show it in queue
+                if (xmlString != null)
+                    StaticLiveTileHelper.CreateTileNotification(xmlString);
+            }
+
+        }
+
+
+        private string CreateTileContent(LiveTileContent content, LiveTileContent content2 = null, LiveTileContent content3 = null)
+        {
+            if (content != null)
+            {
+                var xmlString = "<tile>";
+                xmlString += "<visual branding=\"nameAndLogo\" arguments=\"" + content.Id + "\">";
+
+                // prepare TileMedium
+                xmlString += "<binding template=\"TileMedium\">";
+                // include background image (user profile)
+                xmlString += CreateBackgroundImage(content.UserProfileImageSource);
+                // add text blocks
+                xmlString += CreateTextElements(content);
+                xmlString += "</binding>";
+
+                // prepare TileWide
+                xmlString += "<binding template=\"TileWide\">";
+                // include peek image if availabe
+                if (content.PeekImageSource != "")
+                    xmlString += CreatePeekImage(content.PeekImageSource);
+                // create post element
+                xmlString += CreateGroupEntry(content);
+                // create second post element (to be displayed if 1st element is short enough)
+                if (content2 != null)
+                {
+                    xmlString += "<text />";
+                    xmlString += CreateGroupEntry(content2);
+                }
+                xmlString += "</binding>";
+
+                // prepare TileLarge
+                xmlString += "<binding template=\"TileLarge\">";
+                // include peek image if availabe
+                if (content.PeekImageSource != "")
+                    xmlString += CreatePeekImage(content.PeekImageSource);
+                // create post element
+                xmlString += CreateGroupEntry(content);
+                // create second post element (to be displayed if 1st element is short enough)
+                if (content2 != null)
+                {
+                    xmlString += "<text />";
+                    xmlString += CreateGroupEntry(content2);
+                }
+                // create third post element (to be displayed if 1st and 2nd element are short enough)
+                if (content3 != null)
+                {
+                    xmlString += "<text />";
+                    xmlString += CreateGroupEntry(content3);
+                }
+                xmlString += "</binding>";
+
+                xmlString += "</visual>";
+                xmlString += "</tile>";
+                return xmlString;
+            }
+            else
+                return null;
+        }
+
+        private static string CreateTextCaption(string text)
+        {
+            return "<text hint-style=\"caption\" hint-wrap=\"true\">" + text + "</text>";
+        }
+
+        private static string CreateTextCaptionSubtle(string text)
+        {
+            return "<text hint-style=\"captionSubtle\" hint-wrap=\"true\">" + text + "</text>";
+        }
+
+        private static string CreateBackgroundImage(string url)
+        {
+            return "<image src=\"" + url + "\" placement=\"background\" hint-overlay=\"60\" />";
+        }
+
+        private static string CreatePeekImage(string url)
+        {
+            return "<image src=\"" + url + "\" placement=\"peek\" />";
+        }
+
+        private static string CreateImage(string url)
+        {
+            return "<image src=\"" + url + "\" hint-removeMargin=\"true\" />";
+        }
+
+
+        private static string CreateTextElements(LiveTileContent content)
+        {
+            string xmlString = "";
+            // add header if available
+            if (content.Title != "")
+                xmlString += CreateTextCaption(content.Title);
+            foreach (var text in content.Content)
+            {
+                if (xmlString.Length < 250)
+                    xmlString += CreateTextCaptionSubtle(text);
+            }
+            return xmlString;
+        }
+
+
+        private static string CreateGroupEntry(LiveTileContent content)
+        {
+            string xmlString = "";
+            // group for the post
+            xmlString += "<group>";
+            // subgroup with the image from user profile
+            xmlString += "<subgroup hint-weight=\"1\">";
+            xmlString += CreateImage(content.UserProfileImageSource);
+            xmlString += "</subgroup>";
+            // subgroup with the text elements
+            xmlString += "<subgroup hint-weight=\"7\">";
+            xmlString += CreateTextElements(content);
+            xmlString += "</subgroup>";
+            xmlString += "</group>";
+            return xmlString;
+        }
+
 
     }
 }

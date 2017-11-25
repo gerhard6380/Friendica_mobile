@@ -1,4 +1,5 @@
 ﻿using Friendica_Mobile.Models;
+using Friendica_Mobile.PCL;
 using System;
 using System.Collections.ObjectModel;
 using Windows.ApplicationModel;
@@ -14,8 +15,8 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 using Friendica_Mobile.PCL.Strings;
-using Windows.UI;
-using Windows.UI.Xaml.Media;
+using Windows.Foundation.Metadata;
+using System.Linq;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=402347&clcid=0x409
 
@@ -174,6 +175,9 @@ namespace Friendica_Mobile
 
             // inject the platform-specific implementation for localization into the PCL
             AppResources.Culture = new LocalizeUWP().GetCurrentCultureInfo();
+
+            // enable notification queue for live tiles
+            StaticLiveTileHelper.EnableNotificationQueue();
         }
 
 
@@ -193,12 +197,15 @@ namespace Friendica_Mobile
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            // save e to LaunchedEventArgs to check in next step if user clicked on a livetile with newsfeed info (then jump directly to newsfeed)
             LaunchedEventArgs = e;
             Initialize(e);
         }
 
         private async void Initialize(IActivatedEventArgs e)
-        { 
+        {
+            // set app state to running to prevent the background task from running while app is in foreground
+            PCL.Settings.CurrentAppState = AppState.Running;
 
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
@@ -272,7 +279,14 @@ namespace Friendica_Mobile
                     // if argument = "general" goto network, 
                     if (parameter[0] == "general")
                     {
-                        rootFrame.Navigate(typeof(Views.Network));
+                        rootFrame.Navigate(typeof(Views.Network), parameter[1]);
+                        await Badge.ClearBadgeNumber();
+                    }
+
+                    // if argument = "newsfeed" goto newsfeed
+                    else if (parameter[0] == "newsfeed")
+                    {
+                        rootFrame.Navigate(typeof(Views.Newsfeed), parameter[1]);
                         await Badge.ClearBadgeNumber();
                     }
                     
@@ -301,15 +315,19 @@ namespace Friendica_Mobile
                     }
 
                 }
+                // test if chaseable tile notification is present (should be no problem, as was introduced with 14393, and we have now min. version 15063)
+                else if (ApiInformation.IsPropertyPresent(typeof(LaunchActivatedEventArgs).FullName, nameof(LaunchActivatedEventArgs.TileActivatedInfo)))
+                {
+                    if (LaunchedEventArgs.TileActivatedInfo != null && LaunchedEventArgs.TileActivatedInfo.RecentlyShownNotifications.Count > 0)
+                    {
+                        rootFrame.Navigate(typeof(Views.Newsfeed));
+                    }
+                    else
+                        LoadStartPage(rootFrame);
+                }
                 else
                 {
-                    //rootFrame.Navigate(typeof(Views.Help));
-                    if (Settings.StartPage == "Home")
-                        rootFrame.Navigate(typeof(Views.Home));
-                    else if (Settings.StartPage == "Network")
-                        rootFrame.Navigate(typeof(Views.Network));
-                    else if (Settings.StartPage == "Newsfeed")
-                        rootFrame.Navigate(typeof(Views.Newsfeed));
+                    LoadStartPage(rootFrame);
                 }
             }
             // Ensure the current window is active
@@ -327,6 +345,18 @@ namespace Friendica_Mobile
             //ProfilesVm = new ProfilesViewmodel();
             //ProfilesVm.LoadProfiles();
         }
+
+        private void LoadStartPage(Frame rootFrame)
+        {
+            //rootFrame.Navigate(typeof(Views.Help));
+            if (Settings.StartPage == "Home")
+                rootFrame.Navigate(typeof(Views.Home));
+            else if (Settings.StartPage == "Network")
+                rootFrame.Navigate(typeof(Views.Network));
+            else if (Settings.StartPage == "Newsfeed")
+                rootFrame.Navigate(typeof(Views.Newsfeed));
+        }
+
 
         private void Shell_BackToAlbumsRequested(object sender, EventArgs e)
         {
@@ -358,6 +388,9 @@ namespace Friendica_Mobile
         /// <param name="e">Details about the suspend request.</param>
         private async void OnSuspending(object sender, SuspendingEventArgs e)
         {
+            // change app state to notrunning again
+            PCL.Settings.CurrentAppState = AppState.NotRunning;
+
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
 

@@ -212,6 +212,8 @@ namespace Friendica_Mobile.Views
                     {
                         await App.Badge.ClearBadgeNumber();
                     }
+                    // change app state to notrunning again
+                    PCL.Settings.CurrentAppState = AppState.NotRunning;
                     Application.Current.Exit();
                 }
             }
@@ -382,6 +384,8 @@ namespace Friendica_Mobile.Views
                     {
                         await App.Badge.ClearBadgeNumber();
                     }
+                    // change app state to notrunning again
+                    PCL.Settings.CurrentAppState = AppState.NotRunning;
                     Application.Current.Exit();
                 }
             }
