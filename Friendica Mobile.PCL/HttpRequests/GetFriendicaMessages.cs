@@ -323,7 +323,7 @@ namespace Friendica_Mobile.PCL.HttpRequests
                 }
             }
             else
-                return null;
+                return new List<JsonFriendicaMessage>();
         }
 
     }

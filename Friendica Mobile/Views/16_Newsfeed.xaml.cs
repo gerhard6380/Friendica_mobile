@@ -185,7 +185,7 @@ namespace Friendica_Mobile.Views
             if (atBottom)
             {
                 var mvvm = this.DataContext as PCL.Viewmodels.NetworkViewmodel;
-                if (mvvm.NewsfeedThreads.Count > 0 && !mvvm.IsLoadingNext)
+                if (mvvm.NewsfeedThreads != null && mvvm.NewsfeedThreads.Count > 0 && !mvvm.IsLoadingNext)
                     await mvvm.LoadNext();
             }
         }
