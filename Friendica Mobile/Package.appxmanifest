@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="35769GerhardSeeber.FriendicaMobile" Publisher="CN=A24C543B-F1A6-46B4-8764-DEFA022C3251" Version="2.5.4.0" />
+  <Identity Name="35769GerhardSeeber.FriendicaMobile" Publisher="CN=A24C543B-F1A6-46B4-8764-DEFA022C3251" Version="2.5.5.0" />
   <mp:PhoneIdentity PhoneProductId="c7438669-70cb-4378-ab06-a5b4dfb40898" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Friendica Mobile</DisplayName>
@@ -27,7 +27,7 @@
         <uap:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#1872A2" />
       </uap:VisualElements>
       <Extensions>
-        <Extension Category="windows.backgroundTasks" EntryPoint="BackgroundTasks.NotificationHistoryBackgroundTask">
+        <Extension Category="windows.backgroundTasks" EntryPoint="BackgroundTasks.NotificationReactionBackgroundTask">
           <BackgroundTasks>
             <Task Type="systemEvent" />
           </BackgroundTasks>
@@ -37,7 +37,7 @@
             <Task Type="timer" />
           </BackgroundTasks>
         </Extension>
-        <Extension Category="windows.backgroundTasks" EntryPoint="BackgroundTasks.NotificationReactionBackgroundTask">
+        <Extension Category="windows.backgroundTasks" EntryPoint="BackgroundTasks.NotificationHistoryBackgroundTask">
           <BackgroundTasks>
             <Task Type="systemEvent" />
           </BackgroundTasks>
