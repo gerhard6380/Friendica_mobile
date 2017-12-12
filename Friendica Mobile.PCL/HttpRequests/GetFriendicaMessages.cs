@@ -313,18 +313,27 @@ namespace Friendica_Mobile.PCL.HttpRequests
                     else
                     {
                         // result from search api call 
-                        return JsonConvert.DeserializeObject<List<JsonFriendicaMessage>>(ReturnString);
+                        try
+                        {
+                            return JsonConvert.DeserializeObject<List<JsonFriendicaMessage>>(ReturnString);
+                        }
+                        catch { return new List<JsonFriendicaMessage>(); }
                     }
                 }
                 catch
                 {
                     // convert the returned string into a list of objects
-                    return JsonConvert.DeserializeObject<List<JsonFriendicaMessage>>(ReturnString);
+                    try
+                    {
+                        return JsonConvert.DeserializeObject<List<JsonFriendicaMessage>>(ReturnString);
+                    }
+                    catch { return new List<JsonFriendicaMessage>(); }
                 }
             }
             else
                 return new List<JsonFriendicaMessage>();
         }
+
 
     }
 }
