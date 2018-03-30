@@ -212,10 +212,13 @@ namespace Friendica_Mobile.PCL
                             {
                                 if (child2.Name == "a")
                                 {
-                                    if (child.FirstChild.FirstChild.Name == "img")
-                                        liveTile.PeekImageSource = child.FirstChild.FirstChild.Attributes["src"].Value;
-                                    else
-                                        xmlString += CreateTextElement("Link: " + child.FirstChild.Attributes["href"].Value);
+                                    if (child.FirstChild != null && child.FirstChild.FirstChild != null)
+                                    {
+                                        if (child.FirstChild.FirstChild.Name == "img")
+                                            liveTile.PeekImageSource = child.FirstChild.FirstChild.Attributes["src"].Value;
+                                        else
+                                            xmlString += CreateTextElement("Link: " + child.FirstChild.Attributes["href"].Value);
+                                    }
                                 }
                                 else if (child2.Name == "blockquote")
                                 {
@@ -271,7 +274,7 @@ namespace Friendica_Mobile.PCL
                         collectText = "";
                     }
                     // list Block separat darstellen: 
-                    else if (child.Name == "ul")
+                    else if (child.Name == "ul" && child.HasChildNodes)
                     {
                         foreach (var childList in child.ChildNodes)
                         {
