@@ -768,7 +768,7 @@ namespace Friendica_Mobile.Mvvm
             var getHomeNewEntries = new GetFriendicaHome();
             getHomeNewEntries.FriendicaHomeLoaded += GetHomeNewEntries_FriendicaHomeLoaded;
             double newestId = 0;
-            if (_homePosts.Count != 0)
+            if (_homePosts != null && _homePosts.Count != 0)
                 newestId = _homePosts.Max(m => m.Post.PostId);
             IsRefreshing = true;
             getHomeNewEntries.GetFriendicaHomeNewEntries(newestId, 20);

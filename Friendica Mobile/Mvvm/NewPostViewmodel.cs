@@ -622,31 +622,37 @@ namespace Friendica_Mobile.Mvvm
         {
             var threadId = GetThreadId();
 
-            foreach (var thread in App.NetworkThreads)
+            if (App.NetworkThreads != null)
             {
-                if (thread.ThreadId == threadId)
+                foreach (var thread in App.NetworkThreads)
                 {
-                    foreach (var post in thread.Posts)
+                    if (thread.ThreadId == threadId)
                     {
-                        if (!post.IsComment)
-                            post.ToggleShowCommentsState = false;
+                        foreach (var post in thread.Posts)
+                        {
+                            if (!post.IsComment)
+                                post.ToggleShowCommentsState = false;
+                        }
+                        ShowThread.Add(thread);
                     }
-                    ShowThread.Add(thread);
+                    thread.ReduceComments();
                 }
-                thread.ReduceComments();
             }
-            foreach (var thread in App.HomeThreads)
+            if (App.HomeThreads != null)
             {
-                if (thread.ThreadId == threadId)
+                foreach (var thread in App.HomeThreads)
                 {
-                    foreach (var post in thread.Posts)
+                    if (thread.ThreadId == threadId)
                     {
-                        if (!post.IsComment)
-                            post.ToggleShowCommentsState = false;
+                        foreach (var post in thread.Posts)
+                        {
+                            if (!post.IsComment)
+                                post.ToggleShowCommentsState = false;
+                        }
+                        ShowThread.Add(thread);
                     }
-                    ShowThread.Add(thread);
+                    thread.ReduceComments();
                 }
-                thread.ReduceComments();
             }
         }
 
