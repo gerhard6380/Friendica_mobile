@@ -317,8 +317,15 @@ namespace Friendica_Mobile.PCL
             }
             set
             {
-                var serializedList = JsonConvert.SerializeObject(value);
-                AppSettings.AddOrUpdateValue<string>(UnseenNewsfeedItemsKey, serializedList);
+                try
+                {
+                    var serializedList = JsonConvert.SerializeObject(value);
+                    AppSettings.AddOrUpdateValue<string>(UnseenNewsfeedItemsKey, serializedList);
+                }
+                catch (Exception ex)
+                {
+                    AppSettings.AddOrUpdateValue<string>(UnseenNewsfeedItemsKey, "");
+                }
             }
         }
 

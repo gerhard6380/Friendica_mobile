@@ -36,7 +36,7 @@ namespace Friendica_Mobile.Views
             mvvm.IsVisibleHeader = false;
 
             // build link to the support forum incl. zrl link to the own profile
-            string baseUrl = "http://mozartweg.dyndns.org/friendica/profile/friendicamobile?zrl={0}&timestamp={1}";
+            string baseUrl = "https://friendica.hasecom.at/profile/friendicamobile?zrl={0}&timestamp={1}";
             string profile = App.Settings.FriendicaServer + "/profile/" + App.Settings.FriendicaUsername;
             var url = String.Format(baseUrl, Uri.EscapeDataString(profile), Uri.EscapeDataString(DateTime.Now.ToString()));
             mvvm.Uri = new Uri(url);
@@ -51,7 +51,7 @@ namespace Friendica_Mobile.Views
             mvvm.IsVisibleHeader = false;
 
             // build link to the support forum incl. zrl link to the own profile
-            string baseUrl = "https://helpers.pyxis.uberspace.de/profile/helpers?zrl={0}&timestamp={1}";
+            string baseUrl = "https://forum.friendi.ca/profile/helpers?zrl={0}&timestamp={1}";
             string profile = App.Settings.FriendicaServer + "/profile/" + App.Settings.FriendicaUsername;
             var url = String.Format(baseUrl, Uri.EscapeDataString(profile), Uri.EscapeDataString(DateTime.Now.ToString()));
             mvvm.Uri = new Uri(url);
@@ -63,7 +63,7 @@ namespace Friendica_Mobile.Views
         private async void buttonLinkFriendicaDevelopers_Click(object sender, RoutedEventArgs e)
         {
             // build link to the support forum incl. zrl link to the own profile
-            string baseUrl = "https://helpers.pyxis.uberspace.de/profile/developers?zrl={0}&timestamp={1}";
+            string baseUrl = "https://forum.friendi.ca/profile/developers?zrl={0}&timestamp={1}";
             string profile = App.Settings.FriendicaServer + "/profile/" + App.Settings.FriendicaUsername;
             var url = String.Format(baseUrl, Uri.EscapeDataString(profile), Uri.EscapeDataString(DateTime.Now.ToString()));
 
