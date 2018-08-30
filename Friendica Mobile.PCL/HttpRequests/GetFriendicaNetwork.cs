@@ -77,7 +77,16 @@ namespace Friendica_Mobile.PCL.HttpRequests
             if (ReturnString != null)
             {
                 // convert the returned string into a list of objects
-                _postsRaw = JsonConvert.DeserializeObject<List<JsonFriendicaPost>>(ReturnString);
+                try
+                {
+                    _postsRaw = JsonConvert.DeserializeObject<List<JsonFriendicaPost>>(ReturnString);
+                }
+                catch
+                {
+                    // TODO: issue with "User not found" resulting in 400 Bad Request not solved yet
+
+                    _postsRaw = new List<JsonFriendicaPost>();
+                }
 
                 foreach (var post in _postsRaw)
                 {

@@ -512,7 +512,7 @@ namespace Friendica_Mobile.Mvvm
         public SettingsViewmodel()
         {
             if (App.Settings.FriendicaServer == "" || App.Settings.FriendicaServer == null)
-                FriendicaServer = "http://";
+                FriendicaServer = "https://";
             else
                 FriendicaServer = App.Settings.FriendicaServer;
 
