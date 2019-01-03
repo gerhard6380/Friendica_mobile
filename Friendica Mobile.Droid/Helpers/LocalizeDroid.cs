@@ -1,8 +1,9 @@
 ﻿using Friendica_Mobile.PCL;
 using System.Globalization;
 using System.Threading;
+using Xamarin.Forms;
 
-
+[assembly: Dependency(typeof(Friendica_Mobile.Droid.LocalizeDroid))]
 namespace Friendica_Mobile.Droid
 {
     public class LocalizeDroid : ILocalize
@@ -16,39 +17,29 @@ namespace Friendica_Mobile.Droid
         {
             var netLanguage = "en";
             var androidLocale = Java.Util.Locale.Default;
-            CultureInfo ci = null;
-
-            if (androidLocale.Language == "de" || androidLocale.Language == "en" || androidLocale.Language == "es"
-                    || androidLocale.Language == "fr" || androidLocale.Language == "it" || androidLocale.Language == "pt")
+            netLanguage = AndroidToDotnetLanguage(androidLocale.ToString().Replace("_", "-"));
+            // this gets called a lot - try/catch can be expensive so consider caching or something
+            System.Globalization.CultureInfo ci = null;
+            try
             {
-                netLanguage = AndroidToDotnetLanguage(androidLocale.ToString().Replace("_", "-"));
-                // this gets called a lot - try/catch can be expensive so consider caching or something
+                ci = new System.Globalization.CultureInfo(netLanguage);
+            }
+            catch (CultureNotFoundException e1)
+            {
+                // iOS locale not valid .NET culture (eg. "en-ES" : English in Spain)
+                // fallback to first characters, in this case "en"
                 try
                 {
-                    ci = new CultureInfo(netLanguage);
+                    var fallback = ToDotnetFallbackLanguage(new PlatformCulture(netLanguage));
+                    ci = new System.Globalization.CultureInfo(fallback);
                 }
-                catch (CultureNotFoundException e1)
+                catch (CultureNotFoundException e2)
                 {
-                    // iOS locale not valid .NET culture (eg. "en-ES" : English in Spain)
-                    // fallback to first characters, in this case "en"
-                    try
-                    {
-                        var fallback = ToDotnetFallbackLanguage(new PlatformCulture(netLanguage));
-                        ci = new CultureInfo(fallback);
-                    }
-                    catch (CultureNotFoundException e2)
-                    {
-                        // iOS language not valid .NET culture, falling back to English
-                        ci = new CultureInfo("en");
-                    }
+                    // iOS language not valid .NET culture, falling back to English
+                    ci = new System.Globalization.CultureInfo("en");
                 }
-                return ci;
             }
-            else
-            {
-                ci = new CultureInfo("en");
-                return ci;
-            }
+            return ci;
         }
 
         string AndroidToDotnetLanguage(string androidLanguage)

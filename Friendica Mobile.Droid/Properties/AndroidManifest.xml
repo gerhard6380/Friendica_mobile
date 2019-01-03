@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="Friendica_Mobile.Droid.Friendica_Mobile.Droid" android:versionCode="1" android:versionName="1.0" android:installLocation="preferExternal">
-	<uses-sdk android:minSdkVersion="16" android:targetSdkVersion="25" />
-	<application android:label="Friendica_Mobile.Droid"></application>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.seeber.FriendicaMobile" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="23" android:targetSdkVersion="27" />
+	<application android:label="Friendica_Mobile"></application>
 </manifest>
