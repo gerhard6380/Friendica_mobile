@@ -20,19 +20,25 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>MinimumOSVersion</key>
+	<string>9.3</string>
 	<key>CFBundleDisplayName</key>
-	<string>Friendica_Mobile.iOS</string>
+	<string>NavigationMenu</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.seeber.Friendica-Mobile</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>
-	<string>Launchscreen</string>
+	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
-	<string>Friendica_Mobile.iOS</string>
+	<string>Friendica Mobile</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SEGMDL2.TTF</string>
+	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
-	<key>MinimumOSVersion</key>
-	<string>9.3</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>
