@@ -1,0 +1,75 @@
+﻿<UserControl
+    x:Class="Friendica_Mobile.UWP.Styles.UserControlProfileDatePicker"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Friendica_Mobile.UWP.Styles"
+    xmlns:conv="using:Friendica_Mobile.UWP.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="root"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles/MainStyles.xaml"/>
+                <ResourceDictionary Source="../Styles/ProfilesStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <conv:SplitViewWidthProfileConverter x:Key="SplitViewWidthProfileConverter" />
+            <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <conv:BoolToVisibilityCollapsedConverter x:Key="BoolToVisibilityCollapsedConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <GridViewItem x:Name="gridViewItem"
+                  Margin="0,0,0,0"
+                  Style="{StaticResource ProfileGridViewItem}"
+                  Width="{Binding ElementName=root, Path=ElementWidth, Converter={StaticResource SplitViewWidthProfileConverter}, ConverterParameter=GridView}"
+                  Template="{StaticResource VariableGridViewItemControlTemplate}">
+        <StackPanel Margin="0,0,0,0"
+                    SizeChanged="StackPanel_SizeChanged">
+            <TextBlock x:Name="textblockProfilesFieldHeader"
+                       HorizontalAlignment="Left"
+                       Margin="-16,0,0,0"
+                       Width="{Binding ElementName=root, Path=ElementWidth, Converter={StaticResource SplitViewWidthProfileConverter}, ConverterParameter=GridViewItem}"
+                       Style="{StaticResource ProfileHeaderTextBlockStyle}" />
+
+            <ToggleSwitch x:Name="toggleProfileDateDefined" x:Uid="toggleProfileDateDefined"
+                          IsEnabled="{Binding IsEditorEnabled, FallbackValue=false}"
+                          IsEnabledChanged="toggleProfileDateDefined_IsEnabledChanged"
+                          Toggled="toggleProfileDateDefined_Toggled"
+                          IsOn="{Binding ElementName=root, Path=DateDefined, Mode=TwoWay}"/>
+
+            <StackPanel Visibility="{Binding ElementName=root, Path=DateDefined, Converter={StaticResource BoolToVisibilityConverter}}">
+                <DatePicker x:Name="datepickerProfilesField"
+                            Date="{Binding ElementName=root, Path=ElementDate, Mode=TwoWay}"
+                            Width="{Binding ElementName=root, Path=ElementWidth, Converter={StaticResource SplitViewWidthProfileConverter}, ConverterParameter=GridViewItem}"
+                            HorizontalAlignment="Left"
+                            Margin="24,0,4,0"
+                            YearVisible="False"
+                            Visibility="{Binding ElementName=root, Path=DateHasYear, Converter={StaticResource BoolToVisibilityCollapsedConverter}}"
+                            IsEnabled="{Binding IsEditorEnabled}" Style="{StaticResource ProfileDatePickerStyle}" />
+
+                <CalendarDatePicker x:Name="calendarProfilesField"
+                                    Date="{Binding ElementName=root, Path=ElementDate, Mode=TwoWay}"
+                                    Width="{Binding ElementName=root, Path=ElementWidth, Converter={StaticResource SplitViewWidthProfileConverter}, ConverterParameter=GridViewItem}"
+                                    HorizontalAlignment="Left"
+                                    Margin="24,0,4,0"
+                                    Visibility="{Binding ElementName=root, Path=DateHasYear, Converter={StaticResource BoolToVisibilityConverter}}"
+                                    IsEnabled="{Binding IsEditorEnabled}" Style="{StaticResource ProfileCalendarDatePickerStyle}" />
+
+                <ToggleSwitch x:Name="toggleProfileWithoutYear" x:Uid="toggleProfileWithoutYear"
+                          IsEnabled="{Binding IsEditorEnabled}"
+                              Visibility="{Binding IsEditorEnabled, Converter={StaticResource BoolToVisibilityConverter}}"
+                              Toggled="toggleProfileWithoutYear_Toggled"
+                              IsOn="{Binding ElementName=root, Path=DateHasYear, Mode=TwoWay}"/>
+
+            </StackPanel>
+
+        </StackPanel>
+    </GridViewItem>
+    
+</UserControl>
+    

@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.Data.Json;
-using Windows.Storage.Streams;
-
-namespace Friendica_Mobile.Models
+﻿namespace Friendica_Mobile.Models
 {
-    public class FriendicaMessageNew
+    public sealed class FriendicaMessageNew
     {
         // used to post a new private message to another friend - currently not possible to post private images
 
-        public enum AttributeTypes { String, Number, Boolean, FriendicaPost, FriendicaUser, FriendicaGeo };
+        private enum AttributeTypes { String, Number, Boolean, FriendicaPost, FriendicaUser, FriendicaGeo };
 
         private const string newMessageUserIdKey = "user_id";
         private const string newMessageTextKey = "text";
@@ -35,41 +26,6 @@ namespace Friendica_Mobile.Models
             //NewMessageMedia = null;
         }
 
-        private object CheckAttribute(JsonObject jsonObject, string key, AttributeTypes type)
-        {
-            IJsonValue value;
-            jsonObject.TryGetValue(key, out value);
-            switch (type)
-            {
-                case AttributeTypes.String:
-                    if (value == null || value.ValueType == JsonValueType.Null)
-                        return null;
-                    else
-                        return jsonObject.GetNamedString(key, "");
-                case AttributeTypes.Number:
-                    if (value == null || value.ValueType == JsonValueType.Null)
-                        return 0.0;
-                    else
-                        return jsonObject.GetNamedNumber(key, 0);
-                case AttributeTypes.Boolean:
-                    if (value == null || value.ValueType == JsonValueType.Null)
-                        return null;
-                    else
-                        return jsonObject.GetNamedBoolean(key, false);
-                case AttributeTypes.FriendicaPost:
-                    if (value == null || value.ValueType == JsonValueType.Null)
-                        return null;
-                    else
-                        return new FriendicaPost(jsonObject.GetNamedObject(key));
-                case AttributeTypes.FriendicaGeo:
-                    if (value == null || value.ValueType == JsonValueType.Null)
-                        return null;
-                    else
-                        return new FriendicaGeo(jsonObject.GetNamedObject(key));
-                default:
-                    return null;
-            } 
-        }
 
         public string NewMessageUserUrl
         {

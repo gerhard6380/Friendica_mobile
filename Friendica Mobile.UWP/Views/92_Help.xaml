@@ -1,0 +1,143 @@
+﻿<Page
+    x:Class="Friendica_Mobile.UWP.Views.Help"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:views="using:Friendica_Mobile.UWP.Views"
+    xmlns:conv="using:Friendica_Mobile.UWP.Converters"
+    xmlns:triggers="using:Friendica_Mobile.UWP.Triggers"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Name="pageHelp" x:Uid="pageHelp">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles/MainStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="TextBlock" BasedOn="{StaticResource GenericTextBlockStyle}" />
+            <Style TargetType="Grid" BasedOn="{StaticResource AboutGridStyle}" />
+            <conv:BoolToVisibilityCollapsedConverter x:Key="BoolToVisibilityCollapsedConverter" />
+            <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="MobilePortrait">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="MobilePortrait" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="textBlockApplicationName.Visibility" Value="Visible" />
+                        <Setter Target="textBlockPageName.Visibility" Value="Visible" />
+                        <Setter Target="pageHelp.Margin" Value="0,0,0,0" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="MobileLandscape">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="MobileLandscape" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="textBlockApplicationName.Visibility" Value="Collapsed" />
+                        <Setter Target="textBlockPageName.Visibility" Value="Visible" />
+                        <Setter Target="textBlockPageName.FontSize" Value="{StaticResource ApplicationNameFontSize}" />
+                        <Setter Target="pageHelp.Margin" Value="0,0,48,0" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Desktop">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="DesktopLandscape" />
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="DesktopPortrait" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="textBlockApplicationName.Visibility" Value="Collapsed" />
+                        <Setter Target="textBlockPageName.Visibility" Value="Visible" />
+                        <Setter Target="textBlockPageName.FontSize" Value="{StaticResource PageNameFontSize}" />
+                        <Setter Target="pageHelp.Margin" Value="0,0,0,0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <ScrollViewer>
+            <StackPanel>
+                <RelativePanel>
+                    <TextBlock x:Name="textBlockApplicationName" x:Uid="textBlockApplicationName" 
+                               Visibility="Visible" 
+                               Style="{StaticResource ApplicationNameTextBlockStyle}"/>
+                    <TextBlock x:Name="textBlockPageName" x:Uid="pageTitleHelp"  
+                               Visibility="Visible" 
+                               Style="{StaticResource PageNameTextBlockStyle}" 
+                               RelativePanel.Below="textBlockApplicationName"/>
+                </RelativePanel>
+
+                <!-- introduction to Friendica Mobile Support forum button -->
+                <TextBlock x:Uid="textblockHelpAppSupportpageHeader"
+                           Style="{StaticResource AboutHeaderTextBlockStyle}" />
+                <RichTextBlock IsTextSelectionEnabled="False"
+                    Margin="28,0,12,0">
+                    <Paragraph>
+                        <Run x:Uid="textHelpAppSupport1" />
+                        <LineBreak />
+                        <LineBreak />
+                        <Run x:Uid="textHelpAppSupport2" />
+                        <LineBreak />
+                    </Paragraph>
+                </RichTextBlock>
+
+                <Button x:Name="buttonLinkAppSupportpage" x:Uid="buttonLinkAppSupportPage" 
+                    Margin="28,0,0,28"
+                    Click="buttonLinkAppSupportpage_Click"/>
+
+                <!-- introduction to general help resources -->
+                <TextBlock x:Uid="textblockHelpFriendicaSupportHeader"
+                       Style="{StaticResource AboutHeaderTextBlockStyle}" />
+                <RichTextBlock IsTextSelectionEnabled="False"
+                           Margin="28,0,12,0">
+                    <Paragraph>
+                        <Run x:Uid="textHelpFriendicaSupport" />
+                        <LineBreak />
+                    </Paragraph>
+                </RichTextBlock>
+
+                <Button x:Name="buttonLinkFriendicaSupport" x:Uid="buttonLinkFriendicaSupport" 
+                    Content="Friendica Support"
+                    Margin="28,0,0,28"
+                    Click="buttonLinkFriendicaSupport_Click"/>
+
+                <RichTextBlock IsTextSelectionEnabled="False"
+                           Margin="28,0,12,0">
+                    <Paragraph>
+                        <Run x:Uid="textHelpFriendicaDevelopers" />
+                        <LineBreak />
+                    </Paragraph>
+                </RichTextBlock>
+
+                <Button x:Name="buttonLinkFriendicaDevelopers" x:Uid="buttonLinkFriendicaDevelopers" 
+                    Content="Friendica Developers"
+                    Margin="28,0,0,28"
+                    Click="buttonLinkFriendicaDevelopers_Click"/>
+
+                <RichTextBlock IsTextSelectionEnabled="False"
+                           Margin="28,0,12,0">
+                    <Paragraph>
+                        <Run x:Uid="textHelpFriendicaOthers1" />
+                        <Hyperlink NavigateUri="https://github.com/friendica/friendica">
+                            <Run Text="Github" />
+                        </Hyperlink>
+                        <Run Text=". " />
+                        <Run x:Uid="textHelpFriendicaOthers2" />
+                        <Hyperlink NavigateUri="http://friendi.ca/">
+                            <Run Text="friendi.ca" />
+                        </Hyperlink>
+                        <Run Text="." />
+                        <LineBreak />
+                    </Paragraph>
+                </RichTextBlock>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

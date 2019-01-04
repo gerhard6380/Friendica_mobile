@@ -1,4 +1,4 @@
-﻿using Friendica_Mobile.PCL.Models;
+﻿using Friendica_Mobile.Models;
 using Windows.UI.Notifications;
 using Windows.Data.Xml.Dom;
 using System;

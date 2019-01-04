@@ -1,9 +1,12 @@
-﻿<Application
-    x:Class="Friendica_Mobile.App"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Friendica_Mobile"
-    xmlns:Views="using:Friendica_Mobile.Views"
-    xmlns:triggers="using:Friendica_Mobile.Triggers">
-
+<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:Friendica_Mobile"
+             x:Class="Friendica_Mobile.App">
+  
+    <!-- implement dictionary with general styles for the app -->
+    <Application.Resources>
+        <local:GeneralStyles />
+    </Application.Resources>
+    
 </Application>

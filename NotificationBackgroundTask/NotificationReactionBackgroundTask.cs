@@ -2,10 +2,10 @@
 using Windows.UI.Notifications;
 using System;
 using Windows.ApplicationModel.Resources;
-using Friendica_Mobile.PCL.Models;
-using Friendica_Mobile.PCL.HttpRequests;
+using Friendica_Mobile.Models;
+using Friendica_Mobile.HttpRequests;
 using System.Threading.Tasks;
-using Friendica_Mobile.PCL.Viewmodels;
+using Friendica_Mobile.Viewmodels;
 
 namespace BackgroundTasks
 {

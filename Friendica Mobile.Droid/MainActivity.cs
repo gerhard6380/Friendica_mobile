@@ -1,46 +1,28 @@
-﻿using Android.App;
+﻿using System;
+using Android.App;
+using Android.Content.PM;
+using Android.Runtime;
+using Android.Views;
 using Android.Widget;
 using Android.OS;
-using Friendica_Mobile.PCL.Viewmodels;
-using Friendica_Mobile.PCL.Strings;
+using Friendica_Mobile.PCL;
 
 namespace Friendica_Mobile.Droid
 {
-    [Activity(Label = "Friendica_Mobile.Droid", MainLauncher = true, Icon = "@drawable/icon")]
-    public class MainActivity : Activity
+    [Activity(Label = "Friendica_Mobile", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        
-        NetworkViewmodel mvvm;
+        private Friendica_Mobile.PCL.App _application;
 
-        protected override async void OnCreate(Bundle bundle)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(bundle);
+            TabLayoutResource = Resource.Layout.Tabbar;
+            ToolbarResource = Resource.Layout.Toolbar;
 
-            // Set our view from the "main" layout resource
-            SetContentView (Resource.Layout.Main);
-
-            PCL.StaticMessageDialog.Dialog = new MessageDialogDroid(this);
-            AppResources.Culture = new LocalizeDroid().GetCurrentCultureInfo();
-            mvvm = new NetworkViewmodel();
-
-
-            PCL.Settings.FriendicaServer = "http://mozartweg.dyndns.org/friendica";
-            PCL.Settings.FriendicaUsername = "gerhard";
-            PCL.Settings.FriendicaPassword = "30031982";
-
-            await mvvm.LoadInitial();
-
-            Button button1 = FindViewById<Button>(Resource.Id.button1);
-            button1.Text = AppResources.buttonLike_Content;
-            button1.Text = PCL.Settings.FriendicaServer;
-            button1.Click += Button1_Click;
-        }
-
-        private void Button1_Click(object sender, System.EventArgs e)
-        {
-            var test = mvvm.Posts[0];
-            //test.Testen();
+            base.OnCreate(savedInstanceState);
+            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            _application = new App();
+            LoadApplication(_application);
         }
     }
 }
-

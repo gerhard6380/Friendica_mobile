@@ -1,94 +1,78 @@
-﻿using BackgroundTasks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.ApplicationModel.Resources;
-using Windows.Data.Json;
-using Windows.UI.Xaml.Documents;
+﻿using System.Collections.Generic;
 
 namespace Friendica_Mobile.Models
 {
-    public class FriendicaActivities : FriendicaBaseModel
+    public class FriendicaActivities
     {
-        // API interface properties
-        private const string activitiesLikeKey = "like";
-        private const string activitiesDislikeKey = "dislike";
-        private const string activitiesAttendYesKey = "attendyes";
-        private const string activitiesAttendNoKey = "attendno";
-        private const string activitiesAttendMaybeKey = "attendmaybe";
+        private List<FriendicaUser> _activitiesLike;
+        private List<FriendicaUser> _activitiesDislike;
+        private List<FriendicaUser> _activitiesAttendYes;
+        private List<FriendicaUser> _activitiesAttendNo;
+        private List<FriendicaUser> _activitiesAttendMaybe;
 
-        private List<FriendicaUserExtended> _activitiesLike;
-        private List<FriendicaUserExtended> _activitiesDislike;
-        private List<FriendicaUserExtended> _activitiesAttendYes;
-        private List<FriendicaUserExtended> _activitiesAttendNo;
-        private List<FriendicaUserExtended> _activitiesAttendMaybe;
 
-        public List<FriendicaUserExtended> ActivitiesLike
+        public List<FriendicaUser> ActivitiesLike
         {
             get { return _activitiesLike; }
             set { _activitiesLike = value; }
         }
 
-        public List<FriendicaUserExtended> ActivitiesDislike
+        public List<FriendicaUser> ActivitiesDislike
         {
             get { return _activitiesDislike; }
             set { _activitiesDislike = value; }
         }
 
-        public List<FriendicaUserExtended> ActivitiesAttendYes
+        public List<FriendicaUser> ActivitiesAttendYes
         {
             get { return _activitiesAttendYes; }
             set { _activitiesAttendYes = value; }
         }
 
-        public List<FriendicaUserExtended> ActivitiesAttendNo
+        public List<FriendicaUser> ActivitiesAttendNo
         {
             get { return _activitiesAttendNo; }
             set { _activitiesAttendNo = value; }
         }
 
-        public List<FriendicaUserExtended> ActivitiesAttendMaybe
+        public List<FriendicaUser> ActivitiesAttendMaybe
         {
             get { return _activitiesAttendMaybe; }
             set { _activitiesAttendMaybe = value; }
         }
 
-
         public FriendicaActivities()
         {
-            ActivitiesLike = new List<FriendicaUserExtended>();
-            ActivitiesDislike = new List<FriendicaUserExtended>();
-            ActivitiesAttendYes = new List<FriendicaUserExtended>();
-            ActivitiesAttendNo = new List<FriendicaUserExtended>();
-            ActivitiesAttendMaybe = new List<FriendicaUserExtended>();
+            ActivitiesLike = new List<FriendicaUser>();
+            ActivitiesDislike = new List<FriendicaUser>();
+            ActivitiesAttendYes = new List<FriendicaUser>();
+            ActivitiesAttendNo = new List<FriendicaUser>();
+            ActivitiesAttendMaybe = new List<FriendicaUser>();
         }
 
-
-        public FriendicaActivities(JsonObject jsonObject) : this()
+        public FriendicaActivities(JsonFriendicaActivities activities)
         {
-            ActivitiesLike = ConvertAndSort(jsonObject, activitiesLikeKey);
-            ActivitiesDislike = ConvertAndSort(jsonObject, activitiesDislikeKey);
-            ActivitiesAttendYes = ConvertAndSort(jsonObject, activitiesAttendYesKey);
-            ActivitiesAttendNo = ConvertAndSort(jsonObject, activitiesAttendNoKey);
-            ActivitiesAttendMaybe = ConvertAndSort(jsonObject, activitiesAttendMaybeKey);
+            ActivitiesLike = new List<FriendicaUser>();
+            ActivitiesDislike = new List<FriendicaUser>();
+            ActivitiesAttendYes = new List<FriendicaUser>();
+            ActivitiesAttendNo = new List<FriendicaUser>();
+            ActivitiesAttendMaybe = new List<FriendicaUser>();
+
+            foreach (var user in activities.ActivitiesLike)
+                ActivitiesLike.Add(new FriendicaUser(user));
+
+            foreach (var user in activities.ActivitiesDislike)
+                ActivitiesDislike.Add(new FriendicaUser(user));
+
+            foreach (var user in activities.ActivitiesAttendYes)
+                ActivitiesAttendYes.Add(new FriendicaUser(user));
+
+            foreach (var user in activities.ActivitiesAttendNo)
+                ActivitiesAttendNo.Add(new FriendicaUser(user));
+
+            foreach (var user in activities.ActivitiesAttendMaybe)
+                ActivitiesAttendMaybe.Add(new FriendicaUser(user));
         }
 
-        private List<FriendicaUserExtended> ConvertAndSort(JsonObject jsonObject, string key)
-        {
-            List<FriendicaUserExtended> users = new List<FriendicaUserExtended>();
-            try
-            { users = ConvertJsonToObjects(new FriendicaUserExtended(), jsonObject.GetNamedArray(key, null)); }
-            catch
-            { return null; }
-            var usersOrdered = users.OrderBy(a => a.User.UserScreenName);
-            var list = new List<FriendicaUserExtended>();
-            // we need to loop through the ordered list as types are incompatible
-            foreach (var user in usersOrdered)
-                list.Add(user);
-            return list;
-        }
-        
     }
 }
