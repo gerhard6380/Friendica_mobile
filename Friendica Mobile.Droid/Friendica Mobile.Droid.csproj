@@ -93,9 +93,9 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Friendica Mobile.PCL\Friendica Mobile.PCL.csproj">
+    <ProjectReference Include="..\Friendica Mobile\Friendica Mobile.csproj">
       <Project>{6d25d629-13a8-4320-8e59-28b05319668e}</Project>
-      <Name>Friendica Mobile.PCL</Name>
+      <Name>Friendica Mobile</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

@@ -1,78 +1,98 @@
 ﻿using Friendica_Mobile.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.Data.Json;
 
 namespace Friendica_Mobile.HttpRequests
 {
-    class GetFriendicaNetwork : clsHttpRequests
+    class GetFriendicaNetwork : HttpRequestsBase
     {
-        AppSettings appSettings = new AppSettings();
-
-        public event EventHandler FriendicaNetworkLoaded;
-        protected virtual void OnFriendicaNetworkLoaded()
-        {
-            if (FriendicaNetworkLoaded != null)
-                FriendicaNetworkLoaded(this, EventArgs.Empty);
-        }
+        // containing the raw returns from server converted into classes
+        private List<JsonFriendicaPost> _postsRaw;
+        // containing the extended classes (commands, events, derived from BindableClass to enable XAML binding)
+        public List<FriendicaPost> Posts;
 
         public GetFriendicaNetwork()
         {
+            _postsRaw = new List<JsonFriendicaPost>();
+            Posts = new List<FriendicaPost>();
         }
 
-        public async void GetFriendicaNetworkInitial(int count)
+
+        // method to retrieve the first posts from server (default = 20)
+        public async Task GetNetworkInitialAsync(int count)
         {
             var url = String.Format("{0}/api/statuses/home_timeline.json?count={1}&timestamp={2}",
-                appSettings.FriendicaServer,
+                Settings.FriendicaServer,
                 count,
                 DateTime.Now.ToString());
-            this.RequestFinished += GetFriendicaNetwork_RequestFinished;
-            await this.GetString(url, appSettings.FriendicaUsername, appSettings.FriendicaPassword);
+            await this.GetStringAsync(url, Settings.FriendicaUsername, Settings.FriendicaPassword);
+            ConvertReturnString();
+            return;
         }
 
-        public async void GetFriendicaNetworkNextEntries(double maxId, int count)
+        
+        // method to retrieve the next group of posts from server (default = next 20)
+        public async Task GetNetworkNextAsync(double maxId, int count)
         {
             var url = String.Format("{0}/api/statuses/home_timeline.json?count={1}&max_id={2}&timestamp={3}",
-                appSettings.FriendicaServer,
+                Settings.FriendicaServer,
                 count,
                 maxId,
                 DateTime.Now.ToString());
-            this.RequestFinished += GetFriendicaNetwork_RequestFinished;
-            await this.GetString(url, appSettings.FriendicaUsername, appSettings.FriendicaPassword);
+            await this.GetStringAsync(url, Settings.FriendicaUsername, Settings.FriendicaPassword);
+            ConvertReturnString();
+            return;
         }
 
-        public async void GetFriendicaNetworkNewEntries(double minId, int count)
+
+        // method to retrieve newer posts than already retrieved (if available)
+        public async Task GetNetworkNewAsync(double minId, int count)
         {
             var url = String.Format("{0}/api/statuses/home_timeline.json?count={1}&since_id={2}&timestamp={3}",
-                appSettings.FriendicaServer,
+                Settings.FriendicaServer,
                 count,
                 minId,
                 DateTime.Now.ToString());
-            this.RequestFinished += GetFriendicaNetwork_RequestFinished;
-            await this.GetString(url, appSettings.FriendicaUsername, appSettings.FriendicaPassword);
+            await this.GetStringAsync(url, Settings.FriendicaUsername, Settings.FriendicaPassword);
+            ConvertReturnString();
+            return;
         }
-        
-        //public async Task<ObservableCollection<FriendicaPostExtended>> GetFriendicaThreadOfPostAsync(double id)
-        //{
-        //    var url = String.Format("{0}/api/statuses/show.json?id={1}&conversation=1&timestamp={2}",
-        //        appSettings.FriendicaServer,
-        //        id,
-        //        DateTime.Now.ToString());
-        //    this.RequestFinished += GetFriendicaNetwork_RequestFinished;
-        //    Task<string> getStringTask = this.GetStringAsync(url, appSettings.FriendicaUsername, appSettings.FriendicaPassword);
-        //    string result = await getStringTask;
-        //    var obscoll = ConvertJsonToObsColl(result);
-        //    return obscoll;
-        //}
 
 
-        private void GetFriendicaNetwork_RequestFinished(object sender, EventArgs e)
+        public async Task GetFriendicaThreadByIdAsync(double id)
         {
-            OnFriendicaNetworkLoaded();
+            var url = String.Format("{0}/api/statuses/show.json?id={1}&conversation=1",
+                Settings.FriendicaServer,
+                id);
+            await this.GetStringAsync(url, Settings.FriendicaUsername, Settings.FriendicaPassword);
+            ConvertReturnString();
+            return;
+        }
+
+
+        private void ConvertReturnString()
+        {
+            if (ReturnString != null)
+            {
+                // convert the returned string into a list of objects
+                try
+                {
+                    _postsRaw = JsonConvert.DeserializeObject<List<JsonFriendicaPost>>(ReturnString);
+                }
+                catch
+                {
+                    // TODO: issue with "User not found" resulting in 400 Bad Request not solved yet
+
+                    _postsRaw = new List<JsonFriendicaPost>();
+                }
+
+                foreach (var post in _postsRaw)
+                {
+                    Posts.Add(new FriendicaPost(post));
+                }
+            }
         }
 
     }

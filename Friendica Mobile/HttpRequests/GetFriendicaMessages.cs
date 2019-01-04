@@ -1,124 +1,154 @@
 ﻿using Friendica_Mobile.Models;
+using Friendica_Mobile.Viewmodels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.Data.Json;
 
 namespace Friendica_Mobile.HttpRequests
 {
-    class GetFriendicaMessages : clsHttpRequests
+    public class GetFriendicaMessages : HttpRequestsBase
     {
-        public enum MessageErrors { OK, NoMailsAvailable, MessageIdNotSpecified, MessageSetToSeen, MessageIdOrParentUriNotSpecified, MessageDeleted, MessageIdNotInDatabase, ParentUriNotInDatabase, SearchstringNotSpecified, UnknownError };
-
-        AppSettings appSettings = new AppSettings();
-
-        public string MessageId { get; set; }
-        public string ConversationUri { get; set; }
-        public List<FriendicaMessage> MessagesReturned { get; set; }
-        public List<FriendicaMessage> SearchResults { get; set; }
+        // containing the raw returns from server converted into classes
+        private List<JsonFriendicaMessage> _messagesRaw;
+        // containing the extended classes (commands, events, derived from BindableClass to enable XAML binding)
+        public List<FriendicaMessage> Messages;
+        // containing the extended classes for Search results
+        public List<FriendicaMessage> SearchResults;
+        // indicator that search has returned results
         public bool NoSearchResultsReturned { get; set; }
+        // indicator if error has occurred
         public bool IsErrorOccurred { get; set; }
+        // store error type
         public MessageErrors ErrorMessageFriendica { get; set; }
-
-        public event EventHandler FriendicaMessagesLoaded;
-        protected virtual void OnFriendicaMessagesLoaded()
-        {
-            if (FriendicaMessagesLoaded != null)
-                FriendicaMessagesLoaded(this, EventArgs.Empty);
-        }
-        
 
         public GetFriendicaMessages()
         {
+            _messagesRaw = new List<JsonFriendicaMessage>();
+            Messages = new List<FriendicaMessage>();
+            SearchResults = new List<FriendicaMessage>();
         }
 
+        
+        //method to text whether the server understands the API commands (Friendica 3.5 or higher)
+        public async Task<bool> CheckServerSupportMessages()
+        {
+            var url = String.Format("{0}/api/friendica/direct_messages_setseen.json?id={1}&timestamp={2}",
+                Settings.FriendicaServer,
+                0,
+                DateTime.Now.ToString());
+            await this.GetStringAsync(url, Settings.FriendicaUsername, Settings.FriendicaPassword);
+            return (this.StatusCode == System.Net.HttpStatusCode.OK);
+        }
+        
 
-        public async void LoadMessagesInitial(int count)
+        // method to retrieve the first bunch of messages
+        public async Task LoadMessagesInitialAsync(int count)
         {
             var url = String.Format("{0}/api/direct_messages/all.json?getText=html&count={1}&timestamp={2}&friendica_verbose=true",
-                appSettings.FriendicaServer,
+                Settings.FriendicaServer,
                 count,
                 DateTime.Now.ToString());
-            this.RequestFinished += GetFriendicaMessages_RequestFinished;
-            await this.GetString(url, appSettings.FriendicaUsername, appSettings.FriendicaPassword);
+            await this.GetStringAsync(url, Settings.FriendicaUsername, Settings.FriendicaPassword);
+            foreach (var message in ConvertReturnString())
+                Messages.Add(new FriendicaMessage(message));
+            return;
         }
 
 
-        public async void LoadMessagesNext(double maxId, int count)
+        // method to retrieve the next batch of messages
+        public async void LoadMessagesNextAsync(double maxId, int count)
         {
             var url = String.Format("{0}/api/direct_messages/all.json?getText=html&count={1}&max_id={2}&timestamp={3}&friendica_verbose=true",
-                appSettings.FriendicaServer,
+                Settings.FriendicaServer,
                 count,
                 maxId,
                 DateTime.Now.ToString());
-            this.RequestFinished += GetFriendicaMessages_RequestFinished;
-            await this.GetString(url, appSettings.FriendicaUsername, appSettings.FriendicaPassword);
+            await this.GetStringAsync(url, Settings.FriendicaUsername, Settings.FriendicaPassword);
+            foreach (var message in ConvertReturnString())
+                Messages.Add(new FriendicaMessage(message));
+            return;
         }
 
 
-        public async void LoadMessagesNew(double minId, int count)
+        // method to retrieve newly arrived messages from server
+        public async Task LoadMessagesNewAsync(double minId, int count)
         {
             var url = String.Format("{0}/api/direct_messages/all.json?getText=html&count={1}&since_id={2}&timestamp={3}&friendica_verbose=true",
-                appSettings.FriendicaServer,
+                Settings.FriendicaServer,
                 count,
                 minId,
                 DateTime.Now.ToString());
-            this.RequestFinished += GetFriendicaMessages_RequestFinished;
-            await this.GetString(url, appSettings.FriendicaUsername, appSettings.FriendicaPassword);
+            await this.GetStringAsync(url, Settings.FriendicaUsername, Settings.FriendicaPassword);
+            var messages = ConvertReturnString();
+            if (messages != null)
+            {
+                foreach (var message in messages)
+                    Messages.Add(new FriendicaMessage(message));
+            }
+            return;
         }
 
 
+        // load all messages of the specified conversation uri
         public async void LoadConversation(string uri)
         {
-            ConversationUri = uri;
             var url = String.Format("{0}/api/direct_messages/conversation.json?getText=html&count=999&uri={1}&timestamp={2}&friendica_verbose=true",
-                appSettings.FriendicaServer,
+                Settings.FriendicaServer,
                 uri,
                 DateTime.Now.ToString());
-            this.RequestFinished += GetFriendicaMessages_RequestFinished;
-            await this.GetString(url, appSettings.FriendicaUsername, appSettings.FriendicaPassword);
+            await this.GetStringAsync(url, Settings.FriendicaUsername, Settings.FriendicaPassword);
+            foreach (var message in ConvertReturnString())
+                Messages.Add(new FriendicaMessage(message));
+            return;
         }
 
 
-        public async void SetSeenMessage(string id)
+        // method to set the seen flag of a message
+        public async Task SetSeenMessageAsync(string id)
         {
-            MessageId = id;
             var url = String.Format("{0}/api/friendica/direct_messages_setseen.json?id={1}&timestamp={2}",
-                appSettings.FriendicaServer,
+                Settings.FriendicaServer,
                 id,
                 DateTime.Now.ToString());
-            this.RequestFinished += GetFriendicaMessages_RequestFinished;
-            await this.GetString(url, appSettings.FriendicaUsername, appSettings.FriendicaPassword);
+            await this.GetStringAsync(url, Settings.FriendicaUsername, Settings.FriendicaPassword);
+            foreach (var message in ConvertReturnString())
+                Messages.Add(new FriendicaMessage(message));
+            return;
         }
 
 
+        // method to delete a message from the server
         public async void DeleteMessage(string id, string parenturi)
         {
-            MessageId = id;
             var url = String.Format("{0}/api/direct_messages/destroy.json?id={1}&friendica_parenturi={2}&friendica_verbose=true&timestamp={3}",
-                appSettings.FriendicaServer,
+                Settings.FriendicaServer,
                 id,
                 parenturi,
                 DateTime.Now.ToString());
-            this.RequestFinished += GetFriendicaMessages_RequestFinished;
-            await this.DeleteString(url, appSettings.FriendicaUsername, appSettings.FriendicaPassword);
+            await this.DeleteStringAsync(url, Settings.FriendicaUsername, Settings.FriendicaPassword);
+            foreach (var message in ConvertReturnString())
+                Messages.Add(new FriendicaMessage(message));
+            return;
         }
 
 
+        // method to search for messages containing the specified string
         public async void SearchMessage(string searchstring)
         {
             var url = String.Format("{0}/api/friendica/direct_messages_search.json?getText=html&searchstring={1}&timestamp={2}",
-                appSettings.FriendicaServer,
+                Settings.FriendicaServer,
                 searchstring,
                 DateTime.Now.ToString());
-            this.RequestFinished += GetFriendicaMessages_RequestFinished;
-            await this.GetString(url, appSettings.FriendicaUsername, appSettings.FriendicaPassword);
+            await this.GetStringAsync(url, Settings.FriendicaUsername, Settings.FriendicaPassword);
+            foreach (var message in ConvertReturnString())
+                SearchResults.Add(new FriendicaMessage(message));
+            return;
         }
 
 
+        // TODO: the following is not yet converted to the PCL class
+        /*
         public List<FriendicaConversation> RetrieveConversations()
         {
             var parenturi = new List<FriendicaConversation>();
@@ -200,10 +230,11 @@ namespace Friendica_Mobile.HttpRequests
                 }
             }
             else
-                IsErrorOccurred = true; 
+                IsErrorOccurred = true;
 
             OnFriendicaMessagesLoaded();
         }
+        */
 
         private MessageErrors SetErrorMessage(string errorMessage)
         {
@@ -226,10 +257,11 @@ namespace Friendica_Mobile.HttpRequests
                 case "unknown error":
                     return MessageErrors.UnknownError;
                 default:
-                    return MessageErrors.UnknownError; 
+                    return MessageErrors.UnknownError;
             }
         }
 
+        /*
         private List<FriendicaMessage> ConvertJsonToObjects(JsonArray array = null)
         {
             JsonArray resultArray;
@@ -258,6 +290,50 @@ namespace Friendica_Mobile.HttpRequests
             }
             return list;
         }
+        */
+
+
+        // Convert the returned text into json objects
+        private List<JsonFriendicaMessage> ConvertReturnString()
+        {
+            if (ReturnString != null)
+            {
+                try
+                {
+                    var errorResult = JsonConvert.DeserializeObject<JsonFriendicaError>(ReturnString);
+                    if (errorResult != null && errorResult.ErrorResult != null)
+                    {
+                        ErrorMessageFriendica = SetErrorMessage(errorResult.ErrorMessage);
+                        if (errorResult.ErrorResult == "error")
+                            IsErrorOccurred = true;
+                        else if (errorResult.ErrorResult == "ok")
+                            IsErrorOccurred = false;
+                        return null;
+                    }
+                    else
+                    {
+                        // result from search api call 
+                        try
+                        {
+                            return JsonConvert.DeserializeObject<List<JsonFriendicaMessage>>(ReturnString);
+                        }
+                        catch { return new List<JsonFriendicaMessage>(); }
+                    }
+                }
+                catch
+                {
+                    // convert the returned string into a list of objects
+                    try
+                    {
+                        return JsonConvert.DeserializeObject<List<JsonFriendicaMessage>>(ReturnString);
+                    }
+                    catch { return new List<JsonFriendicaMessage>(); }
+                }
+            }
+            else
+                return new List<JsonFriendicaMessage>();
+        }
+
 
     }
 }

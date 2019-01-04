@@ -12,7 +12,8 @@
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>Friendica_Mobile.iOS</AssemblyName>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -159,9 +160,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\Friendica Mobile.PCL\Friendica Mobile.PCL.csproj">
+    <ProjectReference Include="..\Friendica Mobile\Friendica Mobile.csproj">
       <Project>{6D25D629-13A8-4320-8E59-28B05319668E}</Project>
-      <Name>Friendica Mobile.PCL</Name>
+      <Name>Friendica Mobile</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -169,7 +170,5 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

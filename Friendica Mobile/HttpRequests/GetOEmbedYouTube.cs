@@ -1,27 +1,24 @@
 ﻿using Friendica_Mobile.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Friendica_Mobile.HttpRequests
 {
-    class GetOEmbedYoutube : clsHttpRequests
+    class GetOEmbedYoutube : HttpRequestsBase
     {
-        public event EventHandler OEmbedYoutubeLoaded;
-        protected virtual void OnOEmbedYoutubeLoaded()
-        {
-            if (OEmbedYoutubeLoaded != null)
-                OEmbedYoutubeLoaded(this, EventArgs.Empty);
-        }
-        
+        // containing the raw returns from server converted into classes
+        private JsonOEmbedYoutube _oembed;
+     
         public GetOEmbedYoutube()
         {
-
         }
 
-        public async Task<OEmbedYoutube> GetOEmbedYoutubeByUrl(string url)
+
+        // method to retrieve the first posts from server (default = 20)
+        public async Task<JsonOEmbedYoutube> GetOEmbedYoutubeByUrlAsync(string url)
         {
             if (url != null)
             {
@@ -40,20 +37,32 @@ namespace Friendica_Mobile.HttpRequests
                     url = String.Format("https://www.youtube.com/watch?v={0}", video);
                 }
                 // url is already coded correctly
-                url = System.Net.WebUtility.UrlEncode(url);  
+                url = WebUtility.UrlEncode(url);
                 var urlEmbed = string.Format("http://www.youtube.com/oembed?url={0}&format=json", url);
                 var resultString = await this.GetStringWithoutCredentials(urlEmbed);
-                var oEmbed = new OEmbedYoutube(resultString);
-                RequestFinished += GetOEmbedYoutube_RequestFinished;
-                return oEmbed;
+                ConvertReturnString();
+                return _oembed;
             }
             else
                 return null;
         }
 
-        private void GetOEmbedYoutube_RequestFinished(object sender, EventArgs e)
+       
+        private void ConvertReturnString()
         {
-            OnOEmbedYoutubeLoaded();
+            if (ReturnString != null)
+            {
+                // convert the returned string into a list of objects
+                try
+                {
+                    _oembed = JsonConvert.DeserializeObject<JsonOEmbedYoutube>(ReturnString);
+                }
+                catch (JsonReaderException)
+                {
+                    _oembed = null;
+                }
+            }
         }
+
     }
 }

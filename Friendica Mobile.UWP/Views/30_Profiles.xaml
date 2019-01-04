@@ -1,0 +1,620 @@
+﻿<Page
+    x:Class="Friendica_Mobile.UWP.Views.Profiles"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:contract5Present="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
+    xmlns:contract5NotPresent="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,5)"    
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Friendica_Mobile.UWP"
+    xmlns:views="using:Friendica_Mobile.UWP.Views"
+    xmlns:mvvm="using:Friendica_Mobile.UWP.Mvvm"
+    xmlns:triggers="using:Friendica_Mobile.UWP.Triggers"
+    xmlns:conv="using:Friendica_Mobile.UWP.Converters"
+    xmlns:styles="using:Friendica_Mobile.UWP.Styles"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Name="pageProfiles" x:Uid="pageProfiles">
+
+
+    <Page.DataContext>
+        <mvvm:ProfilesViewmodel x:Name="pageMvvm" />
+    </Page.DataContext>
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles/MainStyles.xaml" />
+                <ResourceDictionary Source="../Styles/ProfilesStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="TextBlock" BasedOn="{StaticResource GenericTextBlockStyle}" />
+            <Style TargetType="Grid" BasedOn="{StaticResource GenericGridStyle}" />
+            <Style TargetType="ScrollViewer" BasedOn="{StaticResource GenericScrollViewerStyle}" />
+
+            <conv:BoolToVisibilityCollapsedConverter x:Key="BoolToVisibilityCollapsedConverter" />
+            <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <conv:SplitViewWidthProfileConverter x:Key="SplitViewWidthProfileConverter" />
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Page.TopAppBar>
+        <CommandBar x:Name="topAppBar" 
+                    Margin="48,0,0,0"
+                    Visibility="Visible"
+                    Background="Gray"
+                    Foreground="White"
+                    contract5NotPresent:Style="{StaticResource CommandBarTopStyle}"
+                    contract5Present:Style="{ThemeResource CommandBarRevealStyle}"
+                    HorizontalAlignment="Left">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="topAppBarProfileUserlist" x:Uid="appBarProfilesUserlist" 
+                              Icon="People"
+                              Foreground="White"
+                              contract5Present:Style="{ThemeResource AppBarButtonRevealStyle}"
+                              Command="{Binding ShowUserlistCommand}"/>
+                <AppBarToggleButton x:Name="topAppBarProfileEnableEditor" x:Uid="appBarProfilesEnableEditor"
+                                    IsChecked="{Binding IsEditorEnabled, Mode=TwoWay}"
+                                    Icon="Edit"
+                                    Foreground="White"
+                                    contract5Present:Style="{ThemeResource AppBarToggleButtonRevealStyle}"
+                                    Command="{Binding EnableEditorCommand}" />
+                <AppBarButton x:Name="topAppBarProfileSend" x:Uid="appBarProfilesSend"
+                              Icon="Send"
+                              IsEnabled="False"
+                              Foreground="White"
+                              contract5Present:Style="{ThemeResource AppBarButtonRevealStyle}"
+                              Command="{Binding SendMessageCommand}" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.TopAppBar>
+
+    <Page.BottomAppBar>
+        <CommandBar x:Name="bottomAppBar" 
+                    Margin="{Binding BottomAppBarMargin}"
+                    Visibility="Collapsed">
+            <AppBarButton x:Name="bottomAppBarProfileUserlist" x:Uid="appBarProfilesUserlist" 
+                          Icon="People"
+                          contract5Present:Style="{ThemeResource AppBarButtonRevealStyle}"
+                          Command="{Binding ShowUserlistCommand}"/>
+            <AppBarToggleButton x:Name="bottomAppBarProfileEnableEditor" x:Uid="appBarProfilesEnableEditor"
+                                IsChecked="{Binding IsEditorEnabled, Mode=TwoWay}"
+                                Icon="Edit"
+                                contract5Present:Style="{ThemeResource AppBarToggleButtonRevealStyle}"
+                                Command="{Binding EnableEditorCommand}" />
+            <AppBarButton x:Name="bottomAppBarProfileSend" x:Uid="appBarProfilesSend"
+                          Icon="Send"
+                          IsEnabled="False"
+                          contract5Present:Style="{ThemeResource AppBarButtonRevealStyle}"
+                          Command="{Binding SendMessageCommand}" />
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="MobilePortrait">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="MobilePortrait" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="textBlockApplicationName.Visibility" Value="Visible" />
+                        <Setter Target="textBlockPageName.Visibility" Value="Visible" />
+                        <Setter Target="pageProfiles.Margin" Value="0,0,0,0" />
+                        <Setter Target="topAppBar.Visibility" Value="Collapsed" />
+                        <Setter Target="bottomAppBar.Visibility" Value="Visible" />
+                        <Setter Target="imgProfilePhoto.MaxHeight" Value="144" />
+                        <Setter Target="buttonShowHelp.(RelativePanel.Below)" Value="borderComboBoxProfiles" />
+                        <Setter Target="buttonShowHelp.(RelativePanel.AlignLeftWith)" Value="borderComboBoxProfiles" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="MobileLandscape">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="MobileLandscape" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="textBlockApplicationName.Visibility" Value="Collapsed" />
+                        <Setter Target="textBlockPageName.Visibility" Value="Visible" />
+                        <Setter Target="textBlockPageName.FontSize" Value="{StaticResource ApplicationNameFontSize}" />
+                        <Setter Target="pageProfiles.Margin" Value="0,0,48,0" />
+                        <Setter Target="topAppBar.Visibility" Value="Collapsed" />
+                        <Setter Target="bottomAppBar.Visibility" Value="Visible" />
+                        <Setter Target="imgProfilePhoto.MaxHeight" Value="96" />
+                        <Setter Target="buttonShowHelp.(RelativePanel.RightOf)" Value="borderComboBoxProfiles" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="DesktopLandscape">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="DesktopLandscape" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="textBlockApplicationName.Visibility" Value="Collapsed" />
+                        <Setter Target="textBlockPageName.Visibility" Value="Visible" />
+                        <Setter Target="textBlockPageName.FontSize" Value="{StaticResource PageNameFontSize}" />
+                        <Setter Target="pageProfiles.Margin" Value="0,0,0,0" />
+                        <Setter Target="topAppBar.Visibility" Value="Visible" />
+                        <Setter Target="bottomAppBar.Visibility" Value="Collapsed" />
+                        <Setter Target="imgProfilePhoto.MaxHeight" Value="192" />
+                        <Setter Target="buttonShowHelp.(RelativePanel.RightOf)" Value="borderComboBoxProfiles" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="DesktopPortrait">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="DesktopPortrait" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="textBlockApplicationName.Visibility" Value="Collapsed" />
+                        <Setter Target="textBlockPageName.Visibility" Value="Visible" />
+                        <Setter Target="textBlockPageName.FontSize" Value="{StaticResource PageNameFontSize}" />
+                        <Setter Target="pageProfiles.Margin" Value="0,0,0,0" />
+                        <Setter Target="topAppBar.Visibility" Value="Visible" />
+                        <Setter Target="bottomAppBar.Visibility" Value="Collapsed" />
+                        <Setter Target="imgProfilePhoto.MaxHeight" Value="192" />
+                        <Setter Target="buttonShowHelp.(RelativePanel.Below)" Value="borderComboBoxProfiles" />
+                        <Setter Target="buttonShowHelp.(RelativePanel.AlignLeftWith)" Value="borderComboBoxProfiles" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <ScrollViewer>
+            <StackPanel>
+                <RelativePanel>
+                    <TextBlock x:Name="textBlockApplicationName" x:Uid="textBlockApplicationName" 
+                               Visibility="Visible" 
+                               Style="{StaticResource ApplicationNameTextBlockStyle}"/>
+                    <TextBlock x:Name="textBlockPageName" x:Uid="pageTitleProfiles"  
+                               Visibility="Visible" 
+                               Style="{StaticResource PageNameTextBlockStyle}" 
+                               RelativePanel.Below="textBlockApplicationName"/>
+                </RelativePanel>
+
+                <!-- blank App-Settings: show info, button to Settings -->
+                <StackPanel x:Name="stackpanelNoSettings"
+                                    Visibility="{Binding NoSettings, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <TextBlock x:Name="textblockProfilesNoSettings" x:Uid="textblockProfilesNoSettings"
+                                   Margin="4,4,4,12"
+                                   Foreground="Red"
+                                   FontStyle="Italic"
+                                   TextAlignment="Left"/>
+                    <Button x:Name="buttonGotoSettings" x:Uid="buttonGotoSettings"
+                            Click="buttonGotoSettings_Click"
+                                Margin="4,4,4,4">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <FontIcon Glyph="&#xe713;" FontFamily="Segoe MDL2 Assets" FontSize="16"/>
+                                <TextBlock x:Uid="textblockNetworkSettings" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+
+                <!-- infobox shown if user's server is not supporting the api call for showing profiles -->
+                <StackPanel x:Name="stackPanelNoServerSupport"
+                            Visibility="{Binding NoServerSupport, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <TextBlock x:Name="textblockProfilesNoServerSupport" x:Uid="textblockProfilesNoServerSupport"
+                                   Margin="4,4,4,12"
+                                   Foreground="Red"
+                                   FontStyle="Italic"
+                                   TextAlignment="Left"/>
+                </StackPanel>
+
+                <!-- show profile data if users server is supporting the api calls for showing profiles -->
+                <StackPanel x:Name="stackPanelProfiles"
+                            Visibility="{Binding NoServerSupport, Converter={StaticResource BoolToVisibilityCollapsedConverter}}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="7*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <RelativePanel Grid.Column="0" Grid.Row="0"
+                                       Grid.RowSpan="3"
+                                       HorizontalAlignment="Center">
+                            <Image Name="imgProfilePhoto" 
+                                   MaxHeight="144"
+                                   ImageFailed="imgProfilePhoto_ImageFailed"
+                                   Tapped="imgProfilePhoto_Tapped"
+                                   Source="{Binding SelectedProfile.ProfileThumb}" />
+
+                            <Button Name="buttonEditProfilePhoto"
+                                    Grid.Column="0" Grid.Row="0"
+                                    Grid.RowSpan="3"
+                                    Height="36" Width="36"
+                                    Background="{StaticResource AccentBrush}"
+                                    Opacity="0.5"
+                                    Command="{Binding UploadProfileImageCommand}"
+                                    RelativePanel.AlignRightWith="imgProfilePhoto"
+                                    RelativePanel.AlignBottomWith="imgProfilePhoto">
+                                <FontIcon Glyph="&#xE70F;"
+                                          Margin="-8"
+                                          Foreground="White"
+                                          FontWeight="ExtraBold"
+                                          FontFamily="Segoe MDL2 Assets"
+                                          FontSize="16" />
+                            </Button>
+                        </RelativePanel>
+
+                        <RelativePanel x:Name="relPanelComboBox"
+                                       Grid.Column="1" Grid.Row="0"
+                                       Margin="8,4,0,0">
+                            <Border x:Name="borderComboBoxProfiles"
+                                    BorderBrush="Red"
+                                    BorderThickness="{Binding SelectedProfile.ProfileIsDefaultInt}">
+                                <ComboBox x:Name="comboBoxProfiles"
+                                          HorizontalAlignment="Left" 
+                                          VerticalAlignment="Top" 
+                                          Height="48"
+                                          MinWidth="200"
+                                          ItemsSource="{Binding Profiles}"
+                                          ItemTemplate="{StaticResource FriendicaProfileSelector}"
+                                          SelectedItem="{Binding SelectedProfile, Mode=TwoWay}"/>
+                            </Border>
+
+                            <Button x:Name="buttonShowHelp" x:Uid="buttonShowHelp" 
+                                    Click="buttonShowHelp_Click"
+                                    Margin="8,8,0,0"
+                                    Background="Transparent"
+                                    Height="36" Width="36"
+                                    RelativePanel.RightOf="borderComboBoxProfiles"
+                                    Visibility="Visible" >
+                                <Grid x:Name="gridEllipseHelpSign"
+                                      Margin="-12">
+                                    <Ellipse x:Name="ellipseHelpSign" 
+                                             Fill="{StaticResource AccentBrush}"
+                                             Width="24" Height="24"
+                                             HorizontalAlignment="Stretch"/>
+                                    <FontIcon Glyph="&#xE897;" FontSize="16" FontWeight="ExtraBold"
+                                              FontFamily="Segoe MDL2 Assets" />
+                                </Grid>
+                                <Button.Flyout>
+                                    <Flyout>
+                                        <StackPanel Width="{Binding ListViewWidth}"
+                                                    MaxWidth="400">
+                                            <TextBlock x:Name="textblockProfilesHelp1" x:Uid="textblockProfilesHelp1"
+                                                       TextWrapping="Wrap"
+                                                       Margin="24,24,24,0" />
+                                            <TextBlock x:Name="textblockProfilesHelp2" x:Uid="textblockProfilesHelp2"
+                                                       TextWrapping="Wrap"
+                                                       Margin="24,24,24,0" />
+                                            <TextBlock x:Name="textblockProfilesHelp3" x:Uid="textblockProfilesHelp3"
+                                                       TextWrapping="Wrap"
+                                                       Margin="24,24,24,0" />
+                                            <TextBlock x:Name="textblockProfilesHelp4" x:Uid="textblockProfilesHelp4"
+                                                       TextWrapping="Wrap"
+                                                       Margin="24,24,24,0" />
+                                            <TextBlock x:Name="textblockProfilesHelp5" x:Uid="textblockProfilesHelp5"
+                                                       TextWrapping="Wrap"
+                                                       Margin="24,24,24,24" />
+                                        </StackPanel>
+                                    </Flyout>
+                                </Button.Flyout>
+                            </Button>
+
+                            <Button x:Name="buttonCreateProfile" x:Uid="buttonCreateProfile" 
+                                    Grid.Column="1" Grid.Row="0"
+                                    Height="36" Width="36"
+                                    Command="{Binding CreateProfileCommand}"
+                                    Margin="8,8,0,0"
+                                    Visibility="Visible" 
+                                    RelativePanel.RightOf="buttonShowHelp"
+                                    RelativePanel.AlignTopWith="buttonShowHelp">
+                                <FontIcon Glyph="&#xE710;"
+                                          Margin="-8"
+                                          FontFamily="Segoe MDL2 Assets"
+                                          FontSize="16" />
+                            </Button>
+
+                            <Button x:Name="buttonDeleteProfile" x:Uid="buttonDeleteProfile" 
+                                    Grid.Column="1" Grid.Row="0"
+                                    Height="36" Width="36"
+                                    Background="Red"
+                                    Command="{Binding DeleteProfileCommand}"
+                                    Margin="4,8,0,0"
+                                    Visibility="Visible"
+                                    RelativePanel.RightOf="buttonCreateProfile"
+                                    RelativePanel.AlignTopWith="buttonCreateProfile">
+                                <FontIcon Glyph="&#xE74D;"
+                                          Margin="-8"
+                                          FontFamily="Segoe MDL2 Assets"
+                                          FontSize="16" />
+                            </Button>
+                        </RelativePanel>
+
+                        <CheckBox x:Name="checkboxProfilesPublished" x:Uid="checkboxProfilesPublished"
+                                  Grid.Column="1" Grid.Row="1"
+                                  Margin="8,0,0,0"
+                                  IsChecked="{Binding SelectedProfile.ProfileNetPublish}"
+                                  IsEnabled="False"
+                                  HorizontalAlignment="Left" 
+                                  VerticalAlignment="Top"/>
+
+                        <HyperlinkButton Content="{Binding GlobalDirectory}" 
+                                         NavigateUri="{Binding GlobalDirectory}"
+                                         Grid.Column="1" Grid.Row="2"
+                                         Margin="32,-8,0,0"
+                                         HorizontalAlignment="Left" 
+                                         VerticalAlignment="Top"/>
+                    </Grid>
+
+                    <Pivot Width="{Binding ListViewWidth, Converter={StaticResource SplitViewWidthProfileConverter}, ConverterParameter=Pivot}"
+                           HorizontalAlignment="Left">
+
+                        <!-- tab for general information about user -->
+                        <PivotItem x:Name="pivotProfilesGeneral" x:Uid="pivotProfilesGeneral" >
+
+                            <local:clsVariableGridView x:Name="gridViewGeneral" 
+                                                       SelectionMode="None" 
+                                                       ItemsPanel="{StaticResource VariableGridViewItemsPanelTemplate}">
+
+                                <!-- textbox profile name -->
+                                <styles:UserControlProfileTextBox x:Name="userControlProfileName" 
+                                                                  ElementWidth="{Binding ListViewWidth}"
+                                                                  ElementText="{Binding SelectedProfile.EditedProfileName, Mode=TwoWay}"
+                                                                  SizeChanged="UserControl_SizeChanged"
+                                                                  Field="ProfileName" />
+
+                                <!--textbox profile description-->
+                                <styles:UserControlProfileTextBox x:Name="userControlProfileDescription" 
+                                                              ElementWidth="{Binding ListViewWidth}" 
+                                                              ElementText="{Binding SelectedProfile.EditedProfileDescription, Mode=TwoWay}" 
+                                                                  SizeChanged="UserControl_SizeChanged"
+                                                              Field="ProfileDescription" />
+
+                                <!--combobox gender-->
+                                <styles:UserControlProfileComboBox x:Name="userControlProfileGender"
+                                                                   ElementWidth="{Binding ListViewWidth}"
+                                                                   ElementText="{Binding SelectedProfile.EditedProfileGender, Mode=TwoWay}"
+                                                                   SizeChanged="UserControl_SizeChanged"
+                                                                   Field="ProfileGender" />
+
+                                <!-- datepicker date of birth -->
+                                <styles:UserControlProfileDatePicker x:Name="userControlProfileDateOfBirth"
+                                                                   ElementWidth="{Binding ListViewWidth}"
+                                                                   ElementDate="{Binding SelectedProfile.EditedProfileDateOfBirth, Mode=TwoWay}"
+                                                                   SizeChanged="UserControl_SizeChanged"
+                                                                   Field="ProfileDateOfBirth" />
+
+                                <!-- Hyperlink text homepage -->
+                                <styles:UserControlProfileRichText x:Name="userControlProfileHomepage"
+                                                                   ElementWidth="{Binding ListViewWidth}"
+                                                                   ElementRichText="{Binding SelectedProfile.ProfileHomepageTransformed, Mode=OneWay}"
+                                                                   SizeChanged="UserControl_SizeChanged"
+                                                                   Field="ProfileHomepage" />
+
+                                <!-- bullet points in Textbox public keywords -->
+                                <styles:UserControlProfileTextBox x:Name="userControlProfilePublicKeywords" 
+                                                                  ElementWidth="{Binding ListViewWidth}"
+                                                                  ElementText="{Binding SelectedProfile.EditedProfilePublicKeywords, Mode=TwoWay}"
+                                                                  SizeChanged="UserControl_SizeChanged"
+                                                                  Field="ProfilePublicKeywords" />
+
+                                <!-- bullet points in Textbox private keywords -->
+                                <styles:UserControlProfileTextBox x:Name="userControlProfilePrivateKeywords" 
+                                                                  ElementWidth="{Binding ListViewWidth}"
+                                                                  ElementText="{Binding SelectedProfile.EditedProfilePrivateKeywords, Mode=TwoWay}"
+                                                                  SizeChanged="UserControl_SizeChanged"
+                                                                  Field="ProfilePrivateKeywords" />
+
+                                <!-- RichTextBlock/RichTextBox About -->
+                                <styles:UserControlProfileRichText x:Name="userControlProfileAbout"
+                                                                   ElementWidth="{Binding ListViewWidth}"
+                                                                   ElementRichText="{Binding SelectedProfile.ProfileAboutTransformed, Mode=OneWay}"
+                                                                   SizeChanged="UserControl_SizeChanged"
+                                                                   Field="ProfileAbout" />
+
+                                <!-- RichTextBlock/RichTextBox Social Networks -->
+                                <styles:UserControlProfileRichText x:Name="userControlProfileSocialNetworks"
+                                                                   ElementWidth="{Binding ListViewWidth}"
+                                                                   ElementRichText="{Binding SelectedProfile.ProfileSocialNetworksTransformed, Mode=OneWay}"
+                                                                   SizeChanged="UserControl_SizeChanged"
+                                                                   Field="ProfileSocialNetworks" />
+
+                                <!--RichTextBlock/RichTextBox Work-->
+                                <styles:UserControlProfileRichText x:Name="userControlProfileWork"
+                                                                   ElementWidth="{Binding ListViewWidth}"
+                                                                   ElementRichText="{Binding SelectedProfile.ProfileWorkTransformed, Mode=OneWay}"
+                                                                   SizeChanged="UserControl_SizeChanged"
+                                                                   Field="ProfileWork" />
+
+                                <!--RichTextBlock/RichTextBox Education-->
+                                <styles:UserControlProfileRichText x:Name="userControlProfileEducation"
+                                                                   ElementWidth="{Binding ListViewWidth}"
+                                                                   ElementRichText="{Binding SelectedProfile.ProfileEducationTransformed, Mode=OneWay}"
+                                                                   SizeChanged="UserControl_SizeChanged"
+                                                                   Field="ProfileEducation" />
+
+                            </local:clsVariableGridView>
+                        </PivotItem>
+
+                        <!--tab for location information about user-->
+                        <PivotItem x:Name="pivotProfilesLocation" x:Uid="pivotProfilesLocation">
+
+                            <local:clsVariableGridView x:Name="gridViewLocation" 
+                                                       SelectionMode="None" 
+                                                       ItemsPanel="{StaticResource VariableGridViewItemsPanelTemplate}">
+
+                                <!--textbox address-->
+                                <styles:UserControlProfileTextBox x:Name="userControlProfileAddress"
+                                                                  ElementWidth="{Binding ListViewWidth}"
+                                                                  ElementText="{Binding SelectedProfile.EditedProfileAddress, Mode=TwoWay}"
+                                                                  SizeChanged="UserControl_SizeChanged"
+                                                                  Field="ProfileAddress" />
+
+                                <!--textbox city-->
+                                <styles:UserControlProfileTextBox x:Name="userControlProfileCity"
+                                                                  ElementWidth="{Binding ListViewWidth}" 
+                                                                  ElementText="{Binding SelectedProfile.EditedProfileCity, Mode=TwoWay}" 
+                                                                  SizeChanged="UserControl_SizeChanged"
+                                                                  Field="ProfileCity" />
+
+                                <!--textbox postalcode-->
+                                <styles:UserControlProfileTextBox x:Name="userControlProfilePostalCode"
+                                                                  ElementWidth="{Binding ListViewWidth}" 
+                                                                  ElementText="{Binding SelectedProfile.EditedProfilePostalCode, Mode=TwoWay}" 
+                                                                  SizeChanged="UserControl_SizeChanged"
+                                                                  Field="ProfilePostalCode" />
+
+                                <!--combobox country/region-->
+                                <styles:UserControlProfileComboBox x:Name="userControlProfileCountry"
+                                                                   ElementWidth="{Binding ListViewWidth}"
+                                                                   ElementText="{Binding SelectedProfile.EditedProfileCountryRegion, Mode=TwoWay}"
+                                                                   SizeChanged="UserControl_SizeChanged"
+                                                                   Field="ProfileRegion" />
+
+                                <!--textbox hometown-->
+                                <styles:UserControlProfileTextBox x:Name="userControlProfileHometown"
+                                                                  ElementWidth="{Binding ListViewWidth}" 
+                                                                  ElementText="{Binding SelectedProfile.EditedProfileHometown, Mode=TwoWay}" 
+                                                                  SizeChanged="UserControl_SizeChanged"
+                                                                  Field="ProfileHometown" />
+                            </local:clsVariableGridView>
+                        </PivotItem>
+
+                        <!--tab for information about relationship status of user-->
+                        <PivotItem x:Name="pivotProfilesRelationship" x:Uid="pivotProfilesRelationship">
+                            <local:clsVariableGridView x:Name="gridViewRelationship" 
+                                                       SelectionMode="None" 
+                                                       ItemsPanel="{StaticResource VariableGridViewItemsPanelTemplate}">
+
+                                <!--combobox marital-->
+                                <styles:UserControlProfileComboBox x:Name="userControlProfileMarital"
+                                                                   ElementWidth="{Binding ListViewWidth}"
+                                                                   ElementText="{Binding SelectedProfile.EditedProfileMarital, Mode=TwoWay}"
+                                                                   SizeChanged="UserControl_SizeChanged"
+                                                                   Field="ProfileMarital" />
+
+                                <!--textbox marital with-->
+                                <styles:UserControlProfileTextBox x:Name="userControlProfileMaritalWith"
+                                                                  ElementWidth="{Binding ListViewWidth}" 
+                                                                  ElementText="{Binding SelectedProfile.EditedProfileMaritalWith, Mode=TwoWay}" 
+                                                                  SizeChanged="UserControl_SizeChanged"
+                                                                  Field="ProfileMaritalWith" />
+
+                                <!--datepicker marital Since-->
+                                <styles:UserControlProfileDatePicker x:Name="userControlProfileMartialSince"
+                                                                   ElementWidth="{Binding ListViewWidth}"
+                                                                   ElementDate="{Binding SelectedProfile.EditedProfileMaritalSince, Mode=TwoWay}"
+                                                                   SizeChanged="UserControl_SizeChanged"
+                                                                   Field="ProfileMaritalSince" />
+
+                                <!--combobox Sexual-->
+                                <styles:UserControlProfileComboBox x:Name="userControlProfileSexual"
+                                                                   ElementWidth="{Binding ListViewWidth}"
+                                                                   ElementText="{Binding SelectedProfile.EditedProfileSexual, Mode=TwoWay}"
+                                                                   SizeChanged="UserControl_SizeChanged"
+                                                                   Field="ProfileSexual" />
+
+                                <!--RichTextBlock/RichTextBox Romance-->
+                                <styles:UserControlProfileRichText x:Name="userControlProfileRomance"
+                                                                   ElementWidth="{Binding ListViewWidth}"
+                                                                   ElementRichText="{Binding SelectedProfile.ProfileRomanceTransformed, Mode=OneWay}"
+                                                                   SizeChanged="UserControl_SizeChanged"
+                                                                   Field="ProfileRomance" />
+                            </local:clsVariableGridView>
+
+                        </PivotItem>
+
+                        <!--tab for all information about interests etc. of user-->
+                        <PivotItem x:Name="pivotProfilesInterests" x:Uid="pivotProfilesInterests">
+                            <local:clsVariableGridView x:Name="gridViewInterests" 
+                                                       SelectionMode="None" 
+                                                       IsItemClickEnabled="False"
+                                                       ItemsPanel="{StaticResource VariableGridViewItemsPanelTemplate}">
+
+                                <!--textbox politic-->
+                                <styles:UserControlProfileTextBox x:Name="userControlProfilePolitic"
+                                                                  ElementWidth="{Binding ListViewWidth}" 
+                                                                  ElementText="{Binding SelectedProfile.EditedProfilePolitic, Mode=TwoWay}" 
+                                                                  SizeChanged="UserControl_SizeChanged"
+                                                                  Field="ProfilePolitic" />
+
+                                <!--textbox religion-->
+                                <styles:UserControlProfileTextBox x:Name="userControlProfileReligion"
+                                                                  ElementWidth="{Binding ListViewWidth}" 
+                                                                  ElementText="{Binding SelectedProfile.EditedProfileReligion, Mode=TwoWay}" 
+                                                                  SizeChanged="UserControl_SizeChanged"
+                                                                  Field="ProfileReligion" />
+
+                                <!--RichTextBlock/RichTextBox Interest-->
+                                <styles:UserControlProfileRichText x:Name="userControlProfileInterest"
+                                                                   ElementWidth="{Binding ListViewWidth}"
+                                                                   ElementRichText="{Binding SelectedProfile.ProfileInterestTransformed, Mode=OneWay}"
+                                                                   SizeChanged="UserControl_SizeChanged"
+                                                                   Field="ProfileInterest" />
+
+                                <!--RichTextBlock/RichTextBox Likes-->
+                                <styles:UserControlProfileRichText x:Name="userControlProfileLikes"
+                                                                   ElementWidth="{Binding ListViewWidth}"
+                                                                   ElementRichText="{Binding SelectedProfile.ProfileLikesTransformed, Mode=OneWay}"
+                                                                   SizeChanged="UserControl_SizeChanged"
+                                                                   Field="ProfileLikes" />
+
+                                <!--RichTextBlock/RichTextBox Dislikes-->
+                                <styles:UserControlProfileRichText x:Name="userControlProfileDislikes"
+                                                                   ElementWidth="{Binding ListViewWidth}"
+                                                                   ElementRichText="{Binding SelectedProfile.ProfileDislikesTransformed, Mode=OneWay}"
+                                                                   SizeChanged="UserControl_SizeChanged"
+                                                                   Field="ProfileDislikes" />
+
+                                <!--RichTextBlock/RichTextBox Music-->
+                                <styles:UserControlProfileRichText x:Name="userControlProfileMusic"
+                                                                   ElementWidth="{Binding ListViewWidth}"
+                                                                   ElementRichText="{Binding SelectedProfile.ProfileMusicTransformed, Mode=OneWay}"
+                                                                   SizeChanged="UserControl_SizeChanged"
+                                                                   Field="ProfileMusic" />
+
+                                <!--RichTextBlock/RichTextBox Book-->
+                                <styles:UserControlProfileRichText x:Name="userControlProfilBook"
+                                                                   ElementWidth="{Binding ListViewWidth}"
+                                                                   ElementRichText="{Binding SelectedProfile.ProfileBookTransformed, Mode=OneWay}"
+                                                                   SizeChanged="UserControl_SizeChanged"
+                                                                   Field="ProfileBook" />
+
+                                <!--RichTextBlock/RichTextBox Tv-->
+                                <styles:UserControlProfileRichText x:Name="userControlProfileTv"
+                                                                   ElementWidth="{Binding ListViewWidth}"
+                                                                   ElementRichText="{Binding SelectedProfile.ProfileTvTransformed, Mode=OneWay}"
+                                                                   SizeChanged="UserControl_SizeChanged"
+                                                                   Field="ProfileTv" />
+
+                                <!--RichTextBlock/RichTextBox Film-->
+                                <styles:UserControlProfileRichText x:Name="userControlProfileFilm"
+                                                                   ElementWidth="{Binding ListViewWidth}"
+                                                                   ElementRichText="{Binding SelectedProfile.ProfileFilmTransformed, Mode=OneWay}"
+                                                                   SizeChanged="UserControl_SizeChanged"
+                                                                   Field="ProfileFilm" />
+                            </local:clsVariableGridView>
+                        </PivotItem>
+                    </Pivot>
+
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- red box indicating that system loads profiles from server -->
+        <RelativePanel Background="Red"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Stretch"
+                       Margin="0,0,16,0"
+                       Visibility="{Binding IsLoadingProfiles, Converter={StaticResource BoolToVisibilityConverter}}">
+            <ProgressRing x:Name="progressLoading"
+                          IsActive="True"
+                          Foreground="White"
+                          Margin="36,0,36,4"
+                          RelativePanel.AlignBottomWithPanel="True"
+                          RelativePanel.AlignLeftWithPanel="True"/>
+            <TextBlock x:Name="textblockProfilesIndicatorLoading" x:Uid="textblockProfilesIndicatorLoading"
+                       Foreground="White"
+                       RelativePanel.RightOf="progressLoading" 
+                       RelativePanel.AlignBottomWithPanel="True"/>
+        </RelativePanel>
+
+    </Grid>
+</Page>
+ 

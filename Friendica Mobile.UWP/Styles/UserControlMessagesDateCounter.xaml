@@ -1,0 +1,97 @@
+﻿<UserControl
+    x:Class="Friendica_Mobile.UWP.Styles.UserControlMessagesDateCounter"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Friendica_Mobile.UWP.Styles"
+    xmlns:conv="using:Friendica_Mobile.UWP.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <conv:MessagesNewToBrushConverter x:Key="MessagesNewToBrushConverter" />
+    </UserControl.Resources>
+    
+    <RelativePanel>
+        
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="MobilePortrait">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="stackPanelShowCounters.(RelativePanel.Below)" Value="textblockDate" />
+                        <Setter Target="stackPanelShowCounters.(RelativePanel.AlignLeftWith)" Value="textblockDate" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="allothers">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="400" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <TextBlock x:Name="textblockDate"
+                   FontStyle="Italic"
+                   Foreground="Gray"
+                   FontSize="12"
+                   TextWrapping="Wrap"
+                   VerticalAlignment="Bottom"
+                   RelativePanel.AlignLeftWithPanel="True"
+                   Text="{Binding NewestMessage.MessageCreatedAtLocalized}" />
+        
+        <StackPanel x:Name="stackPanelShowCounters" 
+                    Orientation="Horizontal"
+                    RelativePanel.AlignRightWithPanel="True"
+                    RelativePanel.RightOf="textblockDate"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right">
+            <TextBlock x:Uid="textblockMessagesCounterStart"
+                       Margin="0,0,0,0"
+                       FontStyle="Italic"
+                       Foreground="Gray"
+                       FontSize="12"/>
+            <TextBlock x:Name="textblockCounterTotal"
+                       Margin="4,0,0,0"
+                       FontStyle="Italic"
+                       Foreground="Gray"
+                       FontSize="12"
+                       Text="{Binding CounterMessages}"/>
+            <TextBlock Text=","
+                       Visibility="{Binding HasNewMessages, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"
+                       Margin="0,0,0,0"
+                       FontStyle="Italic"
+                       Foreground="Gray"
+                       FontSize="12" />
+            <TextBlock x:Uid="textblockMessagesCounterThereofNew" 
+                       Visibility="{Binding HasNewMessages, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"
+                       FontWeight="Bold"
+                       Margin="4,0,0,0"
+                       FontStyle="Italic"
+                       FontSize="12"
+                       Foreground="{Binding HasNewMessages, Converter={StaticResource MessagesNewToBrushConverter}}"/>
+            <TextBlock x:Name="textblockCounterUnseen"
+                       Visibility="{Binding HasNewMessages, Converter={StaticResource BoolToVisibilityConverter}}"
+                       FontWeight="Bold"
+                       Margin="4,0,0,0"
+                       FontStyle="Italic"
+                       FontSize="12"
+                       Foreground="{Binding HasNewMessages, Converter={StaticResource MessagesNewToBrushConverter}}"
+                       Text="{Binding CounterMessagesUnseen}" />
+            <TextBlock Text=")"
+                       FontStyle="Italic"
+                       Margin="0,0,0,0"
+                       Foreground="Gray"
+                       FontSize="12"/>
+        </StackPanel>
+    </RelativePanel>
+
+
+</UserControl>

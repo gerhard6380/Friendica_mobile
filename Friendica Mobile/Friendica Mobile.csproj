@@ -1,601 +1,231 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{6D10E194-AAE6-4C61-AEFC-7809A1381CC2}</ProjectGuid>
-    <OutputType>AppContainerExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6D25D629-13A8-4320-8E59-28B05319668E}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <RootNamespace>Friendica_Mobile</RootNamespace>
     <AssemblyName>Friendica Mobile</AssemblyName>
     <DefaultLanguage>de-DE</DefaultLanguage>
-    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.15063.0</TargetPlatformMinVersion>
-    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
-    <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>Friendica Mobile_TemporaryKey.pfx</PackageCertificateKeyFile>
-    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
-    <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
-    <PackageCertificateThumbprint>CE8C7A39286178A496A29731DD1D4F417A3E946F</PackageCertificateThumbprint>
-    <RuntimeIdentifiers>win10-arm;win10-arm-aot;win10-x86;win10-x86-aot;win10-x64;win10-x64-aot</RuntimeIdentifiers>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile7</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\ARM\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <NoWarn>;2008</NoWarn>
     <DebugType>full</DebugType>
-    <PlatformTarget>ARM</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
-    <OutputPath>bin\ARM\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <Optimize>true</Optimize>
-    <NoWarn>;2008</NoWarn>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <PlatformTarget>ARM</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
-    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <Optimize>true</Optimize>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
-    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
+  <PropertyGroup Label="MultilingualAppToolkit">
+    <MultilingualAppToolkitVersion>4.0</MultilingualAppToolkitVersion>
+    <MultilingualFallbackLanguage>en</MultilingualFallbackLanguage>
+    <TranslationReport Condition="'$(Configuration)' == 'Release'">true</TranslationReport>
+    <SuppressPseudoWarning Condition="'$(Configuration)' == 'Debug'">true</SuppressPseudoWarning>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <Optimize>true</Optimize>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
-    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
-  </PropertyGroup>
-  <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\BadgeLogo.scale-200.png" />
-    <Content Include="Assets\BadgeLogo.scale-400.png" />
-    <Content Include="Assets\dislike.png" />
-    <Content Include="Assets\like.png" />
-    <Content Include="Assets\NoImage.jpg" />
-    <Content Include="Assets\Square150x150Logo.scale-100.png" />
-    <Content Include="Assets\Square150x150Logo.scale-200.png" />
-    <Content Include="Assets\Square310x310Logo.scale-100.png" />
-    <Content Include="Assets\Square310x310Logo.scale-200.png" />
-    <Content Include="Assets\Square71x71Logo.scale-200.png" />
-    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
-    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
-    <Content Include="friendika.openmindspace.org.crt" />
-    <Content Include="friendika.openmindspace.org - Kopie.cer" />
-    <None Include="Friendica Mobile_StoreKey.pfx" />
-    <PRIResource Include="Strings\es\Resources.resw" />
-    <PRIResource Include="Strings\pt\Resources.resw" />
-    <PRIResource Include="Strings\it\Resources.resw" />
-    <PRIResource Include="Strings\fr\Resources.resw" />
-    <PRIResource Include="Strings\de\Resources.resw" />
-    <PRIResource Include="Strings\en\Resources.resw" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AppSettings.cs" />
-    <Compile Include="clsConvertDroppedContent.cs" />
-    <Compile Include="clsCropBitmap.cs" />
-    <Compile Include="clsHtmlToRichTextBlock.cs" />
-    <Compile Include="clsListBoxExtensionsGroups.cs" />
-    <Compile Include="clsListBoxExtensionsContacts.cs" />
-    <Compile Include="clsManageBackgroundTasks.cs" />
-    <Compile Include="clsMessageDialogMessage.cs" />
-    <Compile Include="BindableClass.cs" />
-    <Compile Include="clsDetectTrial.cs" />
-    <Compile Include="clsRenderInkToImage.cs" />
-    <Compile Include="clsVariableGridView.cs" />
-    <Compile Include="clsSQLiteConnection.cs" />
-    <Compile Include="clsTileCounter.cs" />
-    <Compile Include="clsWriteableBitmapExtensions.cs" />
-    <Compile Include="Converters\BoolToNewEntryThicknessConverter.cs" />
-    <Compile Include="Converters\FlowDirectionConverter.cs" />
-    <Compile Include="Converters\HtmlToParagraphConverter.cs" />
-    <Compile Include="Converters\IsReceivedMessageToMarginConverter.cs" />
-    <Compile Include="Converters\MessagesSeenToThicknessConverter.cs" />
-    <Compile Include="Converters\PhotosViewVisibleConverter.cs" />
-    <Compile Include="Converters\ScrollViewerMessagesToVisibilityConverter.cs" />
-    <Compile Include="Converters\EnumDisplayConverter.cs" />
-    <Compile Include="Converters\RetweetButtonVisibilityConverter.cs" />
-    <Compile Include="Converters\SplitViewWidthProfileConverter.cs" />
-    <Compile Include="Converters\TransparentColorConverter.cs" />
-    <Compile Include="Converters\GridWidthMessagesConverter.cs" />
-    <Compile Include="Converters\MessagesNewToBrushConverter.cs" />
-    <Compile Include="Converters\ListViewWidthMessagesConverter.cs" />
-    <Compile Include="Converters\MessagesViewCollapsedConverter.cs" />
-    <Compile Include="Converters\MessagesViewVisibleConverter.cs" />
-    <Compile Include="Converters\ShowProfileButtonVisibilityConverter.cs" />
-    <Compile Include="Converters\BoolToPostOpacityConverter.cs" />
-    <Compile Include="Converters\BoolToVisibilityCollapsedConverter.cs" />
-    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
-    <Compile Include="Converters\CounterVisibilityConverter.cs" />
-    <Compile Include="Converters\BoolStringToBoolConverter.cs" />
-    <Compile Include="Converters\FlowDirectionStringToBoolConverter.cs" />
-    <Compile Include="Converters\MobileDeviceOnlyConverter.cs" />
-    <Compile Include="Converters\AddCommentButtonVisibilityConverter.cs" />
-    <Compile Include="Converters\NetworkModeToVisibilityConverter.cs" />
-    <Compile Include="Converters\SemanticZoomHeightConverter.cs" />
-    <Compile Include="Converters\SplitViewWidthNewPostConverter.cs" />
-    <Compile Include="Converters\SplitViewWidthConverter.cs" />
-    <Compile Include="Converters\NetworkModeToIntConverter.cs" />
-    <Compile Include="Converters\StartPageToIntConverter.cs" />
-    <Compile Include="Converters\ToFlowDirectionConverter.cs" />
-    <Compile Include="HttpRequests\AuthenticationTest.cs" />
-    <Compile Include="HttpRequests\clsHttpRequests.cs" />
-    <Compile Include="HttpRequests\clsHttpRequests_old.cs" />
-    <Compile Include="HttpRequests\GetFriendicaConfig.cs" />
-    <Compile Include="HttpRequests\GetFriendicaHome.cs" />
-    <Compile Include="HttpRequests\GetFriendicaPhotos.cs" />
-    <Compile Include="HttpRequests\GetFriendicaProfiles.cs" />
+    <Compile Include="Helpers\CheckSettings.cs" />
+    <Compile Include="Helpers\StaticHtmlToXml.cs" />
+    <Compile Include="Helpers\NotificationHelper.cs" />
+    <Compile Include="Helpers\StaticSQLiteConn.cs" />
+    <Compile Include="Helpers\Command.cs" />
+    <Compile Include="Helpers\ILocalize.cs" />
+    <Compile Include="Helpers\IMessageDialog.cs" />
+    <Compile Include="Helpers\StaticGlobalParameters.cs" />
+    <Compile Include="Helpers\StaticMessageDialog.cs" />
+    <Compile Include="Helpers\PlatformCulture.cs" />
+    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="HttpRequests\GetFriendicaMessages.cs" />
+    <Compile Include="HttpRequests\GetFriendicaNetwork.cs" />
+    <Compile Include="HttpRequests\GetOEmbedYoutube.cs" />
+    <Compile Include="HttpRequests\HttpRequestsBase.cs" />
     <Compile Include="HttpRequests\PostFriendicaActivities.cs" />
     <Compile Include="HttpRequests\PostFriendicaMessage.cs" />
-    <Compile Include="HttpRequests\PostFriendicaNewPost.cs" />
-    <Compile Include="HttpRequests\GetFriendicaGroups.cs" />
-    <Compile Include="HttpRequests\GetFriendicaFriends.cs" />
-    <Compile Include="HttpRequests\GetFriendicaThread.cs" />
-    <Compile Include="HttpRequests\GetFriendicaNetwork.cs" />
-    <Compile Include="HttpRequests\GetOEmbedYouTube.cs" />
-    <Compile Include="LocalizeUWP.cs" />
-    <Compile Include="MessageDialogUWP.cs" />
-    <Compile Include="Models\FriendicaPhotolist.cs" />
-    <Compile Include="Models\FriendicaPhotoalbumSamples.cs" />
-    <Compile Include="Models\FriendicaCountry.cs" />
-    <Compile Include="Models\FriendicaBaseModel.cs" />
-    <Compile Include="Models\FriendicaConfig.cs" />
-    <Compile Include="Models\FriendicaPhotoExtended.cs" />
-    <Compile Include="Models\FriendicaPhoto.cs" />
-    <Compile Include="Models\FriendicaPhotoalbum.cs" />
-    <Compile Include="Models\FriendicaProfileSamples.cs" />
-    <Compile Include="Models\FriendicaConversationSamples.cs" />
-    <Compile Include="Models\FriendicaGeo.cs" />
-    <Compile Include="Models\FriendicaErrorResult.cs" />
-    <Compile Include="Models\FriendicaGroupResult.cs" />
-    <Compile Include="Models\FriendicaActivities.cs" />
-    <Compile Include="Models\FriendicaMessageNew.cs" />
-    <Compile Include="Models\FriendicaNewPost.cs" />
     <Compile Include="Models\FriendicaMessage.cs" />
+    <Compile Include="Models\FriendicaMessageNew.cs" />
     <Compile Include="Models\FriendicaPost.cs" />
-    <Compile Include="Models\FriendicaGroup.cs" />
-    <Compile Include="Models\FriendicaConversation.cs" />
-    <Compile Include="Models\FriendicaProfile.cs" />
-    <Compile Include="Models\FriendicaProfilesAttributes.cs" />
-    <Compile Include="Models\FriendicaUserExtended.cs" />
-    <Compile Include="Models\FriendicaThread.cs" />
-    <Compile Include="Models\FriendicaPostExtended.cs" />
-    <Compile Include="Models\FriendicaServer.cs" />
-    <Compile Include="Models\FriendicaSite.cs" />
+    <Compile Include="Models\FriendicaSampleData.cs" />
     <Compile Include="Models\FriendicaUser.cs" />
-    <Compile Include="Models\OEmbedYoutube.cs" />
-    <Compile Include="Mvvm\BrowserViewmodel.cs" />
-    <Compile Include="Mvvm\Command.cs" />
-    <Compile Include="Mvvm\AboutViewmodel.cs" />
-    <Compile Include="Mvvm\ContactsViewmodel.cs" />
-    <Compile Include="Mvvm\FriendicaEnumBaseViewmodel.cs" />
-    <Compile Include="Mvvm\FriendicaEnumSexualViewmodel.cs" />
-    <Compile Include="Mvvm\FriendicaEnumRegionViewmodel.cs" />
-    <Compile Include="Mvvm\FriendicaEnumCountryViewmodel.cs" />
-    <Compile Include="Mvvm\FriendicaEnumMaritalViewmodel.cs" />
-    <Compile Include="Mvvm\FriendicaEnumGenderViewmodel.cs" />
-    <Compile Include="Mvvm\HomeViewmodel.cs" />
-    <Compile Include="Mvvm\PhotoCropper.cs" />
-    <Compile Include="Mvvm\PhotoRightsViewmodel.cs" />
-    <Compile Include="Mvvm\PhotoSelectedRegion.cs" />
-    <Compile Include="Mvvm\PhotosInkCanvasViewmodel.cs" />
-    <Compile Include="Mvvm\PhotosViewmodel.cs" />
-    <Compile Include="Mvvm\ProfileUsersViewmodel.cs" />
-    <Compile Include="Mvvm\ManageGroupViewmodel.cs" />
-    <Compile Include="Mvvm\ProfilesViewmodel.cs" />
-    <Compile Include="Mvvm\MessagesViewmodel.cs" />
-    <Compile Include="Mvvm\ShowThreadViewmodel.cs" />
-    <Compile Include="Mvvm\NetworkViewmodel.cs" />
-    <Compile Include="Mvvm\NewPostViewmodel.cs" />
-    <Compile Include="Mvvm\SettingsViewmodel.cs" />
-    <Compile Include="PreviewUnavailable.xaml.cs">
-      <DependentUpon>PreviewUnavailable.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PrintHelper.cs" />
-    <Compile Include="PageDescription.cs" />
+    <Compile Include="Models\FriendicaActivities.cs" />
+    <Compile Include="Models\JsonFriendicaActivities.cs" />
+    <Compile Include="Models\JsonFriendicaGeo.cs" />
+    <Compile Include="Models\JsonFriendicaError.cs" />
+    <Compile Include="Models\JsonFriendicaMessage.cs" />
+    <Compile Include="Models\JsonFriendicaPost.cs" />
+    <Compile Include="Models\JsonFriendicaUser.cs" />
+    <Compile Include="Models\JsonOEmbedYoutube.cs" />
+    <Compile Include="Models\LiveTileContent.cs" />
+    <Compile Include="Models\NotificationElement.cs" />
+    <Compile Include="OpenUrlData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="clsListBoxExtensions.cs" />
-    <Compile Include="RichTextBlockHelper.cs" />
-    <Compile Include="Styles\UserControlPhotosFlipView.xaml.cs">
-      <DependentUpon>UserControlPhotosFlipView.xaml</DependentUpon>
+    <Compile Include="Strings\AppResources.de.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.de.resx</DependentUpon>
     </Compile>
-    <Compile Include="Styles\UserControlPhotosAlbum.xaml.cs">
-      <DependentUpon>UserControlPhotosAlbum.xaml</DependentUpon>
+    <Compile Include="Strings\AppResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Styles\UserControlProfileComboBox.xaml.cs">
-      <DependentUpon>UserControlProfileComboBox.xaml</DependentUpon>
+    <Compile Include="Strings\AppResources.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.es.resx</DependentUpon>
     </Compile>
-    <Compile Include="Styles\UserControlProfileRichText.xaml.cs">
-      <DependentUpon>UserControlProfileRichText.xaml</DependentUpon>
+    <Compile Include="Strings\AppResources.fr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.fr.resx</DependentUpon>
     </Compile>
-    <Compile Include="Styles\UserControlProfileDatePicker.xaml.cs">
-      <DependentUpon>UserControlProfileDatePicker.xaml</DependentUpon>
+    <Compile Include="Strings\AppResources.it.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.it.resx</DependentUpon>
     </Compile>
-    <Compile Include="Styles\UserControlProfileTextBox.xaml.cs">
-      <DependentUpon>UserControlProfileTextBox.xaml</DependentUpon>
+    <Compile Include="Strings\AppResources.pt.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.pt.resx</DependentUpon>
     </Compile>
-    <Compile Include="Styles\UserControlMessagesEditor.xaml.cs">
-      <DependentUpon>UserControlMessagesEditor.xaml</DependentUpon>
+    <Compile Include="Styles\GeneralStyles.xaml.cs">
+      <DependentUpon>GeneralStyles.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Styles\UserControlMessagesDateCounter.xaml.cs">
-      <DependentUpon>UserControlMessagesDateCounter.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Triggers\ContinuumTrigger.cs" />
-    <Compile Include="Triggers\OrientationDeviceFamilyTrigger.cs" />
-    <Compile Include="Triggers\VisualStateSelector.cs" />
-    <Compile Include="Views\05_Shell.xaml.cs">
-      <DependentUpon>05_Shell.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\10_Home.xaml.cs">
-      <DependentUpon>10_Home.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\15_Network.xaml.cs">
-      <DependentUpon>15_Network.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\16_Newsfeed.xaml.cs">
-      <DependentUpon>16_Newsfeed.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\A7_PhotosCropping.xaml.cs">
-      <DependentUpon>A7_PhotosCropping.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\A6_PhotoRights.xaml.cs">
-      <DependentUpon>A6_PhotoRights.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\A5_InkCanvas.xaml.cs">
-      <DependentUpon>A5_InkCanvas.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\A1_ShowThread.xaml.cs">
-      <DependentUpon>A1_ShowThread.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\20_Contacts.xaml.cs">
-      <DependentUpon>20_Contacts.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\25_Messages.xaml.cs">
-      <DependentUpon>25_Messages.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\30_Profiles.xaml.cs">
-      <DependentUpon>30_Profiles.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\35_Photos.xaml.cs">
-      <DependentUpon>35_Photos.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\40_Videos.xaml.cs">
-      <DependentUpon>40_Videos.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\45_Events.xaml.cs">
-      <DependentUpon>45_Events.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\50_PersonalNotes.xaml.cs">
-      <DependentUpon>50_PersonalNotes.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Viewmodels\BindableClass.cs" />
+    <Compile Include="Viewmodels\FriendicaThread.cs" />
+    <Compile Include="Viewmodels\NetworkViewmodel.cs" />
     <Compile Include="Views\91_Settings.xaml.cs">
       <DependentUpon>91_Settings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\92_Help.xaml.cs">
-      <DependentUpon>92_Help.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\93_About.xaml.cs">
-      <DependentUpon>93_About.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\A4_ProfileUsers.xaml.cs">
-      <DependentUpon>A4_ProfileUsers.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\A3_Browser.xaml.cs">
-      <DependentUpon>A3_Browser.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\A0_NewPost.xaml.cs">
-      <DependentUpon>A0_NewPost.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\A2_ManageGroup.xaml.cs">
-      <DependentUpon>A2_ManageGroup.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Helpers\IGetSystemTheme.cs" />
+    <Compile Include="Styles\FontIconLabel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest">
-      <SubType>Designer</SubType>
-    </AppxManifest>
-    <None Include="Friendica Mobile_TemporaryKey.pfx" />
+    <EmbeddedResource Include="Strings\AppResources.de.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.de.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings\AppResources.es.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings\AppResources.fr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings\AppResources.it.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.it.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings\AppResources.pt.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.pt.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings\AppResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\send.png" />
-    <Content Include="Assets\Square71x71Logo.scale-100.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Square71x71Logo.scale-150.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\StoreLogo.scale-100.png" />
-    <Content Include="Assets\StoreLogo.scale-200.png" />
-    <None Include="Package.StoreAssociation.xml" />
-    <Content Include="Properties\Default.rd.xml" />
-    <Content Include="Assets\SplashScreen.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <XliffResource Include="MultilingualResources\Friendica Mobile.PCL.de.xlf" />
+    <XliffResource Include="MultilingualResources\Friendica Mobile.PCL.es.xlf" />
+    <XliffResource Include="MultilingualResources\Friendica Mobile.PCL.fr.xlf" />
+    <XliffResource Include="MultilingualResources\Friendica Mobile.PCL.it.xlf" />
+    <XliffResource Include="MultilingualResources\Friendica Mobile.PCL.pt.xlf" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <EmbeddedResource Include="Views\91_Settings.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Page Include="PreviewUnavailable.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Styles\PhotosStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\PostsStyles.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Page>
-    <Page Include="Styles\ProfilesStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\MessagesStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\MainStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\SplitViewStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\UserControlPhotosFlipView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\UserControlPhotosAlbum.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Styles\UserControlProfileComboBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\UserControlProfileRichText.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\UserControlProfileDatePicker.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\UserControlProfileTextBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\UserControlMessagesEditor.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\UserControlMessagesDateCounter.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\05_Shell.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\10_Home.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\15_Network.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\16_Newsfeed.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\A7_PhotosCropping.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\A6_PhotoRights.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\A5_InkCanvas.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\A1_ShowThread.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\20_Contacts.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\25_Messages.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\30_Profiles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\35_Photos.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\40_Videos.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\45_Events.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\50_PersonalNotes.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\91_Settings.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\92_Help.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\93_About.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\A4_ProfileUsers.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\A3_Browser.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\A0_NewPost.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\A2_ManageGroup.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="Microsoft.Advertising.Xaml, Version=10.0">
-      <Name>Microsoft Advertising SDK for XAML</Name>
-    </SDKReference>
-    <SDKReference Include="Microsoft.VCLibs, Version=14.0">
-      <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
-    </SDKReference>
-    <SDKReference Include="WindowsMobile, Version=10.0.16299.0">
-      <Name>Windows Mobile Extensions for the UWP</Name>
-    </SDKReference>
+    <EmbeddedResource Include="App.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Styles\GeneralStyles.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Friendica Mobile.PCL\Friendica Mobile.PCL.csproj">
-      <Project>{6d25d629-13a8-4320-8e59-28b05319668e}</Project>
-      <Name>Friendica Mobile.PCL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NotificationBackgroundTask\BackgroundTasks.csproj">
-      <Project>{19b67307-020b-46d8-b69b-7307376f8ef4}</Project>
-      <Name>BackgroundTasks</Name>
-    </ProjectReference>
+    <Reference Include="HtmlAgilityPack, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.5.0\lib\portable-net45+netcore45+wp8+MonoAndroid+MonoTouch\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLStorage, Version=1.0.2.0, Culture=neutral, PublicKeyToken=286fe515a2c35b64, processorArchitecture=MSIL">
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac\PCLStorage.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLStorage.Abstractions, Version=1.0.2.0, Culture=neutral, PublicKeyToken=286fe515a2c35b64, processorArchitecture=MSIL">
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac\PCLStorage.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings, Version=2.5.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugins.Settings.2.5.8\lib\portable-net45+wp80+win8+wpa81\Plugin.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings.Abstractions, Version=2.5.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugins.Settings.2.5.8\lib\portable-net45+wp80+win8+wpa81\Plugin.Settings.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite-net, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\sqlite-net-pcl.1.2.1\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLite-net.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_green, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a84b7dcfb1391f7f, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.0\lib\portable-net45+netcore45+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLitePCLRaw.batteries_green.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.0\lib\portable-net45+netcore45+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLitePCLRaw.batteries_v2.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCLRaw.core.1.1.0\lib\portable-net45+netcore45+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLitePCLRaw.core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\netstandard1.1\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Forms.2.5.1.527436\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Forms.2.5.1.527436\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Forms.2.5.1.527436\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Advertising.XAML">
-      <Version>10.1705.16001</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.ApplicationInsights">
-      <Version>1.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.ApplicationInsights.PersistenceChannel">
-      <Version>1.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.ApplicationInsights.WindowsApps">
-      <Version>1.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.1.7</Version>
-    </PackageReference>
-    <PackageReference Include="NETStandard.Library">
-      <Version>2.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="SQLite.UWP.Native">
-      <Version>3.12.3</Version>
-    </PackageReference>
-    <PackageReference Include="SQLitePCL">
-      <Version>3.8.7.2</Version>
-    </PackageReference>
-    <PackageReference Include="Win2D.uwp">
-      <Version>1.20.0</Version>
-    </PackageReference>
-    <PackageReference Include="WriteableBitmapEx">
-      <Version>1.5.1</Version>
-    </PackageReference>
-    <PackageReference Include="Xam.Plugins.Settings">
-      <Version>2.5.8</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Forms">
-      <Version>2.5.1.527436</Version>
-    </PackageReference>
+    <None Include="packages.config" />
   </ItemGroup>
-  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
-    <VisualStudioVersion>14.0</VisualStudioVersion>
-  </PropertyGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
-  <PropertyGroup>
-    <PreBuildEvent>xcopy "D:\Programme\Visual Studio 2017\Projects\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.de.resx" "$(ProjectDir)Strings\de\Resources.resw*" /Y
-xcopy "D:\Programme\Visual Studio 2017\Projects\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.resx" "$(ProjectDir)Strings\en\Resources.resw*" /Y
-xcopy "D:\Programme\Visual Studio 2017\Projects\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.es.resx" "$(ProjectDir)Strings\es\Resources.resw*" /Y
-xcopy "D:\Programme\Visual Studio 2017\Projects\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.fr.resx" "$(ProjectDir)Strings\fr\Resources.resw*" /Y
-xcopy "D:\Programme\Visual Studio 2017\Projects\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.it.resx" "$(ProjectDir)Strings\it\Resources.resw*" /Y
-xcopy "D:\Programme\Visual Studio 2017\Projects\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.pt.resx" "$(ProjectDir)Strings\pt\Resources.resw*" /Y</PreBuildEvent>
-  </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets" Label="MultilingualAppToolkit" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\v$(MultilingualAppToolkitVersion)\Microsoft.Multilingual.ResxResources.targets')" />
+  <Target Name="MATPrerequisite" BeforeTargets="PrepareForBuild" Condition="!Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets')" Label="MultilingualAppToolkit">
+    <Warning Text="$(MSBuildProjectFile) is Multilingual build enabled, but the Multilingual App Toolkit is unavailable during the build. If building with Visual Studio, please check to ensure that toolkit is properly installed." />
   </Target>
-  <Target Name="AfterBuild">
+  <Import Project="..\packages\Xamarin.Forms.2.5.1.527436\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.5.1.527436\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Dieses Projekt verweist auf mindestens ein NuGet-Paket, das auf diesem Computer fehlt. Verwenden Sie die Wiederherstellung von NuGet-Paketen, um die fehlenden Dateien herunterzuladen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=322105". Die fehlende Datei ist "{0}".</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Xamarin.Forms.2.5.1.527436\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Forms.2.5.1.527436\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets'))" />
   </Target>
-  -->
 </Project>

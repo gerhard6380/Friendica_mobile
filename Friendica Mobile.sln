@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Friendica Mobile", "Friendica Mobile\Friendica Mobile.csproj", "{6D10E194-AAE6-4C61-AEFC-7809A1381CC2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Friendica Mobile.UWP", "Friendica Mobile.UWP\Friendica Mobile.UWP.csproj", "{6D10E194-AAE6-4C61-AEFC-7809A1381CC2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundTasks", "NotificationBackgroundTask\BackgroundTasks.csproj", "{19B67307-020B-46D8-B69B-7307376F8EF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Friendica Mobile.PCL", "Friendica Mobile.PCL\Friendica Mobile.PCL.csproj", "{6D25D629-13A8-4320-8E59-28B05319668E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Friendica Mobile", "Friendica Mobile\Friendica Mobile.csproj", "{6D25D629-13A8-4320-8E59-28B05319668E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Friendica Mobile.Droid", "Friendica Mobile.Droid\Friendica Mobile.Droid.csproj", "{10A48497-F9AA-464C-BC6F-15274436064D}"
 EndProject

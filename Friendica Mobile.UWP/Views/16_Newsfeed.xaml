@@ -1,0 +1,267 @@
+﻿<Page
+    x:Class="Friendica_Mobile.UWP.Views.Newsfeed"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:contract5Present="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
+    xmlns:contract5NotPresent="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,5)"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mvvm="using:Friendica_Mobile.PCL.Viewmodels"
+    xmlns:triggers="using:Friendica_Mobile.UWP.Triggers"
+    xmlns:conv="using:Friendica_Mobile.UWP.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Name="pageNewsfeed" x:Uid="pageNewsfeed">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles/PostsStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <conv:BoolToVisibilityCollapsedConverter x:Key="BoolToVisibilityCollapsedConverter" />
+            <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Page.TopAppBar>
+        <CommandBar x:Name="topAppBar" 
+                    Margin="48,0,0,0"
+                    Visibility="Visible"
+                    Background="Gray"
+                    Foreground="White"
+                    contract5NotPresent:Style="{StaticResource CommandBarTopStyle}"
+                    contract5Present:Style="{ThemeResource CommandBarRevealStyle}"
+                    HorizontalAlignment="Left">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="topAppBarNewsfeedRefresh" x:Uid="appBarNetworkRefresh" 
+                              Icon="Refresh"
+                              Foreground="White"
+                              contract5Present:Style="{ThemeResource AppBarButtonRevealStyle}"
+                              Command="{Binding RefreshCommand}"/>
+                <AppBarButton x:Name="topAppBarNewsfeedSetAllSeen" x:Uid="appBarNewsfeedSetAllSeen" 
+                              Foreground="White"
+                              contract5Present:Style="{ThemeResource AppBarButtonRevealStyle}"
+                              Command="{Binding SetAllSeenCommand}">
+                    <Grid>
+                        <FontIcon Glyph="&#xE052;" FontFamily="Segoe MDL2 Assets" 
+                                  FontSize="20"
+                                  Margin="-12,-4,0,0"/>
+                        <FontIcon Glyph="&#xE73E;" FontFamily="Segoe MDL2 Assets" 
+                                  FontSize="24"
+                                  Margin="0,0,-4,-12"/>
+                    </Grid>
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.TopAppBar>
+
+    <Page.BottomAppBar>
+        <CommandBar x:Name="bottomAppBar" 
+                    Visibility="Collapsed">
+            <AppBarButton x:Name="bottomAppBarNewsfeedRefresh" x:Uid="appBarNetworkRefresh" 
+                          Icon="Refresh" 
+                          contract5Present:Style="{ThemeResource AppBarButtonRevealStyle}"
+                          Command="{Binding RefreshCommand}"/>
+            <AppBarButton x:Name="bottomAppBarNewsfeedSetAllSeen" x:Uid="appBarNewsfeedSetAllSeen" 
+                          contract5Present:Style="{ThemeResource AppBarButtonRevealStyle}"
+                          Command="{Binding SetAllSeenCommand}">
+                <Grid>
+                    <FontIcon Glyph="&#xE052;" FontFamily="Segoe MDL2 Assets" 
+                                  FontSize="20"
+                                  Margin="-12,-4,0,0"/>
+                    <FontIcon Glyph="&#xE73E;" FontFamily="Segoe MDL2 Assets" 
+                                  FontSize="24"
+                                  Margin="0,0,-4,-12"/>
+                </Grid>
+            </AppBarButton>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="MobilePortrait">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="MobilePortrait" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="textBlockApplicationName.Visibility" Value="Visible" />
+                        <Setter Target="textBlockPageName.Visibility" Value="Visible" />
+                        <Setter Target="pageNewsfeed.Margin" Value="0,0,0,0" />
+                        <Setter Target="topAppBar.Visibility" Value="Collapsed" />
+                        <Setter Target="bottomAppBar.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="MobileLandscape">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="MobileLandscape" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="textBlockApplicationName.Visibility" Value="Collapsed" />
+                        <Setter Target="textBlockPageName.Visibility" Value="Visible" />
+                        <Setter Target="textBlockPageName.FontSize" Value="{StaticResource ApplicationNameFontSize}" />
+                        <Setter Target="pageNewsfeed.Margin" Value="0,0,84,0" />
+                        <Setter Target="topAppBar.Visibility" Value="Collapsed" />
+                        <Setter Target="bottomAppBar.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Desktop">
+                    <VisualState.StateTriggers>
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="DesktopLandscape" />
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="DesktopPortrait" />
+                        <triggers:OrientationDeviceFamilyTrigger OrientationDevice="MobileContinuum" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="textBlockApplicationName.Visibility" Value="Collapsed" />
+                        <Setter Target="textBlockPageName.Visibility" Value="Visible" />
+                        <Setter Target="textBlockPageName.FontSize" Value="{StaticResource PageNameFontSize}" />
+                        <Setter Target="pageNewsfeed.Margin" Value="0,0,0,0" />
+                        <Setter Target="topAppBar.Visibility" Value="Visible" />
+                        <Setter Target="bottomAppBar.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+       
+        <!--normal displaying mode (vs. red indicator boxes)--> 
+        <ScrollViewer x:Name="viewerNewsfeed" 
+                      ViewChanged="ViewerNewsfeed_ViewChanged">
+
+             <!--showing application title and page name in normal mode--> 
+            <StackPanel Margin="0,0,16,0">
+                <RelativePanel>
+                    <TextBlock x:Name="textBlockApplicationName" x:Uid="textBlockApplicationName" 
+                           Visibility="Visible" 
+                           Style="{StaticResource ApplicationNameTextBlockStyle}"/>
+                    <TextBlock x:Name="textBlockPageName" x:Uid="pageTitleNewsfeed"  
+                           Visibility="Visible" 
+                           Style="{StaticResource PageNameTextBlockStyle}" 
+                           RelativePanel.Below="textBlockApplicationName"/>
+                </RelativePanel>
+
+                 <!--showing info if no Settings available-->  
+                <StackPanel x:Name="stackpanelNoSettings"
+                            Visibility="{Binding NoSettings, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <TextBlock x:Name="textblockNewsfeedNoSettings" x:Uid="textblockNewsfeedNoSettings"
+                               Margin="4,4,4,12"
+                               Foreground="Red"
+                               FontStyle="Italic"
+                               TextWrapping="Wrap"
+                               TextAlignment="Left"/>
+                    <Button x:Name="buttonGotoSettings"
+                            Click="ButtonGotoSettings_Click"
+                            Margin="4,4,4,4">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <FontIcon Glyph="&#xE713;" FontFamily="Segoe MDL2 Assets" FontSize="16"/>
+                                <TextBlock x:Uid="textblockNetworkSettings" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+
+                <!--currently loading data, nothing to display yet-->
+                <StackPanel x:Name="stackpanelIsLoadingInitial"
+                            Visibility="{Binding IsLoadingInitial, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <TextBlock x:Name="textblockNewsfeedIsLoadingInitial" x:Uid="textblockNetworkIsLoadingInitial"                                   
+                               Margin="4,4,4,12"
+                               TextWrapping="Wrap"
+                               TextAlignment="Left" />
+                    <ProgressBar x:Name="progressbarIsLoadingInitial"
+                                 IsIndeterminate="True" />
+                </StackPanel>
+
+                <!--after loading data, if nothing to display returned-->
+                <StackPanel x:Name="stackpanelNoDataAvailable"
+                                Visibility="{Binding NoDataAvailableNewsfeed, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <TextBlock x:Name="textblockNoDataAvailable" x:Uid="textblockNewsfeedNoDataAvailable"
+                               Margin="4,4,4,12"
+                               Foreground="Gray"
+                               FontStyle="Italic"
+                               TextWrapping="Wrap"
+                               TextAlignment="Left" />
+                </StackPanel>
+
+                <!--display list with the returned conversations-->
+                <ListView x:Name="listviewNewsfeed"
+                          HorizontalAlignment="Left"
+                          SelectionMode="None"
+                          ContainerContentChanging="listviewNewsfeed_ContainerContentChanging"
+                          ItemContainerStyle="{StaticResource listViewItemThreadStyle}"
+                          ItemsSource="{Binding NewsfeedThreads}"
+                          ItemTemplate="{StaticResource FriendicaNewsfeedTemplate}" />
+            </StackPanel>
+        </ScrollViewer>
+
+
+        <!--show button if not on top of page to easily scroll back to the newest entries, change visibility on scrolling--> 
+        <Button x:Name="buttonScrollToTop"
+                Margin="0,12,24,0"
+                Width="48"
+                Height="36"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right"
+                Visibility="Collapsed"
+                Tapped="ButtonScrollToTop_Tapped">
+            <FontIcon x:Name="buttonScrollToTopFontIcon"
+                      Glyph="&#x23F6;" FontSize="36" FontFamily="Segoe UI Emoji"
+                      Margin="-4,-8,0,0"
+                      Foreground="White"/>
+        </Button>
+
+         <!--red indicator boxes--> 
+         <!--... showing that app refreshes the entries--> 
+        <RelativePanel Background="Red"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Stretch"
+                       Visibility="{Binding IsRefreshing, Converter={StaticResource BoolToVisibilityConverter}}">
+            <ProgressRing x:Name="progressRefreshing"
+                          IsActive="True"
+                          Foreground="White"
+                          Margin="36,0,36,4"
+                          RelativePanel.AlignBottomWithPanel="True"
+                          RelativePanel.AlignLeftWithPanel="True"/>
+            <TextBlock x:Name="textblockIndicatorRefreshing" x:Uid="textblockIndicatorRefreshing"
+                       Foreground="White"
+                       RelativePanel.RightOf="progressRefreshing" 
+                       RelativePanel.AlignBottomWithPanel="True"/>
+        </RelativePanel>
+
+         <!--... showing that app loads the next 20 entries after reaching the end of the listview--> 
+        <RelativePanel Background="Red"
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Stretch"
+                       Visibility="{Binding IsLoadingNext, Converter={StaticResource BoolToVisibilityConverter}}">
+            <ProgressRing x:Name="progressLoadingNextEntries"
+                          IsActive="True"
+                          Foreground="White"
+                          Margin="36,0,36,4"
+                          RelativePanel.AlignBottomWithPanel="True"
+                          RelativePanel.AlignLeftWithPanel="True"/>
+            <TextBlock x:Name="textblockIndicatorLoadingNextEntries" x:Uid="textblockIndicatorLoadingNextEntries"
+                       Foreground="White"
+                       RelativePanel.RightOf="progressLoadingNextEntries" 
+                       RelativePanel.AlignBottomWithPanel="True"/>
+        </RelativePanel>
+
+         <!--red box indicating that system sends a new post to the server--> 
+        <RelativePanel x:Name="RelativePanelNewPost" 
+                       Background="Red"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Stretch"
+                       Visibility="{Binding IsSendingNewPost, Converter={StaticResource BoolToVisibilityConverter}}">
+            <ProgressRing x:Name="progressSendingNewPost"
+                          IsActive="True"
+                          Foreground="White"
+                          Margin="24,0,36,4"
+                          HorizontalAlignment="Left"
+                          RelativePanel.AlignBottomWithPanel="True"
+                          RelativePanel.AlignLeftWithPanel="True"/>
+            <TextBlock x:Name="textblockIndicatorSendingNewPost" x:Uid="textblockIndicatorSendingNewPost"
+                       Foreground="White"
+                       RelativePanel.RightOf="progressSendingNewPost" 
+                       RelativePanel.AlignBottomWithPanel="True"/>
+        </RelativePanel>
+
+    </Grid>
+</Page>
+    
