@@ -80,6 +80,9 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.2.5.1.527436\lib\Xamarin.Mac\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Essentials">
+      <HintPath>..\packages\Xamarin.Essentials.1.0.0\lib\netstandard2.0\Xamarin.Essentials.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -111,12 +114,6 @@
     <Compile Include="Helpers\GetSystemTheme.cs" />
     <Compile Include="Helpers\FontIconLabelRenderer.cs" />
     <Compile Include="Helpers\LocalizeMacOS.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Friendica Mobile\Friendica Mobile.csproj">
-      <Project>{6D25D629-13A8-4320-8E59-28B05319668E}</Project>
-      <Name>Friendica Mobile</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />

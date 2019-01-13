@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using Foundation;
-using Friendica_Mobile.PCL;
+using Friendica_Mobile;
 using UIKit;
 
 namespace Friendica_Mobile.iOS

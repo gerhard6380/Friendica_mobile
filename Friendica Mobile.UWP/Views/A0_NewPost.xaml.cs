@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+using Friendica_Mobile.PCL;
 
 namespace Friendica_Mobile.UWP.Views
 {
@@ -141,9 +141,9 @@ namespace Friendica_Mobile.UWP.Views
                 }
 
                 // user clicked a post in network to send a comment
-                else if (e.Parameter.GetType() == typeof(Viewmodels.FriendicaThread))
+                else if (e.Parameter.GetType() == typeof(PCL.Viewmodels.FriendicaThread))
                 {
-                    var thread = e.Parameter as Viewmodels.FriendicaThread;
+                    var thread = e.Parameter as PCL.Viewmodels.FriendicaThread;
                     // collapse ACL setter box on a reply
                     pageMvvm.ShowACLVisible = false;
                     pageMvvm.ShowThreadVisible = true;
@@ -169,10 +169,10 @@ namespace Friendica_Mobile.UWP.Views
                 }
 
                 // user clicked the retweet icon on a post item 
-                else if (e.Parameter.GetType() == typeof(Friendica_Mobile.Models.FriendicaPost))
+                else if (e.Parameter.GetType() == typeof(Friendica_Mobile.PCL.Models.FriendicaPost))
                 {
                     // insert data into NewPost
-                    pageMvvm.RetweetPost = e.Parameter as Friendica_Mobile.Models.FriendicaPost;
+                    pageMvvm.RetweetPost = e.Parameter as Friendica_Mobile.PCL.Models.FriendicaPost;
 
                     // generate content in bbcode for posting (false if there was an error)
                     var contentGenerated = pageMvvm.GenerateRetweetContent();

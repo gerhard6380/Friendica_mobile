@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:styles="clr-namespace:Friendica_Mobile.Styles"
+             x:Class="Friendica_Mobile.Styles.BaseContentPage">
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid x:Name="GridPageContent"
+                  Margin="0,0,0,48">
+                <!-- this is the main content to be filled from other derived pages -->
+                <ContentView x:Name="PageContentContainer"
+                            VerticalOptions="FillAndExpand"
+                            Margin="4" />
+            </Grid>
+
+            <!-- command bar to be shown on top or bottom of page -->
+            <styles:CustomCommandBar x:Name="CommandBar"
+                                     HeightRequest="48"
+                                     OnCommandBarPositionChanged="Handle_OnCommandBarPositionChanged"
+                                     MoreOptionsButtonClicked="Handle_MoreOptionsButtonClicked"
+                                     VerticalOptions="End"/>
+
+            <!-- tap recognising area if flyout of commandbar is visible -->
+            <Grid x:Name="GridTapGesture"
+                  BackgroundColor="Fuchsia"
+                  IsVisible="false" />
+            
+            <!-- grid with flyout for more options -->
+            <Grid x:Name="GridFlyoutBase"
+                  BackgroundColor="#1AD3D3D3"
+                  IsVisible="false">
+                <Frame x:Name="GridFlyout" 
+                       TranslationX="-24"
+                       TranslationY="-48"
+                       BackgroundColor="{DynamicResource NavigationBackgroundColor}"
+                       OutlineColor="{DynamicResource AccentColor}"
+                       WidthRequest="240"
+                       HorizontalOptions="End"
+                       VerticalOptions="End">
+                    <StackLayout>
+                        <StackLayout x:Name="StackLayoutSecondaryCommandsContainer" />
+                    </StackLayout>           
+                </Frame>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>

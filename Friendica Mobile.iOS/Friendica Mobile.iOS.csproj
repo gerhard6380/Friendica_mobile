@@ -28,7 +28,7 @@
     <MtouchArch>i386, x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignProvision>iOS Team Provisioning Profile: com.seeber.NavigationMenu</CodesignProvision>
+    <CodesignProvision>iOS Team Provisioning Profile: com.seeber.Friendica-Mobile</CodesignProvision>
     <CodesignKey>iPhone Developer: test@seeber.at (2KS85X8D2R)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
@@ -145,6 +145,9 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -160,15 +163,15 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\Friendica Mobile\Friendica Mobile.csproj">
-      <Project>{6D25D629-13A8-4320-8E59-28B05319668E}</Project>
-      <Name>Friendica Mobile</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\SEGMDL2.TTF">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Friendica Mobile\Friendica Mobile.csproj">
+      <Project>{1EA70EC9-BA7C-4B4B-BC41-4C98B65E4189}</Project>
+      <Name>Friendica Mobile</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

@@ -16,6 +16,7 @@ using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
+using Friendica_Mobile.PCL;
 
 namespace Friendica_Mobile.UWP.Mvvm
 {
@@ -498,8 +499,8 @@ namespace Friendica_Mobile.UWP.Mvvm
 
         public bool NotificationEachNewsfeedAllowed
         {
-            get { return Settings.NotificationEachNewsfeedAllowed; }
-            set { Settings.NotificationEachNewsfeedAllowed = value;
+            get { return PCL.Settings.NotificationEachNewsfeedAllowed; }
+            set { PCL.Settings.NotificationEachNewsfeedAllowed = value;
                 OnPropertyChanged("NotificationEachNewsfeedAllowed");
             }
         }

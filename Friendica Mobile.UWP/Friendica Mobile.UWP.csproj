@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Friendica_Mobile.UWP</RootNamespace>
     <AssemblyName>Friendica Mobile.UWP</AssemblyName>
-    <DefaultLanguage>de-DE</DefaultLanguage>
+    <DefaultLanguage>de</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.15063.0</TargetPlatformMinVersion>
@@ -112,12 +112,12 @@
     <Content Include="friendika.openmindspace.org.crt" />
     <Content Include="friendika.openmindspace.org - Kopie.cer" />
     <None Include="Friendica Mobile_StoreKey.pfx" />
-    <PRIResource Include="Strings\es\Resources.resw" />
     <PRIResource Include="Strings\pt\Resources.resw" />
     <PRIResource Include="Strings\it\Resources.resw" />
     <PRIResource Include="Strings\fr\Resources.resw" />
-    <PRIResource Include="Strings\de\Resources.resw" />
+    <PRIResource Include="Strings\es\Resources.resw" />
     <PRIResource Include="Strings\en\Resources.resw" />
+    <PRIResource Include="Strings\de\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -170,6 +170,7 @@
     <Compile Include="Converters\NetworkModeToIntConverter.cs" />
     <Compile Include="Converters\StartPageToIntConverter.cs" />
     <Compile Include="Converters\ToFlowDirectionConverter.cs" />
+    <Compile Include="GetSystemTheme.cs" />
     <Compile Include="HttpRequests\AuthenticationTest.cs" />
     <Compile Include="HttpRequests\clsHttpRequests.cs" />
     <Compile Include="HttpRequests\clsHttpRequests_old.cs" />
@@ -187,6 +188,9 @@
     <Compile Include="HttpRequests\GetFriendicaNetwork.cs" />
     <Compile Include="HttpRequests\GetOEmbedYouTube.cs" />
     <Compile Include="LocalizeUWP.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MessageDialogUWP.cs" />
     <Compile Include="Models\FriendicaPhotolist.cs" />
     <Compile Include="Models\FriendicaPhotoalbumSamples.cs" />
@@ -241,6 +245,7 @@
     <Compile Include="Mvvm\NetworkViewmodel.cs" />
     <Compile Include="Mvvm\NewPostViewmodel.cs" />
     <Compile Include="Mvvm\SettingsViewmodel.cs" />
+    <Compile Include="NavigationPaneAcrylic.cs" />
     <Compile Include="PreviewUnavailable.xaml.cs">
       <DependentUpon>PreviewUnavailable.xaml</DependentUpon>
     </Compile>
@@ -369,6 +374,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="PreviewUnavailable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -531,8 +540,12 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Friendica Mobile\Friendica Mobile.csproj">
+    <ProjectReference Include="..\Friendica Mobile.PCL\Friendica Mobile.PCL.csproj">
       <Project>{6d25d629-13a8-4320-8e59-28b05319668e}</Project>
+      <Name>Friendica Mobile.PCL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Friendica Mobile\Friendica Mobile.csproj">
+      <Project>{1ea70ec9-ba7c-4b4b-bc41-4c98b65e4189}</Project>
       <Name>Friendica Mobile</Name>
     </ProjectReference>
     <ProjectReference Include="..\NotificationBackgroundTask\BackgroundTasks.csproj">
@@ -578,13 +591,18 @@
       <Version>2.5.1.527436</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
+    <PreBuildEvent>xcopy "D:\Programme\Nextcloud\Visual Studio Projekte\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.de.resx" "$(ProjectDir)Strings\de\Resources.resw*" /Y
+xcopy "D:\Programme\Nextcloud\Visual Studio Projekte\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.resx" "$(ProjectDir)Strings\en\Resources.resw*" /Y
+xcopy "D:\Programme\Nextcloud\Visual Studio Projekte\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.es.resx" "$(ProjectDir)Strings\es\Resources.resw*" /Y
+xcopy "D:\Programme\Nextcloud\Visual Studio Projekte\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.fr.resx" "$(ProjectDir)Strings\fr\Resources.resw*" /Y
+xcopy "D:\Programme\Nextcloud\Visual Studio Projekte\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.it.resx" "$(ProjectDir)Strings\it\Resources.resw*" /Y
+xcopy "D:\Programme\Nextcloud\Visual Studio Projekte\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.pt.resx" "$(ProjectDir)Strings\pt\Resources.resw*" /Y</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:styles="clr-namespace:Friendica_Mobile.Styles"
+             x:Class="Friendica_Mobile.Styles.CustomCommandBar">
+    <ContentView.Content>
+        
+        <Grid x:Name="GridCommandBar" 
+              BackgroundColor="{DynamicResource CommandBarBackgroundColor}"
+              VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="36" />        
+            </Grid.ColumnDefinitions>
+            <StackLayout x:Name="StackLayoutPrimaryCommandsContainer"
+                         Spacing="0"
+                         Orientation="Horizontal"
+                         Grid.Column="0">
+
+            </StackLayout>
+
+            <!-- button with 3 dots to increase height of bar showing text and open pane with more options -->
+            <Grid x:Name="GridMoreOptions"
+                  Grid.Column="1">
+
+                <styles:FontIconLabel x:Name="LabelMoreOptions"
+                                      TextColor="{DynamicResource NavigationTextColor}"
+                                      Text="{x:Static styles:Icon.FIMore}"
+                                      FontSize="20"
+                                      FontFamily="Segoe MDL2 Assets"
+                                      Margin="0,0,0,0"
+                                      VerticalOptions="CenterAndExpand"
+                                      HorizontalOptions="CenterAndExpand" />
+                <Button x:Name="ButtonMoreOptions"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="FillAndExpand"
+                        Clicked="ButtonMoreOptions_Clicked" />
+                
+            </Grid>     
+        </Grid>
+       
+    </ContentView.Content>
+</ContentView>

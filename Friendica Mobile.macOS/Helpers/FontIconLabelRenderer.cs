@@ -1,6 +1,6 @@
 ﻿using AppKit;
 using Friendica_Mobile.macOS.Helpers;
-using Friendica_Mobile.PCL.Styles;
+using Friendica_Mobile.Styles;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.MacOS;
 

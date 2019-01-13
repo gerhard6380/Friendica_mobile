@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Friendica_Mobile.PCL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
@@ -212,7 +213,7 @@ namespace Friendica_Mobile.UWP.Views
                         await App.Badge.ClearBadgeNumber();
                     }
                     // change app state to notrunning again
-                    Friendica_Mobile.Settings.CurrentAppState = AppState.NotRunning;
+                    Friendica_Mobile.PCL.Settings.CurrentAppState = AppState.NotRunning;
                     Application.Current.Exit();
                 }
             }
@@ -384,7 +385,7 @@ namespace Friendica_Mobile.UWP.Views
                         await App.Badge.ClearBadgeNumber();
                     }
                     // change app state to notrunning again
-                    Friendica_Mobile.Settings.CurrentAppState = AppState.NotRunning;
+                    Friendica_Mobile.PCL.Settings.CurrentAppState = AppState.NotRunning;
                     Application.Current.Exit();
                 }
             }

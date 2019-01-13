@@ -1,4 +1,4 @@
-﻿using Friendica_Mobile.PCL;
+﻿using Friendica_Mobile;
 using System.Globalization;
 using System.Threading;
 using Xamarin.Forms;

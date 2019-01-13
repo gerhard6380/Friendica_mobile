@@ -10,6 +10,7 @@ using Windows.ApplicationModel.Resources;
 using Friendica_Mobile.UWP.Mvvm;
 using System.Collections.ObjectModel;
 using Friendica_Mobile;
+using Friendica_Mobile.PCL;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 

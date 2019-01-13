@@ -1,8 +1,8 @@
 ﻿using BackgroundTasks;
 using Friendica_Mobile.UWP.Mvvm;
 using Friendica_Mobile;
-using Friendica_Mobile.Strings;
-using Friendica_Mobile.Viewmodels;
+using Friendica_Mobile.PCL.Strings;
+using Friendica_Mobile.PCL.Viewmodels;
 using Friendica_Mobile.UWP.Triggers;
 using System;
 using Windows.ApplicationModel.Resources;
@@ -10,6 +10,7 @@ using Windows.UI;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Friendica_Mobile.PCL;
 
 namespace Friendica_Mobile.UWP.Views
 {
@@ -20,7 +21,7 @@ namespace Friendica_Mobile.UWP.Views
         public Newsfeed()
         {
             if (App.NetworkVm == null)
-                App.NetworkVm = new Viewmodels.NetworkViewmodel();
+                App.NetworkVm = new PCL.Viewmodels.NetworkViewmodel();
             this.DataContext = App.NetworkVm;
 
             this.InitializeComponent();
@@ -43,7 +44,7 @@ namespace Friendica_Mobile.UWP.Views
 
         private void App_SendingNewPostChanged(object sender, System.EventArgs e)
         {
-            var mvvm = this.DataContext as Viewmodels.NetworkViewmodel;
+            var mvvm = this.DataContext as PCL.Viewmodels.NetworkViewmodel;
             mvvm.IsSendingNewPost = App.IsSendingNewPost;
         }
 
@@ -78,7 +79,7 @@ namespace Friendica_Mobile.UWP.Views
         {
             base.OnNavigatedTo(e);
 
-            var mvvm = this.DataContext as Viewmodels.NetworkViewmodel;
+            var mvvm = this.DataContext as PCL.Viewmodels.NetworkViewmodel;
             mvvm.ButtonRetweetClicked += Mvvm_ButtonRetweetClicked;
             mvvm.LikeNewsfeedClicked += Mvvm_LikeNewsfeedClicked;
             mvvm.SetAllSeenClicked += Mvvm_SetAllSeenClicked;
@@ -122,11 +123,11 @@ namespace Friendica_Mobile.UWP.Views
             App.IsSendingNewPost = true;
 
             // prepare the retweet
-            var postOriginal = sender as Friendica_Mobile.Models.FriendicaPost;
+            var postOriginal = sender as Friendica_Mobile.PCL.Models.FriendicaPost;
             var newPost = new NewPostViewmodel()
             {
                 newPost = new Models.FriendicaNewPost(),
-                RetweetPost = sender as Friendica_Mobile.Models.FriendicaPost
+                RetweetPost = sender as Friendica_Mobile.PCL.Models.FriendicaPost
             };
             newPost.GenerateRetweetContent();
             newPost.NewPostStatus = newPost.RetweetedContent;
@@ -158,7 +159,7 @@ namespace Friendica_Mobile.UWP.Views
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
-            var mvvm = this.DataContext as Viewmodels.NetworkViewmodel;
+            var mvvm = this.DataContext as PCL.Viewmodels.NetworkViewmodel;
             mvvm.ButtonRetweetClicked -= Mvvm_ButtonRetweetClicked;
             mvvm.LikeNewsfeedClicked -= Mvvm_LikeNewsfeedClicked;
 
@@ -184,7 +185,7 @@ namespace Friendica_Mobile.UWP.Views
             // start loading the next tranch of entries
             if (atBottom)
             {
-                var mvvm = this.DataContext as Viewmodels.NetworkViewmodel;
+                var mvvm = this.DataContext as PCL.Viewmodels.NetworkViewmodel;
                 if (mvvm.NewsfeedThreads != null && mvvm.NewsfeedThreads.Count > 0 && !mvvm.IsLoadingNext)
                     await mvvm.LoadNext();
             }

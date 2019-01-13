@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- used to define the menu entries; derived from MasterDetailControl in order to be able to define the menu
+structure in SideContent property -->
+<styles:MasterDetailControl xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:styles="clr-namespace:Friendica_Mobile.Styles;assembly=Friendica_Mobile"
+                            xmlns:i18n="clr-namespace:Friendica_Mobile"
+             x:Class="Friendica_Mobile.Views.Shell">
+
+    <styles:MasterDetailControl.SideContent>
+        <StackLayout Spacing="0">
+            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIUserAdmin}"
+                                           Text="Detail 1" 
+                                           ClassName="Detail1" 
+                                           Command="{Binding ToDetail1}" />
+            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIAddUser}"
+                                           Text="Detail 2"
+                                           ClassName="Detail2"
+                                           Command="{Binding ToDetail2}" />
+            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIUserAdmin}"
+                                           Text="Detail 3"
+                                           ClassName="Detail3"
+                                           CounterNewElements="{Binding Detail3Counter}"
+                                           Command="{Binding ToDetail3}" />
+            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIRolesAdmin}"
+                                           Text="NoMenuDetail"
+                                           ClassName="NoMenuDetail"
+                                           IsEnabled="false"
+                                           Command="{Binding ToNoMenuDetail}" />
+            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIQRCode}"
+                                           Text="NoMenuDetail"
+                                           ClassName="NoMenuDetail"
+                                           Command="{Binding ToNoMenuDetail}" />
+            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIKey}"
+                                           Text="NoMenuDetail"
+                                           ClassName="NoMenuDetail"
+                                           Command="{Binding ToNoMenuDetail}" />
+            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIContact}"
+                                           Text="NoMenuDetail"
+                                           ClassName="NoMenuDetail"
+                                           Command="{Binding ToNoMenuDetail}" />
+            </StackLayout>
+    </styles:MasterDetailControl.SideContent>
+
+    <!-- define the buttons in the flyout for more options hiding behind the gear wheel at the bottom -->
+    <styles:MasterDetailControl.MoreOptions>
+        <StackLayout Spacing="0">
+            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIUserAdmin}"
+                                           Text="Detail 1" 
+                                           ClassName="Detail1" 
+                                           Command="{Binding ToDetail1}" />
+            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FISettings}"
+                                           Text="{i18n:Translate PageAppSettings}" 
+                                           ClassName="Settings" 
+                                           Command="{Binding ToSettingsCommand}" />  
+            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIAddUser}"
+                                           Text="Settings disabled" 
+                                           ClassName="Settings2" 
+                                           IsButtonEnabled="false"
+                                           CounterNewElements="{Binding SettingsCounter}"
+                                           Command="{Binding ToSettingsCommand}" /> 
+        </StackLayout>
+    </styles:MasterDetailControl.MoreOptions>
+    
+</styles:MasterDetailControl>

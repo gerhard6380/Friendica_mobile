@@ -34,8 +34,8 @@ namespace Friendica_Mobile.UWP.Mvvm
 
 
         // selected post if user wants to retweet the post
-        private Friendica_Mobile.Models.FriendicaPost _retweetPost;
-        public Friendica_Mobile.Models.FriendicaPost RetweetPost
+        private Friendica_Mobile.PCL.Models.FriendicaPost _retweetPost;
+        public Friendica_Mobile.PCL.Models.FriendicaPost RetweetPost
         {
             get { return _retweetPost; }
             set { _retweetPost = value; }

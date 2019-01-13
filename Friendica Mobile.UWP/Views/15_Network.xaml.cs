@@ -1,7 +1,6 @@
 ﻿using Friendica_Mobile.UWP.Mvvm;
 using Friendica_Mobile;
-using Friendica_Mobile.Strings;
-using Friendica_Mobile.Viewmodels;
+using Friendica_Mobile.PCL.Viewmodels;
 using Friendica_Mobile.UWP.Triggers;
 using System;
 using Windows.ApplicationModel.DataTransfer;
@@ -12,6 +11,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Friendica_Mobile.PCL;
 
 namespace Friendica_Mobile.UWP.Views
 {
@@ -22,7 +22,7 @@ namespace Friendica_Mobile.UWP.Views
         public Network()
         {
             if (App.NetworkVm == null)
-                App.NetworkVm = new Viewmodels.NetworkViewmodel();
+                App.NetworkVm = new PCL.Viewmodels.NetworkViewmodel();
             this.DataContext = App.NetworkVm;
 
             this.InitializeComponent();
@@ -45,7 +45,7 @@ namespace Friendica_Mobile.UWP.Views
 
         private void App_SendingNewPostChanged(object sender, System.EventArgs e)
         {
-            var mvvm = this.DataContext as Viewmodels.NetworkViewmodel;
+            var mvvm = this.DataContext as PCL.Viewmodels.NetworkViewmodel;
             mvvm.IsSendingNewPost = App.IsSendingNewPost;
         }
 
@@ -88,7 +88,7 @@ namespace Friendica_Mobile.UWP.Views
         {
             base.OnNavigatedTo(e);
 
-            var mvvm = this.DataContext as Viewmodels.NetworkViewmodel;
+            var mvvm = this.DataContext as PCL.Viewmodels.NetworkViewmodel;
             mvvm.ButtonAddCommentClicked += Mvvm_ButtonAddCommentClicked;
             mvvm.ButtonShowProfileClicked += Mvvm_ButtonShowProfileClicked;
             mvvm.ButtonRetweetClicked += Mvvm_ButtonRetweetClicked;
@@ -114,7 +114,7 @@ namespace Friendica_Mobile.UWP.Views
 
         private async void Mvvm_UserShowProfileClicked(object sender, EventArgs e)
         {
-            var user = sender as Friendica_Mobile.Models.FriendicaUser;
+            var user = sender as Friendica_Mobile.PCL.Models.FriendicaUser;
 
             // implement A3_Browser
             var mvvmBrowser = new BrowserViewmodel();
@@ -153,7 +153,7 @@ namespace Friendica_Mobile.UWP.Views
 
         private async void Mvvm_ButtonShowMapClicked(object sender, EventArgs e)
         {
-            var post = sender as Friendica_Mobile.Models.FriendicaPost;
+            var post = sender as Friendica_Mobile.PCL.Models.FriendicaPost;
             var geo = post.Post.PostGeo;
             // bing expects the location name with %20 for spaces and other escapes
             var location = Uri.EscapeDataString(post.Post.PostLocation);
@@ -178,7 +178,7 @@ namespace Friendica_Mobile.UWP.Views
         private async void Mvvm_ButtonShowProfileClicked(object sender, System.EventArgs e)
         {
             // implement A3_Browser
-            var post = sender as Friendica_Mobile.Models.FriendicaPost;
+            var post = sender as Friendica_Mobile.PCL.Models.FriendicaPost;
             var mvvmBrowser = new BrowserViewmodel();
             string userName = "";
             if (post.Post.PostRetweetedStatus != null && post.Post.PostRetweetedStatus.PostUser != null)
@@ -244,7 +244,7 @@ namespace Friendica_Mobile.UWP.Views
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
-            var mvvm = this.DataContext as Viewmodels.NetworkViewmodel;
+            var mvvm = this.DataContext as PCL.Viewmodels.NetworkViewmodel;
             mvvm.ButtonAddCommentClicked -= Mvvm_ButtonAddCommentClicked;
             mvvm.ButtonShowProfileClicked -= Mvvm_ButtonShowProfileClicked;
             mvvm.ButtonRetweetClicked -= Mvvm_ButtonRetweetClicked;
@@ -274,7 +274,7 @@ namespace Friendica_Mobile.UWP.Views
             // start loading the next tranch of entries
             if (atBottom)
             {
-                var mvvm = this.DataContext as Viewmodels.NetworkViewmodel;
+                var mvvm = this.DataContext as PCL.Viewmodels.NetworkViewmodel;
                 if (mvvm.NetworkThreads.Count > 0 && !mvvm.IsLoadingNext)
                     await mvvm.LoadNext();
             }

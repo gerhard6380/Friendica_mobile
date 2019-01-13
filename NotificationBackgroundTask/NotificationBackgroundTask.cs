@@ -1,5 +1,5 @@
-﻿using Friendica_Mobile;
-using Friendica_Mobile.Models;
+﻿using Friendica_Mobile.PCL;
+using Friendica_Mobile.PCL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -120,7 +120,7 @@ namespace BackgroundTasks
             var xml = new XmlDocument();
 
             // differentiate between newsfeed and normal posts
-            if (notification.GeneralInfoNewsfeed == true || notification.Post.PostType == Friendica_Mobile.Viewmodels.PostTypes.Newsfeed)
+            if (notification.GeneralInfoNewsfeed == true || notification.Post.PostType == Friendica_Mobile.PCL.Viewmodels.PostTypes.Newsfeed)
             {
                 xmlBaseString = "<toast launch=\"newsfeed|{0}|{1}\" " +
                     "displayTimestamp=\"{2}\"><visual><binding template=\"ToastGeneric\">"
@@ -143,7 +143,7 @@ namespace BackgroundTasks
             // don't add the buttons if we are only telling a general info on new rss feed elements (we cannot like or answer here)
             if (!notification.GeneralInfoNewsfeed)
             {
-                if (notification.Post != null && notification.Post.PostType == Friendica_Mobile.Viewmodels.PostTypes.UserGenerated)
+                if (notification.Post != null && notification.Post.PostType == Friendica_Mobile.PCL.Viewmodels.PostTypes.UserGenerated)
                 {
                     xmlBaseString += "<actions>"
                         + "<action activationType=\"background\" content=\"\" arguments=\"post_like|{0}\" imageUri=\"Assets/like.png\" />"

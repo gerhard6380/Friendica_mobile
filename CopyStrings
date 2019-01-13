@@ -1,0 +1,6 @@
+cp /Users/gs/Nextcloud/Visual\ Studio\ Projekte/Friendica\ Mobile/Friendica\ Mobile.PCL/Strings/AppResources.de.resx /Users/gs/Nextcloud/Visual\ Studio\ Projekte/Friendica\ Mobile/Friendica\ Mobile/Strings/AppResources.de.resx
+cp /Users/gs/Nextcloud/Visual\ Studio\ Projekte/Friendica\ Mobile/Friendica\ Mobile.PCL/Strings/AppResources.resx /Users/gs/Nextcloud/Visual\ Studio\ Projekte/Friendica\ Mobile/Friendica\ Mobile/Strings/AppResources.resx
+cp /Users/gs/Nextcloud/Visual\ Studio\ Projekte/Friendica\ Mobile/Friendica\ Mobile.PCL/Strings/AppResources.es.resx /Users/gs/Nextcloud/Visual\ Studio\ Projekte/Friendica\ Mobile/Friendica\ Mobile/Strings/AppResources.es.resx
+cp /Users/gs/Nextcloud/Visual\ Studio\ Projekte/Friendica\ Mobile/Friendica\ Mobile.PCL/Strings/AppResources.it.resx /Users/gs/Nextcloud/Visual\ Studio\ Projekte/Friendica\ Mobile/Friendica\ Mobile/Strings/AppResources.it.resx
+cp /Users/gs/Nextcloud/Visual\ Studio\ Projekte/Friendica\ Mobile/Friendica\ Mobile.PCL/Strings/AppResources.fr.resx /Users/gs/Nextcloud/Visual\ Studio\ Projekte/Friendica\ Mobile/Friendica\ Mobile/Strings/AppResources.fr.resx
+cp /Users/gs/Nextcloud/Visual\ Studio\ Projekte/Friendica\ Mobile/Friendica\ Mobile.PCL/Strings/AppResources.pt.resx /Users/gs/Nextcloud/Visual\ Studio\ Projekte/Friendica\ Mobile/Friendica\ Mobile/Strings/AppResources.pt.resx

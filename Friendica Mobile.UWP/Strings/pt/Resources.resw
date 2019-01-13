@@ -2085,4 +2085,36 @@ Atualmente isto não é possível, porque você ainda não definir as configura�
     <value>RSS feeds</value>
     <comment>Navigationbutton for RSS feeds (newsfeed)</comment>
   </data>
+  <data name="LabelSettingsAppThemeDarkMode" xml:space="preserve">
+    <value>Modo escuro</value>
+    <comment>Settings.xaml: Label of switch if enabled (disabled = light mode)</comment>
+  </data>
+  <data name="LabelSettingsAppThemeHeader" xml:space="preserve">
+    <value>Escura ou claro tema:</value>
+    <comment>Settings.xaml: Header of settings where user can define to use the app in dark or light mode</comment>
+  </data>
+  <data name="LabelSettingsAppThemeLightMode" xml:space="preserve">
+    <value>Modo de luz</value>
+    <comment>Settings.xaml: Label of switch if disabled (enabled = dark mode)</comment>
+  </data>
+  <data name="LabelSettingsAppThemeUseSystemTheme" xml:space="preserve">
+    <value>Tema de padrão de sistema de uso</value>
+    <comment>Settings.xaml: if supported by the OS user can decide to use the system default theme (standard = true)</comment>
+  </data>
+  <data name="LabelSettingsNavigationSideHeader" xml:space="preserve">
+    <value>Lado de navegação:</value>
+    <comment>Settings.xaml: Header of settings to define if navigation pane is shown on left or right side (only on phones)</comment>
+  </data>
+  <data name="LabelSettingsNavigationSideLeft" xml:space="preserve">
+    <value>Esquerda</value>
+    <comment>Settings.xaml: Label of switch if disable (navigation on left side)</comment>
+  </data>
+  <data name="LabelSettingsNavigationSideRight" xml:space="preserve">
+    <value>Certo</value>
+    <comment>Settings.xaml: Label of switch if enabled (navigation on right side)</comment>
+  </data>
+  <data name="PageAppSettings" xml:space="preserve">
+    <value>Configurações</value>
+    <comment>Settings.xaml: page title and navigation button text</comment>
+  </data>
 </root>

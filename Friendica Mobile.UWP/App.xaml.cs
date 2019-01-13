@@ -14,9 +14,10 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
-using Friendica_Mobile.Strings;
+using Friendica_Mobile.PCL.Strings;
 using Windows.Foundation.Metadata;
 using System.Linq;
+using Friendica_Mobile.PCL;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=402347&clcid=0x409
 
@@ -114,7 +115,7 @@ namespace Friendica_Mobile.UWP
         public static PostFriendicaNewPost PostFriendica;
 
         // container for the NetworkViewmodel used in Network and Newsfeed views
-        internal static Viewmodels.NetworkViewmodel NetworkVm;
+        internal static PCL.Viewmodels.NetworkViewmodel NetworkVm;
 
         // container for the MessageViewmodel storing current data on navigating
         public static MessagesViewmodel MessagesVm;
@@ -197,15 +198,22 @@ namespace Friendica_Mobile.UWP
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            // save e to LaunchedEventArgs to check in next step if user clicked on a livetile with newsfeed info (then jump directly to newsfeed)
-            LaunchedEventArgs = e;
-            Initialize(e);
+            var loadXamarin = false;
+
+            if (loadXamarin)
+                InitializeXamarin(e);
+            else
+            {
+                // save e to LaunchedEventArgs to check in next step if user clicked on a livetile with newsfeed info (then jump directly to newsfeed)
+                LaunchedEventArgs = e;
+                Initialize(e);
+            }
         }
 
         private async void Initialize(IActivatedEventArgs e)
         {
             // set app state to running to prevent the background task from running while app is in foreground
-            Friendica_Mobile.Settings.CurrentAppState = AppState.Running;
+            Friendica_Mobile.PCL.Settings.CurrentAppState = AppState.Running;
 
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
@@ -230,7 +238,7 @@ namespace Friendica_Mobile.UWP
             // start loading the non loaded part of the app(if user wants to start into network, we load home; and vice versa)
             if (Settings.StartPage == "Home")
             {
-                NetworkVm = new Viewmodels.NetworkViewmodel();
+                NetworkVm = new PCL.Viewmodels.NetworkViewmodel();
                 NetworkVm.LoadInitial();
             }
             else if (Settings.StartPage == "Network" || Settings.StartPage == "Newsfeed")
@@ -389,7 +397,7 @@ namespace Friendica_Mobile.UWP
         private async void OnSuspending(object sender, SuspendingEventArgs e)
         {
             // change app state to notrunning again
-            Friendica_Mobile.Settings.CurrentAppState = AppState.NotRunning;
+            Friendica_Mobile.PCL.Settings.CurrentAppState = AppState.NotRunning;
 
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
@@ -527,5 +535,39 @@ namespace Friendica_Mobile.UWP
         }
 
 
+        private void InitializeXamarin(LaunchActivatedEventArgs e)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+
+            // Do not repeat app initialization when the Window already has content,
+            // just ensure that the window is active
+            if (rootFrame == null)
+            {
+                // Create a Frame to act as the navigation context and navigate to the first page
+                rootFrame = new Frame();
+
+                rootFrame.NavigationFailed += OnNavigationFailed;
+
+                Xamarin.Forms.Forms.Init(e);
+
+                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                {
+                    //TODO: Load state from previously suspended application
+                }
+
+                // Place the frame in the current Window
+                Window.Current.Content = rootFrame;
+            }
+
+            if (rootFrame.Content == null)
+            {
+                // When the navigation stack isn't restored navigate to the first page,
+                // configuring the new page by passing required information as a navigation
+                // parameter
+                rootFrame.Navigate(typeof(MainPage), e.Arguments);
+            }
+            // Ensure the current window is active
+            Window.Current.Activate();
+        }
     }
 }

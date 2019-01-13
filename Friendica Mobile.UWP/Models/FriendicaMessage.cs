@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Friendica_Mobile.PCL;
+using System;
 using Windows.ApplicationModel.Resources;
 using Windows.Data.Json;
 using Windows.UI.Xaml.Documents;

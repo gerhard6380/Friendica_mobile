@@ -2191,4 +2191,36 @@ Do you want to continue?</value>
     <value>RSS feeds</value>
     <comment>Navigationbutton for RSS feeds (newsfeed)</comment>
   </data>
+  <data name="LabelSettingsAppThemeDarkMode" xml:space="preserve">
+    <value>Dark Mode</value>
+    <comment>Settings.xaml: Label of switch if enabled (disabled = light mode)</comment>
+  </data>
+  <data name="LabelSettingsAppThemeHeader" xml:space="preserve">
+    <value>Dark or Light theme:</value>
+    <comment>Settings.xaml: Header of settings where user can define to use the app in dark or light mode</comment>
+  </data>
+  <data name="LabelSettingsAppThemeLightMode" xml:space="preserve">
+    <value>Light Mode</value>
+    <comment>Settings.xaml: Label of switch if disabled (enabled = dark mode)</comment>
+  </data>
+  <data name="LabelSettingsAppThemeUseSystemTheme" xml:space="preserve">
+    <value>Use system default theme</value>
+    <comment>Settings.xaml: if supported by the OS user can decide to use the system default theme (standard = true)</comment>
+  </data>
+  <data name="LabelSettingsNavigationSideHeader" xml:space="preserve">
+    <value>Navigation side:</value>
+    <comment>Settings.xaml: Header of settings to define if navigation pane is shown on left or right side (only on phones)</comment>
+  </data>
+  <data name="LabelSettingsNavigationSideLeft" xml:space="preserve">
+    <value>Left</value>
+    <comment>Settings.xaml: Label of switch if disable (navigation on left side)</comment>
+  </data>
+  <data name="LabelSettingsNavigationSideRight" xml:space="preserve">
+    <value>Right</value>
+    <comment>Settings.xaml: Label of switch if enabled (navigation on right side)</comment>
+  </data>
+  <data name="PageAppSettings" xml:space="preserve">
+    <value>Settings</value>
+    <comment>Settings.xaml: page title and navigation button text</comment>
+  </data>
 </root>

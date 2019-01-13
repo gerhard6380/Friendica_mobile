@@ -1,5 +1,5 @@
 ﻿using System;
-using Friendica_Mobile.PCL;
+using Friendica_Mobile;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(Friendica_Mobile.iOS.GetSystemTheme))]

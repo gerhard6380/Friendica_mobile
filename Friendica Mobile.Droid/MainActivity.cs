@@ -5,14 +5,14 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using Friendica_Mobile.PCL;
+using Friendica_Mobile;
 
 namespace Friendica_Mobile.Droid
 {
     [Activity(Label = "Friendica_Mobile", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        private Friendica_Mobile.PCL.App _application;
+        private Friendica_Mobile.App _application;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {

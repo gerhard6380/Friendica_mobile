@@ -23,7 +23,7 @@
 	<key>MinimumOSVersion</key>
 	<string>9.3</string>
 	<key>CFBundleDisplayName</key>
-	<string>NavigationMenu</string>
+	<string>Friendica Mobile</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.seeber.Friendica-Mobile</string>
 	<key>CFBundleVersion</key>
@@ -40,5 +40,7 @@
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>XSLaunchImageAssets</key>
+	<string>Assets.xcassets/LaunchImage.launchimage</string>
 </dict>
 </plist>
