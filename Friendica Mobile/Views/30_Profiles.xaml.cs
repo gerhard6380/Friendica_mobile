@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace Friendica_Mobile.Views
 {
-    public partial class Tabbed2 : ContentPage
+    public partial class Profiles : ContentPage
     {
-        public Tabbed2()
+        public Profiles()
         {
             InitializeComponent();
         }

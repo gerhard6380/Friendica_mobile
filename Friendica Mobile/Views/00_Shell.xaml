@@ -4,61 +4,99 @@ structure in SideContent property -->
 <styles:MasterDetailControl xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:styles="clr-namespace:Friendica_Mobile.Styles;assembly=Friendica_Mobile"
-                            xmlns:i18n="clr-namespace:Friendica_Mobile"
+             xmlns:i18n="clr-namespace:Friendica_Mobile"
              x:Class="Friendica_Mobile.Views.Shell">
 
     <styles:MasterDetailControl.SideContent>
         <StackLayout Spacing="0">
-            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIUserAdmin}"
-                                           Text="Detail 1" 
-                                           ClassName="Detail1" 
-                                           Command="{Binding ToDetail1}" />
-            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIAddUser}"
-                                           Text="Detail 2"
-                                           ClassName="Detail2"
-                                           Command="{Binding ToDetail2}" />
-            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIUserAdmin}"
-                                           Text="Detail 3"
-                                           ClassName="Detail3"
-                                           CounterNewElements="{Binding Detail3Counter}"
-                                           Command="{Binding ToDetail3}" />
-            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIRolesAdmin}"
-                                           Text="NoMenuDetail"
-                                           ClassName="NoMenuDetail"
-                                           IsEnabled="false"
-                                           Command="{Binding ToNoMenuDetail}" />
-            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIQRCode}"
-                                           Text="NoMenuDetail"
-                                           ClassName="NoMenuDetail"
-                                           Command="{Binding ToNoMenuDetail}" />
-            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIKey}"
-                                           Text="NoMenuDetail"
-                                           ClassName="NoMenuDetail"
-                                           Command="{Binding ToNoMenuDetail}" />
+            <!-- module "Home" -->
+            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIHome}"
+                                           Text="{i18n:Translate pageTitleHome.Text}"
+                                           ClassName="Home"
+                                           Command="{Binding ToHomeCommand}" />
+            <!-- module "network" -->
+            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FINetwork}"
+                                           Text="{i18n:Translate pageTitleNetwork.Text}"
+                                           ClassName="Network"
+                                           CounterNewElements="{Binding NetworkCounter}"                                           
+                                           Command="{Binding ToNetworkCommand}" />
+            <!-- module "Newsfeed" -->
+            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FINewsfeed}"
+                                           Text="{i18n:Translate pageTitleNewsfeed.Text}"
+                                           CounterNewElements="{Binding NewsfeedCounter}"
+                                           ClassName="Newsfeed"
+                                           Command="{Binding ToNewsfeedCommand}" />
+            <!-- module "Contacts" -->
+            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIContactGroup}"
+                                           Text="{i18n:Translate pageTitleContacts.Text}"
+                                           ClassName="Contacts"
+                                           Command="{Binding ToContactsCommand}" />
+            <!-- module "Messages" -->
+            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIMessage}"
+                                           Text="{i18n:Translate pageTitleMessages.Text}"
+                                           ClassName="Messages"
+                                           Command="{Binding ToMessagesCommand}" />
+            <!-- module "Profiles" -->
             <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIContact}"
-                                           Text="NoMenuDetail"
-                                           ClassName="NoMenuDetail"
-                                           Command="{Binding ToNoMenuDetail}" />
-            </StackLayout>
+                                           Text="{i18n:Translate pageTitleProfiles.Text}"
+                                           ClassName="Profiles"
+                                           Command="{Binding ToProfilesCommand}" />
+            <!-- module "Photos" -->
+            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FICamera}"
+                                           Text="{i18n:Translate pageTitlePhotos.Text}"
+                                           ClassName="Photos"
+                                           Command="{Binding ToPhotosCommand}" />
+            <!-- module "Videos" -->
+            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIVideoCamera}"
+                                           Text="{i18n:Translate radioVideos.Content}"
+                                           ClassName="Videos"
+                                           IsButtonEnabled="false"
+                                           Command="{Binding ToVideosCommand}" />
+            <!-- module "Events" -->
+            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FICalendar}"
+                                           Text="{i18n:Translate radioEvents.Content}"
+                                           ClassName="Events"
+                                           IsButtonEnabled="false"
+                                           Command="{Binding ToEventsCommand}" />
+            <!-- module "Personal notes" -->
+            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FISheet}"
+                                           Text="{i18n:Translate radioPersonalNotes.Content}"
+                                           ClassName="PersonalNotes"
+                                           IsButtonEnabled="false"
+                                           Command="{Binding ToPersonalNotesCommand}" />
+        </StackLayout>
     </styles:MasterDetailControl.SideContent>
 
     <!-- define the buttons in the flyout for more options hiding behind the gear wheel at the bottom -->
     <styles:MasterDetailControl.MoreOptions>
         <StackLayout Spacing="0">
-            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIUserAdmin}"
-                                           Text="Detail 1" 
-                                           ClassName="Detail1" 
-                                           Command="{Binding ToDetail1}" />
+
+            <!-- module "Settings" -->
             <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FISettings}"
-                                           Text="{i18n:Translate PageAppSettings}" 
-                                           ClassName="Settings" 
-                                           Command="{Binding ToSettingsCommand}" />  
-            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIAddUser}"
-                                           Text="Settings disabled" 
-                                           ClassName="Settings2" 
+                                           Text="{i18n:Translate pageTitleSettings.Text}"
+                                           ClassName="Settings"
+                                           Command="{Binding ToSettingsCommand}" />
+            <!-- button to activate/deactivate notifications -->
+            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIPlane}"
+                                           Text="###Flight Mode###"
                                            IsButtonEnabled="false"
-                                           CounterNewElements="{Binding SettingsCounter}"
-                                           Command="{Binding ToSettingsCommand}" /> 
+                                           ClassName="FlightMode"
+                                           Command="{Binding FlightModeCommand}" />
+            <!-- module "help" -->
+            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIHelp}"
+                                           Text="{i18n:Translate pageTitleHelp.Text}"
+                                           ClassName="Help"
+                                           Command="{Binding ToHelpCommand}" />
+            <!-- module "About" -->
+            <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIInfo}"
+                                           Text="{i18n:Translate pageTitleAbout.Text}"
+                                           ClassName="About"
+                                           Command="{Binding ToAboutCommand}" />
+            <!-- button to exit the application completely - not working on ios and android -->
+            <!-- <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIExit}"
+                                           Text="{i18n:Translate menuflyoutExit.Text}"
+                                           ClassName="Exit"
+                                           Command="{Binding ExitCommand}" />-->
         </StackLayout>
     </styles:MasterDetailControl.MoreOptions>
     

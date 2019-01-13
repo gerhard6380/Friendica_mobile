@@ -13,7 +13,7 @@ namespace Friendica_Mobile.Views
 	{
 		public Detail1 ()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 
 		}
 	}

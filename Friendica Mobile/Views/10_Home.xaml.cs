@@ -5,9 +5,10 @@ using Xamarin.Forms;
 
 namespace Friendica_Mobile.Views
 {
-    public partial class Tabbed2 : ContentPage
+    public partial class Home : ContentPage
     {
-        public Tabbed2()
+        // TODO: implement BaseContentPage wie bei Detail2.xaml
+        public Home()
         {
             InitializeComponent();
         }

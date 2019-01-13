@@ -46,6 +46,42 @@
     <EmbeddedResource Update="Styles\CustomNavigationButton.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\10_Home.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\15_Network.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\16_Newsfeed.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\20_Contacts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\25_Messages.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\30_Profiles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\35_Photos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\40_Videos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\45_Events.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\50_PersonalNotes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\92_Help.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\93_About.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Detail1.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -58,6 +94,9 @@
     <EmbeddedResource Update="Styles\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Tabbed2.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +117,23 @@
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\00_Shell.xaml.cs">
       <DependentUpon>00_Shell.xaml</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Views\10_Home.xaml" />
+    <None Include="Views\15_Network.xaml" />
+    <None Include="Views\16_Newsfeed.xaml" />
+    <None Include="Views\20_Contacts.xaml" />
+    <None Include="Views\25_Messages.xaml" />
+    <None Include="Views\30_Profiles.xaml" />
+    <None Include="Views\35_Photos.xaml" />
+    <None Include="Views\40_Videos.xaml" />
+    <None Include="Views\45_Events.xaml" />
+    <None Include="Views\50_PersonalNotes.xaml" />
+    <None Include="Views\92_Help.xaml" />
+    <None Include="Views\93_About.xaml" />
+    <None Include="Views\Tabbed2.xaml" />
+    <None Include="Views\10_Home.xaml" />
+    <None Include="Views\15_Network.xaml" />
   </ItemGroup>
   <ItemGroup>
     <None Update="App.xaml">
@@ -129,9 +185,6 @@
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="Views\Tabbed1.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\Tabbed2.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
   </ItemGroup>

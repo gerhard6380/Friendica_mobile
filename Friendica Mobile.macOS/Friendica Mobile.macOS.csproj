@@ -123,6 +123,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Friendica Mobile\Friendica Mobile.csproj">
+      <Project>{1EA70EC9-BA7C-4B4B-BC41-4C98B65E4189}</Project>
+      <Name>Friendica Mobile</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.5.1.527436\build\netstandard1.0\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.5.1.527436\build\netstandard1.0\Xamarin.Forms.targets')" />
 </Project>
