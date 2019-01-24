@@ -25,6 +25,8 @@ namespace Friendica_Mobile
             {
                 ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
             }
+            else
+                ci = CultureInfo.CurrentUICulture;
         }
         
         public object ProvideValue(IServiceProvider serviceProvider)
@@ -33,6 +35,12 @@ namespace Friendica_Mobile
                 return string.Empty;
 
             var translation = ResMgr.Value.GetString(Text, ci);
+            if (translation == null)
+            {
+                // try to get the string with a dot intead of a dash if otherwise not working
+                translation = ResMgr.Value.GetString(Text.Replace("_", "."), ci);
+            }
+
             if (translation == null)
             {
 #if DEBUG
