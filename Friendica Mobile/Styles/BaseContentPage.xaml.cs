@@ -39,6 +39,7 @@ namespace Friendica_Mobile.Styles
                 var list = new ObservableCollection<CustomCommandBarItem>();
                 foreach (var item in CommandBarCommandList)
                     list.Add(item);
+                SetCommandBar();
                 CommandBar.CommandList = list;  
             };
         }
@@ -51,6 +52,8 @@ namespace Friendica_Mobile.Styles
 
         private void SetCommandBar()
         {
+            CommandBar.IsVisible = (CommandBarCommandList != null && CommandBarCommandList.Count != 0);
+
             // set the margins of the detail area and the command bar to the wished position
             if (CommandBar.IsVisible)
             {

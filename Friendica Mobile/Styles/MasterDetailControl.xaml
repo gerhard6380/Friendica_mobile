@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="Friendica_Mobile.Styles.MasterDetailControl"
+             xmlns:controls="clr-namespace:SeeberXamarin.Controls;assembly=Friendica_Mobile"
              xmlns:styles="clr-namespace:Friendica_Mobile.Styles;assembly=Friendica_Mobile"
              x:Name="Parent">
     <!-- design file for the customized masterDetailPage, here we need to define 
@@ -43,7 +44,7 @@ navigation and the back button handling; design of the menu buttons is done in S
             <Grid Grid.Row="0">
                 <styles:CustomNavigationButton x:Name="ButtonBackNavigationLabel" 
                                                FontIcon="{x:Static styles:Icon.FIBackArrow}" />
-                <Button x:Name="ButtonBackNavigation" 
+                <controls:FramelessButton x:Name="ButtonBackNavigation" 
                         BackgroundColor="Transparent"
                     IsEnabled="{Binding NavigationAllowed}"
                     Clicked="ButtonBackNavigation_Clicked"/>
@@ -52,7 +53,7 @@ navigation and the back button handling; design of the menu buttons is done in S
             <!-- toggle button to show the full navigation pane or not -->
             <Grid Grid.Row="1">
             <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIHamburger}" />
-                <Button x:Name="ButtonHamburgerSymbol" 
+                <controls:FramelessButton x:Name="ButtonHamburgerSymbol" 
                         BackgroundColor="Transparent"
                         Clicked="ButtonHamburgerSymbol_Clicked"/>
             </Grid>
@@ -64,7 +65,7 @@ navigation and the back button handling; design of the menu buttons is done in S
                   IsVisible="{Binding SideContentVisible}">
                 <styles:CustomNavigationButton x:Name="NavScrollUp"
                                                FontIcon="{x:Static styles:Icon.FINavArrowUp}" />
-                <Button x:Name="ButtonNavScrollUp"
+                <controls:FramelessButton x:Name="ButtonNavScrollUp"
                         BackgroundColor="Transparent"
                         Clicked="ButtonNavScrollUp_Clicked" />
             </Grid>
@@ -84,7 +85,7 @@ navigation and the back button handling; design of the menu buttons is done in S
                   IsVisible="{Binding SideContentVisible}">
                 <styles:CustomNavigationButton x:Name="NavScrollDown"
                                                FontIcon="{x:Static styles:Icon.FINavArrowDown}" />
-                <Button x:Name="ButtonNavScrollDown"
+                <controls:FramelessButton x:Name="ButtonNavScrollDown"
                         BackgroundColor="Transparent"
                         Clicked="ButtonNavScrollDown_Clicked" />
             </Grid>
@@ -96,7 +97,7 @@ navigation and the back button handling; design of the menu buttons is done in S
             <styles:CustomNavigationButton x:Name="ButtonMoreOptions"
                                             FontIcon="{x:Static styles:Icon.FISettings}"
                                            Text="More" />
-                <Button x:Name="ButtonSettingsFlyout"
+                <controls:FramelessButton x:Name="ButtonSettingsFlyout"
                         BackgroundColor="Transparent"
                     Clicked="ButtonSettingsFlyout_Clicked"/>
             </Grid>

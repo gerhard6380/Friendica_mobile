@@ -39,6 +39,15 @@
     <ProjectReference Include="..\Friendica Mobile.PCL\Friendica Mobile.PCL.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Controls\CustomNavigationCounter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\CustomTabView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\CustomTabViewItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Strings\AppResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
@@ -134,6 +143,11 @@
     <None Include="Views\Tabbed2.xaml" />
     <None Include="Views\10_Home.xaml" />
     <None Include="Views\15_Network.xaml" />
+    <None Include="Controls\CustomNavigationCounter.xaml" />
+    <None Include="Controls\CustomTabView.xaml" />
+    <None Include="Controls\CustomTabViewItem.xaml" />
+    <None Include="Controls\CustomNavigationCounter.xaml" />
+    <None Include="Controls\CustomNavigationCounter.xaml" />
   </ItemGroup>
   <ItemGroup>
     <None Update="App.xaml">

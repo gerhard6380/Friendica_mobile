@@ -114,6 +114,8 @@
     <Compile Include="Helpers\GetSystemTheme.cs" />
     <Compile Include="Helpers\FontIconLabelRenderer.cs" />
     <Compile Include="Helpers\LocalizeMacOS.cs" />
+    <Compile Include="Helpers\EntryRenderer.cs" />
+    <Compile Include="Helpers\FramelessButtonRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />

@@ -6,4 +6,12 @@
     xmlns:Views="using:Friendica_Mobile.UWP.Views"
     xmlns:triggers="using:Friendica_Mobile.UWP.Triggers">
 
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/DefaultTextBoxControlTemplate.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+    
 </Application>

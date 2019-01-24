@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:SeeberXamarin.Controls"
+             x:Class="SeeberXamarin.Controls.CustomTabView">
+    <!-- used to display more information within one page in separate sections like a carousel page or pivot table -->
+    <!-- standard controls are not working within the MasterDetailControl, therefore custom control needed -->
+    <ContentView.Content>
+        <Grid x:Name="GridCustomTabView"
+              RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <!-- Top row with the tabs in a scroll viewer -->
+            <Grid x:Name="GridTabHeaders" 
+                  Grid.Row="0"
+                  Margin="0,4,0,12">
+                <controls:CustomTabViewScrollView x:Name="ScrollViewTabHeaders"
+                                                  Orientation="Horizontal">
+                    <!-- this StackLayout will be filled with the content defined in the page for each item -->
+                    <StackLayout x:Name="StackLayoutTabContainer" 
+                                 HorizontalOptions="Start"
+                                 Orientation="Horizontal"
+                                 Spacing="20" />
+                </controls:CustomTabViewScrollView>
+            </Grid>
+
+            <ScrollView Grid.Row="1">
+                <!-- content of the active tab -->
+                <Grid x:Name="GridTabContent" />                
+            </ScrollView>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

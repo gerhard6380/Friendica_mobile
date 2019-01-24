@@ -171,6 +171,8 @@
     <Compile Include="Converters\StartPageToIntConverter.cs" />
     <Compile Include="Converters\ToFlowDirectionConverter.cs" />
     <Compile Include="GetSystemTheme.cs" />
+    <Compile Include="Helpers\CustomEntryRenderer.cs" />
+    <Compile Include="Helpers\ScrollbarDisabledRenderer.cs" />
     <Compile Include="HttpRequests\AuthenticationTest.cs" />
     <Compile Include="HttpRequests\clsHttpRequests.cs" />
     <Compile Include="HttpRequests\clsHttpRequests_old.cs" />
@@ -382,6 +384,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\DefaultTextBoxControlTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\PhotosStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -585,7 +591,7 @@
       <Version>1.5.1</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Settings">
-      <Version>2.5.8</Version>
+      <Version>3.1.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
       <Version>2.5.1.527436</Version>

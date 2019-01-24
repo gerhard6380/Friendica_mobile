@@ -82,6 +82,8 @@ namespace Friendica_Mobile
             Current.Resources["NavigationBackgroundColor"] = (isDark) ? Color.FromHex("#201F1D") : Color.LightGray;
             Current.Resources["CommandBarBackgroundColor"] = (isDark) ? Color.FromHex("#282724") : Color.WhiteSmoke;
             Current.Resources["NavigationTextColor"] = (isDark) ? Color.White : Color.Black;
+            Current.Resources["EntryBackgroundColor"] = (isDark) ? Color.FromHex("#999999") : Color.White;
+            Current.Resources["EntryDisabledBackgroundColor"] = (isDark) ? Color.FromHex("#333333") : Color.WhiteSmoke;
         }
 
         protected override void OnStart()

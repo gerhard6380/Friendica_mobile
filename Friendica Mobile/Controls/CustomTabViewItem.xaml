@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:SeeberXamarin.Controls"
+             x:Class="SeeberXamarin.Controls.CustomTabViewItem">
+
+    <!-- display header name for each tabviewitem -->
+    <Grid x:Name="GridTabViewItem">
+        
+        <Label x:Name="LabelHeader"
+               FontSize="24"
+               TextColor="{DynamicResource MainTextColor}"
+               Margin="4,0,12,0"
+               VerticalOptions="Center" />
+
+        <!-- show a colored line below the header if this is the active tab -->
+        <BoxView x:Name="BoxViewIndicator" 
+                 BackgroundColor="{StaticResource AccentColor}"
+                 HeightRequest="4"
+                 IsVisible="false"
+                 Margin="0,0,8,0"
+                 VerticalOptions="End" />
+
+        <!-- we can indicate new elements by showing a counter -->
+        <controls:CustomNavigationCounter x:Name="CounterElement"
+                                          HorizontalOptions="End"
+                                          VerticalOptions="Start" />
+
+        <!-- button to switch to this item  -->
+        <controls:FramelessButton x:Name="ButtonTabViewItem"
+                                  Clicked="ButtonTabViewItem_Clicked"
+                                  BackgroundColor="Transparent"/>
+    </Grid>
+</ContentView>
