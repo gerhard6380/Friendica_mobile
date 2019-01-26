@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:styles="clr-namespace:Friendica_Mobile.Styles"
+             xmlns:controls="clr-namespace:SeeberXamarin.Controls"
              x:Class="Friendica_Mobile.Styles.BaseContentPage">
 
     <ContentPage.Content>
@@ -43,6 +44,13 @@
                     </StackLayout>           
                 </Frame>
             </Grid>
+
+            <!-- show a progress ring if activated by a command in the derived viewmodel -->
+            <controls:CustomProgressRing x:Name="ProgressRingActivityIndicator"
+                                         IsVisible="{Binding ActivitIndicatorVisible}"
+                                         Text="{Binding ActivityIndicatorText}"
+                                         VerticalOptions="Start"/>
+            
         </Grid>
     </ContentPage.Content>
 

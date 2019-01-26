@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:SeeberXamarin.Controls"
+             x:Class="SeeberXamarin.Controls.CustomProgressRing">
+    <ContentView.Content>
+            
+        <Grid x:Name="GridCustomProgressRing"
+              BackgroundColor="Sienna"
+              Margin="4"
+              Padding="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="52" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <!-- show a spinning ring to indicate activity (on UWP ProgressRing through custom renderer -->
+            <controls:CustomActivityIndicator x:Name="IndicatorCustomProgressRing"
+                                              Grid.Column="0"
+                                              IsVisible="true"
+                                              IsEnabled="true"
+                                              IsRunning="true"
+                                              HorizontalOptions="Center"
+                                              HeightRequest="28"
+                                              WidthRequest="52"
+                                              Color="White" />
+
+            <!-- text to be shown next to the spinning ring -->
+            <Label x:Name="LabelCustomProgressRing"
+                   Grid.Column="1"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Fill"
+                   TextColor="White"
+                   FontAttributes="Italic" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>
