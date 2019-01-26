@@ -147,24 +147,24 @@ namespace Friendica_Mobile.PCL
         // url of Friendica server to which user wants to connect
         public static string FriendicaServer
         {
-            get { return AppSettings.GetValueOrDefault<string>(FriendicaServerKey, FriendicaServerDefault); }
-            set { AppSettings.AddOrUpdateValue<string>(FriendicaServerKey, value); }
+            get { return AppSettings.GetValueOrDefault(FriendicaServerKey, FriendicaServerDefault); }
+            set { AppSettings.AddOrUpdateValue(FriendicaServerKey, value); }
         }
 
         
         // username to use for basic authentication login on specified server
         public static string FriendicaUsername
         {
-            get { return AppSettings.GetValueOrDefault<string>(FriendicaUsernameKey, FriendicaUsernameDefault); }
-            set { AppSettings.AddOrUpdateValue<string>(FriendicaUsernameKey, value); }
+            get { return AppSettings.GetValueOrDefault(FriendicaUsernameKey, FriendicaUsernameDefault); }
+            set { AppSettings.AddOrUpdateValue(FriendicaUsernameKey, value); }
         }
 
         
         // password to use for basic authentication login on specified server
         public static string FriendicaPassword
         {
-            get { return AppSettings.GetValueOrDefault<string>(FriendicaPasswordKey, FriendicaPasswordDefault); }
-            set { AppSettings.AddOrUpdateValue<string>(FriendicaPasswordKey, value); }
+            get { return AppSettings.GetValueOrDefault(FriendicaPasswordKey, FriendicaPasswordDefault); }
+            set { AppSettings.AddOrUpdateValue(FriendicaPasswordKey, value); }
         }
 
 
@@ -172,8 +172,8 @@ namespace Friendica_Mobile.PCL
         // this to support left handed users, having the phone in der left hand; on desktop the navigation is always on left side
         public static string NavigationSide
         {
-            get { return AppSettings.GetValueOrDefault<string>(NavigationSideKey, NavigationSideDefault); }
-            set { AppSettings.AddOrUpdateValue<string>(NavigationSideKey, value); }
+            get { return AppSettings.GetValueOrDefault(NavigationSideKey, NavigationSideDefault); }
+            set { AppSettings.AddOrUpdateValue(NavigationSideKey, value); }
         }
 
         
@@ -181,40 +181,40 @@ namespace Friendica_Mobile.PCL
         // in order to leave the app with exit on back button (UWP Mobile only)
         public static string StartPage
         {
-            get { return AppSettings.GetValueOrDefault<string>(StartPageKey, StartPageDefault); }
-            set { AppSettings.AddOrUpdateValue<string>(StartPageKey, value); }
+            get { return AppSettings.GetValueOrDefault(StartPageKey, StartPageDefault); }
+            set { AppSettings.AddOrUpdateValue(StartPageKey, value); }
         }
 
         
         // user can set default ACL rights for new postings - set new posts as public or not
         public static bool ACLPublicPost
         {
-            get { return AppSettings.GetValueOrDefault<bool>(ACLPublicPostKey, ACLPublicPostDefault); }
-            set { AppSettings.AddOrUpdateValue<bool>(ACLPublicPostKey, value); }
+            get { return AppSettings.GetValueOrDefault(ACLPublicPostKey, ACLPublicPostDefault); }
+            set { AppSettings.AddOrUpdateValue(ACLPublicPostKey, value); }
         }
 
 
         // user can set default ACL rights for new postings - set new posts as private or not
         public static bool ACLPrivatePost
         {
-            get { return AppSettings.GetValueOrDefault<bool>(ACLPrivatePostKey, ACLPrivatePostDefault); }
-            set { AppSettings.AddOrUpdateValue<bool>(ACLPrivatePostKey, value); }
+            get { return AppSettings.GetValueOrDefault(ACLPrivatePostKey, ACLPrivatePostDefault); }
+            set { AppSettings.AddOrUpdateValue(ACLPrivatePostKey, value); }
         }
 
 
         // user can set default ACL rights for new postings - select contacts for private posts
         public static string ACLPrivateSelectedContacts
         {
-            get { return AppSettings.GetValueOrDefault<string>(ACLPrivateSelectedContactsKey, ACLPrivateSelectedContactsDefault); }
-            set { AppSettings.AddOrUpdateValue<string>(ACLPrivateSelectedContactsKey, value); }
+            get { return AppSettings.GetValueOrDefault(ACLPrivateSelectedContactsKey, ACLPrivateSelectedContactsDefault); }
+            set { AppSettings.AddOrUpdateValue(ACLPrivateSelectedContactsKey, value); }
         }
 
 
         // user can set default ACL rights for new postings - select contacts for private posts
         public static string ACLPrivateSelectedGroups
         {
-            get { return AppSettings.GetValueOrDefault<string>(ACLPrivateSelectedGroupsKey, ACLPrivateSelectedGroupsDefault); }
-            set { AppSettings.AddOrUpdateValue<string>(ACLPrivateSelectedGroupsKey, value); }
+            get { return AppSettings.GetValueOrDefault(ACLPrivateSelectedGroupsKey, ACLPrivateSelectedGroupsDefault); }
+            set { AppSettings.AddOrUpdateValue(ACLPrivateSelectedGroupsKey, value); }
         }
 
 
@@ -222,7 +222,7 @@ namespace Friendica_Mobile.PCL
         // before switching to PCL settings class this was made as string type, we keep type but return now boolean
         public static bool SaveLocalAllowed
         {
-            get { var setting = AppSettings.GetValueOrDefault<string>(SaveLocalAllowedKey, SaveLocalAllowedDefault);
+            get { var setting = AppSettings.GetValueOrDefault(SaveLocalAllowedKey, SaveLocalAllowedDefault);
                 if (setting == "true")
                     return true;
                 else if (setting == "false")
@@ -230,7 +230,7 @@ namespace Friendica_Mobile.PCL
                 else
                     return true;
             }
-            set { AppSettings.AddOrUpdateValue<string>(SaveLocalAllowedKey, value.ToString()); }
+            set { AppSettings.AddOrUpdateValue(SaveLocalAllowedKey, value.ToString()); }
         }
 
 
@@ -240,7 +240,7 @@ namespace Friendica_Mobile.PCL
         {
             get
             {
-                var setting = AppSettings.GetValueOrDefault<string>(SendCoordinatesAllowedKey, SendCoordinatesAllowedDefault);
+                var setting = AppSettings.GetValueOrDefault(SendCoordinatesAllowedKey, SendCoordinatesAllowedDefault);
                 if (setting == "true")
                     return true;
                 else if (setting == "false")
@@ -248,15 +248,15 @@ namespace Friendica_Mobile.PCL
                 else
                     return true;
             }
-            set { AppSettings.AddOrUpdateValue<string>(SendCoordinatesAllowedKey, value.ToString()); }
+            set { AppSettings.AddOrUpdateValue(SendCoordinatesAllowedKey, value.ToString()); }
         }
 
 
         // user can define if fullsize photos should be save on the device (disable by default to save disk space on device)
         public static bool SaveFullsizePhotosAllowed
         {
-            get { return AppSettings.GetValueOrDefault<bool>(SaveFullsizePhotosAllowedKey, SaveFullsizePhotosAllowedDefault); }
-            set { AppSettings.AddOrUpdateValue<bool>(SaveFullsizePhotosAllowedKey, value); }
+            get { return AppSettings.GetValueOrDefault(SaveFullsizePhotosAllowedKey, SaveFullsizePhotosAllowedDefault); }
+            set { AppSettings.AddOrUpdateValue(SaveFullsizePhotosAllowedKey, value); }
         }
 
 
@@ -264,8 +264,8 @@ namespace Friendica_Mobile.PCL
         // this is not setting the allowance in Windows Settings (user need to allow the app there as well)
         public static bool NotificationActivated
         {
-            get { return AppSettings.GetValueOrDefault<bool>(NotificationActivatedKey, NotificationActivatedDefault); }
-            set { AppSettings.AddOrUpdateValue<bool>(NotificationActivatedKey, value); }
+            get { return AppSettings.GetValueOrDefault(NotificationActivatedKey, NotificationActivatedDefault); }
+            set { AppSettings.AddOrUpdateValue(NotificationActivatedKey, value); }
         }
 
 
@@ -273,30 +273,30 @@ namespace Friendica_Mobile.PCL
         // center or not (to avoid strangers to read PM on lock screen)
         public static bool NotificationShowMessageContent
         {
-            get { return AppSettings.GetValueOrDefault<bool>(NotificationShowMessageContentKey, NotificationShowMessageContentDefault); }
-            set { AppSettings.AddOrUpdateValue<bool>(NotificationShowMessageContentKey, value); }
+            get { return AppSettings.GetValueOrDefault(NotificationShowMessageContentKey, NotificationShowMessageContentDefault); }
+            set { AppSettings.AddOrUpdateValue(NotificationShowMessageContentKey, value); }
         }
 
 
         // user can determine in which period the app shall recheck for new postings (minimum value is 15 min by Windows default)
         public static int NotificationFreshnessTime
         {
-            get { return AppSettings.GetValueOrDefault<int>(NotificationFreshnessTimeKey, NotificationFreshnessTimeDefault); }
-            set { AppSettings.AddOrUpdateValue<int>(NotificationFreshnessTimeKey, value); }
+            get { return AppSettings.GetValueOrDefault(NotificationFreshnessTimeKey, NotificationFreshnessTimeDefault); }
+            set { AppSettings.AddOrUpdateValue(NotificationFreshnessTimeKey, value); }
         }
 
         // user can tell the app if he wants to get notifications for each newsfeed item or only on summary notification
         public static bool NotificationEachNewsfeedAllowed
         {
-            get { return AppSettings.GetValueOrDefault<bool>(NotificationEachNewsfeedAllowedKey, NotificationEachNewsfeedAllowedDefault); }
-            set { AppSettings.AddOrUpdateValue<bool>(NotificationEachNewsfeedAllowedKey, value); }
+            get { return AppSettings.GetValueOrDefault(NotificationEachNewsfeedAllowedKey, NotificationEachNewsfeedAllowedDefault); }
+            set { AppSettings.AddOrUpdateValue(NotificationEachNewsfeedAllowedKey, value); }
         }
 
 
         // app state to determine when app is in foreground
         public static AppState CurrentAppState
         {
-            get { var state = AppSettings.GetValueOrDefault<string>(CurrentAppStateKey, CurrentAppStateDefault);
+            get { var state = AppSettings.GetValueOrDefault(CurrentAppStateKey, CurrentAppStateDefault);
                 if (state == "Running")
                     return AppState.Running;
                 else if (state == "NotRunning")
@@ -304,18 +304,18 @@ namespace Friendica_Mobile.PCL
                 else
                     return AppState.NotRunning;
             }
-            set { AppSettings.AddOrUpdateValue<string>(CurrentAppStateKey, value.ToString()); }
+            set { AppSettings.AddOrUpdateValue(CurrentAppStateKey, value.ToString()); }
         }
 
         // Store id of last post read by user on this device
         // keep storing as string for backward compatability
         public static double LastReadNetworkPost
         {
-            get { var setting = AppSettings.GetValueOrDefault<string>(LastReadNetworkPostKey, LastReadNetworkPostDefault);
+            get { var setting = AppSettings.GetValueOrDefault(LastReadNetworkPostKey, LastReadNetworkPostDefault);
                 try { return Convert.ToDouble(setting); }
                 catch { return 0.0; }
             }
-            set { AppSettings.AddOrUpdateValue<string>(LastReadNetworkPostKey, value.ToString());
+            set { AppSettings.AddOrUpdateValue(LastReadNetworkPostKey, value.ToString());
                 LastNotifiedNetworkPost = value;  // synchronize LastNotified with LastRead if LastRead is changed
             }
         }
@@ -327,13 +327,13 @@ namespace Friendica_Mobile.PCL
         {
             get
             {
-                var setting = AppSettings.GetValueOrDefault<string>(LastNotifiedNetworkPostKey, LastReadNetworkPostDefault);
+                var setting = AppSettings.GetValueOrDefault(LastNotifiedNetworkPostKey, LastReadNetworkPostDefault);
                 try { return Convert.ToDouble(setting); }
                 catch { return 0.0; }
             }
             set
             {
-                AppSettings.AddOrUpdateValue<string>(LastNotifiedNetworkPostKey, value.ToString());
+                AppSettings.AddOrUpdateValue(LastNotifiedNetworkPostKey, value.ToString());
             }
         }
 
@@ -343,13 +343,13 @@ namespace Friendica_Mobile.PCL
         {
             get
             {
-                var setting = AppSettings.GetValueOrDefault<string>(LastNotifiedMessageKey, LastNotifiedMessageDefault);
+                var setting = AppSettings.GetValueOrDefault(LastNotifiedMessageKey, LastNotifiedMessageDefault);
                 try { return Convert.ToDouble(setting); }
                 catch { return 0.0; }
             }
             set
             {
-                AppSettings.AddOrUpdateValue<string>(LastNotifiedMessageKey, value.ToString());
+                AppSettings.AddOrUpdateValue(LastNotifiedMessageKey, value.ToString());
             }
         }
 
@@ -359,7 +359,7 @@ namespace Friendica_Mobile.PCL
         {
             get
             {
-                var setting = AppSettings.GetValueOrDefault<string>(UnseenNewsfeedItemsKey, UnseenNewsfeedItemsDefault);
+                var setting = AppSettings.GetValueOrDefault(UnseenNewsfeedItemsKey, UnseenNewsfeedItemsDefault);
                 if (setting == null)
                     return new List<int>();
                 else
@@ -370,11 +370,11 @@ namespace Friendica_Mobile.PCL
                 try
                 {
                     var serializedList = JsonConvert.SerializeObject(value);
-                    AppSettings.AddOrUpdateValue<string>(UnseenNewsfeedItemsKey, serializedList);
+                    AppSettings.AddOrUpdateValue(UnseenNewsfeedItemsKey, serializedList);
                 }
-                catch (Exception ex)
+                catch
                 {
-                    AppSettings.AddOrUpdateValue<string>(UnseenNewsfeedItemsKey, "");
+                    AppSettings.AddOrUpdateValue(UnseenNewsfeedItemsKey, "");
                 }
             }
         }
