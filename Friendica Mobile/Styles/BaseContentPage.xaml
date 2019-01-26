@@ -47,7 +47,7 @@
 
             <!-- show a progress ring if activated by a command in the derived viewmodel -->
             <controls:CustomProgressRing x:Name="ProgressRingActivityIndicator"
-                                         IsVisible="{Binding ActivitIndicatorVisible}"
+                                         IsVisible="{Binding ActivityIndicatorVisible}"
                                          Text="{Binding ActivityIndicatorText}"
                                          VerticalOptions="Start"/>
             
