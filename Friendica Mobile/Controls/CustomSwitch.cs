@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace Friendica_Mobile.Styles
+namespace SeeberXamarin.Controls
 {
     public class CustomSwitch : Switch
     {
