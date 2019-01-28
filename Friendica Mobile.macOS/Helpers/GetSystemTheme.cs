@@ -10,7 +10,14 @@ namespace Friendica_Mobile.macOS
         public App.ApplicationTheme GetSelectedTheme()
         {
             // depending on the system we will try to get the system default theme (UWP, macos?)
-            // we do not have a dark theme on ios at the moment (NOV-2018)
+            // on macos we cannot react on the change of system mode when app is open, restart is needed
+            if (Settings.AppThemeUseSystemTheme)
+            {
+                if (AppKit.NSAppearance.CurrentAppearance.Name == AppKit.NSAppearance.NameDarkAqua)
+                    return App.ApplicationTheme.Dark;
+                else
+                    return App.ApplicationTheme.Light;
+            }
 
             // secondly we will check the user settings, as user can define a preferred theme within the app
             if (!Settings.AppThemeUseSystemTheme)
