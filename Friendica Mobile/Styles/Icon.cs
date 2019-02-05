@@ -2,22 +2,6 @@
 
 namespace Friendica_Mobile.Styles
 {
-    public class FontIconLabel : Label
-    {
-        public static readonly string FontIconName = "Segoe MDL2 Assets";
-
-        public FontIconLabel()
-        {
-            FontFamily = FontIconName;
-        }
-
-       public FontIconLabel(string fontIconLabel = null)
-        {
-            FontFamily = FontIconName;
-            Text = fontIconLabel;
-        }
-    }
-
     public static class Icon
     {
         public static readonly string FIHamburger = "\uE700"; // symbol showing 3 horizontal lines indicating the menu

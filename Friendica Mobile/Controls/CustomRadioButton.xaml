@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:SeeberXamarin.Controls"
+             x:Class="SeeberXamarin.Controls.CustomRadioButton"
+             x:Name="RadioButtonParent">
+    <ContentView.Content>
+        <Grid x:Name="GridCustomRadioButton"
+              HorizontalOptions="StartAndExpand">
+            <StackLayout Orientation="Horizontal"
+                         Margin="8,0,8,0"
+                         HorizontalOptions="StartAndExpand">
+                <!-- icon with the checked/filled circle -->
+                <controls:FontIconLabel x:Name="FontIconCheckedRadioButton"
+                                        Text="{x:Static controls:CustomRadioButton.FIRadioButtonChecked}" 
+                                        HorizontalTextAlignment="Start"
+                                        VerticalTextAlignment="Center"
+                                        TextColor="{DynamicResource AccentColor}"
+                                        IsVisible="false"
+                                        FontSize="20"
+                                        WidthRequest="48"
+                                        HeightRequest="48">
+                    <controls:FontIconLabel.Triggers>
+                        <DataTrigger TargetType="controls:FontIconLabel"
+                                     Binding="{Binding Source={x:Reference RadioButtonParent},
+                                            Path=IsChecked}"
+                                     Value="true">
+                            <Setter Property="IsVisible" Value="true" />
+                        </DataTrigger>
+                    </controls:FontIconLabel.Triggers>
+                </controls:FontIconLabel>
+                
+                <!-- icon with the unchecked/empty circle -->
+                <controls:FontIconLabel x:Name="FontIconUncheckedRadioButton"
+                                        Text="{x:Static controls:CustomRadioButton.FIRadioButtonUnchecked}" 
+                                        HorizontalTextAlignment="Start"
+                                        VerticalTextAlignment="Center"
+                                        TextColor="{DynamicResource MainTextColor}"
+                                        IsVisible="true"
+                                        FontSize="20"
+                                        WidthRequest="48"
+                                        HeightRequest="48">
+                    <controls:FontIconLabel.Triggers>
+                        <DataTrigger TargetType="controls:FontIconLabel"
+                                     Binding="{Binding Source={x:Reference RadioButtonParent},
+                                            Path=IsChecked}"
+                                     Value="true">
+                            <Setter Property="IsVisible" Value="false" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="controls:FontIconLabel"
+                                     Binding="{Binding Source={x:Reference RadioButtonParent},
+                                            Path=IsEnabled}"
+                                     Value="false">
+                            <Setter Property="TextColor" Value="{DynamicResource EntryDisabledBackgroundColor}" />
+                        </DataTrigger>
+                    </controls:FontIconLabel.Triggers>
+                </controls:FontIconLabel>
+                
+                <!-- text to be shown next to the radio button circle -->
+                <Label x:Name="LabelRadioButton" 
+                       Text="### text ###"
+                       TextColor="{DynamicResource MainTextColor}"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label"
+                                     Binding="{Binding Source={x:Reference RadioButtonParent},
+                                            Path=IsEnabled}"
+                                     Value="false">
+                            <Setter Property="TextColor" Value="{DynamicResource EntryDisabledBackgroundColor}" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                
+            </StackLayout>
+            <!-- button to handle the click of the user -->
+            <controls:FramelessButton x:Name="ButtonRadioButton"
+                                      BackgroundColor="Transparent"
+                                      Clicked="ButtonRadioButton_Clicked">
+                <controls:FramelessButton.Triggers>
+                        <DataTrigger TargetType="controls:FramelessButton"
+                                     Binding="{Binding Source={x:Reference RadioButtonParent},
+                                            Path=IsEnabled}"
+                                     Value="false">
+                            <Setter Property="IsVisible" Value="false" />
+                        </DataTrigger>
+                </controls:FramelessButton.Triggers>
+            </controls:FramelessButton>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

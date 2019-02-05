@@ -1,7 +1,7 @@
 ﻿using Android.Content;
 using Android.Graphics;
 using Friendica_Mobile.Droid.Helpers;
-using Friendica_Mobile.Styles;
+using SeeberXamarin.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
