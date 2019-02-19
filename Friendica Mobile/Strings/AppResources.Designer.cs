@@ -3101,21 +3101,9 @@ namespace Friendica_Mobile.Strings {
             }
         }
         
-        internal static string LabelSettingsAppThemeLightMode {
-            get {
-                return ResourceManager.GetString("LabelSettingsAppThemeLightMode", resourceCulture);
-            }
-        }
-        
         internal static string LabelSettingsAppThemeUseSystemTheme {
             get {
                 return ResourceManager.GetString("LabelSettingsAppThemeUseSystemTheme", resourceCulture);
-            }
-        }
-        
-        internal static string LabelSettingsNavigationSideHeader {
-            get {
-                return ResourceManager.GetString("LabelSettingsNavigationSideHeader", resourceCulture);
             }
         }
         
@@ -3134,6 +3122,54 @@ namespace Friendica_Mobile.Strings {
         internal static string PageAppSettings {
             get {
                 return ResourceManager.GetString("PageAppSettings", resourceCulture);
+            }
+        }
+        
+        internal static string FriendicaServerHintNoHttps {
+            get {
+                return ResourceManager.GetString("FriendicaServerHintNoHttps", resourceCulture);
+            }
+        }
+        
+        internal static string ButtonSettingsResetCredentials {
+            get {
+                return ResourceManager.GetString("ButtonSettingsResetCredentials", resourceCulture);
+            }
+        }
+        
+        internal static string DialogSettingsConfirmReset {
+            get {
+                return ResourceManager.GetString("DialogSettingsConfirmReset", resourceCulture);
+            }
+        }
+        
+        internal static string TextSerializationError {
+            get {
+                return ResourceManager.GetString("TextSerializationError", resourceCulture);
+            }
+        }
+        
+        internal static string TextSettingsLoadingContacts {
+            get {
+                return ResourceManager.GetString("TextSettingsLoadingContacts", resourceCulture);
+            }
+        }
+        
+        internal static string ButtonSettingsReloadContacts {
+            get {
+                return ResourceManager.GetString("ButtonSettingsReloadContacts", resourceCulture);
+            }
+        }
+        
+        internal static string TextSettingsDefaultOff {
+            get {
+                return ResourceManager.GetString("TextSettingsDefaultOff", resourceCulture);
+            }
+        }
+        
+        internal static string TextSettingsDefaultOn {
+            get {
+                return ResourceManager.GetString("TextSettingsDefaultOn", resourceCulture);
             }
         }
     }

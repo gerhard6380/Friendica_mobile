@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:Friendica_Mobile;assembly:Friendica_Mobile"
              x:Class="Friendica_Mobile.App">
     <Application.Resources>
-        <local:GeneralStyles />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:GeneralStyles />
+                <local:FriendicaDataTemplates />
+            </ResourceDictionary.MergedDictionaries>            
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

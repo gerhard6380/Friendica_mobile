@@ -2091,20 +2091,12 @@ Dies ist derzeit nicht möglich, weil du noch keine Standard-Datenschutzeinstell
     <comment>Settings.xaml: Label of switch if enabled (disabled = light mode)</comment>
   </data>
   <data name="LabelSettingsAppThemeHeader" xml:space="preserve">
-    <value>Dunkles oder helles Design:</value>
+    <value>Dunkles oder helles Design</value>
     <comment>Settings.xaml: Header of settings where user can define to use the app in dark or light mode</comment>
-  </data>
-  <data name="LabelSettingsAppThemeLightMode" xml:space="preserve">
-    <value>Helles Design</value>
-    <comment>Settings.xaml: Label of switch if disabled (enabled = dark mode)</comment>
   </data>
   <data name="LabelSettingsAppThemeUseSystemTheme" xml:space="preserve">
     <value>Verwende System-Design</value>
     <comment>Settings.xaml: if supported by the OS user can decide to use the system default theme (standard = true)</comment>
-  </data>
-  <data name="LabelSettingsNavigationSideHeader" xml:space="preserve">
-    <value>Seite der Navigation:</value>
-    <comment>Settings.xaml: Header of settings to define if navigation pane is shown on left or right side (only on phones)</comment>
   </data>
   <data name="LabelSettingsNavigationSideLeft" xml:space="preserve">
     <value>Links</value>
@@ -2117,5 +2109,37 @@ Dies ist derzeit nicht möglich, weil du noch keine Standard-Datenschutzeinstell
   <data name="PageAppSettings" xml:space="preserve">
     <value>Einstellungen</value>
     <comment>Settings.xaml: page title and navigation button text</comment>
+  </data>
+  <data name="FriendicaServerHintNoHttps" xml:space="preserve">
+    <value>Die App unterstützt das HTTP-Protokoll. Wir empfehlen jedoch die Verwendung von SSL (https-Protokoll), um einen höheren Datenschutz zu gewährleisten, da Kennwörter ohne SSL im Klartext übertragen werden.</value>
+    <comment>Settings.xaml: warning message if Friendica server textbox only contains http:// instead of https://</comment>
+  </data>
+  <data name="ButtonSettingsResetCredentials" xml:space="preserve">
+    <value>Anmeldedaten zurücksetzen</value>
+    <comment>Settings.xaml: button to set login fields back to stored or default values</comment>
+  </data>
+  <data name="DialogSettingsConfirmReset" xml:space="preserve">
+    <value>Dadurch werden deine Einträge gelöscht. Bist du sicher?</value>
+    <comment>Settings.xaml: user requested to confirm reset credentials after tapping button</comment>
+  </data>
+  <data name="TextSerializationError" xml:space="preserve">
+    <value>Fehler bei der Serialisierung nach dem Laden der Daten (URL: {0}), JSON zurückgegeben: {1}</value>
+    <comment>General use: error message if something went wrong on trying to convert JSON return from server into data objects; 0 = url of request, 1 = returned JSON</comment>
+  </data>
+  <data name="TextSettingsLoadingContacts" xml:space="preserve">
+    <value>Kontakte und Gruppen laden...</value>
+    <comment>Settings.xaml: activity indicator shown during loading contact data for default ACL selection</comment>
+  </data>
+  <data name="ButtonSettingsReloadContacts" xml:space="preserve">
+    <value>Kontakte neu laden</value>
+    <comment>Settings.xaml: button to reload contact and group data if error occurred</comment>
+  </data>
+  <data name="TextSettingsDefaultOff" xml:space="preserve">
+    <value>(Standard: aus)</value>
+    <comment>Settings.xaml: showing a hint when the default setting is off/disabled</comment>
+  </data>
+  <data name="TextSettingsDefaultOn" xml:space="preserve">
+    <value>(Standard: ein)</value>
+    <comment>Settings.xaml: showing a hint when the default settings is on/enabled</comment>
   </data>
 </root>

@@ -6,12 +6,15 @@ using Friendica_Mobile.ViewModel;
 using Friendica_Mobile.Styles;
 using Plugin.DeviceInfo;
 using Plugin.DeviceInfo.Abstractions;
+using Friendica_Mobile.Strings;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Friendica_Mobile
 {
     public partial class App : Application
     {
+        public static HttpRequests.HttpFriendicaContacts Contacts;
+
         // selectable themes
         public enum ApplicationTheme { Dark, Light }
 
@@ -48,33 +51,39 @@ namespace Friendica_Mobile
         }
         public static event EventHandler ShellSizeChanged;
 
-
         public App()
         {
+            // get the current system theme from the OS
+            Settings.AppThemeModeChanged += (sender, e) => {
+                SelectedTheme = DependencyService.Get<IGetSystemTheme>().GetSelectedTheme();
+                DefineResources();
+            };
+            SelectedTheme = DependencyService.Get<IGetSystemTheme>().GetSelectedTheme();
+            DefineResources();
+
             InitializeComponent();
 
             // get type of device as we want to react differently on phones, tablets or desktops
             DeviceType = CrossDeviceInfo.Current.Idiom;
 
-            // get the current system theme from the OS
-            Settings.AppThemeModeChanged += (sender, e) => {
-                                            SelectedTheme = DependencyService.Get<IGetSystemTheme>().GetSelectedTheme();
-                                            DefineResources(); 
-            };
-            SelectedTheme = DependencyService.Get<IGetSystemTheme>().GetSelectedTheme();
-            DefineResources();
+            // set explicitely the ci on macos otherwise we have no correct localization on AppResource.xyz calls in c# code
+            if (Device.RuntimePlatform == Device.macOS)
+            {
+                var ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+                AppResources.Culture = ci;
+            }
 
-            MainPage = MasterDetailControl.Create<Shell, ShellViewModel>();
+            MainPage = MasterDetailControl.Create<Views.Shell, ShellViewModel>();
 
             // navigate to first page
             // TODO: user can define which page should be the first one
             var nav = Application.Current.MainPage as NavigationPage;
-            var shell = nav.RootPage as Shell;
+            var shell = nav.RootPage as Views.Shell;
             var vm = shell.BindingContext as ShellViewModel;
-            vm.Detail = new Views.Settings();
+            vm.Detail = new Views.Help();
         }
 
-        private void DefineResources()
+        public static void DefineResources()
         {
             var isDark = (SelectedTheme == ApplicationTheme.Dark);
             Current.Resources["BackgroundColor"] = (isDark) ? Color.Black : Color.White;
@@ -89,6 +98,7 @@ namespace Friendica_Mobile
                 Current.Resources["ButtonTextColor"] = Color.FromHex("#007AFF");
             else
                 Current.Resources["ButtonTextColor"] = (isDark) ? Color.White : Color.Black;
+            Current.Resources["ListViewBackgroundColor"] = (isDark) ? Color.FromHex("#0D0D0D") : Color.WhiteSmoke;
         }
 
         protected override void OnStart()

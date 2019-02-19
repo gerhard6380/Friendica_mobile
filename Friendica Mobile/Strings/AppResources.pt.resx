@@ -2086,35 +2086,59 @@ Atualmente isto não é possível, porque você ainda não definir as configura�
     <comment>Navigationbutton for RSS feeds (newsfeed)</comment>
   </data>
   <data name="LabelSettingsAppThemeDarkMode" xml:space="preserve">
-    <value>Modo escuro</value>
+    <value>Tema escuro</value>
     <comment>Settings.xaml: Label of switch if enabled (disabled = light mode)</comment>
   </data>
   <data name="LabelSettingsAppThemeHeader" xml:space="preserve">
-    <value>Escura ou claro tema:</value>
+    <value>tema escuro ou claro</value>
     <comment>Settings.xaml: Header of settings where user can define to use the app in dark or light mode</comment>
   </data>
-  <data name="LabelSettingsAppThemeLightMode" xml:space="preserve">
-    <value>Modo de luz</value>
-    <comment>Settings.xaml: Label of switch if disabled (enabled = dark mode)</comment>
-  </data>
   <data name="LabelSettingsAppThemeUseSystemTheme" xml:space="preserve">
-    <value>Tema de padrão de sistema de uso</value>
+    <value>Use o tema padrão do sistema</value>
     <comment>Settings.xaml: if supported by the OS user can decide to use the system default theme (standard = true)</comment>
-  </data>
-  <data name="LabelSettingsNavigationSideHeader" xml:space="preserve">
-    <value>Lado de navegação:</value>
-    <comment>Settings.xaml: Header of settings to define if navigation pane is shown on left or right side (only on phones)</comment>
   </data>
   <data name="LabelSettingsNavigationSideLeft" xml:space="preserve">
     <value>Esquerda</value>
     <comment>Settings.xaml: Label of switch if disable (navigation on left side)</comment>
   </data>
   <data name="LabelSettingsNavigationSideRight" xml:space="preserve">
-    <value>Certo</value>
+    <value>Direita</value>
     <comment>Settings.xaml: Label of switch if enabled (navigation on right side)</comment>
   </data>
   <data name="PageAppSettings" xml:space="preserve">
     <value>Configurações</value>
     <comment>Settings.xaml: page title and navigation button text</comment>
+  </data>
+  <data name="FriendicaServerHintNoHttps" xml:space="preserve">
+    <value>O aplicativo está suportando o protocolo http. Mas nós encorajamos o uso de SSL (protocolo https) para garantir maior proteção de dados, porque as senhas são transferidas em texto claro sem SSL.</value>
+    <comment>Settings.xaml: warning message if Friendica server textbox only contains http:// instead of https://</comment>
+  </data>
+  <data name="ButtonSettingsResetCredentials" xml:space="preserve">
+    <value>Redefinir credenciais</value>
+    <comment>Settings.xaml: button to set login fields back to stored or default values</comment>
+  </data>
+  <data name="DialogSettingsConfirmReset" xml:space="preserve">
+    <value>Isso excluirá suas entradas. Você tem certeza?</value>
+    <comment>Settings.xaml: user requested to confirm reset credentials after tapping button</comment>
+  </data>
+  <data name="TextSerializationError" xml:space="preserve">
+    <value>Ocorreu um erro de serialização após o carregamento de dados (URL: {0}), retornou JSON: {1}</value>
+    <comment>General use: error message if something went wrong on trying to convert JSON return from server into data objects; 0 = url of request, 1 = returned JSON</comment>
+  </data>
+  <data name="TextSettingsLoadingContacts" xml:space="preserve">
+    <value>Carregando contatos e grupos...</value>
+    <comment>Settings.xaml: activity indicator shown during loading contact data for default ACL selection</comment>
+  </data>
+  <data name="ButtonSettingsReloadContacts" xml:space="preserve">
+    <value>Recarregar contatos</value>
+    <comment>Settings.xaml: button to reload contact and group data if error occurred</comment>
+  </data>
+  <data name="TextSettingsDefaultOff" xml:space="preserve">
+    <value>(Padrão: off)</value>
+    <comment>Settings.xaml: showing a hint when the default setting is off/disabled</comment>
+  </data>
+  <data name="TextSettingsDefaultOn" xml:space="preserve">
+    <value>(Padrão: on)</value>
+    <comment>Settings.xaml: showing a hint when the default settings is on/enabled</comment>
   </data>
 </root>

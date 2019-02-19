@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="Friendica_Mobile.Views.Contacts">
+<styles:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:vm="clr-namespace:Friendica_Mobile.ViewModel"
+                        xmlns:controls="clr-namespace:SeeberXamarin.Controls"
+                        xmlns:styles="clr-namespace:Friendica_Mobile.Styles"
+                        x:Class="Friendica_Mobile.Views.Contacts">
+
+    <ContentPage.BindingContext>
+        <vm:ContactsViewModel />
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
+        <StackLayout>
         <Label Text="Das ist der Kontakt-Bereich" />
+            <controls:CustomButton x:Name="SetValue"
+                                   Command="{Binding SetValueCommand}"
+                                   Text="Set value" />
+            <controls:CustomButton x:Name="ShowSetting"
+                                   Command="{Binding ShowSettingCommand}"
+                                   Text="Show setting" />
+            </StackLayout>
     </ContentPage.Content>
-</ContentPage>
+</styles:BaseContentPage>

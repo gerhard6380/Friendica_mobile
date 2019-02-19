@@ -8,7 +8,7 @@ using Xamarin.Forms.Internals;
 
 namespace Friendica_Mobile.ViewModel
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseViewModel : INotifyPropertyChanged
     {
         // property for the title of the view - shown in title bar
         private string _title;
@@ -17,7 +17,7 @@ namespace Friendica_Mobile.ViewModel
             get { return _title; }
             set { SetProperty(ref _title, value); }
         }
-
+        
         // property for the number of unread elements (don't forget the property and binding in Shell.xaml and ShellViewModel)
         private int _counter;
         public int Counter
@@ -30,10 +30,7 @@ namespace Friendica_Mobile.ViewModel
             }
         }
 
-
-
-
-        // property to show an activity indicator (progress ring)
+		// property to show an activity indicator (progress ring)
         private bool _activityIndicatorVisible;
         public bool ActivityIndicatorVisible
         {
@@ -76,7 +73,7 @@ namespace Friendica_Mobile.ViewModel
         {
             // get shell environment and load the new page
             var nav = Application.Current.MainPage as NavigationPage;
-            var shell = nav.RootPage as Shell;
+            var shell = nav.RootPage as Views.Shell;
             var vm = shell.BindingContext as ShellViewModel;
             vm.Detail = page;
         }
@@ -87,7 +84,7 @@ namespace Friendica_Mobile.ViewModel
             // dont't forget to add a xyzCounter property in ShellViewModel and the binding
             // to this property in the Shell.xaml
             var nav = Application.Current.MainPage as NavigationPage;
-            var shell = nav.RootPage as Shell;
+            var shell = nav.RootPage as Views.Shell;
 
             var page = shell.Detail.GetType().Name;
 
@@ -102,7 +99,7 @@ namespace Friendica_Mobile.ViewModel
             // or when background activities started and probably could slow the app)
             // true = start spinning, false = stop spinning
             var nav = Application.Current.MainPage as NavigationPage;
-            var shell = nav.RootPage as Shell;
+            var shell = nav.RootPage as Views.Shell;
             var vm = shell.BindingContext as ShellViewModel;
             vm.IsNavigationRunning = isRunning;
         }
@@ -110,7 +107,7 @@ namespace Friendica_Mobile.ViewModel
         internal void SetNavigationAllowed(bool navAllowed)
         {
             var nav = Application.Current.MainPage as NavigationPage;
-            var shell = nav.RootPage as Shell;
+            var shell = nav.RootPage as Views.Shell;
             var vm = shell.BindingContext as ShellViewModel;
             vm.SideContentVisible = navAllowed;
             vm.NavigationAllowed = navAllowed;
