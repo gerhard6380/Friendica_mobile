@@ -1,10 +1,6 @@
-﻿using System;
-using System.ComponentModel;
-using SeeberXamarin.Controls;
-using Friendica_Mobile.UWP;
+﻿using Friendica_Mobile.UWP;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.UWP;
-using Windows.UI.Xaml.Media;
 
 [assembly: ExportRenderer(typeof(Entry), typeof(CustomEntryRenderer))]
 namespace Friendica_Mobile.UWP
@@ -21,7 +17,7 @@ namespace Friendica_Mobile.UWP
             }
         }
 
-        private void NewElement_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void NewElement_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (Control != null)
                 SetStyle(sender as Entry);
@@ -35,6 +31,8 @@ namespace Friendica_Mobile.UWP
 
             // if design is either on dark theme enabled or on dark theme disabled
             var isDark = (entry.BackgroundColor == Color.FromRgb(51, 51, 51) || entry.BackgroundColor == Color.FromRgb(153,153, 153));
+
+            var test = Windows.UI.Xaml.Application.Current.Resources["DefaultTextBoxDarkStyle"];
 
             if (isDark)
                 this.Control.Style = Windows.UI.Xaml.Application.Current.Resources["DefaultTextBoxDarkStyle"] as Windows.UI.Xaml.Style;

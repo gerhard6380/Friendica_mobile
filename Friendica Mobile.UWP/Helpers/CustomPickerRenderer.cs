@@ -1,5 +1,6 @@
 ﻿using Friendica_Mobile.UWP;
 using System.ComponentModel;
+using Windows.UI.Xaml.Media;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.UWP;
 
@@ -41,6 +42,7 @@ namespace Friendica_Mobile.UWP
                     Control.RequestedTheme = Windows.UI.Xaml.ElementTheme.Light;
                 else
                     Control.RequestedTheme = Windows.UI.Xaml.ElementTheme.Dark;
+                Control.Foreground = new SolidColorBrush(Windows.UI.Colors.Black);
             }
         }
     }

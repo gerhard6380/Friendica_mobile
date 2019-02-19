@@ -29,14 +29,17 @@ namespace Friendica_Mobile.UWP
 
         private void SetProgressRing()
         {
-            var progressRing = new ProgressRing
+            if (Control != null)
             {
-                IsActive = true,
-                Visibility = Windows.UI.Xaml.Visibility.Visible,
-                IsEnabled = true,
-                Foreground = new SolidColorBrush(Windows.UI.Colors.White)
-            };
-            SetNativeControl(progressRing);
+                var progressRing = new ProgressRing
+                {
+                    IsActive = true,
+                    Visibility = Windows.UI.Xaml.Visibility.Visible,
+                    IsEnabled = true,
+                    Foreground = new SolidColorBrush(Windows.UI.Colors.White)
+                };
+                SetNativeControl(progressRing);
+            }
         }
     }
 }

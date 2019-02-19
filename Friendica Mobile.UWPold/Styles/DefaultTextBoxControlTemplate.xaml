@@ -9,7 +9,7 @@
     <Color x:Key="EntryDisabledDarkBackgroundColor">#333333</Color>
 
     <!-- PlaceholderForeground not available on Windows 10 Mobile therefore replaced with Color.#595959 -->
-
+    
     <Style x:Key="DefaultTextBoxStyle" TargetType="TextBox">
         <Setter Property="MinWidth" Value="{ThemeResource TextControlThemeMinWidth}"/>
         <Setter Property="MinHeight" Value="{ThemeResource TextControlThemeMinHeight}"/>

@@ -1,110 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -122,12 +17,12 @@
     <comment>Navigationbutton for Contacts</comment>
   </data>
   <data name="radioHome.Content" xml:space="preserve">
-    <value>Home
+    <value>Profil
 </value>
     <comment>Navigationbutton for Home (own entries)</comment>
   </data>
   <data name="radioNetwork.Content" xml:space="preserve">
-    <value>Network</value>
+    <value>Réseau</value>
     <comment>Navigationbutton for Network (timeline)</comment>
   </data>
   <data name="textBlockApplicationName.Text" xml:space="preserve">
@@ -139,15 +34,15 @@
     <comment>Defines Text direction for the language</comment>
   </data>
   <data name="menuflyoutHelp.Text" xml:space="preserve">
-    <value>Help</value>
+    <value>Aide</value>
     <comment>Navigationbutton for Help page</comment>
   </data>
   <data name="menuflyoutSettings.Text" xml:space="preserve">
-    <value>Settings</value>
+    <value>Paramètres</value>
     <comment>Navigationbutton for Settings</comment>
   </data>
   <data name="radioEvents.Content" xml:space="preserve">
-    <value>Events</value>
+    <value>Événements</value>
     <comment>Navigationbutton for Events (showing a calendar)</comment>
   </data>
   <data name="radioMessages.Content" xml:space="preserve">
@@ -155,11 +50,11 @@
     <comment>Navigationbutton for Messages (private ones)</comment>
   </data>
   <data name="radioOthers.Content" xml:space="preserve">
-    <value>More</value>
+    <value>Autres</value>
     <comment>Navigationbutton for showing a flyout with more options</comment>
   </data>
   <data name="radioPersonalNotes.Content" xml:space="preserve">
-    <value>Personal notes</value>
+    <value>Notes personnelles</value>
     <comment>Navigationbutton for Personal Notes</comment>
   </data>
   <data name="radioPhotos.Content" xml:space="preserve">
@@ -167,19 +62,19 @@
     <comment>Navigationbutton for Photos (showing albums)</comment>
   </data>
   <data name="radioProfile.Content" xml:space="preserve">
-    <value>My profiles</value>
+    <value>Mon profils</value>
     <comment>Navigationbutton for Profiles (own profiles)</comment>
   </data>
   <data name="radioVideos.Content" xml:space="preserve">
-    <value>Videos</value>
+    <value>Vidéos</value>
     <comment>Navigationbutton for Videos</comment>
   </data>
   <data name="menuflyoutAbout.Text" xml:space="preserve">
-    <value>About</value>
+    <value>Information</value>
     <comment>Navigationbutton for showing more about the app</comment>
   </data>
   <data name="menuflyoutExit.Text" xml:space="preserve">
-    <value>Exit
+    <value>Sortie
 </value>
     <comment>Navigationbutton for exiting the app</comment>
   </data>
@@ -188,71 +83,71 @@
     <comment>Defines Text direction for the language</comment>
   </data>
   <data name="pageTitleHome.Text" xml:space="preserve">
-    <value>Home</value>
+    <value>Profil</value>
     <comment>Name on top of view Home</comment>
   </data>
   <data name="pageTitleSettings.Text" xml:space="preserve">
-    <value>Settings</value>
+    <value>Paramètres</value>
     <comment>Name on top of view Settings</comment>
   </data>
   <data name="sliderNavigationSide.Header" xml:space="preserve">
-    <value>Location of navigation</value>
+    <value>Lieu de navigation</value>
     <comment>User can select on which side navigation shall be displayed on mobile devices</comment>
   </data>
   <data name="sliderNavigationSide.OnContent" xml:space="preserve">
-    <value>Right</value>
+    <value>À droite</value>
     <comment>caption for switch for navigation side (on = right)</comment>
   </data>
   <data name="sliderNavigationSide.OffContent" xml:space="preserve">
-    <value>Left</value>
+    <value>À gauche</value>
     <comment>caption for switch for navigation side (off = left)</comment>
   </data>
   <data name="textboxFriendicaPassword.Header" xml:space="preserve">
-    <value>Password</value>
+    <value>Mot de p.</value>
     <comment>Settings.xaml: passwordbox header for password </comment>
   </data>
   <data name="textboxFriendicaServer.Header" xml:space="preserve">
-    <value>Friendica Server</value>
+    <value>Serveur Friendica</value>
     <comment>Settings.xaml: textbox header for server url</comment>
   </data>
   <data name="textboxFriendicaUsername.Header" xml:space="preserve">
-    <value>Nickname or email address</value>
+    <value>Pseudo ou adresse e-mail</value>
     <comment>Settings.xaml: textbox header for username</comment>
   </data>
   <data name="FriendicaServerHint" xml:space="preserve">
-    <value>Enter the URL of your Friendica Server (E.g. http://www.tryfriendica.de).</value>
+    <value>Entrez l’URL de votre serveur Friendica (ex http://www.tryfriendica.de).</value>
     <comment>Settings.xaml: standard message displayed below Friendica server textbox</comment>
   </data>
   <data name="FriendicaServerHintEmpty" xml:space="preserve">
-    <value>Friendica server cannot be empty.</value>
+    <value>Friendica serveur ne peut pas être vide.</value>
     <comment>Settings.xaml: error message on empty Friendica server textbox</comment>
   </data>
   <data name="FriendicaServerHintEndingSlash" xml:space="preserve">
-    <value>Friendica server URL shouldn't end with a slash ('/'). </value>
+    <value>URL du serveur Friendica ne devrait pas se terminer par une barre oblique (« / »). </value>
     <comment>Settings.xaml: warning message if Friendica server ends with a slash</comment>
   </data>
   <data name="FriendicaServerHintOnlyHttp" xml:space="preserve">
-    <value>Friendica server must be a full URL.</value>
+    <value>Friendica serveur doit être une URL complète.</value>
     <comment>Settings.xaml: error message if Friendica server textbox only contains http://</comment>
   </data>
   <data name="FriendicaServerHintWrongStart" xml:space="preserve">
-    <value>Friendica server must begin with 'http://' or 'https://'.</value>
+    <value>Friendica serveur doit commencer par « http:// » ou « https:// ».</value>
     <comment>Settings.xaml: error message if Friendica server string starts wrong</comment>
   </data>
   <data name="FriendicaPasswordHint" xml:space="preserve">
-    <value>Please specify your password for login on your Friendica server.</value>
+    <value>Veuillez spécifier votre mot de passe pour se connecter sur votre serveur de Friendica.</value>
     <comment>Settings.xaml: standard message displayed below Friendica password textbox</comment>
   </data>
   <data name="FriendicaPasswordHintEmpty" xml:space="preserve">
-    <value>Friendica password cannot be empty.</value>
+    <value>Friendica mot de passe ne peut pas être vide.</value>
     <comment>Settings.xaml: error message on empty Friendica password</comment>
   </data>
   <data name="FriendicaUsernameHint" xml:space="preserve">
-    <value>Please enter your nickname or your email address to log on your Friendica server.</value>
+    <value>Veuillez entrer votre Pseudo ou votre adresse électronique pour ouvrir une session sur votre serveur de Friendica.</value>
     <comment>Settings.xaml: standard message displayed below Friendica username textbox</comment>
   </data>
   <data name="FriendicaUsernameHintEmpty" xml:space="preserve">
-    <value>Nickname or email address cannot be empty. 
+    <value>Pseudo ou votre adresse e-mail ne peut pas être vide. 
 </value>
     <comment>Settings.xaml: error message on empty Friendica username</comment>
   </data>
@@ -261,51 +156,51 @@
     <comment>dialog buttons: No</comment>
   </data>
   <data name="buttonYes" xml:space="preserve">
-    <value>Yes</value>
+    <value>Oui</value>
     <comment>dialog buttons: Yes</comment>
   </data>
   <data name="messageDialogSettingsNotSaved" xml:space="preserve">
-    <value>Settings have been changed but not saved (not yet tested or test has failed). Changed settings are not saved when you leave the site. Do you want to leave the page though?</value>
+    <value>Paramètres ont été modifiés mais non enregistrées (pas encore testé ou test a échoué). Paramètres modifiés ne sont pas enregistrées lorsque vous quittez le site. Vous voulez quitter la page bien ?</value>
     <comment>Navigation: leaving settings page while there are unsaved changes.</comment>
   </data>
   <data name="TestConnectionResultNotAnswered" xml:space="preserve">
-    <value>{0}: server did not respond.</value>
+    <value>{0} : serveur n’a pas répondu.</value>
     <comment>Settings.xaml: connection test resulted in a server not answered</comment>
   </data>
   <data name="TestConnectionResultNotAuthenticated" xml:space="preserve">
-    <value>Authentication on the specified server has failed, please check your entered credentials!</value>
+    <value>L’authentification sur le serveur spécifié n’a pas, s’il vous plaît vérifier vos informations d’identification entrées !</value>
     <comment>Settings.xaml: connection test resulted in a failed authentication</comment>
   </data>
   <data name="TestConnectionResultOK" xml:space="preserve">
-    <value>Connection test successful, new settings have been saved!</value>
+    <value>Test de connexion réussie, les nouveaux paramètres ont été enregistrés !</value>
     <comment>Settings.xaml: feedback to user when connection test succeded</comment>
   </data>
   <data name="TestConnectionResultUnexpectedError" xml:space="preserve">
-    <value>{0}: an unexpected error has occurred. / n {1} ({2})</value>
+    <value>{0} : une erreur inattendue s’est produite. / n {1} ({2})</value>
     <comment>Settings.xaml: connectiontest resulted in an unexpected error</comment>
   </data>
   <data name="buttonTestConnection.Content" xml:space="preserve">
-    <value>Test connection</value>
+    <value>Tester la connexion</value>
     <comment>Settings.xaml: button to start the connection test</comment>
   </data>
   <data name="textblockConnectionTestInProgress.Text" xml:space="preserve">
-    <value>Testing connection...</value>
+    <value>Test de la connexion...</value>
     <comment>Settings.xaml: status text with progressring during connection test</comment>
   </data>
   <data name="pageTitleNetwork.Text" xml:space="preserve">
-    <value>Network</value>
+    <value>Réseau</value>
     <comment>Name on top of view Network</comment>
   </data>
   <data name="textblockDropArea.Text" xml:space="preserve">
-    <value>Drop text/images for a new post here (or CTRL+V)...</value>
+    <value>Déposez le texte/images pour un nouveau post ici (ou CTRL + V)...</value>
     <comment>Network.xaml: text in drop area (only in desktop version)</comment>
   </data>
   <data name="comboboxStartPage.Header" xml:space="preserve">
-    <value>First page on startup</value>
+    <value>Première page au démarrage</value>
     <comment>Settings.xaml: user can select the preferred start page</comment>
   </data>
   <data name="pageTitleNewPost.Text" xml:space="preserve">
-    <value>New Post</value>
+    <value>Nouveau poste</value>
     <comment>Name on top of view NewEntry</comment>
   </data>
   <data name="pageNetwork.FlowDirection" xml:space="preserve">
@@ -313,28 +208,28 @@
     <comment>Defines Text direction for the language</comment>
   </data>
   <data name="appBarNetworkAdd.Label" xml:space="preserve">
-    <value>New post
+    <value>Nouveau poste
 </value>
     <comment>Network.xaml: caption of the appbarButton for a new post</comment>
   </data>
   <data name="appBarNetworkAdd.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Add new post</value>
+    <value>Ajouter nouveau poste</value>
     <comment>Network.xaml: tooltip of the appbarButton for a new post</comment>
   </data>
   <data name="appBarNetworkChronological.Label" xml:space="preserve">
-    <value>Chronological</value>
+    <value>Chronologique</value>
     <comment>Network.xaml: caption of the appbarButton to sort posts by time</comment>
   </data>
   <data name="appBarNetworkChronological.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Sort posts in chronological order</value>
+    <value>Tri des messages dans l’ordre chronologique</value>
     <comment>Network.xaml: tooltip of the appbarButton to sort posts by time</comment>
   </data>
   <data name="appBarNetworkRefresh.Label" xml:space="preserve">
-    <value>Reload</value>
+    <value>Recharger</value>
     <comment>Network.xaml: caption of the appbarButton for loading new posts</comment>
   </data>
   <data name="appBarNetworkRefresh.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Load new posts</value>
+    <value>Nouveaux postes de charge</value>
     <comment>Network.xaml: tooltip of the appbarButton for loading new posts</comment>
   </data>
   <data name="appBarNetworkThreads.Label" xml:space="preserve">
@@ -342,49 +237,49 @@
     <comment>Network.xaml: caption of the appbarButton to sort posts by threads</comment>
   </data>
   <data name="appBarNetworkThreads.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Sort posts by threads</value>
+    <value>Tri des messages par les threads</value>
     <comment>Network.xaml: tooltip of the appbarButton to sort posts by threads</comment>
   </data>
   <data name="pivotSettingsGeneral.Header" xml:space="preserve">
-    <value>General</value>
+    <value>Général</value>
     <comment>Settings.xaml: header for general settings</comment>
   </data>
   <data name="pivotSettingsPrivacy.Header" xml:space="preserve">
-    <value>Privacy</value>
+    <value>Confidentialité</value>
     <comment>Settings.xaml: header for privacy settings</comment>
   </data>
   <data name="sliderSaveLocalAllowed.Header" xml:space="preserve">
-    <value>Store data locally</value>
+    <value>Stocker des données localement</value>
     <comment>Settings.xaml: user can decide whether local storage of data is allowed</comment>
   </data>
   <data name="textblockSaveLocalAllowedHint.Text" xml:space="preserve">
-    <value>For some functions, it is necessary to save some data to contacts or entries locally on the device. If you turn this off, these functions will no longer be possible (e.g. link on the profile when @-Tags in the item text).</value>
+    <value>Pour certaines fonctions, il est nécessaire d’enregistrer des données de contacts ou des entrées localement sur l’appareil. Si vous désactiver cette option, ces fonctions ne sera plus possibles (par exemple un lien sur le profil lorsque @-Tags dans le texte de l’élément).</value>
     <comment>Settings.xaml: hint on SaveLocalAllowed</comment>
   </data>
   <data name="textblockIndicatorLoadingNextEntries.Text" xml:space="preserve">
-    <value>Load more entries...</value>
+    <value>Charger plus d’entrées...</value>
     <comment>Network.xaml: text next to progress ring indicating that app is loading next entries</comment>
   </data>
   <data name="textblockIndicatorRefreshing.Text" xml:space="preserve">
-    <value>Loading new entries...</value>
+    <value>Nouvelles entrées pour le chargement...</value>
     <comment>Network.xaml: text next to progress ring indicating that app is refreshing new entries</comment>
   </data>
   <data name="messageDialogErrorOnLoadingData" xml:space="preserve">
-    <value>Failed to load the data. (Error: {0}) 
+    <value>Impossible de charger les données. (Erreur : {0}) 
  
-Want to try again?</value>
+envie d’essayer à nouveau ?</value>
     <comment>Network.xaml: error message on problems with data loading</comment>
   </data>
   <data name="messageDialogHttpStatusNone" xml:space="preserve">
-    <value>Server is not responding</value>
+    <value>Serveur ne répond pas</value>
     <comment>Network.xaml: alternativ error message if httpStatus = None</comment>
   </data>
   <data name="comboboxNetworkMode.Header" xml:space="preserve">
-    <value>Display mode on network page</value>
+    <value>Mode d’affichage sur la page réseau</value>
     <comment>Settings.xaml: Header for display mode on network page</comment>
   </data>
   <data name="textblockNetworkChronological.Text" xml:space="preserve">
-    <value>Chronological</value>
+    <value>Chronologique</value>
     <comment>Settings.xaml: caption of the combobox item to select display mode for Network page</comment>
   </data>
   <data name="textblockNetworkThreads.Text" xml:space="preserve">
@@ -392,31 +287,31 @@ Want to try again?</value>
     <comment>Settings.xaml: caption of the combobox item to select display mode for Network page</comment>
   </data>
   <data name="sliderShowMorePosts.OffContent" xml:space="preserve">
-    <value>Show only recent comments</value>
+    <value>Afficher uniquement les commentaires récents</value>
     <comment>Network.xaml: toggle in thread to show all comments or only newest one</comment>
   </data>
   <data name="sliderShowMorePosts.OnContent" xml:space="preserve">
-    <value>Show all comments</value>
+    <value>Voir tous les commentaires</value>
     <comment>Network.xaml: toggle in thread to show all comments or only newest</comment>
   </data>
   <data name="textblockThreadLoading.Text" xml:space="preserve">
-    <value>Loading thread...</value>
+    <value>Chargement de discussion...</value>
     <comment>Network.xaml: text for progressRing on loading thread</comment>
   </data>
   <data name="buttonShowThread.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Show entire thread...</value>
+    <value>Afficher le fil complet...</value>
     <comment>Network.xaml: tooltip for button to show complete thread in chronological mode</comment>
   </data>
   <data name="pageTitleShowThread.Text" xml:space="preserve">
-    <value>Thread</value>
+    <value>Discussion</value>
     <comment>ShowThread.xaml: show a single thread to the user in a separate page</comment>
   </data>
   <data name="textblockShowThreadIsLoading.Text" xml:space="preserve">
-    <value>Loading the entries of the thread...</value>
+    <value>Les entrées du thread de chargement...</value>
     <comment>ShowThread.xaml: show a progress ring and this text to indicate current loading process</comment>
   </data>
   <data name="textblockShowThreadNoData.Text" xml:space="preserve">
-    <value>An error has occured, the server has not returned any entries for this thread. </value>
+    <value>Une erreur s’est produite, le serveur n’a pas retourné toutes les entrées de ce fil. </value>
     <comment>ShowThread.xaml: show an error if there were no data retrieved from server</comment>
   </data>
   <data name="pageShowThread.FlowDirection" xml:space="preserve">
@@ -424,27 +319,27 @@ Want to try again?</value>
     <comment>Defines Text direction for the language</comment>
   </data>
   <data name="appBarContactsFindGlobal.Label" xml:space="preserve">
-    <value>Search globally</value>
+    <value>Rechercher dans le monde</value>
     <comment>Contacts.xaml: caption of the appbarButton for searching in global directory</comment>
   </data>
   <data name="appBarContactsFindGlobal.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Search in the global directory</value>
+    <value>Rechercher dans le répertoire mondial</value>
     <comment>Contacts.xaml: tooltip of the appbarButton for seraching in global directory</comment>
   </data>
   <data name="appBarContactsFindLocal.Label" xml:space="preserve">
-    <value>Search locally</value>
+    <value>Rechercher localement</value>
     <comment>Contacts.xaml: caption of the appbarButton for searching local</comment>
   </data>
   <data name="appBarContactsFindLocal.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Search in contacts of your local hub</value>
+    <value>Rechercher dans les contacts de votre concentrateur local</value>
     <comment>Contacts.xaml: tooltip of the appbarButton for searching local</comment>
   </data>
   <data name="appBarContactsRefresh.Label" xml:space="preserve">
-    <value>Reload</value>
+    <value>Recharger</value>
     <comment>Contacts.xaml: caption of the appbarButton for reloading</comment>
   </data>
   <data name="appBarContactsRefresh.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Reload contacts</value>
+    <value>Recharger les contacts</value>
     <comment>Contacts.xaml: tooltip of the appbarButton for reloading</comment>
   </data>
   <data name="pageContacts.FlowDirection" xml:space="preserve">
@@ -460,27 +355,27 @@ Want to try again?</value>
     <comment>Contacts.xaml: showing the list of forums</comment>
   </data>
   <data name="pivotContactsFriends.Header" xml:space="preserve">
-    <value>Friends</value>
+    <value>Amis</value>
     <comment>Contacts.xaml: showing the list of Friends</comment>
   </data>
   <data name="pivotContactsGroups.Header" xml:space="preserve">
-    <value>Groups</value>
+    <value>Groupes</value>
     <comment>Contacts.xaml: showing the list of groups</comment>
   </data>
   <data name="textblockContactsNoSettings.Text" xml:space="preserve">
-    <value>See sample data for displaying contacts.</value>
+    <value>Voir des exemples de données pour l’affichage des contacts.</value>
     <comment>Contacts.xaml: info for user if there are no settings</comment>
   </data>
   <data name="textblockIndicatorLoadingContacts.Text" xml:space="preserve">
-    <value>Loading contacts...</value>
+    <value>Chargement des contacts...</value>
     <comment>Contacts.xaml: text next to progress ring indicating that app is loading the contacts</comment>
   </data>
   <data name="textblockNoDataAvailableForums.Text" xml:space="preserve">
-    <value>The server has provided no data to your forums.</value>
+    <value>Le serveur n’a fourni aucune donnée pour vos forums.</value>
     <comment>Contacts.xaml: text shown if no data for forums is returned by server.</comment>
   </data>
   <data name="textblockNoDataAvailableFriends.Text" xml:space="preserve">
-    <value>The server has provided no data to your friends.</value>
+    <value>Le serveur n’a fourni aucune donnée à vos amis.</value>
     <comment>Contacts.xaml: text shown if no data for friends is returned by server.</comment>
   </data>
   <data name="pageAbout.FlowDirection" xml:space="preserve">
@@ -488,90 +383,90 @@ Want to try again?</value>
     <comment>Defines Text direction for the language</comment>
   </data>
   <data name="pageTitleAbout.Text" xml:space="preserve">
-    <value>About</value>
+    <value>Information</value>
     <comment>Name on top of view About</comment>
   </data>
   <data name="textAboutDataProtection1.Text" xml:space="preserve">
-    <value>You have probably selected Friendica as your preferred social network because you have doubts about privacy on the well-known global networks. Also I take privacy very seriously. The app is designed so that as little data as possible must be stored on the Smartphone - as a result, the data need to be reloaded from your server each time you start the app. </value>
+    <value>Vous avez probablement sélectionné Friendica comme votre réseau social préféré, parce que vous avez des doutes quant à la vie privée sur les réseaux mondiaux connus. Je profite de la vie privée très au sérieux. L’app est conçu de sorte que comme peu de données que possible doit être stocké sur le Smartphone - en conséquence, les données doivent être rechargées à partir de votre serveur chaque fois que vous démarrez l’application. </value>
     <comment>About.xaml: general statement to data protection</comment>
   </data>
   <data name="textAboutDataProtection2.Text" xml:space="preserve">
-    <value>Storing user data on the device is necessary for some features, other apps may not access to this data. When roaming for using the app on multiple devices, it is necessary that some information are stored on Microsoft servers to keep the devices in sync. The app has been programmed so that stored information contain any personal data. 
-You can switch on or off these functions in the settings, as well as interactions with other apps (contacts, pictures, Cortana, etc.). </value>
+    <value>Stockage des données utilisateur sur le périphérique est nécessaire pour certaines fonctionnalités, autres applications ne peuvent pas accéder à ces données. Lors de l’itinérance pour utiliser l’application sur plusieurs appareils, il est nécessaire que certaines informations sont stockées sur les serveurs de Microsoft pour préserver les dispositifs de synchronisation. L’app a été programmé pour que les informations stockées ne contiennent aucune donnée personnelle. 
+, Vous pouvez activer ou désactiver ces fonctions dans les paramètres, ainsi que les interactions avec les autres softs (contacts, photos, Cortana, etc..). </value>
     <comment>About.xaml: description of data exchange function for system integration</comment>
   </data>
   <data name="textAboutDataProtection3.Text" xml:space="preserve">
-    <value>This app collects any usage statistics. In addition, no information is received from your Friendica account to me as a developer or to a website associated with me! The affiliate receive no information for the ads in test mode from your Friendica Server!</value>
+    <value>Ce soft recueille des statistiques d’utilisation. En outre, aucune information est reçue de votre compte Friendica à moi en tant que développeur ou à un site Web lié à moi ! L’affilié ne recevoir aucune information sur les annonces en mode de test de votre serveur Friendica !</value>
     <comment>About.xaml: declaration of non-sending information from the user to the developer</comment>
   </data>
   <data name="textAboutDescriptionPart1.Text" xml:space="preserve">
-    <value>Friendica (formerly known as the Friendika) is a decentralized social network, which is constructed as an open source application. In contrast to Facebook, the personal data are not collected in a central database and are therefore not exposed to be part of a central analysis for advertising purposes. 
+    <value>Friendica (anciennement la Friendika) est un réseau social décentralisé, qui est construit comme une application open source. Contrairement à Facebook, les données personnelles ne sont pas rassemblées dans une base de données centrale et ne sont donc pas exposées pour faire partie d’une analyse centrale à des fins publicitaires. 
  
-This app for Windows needs the credentials for an existing Friendica account. If you don't have yet your own Friendica server with an account, you must setup a server and an account before using this app. Alternatively you can register an account on a public servers. You will find a list of available servers, as well as more information about the Friendica project on the official project homepage </value>
+Ce soft pour Windows a besoin des informations d’identification d’un compte existant de Friendica. Si vous n’avez pas encore votre propre serveur Friendica avec un compte, vous devez configurer un serveur et un compte avant d’utiliser cette App, vous pouvez également enregistrer un compte sur des serveurs publics. Vous trouverez une liste des serveurs disponibles, ainsi que plus d’informations sur le projet Friendica sur la page d’accueil officielle du projet </value>
     <comment>About.xaml: description text on Friendica project</comment>
   </data>
   <data name="textAboutDescriptionPart2.Text" xml:space="preserve">
-    <value>Please keep in mind that this app is NOT published and maintained by the Friendica project team. If you want to report problems/bugs or have questions, please use the following contact options: </value>
+    <value>S’il vous plaît garder à l’esprit que ce soft n’est pas publié et maintenu par l’équipe du projet Friendica. Si vous souhaitez signaler des problèmes/bugs ou avez des questions, veuillez utiliser les options de contact suivantes : </value>
     <comment>About.xaml: description text on App support</comment>
   </data>
   <data name="textAboutDisclaimer.Text" xml:space="preserve">
-    <value>THIS SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN ANY ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</value>
+    <value>THIS SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT </value>
     <comment>About.xaml: disclaimer</comment>
   </data>
   <data name="textblockAboutAppVersion.Text" xml:space="preserve">
-    <value>App version:</value>
+    <value>Version de l'application :</value>
     <comment>About.xaml: show version of app to the user</comment>
   </data>
   <data name="textblockAboutButtonSettings.Text" xml:space="preserve">
-    <value>Settings</value>
+    <value>Paramètres</value>
     <comment>About.xaml: text on button for jumping to Settings</comment>
   </data>
   <data name="textblockAboutDataProtectionHeader.Text" xml:space="preserve">
-    <value>Data privacy:</value>
+    <value>Confidentialité des données :</value>
     <comment>About.xaml: header for paragraph on data protection</comment>
   </data>
   <data name="textblockAboutDbUpdateVersion.Text" xml:space="preserve">
-    <value>Database version:</value>
+    <value>Version de base de données :</value>
     <comment>About.xaml: text before showing the version of the used database</comment>
   </data>
   <data name="textblockAboutDescriptionHeader.Text" xml:space="preserve">
-    <value>Description:</value>
+    <value>Description :</value>
     <comment>About.xaml: header for short description on Friendica</comment>
   </data>
   <data name="textblockAboutDeveloper.Text" xml:space="preserve">
-    <value>App developer:</value>
+    <value>Développeur d’application :</value>
     <comment>About.xaml: header for block showing address of app developer</comment>
   </data>
   <data name="textblockAboutDfrnProtocolVersion.Text" xml:space="preserve">
-    <value>DFRN Protocol version:</value>
+    <value>Version de protocole DFRN :</value>
     <comment>About.xaml: text before showing the version of the dfrn version</comment>
   </data>
   <data name="textblockAboutDisclaimerHeader.Text" xml:space="preserve">
-    <value>Disclaimer:</value>
+    <value>AVERTISSEMENT :</value>
     <comment>About.xaml: header for paragraph on disclaimer</comment>
   </data>
   <data name="textblockAboutFriendicaPlatform.Text" xml:space="preserve">
-    <value>Friendica platform:</value>
+    <value>Plate-forme Friendica :</value>
     <comment>About.xaml: text before showing the Friendica platform of the server</comment>
   </data>
   <data name="textblockAboutFriendicaVersion.Text" xml:space="preserve">
-    <value>Friendica version: </value>
+    <value>Version Friendica : </value>
     <comment>About.xaml: text before showing the version of the Friendica server</comment>
   </data>
   <data name="textblockAboutNoSettings.Text" xml:space="preserve">
-    <value>You have defined in the app settings still no Friendica server.</value>
+    <value>Vous n’avez défini dans les paramètres app encore aucun serveur Friendica.</value>
     <comment>About.xaml: show hint if no server is specified in Settings, so no information on Friendica server available</comment>
   </data>
   <data name="textblockAboutServer.Text" xml:space="preserve">
-    <value>Friendica server:</value>
+    <value>Friendica serveur :</value>
     <comment>About.xaml: header for information on Friendica server (if already set)</comment>
   </data>
   <data name="textblockAboutServerUrl.Text" xml:space="preserve">
-    <value>Server address:</value>
+    <value>Adresse du serveur :</value>
     <comment>About.xaml: text before showing the url of the server</comment>
   </data>
   <data name="buttonContactsAddGroup.Content" xml:space="preserve">
-    <value>Creating a new group</value>
+    <value>Création d’un groupe</value>
     <comment>Contacts.xaml: button to add a new group of contacts on the server</comment>
   </data>
   <data name="pageManageGroup.FlowDirection" xml:space="preserve">
@@ -579,65 +474,65 @@ This app for Windows needs the credentials for an existing Friendica account. If
     <comment>Defines text direction for the language</comment>
   </data>
   <data name="pageTitleChangeGroup.Text" xml:space="preserve">
-    <value>Change Group</value>
+    <value>Changer le groupe</value>
     <comment>ManageGroup.xaml: page header if user wants to change an existing group</comment>
   </data>
   <data name="pageTitleCreateGroup.Text" xml:space="preserve">
-    <value>Create Group</value>
+    <value>Créer un groupe</value>
     <comment>ManageGroup.xaml: page header if user wants to add a new group</comment>
   </data>
   <data name="textblockManageGroupGid.Text" xml:space="preserve">
-    <value>Group number: </value>
+    <value>Numéro de groupe : </value>
     <comment>ManageGroup.xaml: show group id (gid) if user wants to change a group</comment>
   </data>
   <data name="textblockManageGroupName.Text" xml:space="preserve">
-    <value>Name of the Group:</value>
+    <value>Nom du groupe :</value>
     <comment>ManageGroup.xaml: show group name and provide input field on new groups</comment>
   </data>
   <data name="textBoxManageGroupGroupname.Header" xml:space="preserve">
-    <value>Name of the Group:</value>
+    <value>Nom du groupe :</value>
     <comment>ManageGroup.xaml: show group name input field</comment>
   </data>
   <data name="messageDialogGroupChangeNotSaved" xml:space="preserve">
-    <value>The changes to the group have not yet been saved. Are you sure that you want to leave the page?</value>
+    <value>Les changements au groupe n’ont pas encore été enregistrés. Êtes-vous sûr de vouloir quitter la page ?</value>
     <comment>Navigation: leaving group manage page while there are unsaved changes.</comment>
   </data>
   <data name="messageDialogGroupReactivated" xml:space="preserve">
-    <value>A deleted group with this name was revived. Existing permission settings could be applied to this group or future members. If you don't want this, you create another group with a different name.</value>
+    <value>Un groupe supprimé avec ce nom a été relancé. Les paramètres d’autorisation existant pourraient être appliquées à ce groupe ou de futurs membres. Si vous ne voulez pas cela, vous créez un autre groupe avec un nom différent.</value>
     <comment>ManageGroup.xaml: warning to user if a group has been reactivated</comment>
   </data>
   <data name="messageDialogManageGroupErrorResult" xml:space="preserve">
-    <value>An error occurred during transmission to the server. Here is the error: 
-HTML status: {0}
-error message: {1}</value>
+    <value>Une erreur s’est produite lors de la transmission sur le serveur. Voici l’erreur : 
+statut HTML : {0}
+message d’erreur : {1}</value>
     <comment>ManageGroup.xaml: display error message if something went wrong on submitting changes to the server</comment>
   </data>
   <data name="messageDialogWarningOnEmptyUserlist" xml:space="preserve">
-    <value>You have chosen no contacts for this group. Are you sure that a group without contacts should be saved to your server?</value>
+    <value>Vous n’avez sélectionné aucun contact pour ce groupe. Êtes-vous sûr qu’un groupe sans contacts doit être enregistré dans votre serveur ?</value>
     <comment>ManageGroup.xaml: Warnhinweise, wenn die Liste der Benutzer leer ist</comment>
   </data>
   <data name="textblockIndicatorSavingGroup.Text" xml:space="preserve">
-    <value>Save changes to the group...</value>
+    <value>Enregistrer les modifications apportées au groupe...</value>
     <comment>ManageGroup.xaml: text next to progress ring indicating that app is saving changes to the group or a new group</comment>
   </data>
   <data name="messageDialogGroupAlreadyExisting" xml:space="preserve">
-    <value>The group with the name '{0}' is already set. Please choose a different name for a new group.</value>
+    <value>Le groupe avec le nom « {0} » est déjà défini. Veuillez choisir un autre nom pour un nouveau groupe.</value>
     <comment>ManageGroup.xaml: explain user to take another name if API returns "group already exists" on creating a new group</comment>
   </data>
   <data name="messageDialogGroupAPIerror" xml:space="preserve">
-    <value>The Friendica server has returned an unknown error.</value>
+    <value>Le serveur de Friendica a renvoyé une erreur inconnue.</value>
     <comment>ManageGroup.xaml: general error message if API returns "other API error" or "group name not specified" (which should not be possible as checked before sending)</comment>
   </data>
   <data name="textblockGroupsSaved.Text" xml:space="preserve">
-    <value>Saved. Use the back button to return to the list of groups...</value>
+    <value>A sauvé. Utilisez le bouton précédent pour revenir à la liste des groupes...</value>
     <comment>ManageGroup.xaml: showing info text next to save button after successful saving the changes</comment>
   </data>
   <data name="textblockNoGroupsAvailable.Text" xml:space="preserve">
-    <value>The function to display and manage the groups is possible only in combination with a Friendica server starting from 3.5. </value>
+    <value>La fonction pour afficher et gérer les groupes est possible uniquement en combinaison avec un serveur de Friendica à partir de 3.5. </value>
     <comment>Contacts.xaml: info to user if he/she uses a Friendica server version below 3.5, as there are the API calls for the group management not yet implemented</comment>
   </data>
   <data name="messageDialogGroupChangeSamples" xml:space="preserve">
-    <value>Changes are not saved to the example data for the groups. </value>
+    <value>Modifications ne sont pas enregistrées dans les données d’exemple pour les groupes. </value>
     <comment>ManageGroup.xaml: user get info that changes on sample group data will not be saved</comment>
   </data>
   <data name="pageNewPost.FlowDirection" xml:space="preserve">
@@ -645,7 +540,7 @@ error message: {1}</value>
     <comment>Defines Text direction for the language</comment>
   </data>
   <data name="textBlockNewPostButtonBold.Text" xml:space="preserve">
-    <value>B</value>
+    <value>G</value>
     <comment>NewPost.xaml: caption of button for bold formatting</comment>
   </data>
   <data name="textBlockNewPostButtonItalic.Text" xml:space="preserve">
@@ -653,15 +548,15 @@ error message: {1}</value>
     <comment>NewPost.xaml: caption of button for italic formatting</comment>
   </data>
   <data name="textBlockNewPostButtonUnderline.Text" xml:space="preserve">
-    <value>u</value>
+    <value>S</value>
     <comment>NewPost.xaml: caption of button for underline formatting</comment>
   </data>
   <data name="textBlockNewPostStatusHeader.Text" xml:space="preserve">
-    <value>Message text:</value>
+    <value>Texte du message :</value>
     <comment>NewPost.xaml: header for the posting text input box</comment>
   </data>
   <data name="textBoxNewPostTitle.Header" xml:space="preserve">
-    <value>Heading:</value>
+    <value>En-tête :</value>
     <comment>NewPost.xaml: header for title input box</comment>
   </data>
   <data name="textBlockNewPostButtonCode.Text" xml:space="preserve">
@@ -669,95 +564,95 @@ error message: {1}</value>
     <comment>NewPost.xaml: caption of button for code formatting</comment>
   </data>
   <data name="textBlockNewPostButtonColor.Text" xml:space="preserve">
-    <value>Color</value>
+    <value>Couleur</value>
     <comment>NewPost.xaml: caption of button for color formatting</comment>
   </data>
   <data name="textBlockNewPostButtonQuote.Text" xml:space="preserve">
-    <value>Quote</value>
+    <value>Citation</value>
     <comment>NewPost.xaml: caption of button for quote formatting</comment>
   </data>
   <data name="buttonInsertLink.Content" xml:space="preserve">
-    <value>Insert</value>
+    <value>Insérer</value>
     <comment>NewPost.xaml: button text on flyout for entering the link target</comment>
   </data>
   <data name="buttonLinkCaption.Text" xml:space="preserve">
-    <value>Insert Hyperlink</value>
+    <value>Insérer un lien hypertexte</value>
     <comment>NewPost.xaml: caption of button for link insert</comment>
   </data>
   <data name="inputlink.Header" xml:space="preserve">
-    <value>Link target:</value>
+    <value>Cible du lien :</value>
     <comment>NewPost.xaml: header on flyout for entering the link target</comment>
   </data>
   <data name="buttonDeleteImage.Content" xml:space="preserve">
-    <value>Remove image</value>
+    <value>Supprimer l'image</value>
     <comment>NewPost.xaml: caption of button to remove loaded image from new post</comment>
   </data>
   <data name="buttonLoadImage.Content" xml:space="preserve">
-    <value>Load image</value>
+    <value>Charger l’image</value>
     <comment>NewPost.xaml: caption of button to load image from pictures library</comment>
   </data>
   <data name="checkboxSendCoordinatesImage.Content" xml:space="preserve">
-    <value>Use GPS coordinates from the image</value>
+    <value>Utiliser les coordonnées GPS de l’image</value>
     <comment>NewPost.xaml: user can send the image coordinates instead of the coordinates of the current location</comment>
   </data>
   <data name="radiobuttonPrivatePost.Content" xml:space="preserve">
-    <value>Visible only for</value>
+    <value>Visible uniquement pour les</value>
     <comment>NewPost.xaml: caption of radiobutton for a private post followed by the selection dropdowns</comment>
   </data>
   <data name="radiobuttonPublicPost.Content" xml:space="preserve">
-    <value>Public posting</value>
+    <value>Affichage public</value>
     <comment>NewPost.xaml: caption of radiobutton for a public post</comment>
   </data>
   <data name="textblockAccessRightsHeader.Text" xml:space="preserve">
-    <value>Permissions:</value>
+    <value>Autorisations :</value>
     <comment>NewPost.xaml: header for the access right selection block</comment>
   </data>
   <data name="textBlockNewPostImageHeader.Text" xml:space="preserve">
-    <value>Image:</value>
+    <value>Image :</value>
     <comment>NewPost.xaml: header for the posting image selector</comment>
   </data>
   <data name="textblockSendCoordinatesHint.Text" xml:space="preserve">
-    <value>When active new postings have by default GPS coordinates (either from the image or from your current position) - you can override this in each new post. </value>
+    <value>Lorsque active nouvelle validation ont par défaut GPS coordonnées (de l’image ou de votre position actuelle) - vous pouvez la remplacer à chaque nouveau message. </value>
     <comment>Settings.xaml: hint to the toggle for sending GPS coordinates</comment>
   </data>
   <data name="toggleSendCoordinates.Header" xml:space="preserve">
-    <value>Send GPS coordinates (current position)</value>
+    <value>Envoyer coordonnées GPS (position actuelle)</value>
     <comment>NewPost.xaml: user can override the default setting for posting GPS coordinates (from AppSettings)</comment>
   </data>
   <data name="toggleSendCoordinatesAllowed.Header" xml:space="preserve">
-    <value>GPS coordinates for new postings</value>
+    <value>Coordonnées GPS pour les nouvelles affectations</value>
     <comment>Settings.xaml: user can set the standard setting for coordinates in new posts</comment>
   </data>
   <data name="buttonNewPostSend.Content" xml:space="preserve">
-    <value>Share posting</value>
+    <value>Validation de la part</value>
     <comment>NewPost.xaml: caption of button for user to send the post to server</comment>
   </data>
   <data name="checkboxSaveACLStandard.Content" xml:space="preserve">
-    <value>Save setting as the default for future posts</value>
+    <value>Enregistrer le paramètre par défaut pour les postes à venir</value>
     <comment>NewPost.xaml: user can save the current setting for access rights as a default setting for future posts</comment>
   </data>
   <data name="textblockConversationHeader.Text" xml:space="preserve">
-    <value>Previous postings in thread:</value>
+    <value>Affectations antérieures dans le thread :</value>
     <comment>NewPost.xaml: caption for showing the current thread posts</comment>
   </data>
   <data name="buttonCancelInsertQuote.Content" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Annuler</value>
     <comment>NewPost.xaml: cancel button on flyout shown if user has selected a historic post for quoting</comment>
   </data>
   <data name="buttonInsertQuote.Content" xml:space="preserve">
-    <value>Insert</value>
+    <value>Insérer</value>
     <comment>NewPost.xaml: insert button on flyout shown if user has selected a historic post for quoting</comment>
   </data>
   <data name="textblockFlyoutQuoteHeader.Text" xml:space="preserve">
-    <value>Insert quote</value>
+    <value>Insérez la citation</value>
     <comment>NewPost.xaml: header on flyout shown if user has selected a historic post for quoting</comment>
   </data>
   <data name="textblockFlyoutQuoteHint.Text" xml:space="preserve">
-    <value>Select the text to be included in quote.</value>
+    <value>Sélectionnez le texte à inclure dans le devis.</value>
     <comment>NewPost.xaml: hint text on flyout shown if user has selected a historic post for quoting</comment>
   </data>
   <data name="buttonCancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Annuler</value>
     <comment>dialog buttons: Cancel</comment>
   </data>
   <data name="buttonOK" xml:space="preserve">
@@ -765,67 +660,67 @@ error message: {1}</value>
     <comment>dialog buttons: OK</comment>
   </data>
   <data name="messageDialogNewPostQuoteLonger" xml:space="preserve">
-    <value>The text is longer than 160 characters, do you really want to use everything as a quote?</value>
+    <value>Le texte est plu de 160 caractères, vous voulez vraiment utiliser tout comme une citation ?</value>
     <comment>NewPost.xaml: ask user if he wants to take a posting text into a qute even if text is longer than 160 chars</comment>
   </data>
   <data name="textblockConversationHint.Text" xml:space="preserve">
-    <value>You can use the text of a posting as a quotation in your new post by tapping and holding or right clicking. </value>
+    <value>Vous pouvez utiliser le texte d’une publication comme une citation dans votre nouveau poste en tapant et en tenant ou en clic droit. </value>
     <comment>NewPost.xaml: hint on user how to create a quote from an existing posting </comment>
   </data>
   <data name="textblockNoContactsGroupsSelected.Text" xml:space="preserve">
-    <value>You have neither selected a contact nor a group. As a result, the posting will be a public one.</value>
+    <value>Vous avez sélectionné ni un contact ou un groupe. Par conséquent, l’affichage sera un public.</value>
     <comment>NewPost.xaml: show hint to user if no contact and no group is selected</comment>
   </data>
   <data name="messageDialogErrorOnSendingNewPostImage" xml:space="preserve">
-    <value>The post with the image could not be transferred. The setting upload_max_filesize in the php.ini on the server may be too small for the transmission of images. Please check this with your system administrator. </value>
+    <value>Le message avec l’image n’a pas pu être transféré. L’upload_max_filesize paramètre dans le fichier php.ini sur le serveur peut être trop petite pour la transmission d’images. S’il vous plaît vérifier avec votre administrateur système. </value>
     <comment>NewPost.xaml: error message if server setting in php.ini is too small for uploading images</comment>
   </data>
   <data name="textblockIndicatorSendingNewPost.Text" xml:space="preserve">
-    <value>Transfer new post...</value>
+    <value>Transférer le nouveau poste...</value>
     <comment>Network.xaml/ShowThread.xaml: text next to progress ring indicating that app is currently sending the new post</comment>
   </data>
   <data name="buttonAddComment.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Add a comment to the post...</value>
+    <value>Ajouter un commentaire à la poste...</value>
     <comment>Network.xaml: tooltip for button to add a comment to the posting</comment>
   </data>
   <data name="messageDialogNewPostNotSent" xml:space="preserve">
-    <value>The new post has not been sent yet. Are you sure that you want to leave the page?</value>
+    <value>Le nouveau poste n’a pas encore été envoyé. Êtes-vous sûr de vouloir quitter la page ?</value>
     <comment>Navigation: leaving new post page while there are unsent changes.</comment>
   </data>
   <data name="buttonLinkInsert" xml:space="preserve">
-    <value>Insert Hyperlink</value>
+    <value>Insérer un lien hypertexte</value>
     <comment>NewPost.xaml: caption of button for link insert (insert if selection has no link yet)</comment>
   </data>
   <data name="buttonLinkShow" xml:space="preserve">
-    <value>Show Hyperlink</value>
+    <value>Voir l’établissement de lien hypertexte</value>
     <comment>NewPost.xaml: caption of button for link insert (show if selection already contains link)</comment>
   </data>
   <data name="messageDialogNewPostLinkError" xml:space="preserve">
-    <value>There was a problem when inserting the hyperlink!</value>
+    <value>Il y avait un problème lors de l’insertion du lien hypertexte !</value>
     <comment>NewPost.xaml: show user that we had an error on inserting the hyperlink</comment>
   </data>
   <data name="messageDialogNewPostLinkSelect" xml:space="preserve">
-    <value>Please select the text that should get a hyperlink.</value>
+    <value>Veuillez sélectionner le texte qui devrait obtenir un lien hypertexte.</value>
     <comment>NewPost.xaml: show info to user if button for link is clicked without selecting text</comment>
   </data>
   <data name="buttonRemoveLink.Content" xml:space="preserve">
-    <value>Delete</value>
+    <value>Supprimer</value>
     <comment>NewPost.xaml: button text on flyout for deleting the link target</comment>
   </data>
   <data name="StringAtTime" xml:space="preserve">
-    <value>at</value>
+    <value>à</value>
     <comment>BackgroundTask: the word "at" in the headline of the toasts ("name   (Friendica at hh:mm)")</comment>
   </data>
   <data name="stringOnDate" xml:space="preserve">
-    <value>at</value>
+    <value>à</value>
     <comment>BackgroundTask: the word "at" in the headline of the toasts ("name   (Friendica on date at hh:mm)")</comment>
   </data>
   <data name="messageDialogNewPostSentAppClosing" xml:space="preserve">
-    <value>The post has been transferred successfully to the server. Now the app closes.</value>
+    <value>Le poste a été transféré avec succès au serveur. Maintenant, l’application se ferme.</value>
     <comment>Navigation: new post was sent, app closes (after user tapped 'reply in app...' from toast notification</comment>
   </data>
   <data name="checkboxNotificationActivated.Content" xml:space="preserve">
-    <value>Notification of new postings</value>
+    <value>Notification de nouveaux messages</value>
     <comment>Settings.xaml: text at checkbox for activating toast notifications</comment>
   </data>
   <data name="pivotSettingsNotification.Header" xml:space="preserve">
@@ -833,35 +728,35 @@ error message: {1}</value>
     <comment>Settings.xaml: header for notification settings</comment>
   </data>
   <data name="sliderNotificationFreshnessTime.Header" xml:space="preserve">
-    <value>refresh rate</value>
+    <value>fréquence de rafraîchissement</value>
     <comment>Settings.xaml: text at slider to set the timer for the check if new posts are available (15 - 120 minutes)</comment>
   </data>
   <data name="textblockNotificationActivatedHint.Text" xml:space="preserve">
-    <value>The app can ask at regular intervals on the server if there are new posts. In this case, you get a notification with the sender, the sent time, as well as the start of the content. The messages are located in the Windows Info Center. 
+    <value>L’application peut demander à intervalles réguliers sur le serveur si vous avez de nouveaux messages. Dans ce cas, vous obtenez une notification à l’expéditeur, le temps envoyé, ainsi que le début du contenu. Les messages sont situés dans le centre d’informations de Windows. 
  
-Asking the server is done in the background, the app will not be started to do so. Please make sure in the Windows settings, that the app is allowed to be run in the background (Privacy/background apps) and notifications are displayed (System/notifications &amp; actions). 
+Demandant le serveur se fait en arrière-plan, le soft n’est pas commencé à le faire. Veuillez vous assurer que dans les paramètres de Windows, l’application n’est autorisée à être exécuté en arrière-plan (fond/confidentialité apps) et les notifications sont affichées (système et des notifications &amp;actions). 
  
-You can additionally display the number of new notifications on the lock screen. To do this, select Friendica mobile as one of up to seven apps (Personalization/Lock screen). </value>
+Vous pouvez en outre afficher le nombre de nouvelles notifications sur l’écran de serrure. Pour ce faire, sélectionnez Friendica mobile des jusqu'à sept apps (écran de personnalisation/serrure). </value>
     <comment>Settings.xaml: hint on checkbox for activating toast notifications</comment>
   </data>
   <data name="textblockNotificationFreshnessTimeHint" xml:space="preserve">
-    <value>The app checks your account all {0} minutes for new messages.</value>
+    <value>L’application vérifie votre compte tous les {0} minutes pour les nouveaux messages.</value>
     <comment>Settings.xaml: </comment>
   </data>
   <data name="menuflyoutNotificationOff" xml:space="preserve">
-    <value>Notifications off</value>
+    <value>Notifications d’arrêt</value>
     <comment>text on Shell/menuflyout if notification is currently on</comment>
   </data>
   <data name="menuflyoutNotificationOn" xml:space="preserve">
-    <value>Notifications on</value>
+    <value>Notifications activées</value>
     <comment>text on Shell/menuflyout if notification is currently off</comment>
   </data>
   <data name="messageDialogExitApplication" xml:space="preserve">
-    <value>Do you want to exit the application?</value>
+    <value>Vous voulez quitter l’application ?</value>
     <comment>Navigation: asking user if he is sure to exit the application</comment>
   </data>
   <data name="buttonLinkAppSupportpage.Content" xml:space="preserve">
-    <value>Friendica Mobile Support</value>
+    <value>Support Mobile Friendica</value>
     <comment>A2_Help.xaml: button to show Friendica Mobile Support Fanpage in Browser</comment>
   </data>
   <data name="pageHelp.FlowDirection" xml:space="preserve">
@@ -869,11 +764,11 @@ You can additionally display the number of new notifications on the lock screen.
     <comment>Defines Text direction for the language</comment>
   </data>
   <data name="pageTitleHelp.Text" xml:space="preserve">
-    <value>Help</value>
+    <value>Aide</value>
     <comment>Name on top of view Help</comment>
   </data>
   <data name="textblockIndicatorLoadingWebpage.Text" xml:space="preserve">
-    <value>Web page is loading...</value>
+    <value>Chargement de la page Web...</value>
     <comment>A3_Browser.xaml: text next to progress ring indicating that app is currently loading a webpage into webview control</comment>
   </data>
   <data name="pageBrowser.FlowDirection" xml:space="preserve">
@@ -881,156 +776,156 @@ You can additionally display the number of new notifications on the lock screen.
     <comment>Defines Text direction for the language</comment>
   </data>
   <data name="messageDialogBrowserHttpError" xml:space="preserve">
-    <value>An error in the Web navigation has occurred. You can go back to the previous page using the back button.</value>
+    <value>D’erreur dans la navigation Web. Vous pouvez revenir à la page précédente en utilisant le bouton back.</value>
     <comment>Browser.xaml: Info to user if there occured an error in webview navigation</comment>
   </data>
   <data name="textblockHelpAppSupportpageHeader.Text" xml:space="preserve">
-    <value>Help for the app:</value>
+    <value>Aide pour l’application :</value>
     <comment>Help.xaml: header for the part with help to the app</comment>
   </data>
   <data name="textblockHelpFriendicaSupportHeader.Text" xml:space="preserve">
-    <value>Help for the Friendica project:</value>
+    <value>Aide pour le projet Friendica :</value>
     <comment>Help.xaml: header for the part with help to Friendica in general</comment>
   </data>
   <data name="textHelpAppSupport1.Text" xml:space="preserve">
-    <value>Do you have questions about this app for Windows? Have problems occured to you, that you would like to share with the developers (bug reporting)? Are there important Friendica features which you are missing in the Windows app? Or do you want to keep yourself informed on the further development of the app?</value>
+    <value>Vous avez des questions au sujet de ce soft pour Windows ? Problèmes survenus à vous, que vous aimeriez partager avec les développeurs (bug reporting) ? Y a-t-il des caractéristiques importantes de Friendica qui vous manquent dans l’application Windows ? Ou vous souhaitez vous tenir informé sur la poursuite du développement de l’appli ?</value>
     <comment>Help.xaml: 1st paragraph introducing link to forum "Friendica Mobile Support"</comment>
   </data>
   <data name="textHelpAppSupport2.Text" xml:space="preserve">
-    <value>Then, the support forum of Friendica Mobile is the right place for you. If you are connected to the Forum, you can create posts, like on posts or comment them. News end up in your timeline.</value>
+    <value>Ensuite, le forum de support de Friendica Mobile est le bon endroit pour vous. Si vous êtes connecté sur le Forum, vous pouvez créer des messages, comme sur les postes ou leur commentaire. Nouvelles finissent dans votre timeline.</value>
     <comment>Help.xaml: 2nd paragraph introducing link to forum "Friendica Mobile Support"</comment>
   </data>
   <data name="textHelpFriendicaDevelopers.Text" xml:space="preserve">
-    <value>In addition, there is a forum where the involved developers of Friendica interact about enhancements and bug fixes. You are welcome to submit your wishes here and discuss on the issues. If you have experience in programming with PHP, you can engage yourself here also as a developer in the community.</value>
+    <value>En outre, il y a un forum où les développeurs impliqués de Friendica interagissent sur les améliorations et corrections de bugs. Nous vous encourageons à soumettre vos souhaits ici et de discuter sur les questions. Si vous avez l’expérience dans la programmation en PHP, vous pouvez vous engager ici aussi en tant que développeur dans la communauté.</value>
     <comment>Help.xaml: paragraph introducing link to forum "Friendica Developers"</comment>
   </data>
   <data name="textHelpFriendicaOthers1.Text" xml:space="preserve">
-    <value>You can also find the whole open-source project on </value>
+    <value>Vous pouvez également trouver le projet open source ensemble sur </value>
     <comment>Help.xaml: 1st sentence noting other resources - followed by link to github page</comment>
   </data>
   <data name="textHelpFriendicaOthers2.Text" xml:space="preserve">
-    <value>There are also additional information and documentation. You can also find more information on </value>
+    <value>Il existe également des documents et des informations supplémentaires. Vous pouvez également trouver plus d’informations sur </value>
     <comment>Help.xaml: 2nd sentence noting other resources - followed by link to friendica.com (then paragraph ends)</comment>
   </data>
   <data name="textHelpFriendicaSupport.Text" xml:space="preserve">
-    <value>If you have questions, problems, suggestions etc. to Friendica in General, you can contact the support forum. People from the team of developers and experienced users will help you there. You can contribute to the project even without coding skills, all kind of help is appreciated.</value>
+    <value>Si vous avez des questions, des problèmes, des suggestions etc. pour Friendica en général, vous pouvez contacter le forum de support. Personnes de l’équipe de développeurs et d’utilisateurs expérimentés vous aidera là. Vous pouvez contribuer au projet, même sans compétences de codage, tout type d’aide est appréciée.</value>
     <comment>Help.xaml: paragraph introducing link to forum "Friendica Support"</comment>
   </data>
   <data name="buttonOpenInBrowser.Content" xml:space="preserve">
-    <value>Open in default browser</value>
+    <value>Ouvrir le navigateur par défaut</value>
     <comment>A3_Browser.xaml: give user the possibility to open the shown page in the standard browser</comment>
   </data>
   <data name="messageDialogBrowserInvalidCertificate" xml:space="preserve">
-    <value>The profile has no valid security certificate. Would you like to call the page anyway?</value>
+    <value>Le profil n’a aucun certificat de sécurité valide. Vous souhaitez appeler la page de toute façon ?</value>
     <comment>Browser.xaml: question to user if he wants to load a profil page anyway, even if the certificate is invalid</comment>
   </data>
   <data name="textblockShowProfile.Text" xml:space="preserve">
-    <value>Open profile</value>
+    <value>Ouvrir le profil</value>
     <comment>Contacts.xaml: text for opening profile page of a contact shown in the flyout coming if user taps on a contact</comment>
   </data>
   <data name="dragCaption" xml:space="preserve">
-    <value>Drop here...</value>
+    <value>Déposer ici...</value>
     <comment>Network.xaml: text shown if user drag a content over the drop rectangle</comment>
   </data>
   <data name="messageDialogAppContentConversionError" xml:space="preserve">
-    <value>An error occured on processing the inserted data!</value>
+    <value>Une erreur s’est produite sur le traitement des données insérées !</value>
     <comment>App.xaml: something went wrong on converting dropped or pasted content for inserting into a new post</comment>
   </data>
   <data name="messageDialogAppContentMoreThanOneImage" xml:space="preserve">
-    <value>You have inserted more than one image, only the image with the name '{0}' was used for the post.</value>
+    <value>Vous avez inséré plusieurs images, seulement l’image avec le nom « {0} » a été utilisé pour le poste.</value>
     <comment>App.xaml: info to user that only one image can be included from dropped or pasted content into a new post, give filename of the used image for reference</comment>
   </data>
   <data name="textblockNetworkSettings.Text" xml:space="preserve">
-    <value>Settings</value>
+    <value>Paramètres</value>
     <comment>Network.xaml: caption on button for user to go to Settings page</comment>
   </data>
   <data name="textblockNoSettings.Text" xml:space="preserve">
-    <value>You have not defined in the app settings a Friendica server. Below we will show example data, showing you how your home or network posts could look in the app.</value>
+    <value>Vous n’avez défini dans les paramètres de l’application un serveur Friendica. Ci-dessous, nous allons montrer les données exemple, vous montrant comment il pouvaient regarder vos messages d’accueil ou le réseau dans l’application.</value>
     <comment>Network.xaml: show text if user has not set any app settings (we are showing only sample data)</comment>
   </data>
   <data name="textblockHomeIsLoadingInitial.Text" xml:space="preserve">
-    <value>The app is loading the postings of your home page. Please have some patience.</value>
+    <value>L’application se charge de l’affichage de votre page d’accueil. S’il vous plaît ont peu de patience.</value>
     <comment>Home.xaml: status update for user during loading initial 20 entries</comment>
   </data>
   <data name="textblockNetworkIsLoadingInitial.Text" xml:space="preserve">
-    <value>The app is loading the postings of your network page. Please have some patience.</value>
+    <value>L’application se charge de l’affichage de votre page de réseau. S’il vous plaît ont peu de patience.</value>
     <comment>Network.xaml: status update for user during loading initial 20 entries</comment>
   </data>
   <data name="messageDialogNewPostNoSettings" xml:space="preserve">
-    <value>You cannot post in the test mode. Please specify in the settings your server and your credentials.</value>
+    <value>Vous ne pouvez pas poster en mode test. Veuillez préciser dans les paramètres de votre serveur et vos informations d’identification.</value>
     <comment>NewPost.xaml: if no settings user can play around with the editor, but on tapping the send button, they will get this error message</comment>
   </data>
   <data name="messageDialogBrowserNoProfilePage" xml:space="preserve">
-    <value>There are no profiles on any server for the sample data. Therefore, the support page of Friendica Mobile will be shown as an example how you see profiles. </value>
+    <value>Il n’y a aucun profil sur n’importe quel serveur pour les données de l’échantillon. Par conséquent, la page de support de Friendica Mobile sera montrée à titre d’exemple comment vous voyez les profils des conseils scolaires. </value>
     <comment>Browser.xaml: if user tries to jump to the profile in browser from the sample data, we tell him that there is no profile and we show the support instead.</comment>
   </data>
   <data name="messageDialogContactsFindGlobalNotAvailable" xml:space="preserve">
-    <value>This funtion is not yet available in this app. Please open your profile or directory in your Internet browser to search for contacts in the global directory.</value>
+    <value>Cette fonction n’est pas encore disponible dans cette application. Veuillez ouvrir votre profil ou votre répertoire dans votre navigateur Internet pour rechercher des contacts dans le répertoire global.</value>
     <comment>Contacts.xaml: info for user on tapping on search global button - service not yet implemented.</comment>
   </data>
   <data name="messageDialogContactsFindLocalNotAvailable" xml:space="preserve">
-    <value>This funtion is not yet available in this app. Please open your profile or directory in your Internet browser to search for contacts on your hub.</value>
+    <value>Cette fonction n’est pas encore disponible dans cette application. Veuillez ouvrir votre profil ou votre répertoire dans votre navigateur Internet pour rechercher des contacts sur votre terminal.</value>
     <comment>Contacts.xaml: info for user on tapping on search local button - service not yet implemented.</comment>
   </data>
   <data name="buttonSave.Content" xml:space="preserve">
-    <value>Save</value>
+    <value>Enregistrer</value>
     <comment>ManageGroup.xaml: button for saving the changes on groups, can be used for other buttons with caption "Save"</comment>
   </data>
   <data name="messageDialogContactsDeleteGroup" xml:space="preserve">
-    <value>Do you really want to delete the group '{0}'?</value>
+    <value>Voulez-vous vraiment supprimer le groupe « {0} » ?</value>
     <comment>Contacts.xaml: question to user after tapping the delete button of a group</comment>
   </data>
   <data name="buttonCode.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Formats the selected text as a block with program code...</value>
+    <value>Met en forme le texte sélectionné comme un bloc avec le code de programme...</value>
     <comment>NewPost.xaml: tooltip if user hovers over button for setting code</comment>
   </data>
   <data name="buttonColor.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Change the color of the selected text (warning: doesn't work on mobile devices currently)...</value>
+    <value>Changer la couleur du texte sélectionné (attention : ne fonctionne pas actuellement sur les appareils mobiles)...</value>
     <comment>NewPost.xaml: tooltip if user hovers over button for setting color</comment>
   </data>
   <data name="buttonList.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Formats the selected paragraph as a list...</value>
+    <value>Met en forme le paragraphe sélectionné sous forme de liste...</value>
     <comment>NewPost.xaml: tooltip if user hovers over button for setting list</comment>
   </data>
   <data name="buttonQuote.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Formats the selected text as a quote...</value>
+    <value>Met en forme le texte sélectionné comme une citation...</value>
     <comment>NewPost.xaml: tooltip if user hovers over button for setting quote</comment>
   </data>
   <data name="textblockAdvertising.Text" xml:space="preserve">
-    <value>Advertising</value>
+    <value>Publicité</value>
     <comment>Shell.xaml: show a small wording "Advertising" in mobile view to indicate that here starts a non-integrated block</comment>
   </data>
   <data name="textBlockSettingsRemoveAdvertisingHeader.Text" xml:space="preserve">
-    <value>Disable advertising:</value>
+    <value>Désactiver la publicité :</value>
     <comment>Settings.xaml: header for button for user to buy the in-app product "RemoveAdvertising"</comment>
   </data>
   <data name="buttonSettingsRemoveAdvertising.Content" xml:space="preserve">
-    <value>Buy in-app product</value>
+    <value>Acheter le produit en app</value>
     <comment>Settings.xaml: button for user to buy the in-app product "RemoveAdvertising"</comment>
   </data>
   <data name="appBarMessagesAdd.Label" xml:space="preserve">
-    <value>New Message</value>
+    <value>Nouveau Message</value>
     <comment>Messages.xaml: caption of the appbarButton for a new message</comment>
   </data>
   <data name="appBarMessagesAdd.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Send a new private message to a friend</value>
+    <value>Envoyer un message privé à un ami</value>
     <comment>Messages.xaml: tooltip of the appbarButton for a new message</comment>
   </data>
   <data name="appBarMessagesRefresh.Label" xml:space="preserve">
-    <value>Reload</value>
+    <value>Recharger</value>
     <comment>Messages.xaml: caption of the appbarButton for loading new messages</comment>
   </data>
   <data name="appBarMessagesRefresh.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Load new private messages
+    <value>Charger de nouveaux messages privés
 </value>
     <comment>Messages.xaml: tooltip of the appbarButton for loading new mssages</comment>
   </data>
   <data name="appBarMessagesSearch.Label" xml:space="preserve">
-    <value>Search</value>
+    <value>Rechercher</value>
     <comment>Messages.xaml: caption of the appBarButton for searching the messages on the server</comment>
   </data>
   <data name="appBarMessagesSearch.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Search the private messages on the server for a specific text</value>
+    <value>Rechercher les messages privés sur le serveur pour un texte spécifique</value>
     <comment>Messages.xaml: tooltip of the appbarButton for a searching messages</comment>
   </data>
   <data name="pageMessages.FlowDirection" xml:space="preserve">
@@ -1042,179 +937,179 @@ You can additionally display the number of new notifications on the lock screen.
     <comment>Name on top of view Messages.xaml</comment>
   </data>
   <data name="appBarMessagesSend.Label" xml:space="preserve">
-    <value>Send</value>
+    <value>Envoyer</value>
     <comment>Messages.xaml: caption of the appBarButton for sending a new message</comment>
   </data>
   <data name="appBarMessagesSend.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Send a new message</value>
+    <value>Envoyer un nouveau message</value>
     <comment>Messages.xaml: tooltip of the appbarButton for sending a new message</comment>
   </data>
   <data name="textblockIndicatorLoadingNextMessages.Text" xml:space="preserve">
-    <value>Loading more conversations...</value>
+    <value>Chargement des conversations plus...</value>
     <comment>Messages.xaml: text next to progress ring indicating that app is loading older conversations</comment>
   </data>
   <data name="textblockIndicatorRefreshingMessages.Text" xml:space="preserve">
-    <value>Loading new messages...</value>
+    <value>Chargement de nouveaux messages...</value>
     <comment>Messages.xaml: text next to progress ring indicating that app is refreshing the conversations list</comment>
   </data>
   <data name="textblockIndicatorSendingNewMessage.Text" xml:space="preserve">
-    <value>Transfer new message...</value>
+    <value>Nouveau message de transfert...</value>
     <comment>Messages.xaml: text next to progress ring indicating that app is currently sending the new message</comment>
   </data>
   <data name="textblockNoSettingsMessages.Text" xml:space="preserve">
-    <value>You have defined any Friendica server in the app settings. Below, we show examples of how private messages in the app are displayed.</value>
+    <value>Vous avez défini un serveur Friendica dans les paramètres de l’application. Ci-dessous, nous montrons des exemples de messages Comment privés dans l’application sont affichés.</value>
     <comment>Messages.xaml: show text if user has not set any app settings (we are showing only sample data)</comment>
   </data>
   <data name="textblockMessagesIsLoading.Text" xml:space="preserve">
-    <value>The app loads your private messages from the server. This takes just a few moments...</value>
+    <value>L’application charge vos messages privés à partir du serveur. Cela prend juste quelques instants...</value>
     <comment>Messages.xaml: status update for user during loading initial 20 messages and the corresponding conversations</comment>
   </data>
   <data name="textblockNoMessagesAvailable.Text" xml:space="preserve">
-    <value>The app has found no private messages on your server.</value>
+    <value>L’app n’a trouvé aucun message privé sur votre serveur.</value>
     <comment>Messages.xaml: info shown to the user if no conversations are available on server</comment>
   </data>
   <data name="textboxSearchString.Header" xml:space="preserve">
-    <value>Search term:</value>
+    <value>Terme de recherche :</value>
     <comment>Messages.xaml: header for textbox where user can input the string to be searched on his server</comment>
   </data>
   <data name="textblockMessagesNoSearchResults.Text" xml:space="preserve">
-    <value>No messages were found to the entered search term.</value>
+    <value>Aucun messages ont été trouvés pour le terme de recherche saisi.</value>
     <comment>Messages.xaml: info for user if search has not returned any results</comment>
   </data>
   <data name="textblockMessagesIsSearching.Text" xml:space="preserve">
-    <value>The app searches your private messages for the search term...</value>
+    <value>L’application recherche dans vos messages privés pour le terme de recherche...</value>
     <comment>Messages.xaml: info shown to the user during search on server is in progress</comment>
   </data>
   <data name="textblockMessagesCounterStart.Text" xml:space="preserve">
-    <value>(Count: </value>
+    <value>(Nombre : </value>
     <comment>Messages.xaml: listbox for conversation: show counter of messages (start of text)</comment>
   </data>
   <data name="textblockMessagesCounterThereofNew.Text" xml:space="preserve">
-    <value>new:</value>
+    <value>Nouveau :</value>
     <comment>Messages.xaml: text for counter showing new message if there are any</comment>
   </data>
   <data name="textblockMessagesLoadingConversation.Text" xml:space="preserve">
-    <value>Loading conversation...</value>
+    <value>Chargement de conversation...</value>
     <comment>Messages.xaml: text for progressRing on loading conversation</comment>
   </data>
   <data name="textblockMessagesUpdatingServerStatus.Text" xml:space="preserve">
-    <value>Update seen status on your server...</value>
+    <value>Mise à jour vu statut sur votre serveur...</value>
     <comment>Messages.xaml: text for progressRing on updating seen status on server for this conversation</comment>
   </data>
   <data name="textblockMessagesDeletingOnServer.Text" xml:space="preserve">
-    <value>Delete conversation from the server...</value>
+    <value>Supprimer les conversation du serveur...</value>
     <comment>Messages.xaml: text for progressRing on deleting a conversation from server</comment>
   </data>
   <data name="buttonMessagesLoadOlderMessages.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Load older messages...</value>
+    <value>Charger les messages plus anciens...</value>
     <comment>Messages.xaml: tooltip if user hovers over button for loading older messages</comment>
   </data>
   <data name="textblockMessagesUserName.Text" xml:space="preserve">
-    <value>me</value>
+    <value>moi</value>
     <comment>Messages.xaml: text below icon for own user</comment>
   </data>
   <data name="textblockMessagesEditorHeader.Text" xml:space="preserve">
-    <value>New message:</value>
+    <value>Nouveau message :</value>
     <comment>Messages.xaml: header for editor where user can create a new message</comment>
   </data>
   <data name="appBarMessagesEnableEditor.Label" xml:space="preserve">
-    <value>Display editor</value>
+    <value>Éditeur de l’affichage</value>
     <comment>Messages.xaml: caption of the appBarButton for opening the editor for a new message</comment>
   </data>
   <data name="appBarMessagesEnableEditor.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Opens the editor to create a new message...</value>
+    <value>Ouvre l’éditeur pour créer un nouveau message...</value>
     <comment>Messages.xaml: tooltip of the appbarButton for opening the editor for a new message</comment>
   </data>
   <data name="buttonDeleteConversation.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Delete entire conversation from the server...</value>
+    <value>Supprimer toute conversation du serveur...</value>
     <comment>Messages.xaml: tooltip show if users hovers over delete button of a conversation</comment>
   </data>
   <data name="textblockMessagesContactsHeader.Text" xml:space="preserve">
-    <value>Recipients:</value>
+    <value>Destinataires :</value>
     <comment>Messages.xaml: header for contact selector when starting a new conversation</comment>
   </data>
   <data name="textboxMessagesTitle.Header" xml:space="preserve">
-    <value>Title:</value>
+    <value>Titre :</value>
     <comment>Messages.xaml: header for inputbox to enter the title when starting a new conversation</comment>
   </data>
   <data name="messageDialogMessagesDiscardNewConversation" xml:space="preserve">
-    <value>The newly started message was not sent off. Do you want to discard the input?</value>
+    <value>Le message a récemment commencé ne était pas expulsé. Vous voulez jeter l’entrée ?</value>
     <comment>Messages.xaml: dialog asking user to discard the started but not yet sent new conversation</comment>
   </data>
   <data name="textblockMessagesNoServerSupport.Text" xml:space="preserve">
-    <value>Your server does not support the commands yet, which are necessary for the use of private messages in this app. </value>
+    <value>Votre serveur ne supporte pas les commandes encore, qui sont nécessaires pour l’utilisation des messages privés dans ce soft. </value>
     <comment>Messages.xaml: showing error message to user if the server is reachable but has no support for the API calls needed to display/edit private messages</comment>
   </data>
   <data name="messageDialogMessagesNewNoSettings" xml:space="preserve">
-    <value>You cannot send private messages in the test mode. Please specify in the settings your server and credentials.</value>
+    <value>Vous ne pouvez pas envoyer des messages privés en mode test. Veuillez préciser dans les paramètres de votre serveur et les informations d’identification.</value>
     <comment>Messagesxaml: if no settings user can play around with the editor, but on tapping the send button, they will get this error message</comment>
   </data>
   <data name="paragraphMessagesNoContent" xml:space="preserve">
-    <value>--- no message body ---</value>
+    <value>---aucun corps de message---</value>
     <comment>Messages.xaml: placeholder if there is no content in a private message (should be a very rare case)</comment>
   </data>
   <data name="messageDialogMessagesDeleteConversation" xml:space="preserve">
-    <value>Would you really want to delete the conversation of '{0}'?</value>
+    <value>Serait-ce que vous voulez vraiment supprimer la conversation de « {0} » ?</value>
     <comment>Messages.xaml: ask user for confirmation if he clicks the delete button</comment>
   </data>
   <data name="messageDialogMessagesDeletingInProgress" xml:space="preserve">
-    <value>The app just deletes a conversation from the server, please have some patience until this process is complete. </value>
+    <value>L’application supprime juste une conversation du serveur, s’il vous plaît ont peu de patience jusqu'à la fin de ce processus. </value>
     <comment>Messages.xaml: inform user on deleting conversation in progress if he wants to navigate away before finished</comment>
   </data>
   <data name="messageDialogMessagesConversationDeleted" xml:space="preserve">
-    <value>The conversation of '{0}' was deleted with all contained messages from the server.</value>
+    <value>La conversation de « {0} » a été supprimée avec tous les messages de contenu depuis le serveur.</value>
     <comment>Messages.xaml: give feedback to user after all message of the deleted conversation have been deleted</comment>
   </data>
   <data name="messageDialogMessagesErrorLoading" xml:space="preserve">
-    <value>An error occurred while loading the private messages ({0}). Do you want to try it again?</value>
+    <value>Une erreur s’est produite lors du chargement des messages privés ({0}). Vous voulez essayer à nouveau ?</value>
     <comment>Mesages.xaml: info to user if there was an error on loading private messages, asking user for a new try</comment>
   </data>
   <data name="messageDialogMessagesNewErrorSending" xml:space="preserve">
-    <value>An error occurred while sending the message: {0}</value>
+    <value>Une erreur s’est produite lors de l’envoi : {0}</value>
     <comment>Messages.xaml: info to user if there was an error on sending a new private message</comment>
   </data>
   <data name="textblockAllMessagesLoaded.Text" xml:space="preserve">
-    <value>All private messages from the server are displayed. </value>
+    <value>Tous les messages privés à partir du serveur sont affichés. </value>
     <comment>Messages.xaml: show info to user if he has loaded all messages from server.</comment>
   </data>
   <data name="switchNotificationShowMessageContent.Header" xml:space="preserve">
-    <value>Show text body of private messages</value>
+    <value>Montrer le corps du texte des messages privés</value>
     <comment>Settings.xaml: user can decide whether content of private messages is included in notification</comment>
   </data>
   <data name="textblockNotificationShowMessageContentHint.Text" xml:space="preserve">
-    <value>Notifications are displayed in the screen briefly, and could therefore be read by strangers. If you do not want this for private messages, you can disable the display of the content. You will be informed about new messages still, but you have to give up the function of directly replying.</value>
+    <value>Notifications sont affichent brièvement à l’écran et pourraient donc être lues par des étrangers. Si vous ne voulez pas cela pour les messages privés, vous pouvez désactiver l’affichage du contenu. Vous serez informé sur les nouveaux messages encore, mais vous devez renoncer à la fonction de répondre directement.</value>
     <comment>Settings.xaml: hint on NotificationShowMessageContent</comment>
   </data>
   <data name="toastErrorPostMessageHeader" xml:space="preserve">
-    <value>Error while sending the message</value>
+    <value>Erreur lors de l’envoi du message</value>
     <comment>BackgroundTask: header for toast to indicate user that instant reply has exited with an error</comment>
   </data>
   <data name="toastErrorPostMessageText" xml:space="preserve">
-    <value>An error happened while sending the message '{0}' on the conversation '{1}', the server may be unavailable.</value>
+    <value>Une erreur s’est produite lors de l’envoi du message « {0} » sur la conversation « {1} », le serveur peut être indisponible.</value>
     <comment>BackgroundTask: text for toast to indicate user that instant reply has exited with an error (0 = text of message, 1 = title of conversation)</comment>
   </data>
   <data name="toastMessageAlternativeContent" xml:space="preserve">
-    <value>New private message</value>
+    <value>Nouveau message privé</value>
     <comment>BackgroundTask: alternative text if user has set to not include text of a private message into toast notification ("New private message arrived")</comment>
   </data>
   <data name="toastMessageInputPlaceholder" xml:space="preserve">
-    <value>Instant-reply without app...</value>
+    <value>Instant-réponse sans app...</value>
     <comment>BackgroundTask: text shown to user in input box for instant reply to a private message</comment>
   </data>
   <data name="toastMessageInputSendButton" xml:space="preserve">
-    <value>Send</value>
+    <value>Envoyer</value>
     <comment>BackgroundTask: text on button to send an instant reply to a private message (if not only symbol is shown)</comment>
   </data>
   <data name="toastMessageStartOfMessage" xml:space="preserve">
-    <value>PM to:</value>
+    <value>H à :</value>
     <comment>BackgroundTask: start text on beginning of a toast indicating a private message ("PM on:" topic), this is to differentiating PM from posts</comment>
   </data>
   <data name="toastPostButtonCaption" xml:space="preserve">
-    <value>Answer...</value>
+    <value>Répondre...</value>
     <comment>BackgroundTask: caption for button to open the post from a toast notification</comment>
   </data>
   <data name="messageDialogMessagesNotImplemented" xml:space="preserve">
-    <value>Your Friendica server does not yet support the necessary API commands for displaying messages. Please update your server on Friendica 3.5 or ask your administrator. </value>
+    <value>Votre serveur Friendica ne supporte pas encore les commandes API nécessaires pour afficher des messages. S’il vous plaît mettre à jour votre serveur sur Friendica 3.5 ou demandez à votre administrateur. </value>
     <comment>Messages.xaml: info to user if there was an error on loading private messages, caused by missing API calls</comment>
   </data>
   <data name="spActivities.FlowDirection" xml:space="preserve">
@@ -1222,53 +1117,53 @@ You can additionally display the number of new notifications on the lock screen.
     <comment>Network.xaml/Home.xaml: change order of like/dislike buttons to LeftToRight independently from Setting on mobile device portrait</comment>
   </data>
   <data name="buttonDislike.Content" xml:space="preserve">
-    <value>I don't like it.</value>
+    <value>Je n'aime pas.</value>
     <comment>Network.xaml/Home.xaml: caption of flyout menu item to dislike a post</comment>
   </data>
   <data name="buttonLike.Content" xml:space="preserve">
-    <value>I like it.</value>
+    <value>Je l'aime bien.</value>
     <comment>Network.xaml/Home.xaml: caption of flyout menu item to like a post</comment>
   </data>
   <data name="buttonUnDislike.Content" xml:space="preserve">
-    <value>Withdraw dislike</value>
+    <value>Retirer l’aversion</value>
     <comment>Network.xaml/Home.xaml: caption of flyout menu item to undo disliking a post</comment>
   </data>
   <data name="buttonUnLike.Content" xml:space="preserve">
-    <value>Withdraw like</value>
+    <value>Retirer comme</value>
     <comment>Network.xaml/Home.xaml: caption of flyout menu item to undo liking a post</comment>
   </data>
   <data name="messageDialogLikesNotSentToServer" xml:space="preserve">
-    <value>Likes/dislikes are normally sent to your server. You are in test mode, therefore no updates on a server can be sent. Your likes/dislikes appear only in the app. </value>
+    <value>Aime / n’aime pas sont normalement envoyées à votre serveur. Vous n’êtes en mode test, donc aucune mise à jour sur un serveur peut être envoyés. Vos goûts/aversions n’apparaissent que dans l’app. </value>
     <comment>Network.xaml/Home.xaml: error message if user likes/dislikes in testmode as server cannot get updates</comment>
   </data>
   <data name="messageDialogErrorOnActivitySetting" xml:space="preserve">
-    <value>The server is not available, your like/dislike could not be updated. 
+    <value>Le serveur n’est pas disponible, votre like/dislike ne pourrait pas être mis à jour. 
  
-Would you like to try it again?</value>
+Vous souhaitez essayer à nouveau ?</value>
     <comment>Network.xaml: error message if server is not available to update like/dislike activity</comment>
   </data>
   <data name="messageDialogErrorOnActivitySettingBadRequest" xml:space="preserve">
-    <value>Your like/dislike could not be updated on the server. The server has returned this error: {0}. </value>
+    <value>Votre like/dislike ne peut pas être mis à jour sur le serveur. Le serveur a retourné cette erreur : {0}. </value>
     <comment>Network.xaml: error message if server returned a BadRequest on updating like/dislike activity</comment>
   </data>
   <data name="textblockPostsLikedByMe" xml:space="preserve">
-    <value>I</value>
+    <value>moi</value>
     <comment>Network.xaml/Home.xaml: text show next to like/dislike icon if only user has liked/disliked</comment>
   </data>
   <data name="textblockPostsLikedByMeAndOthers" xml:space="preserve">
-    <value>and I</value>
+    <value>et moi</value>
     <comment>Network.xaml/Home.xaml: text shown next to like/dislike icon if others and users liked/disliked the post</comment>
   </data>
   <data name="toastErrorPostActivityHeader" xml:space="preserve">
-    <value>Failed to send the like/dislike</value>
+    <value>Impossible d’envoyer la like/dislike</value>
     <comment>BackgroundTask: header for toast to indicate user that instant like/dislike has exited with an error</comment>
   </data>
   <data name="toastErrorPostActivityText" xml:space="preserve">
-    <value>An error happened while sending the like/dislike to the post with ID '{0}', the server may be unavailable.</value>
+    <value>Une erreur s’est produite lors de l’envoi du type/aversion vers le message avec l’ID « {0} », le serveur peut être indisponible.</value>
     <comment>BackgroundTask: text for toast to indicate user that instant like/dislike has exited with an error (0 = id of post)</comment>
   </data>
   <data name="messageDialogProfilesUnknown error" xml:space="preserve">
-    <value>An unexpected error occurred while loading your profile (HTTP-code: {0}, error message: {1}).</value>
+    <value>Une erreur inattendue s’est produite lors du chargement de votre profil (code HTTP : {0}, message d’erreur : {1}).</value>
     <comment>Profiles.xaml: info to user on all other errors during loading of profiles (0 = Statuscode vom Server, 1 = error message)</comment>
   </data>
   <data name="pageProfiles.FlowDirection" xml:space="preserve">
@@ -1276,247 +1171,247 @@ Would you like to try it again?</value>
     <comment>Defines Text direction for the language</comment>
   </data>
   <data name="appBarProfilesEnableEditor.Label" xml:space="preserve">
-    <value>View Editor</value>
+    <value>Éditeur d'affichage</value>
     <comment>Profiles.xaml: caption of the appBarButton for opening the editor to change the profile</comment>
   </data>
   <data name="appBarProfilesEnableEditor.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Switch to edit mode to customize the profiles...</value>
+    <value>Commutateur en mode pour personnaliser les profils édition...</value>
     <comment>Profiles.xaml: tooltip of the appbarButton for opening the editor to change the profile</comment>
   </data>
   <data name="appBarProfilesSend.Label" xml:space="preserve">
-    <value>Send</value>
+    <value>Envoyer</value>
     <comment>Profiles.xaml: caption of the appBarButton for sending the changes in the profile</comment>
   </data>
   <data name="appBarProfilesSend.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Send changes to the profile to the server</value>
+    <value>Communiquer les changements du profil sur le serveur</value>
     <comment>Profiles.xaml: tooltip of the appbarButton for sending the changes in the profile</comment>
   </data>
   <data name="appBarProfilesUserlist.Label" xml:space="preserve">
-    <value>Users</value>
+    <value>Utilisateurs</value>
     <comment>Profiles.xaml: caption of the appBarButton to show the users who can see the selected profile</comment>
   </data>
   <data name="appBarProfilesUserlist.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Go to the list of users who can see the selected profile</value>
+    <value>Accédez à la liste des utilisateurs qui peuvent voir le profil sélectionné</value>
     <comment>Profiles.xaml: tooltip of the appBarButton to show the users who can see the selected profile</comment>
   </data>
   <data name="pageTitleProfiles.Text" xml:space="preserve">
-    <value>My profiles</value>
+    <value>Mon profils</value>
     <comment>Name on top of view Profiles.xaml</comment>
   </data>
   <data name="pivotProfilesGeneral.Header" xml:space="preserve">
-    <value>General</value>
+    <value>Général</value>
     <comment>Profiles.xaml: header of the 'General' pivotitem</comment>
   </data>
   <data name="pivotProfilesInterests.Header" xml:space="preserve">
-    <value>Interests</value>
+    <value>Centres d'intérêts</value>
     <comment>Profiles.xaml: header of the 'Interests' pivotitem</comment>
   </data>
   <data name="pivotProfilesLocation.Header" xml:space="preserve">
-    <value>Locality</value>
+    <value>Ville</value>
     <comment>Profiles.xaml: header of the 'Location' pivotitem</comment>
   </data>
   <data name="pivotProfilesRelationship.Header" xml:space="preserve">
-    <value>Relationship</value>
+    <value>Relation</value>
     <comment>Profiles.xaml: header of the 'Relationship' pivotitem</comment>
   </data>
   <data name="toggleProfileDateDefined.OffContent" xml:space="preserve">
-    <value>No date available</value>
+    <value>Aucune date disponible</value>
     <comment>UserControlProfileDatePicker.xaml: Switch to enable or disable the setting of a date in the profile field - shown text if no date is defined</comment>
   </data>
   <data name="toggleProfileDateDefined.OnContent" xml:space="preserve">
-    <value>Date available</value>
+    <value>Date de</value>
     <comment>UserControlProfileDatePicker.xaml: Switch to enable or disable the setting of a date in the profile field - shown text if enabled</comment>
   </data>
   <data name="toggleProfileWithoutYear.OffContent" xml:space="preserve">
-    <value>No year available</value>
+    <value>Aucun exercice disponible</value>
     <comment>UserControlProfileDatePicker.xaml: Switch between DatePicker without year and CalendarDatePicker - shown text if year is defined</comment>
   </data>
   <data name="toggleProfileWithoutYear.OnContent" xml:space="preserve">
-    <value>Year available</value>
+    <value>Année disponible</value>
     <comment>UserControProfileDatePicker.xaml: Switch between DatePicker without year and CalendarDatePicker - shown text if no year defined</comment>
   </data>
   <data name="textblockProfilesGender" xml:space="preserve">
-    <value>Gender:</value>
+    <value>Sexe :</value>
     <comment>Profiles/UserControlProfileComboBox.xaml: header for Gender combobox</comment>
   </data>
   <data name="textblockProfilesMarital" xml:space="preserve">
-    <value>Relationship status:</value>
+    <value>Statut de la relation :</value>
     <comment>Profiles/UserControlProfileComboBox.xaml: header for Marital combobox</comment>
   </data>
   <data name="textblockProfilesRegion" xml:space="preserve">
-    <value>Country/region:</value>
+    <value>Pays/région :</value>
     <comment>Profiles/UserControlProfileComboBox.xaml: header for Country/Region combobox</comment>
   </data>
   <data name="textblockProfilesSexual" xml:space="preserve">
-    <value>Sexual preferences:</value>
+    <value>Préférences sexuelles :</value>
     <comment>Profiles/UserControlProfileComboBox.xaml: header for Sexual combobox</comment>
   </data>
   <data name="textblockProfilesDateOfBirth" xml:space="preserve">
-    <value>Date of birth:</value>
+    <value>Date de naissance :</value>
     <comment>Profiles/UserControlProfileDatePicker.xaml: header for Date of Birth date picker</comment>
   </data>
   <data name="textblockProfilesMaritalSince" xml:space="preserve">
-    <value>Relationship since: (if applicable)</value>
+    <value>Relation depuis : (si applicable)</value>
     <comment>Profiles/UserControlProfileDatePicker.xaml: header for MaritalSince date picker</comment>
   </data>
   <data name="textblockProfilesAbout" xml:space="preserve">
-    <value>About me:</value>
+    <value>À propos de moi :</value>
     <comment>Profiles/UserControlProfileRichText.xaml: header for About RichText</comment>
   </data>
   <data name="textblockProfilesDislikes" xml:space="preserve">
-    <value>Dislikes:</value>
+    <value>N’aime pas :</value>
     <comment>Profiles/UserControlProfileRichText.xaml: header for Dislikes RichText</comment>
   </data>
   <data name="textblockProfilesHomepage" xml:space="preserve">
-    <value>Homepage:</value>
+    <value>Page d’accueil :</value>
     <comment>Profiles/UserControlProfileRichText.xaml: header for Homepage RichText</comment>
   </data>
   <data name="textblockProfilesLikes" xml:space="preserve">
-    <value>Likes:</value>
+    <value>Aime :</value>
     <comment>Profiles/UserControlProfileRichText.xaml: header for Likes RichText</comment>
   </data>
   <data name="textblockProfilesSocialNetworks" xml:space="preserve">
-    <value>Social networks:</value>
+    <value>Réseaux sociaux :</value>
     <comment>Profiles/UserControlProfileRichText.xaml: header for SocialNetworks RichText</comment>
   </data>
   <data name="textblockProfilesBook" xml:space="preserve">
-    <value>Books, literature:</value>
+    <value>Livres, littérature :</value>
     <comment>Profiles/UserControlProfileRichText.xaml: header for Books RichText</comment>
   </data>
   <data name="textblockProfilesEducation" xml:space="preserve">
-    <value>School/education:</value>
+    <value>Ecole/education :</value>
     <comment>Profiles/UserControlProfileRichText.xaml: header for Education RichText</comment>
   </data>
   <data name="textblockProfilesFilm" xml:space="preserve">
-    <value>Movies/dances/culture/entertainment:</value>
+    <value>Films/danses/culture/Loisirs :</value>
     <comment>Profiles/UserControlProfileRichText.xaml: header for Film RichText</comment>
   </data>
   <data name="textblockProfilesInterest" xml:space="preserve">
-    <value>Hobbies/interests:</value>
+    <value>Loisirs/centres d’intérêt :</value>
     <comment>Profiles/UserControlProfileRichText.xaml: header for Interest RichText</comment>
   </data>
   <data name="textblockProfilesRomance" xml:space="preserve">
-    <value>Love/Romance:</value>
+    <value>Amour/Romance :</value>
     <comment>Profiles/UserControlProfileRichText.xaml: header for Romance RichText</comment>
   </data>
   <data name="textblockProfilesTv" xml:space="preserve">
-    <value>Television:</value>
+    <value>Télévision :</value>
     <comment>Profiles/UserControlProfileRichText.xaml: header for Tv RichText</comment>
   </data>
   <data name="textblockProfilesWork" xml:space="preserve">
-    <value>Employment:</value>
+    <value>Emploi :</value>
     <comment>Profiles/UserControlProfileRichText.xaml: header for Work RichText</comment>
   </data>
   <data name="textblockProfilesMusic" xml:space="preserve">
-    <value>Musical interests:</value>
+    <value>Intérêts musicaux :</value>
     <comment>Profiles/UserControlProfileRichText.xaml: header for Music RichText</comment>
   </data>
   <data name="textblockProfilesAddress" xml:space="preserve">
-    <value>Address:</value>
+    <value>Adresse :</value>
     <comment>Profiles/UserControlProfileTextBox.xaml: header for Address Textbox</comment>
   </data>
   <data name="textblockProfilesCity" xml:space="preserve">
-    <value>Place of residence:</value>
+    <value>Lieu de résidence :</value>
     <comment>Profiles/UserControlProfileTextBox.xaml: header for City Textbox</comment>
   </data>
   <data name="textblockProfilesDescription" xml:space="preserve">
-    <value>Description:</value>
+    <value>Description :</value>
     <comment>Profiles/UserControlProfileTextBox.xaml: header for Description Textbox</comment>
   </data>
   <data name="textblockProfilesHometown" xml:space="preserve">
-    <value>Hometown:</value>
+    <value>Ville natale :</value>
     <comment>Profiles/UserControlProfileTextBox.xaml: header for Hometown Textbox</comment>
   </data>
   <data name="textblockProfilesMaritalWith" xml:space="preserve">
-    <value>Relationship with: (if applicable)</value>
+    <value>Relation avec : (si applicable)</value>
     <comment>Profiles/UserControlProfileTextBox.xaml: header for MaritalWith Textbox</comment>
   </data>
   <data name="textblockProfilesName" xml:space="preserve">
-    <value>Complete name:</value>
+    <value>Nom complet :</value>
     <comment>Profiles/UserControlProfileTextBox.xaml: header for Name Textbox</comment>
   </data>
   <data name="textblockProfilesPolitic" xml:space="preserve">
-    <value>Political views:</value>
+    <value>Opinions politiques :</value>
     <comment>Profiles/UserControlProfileTextBox.xaml: header for Politic Textbox</comment>
   </data>
   <data name="textblockProfilesPostalCode" xml:space="preserve">
-    <value>Postal code:</value>
+    <value>Code postal :</value>
     <comment>Profiles/UserControlProfileTextBox.xaml: header for PostalCode Textbox</comment>
   </data>
   <data name="textblockProfilesPrivateKeywords" xml:space="preserve">
-    <value>Private keywords:</value>
+    <value>Mots clés privées :</value>
     <comment>Profiles/UserControlProfileTextBox.xaml: header for PrivateKeywords Textbox</comment>
   </data>
   <data name="textblockProfilesPublicKeywords" xml:space="preserve">
-    <value>Public keywords:</value>
+    <value>Mots clés publiques :</value>
     <comment>Profiles/UserControlProfileTextBox.xaml: header for PublicKeywords Textbox</comment>
   </data>
   <data name="textblockProfilesReligion" xml:space="preserve">
-    <value>Religious views:</value>
+    <value>Points de vue religieux :</value>
     <comment>Profiles/UserControlProfileTextBox.xaml: header for Religion Textbox</comment>
   </data>
   <data name="checkboxProfilesPublished.Content" xml:space="preserve">
-    <value>published in the global directory</value>
+    <value>publié dans l’annuaire mondial</value>
     <comment>Profiles.xaml: checkbox indicating if profile is published in the global directory</comment>
   </data>
   <data name="messageDialogProfilesDeletingNotSupported" xml:space="preserve">
-    <value>You can delete currently no profiles, this function is later built into the app. Please use your Friendica Server Web access to delete profiles.</value>
+    <value>Vous ne pouvez supprimer actuellement aucun profil, cette fonction est ensuite intégrée à l’app. Veuillez utiliser votre accès Web Server Friendica pour supprimer des profils.</value>
     <comment>Profiles.xaml: inform user that deleting of profiles is currently not implemented in the app</comment>
   </data>
   <data name="messageDialogProfilesAddingNotSupported" xml:space="preserve">
-    <value>You can currently add no profiles, this function is built into the app later. Please use your Friendica Server Web access to add profiles.</value>
+    <value>Vous ne pouvez ajouter actuellement aucun profil, cette fonction est intégrée à l’application plus tard. Veuillez utiliser votre accès Friendica serveur Web pour ajouter des profils.</value>
     <comment>Profiles.xaml: inform user that adding profiles is currently not implemented in the app</comment>
   </data>
   <data name="messageDialogProfilesChangeImageNotSupported" xml:space="preserve">
-    <value>You can't change your profile picture at the moment, this function is later built into the app. Please use your Friendica Server Web access to change your profile picture.</value>
+    <value>Vous ne pouvez pas modifier votre photo de profil pour le moment, cette fonction est ensuite intégrée à l’app. Veuillez utiliser votre accès Web Server Friendica pour modifier votre photo de profil.</value>
     <comment>Profiles.xaml: inform user that changing profile image is currently not implemented in the app</comment>
   </data>
   <data name="textblockProfilesHelp1.Text" xml:space="preserve">
-    <value>With the information in your profile you can tell more about you to the public and to your friends.</value>
+    <value>Avec les informations contenues dans votre profil vous pouvez Parlez vous au public et à vos amis.</value>
     <comment>Profiles.xaml: detailed information about profiles in Friendica - part 1</comment>
   </data>
   <data name="textblockProfilesHelp2.Text" xml:space="preserve">
-    <value>Here you can control very well, who can see certain information about you. Friendica has an unusual way of privacy settings at a glance. There is always a public profile in Friendica, which basically can see everyone on the Internet. In addition, you may attach as many private profiles. They contain the information that may see only those persons whom you allow access to this profile. You can use different profile pictures for the different private profiles. Before you can use this option, you may only need to enable this feature. You can find this in your Web access under "Settings / extra features / multiple profiles" (by default, this feature is often disabled).</value>
+    <value>Ici, vous pouvez contrôler très bien, qui peut voir certaines informations vous concernant. Friendica a une manière inhabituelle de paramètres de confidentialité d’un coup de œil. Il y a toujours un profil public en Friendica, ce qui fondamentalement peut voir tout le monde sur Internet. En outre, vous pouvez joindre autant de profils privés. Ils contiennent les informations qui peuvent voir que les personnes que vous autorisez l’accès à ce profil. Vous pouvez utiliser des photos de profil différentes pour les différents profils privés. Avant de pouvoir utiliser cette option, vous devrez peut-être seulement activer cette fonctionnalité. Vous pouvez le trouver dans votre accès Web sous « paramètres / extra features / profils multiples » (par défaut, cette fonctionnalité est souvent désactivée).</value>
     <comment>Profiles.xaml: detailed information about profiles in Friendica - part 2</comment>
   </data>
   <data name="textblockProfilesHelp3.Text" xml:space="preserve">
-    <value>The users button in the toolbar shows the persons who may see the selected profile.</value>
+    <value>Le bouton d’utilisateurs dans la barre d’outils affiche les personnes qui peuvent voir le profil sélectionné.</value>
     <comment>Profiles.xaml: detailed information about profiles in Friendica - part 3</comment>
   </data>
   <data name="textblockProfilesHelp4.Text" xml:space="preserve">
-    <value>With the adjacent drop-down box, you can select which profile you want to display below. If the selected profile is generally publicly visible on the Internet, you can see this on the red border around the drop-down box.</value>
+    <value>Avec la liste déroulante adjacente, vous pouvez sélectionner quel profil que vous souhaitez afficher ci-dessous. Si le profil sélectionné est généralement visible publiquement sur Internet, vous pouvez le voir sur la bordure rouge autour de la zone de liste déroulante.</value>
     <comment>Profiles.xaml: detailed information about profiles in Friendica - part 4</comment>
   </data>
   <data name="textblockProfilesHelp5.Text" xml:space="preserve">
-    <value>The public profile is published by default in the global directory of Friendica (to turn off: in the Web access under settings/user account/security and privacy settings). If this is the case for your public profile, you can see on the check of the following check box. Since there are global multiple servers for the global directory, you will find a link to the directory, which is used on your server as the primary directory.</value>
+    <value>Le profil public est publié par défaut dans le répertoire mondial de Friendica (pour éteindre : l’accès Web sous paramètres de compte/sécurité et confidentialité settings/utilisateur). Si c’est le cas pour votre profil public, vous pouvez le voir sur le contrôle de la case suivante. Étant donné que global plusieurs serveurs pour le répertoire mondial, vous trouverez un lien vers le répertoire qui est utilisé sur votre serveur dans le répertoire principal.</value>
     <comment>Profiles.xaml: detailed information about profiles in Friendica - part 5</comment>
   </data>
   <data name="textblockProfilesNoServerSupport.Text" xml:space="preserve">
-    <value>Your Friendica server does not yet support the necessary API commands for displaying profiles. Please update your server on Friendica 3.5.1 or later or ask your administrator. </value>
+    <value>Votre serveur Friendica ne supporte pas encore les commandes API nécessaires pour afficher les profils. Veuillez mettre à jour votre serveur sur Friendica 3.5.1 ou version ultérieure ou demandez à votre administrateur. </value>
     <comment>Profiles.xaml: info to user if there was an error on loading the profiles, caused by missing API calls</comment>
   </data>
   <data name="textblockProfilesNoSettings.Text" xml:space="preserve">
-    <value>You have defined any Friendica server in the app settings. Below, we show examples of how the different profiles of a user in the app are displayed.</value>
+    <value>Vous avez défini un serveur Friendica dans les paramètres de l’application. Ci-dessous, nous montrent des exemples de la façon dont les différents profils d’un utilisateur dans l’application sont affichés.</value>
     <comment>Profiles.xaml: show text if user has not set any app settings (we are showing only sample data)</comment>
   </data>
   <data name="textblockProfilesIndicatorLoading.Text" xml:space="preserve">
-    <value>Loading profiles...</value>
+    <value>Chargement des profils...</value>
     <comment>Profiles.xaml: text next to progress ring indicating that app is loading the profiles</comment>
   </data>
   <data name="pageTitleProfileUsers.Text" xml:space="preserve">
-    <value>Profile permissions</value>
+    <value>Autorisations de profil</value>
     <comment>Name on top of view A4_ProfileUsers.xaml</comment>
   </data>
   <data name="textblockNoUsersAvailable.Text" xml:space="preserve">
-    <value>There were no contacts authorized for the selected profile. </value>
+    <value>Il n’y a pas de contacts autorisés pour le profil sélectionné. </value>
     <comment>ProfileUsers.xaml: show a hint if there are no users allowed to see the selected profile</comment>
   </data>
   <data name="textblockProfileUsersIndicatorUpdating" xml:space="preserve">
-    <value>Save changes...</value>
+    <value>Enregistrer les modifications...</value>
     <comment>ProfileUsers.xaml: red indicator showing that app is saving changes in userlist</comment>
   </data>
   <data name="textblockProfileUsersName.Text" xml:space="preserve">
-    <value>Profile:</value>
+    <value>Profil :</value>
     <comment>ProfileUsers.xaml: header for textblock showing the name of the selected profile</comment>
   </data>
   <data name="pageProfileUsers.FlowDirection" xml:space="preserve">
@@ -1532,153 +1427,153 @@ Would you like to try it again?</value>
     <comment>Name on top of view Photos.xaml</comment>
   </data>
   <data name="appBarPhotosAlbumAdd.Label" xml:space="preserve">
-    <value>New album</value>
+    <value>Nouvel album</value>
     <comment>Photos.xaml: caption of the appbarButton for a new album</comment>
   </data>
   <data name="appBarPhotosAlbumAdd.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Creating a new photo album (Note: is only created on the server, when a photo is uploaded)</value>
+    <value>Création d’un nouvel album photos (Note : est créée uniquement sur le serveur, lorsqu’une photo est téléchargée)</value>
     <comment>Photos.xaml: tooltip of the appbarButton for a new album</comment>
   </data>
   <data name="appBarPhotosPhotoAdd.Label" xml:space="preserve">
-    <value>New photo</value>
+    <value>Nouvelle photo</value>
     <comment>Photos.xaml: caption of the appbarButton for a new photo</comment>
   </data>
   <data name="appBarPhotosPhotoAdd.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Add new photo</value>
+    <value>Ajouter une nouvelle photo</value>
     <comment>Photos.xaml: tooltip of the appbarButton for a new photo</comment>
   </data>
   <data name="appBarPhotosAddFromCamera.Text" xml:space="preserve">
-    <value>Photo from camera...</value>
+    <value>Photo de la caméra...</value>
     <comment>Photos.xaml: caption of the menuFlyout under button 'add photo' for adding from camera</comment>
   </data>
   <data name="appBarPhotosAddFromCamera.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Take new photo with camera and upload to the server</value>
+    <value>Prendre la nouvelle photo avec caméra et de télécharger vers le serveur</value>
     <comment>Photos.xaml: tooltip of the menuFlyout under button 'add photo' for adding from camera</comment>
   </data>
   <data name="appBarPhotosAddFromDevice.Text" xml:space="preserve">
-    <value>Photo from device...</value>
+    <value>Photo de l’appareil...</value>
     <comment>Photos.xaml: caption of the menuFlyout under button 'add photo' for adding from device</comment>
   </data>
   <data name="appBarPhotosAddFromDevice.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Re-upload existing photo from your device to the server</value>
+    <value>Re-télécharger une photo existante de votre appareil vers le serveur</value>
     <comment>Photos.xaml: tooltip of the menuFlyout under button 'add photo' for adding from device</comment>
   </data>
   <data name="appBarPhotosProfileimageAdd.Label" xml:space="preserve">
-    <value>New profileimage</value>
+    <value>Nouveau profileimage</value>
     <comment>Photos.xaml: caption of the appbarButton for a new profileimage</comment>
   </data>
   <data name="appBarPhotosProfileimageAdd.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Add a new profileimage</value>
+    <value>Ajouter un nouveau profileimage</value>
     <comment>Photos.xaml: tooltip of the appbarButton for a new profileimage</comment>
   </data>
   <data name="appBarPhotosEmptyInkAdd.Label" xml:space="preserve">
-    <value>Insert blank ink page</value>
+    <value>Insérer page d’encre vide</value>
     <comment>Photos.xaml: caption of the appbarButton for an empty ink canvas area</comment>
   </data>
   <data name="appBarPhotosEmptyInkAdd.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Opens a blank white area to write or paint a new picture</value>
+    <value>Ouvre une zone vierge blanche pour écrire ou peindre un nouveau tableau</value>
     <comment>Photos.xaml: tooltip of the appbarButton for an empty ink canvas area</comment>
   </data>
   <data name="appBarPhotosAlbumDelete.Label" xml:space="preserve">
-    <value>Delete album</value>
+    <value>Supprimer l’album</value>
     <comment>Photos.xaml: caption of the appbarButton for deleting the selected album</comment>
   </data>
   <data name="appBarPhotosAlbumDelete.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Delete selected photo album with all included photos from the server</value>
+    <value>Supprimer album photo sélectionnée avec photos tout compris à partir du serveur</value>
     <comment>Photos.xaml: tooltip of the appbarButton for deleting the selected album</comment>
   </data>
   <data name="appBarPhotosAlbumEdit.Label" xml:space="preserve">
-    <value>Edit album</value>
+    <value>modifier l’album</value>
     <comment>Photos.xaml: caption of the appbarButton for editing the selected album</comment>
   </data>
   <data name="appBarPhotosAlbumEdit.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Edit the properties of the selected photo album</value>
+    <value>Modifier les propriétés de l’album photo sélectionnée</value>
     <comment>Photos.xaml: tooltip of the appbarButton for editing the selected album</comment>
   </data>
   <data name="textblockPhotosNoServerSupport.Text" xml:space="preserve">
-    <value>Your server does not support the commands yet, which are necessary for the management of photos in this app. </value>
+    <value>Votre serveur ne supporte pas les commandes encore, qui sont nécessaires pour la gestion des photos dans ce soft. </value>
     <comment>Photos.xaml: showing error message to user if the server is reachable but has no support for the API calls needed to display/edit photos/profileimages</comment>
   </data>
   <data name="textblockPhotosNoSettings.Text" xml:space="preserve">
-    <value>You have defined any Friendica server in the app settings. Below, we show examples of how photo albums and photos are displayed in the app.</value>
+    <value>Vous avez défini un serveur Friendica dans les paramètres de l’application. Ci-dessous, nous donnent des exemples de comment les photos et albums photos sont affichées dans l’application.</value>
     <comment>Photos.xaml: show text if user has not set any app settings (we are showing only sample images)</comment>
   </data>
   <data name="appBarPhotosAddProfileimageFromCamera.Text" xml:space="preserve">
-    <value>Profileimage from camera...</value>
+    <value>ProfileImage de caméra...</value>
     <comment>Photos.xaml: caption of the menuFlyout under button 'add photo' for adding from camera</comment>
   </data>
   <data name="appBarPhotosAddProfileimageFromCamera.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Capture new profile image with camera and upload to the server</value>
+    <value>Capturer la nouvelle image de profil avec la caméra et les télécharger vers le serveur</value>
     <comment>Photos.xaml: tooltip of the menuFlyout under button 'add photo' for adding from camera</comment>
   </data>
   <data name="appBarPhotosAddProfileimageFromDevice.Text" xml:space="preserve">
-    <value>Profile image from device...</value>
+    <value>Image de profil d’appareil...</value>
     <comment>Photos.xaml: caption of the menuFlyout under button 'add photo' for adding from device</comment>
   </data>
   <data name="appBarPhotosAddProfileimageFromDevice.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Upload existing profile picture from the device newly to the server</value>
+    <value>Télécharger photo de profil existant entre l’appareil nouvellement au serveur</value>
     <comment>Photos.xaml: tooltip of the menuFlyout under button 'add photo' for adding from device</comment>
   </data>
   <data name="textblockPhotosNewAlbumAdded.Text" xml:space="preserve">
-    <value>New album - warning: album is only created on the server as soon as the first photo is uploaded. </value>
+    <value>Nouvel album - AVERTISSEMENT : album est créé uniquement sur le serveur dès que la première photo est téléchargée. </value>
     <comment>Photos.xaml: hint for user in a new album that the album is only created when 1st photo has been uploaded to server</comment>
   </data>
   <data name="buttonPhotoInkCanvas.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Write or draw something on the photo...</value>
+    <value>Écrire ou dessiner quelque chose sur la photo...</value>
     <comment>Photos.xaml: tooltip of the button for opening the shown image in the ink canvas for painting on the image</comment>
   </data>
   <data name="buttonPhotoEditAccessRights.ToolTipService.ToolTip" xml:space="preserve">
-    <value>View and edit permissions of your contacts on this photo...</value>
+    <value>Afficher et modifier les autorisations de vos contacts sur cette photo...</value>
     <comment>Photos.xaml: tooltip of the button for showing access rights on the shown image</comment>
   </data>
   <data name="buttonPhotoCreateProfileimage.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Set current image as a new profile image (area of the photo can be selected on the next page).</value>
+    <value>Set image actuelle comme une nouvelle image de profil (zone de la photo peut être sélectionné sur la page suivante).</value>
     <comment>Photos.xaml: tooltip of the button for creating a profileimage from the shown image</comment>
   </data>
   <data name="buttonPhotoDelete.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Delete the current image from the server (confirmation question follows)...</value>
+    <value>Supprimer l’image actuelle du serveur (confirmation question ci-dessous)...</value>
     <comment>Photos.xaml: tooltip of the button for deleting the shown image</comment>
   </data>
   <data name="buttonPrintPhoto.ToolTipService.ToolTip" xml:space="preserve">
-    <value>To print the current photo on a printer...</value>
+    <value>Pour imprimer la photo actuelle sur une imprimante...</value>
     <comment>Photos.xaml: tooltip of the button for printing the shown image</comment>
   </data>
   <data name="buttonShowPhotoConversation.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Displays the comments and likes for a photo...</value>
+    <value>Affiche les commentaires et les aime pour une photo...</value>
     <comment>Photos.xaml: tooltip of the button for showing the conversation on the shown image</comment>
   </data>
   <data name="appBarPhotosReload.Label" xml:space="preserve">
-    <value>Reload</value>
+    <value>Recharger</value>
     <comment>Photos.xaml: caption of the appbarButton for reloading from server</comment>
   </data>
   <data name="appBarPhotosReload.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Reload list of photo albums and photos from the server.</value>
+    <value>Rechargez la liste des albums photos et photos à partir du serveur.</value>
     <comment>Photos.xaml: tooltip of the appbarButton for reloading from server</comment>
   </data>
   <data name="messageDialogPhotosNewAlbumnameEmpty" xml:space="preserve">
-    <value>The name of the photo album cannot be empty.</value>
+    <value>Le nom de l’album photo ne peut pas être vide.</value>
     <comment>Photos.xaml: inform user if he wants to save an empty string as a new albumname</comment>
   </data>
   <data name="messageDialogPhotosNewAlbumnameUnchanged" xml:space="preserve">
-    <value>New name for the photo album is not different from the current name, nothing has been changed on the server.</value>
+    <value>Nouveau nom pour l’album photo n’est pas différent du nom actuel, rien n’a été changé sur le serveur.</value>
     <comment>Photos.xaml: inform user if the wants to save an unchanged name as a new albumname</comment>
   </data>
   <data name="messageDialogPhotosNewPhotoDescriptionUnchanged" xml:space="preserve">
-    <value>New caption is not different from the current caption, nothing has been changed on the server.</value>
+    <value>Nouvelle légende n’est pas différente de la légende en cours, rien n’a été changé sur le serveur.</value>
     <comment>Photos.xaml: inform user if the wants to save an unchanged text as a new photo description</comment>
   </data>
   <data name="buttonConfirmDeletion.Content" xml:space="preserve">
-    <value>Clear all ink</value>
+    <value>Effacer toutes les entrées manuscrites</value>
     <comment>InkCanvas.xaml: caption for confirming the deletion of all made strokes in the painting area</comment>
   </data>
   <data name="buttonSavingStrokes.ToolTipService.ToolTip" xml:space="preserve">
-    <value>The ink drawings are inserted in the background image. The modified image replaces the existing image on the server. When white background, it is added to the selected photo album as a new photo. </value>
+    <value>Les dessins à l’encre sont insérés dans l’image d’arrière-plan. L’image modifiée remplace l’image existante sur le serveur. Quand blanc a fond, elle est ajoutée à l’album photo sélectionnée comme une nouvelle photo. </value>
     <comment>InkCanvas.xaml: tooltip for the save button</comment>
   </data>
   <data name="textblockPhotosInkCanvasWarningSign.Text" xml:space="preserve">
-    <value>The Artboard exploits not the full possible range. 
+    <value>La planche graphique n'exploite pas la gamme complète possible. 
  
-If possible, you should change the window size so that the image occupies more of the available space (on the desktop window maximize, turn the device on the phone). Otherwise, the quality of the drawings can be bad after merging with the background. </value>
+Si possible, vous devez modifier la taille de la fenêtre pour que l’image occupe plus de la quantité d’espace disponible (sur la fenêtre du Bureau maximiser, allumez le téléphone de l’appareil). Dans le cas contraire, la qualité des dessins peut être mauvaise, après la fusion avec le fond. </value>
     <comment>InkCanvas.xaml: if ink area is lower than 75% or even 50% of total space the user see a warning sing. This is the flyout description for the user. </comment>
   </data>
   <data name="pageInkCanvas.FlowDirection" xml:space="preserve">
@@ -1686,49 +1581,49 @@ If possible, you should change the window size so that the image occupies more o
     <comment>Defines Text direction for the language</comment>
   </data>
   <data name="messageDialogHttpStatusForbidden" xml:space="preserve">
-    <value>Server reported an error during registration. Please check the connection to the server and access data in the app.</value>
+    <value>Serveur a signalé une erreur lors de l’inscription. S’il vous plaît vérifier la connexion aux données dans l’application server et access.</value>
     <comment>Photos.xaml: user get this error message if checking Server on supporting the new API calls returns a Forbidden answer (very unexpected return)</comment>
   </data>
   <data name="messageDialogPhotosErrorOnLoading" xml:space="preserve">
-    <value>Loading your photos from your server has failed, the server has reported this error: {0} 
+    <value>Chargement de vos photos depuis votre serveur a échoué, le serveur a renvoyé cette erreur : {0} 
  
-Do you want to try again?</value>
+vous voulez essayer à nouveau ?</value>
     <comment>Photos.xaml: info to user that something went wrong when trying to load the photo list, asking user for a new try; 1 Parameter = error message</comment>
   </data>
   <data name="messageDialogPhotosServerNotAnswered" xml:space="preserve">
-    <value>Loading your photos from your server has failed, the server did not respond. Want to try it again?</value>
+    <value>Échec de chargement de vos photos depuis votre serveur, le serveur n’a pas répondu. Vous voulez essayer à nouveau ?</value>
     <comment>Photos.xaml: info to user that the server has not answered when trying to load the photo list, asking user for a new try</comment>
   </data>
   <data name="textblockPhotosLoadingPhotoalbums.Text" xml:space="preserve">
-    <value>Loading photo albums from the server...</value>
+    <value>Albums photos de chargement du serveur...</value>
     <comment>Photos.xaml: text shown to user during loading the photoalbums from server</comment>
   </data>
   <data name="textblockPhotosCheckingServerSupport.Text" xml:space="preserve">
-    <value>Checks whether your server supports photo management...</value>
+    <value>Vérifie si votre serveur prend en charge la gestion des photos...</value>
     <comment>Photos.xaml: text for progress ring indicating that app is currently checking if server knows the new API calls</comment>
   </data>
   <data name="textblockPhotosNoPhotosAvailable.Text" xml:space="preserve">
-    <value>You have no pictures on your server. Create new albums and upload photos on your server...</value>
+    <value>Vous n’avez aucuns photos sur votre serveur. Créer de nouveaux albums et télécharger des photos sur votre serveur...</value>
     <comment>Photos.xaml: text shown to user if there are no photos on the server</comment>
   </data>
   <data name="textblockPhotoDateEdited.Text" xml:space="preserve">
-    <value>Upload date:</value>
+    <value>Télécharger date :</value>
     <comment>Photos.xaml: header for the date uploaded/edited from server shown below the photo</comment>
   </data>
   <data name="textblockPhotoDateShot.Text" xml:space="preserve">
-    <value>Date of shooting:</value>
+    <value>Date de prise de vue :</value>
     <comment>Photos.xaml: header for the date shown below the photo indicating the day when photo was shot </comment>
   </data>
   <data name="textPhotosPrintDialogPhotoScalingCrop" xml:space="preserve">
-    <value>Clip</value>
+    <value>Découper</value>
     <comment>Photos.xaml: print dialog allows user to scale photos, this is to use original size and crop to selected size</comment>
   </data>
   <data name="textPhotosPrintDialogPhotoScalingHeader" xml:space="preserve">
-    <value>Scaling</value>
+    <value>Mise à l'échelle</value>
     <comment>Photos.xaml: print dialog allows user to scale photos, this is the header for the dropdown</comment>
   </data>
   <data name="textPhotosPrintDialogPhotoScalingShrinkToFit" xml:space="preserve">
-    <value>Fitting</value>
+    <value>Ajustage de précision</value>
     <comment>Photos.xaml: print dialog allows user to scale photos, this is to fit photo into size</comment>
   </data>
   <data name="textPhotosPrintDialogPhotoSize10x15" xml:space="preserve">
@@ -1744,157 +1639,157 @@ Do you want to try again?</value>
     <comment>Photos.xaml: print dialog allows user to select photo size, this is 9x13cm/3.5x5.25in</comment>
   </data>
   <data name="textPhotosPrintDialogPhotoSizeFullPage" xml:space="preserve">
-    <value>Full screen</value>
+    <value>Plein écran</value>
     <comment>Photos.xaml: print dialog allows user to select photo size, this is full page</comment>
   </data>
   <data name="textPhotosPrintDialogPhotoSizeHeader" xml:space="preserve">
-    <value>Image Size</value>
+    <value>Taille de l’image</value>
     <comment>Photos.xaml: print dialog allows user to select photo size, this is the header for the dropdown</comment>
   </data>
   <data name="textPhotosPrintDialogPlacementBottomLeft" xml:space="preserve">
-    <value>Bottom Left</value>
+    <value>En bas à gauche</value>
     <comment>Photos.xaml: print dialog allows user to place the photo, this is for bottom left placement</comment>
   </data>
   <data name="textPhotosPrintDialogPlacementBottomRight" xml:space="preserve">
-    <value>Bottom Right</value>
+    <value>En bas à droite</value>
     <comment>Photos.xaml: print dialog allows user to place the photo, this is for bottom right placement</comment>
   </data>
   <data name="textPhotosPrintDialogPlacementCenter" xml:space="preserve">
-    <value>Centered</value>
+    <value>Centré</value>
     <comment>Photos.xaml: print dialog allows user to place the photo, this is for central placement</comment>
   </data>
   <data name="textPhotosPrintDialogPlacementHeader" xml:space="preserve">
-    <value>Placement</value>
+    <value>Emplacement</value>
     <comment>Photos.xaml: print dialog allows user to place the photo, this is the header for the dropdown</comment>
   </data>
   <data name="textPhotosPrintDialogPlacementTopLeft" xml:space="preserve">
-    <value>Top Left</value>
+    <value>En haut à gauche</value>
     <comment>Photos.xaml: print dialog allows user to place the photo, this is for top left placement</comment>
   </data>
   <data name="textPhotosPrintDialogPlacementTopRight" xml:space="preserve">
-    <value>Top Right</value>
+    <value>En haut à droite</value>
     <comment>Photos.xaml: print dialog allows user to place the photo, this is for top right placement</comment>
   </data>
   <data name="messageDialogPhotosErrorOnPrinting" xml:space="preserve">
-    <value>An error occurred when printing the photo. Please check the connection to your printer and system settings.</value>
+    <value>Une erreur s’est produite lors de l’impression de la photo. S’il vous plaît vérifiez le branchement de votre imprimante et les paramètres du système.</value>
     <comment>Photos.xaml: inform user if printing activity has returned an error.</comment>
   </data>
   <data name="textPhotosPrintSizeBiggerThanPhotoSize" xml:space="preserve">
-    <value>The image is smaller than the selected size of the image, the image is not expanded. </value>
+    <value>L’image est plus petite que la taille sélectionnée de l’image, l’image n’est pas développée. </value>
     <comment>Photos.xaml: it can happen that small photos (mainly profile images) are not big enough for a selected print size, photo will be printed in smaller original size, inform user above size option dropdown</comment>
   </data>
   <data name="textPhotosPrintPhotoSizeBiggerThanPage" xml:space="preserve">
-    <value>Unfortunately, the photo does not fit on the selected paper size.</value>
+    <value>Malheureusement, la photo ne correspond pas au format de papier sélectionné.</value>
     <comment>Photos.xaml: error message above print dialog's size option dropdown if selected photo size is bigger than the selected paper size</comment>
   </data>
   <data name="textblockSettingsSaveLocalAllowedHint2.Text" xml:space="preserve">
-    <value>When function is activated, the images of your photo albums on the device are stored (app its own space). This allows a faster switch between your photo albums, and the images of an album, because only still newly added images are loaded from the server (useful even if your data volume at the mobile operator is not very large). </value>
+    <value>Lorsque la fonction est activée, les images de vos albums photo sur l’appareil sont stockées (app son propre espace). Cela permet une commutation plus rapide entre vos albums photos et les images d’un album, parce que seulement encore nouvellement ajouté images sont chargées à partir du serveur (utile même si votre volume de données à l’opérateur de téléphonie mobile n’est pas très grand). </value>
     <comment>Settings.xaml: 2nd hint on SaveLocalAllowed regarding caching of photos</comment>
   </data>
   <data name="textblockSaveFullsizePhotosAllowedHint.Text" xml:space="preserve">
-    <value>For large photo collections the local storing of the full screen files can consume much space on your device. You can disable the storing of full size photos to reduce memory consumption. The smaller thumbnails are still saved, but it takes a little longer until you can see the full size photos in good resolution. </value>
+    <value>Pour les collections de la grande photo le stockage local des fichiers plein écran peut consommer beaucoup d’espace sur votre appareil. Vous pouvez désactiver le stockage de photos pleine grandeur pour réduire la consommation de mémoire. Les vignettes plus petites sont toujours enregistrées, mais il prend un peu plus jusqu'à ce que vous pouvez voir les photos de pleine grandeur en bonne résolution. </value>
     <comment>Settings.xaml: user can disable the saving of fullsize photos on the local device to save disk space, this is the hint for this option</comment>
   </data>
   <data name="checkBoxDeleteFullsizePhotos.Content" xml:space="preserve">
-    <value>Full size photos</value>
+    <value>Photos pleine grandeur</value>
     <comment>Settings.xaml: content dialog shown on "delete local data" button- text on 1st checkbox for deleting the local database</comment>
   </data>
   <data name="checkBoxDeleteLocalDatabase.Content" xml:space="preserve">
-    <value>Local Database</value>
+    <value>Base de données locale</value>
     <comment>Settings.xaml: content dialog shown on "delete local data" button- text on 1st checkbox for deleting the local database</comment>
   </data>
   <data name="checkBoxDeleteSmallMediumsizePhotos.Content" xml:space="preserve">
-    <value>Preview images</value>
+    <value>Images d’aperçu</value>
     <comment>Settings.xaml: content dialog shown on "delete local data" button- text on 1st checkbox for deleting the local database</comment>
   </data>
   <data name="contentDialogDeleteLocalData.PrimaryButtonText" xml:space="preserve">
-    <value>Delete</value>
+    <value>Supprimer</value>
     <comment>Settings.xaml: content dialog shown on "delete local data" button - text of delete button</comment>
   </data>
   <data name="contentDialogDeleteLocalData.SecondaryButtonText" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Annuler</value>
     <comment>Settings.xaml: content dialog shown on "delete local data" button - text of cancel button</comment>
   </data>
   <data name="contentDialogDeleteLocalData.Title" xml:space="preserve">
-    <value>Delete local data</value>
+    <value>Supprimer les données locales</value>
     <comment>Settings.xaml: title of content dialog shown to user after clicking on the "delete local data" button</comment>
   </data>
   <data name="textblockDeleteLocalData" xml:space="preserve">
-    <value>Locally stored content will be deleted. Some functionality will no longer work in the usual extent (eg link on the profile on @-Tags when the database is deleted). Here, you can select which data should be deleted:</value>
+    <value>Contenu stocké localement sera supprimé. Certaines fonctionnalités ne fonctionneront plus dans la mesure habituelle (par exemple le lien sur le profil sur @-Tags lorsque la base de données est supprimé). Ici, vous pouvez choisir quelles données devraient être supprimées :</value>
     <comment>Settings.xaml: text in content dialog shown to user after clicking on the "delete local data" button</comment>
   </data>
   <data name="buttonDeleteLocalData.Content" xml:space="preserve">
-    <value>Delete local data</value>
+    <value>Supprimer les données locales</value>
     <comment>Settings.xaml: button for deleting the local database</comment>
   </data>
   <data name="messageDialogLocalDataDeleted" xml:space="preserve">
-    <value>The following items were successfully deleted:</value>
+    <value>Les éléments suivants ont été supprimés avec succès :</value>
     <comment>Settings.xaml: message after deleting the local data showing a summary of the deleted elements.</comment>
   </data>
   <data name="messageDialogDeletedFullsizePhotos" xml:space="preserve">
-    <value>Full size photos</value>
+    <value>Photos pleine grandeur</value>
     <comment>Settings.xaml: confirmation dialog after deleting uses this text (equal text to checkBoxDeleteFullsizePhotos)</comment>
   </data>
   <data name="messageDialogDeletedLocalDatabase" xml:space="preserve">
-    <value>Local Database</value>
+    <value>Base de données locale</value>
     <comment>Settings.xaml: confirmation dialog after deleting uses this text (equal text to checkBoxDeleteLocalDatabase)</comment>
   </data>
   <data name="messageDialogDeletedSmallMediumsizePhotos" xml:space="preserve">
-    <value>Preview images</value>
+    <value>Images d’aperçu</value>
     <comment>Settings.xaml: confirmation dialog after deleting uses this text (equal text to checkBoxDeleteSmallMediumsizePhotos)</comment>
   </data>
   <data name="messageDialogLocalDataDeletedError" xml:space="preserve">
-    <value>Errors occurred while deleting the following elements:</value>
+    <value>Erreurs se sont produites lors de la suppression des éléments suivants :</value>
     <comment>Settings.xaml: message if error occurred on deleting of local data</comment>
   </data>
   <data name="textblockSettingsDeleteLocalData.Text" xml:space="preserve">
-    <value>Local files are deleted from the device...</value>
+    <value>Les fichiers locaux sont supprimés de l’appareil...</value>
     <comment>Settings.xaml: text next to progress ring shown during deleting local data (photo files could take some time on bigger collections)</comment>
   </data>
   <data name="textPhotosNewAlbumName" xml:space="preserve">
-    <value>New album</value>
+    <value>Nouvel album</value>
     <comment>Photos.xaml: initial name of a newly added album without photos</comment>
   </data>
   <data name="messageDialogPhotosNewAlbumsNotSaved" xml:space="preserve">
-    <value>You have created one or more new album, yet were not created on the server. Do you discard the new albums and continue with reload?</value>
+    <value>Vous avez créé un ou plusieurs nouvel album, mais n’étaient pas créés sur le serveur. Vous jetez les nouveaux albums et continuer avec reload ?</value>
     <comment>Photos.xaml: when user reloads photos but has still unsaved new albums, we want to inform him about this and ask to discard new albums or cancel operation</comment>
   </data>
   <data name="messageDialogPhotosConfirmAlbumDelete" xml:space="preserve">
-    <value>The album '{0}' is been irretrievably deleted with all containing images. 
+    <value>L’album « {0} » est irrémédiablement éliminé avec toutes les images contenant. 
  
-Are you absolutely sure?</value>
+Vous êtes absolument sûr ?</value>
     <comment>Photos.xaml: ask user for confirmation when hitting button to delete a complete photoalbum, inform user that all photos will be deleted definitely</comment>
   </data>
   <data name="messageDialogPhotosAlbumDeleted" xml:space="preserve">
-    <value>The album '{0}' has been deleted from the server.</value>
+    <value>L’album « {0} » a été supprimé du serveur.</value>
     <comment>Photos.xaml: info to user that the selected album has been deleted from server (parameter 0 = name of album)</comment>
   </data>
   <data name="messageDialogPhotosAlbumDeletingNoReaction" xml:space="preserve">
-    <value>The server failed to respond when deleting the album '{0}'. You want to try again?</value>
+    <value>Le serveur n’a pas répondu lors de la suppression de l’album « {0} ». Vous voulez essayer à nouveau ?</value>
     <comment>Photos.xaml: info to user that the selected album was not deleted because server has not reacted (paramter 0 = name of album)</comment>
   </data>
   <data name="messageDialogPhotosAlbumDeletingUnknownError" xml:space="preserve">
-    <value>There was an unexpected problem when deleting the album '{0}'.</value>
+    <value>Il y avait un problème inattendu lors de la suppression de l’album « {0} ».</value>
     <comment>Photos.xaml: info to user that the selected album was not deleted because of an unknown error (parameter 0 = name of album)</comment>
   </data>
   <data name="messageDialogPhotosAlbumUpdatingNoReaction" xml:space="preserve">
-    <value>The server did not respond when you rename the album '{0}'. You want to try again?</value>
+    <value>Le serveur ne répond pas lorsque vous renommez l’album « {0} ». Vous voulez essayer à nouveau ?</value>
     <comment>Photos.xaml: info to user that the selected album was not renamed because server has not reacted (paramter 0 = old name of album)</comment>
   </data>
   <data name="messageDialogPhotosAlbumUpdatingUnknownError" xml:space="preserve">
-    <value>There was an unexpected problem when renaming the album '{0}'.</value>
+    <value>Il y avait un problème inattendu lorsque vous renommez l’album « {0} ».</value>
     <comment>Photos.xaml: info to user that the selected album was not renamed because of an unknown error (parameter 0 = old name of album)</comment>
   </data>
   <data name="messageDialogPhotosUploadingInternalError" xml:space="preserve">
-    <value>There was a problem when uploading or modifying the photos '{0}'. Perhaps it is the maximum size laid down in Friendica for uploaded images. Please contact your Friendica server administrator to increase this limit (warning: there is a PHP limit and a different one within by Friendica).</value>
+    <value>Il y avait un problème lors de téléchargement ou de modification des photos « {0} ». C’est peut-être la taille maximale prévue à le Friendica pour les images téléchargées. Veuillez contacter votre administrateur de serveur Friendica pour augmenter cette limite (AVERTISSEMENT : il y a une limite PHP et un autre au sein de Friendica).</value>
     <comment>Photos.xaml: info to suer that the upload of a new photo or the change of details for an existing photo has not been performed because of an internal server error - most probably the size exceeeds the limit set by the admin (parameter 0 = filename of photo)</comment>
   </data>
   <data name="messageDialogPhotosUploadingUnknownError" xml:space="preserve">
-    <value>There was an unexpected problem when upload, change, or delete the photos '{0}'.</value>
+    <value>Il y avait un problème inattendu lors de télécharger, modifier ou supprimer les photos « {0} ».</value>
     <comment>Photos.xaml: info to user that the upload of a new photo or the change of details for an existing photo has not been performed because of an unknown error (parameter 0 = filename of photo)</comment>
   </data>
   <data name="messageDialogPhotoUploadingNoReaction" xml:space="preserve">
-    <value>The server did not respond when upload, change, or delete the photos '{0}'. You want to try again?</value>
+    <value>Le serveur n’a pas répondu quand Télécharger, modifier ou supprimer les photos « {0} ». Vous voulez essayer à nouveau ?</value>
     <comment>Photos.xaml: info to user that the upload of a new photo or the change of details for an existing photo has not been performed because server has not reacted (parameter 0 = filename of photo)</comment>
   </data>
   <data name="pagePhotoRights.FlowDirection" xml:space="preserve">
@@ -1902,131 +1797,131 @@ Are you absolutely sure?</value>
     <comment>Defines Text direction for the language</comment>
   </data>
   <data name="pageTitlePhotoRights.Text" xml:space="preserve">
-    <value>Photo permissions</value>
+    <value>Autorisations de photo</value>
     <comment>Name on top of view A6_PhotoRights.xaml</comment>
   </data>
   <data name="checkboxPhotoIsCommentedLiked.Content" xml:space="preserve">
-    <value>Photo commented/liked</value>
+    <value>Photo a commenté/aimé</value>
     <comment>PhotoRights.xaml: checkbox indicating that photo has been commented or liked already (has implication on changing rights now)</comment>
   </data>
   <data name="checkboxPhotoACLMismatch.Content" xml:space="preserve">
-    <value>Different rights</value>
+    <value>Droits différents</value>
     <comment>PhotoRights.xaml: checkbox indicating that access rights of photo and access rights of comments are differeing</comment>
   </data>
   <data name="textblockPhotoRightsHelp1.Text" xml:space="preserve">
-    <value>The subsequent change of photo permissions is fundamentally problematic. Existing comments and likes of your contacts keep the visibility settings even after the change. Therefore, the app usually deletes the previous photo and upload it for you with the new permissions again. This has resulted in that already existing comments and likes are also deleted. In addition, existing links on the photo (e.g. in a posting) can become unusable.</value>
+    <value>La modification ultérieure des autorisations de photo est fondamentalement problématique. Commentaires existants et les goûts de vos contacts gardent les paramètres de visibilité même après le changement. Par conséquent, l’application supprime la photo précédente habituellement et télécharger pour vous avec les nouvelles autorisations à nouveau. Il en résulte que les observations déjà existantes et les goûts sont également supprimés. En outre, les liens existants sur la photo (par exemple dans une affectation) peuvent devenir inutilisables.</value>
     <comment>PhotoRights.xaml: text shown in the flyout when user taps the help button - explaining the issue with photo rights when changing them</comment>
   </data>
   <data name="textblockPhotoRightsHelp2.Text" xml:space="preserve">
-    <value>If you turn off "New upload", the app customizes the permissions on the photo as desired, but the comments/likes remain unchanged. The links in existing posts etc. also remain thereby, but unwanted side effects can occur. Here you can see whether there are these variations between photo- and comment rights for the selected photo.</value>
+    <value>Si vous désactivez « Nouveau téléchargement », l’application personnalise les autorisations sur la photo comme vous le souhaitez, mais les commentaires/goûts restent inchangés. Les liens dans les messages existants etc. aussi restent ainsi, mais des effets secondaires indésirables peuvent survenir. Ici vous pouvez voir s’il y a ces variations entre droits photo et commentaire de la photo sélectionnée.</value>
     <comment>PhotoRights.xaml: text shown in the flyout when user taps the help button- explaining the issue wiht photo rights when changing them</comment>
   </data>
   <data name="checkboxPhotoUploadNew.Content" xml:space="preserve">
-    <value>New upload</value>
+    <value>Nouveau téléchargement</value>
     <comment>PhotoRights.xaml: checkbox where user can disable the new upload of a photo after changing rights (then it will only update photo rights on server)</comment>
   </data>
   <data name="textPhotoRightsAddContact" xml:space="preserve">
-    <value>If the photo is not newly uploaded, the newly added group/contacts may not submit any comments/likes. They do not see existing comments/likes.</value>
+    <value>Si la photo n’est pas nouvellement téléchargée, les groupe/contacts nouvellement ajoutés ne peut soumettre des commentaires/aime. Ils ne voient pas de commentaires/goûts existants.</value>
     <comment>PhotoRights.xaml: show hint after changing rights to what implications this change could have</comment>
   </data>
   <data name="textPhotoRightsChangePrivToPub" xml:space="preserve">
-    <value>If the photo is not newly uploaded, the already existing comments and/or likes remain visible only to the previously authorized group/contacts. And only they can add more comments. Your other contacts see your photo after the change in your profile, but without the previous comments/likes, but cannot post own comments or like your photo.</value>
+    <value>Si la photo n’est pas nouvellement téléchargée, le déjà existant commente ou aime rester visible uniquement pour les groupe/contacts précédemment autorisés. Et seulement ils peuvent ajouter plus de commentaires. Vos autres contacts voir votre photo après le changement dans votre profil, mais sans les commentaires précédents/goûts, mais ne pouvez pas poster des commentaires propres ou comme votre photo.</value>
     <comment>PhotoRights.xaml: show hint after changing rights to what implications this change could have</comment>
   </data>
   <data name="textPhotoRightsChangePubToPriv" xml:space="preserve">
-    <value>If the photo is not newly uploaded, the already existing entries remain public and will therefore remain on the community page of your server visible along with photo. New comments/likes will be published still there.</value>
+    <value>Si la photo n’est pas nouvellement téléchargée, les entrées déjà existantes restent publiques et resteront donc sur la page de la communauté de votre serveur visible ainsi que de la photo. Nouveaux commentaires/aime paraîtront toujours là.</value>
     <comment>PhotoRights.xaml: show hint after changing rights to what implications this change could have</comment>
   </data>
   <data name="textPhotoRightsRemoveContact" xml:space="preserve">
-    <value>If the photo is not newly uploaded, it remains still visible to the no longer legitimate group/contacts if there are already comments/likes. They may add comments/likes still for the photo.</value>
+    <value>Si la photo n’est pas nouvellement téléchargée, elle reste toujours visible aux n’est plus légitimes groupe/contacts s’il y a déjà des commentaires/aime. Ils peuvent ajouter des commentaires/aime encore pour la photo.</value>
     <comment>PhotoRights.xaml: show hint after changing rights to what implications this change could have</comment>
   </data>
   <data name="radiobuttonPhotoRightsPrivate.Content" xml:space="preserve">
-    <value>Restricted to</value>
+    <value>Limité à</value>
     <comment>PhotoRights.xaml: radiobutton for selecting if photo is publicly or limited visible - limited</comment>
   </data>
   <data name="radiobuttonPhotoRightsPublic.Content" xml:space="preserve">
-    <value>Publicly visible</value>
+    <value>Visible publiquement</value>
     <comment>PhotoRights.xaml: radiobutton for selecting if photo is publicly or limited visible - public photo</comment>
   </data>
   <data name="textblockPhotoACLContacts.Text" xml:space="preserve">
-    <value>Contacts:</value>
+    <value>Contacts :</value>
     <comment>PhotoRights.xaml: header text for the contact selector</comment>
   </data>
   <data name="textblockPhotoACLGroups.Text" xml:space="preserve">
-    <value>Groups:</value>
+    <value>Groupes :</value>
     <comment>PhotoRights.xaml: header text for the group selector</comment>
   </data>
   <data name="textblockPhotoACLContactsHint.Text" xml:space="preserve">
-    <value>You can of course set permissions for individual contacts. However, this has the problem that the permissions for the comment/liken of your photos cannot be changed afterwards. If you want to add more contacts in hindsight for the photo, they are can see the photo in your profile, but they can not see comments/likes of other contacts and may not comment themselve. We advise you to set up the permissions on photos by groups. Thus, you can add new contacts to the group or remove group members.</value>
+    <value>Vous pouvez bien sûr définir des autorisations pour des contacts individuels. Cependant, c’est le problème que les autorisations pour le commentaire/assimiler de vos photos n’est pas modifiable par la suite. Si vous voulez ajouter plus de contacts avec le recul pour la photo, on peut voir la photo dans votre profil, mais ils ne peuvent pas voir commentaires/aime d’autres contacts et ne peuvent pas commenter themselve. Nous vous conseillons de mettre en place les autorisations sur les photos de groupes. Ainsi, vous pouvez ajouter de nouveaux contacts au groupe ou supprimer des membres du groupe.</value>
     <comment>PhotoRights.xaml: hint on using contacts for photo access rights as these could cause issues, hint to use groups as they are better supported.</comment>
   </data>
   <data name="textblockPhotoACLContactsHintHeader.Text" xml:space="preserve">
-    <value>Note about the use of individual contacts in the permission of photos...</value>
+    <value>Note sur l’utilisation des contacts individuels dans l’autorisation de photos...</value>
     <comment>PhotoRights.xaml: text shown for user to click to show the flyout with the detailed explanation why single contacts are not good for photo rights</comment>
   </data>
   <data name="messageDialogPhotoRightsNoContactData" xml:space="preserve">
-    <value>The contact details were not yet fully loaded, you want to try it again?</value>
+    <value>Les coordonnées n’étaient pas encore entièrement chargées, vous voulez essayer à nouveau ?</value>
     <comment>PhotosRights.xaml: app loads all contact data into listboxes, if contacts haven't been loaded yet in background, ask user to retry</comment>
   </data>
   <data name="messageDialogPhotoRightsNoContactSelected" xml:space="preserve">
-    <value>You want to set the photo to not publicly visible, but selected no groups or contacts. Please select at least one group or a contact.</value>
+    <value>Vous souhaitez définir la photo pas publiquement visibles, mais pas sélectionnés de groupes ou de contacts. Veuillez sélectionner au moins un groupe ou un contact.</value>
     <comment>PhotosRights.xaml: user has not selected any group or contact for a private visible photo. Ask him/her for making photo publicly visible or not?</comment>
   </data>
   <data name="textblockShowThreadNoDataPhoto.Text" xml:space="preserve">
-    <value>To the selected photo, there are still no comments, likes, or dislikes. </value>
+    <value>Pour la photo, il n’y a toujours aucun commentaires, aime ou n’aime pas. </value>
     <comment>ShowThread.xaml: show an info if there were no comments, likes, dislikes for a photo</comment>
   </data>
   <data name="buttonPhotoStartUpload.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Upload photo on the server...</value>
+    <value>Télécharger la photo sur le serveur...</value>
     <comment>Photo.xaml: tooltip shown when user hovers over button for uploading a photo to server</comment>
   </data>
   <data name="textblockPhotosLoadingPhotos.Text" xml:space="preserve">
-    <value>Imports the new photos in the app...</value>
+    <value>Importe les nouvelles photos dans l’app...</value>
     <comment>Photos.xaml: red info box to user showing that app is currently importing the photos into app (upload to server is a separate step)</comment>
   </data>
   <data name="messageDialogPhotosAskForUploadConfirmation" xml:space="preserve">
-    <value>Please remember that a subsequent change in the permissions can lead to undesired results. 
+    <value>N’oubliez pas qu’un changement ultérieur dans les autorisations peut conduire à des résultats indésirables. 
  
-Are you sure that you want to upload the photo with the settings?</value>
+Etes-vous sûr de vouloir télécharger la photo avec les paramètres ?</value>
     <comment>Photos.xaml: new photos are only stored in app in a first step. User can change several setting before hitting upload button. This is the confirmation question before definitely uploading to server. </comment>
   </data>
   <data name="textblockPhotosServerOperationRunning.Text" xml:space="preserve">
-    <value>Makes changes to the server...</value>
+    <value>Fait modifie vers le serveur...</value>
     <comment>Photos.xaml: red info box to user showing that app is currently performing actions on server (renaming, deleting, uploading etc.)</comment>
   </data>
   <data name="messageDialogPhotosAskForConfirmationACLUpdateAsNew" xml:space="preserve">
-    <value>Caution: the photo is with the previous rights been irretrievably deleted and with the new permissions newly uploaded. 
+    <value>ATTENTION : la photo est avec les droits antérieurs irrémédiablement éliminée et avec les nouvelles autorisations nouvellement téléchargées. 
  
-Do you want to continue?</value>
+Vous voulez continuer ?</value>
     <comment>Photos.xaml: confirmation dialog if user changes ACL of a photo with checking "new upload" box</comment>
   </data>
   <data name="messageDialogPhotosAskForConfirmationACLUpdatePhoto" xml:space="preserve">
-    <value>Cautions: the permissions are changed without re-uploading, that can make the comments and likes unusable. 
+    <value>ATTENTION : les autorisations sont modifiées sans re-téléchargement, qui peut faire des observations et des gens comme inutilisable. 
  
-Do you want to continue?</value>
+Vous voulez continuer ?</value>
     <comment>Photos.xaml: confirmation dialog if user changes ACL of a photo without checking "new upload" box</comment>
   </data>
   <data name="messageDialogPhotosAskForConfirmationDelete" xml:space="preserve">
-    <value>The photo is now been irretrievably deleted from the server. 
+    <value>La photo est maintenant été irrémédiablement supprimée du serveur. 
  
-Do you want to continue?</value>
+Vous voulez continuer ?</value>
     <comment>Photos.xaml: confirmation dialog to ask user before deleting a photo from server</comment>
   </data>
   <data name="messageDialogPhotosAskForConfirmationDeleteLocal" xml:space="preserve">
-    <value>The photo is been irretrievably deleted. 
+    <value>La photo est irrémédiablement éliminée. 
  
-Do you want to continue?</value>
+Vous voulez continuer ?</value>
     <comment>Photos.xaml: confirmation dialog to ask user before deleting a photo locally (not yet uploaded to server);</comment>
   </data>
   <data name="textblockPhotosRenderingImage.Text" xml:space="preserve">
-    <value>The app combines your drawings in the background...</value>
+    <value>L’application combine vos dessins en arrière-plan...</value>
     <comment>InkCanvas.xaml: showing red progress box with this text to inform user that app is currently working.</comment>
   </data>
   <data name="messageDialogPhotosAskForSavingStrokes" xml:space="preserve">
-    <value>You have not yet saved your drawings. 
+    <value>Vous n’avez pas encore enregistré vos dessins. 
  
-Do you save them now?</value>
+Vous enregistrer maintenant ?</value>
     <comment>InkCanvas.xaml: when navigating back having new strokes not yet saved, user will be asked to save strokes or not</comment>
   </data>
   <data name="pagePhotosCropping.FlowDirection" xml:space="preserve">
@@ -2034,141 +1929,141 @@ Do you save them now?</value>
     <comment>Defines Text direction for the language</comment>
   </data>
   <data name="appBarPhotosCroppingSave.Label" xml:space="preserve">
-    <value>Save</value>
+    <value>Enregistrer</value>
     <comment>PhotosCropping.xaml: caption of the appbarButton for saving the selected area as new profile image</comment>
   </data>
   <data name="appBarPhotosCroppingSave.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Save the selected area as profile image...</value>
+    <value>Enregistrer la zone sélectionnée comme image de profil...</value>
     <comment>PhotosCropping.xaml: tooltip of the appbarButton for saving the selected area as new profile image</comment>
   </data>
   <data name="textblockPhotosCroppingHeaderFullsize.Text" xml:space="preserve">
-    <value>Preview (large):</value>
+    <value>Aperçu (grand) :</value>
     <comment>PhotosCropping.xaml: header for the preview of 175x175 sized profile image</comment>
   </data>
   <data name="textblockPhotosCroppingHeaderMediumsize.Text" xml:space="preserve">
-    <value>Preview (medium):</value>
+    <value>Aperçu (moyen) :</value>
     <comment>PhotosCropping.xaml: header for the preview of 80x80 sized profile image</comment>
   </data>
   <data name="textblockPhotosCroppingHeaderOriginal.Text" xml:space="preserve">
-    <value>Original image:</value>
+    <value>Image originale :</value>
     <comment>PhotosCropping.xaml: header for the original image where user can select the area for the profile image</comment>
   </data>
   <data name="textblockPhotosCroppingHeaderThumbsize.Text" xml:space="preserve">
-    <value>Preview (small):</value>
+    <value>Aperçu (petit) :</value>
     <comment>PhotosCropping.xaml: header fro the preview of 48x48 sized profile image</comment>
   </data>
   <data name="messageDialogPhotosShowRightsProfileimage" xml:space="preserve">
-    <value>Profile images are always public. If you are using different profiles with different images, but only the contacts that are eligible for the profile see also the profile picture.</value>
+    <value>Images de profil sont toujours publics. Si vous utilisez des profils différents avec différentes images, mais seuls les contacts qui sont éligibles pour le profil Voirégalement aussi la photo de profil.</value>
     <comment>Photos.xaml: info to user when trying to change acl settings on a profileimage (they are by default always public)</comment>
   </data>
   <data name="messageDialogPhotosAskForUploadConfirmationInked" xml:space="preserve">
-    <value>If the photo on the server is changed, you cannot undo that.  
+    <value>Si la photo sur le serveur est modifiée, vous ne pouvez pas annuler qui.  
  
-Are you sure that you want to upload the photo with the settings?</value>
+Etes-vous sûr de vouloir télécharger la photo avec les paramètres ?</value>
     <comment>Photos.xaml: new photos are only stored in app in a first step. User can change several setting before hitting upload button. This is the confirmation question before definitely uploading to server when changing the photo data (inking on image). </comment>
   </data>
   <data name="buttonPhotoMoveToAlbum.Content" xml:space="preserve">
-    <value>Move</value>
+    <value>Déplacer</value>
     <comment>Photos.xaml: caption on the button in flyout to confirm moving the photo</comment>
   </data>
   <data name="buttonPhotoStartMoveToAlbum.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Moves the photo to a different album...</value>
+    <value>Déplace la photo d’un album différent...</value>
     <comment>Photos.xaml: tooltip of the button for moving photo to another album</comment>
   </data>
   <data name="textblockPhotosSelectNewAlbum.Text" xml:space="preserve">
-    <value>In which album should I move the photo:</value>
+    <value>Dans quel album dois-je déplacer la photo :</value>
     <comment>Photos.xaml: header text in flyout for selecting the target album for moving a photo</comment>
   </data>
   <data name="messageDialogPhotosMovingNoAlbumSelected" xml:space="preserve">
-    <value>You have selected no album, the photo was not moved.</value>
+    <value>Vous n’avez sélectionné aucun album, la photo n’a pas bougée.</value>
     <comment>Photos.xaml: message when user clicks the move button for moving a photo to another album but has not selected the new album</comment>
   </data>
   <data name="stringPhotoNewAlbumForMoving" xml:space="preserve">
-    <value>New album</value>
+    <value>Nouvel album</value>
     <comment>Photos.xaml: when moving a photo to another album user can choose "New album" as the target - this string is used in the dropdown </comment>
   </data>
   <data name="messageDialogPhotosAskForDiscardingChanges" xml:space="preserve">
-    <value>There are changes to one or more photos, which have not yet been saved. 
+    <value>Il y a des changements à une ou plusieurs photos, qui n’ont pas encore été enregistrés. 
  
-Want to discard these changes?</value>
+Veulent ignorer ces modifications ?</value>
     <comment>Photos.xaml: confirmation dialog to ask user before navigating away while unsaved changes are still there</comment>
   </data>
   <data name="messageDialogPhotosNoServerSupport" xml:space="preserve">
-    <value>This action would make a change to your Friendica server now. You have set still no server, with the sample data, this action is possible only here in the app. </value>
+    <value>Cette action pourrait apporter une modification à votre serveur Friendica maintenant. Vous n’avez défini encore aucun serveur, avec les exemples de données, cette action est possible seulement ici dans l’application. </value>
     <comment>Photos.xaml: hint to user in sample mode when trying to execute a server operation. As no server no action possible. </comment>
   </data>
   <data name="textblockPhotosMetMuseum.Text" xml:space="preserve">
-    <value>The New York Metropolitan Museum of art has released some time ago a large number of images for free use. The sample images shown here are from this collection. Please visit the Museum and supports this generous action.</value>
+    <value>Le New York Metropolitan Museum of art a publié il y a quelque temps un grand nombre d’images pour un usage gratuit. Les images de l’échantillon montrés ici proviennent de cette collection. S’il vous plaît visitez le Musée et prend en charge cette action généreuse.</value>
     <comment>Photos.xaml: hint in samples mode regarding the source of the pictures (Creative commons of Metropolitan Museum of Art, New York)</comment>
   </data>
   <data name="textblockPhotosMetMuseumPart2.Text" xml:space="preserve">
-    <value>The image files are quite large, please have some patience when viewing the full screen view.</value>
+    <value>Les fichiers image sont assez grandes, s’il vous plaît ont peu de patience lorsque vous affichez la vue plein écran.</value>
     <comment>Photos.xaml: hint in samples mode regarding the source of the pictures (Creative commons of Metropolitan Museum of Art, New York)</comment>
   </data>
   <data name="messageDialogPhotosAskForConfirmationCroppingOk" xml:space="preserve">
-    <value>The image will be cut to the desired area (there is still no upload on the server, followed by a step 2). 
+    <value>L’image sera coupé à l’endroit désiré (il n’y a encore aucun upload sur le serveur, suivi d’une étape 2). 
  
-Are you sure?</value>
+Etes-vous sûr ?</value>
     <comment>Photos.xaml: ask user for confirmation when leaving the cropping window</comment>
   </data>
   <data name="appBarPhotosShowPreviews.Label" xml:space="preserve">
-    <value>Preview</value>
+    <value>Aperçu</value>
     <comment>PhotosCropping.xaml: caption of the appbarButton for displaying the preview images on mobile devices</comment>
   </data>
   <data name="appBarPhotosShowPreviews.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Shows previews of profile images in the respective sizes...</value>
+    <value>Affiche les prévisualisations d’images de profil dans les tailles respectives...</value>
     <comment>PhotosCropping.xaml: tooltip of the appbarButton for displaying the preview images on mobile devices</comment>
   </data>
   <data name="textblockPhotosLoadingCroppingArea.Text" xml:space="preserve">
-    <value>Import the high-resolution version of the image into the cropping area ...</value>
+    <value>Importer la version haute résolution de l’image dans la zone de recadrage...</value>
     <comment>PhotosCropping.xaml: red info box to user showing that app is currently importing the photo in high resolution into cropping area</comment>
   </data>
   <data name="messageDialogPhotosPrintingNotPossible" xml:space="preserve">
-    <value>Printing is not possible at the moment!</value>
+    <value>Impression n’est pas possible pour le moment !</value>
     <comment>Photos.xaml: dialog message to user when printing throws an error</comment>
   </data>
   <data name="appBarNewsfeedSetAllSeen.Label" xml:space="preserve">
-    <value>Set as seen</value>
+    <value>Ensemble comme on le voit</value>
     <comment>Newsfeed.xaml: caption of the appbarButton for setting all posts as seen</comment>
   </data>
   <data name="appBarNewsfeedSetAllSeen.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Mark all posts as seen</value>
+    <value>Marquer tous les messages comme on le voit</value>
     <comment>Newsfeed.xaml: tooltip of the appbarButton for setting all posts as seen</comment>
   </data>
   <data name="textblockNewsfeedIsLoadingInitial.Text" xml:space="preserve">
-    <value>The app is loading your newsfeed items. Please have some patience.</value>
+    <value>L’app est chargez votre flux RSS. S’il vous plaît ont peu de patience.</value>
     <comment>Newsfeed.xaml: status update for user during loading initial entries of newsfeed/network</comment>
   </data>
   <data name="textblockNewsfeedNoDataAvailable.Text" xml:space="preserve">
-    <value>No newsfeed items returned from your server.</value>
+    <value>Aucun élément de flux RSS retourné à partir de votre serveur.</value>
     <comment>Newsfeed.xaml: showing info text to user if there are no newsfeed items in the network timeline of the user</comment>
   </data>
   <data name="textblockNewsfeedNoSettings.Text" xml:space="preserve">
-    <value>You have not defined in the app settings a Friendica server. Below we will show example data, showing you how your feed items could look in the app.</value>
+    <value>Vous n’avez défini dans les paramètres de l’application un serveur Friendica. Ci-dessous, nous allons montrer les données exemple, vous montrant comment il pouvaient regarder vos éléments de flux dans l’application.</value>
     <comment>Newsfeed.xaml: show text if user has not set any app settings (we are showing only sample data for news feed items)</comment>
   </data>
   <data name="messageDialogNetworkNoSettings" xml:space="preserve">
-    <value>You cannot load older or newer posts in the test mode. Please specify in the settings your server and credentials.</value>
+    <value>Vous ne peut pas charger les messages plus anciens ou plus récents en mode test. Veuillez préciser dans les paramètres de votre serveur et les informations d’identification.</value>
     <comment>Newsfeed.xaml/Network.xaml: if no settings users can look at samples, but when they try to refresh or load older posts, they will get this error message</comment>
   </data>
   <data name="messageDialogNewPostDontSelectRetweetContent" xml:space="preserve">
-    <value>This symbol like a flower represents the original content inserted in your post when you are sending it. You cannot change the symbol.</value>
+    <value>Ce symbole comme une fleur représente le contenu original inséré dans votre message quand vous envoyez ce. Vous ne pouvez pas modifier le symbole.</value>
     <comment>NewPost.xaml: information displayed to user when clicking on the flower symbol for the retweeting content</comment>
   </data>
-  <data name="messageDialogNewsfeedLikesNoDefault" xml:space="preserve">
-    <value>This is a RSS/Atom item. Your contacts will not see when you like/dislike on this item directly. The app could retweet this item with your default privacy settings for new posts and then set your like/dislike on this new retweet. 
-
-Currently this is not possible, because you haven't yet set default privacy settings.</value>
-    <comment>Newsfeed.xaml: likes/dislikes on newsfeed items do not work directly, inform user that he needs to define standard access rights in the settings. </comment>
-  </data>
   <data name="messageDialogNewsfeedNotLikable" xml:space="preserve">
-    <value>This is a RSS/Atom item. Your contacts will not see when you like/dislike on this item directly. The app will retweet this item with your default privacy settings for new posts ({0}). The like/dislike will then be set on this new retweet. 
-
-Do you want to continue?</value>
+    <value>Il s’agit d’un élément de flux RSS/Atom. Vos contacts ne verront pas quand vous ressemblant / n’aime pas sur cette question directement. L’app sera retweet ce point avec vos paramètres de confidentialité par défaut pour les nouveaux postes ({0}). Les like/dislike seront ensuite appliqués à ce nouveau retweet. 
+ 
+Vous voulez continuer ?</value>
     <comment>Newsfeed.xaml: likes/dislikes on newsfeed items do not work directly, app will perform a retweet with the standard settings for privacy of new posts (standard setting will be displayed in {0} parameter</comment>
   </data>
+  <data name="messageDialogNewsfeedLikesNoDefault" xml:space="preserve">
+    <value>Il s’agit d’un élément de flux RSS/Atom. Vos contacts ne verront pas quand vous ressemblant / n’aime pas sur cette question directement. L’app pourrait retweet ce point avec vos paramètres de confidentialité par défaut pour les nouveaux postes et puis définissez votre type/aversion sur ce nouveau retweet. 
+ 
+Actuellement ce n’est pas possible, parce que vous n’avez pas encore configuré par défaut paramètres de confidentialité.</value>
+    <comment>Newsfeed.xaml: likes/dislikes on newsfeed items do not work directly, inform user that he needs to define standard access rights in the settings. </comment>
+  </data>
   <data name="pageTitleNewsfeed.Text" xml:space="preserve">
-    <value>RSS feeds</value>
+    <value>Flux RSS</value>
     <comment>Name on top of view Newsfeed</comment>
   </data>
   <data name="pageNewsfeed.FlowDirection" xml:space="preserve">
@@ -2176,51 +2071,75 @@ Do you want to continue?</value>
     <comment>Defines Text direction for the language</comment>
   </data>
   <data name="switchNotificationEachNewsfeedAllowed.Header" xml:space="preserve">
-    <value>Show notification for each RSS post element</value>
+    <value>Voir la notification pour chaque flux RSS post élément</value>
     <comment>Settings.xaml: user can decide whether app should notify about each RSS feed element separately or send a summary notification when there are some new elements</comment>
   </data>
   <data name="textblockNotificationEachNewsfeedAllowedHint.Text" xml:space="preserve">
-    <value>When having registered for some feeds, it can be annoying if the app is notifying you about each RSS post separately. The app will send you only one general notification in each run if there are one or more new RSS posts, if toggle is disabled here.</value>
+    <value>Lorsque après avoir enregistré pour certains aliments, il peut être ennuyeux si l’app est vous informe de chaque post RSS séparément. L’app vous enverra seulement une notification générale dans chaque série s’il existe un ou plusieurs nouveaux postes RSS, si la bascule est désactivée ici.</value>
     <comment>Settings.xaml: hint on NotificationEachNewsfeedAllowed</comment>
   </data>
   <data name="toastNewsfeedGeneralNotification" xml:space="preserve">
-    <value>{0} new RSS feed posts arrived on server...</value>
+    <value>{0} flux RSS nouveaux messages sont arrivé sur le serveur...</value>
     <comment>BackgroundTask: alternative text if user don't want to get notified about each rss feed post separately ("New RSS feed posts arrived") - {0} = number of new elements</comment>
   </data>
   <data name="radioNewsfeed.Content" xml:space="preserve">
-    <value>RSS feeds</value>
+    <value>Flux RSS</value>
     <comment>Navigationbutton for RSS feeds (newsfeed)</comment>
   </data>
   <data name="LabelSettingsAppThemeDarkMode" xml:space="preserve">
-    <value>Dark Mode</value>
+    <value>Thème sombre</value>
     <comment>Settings.xaml: Label of switch if enabled (disabled = light mode)</comment>
   </data>
   <data name="LabelSettingsAppThemeHeader" xml:space="preserve">
-    <value>Dark or Light theme:</value>
+    <value>thème sombre ou clair</value>
     <comment>Settings.xaml: Header of settings where user can define to use the app in dark or light mode</comment>
   </data>
-  <data name="LabelSettingsAppThemeLightMode" xml:space="preserve">
-    <value>Light Mode</value>
-    <comment>Settings.xaml: Label of switch if disabled (enabled = dark mode)</comment>
-  </data>
   <data name="LabelSettingsAppThemeUseSystemTheme" xml:space="preserve">
-    <value>Use system default theme</value>
+    <value>Utiliser le thème par défaut du système</value>
     <comment>Settings.xaml: if supported by the OS user can decide to use the system default theme (standard = true)</comment>
   </data>
-  <data name="LabelSettingsNavigationSideHeader" xml:space="preserve">
-    <value>Navigation side:</value>
-    <comment>Settings.xaml: Header of settings to define if navigation pane is shown on left or right side (only on phones)</comment>
-  </data>
   <data name="LabelSettingsNavigationSideLeft" xml:space="preserve">
-    <value>Left</value>
+    <value>Gauche</value>
     <comment>Settings.xaml: Label of switch if disable (navigation on left side)</comment>
   </data>
   <data name="LabelSettingsNavigationSideRight" xml:space="preserve">
-    <value>Right</value>
+    <value>Droite</value>
     <comment>Settings.xaml: Label of switch if enabled (navigation on right side)</comment>
   </data>
   <data name="PageAppSettings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Paramètres</value>
     <comment>Settings.xaml: page title and navigation button text</comment>
+  </data>
+  <data name="FriendicaServerHintNoHttps" xml:space="preserve">
+    <value>L'application prend en charge le protocole http. Nous vous encourageons toutefois à utiliser SSL (protocole https) pour assurer une protection accrue des données, car les mots de passe sont transférés en texte clair sans SSL.</value>
+    <comment>Settings.xaml: warning message if Friendica server textbox only contains http:// instead of https://</comment>
+  </data>
+  <data name="ButtonSettingsResetCredentials" xml:space="preserve">
+    <value>Réinitialiser les informations d’identification</value>
+    <comment>Settings.xaml: button to set login fields back to stored or default values</comment>
+  </data>
+  <data name="DialogSettingsConfirmReset" xml:space="preserve">
+    <value>Ceci effacera vos entrées. Es-tu sûr?</value>
+    <comment>Settings.xaml: user requested to confirm reset credentials after tapping button</comment>
+  </data>
+  <data name="TextSerializationError" xml:space="preserve">
+    <value>Une erreur de sérialisation s'est produite après le chargement des données (URL: {0}). JSON renvoyé: {1}.</value>
+    <comment>General use: error message if something went wrong on trying to convert JSON return from server into data objects; 0 = url of request, 1 = returned JSON</comment>
+  </data>
+  <data name="TextSettingsLoadingContacts" xml:space="preserve">
+    <value>Chargement des contacts et des groupes...</value>
+    <comment>Settings.xaml: activity indicator shown during loading contact data for default ACL selection</comment>
+  </data>
+  <data name="ButtonSettingsReloadContacts" xml:space="preserve">
+    <value>Recharger les contacts</value>
+    <comment>Settings.xaml: button to reload contact and group data if error occurred</comment>
+  </data>
+  <data name="TextSettingsDefaultOff" xml:space="preserve">
+    <value>(Par défaut : off)</value>
+    <comment>Settings.xaml: showing a hint when the default setting is off/disabled</comment>
+  </data>
+  <data name="TextSettingsDefaultOn" xml:space="preserve">
+    <value>(Par défaut : sur)</value>
+    <comment>Settings.xaml: showing a hint when the default settings is on/enabled</comment>
   </data>
 </root>

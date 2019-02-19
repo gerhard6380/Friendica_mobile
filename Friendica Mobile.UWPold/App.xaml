@@ -3,7 +3,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Friendica_Mobile.UWP"
-    RequestedTheme="Light">
+    xmlns:Views="using:Friendica_Mobile.UWP.Views"
+    xmlns:triggers="using:Friendica_Mobile.UWP.Triggers">
 
     <Application.Resources>
         <ResourceDictionary>
@@ -12,6 +13,5 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
-
-
+    
 </Application>
