@@ -38,14 +38,14 @@ namespace Friendica_Mobile.macOS
             // disabled input automatically makes black text visible in gray
             if (picker.BackgroundColor == Color.White || picker.BackgroundColor == Color.WhiteSmoke)
             {
-                Control.TextColor = NSColor.Black;
-                Control.BackgroundColor = (picker.IsEnabled) ? NSColor.White : NSColor.FromRgb(245, 245, 245);;
+                //Control.TextColor = NSColor.Black;
+                //Control.BackgroundColor = (picker.IsEnabled) ? NSColor.White : NSColor.FromRgb(245, 245, 245);;
                 //Control.Bordered = true;
             }
             else
             {
                 //Control.Bordered = false;
-                Control.BackgroundColor = (picker.IsEnabled) ? NSColor.FromRgb(153, 153, 153) : NSColor.FromRgb(51, 51, 51);
+                //Control.BackgroundColor = (picker.IsEnabled) ? NSColor.FromRgb(153, 153, 153) : NSColor.FromRgb(51, 51, 51);
             }
         }
     }
