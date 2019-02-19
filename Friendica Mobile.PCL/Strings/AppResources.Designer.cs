@@ -919,11 +919,29 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Reload contacts ähnelt.
+        /// </summary>
+        public static string ButtonSettingsReloadContacts {
+            get {
+                return ResourceManager.GetString("ButtonSettingsReloadContacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Buy in-app product ähnelt.
         /// </summary>
         public static string buttonSettingsRemoveAdvertising_Content {
             get {
                 return ResourceManager.GetString("buttonSettingsRemoveAdvertising.Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Reset credentials ähnelt.
+        /// </summary>
+        public static string ButtonSettingsResetCredentials {
+            get {
+                return ResourceManager.GetString("ButtonSettingsResetCredentials", resourceCulture);
             }
         }
         
@@ -1117,6 +1135,15 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This will delete your entries. Are you sure? ähnelt.
+        /// </summary>
+        public static string DialogSettingsConfirmReset {
+            get {
+                return ResourceManager.GetString("DialogSettingsConfirmReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Drop here... ähnelt.
         /// </summary>
         public static string dragCaption {
@@ -1167,6 +1194,15 @@ namespace Friendica_Mobile.PCL.Strings {
         public static string FriendicaServerHintEndingSlash {
             get {
                 return ResourceManager.GetString("FriendicaServerHintEndingSlash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The app is supporting http protocol. But we encourage to use SSL (https protocol) to ensure higher data protection, because passwords are transferred in clear text without SSL. ähnelt.
+        /// </summary>
+        public static string FriendicaServerHintNoHttps {
+            get {
+                return ResourceManager.GetString("FriendicaServerHintNoHttps", resourceCulture);
             }
         }
         
@@ -1226,20 +1262,11 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Dark or Light theme: ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Dark or Light theme ähnelt.
         /// </summary>
         public static string LabelSettingsAppThemeHeader {
             get {
                 return ResourceManager.GetString("LabelSettingsAppThemeHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Light Mode ähnelt.
-        /// </summary>
-        public static string LabelSettingsAppThemeLightMode {
-            get {
-                return ResourceManager.GetString("LabelSettingsAppThemeLightMode", resourceCulture);
             }
         }
         
@@ -1249,15 +1276,6 @@ namespace Friendica_Mobile.PCL.Strings {
         public static string LabelSettingsAppThemeUseSystemTheme {
             get {
                 return ResourceManager.GetString("LabelSettingsAppThemeUseSystemTheme", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Navigation side: ähnelt.
-        /// </summary>
-        public static string LabelSettingsNavigationSideHeader {
-            get {
-                return ResourceManager.GetString("LabelSettingsNavigationSideHeader", resourceCulture);
             }
         }
         
@@ -4594,6 +4612,42 @@ namespace Friendica_Mobile.PCL.Strings {
         public static string textPhotosPrintSizeBiggerThanPhotoSize {
             get {
                 return ResourceManager.GetString("textPhotosPrintSizeBiggerThanPhotoSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Serialization error occurred after loading data (URL: {0}), returned JSON: {1} ähnelt.
+        /// </summary>
+        public static string TextSerializationError {
+            get {
+                return ResourceManager.GetString("TextSerializationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die (Default: off) ähnelt.
+        /// </summary>
+        public static string TextSettingsDefaultOff {
+            get {
+                return ResourceManager.GetString("TextSettingsDefaultOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die (Default: on) ähnelt.
+        /// </summary>
+        public static string TextSettingsDefaultOn {
+            get {
+                return ResourceManager.GetString("TextSettingsDefaultOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Loading contacts and groups... ähnelt.
+        /// </summary>
+        public static string TextSettingsLoadingContacts {
+            get {
+                return ResourceManager.GetString("TextSettingsLoadingContacts", resourceCulture);
             }
         }
         

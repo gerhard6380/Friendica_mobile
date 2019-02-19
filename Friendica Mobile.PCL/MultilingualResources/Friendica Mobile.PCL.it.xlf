@@ -2635,43 +2635,73 @@ Attualmente ciò non è possibile, perché non hai ancora impostato predefinite 
         </trans-unit>
         <trans-unit id="LabelSettingsAppThemeDarkMode" translate="yes" xml:space="preserve">
           <source>Dark Mode</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Dark Mode</target>
+          <target state="translated">Tema scuro</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: Label of switch if enabled (disabled = light mode)</note>
         </trans-unit>
         <trans-unit id="LabelSettingsAppThemeHeader" translate="yes" xml:space="preserve">
-          <source>Dark or Light theme:</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Scuro o chiaro tema:</target>
+          <source>Dark or Light theme</source>
+          <target state="translated">tema scuro o chiaro</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: Header of settings where user can define to use the app in dark or light mode</note>
-        </trans-unit>
-        <trans-unit id="LabelSettingsAppThemeLightMode" translate="yes" xml:space="preserve">
-          <source>Light Mode</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Modalità luce</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: Label of switch if disabled (enabled = dark mode)</note>
         </trans-unit>
         <trans-unit id="LabelSettingsAppThemeUseSystemTheme" translate="yes" xml:space="preserve">
           <source>Use system default theme</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Tema di default di sistema utilizzo</target>
+          <target state="translated">Usa il tema predefinito del sistema</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: if supported by the OS user can decide to use the system default theme (standard = true)</note>
-        </trans-unit>
-        <trans-unit id="LabelSettingsNavigationSideHeader" translate="yes" xml:space="preserve">
-          <source>Navigation side:</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Lato di navigazione:</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: Header of settings to define if navigation pane is shown on left or right side (only on phones)</note>
         </trans-unit>
         <trans-unit id="LabelSettingsNavigationSideLeft" translate="yes" xml:space="preserve">
           <source>Left</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Sinistra</target>
+          <target state="translated" state-qualifier="mt-suggestion">Sinistra</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: Label of switch if disable (navigation on left side)</note>
         </trans-unit>
         <trans-unit id="LabelSettingsNavigationSideRight" translate="yes" xml:space="preserve">
           <source>Right</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Ok</target>
+          <target state="translated">Destra</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: Label of switch if enabled (navigation on right side)</note>
         </trans-unit>
         <trans-unit id="PageAppSettings" translate="yes" xml:space="preserve">
           <source>Settings</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Impostazioni</target>
+          <target state="translated" state-qualifier="mt-suggestion">Impostazioni</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: page title and navigation button text</note>
+        </trans-unit>
+        <trans-unit id="FriendicaServerHintNoHttps" translate="yes" xml:space="preserve">
+          <source>The app is supporting http protocol. But we encourage to use SSL (https protocol) to ensure higher data protection, because passwords are transferred in clear text without SSL.</source>
+          <target state="translated">L'app supporta il protocollo http. Tuttavia, consigliamo di utilizzare SSL (protocollo https) per garantire una maggiore protezione dei dati, poiché le password vengono trasferite in testo non crittografato senza SSL.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: warning message if Friendica server textbox only contains http:// instead of https://</note>
+        </trans-unit>
+        <trans-unit id="ButtonSettingsResetCredentials" translate="yes" xml:space="preserve">
+          <source>Reset credentials</source>
+          <target state="translated">Resettare le credenziali</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: button to set login fields back to stored or default values</note>
+        </trans-unit>
+        <trans-unit id="DialogSettingsConfirmReset" translate="yes" xml:space="preserve">
+          <source>This will delete your entries. Are you sure?</source>
+          <target state="translated">Questo cancellerà le tue voci. Sei sicuro?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: user requested to confirm reset credentials after tapping button</note>
+        </trans-unit>
+        <trans-unit id="TextSerializationError" translate="yes" xml:space="preserve">
+          <source>Serialization error occurred after loading data (URL: {0}), returned JSON: {1}</source>
+          <target state="translated">Si è verificato un errore di serializzazione dopo il caricamento dei dati (URL: {0}), restituito JSON: {1}</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">General use: error message if something went wrong on trying to convert JSON return from server into data objects; 0 = url of request, 1 = returned JSON</note>
+        </trans-unit>
+        <trans-unit id="TextSettingsLoadingContacts" translate="yes" xml:space="preserve">
+          <source>Loading contacts and groups...</source>
+          <target state="translated">Caricamento contatti e gruppi...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: activity indicator shown during loading contact data for default ACL selection</note>
+        </trans-unit>
+        <trans-unit id="ButtonSettingsReloadContacts" translate="yes" xml:space="preserve">
+          <source>Reload contacts</source>
+          <target state="translated">Ricarica i contatti</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: button to reload contact and group data if error occurred</note>
+        </trans-unit>
+        <trans-unit id="TextSettingsDefaultOff" translate="yes" xml:space="preserve">
+          <source>(Default: off)</source>
+          <target state="translated">(Predefinito: off)</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: showing a hint when the default setting is off/disabled</note>
+        </trans-unit>
+        <trans-unit id="TextSettingsDefaultOn" translate="yes" xml:space="preserve">
+          <source>(Default: on)</source>
+          <target state="translated">(Predefinito: on)</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: showing a hint when the default settings is on/enabled</note>
         </trans-unit>
       </group>
     </body>

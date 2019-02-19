@@ -2090,31 +2090,55 @@ En la actualidad esto no es posible, porque aún no han fijado predeterminado co
     <comment>Settings.xaml: Label of switch if enabled (disabled = light mode)</comment>
   </data>
   <data name="LabelSettingsAppThemeHeader" xml:space="preserve">
-    <value>Oscuro o claro tema:</value>
+    <value>Oscuro o claro tema</value>
     <comment>Settings.xaml: Header of settings where user can define to use the app in dark or light mode</comment>
   </data>
-  <data name="LabelSettingsAppThemeLightMode" xml:space="preserve">
-    <value>Modo de la luz</value>
-    <comment>Settings.xaml: Label of switch if disabled (enabled = dark mode)</comment>
-  </data>
   <data name="LabelSettingsAppThemeUseSystemTheme" xml:space="preserve">
-    <value>Tema por defecto de uso sistema</value>
+    <value>Usar tema predeterminado del sistema</value>
     <comment>Settings.xaml: if supported by the OS user can decide to use the system default theme (standard = true)</comment>
-  </data>
-  <data name="LabelSettingsNavigationSideHeader" xml:space="preserve">
-    <value>Lado de navegación:</value>
-    <comment>Settings.xaml: Header of settings to define if navigation pane is shown on left or right side (only on phones)</comment>
   </data>
   <data name="LabelSettingsNavigationSideLeft" xml:space="preserve">
     <value>Izquierda</value>
     <comment>Settings.xaml: Label of switch if disable (navigation on left side)</comment>
   </data>
   <data name="LabelSettingsNavigationSideRight" xml:space="preserve">
-    <value>Correcto</value>
+    <value>Derecha</value>
     <comment>Settings.xaml: Label of switch if enabled (navigation on right side)</comment>
   </data>
   <data name="PageAppSettings" xml:space="preserve">
     <value>Configuración</value>
     <comment>Settings.xaml: page title and navigation button text</comment>
+  </data>
+  <data name="FriendicaServerHintNoHttps" xml:space="preserve">
+    <value>La aplicación es compatible con el protocolo http. Sin embargo, recomendamos utilizar SSL (protocolo https) para garantizar una mayor protección de los datos, ya que las contraseñas se transfieren en texto claro sin SSL.</value>
+    <comment>Settings.xaml: warning message if Friendica server textbox only contains http:// instead of https://</comment>
+  </data>
+  <data name="ButtonSettingsResetCredentials" xml:space="preserve">
+    <value>Reposición de credenciales</value>
+    <comment>Settings.xaml: button to set login fields back to stored or default values</comment>
+  </data>
+  <data name="DialogSettingsConfirmReset" xml:space="preserve">
+    <value>Esto eliminará tus entradas. ¿Estás seguro?</value>
+    <comment>Settings.xaml: user requested to confirm reset credentials after tapping button</comment>
+  </data>
+  <data name="TextSerializationError" xml:space="preserve">
+    <value>Se produjo un error de serialización después de cargar los datos (URL: {0}), JSON devuelto: {1}</value>
+    <comment>General use: error message if something went wrong on trying to convert JSON return from server into data objects; 0 = url of request, 1 = returned JSON</comment>
+  </data>
+  <data name="TextSettingsLoadingContacts" xml:space="preserve">
+    <value>Cargando contactos y grupos...</value>
+    <comment>Settings.xaml: activity indicator shown during loading contact data for default ACL selection</comment>
+  </data>
+  <data name="ButtonSettingsReloadContacts" xml:space="preserve">
+    <value>Recargar contactos</value>
+    <comment>Settings.xaml: button to reload contact and group data if error occurred</comment>
+  </data>
+  <data name="TextSettingsDefaultOff" xml:space="preserve">
+    <value>(Por defecto: off)</value>
+    <comment>Settings.xaml: showing a hint when the default setting is off/disabled</comment>
+  </data>
+  <data name="TextSettingsDefaultOn" xml:space="preserve">
+    <value>(Por defecto: en)</value>
+    <comment>Settings.xaml: showing a hint when the default settings is on/enabled</comment>
   </data>
 </root>
