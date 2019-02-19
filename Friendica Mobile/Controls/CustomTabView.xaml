@@ -28,8 +28,8 @@
             </Grid>
 
             <ScrollView Grid.Row="1">
-                <!-- content of the active tab -->
-                <Grid x:Name="GridTabContent" />                
+                <Grid x:Name="GridTabContent"   
+                      Grid.Row="1"/>  
             </ScrollView>
         </Grid>
     </ContentView.Content>

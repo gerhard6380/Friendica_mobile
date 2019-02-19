@@ -2,6 +2,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:styles="clr-namespace:Friendica_Mobile.Styles"
+             xmlns:controls="clr-namespace:SeeberXamarin.Controls"
              x:Class="Friendica_Mobile.Styles.CustomCommandBar">
     <ContentView.Content>
         
@@ -23,7 +24,7 @@
             <Grid x:Name="GridMoreOptions"
                   Grid.Column="1">
 
-                <styles:FontIconLabel x:Name="LabelMoreOptions"
+                <controls:FontIconLabel x:Name="LabelMoreOptions"
                                       TextColor="{DynamicResource NavigationTextColor}"
                                       Text="{x:Static styles:Icon.FIMore}"
                                       FontSize="20"

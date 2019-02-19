@@ -5,7 +5,7 @@
                     xmlns:controls="clr-namespace:SeeberXamarin.Controls"
                     x:Class="Friendica_Mobile.GeneralStyles">
 
-             <conv:NegateBoolConverter x:Key="NegateBool" />
+    <conv:NegateBoolConverter x:Key="NegateBool" />
     
     <Color x:Key="BackgroundColor">White</Color>
     <Color x:Key="MainTextColor">Black</Color>
@@ -16,6 +16,7 @@
     <Color x:Key="EntryDisabledBackgroundColor">WhiteSmoke</Color>
     <Color x:Key="ButtonBackgroundColor">#E6E6E6</Color>
     <Color x:Key="ButtonTextColor">Black</Color>
+    <Color x:Key="ListViewBackgroundColor">WhiteSmoke</Color>>
     
     <OnPlatform x:Key="AccentColor" x:TypeArguments="Color"
            iOS="Accent"
@@ -32,6 +33,12 @@
         <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="FontSize" Value="Medium" />
         <Setter Property="Margin" Value="0,12,0,4" />
+        <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
+    </Style>
+
+    <Style x:Key="LabelHeaderFlyoutTitle" TargetType="Label">
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="24" />
         <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
     </Style>
 
@@ -81,4 +88,9 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style TargetType="ListView">
+        <Setter Property="BackgroundColor" Value="{DynamicResource ListViewBackgroundColor}" />
+    </Style>
+   
 </ResourceDictionary>

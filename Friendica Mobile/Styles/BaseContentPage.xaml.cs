@@ -23,6 +23,8 @@ namespace Friendica_Mobile.Styles
             {
                 var control = (BaseContentPage)bindable;
                 control.PageContentContainer.Content = control.PageContent;
+                // reload the resources for the selected theme to update the dynamicresources withing pagecontent
+                control.PageContent.SizeChanged += (sender, e) => { App.DefineResources(); };
             });
 
 

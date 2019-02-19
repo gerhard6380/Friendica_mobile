@@ -2,6 +2,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:styles="clr-namespace:Friendica_Mobile.Styles"
+             xmlns:controls="clr-namespace:SeeberXamarin.Controls"
              x:Class="Friendica_Mobile.Styles.CustomNavigationButton">
     <ContentView.Content>
         <Grid x:Name="GridButton"
@@ -17,7 +18,7 @@
                           Opacity="0.5" />
             
                     <!-- FontIconLabel needed to activate renderer on android -->
-                    <styles:FontIconLabel x:Name="LabelFontIcon"
+                    <controls:FontIconLabel x:Name="LabelFontIcon"
                            TextColor="{DynamicResource NavigationTextColor}"
                            Text="."
                            FontSize="20"

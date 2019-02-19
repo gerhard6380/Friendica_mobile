@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                    xmlns:styles="clr-namespace:Friendica_Mobile.Styles"
+                    xmlns:controls="clr-namespace:SeeberXamarin.Controls"
+                    x:Class="Friendica_Mobile.FriendicaDataTemplates">
+
+    <!-- displaying contacts in settings for selecting standard ACL rights -->
+    <DataTemplate x:Key="TemplateListViewSettingsContacts">
+        <ViewCell>
+            <Grid HeightRequest="48">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="60" />
+                </Grid.ColumnDefinitions>
+                <BoxView Grid.Column="0" Grid.ColumnSpan="3"
+                         BackgroundColor="{DynamicResource AccentColor}"
+                         IsVisible="{Binding IsSelected}"
+                         Opacity="0.3" />
+                <Image Grid.Column="0"
+                       WidthRequest="48"
+                       HeightRequest="48"
+                       Source="{Binding Data.UserProfileImageUrlHttps}" />
+                <Label Grid.Column="1" 
+                       VerticalTextAlignment="Center"
+                       TextColor="Gray"
+                       IsVisible="{Binding IsSelected, Converter={StaticResource NegateBool}}"
+                       Text="{Binding Data.UserName}" />
+                <Label Grid.Column="1" 
+                       VerticalTextAlignment="Center"
+                       TextColor="{DynamicResource AccentColor}"
+                       IsVisible="{Binding IsSelected}"
+                       Text="{Binding Data.UserName}" />
+                <controls:CustomSwitch x:Name="SwitchIsSelected" 
+                                       Grid.Column="2" 
+                                       Margin="0,0,12,0"
+                                       VerticalOptions="Center"
+                                       IsToggled="{Binding IsSelected}"
+                                       HorizontalOptions="End"/>
+            </Grid>
+        </ViewCell>
+    </DataTemplate>
+
+    <!-- displaying groups in settings for selecting standard ACL rights -->
+    <DataTemplate x:Key="TemplateListViewSettingsGroups">
+        <ViewCell>
+            <Grid HeightRequest="48">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="60" />
+                </Grid.ColumnDefinitions>
+                <BoxView Grid.Column="0" Grid.ColumnSpan="3"
+                         BackgroundColor="{DynamicResource AccentColor}"
+                         IsVisible="{Binding IsSelected}"
+                         Opacity="0.3" />
+                <controls:FontIconLabel Grid.Column="0"
+                                        TextColor="LightGray"
+                                        Text="{x:Static styles:Icon.FIContactGroup}"
+                                        HorizontalOptions="Center"
+                                        HorizontalTextAlignment="Center"
+                                        VerticalTextAlignment="Center"
+                                        FontSize="20"
+                                        HeightRequest="48"/>
+                <Label Grid.Column="1" 
+                       VerticalTextAlignment="Center"
+                       TextColor="Gray"
+                       IsVisible="{Binding IsSelected, Converter={StaticResource NegateBool}}"
+                       Text="{Binding Data.GroupName}" />
+                <Label Grid.Column="1" 
+                       VerticalTextAlignment="Center"
+                       TextColor="{DynamicResource AccentColor}"
+                       IsVisible="{Binding IsSelected}"
+                       Text="{Binding Data.GroupName}" />
+                <controls:CustomSwitch x:Name="SwitchIsSelected" 
+                                       Grid.Column="2" 
+                                       Margin="0,0,12,0"
+                                       VerticalOptions="Center"
+                                       IsToggled="{Binding IsSelected}"
+                                       HorizontalOptions="End"/>
+            </Grid>
+        </ViewCell>
+    </DataTemplate>
+</ResourceDictionary>

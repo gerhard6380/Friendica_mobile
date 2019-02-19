@@ -15,7 +15,8 @@ namespace SeeberXamarin.Controls
 
         private async void CustomButton_Clicked(object sender, System.EventArgs e)
         {
-            if (Device.RuntimePlatform != Device.WinPhone)
+            // TODO: Device.WinPhone fehlt nun
+            if (Device.RuntimePlatform != Device.UWP)
             {
                 var button = sender as Button;
                 await button.ScaleTo(1.05, 150);
