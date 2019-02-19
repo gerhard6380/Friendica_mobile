@@ -1,8 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="Friendica_Mobile.Views.Help">
-    <ContentPage.Content>
-        <Label Text="Das ist die Hilfe-Seite der App" />
-    </ContentPage.Content>
-</ContentPage>
+<styles:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                        xmlns:vm="clr-namespace:Friendica_Mobile.ViewModel"
+                        xmlns:i18n="clr-namespace:Friendica_Mobile"
+                        xmlns:controls="clr-namespace:SeeberXamarin.Controls"
+                        xmlns:styles="clr-namespace:Friendica_Mobile.Styles"
+                        x:Class="Friendica_Mobile.Views.Help">
+
+    <ContentPage.BindingContext>
+        <vm:HelpViewModel />
+    </ContentPage.BindingContext>
+    
+    <styles:BaseContentPage.PageContent>
+        <ScrollView>
+            <StackLayout>
+                <!-- introduction to Friendica Mobile Support forum button -->
+                <Label Text="{i18n:Translate textblockHelpAppSupportpageHeader_Text}"
+                       Style="{StaticResource LabelHeader1}" />
+                <Label Text="{i18n:Translate textHelpAppSupport1_Text}"
+                       Margin="28,0,0,12" />
+                <Label Text="{i18n:Translate textHelpAppSupport2_Text}"
+                       Margin="28,0,0,12" />
+                <controls:CustomButton x:Name="ButtonLinkAppSupportpage"
+                                       Margin="28,0,0,24"
+                                       Text="{i18n:Translate buttonLinkAppSupportpage_Content}"
+                                       Command="{Binding LinkAppSupportpageCommand}" />
+                <!-- TODO: implement video playback for Youtube videos -->
+
+                <!-- introduction to general help resources -->
+                <Label Text="{i18n:Translate textblockHelpFriendicaSupportHeader_Text}"
+                       Style="{StaticResource LabelHeader1}" />
+                <Label Text="{i18n:Translate textHelpFriendicaSupport_Text}"
+                       Margin="28,0,0,12" />
+                <controls:CustomButton x:Name="ButtonLinkFriendicaSupport"
+                                       Margin="28,0,0,24"
+                                       Text="Friendica Support"
+                                       Command="{Binding LinkFriendicaSupportCommand}" />
+                <Label Text="{i18n:Translate textHelpFriendicaDevelopers_Text}"
+                       Margin="28,0,0,12" />
+                <controls:CustomButton x:Name="ButtonLinkFriendicaDevelopers"
+                                       Margin="28,0,0,24"
+                                       Text="Friendica Developers"
+                                       Command="{Binding LinkFriendicaDevelopersCommand}" />
+                <Label Margin="28,0,0,24">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{i18n:Translate textHelpFriendicaOthers1_Text}" />
+                            <Span Text=" " />
+                            <Span x:Name="SpanGithubLink" Text="Github" ForegroundColor="Blue"
+                                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding HyperlinkGithubCommand}" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                            <Span Text=". " />
+                            <Span Text="{i18n:Translate textHelpFriendicaOthers2_Text}" />
+                            <Span Text=" " />
+                            <Span x:Name="SpanFriendicaLink" Text="friendi.ca" ForegroundColor="Blue"
+                                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding HyperlinkFriendicaCommand}" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                            <Span Text="." />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+        </ScrollView>
+    </styles:BaseContentPage.PageContent>        
+</styles:BaseContentPage>

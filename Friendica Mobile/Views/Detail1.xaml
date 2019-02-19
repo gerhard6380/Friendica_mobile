@@ -5,6 +5,7 @@
             xmlns:views="clr-namespace:Friendica_Mobile.Views"
              xmlns:vm="clr-namespace:Friendica_Mobile.ViewModel"
              xmlns:i18n="clr-namespace:Friendica_Mobile"
+             xmlns:controls="clr-namespace:SeeberXamarin.Controls"
              xmlns:styles="clr-namespace:Friendica_Mobile.Styles"
              Title="Detail1"
              >
@@ -38,7 +39,7 @@
                          HorizontalOptions="End"
                          HeightRequest="48">
                 <StackLayout Orientation="Vertical">
-                 <styles:FontIconLabel x:Name="LabelFontIcon1"
+                 <controls:FontIconLabel x:Name="LabelFontIcon1"
                            TextColor="White"
                                        BackgroundColor="Lime"
                            Text="{x:Static styles:Icon.FIUserAdmin}"
@@ -60,7 +61,7 @@
                            HorizontalTextAlignment="Center" />
                 </StackLayout>
                 
-                <styles:FontIconLabel x:Name="LabelFontIcon2"
+                <controls:FontIconLabel x:Name="LabelFontIcon2"
                            TextColor="White"
                            Text="{x:Static styles:Icon.FIQRCode}"
                            FontSize="20"
@@ -69,7 +70,7 @@
                            VerticalOptions="CenterAndExpand"
                            HorizontalOptions="CenterAndExpand"
                            Grid.Column="0" />
-                <styles:FontIconLabel x:Name="LabelFontIcon3"
+                <controls:FontIconLabel x:Name="LabelFontIcon3"
                            TextColor="White"
                            Text="|"
                            FontSize="20"
@@ -78,7 +79,7 @@
                            VerticalOptions="CenterAndExpand"
                            HorizontalOptions="CenterAndExpand"
                            Grid.Column="0" />
-                <styles:FontIconLabel x:Name="LabelFontIcon4"
+                <controls:FontIconLabel x:Name="LabelFontIcon4"
                            TextColor="White"
                            Text="{x:Static styles:Icon.FIRolesAdmin}"
                            FontSize="20"
@@ -87,7 +88,7 @@
                            VerticalOptions="CenterAndExpand"
                            HorizontalOptions="CenterAndExpand"
                            Grid.Column="0" />
-                <styles:FontIconLabel x:Name="LabelFontIcon5"
+                <controls:FontIconLabel x:Name="LabelFontIcon5"
                            TextColor="White"
                            Text="{x:Static styles:Icon.FISettings}"
                            FontSize="20"
@@ -99,7 +100,7 @@
             </StackLayout>
             
         </Grid>
-        <styles:FontIconLabel x:Name="LabelFontIcon"
+        <controls:FontIconLabel x:Name="LabelFontIcon"
                            TextColor="White"
                            Text="..."
                            FontSize="20"
