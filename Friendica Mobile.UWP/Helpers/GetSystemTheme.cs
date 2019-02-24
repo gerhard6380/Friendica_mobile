@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(Friendica_Mobile.UWP.GetSystemTheme))]
@@ -28,6 +29,11 @@ namespace Friendica_Mobile.UWP
                 return Friendica_Mobile.App.ApplicationTheme.Dark;
             else
                 return Friendica_Mobile.App.ApplicationTheme.Light;
+        }
+
+        public string GetAppVersion()
+        {
+            return Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
     }
 }

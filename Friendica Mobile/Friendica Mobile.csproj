@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <NeutralLanguage>en</NeutralLanguage>
+    <NeutralLanguage>en-US</NeutralLanguage>
     <RootNamespace>Friendica_Mobile</RootNamespace>
     <AssemblyName>Friendica_Mobile</AssemblyName>
   </PropertyGroup>
@@ -33,11 +33,6 @@
     <EmbeddedResource Remove="Styles\CustomCommandBarItem %28Kopie%29.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="MultilingualResources\NavigationMenu.de.xlf" />
-    <None Remove="MultilingualResources\NavigationMenu.es.xlf" />
-    <None Remove="MultilingualResources\NavigationMenu.fr.xlf" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Update="Controls\CustomNavigationCounter.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -53,8 +48,23 @@
     <EmbeddedResource Update="Controls\CustomTabViewItem.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Strings\AppResources.de.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Strings\AppResources.es.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Strings\AppResources.fr.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Strings\AppResources.it.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Strings\AppResources.pt.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Strings\AppResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Styles\CustomNavigationButton.xaml">
@@ -129,7 +139,7 @@
       <DependentUpon>00_Shell.xaml</DependentUpon>
     </Compile>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\00_Shell.xaml.cs">
-      <DependentUpon>00_Shell.xaml</DependentUpon>
+      <DependentUpon>00_CustomShell.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

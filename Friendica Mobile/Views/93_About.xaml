@@ -1,8 +1,188 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="Friendica_Mobile.Views.About">
-    <ContentPage.Content>
-        <Label Text="Informationen zur App" />
-    </ContentPage.Content>
-</ContentPage>
+<styles:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                        xmlns:vm="clr-namespace:Friendica_Mobile.ViewModel"
+                        xmlns:i18n="clr-namespace:Friendica_Mobile"
+                        xmlns:controls="clr-namespace:SeeberXamarin.Controls"
+                        xmlns:styles="clr-namespace:Friendica_Mobile.Styles"
+                        x:Class="Friendica_Mobile.Views.About">
+
+    <ContentPage.BindingContext>
+        <vm:AboutViewModel />
+    </ContentPage.BindingContext>
+    
+    <styles:BaseContentPage.PageContent>
+        <ScrollView>
+            <StackLayout>
+                <!-- show version information about Friendica server of user -->
+                <Label Text="{i18n:Translate textblockAboutServer_Text}"
+                       Style="{StaticResource LabelHeader1}"/>
+                <!-- show infobox and provide button to jump to settings if nothing yet declared -->
+                <StackLayout x:Name="StackNoSettings"
+                             IsVisible="{Binding NoSettings}">
+                    <Label Text="{i18n:Translate textblockAboutNoSettings_Text}"
+                           Margin="28,0,0,0"
+                           TextColor="Red"
+                           FontAttributes="Italic" />
+                    <controls:CustomButton Text="{i18n:Translate textblockAboutButtonSettings_Text}"
+                                           Command="{Binding NavigateSettingsCommand}"
+                                           Margin="28,0,0,0" />
+                </StackLayout>
+                <!-- show version settings of server -->
+                <StackLayout x:Name="StackSettings"
+                             IsVisible="{Binding NoSettings, Converter={StaticResource NegateBool}}">
+                    <!-- server url -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="24" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{i18n:Translate textblockAboutServerUrl_Text}"
+                               FontAttributes="Bold"
+                               Grid.Column="1" />
+                        <Label Text="{Binding FriendicaServer}"
+                               Grid.Column="2" />
+                    </Grid>
+                    <!-- server version -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="24" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{i18n:Translate textblockAboutFriendicaVersion_Text}"
+                               FontAttributes="Bold"
+                               Grid.Column="1" />
+                        <Label Text="{Binding FriendicaVersion}"
+                               Grid.Column="2" />
+                    </Grid>
+                    <!-- db update version -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="24" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{i18n:Translate textblockAboutDbUpdateVersion_Text}"
+                               FontAttributes="Bold"
+                               Grid.Column="1" />
+                        <Label Text="{Binding DbUpdateVersion}"
+                               Grid.Column="2" />
+                    </Grid>
+                    <!-- DFRN protocol version -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="24" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{i18n:Translate textblockAboutDfrnProtocolVersion_Text}"
+                               FontAttributes="Bold"
+                               Grid.Column="1" />
+                        <Label Text="{Binding DfrnProtocolVersion}"
+                               Grid.Column="2" />
+                    </Grid>
+                    <!-- DFRN protocol version -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="24" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="E-Mail Admin:"
+                               FontAttributes="Bold"
+                               Grid.Column="1" />
+                        <Label Grid.Column="2">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="&#x2709; " />
+                                    <Span x:Name="SpanAdminEmail"
+                                          Text="{Binding SiteEmail}"
+                                          ForegroundColor="Blue"
+                                          TextDecorations="Underline">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding MailToAdminCommand}" />
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Grid>
+                </StackLayout>
+                
+                <!-- show app version -->
+                <StackLayout Orientation="Horizontal"
+                             VerticalOptions="Start">
+                    <Label Text="{i18n:Translate textblockAboutAppVersion_Text}"
+                           VerticalOptions="Start"
+                           Style="{StaticResource LabelHeader1}" />
+                    <Label Text="{Binding AppVersion}"
+                           Margin="0,12,0,4"
+                           VerticalOptions="End"/>
+                </StackLayout>
+
+                <!-- show information on developer -->
+                <Label Text="{i18n:Translate textblockAboutDeveloper_Text}"
+                       Style="{StaticResource LabelHeader1}" />
+                <Label Text="Gerhard Seeber"
+                       Margin="28,0,0,0" />
+                <Label Text="6380 St. Johann in Tirol"
+                       Margin="28,0,0,0" />
+                <Label Text="Austria, Europe"
+                       Margin="28,0,0,0" />
+
+                <!-- show short description of Friendica -->
+                <Label Text="{i18n:Translate textblockAboutDescriptionHeader_Text}"
+                       Style="{StaticResource LabelHeader1}" />
+                <Label Margin="28,0,0,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{i18n:Translate textAboutDescriptionPart1_Text}" />
+                            <Span Text=" " />
+                            <Span Text="https://friendi.ca"
+                                  TextColor="Blue"
+                                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding LinkFriendicaWebsiteCommand}" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Margin="28,0,0,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{i18n:Translate textAboutDescriptionPart2_Text}" />
+                            <Span Text=" &#x2709; " />
+                            <Span Text="friendicamobile@seeber.at"
+                                  TextColor="Blue"
+                                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding MailToDeveloperCommand}" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <!-- show info on data protection -->
+                <Label Text="{i18n:Translate textblockAboutDataProtectionHeader_Text}"
+                       Style="{StaticResource LabelHeader1}" />
+                <Label Text="{i18n:Translate textAboutDataProtection1_Text}"
+                       Margin="28,0,0,0" />
+                <Label Text="{i18n:Translate textAboutDataProtection2_Text}"
+                       Margin="28,0,0,0" />
+                <Label Text="{i18n:Translate textAboutDataProtection3_Text}"
+                       Margin="28,0,0,0" />
+
+                <!-- show disclaimer -->
+                <Label Text="{i18n:Translate textblockAboutDisclaimerHeader_Text}"
+                       Style="{StaticResource LabelHeader1}" />
+                <Label Text="{i18n:Translate textAboutDisclaimer_Text}"
+                       Margin="28,0,0,24" />
+                
+            </StackLayout>
+        </ScrollView>
+    </styles:BaseContentPage.PageContent>
+</styles:BaseContentPage>

@@ -492,12 +492,12 @@ Want to try again?</value>
     <comment>Name on top of view About</comment>
   </data>
   <data name="textAboutDataProtection1.Text" xml:space="preserve">
-    <value>You have probably selected Friendica as your preferred social network because you have doubts about privacy on the well-known global networks. Also I take privacy very seriously. The app is designed so that as little data as possible must be stored on the Smartphone - as a result, the data need to be reloaded from your server each time you start the app. </value>
+    <value>You have probably selected Friendica as your preferred social network because you have doubts about privacy on the well-known global networks. Also I take privacy very seriously. The app is designed so that as little data as possible must be stored on the device- as a result, the data need to be reloaded from your server each time you start the app. </value>
     <comment>About.xaml: general statement to data protection</comment>
   </data>
   <data name="textAboutDataProtection2.Text" xml:space="preserve">
-    <value>Storing user data on the device is necessary for some features, other apps may not access to this data. When roaming for using the app on multiple devices, it is necessary that some information are stored on Microsoft servers to keep the devices in sync. The app has been programmed so that stored information contain any personal data. 
-You can switch on or off these functions in the settings, as well as interactions with other apps (contacts, pictures, Cortana, etc.). </value>
+    <value>Storing user data on the device is necessary for some features, other apps may not access to this data.  
+You can switch on or off these functions in the settings, as well as interactions with other apps (contacts, pictures, speech recognition, etc.). </value>
     <comment>About.xaml: description of data exchange function for system integration</comment>
   </data>
   <data name="textAboutDataProtection3.Text" xml:space="preserve">
@@ -507,7 +507,7 @@ You can switch on or off these functions in the settings, as well as interaction
   <data name="textAboutDescriptionPart1.Text" xml:space="preserve">
     <value>Friendica (formerly known as the Friendika) is a decentralized social network, which is constructed as an open source application. In contrast to Facebook, the personal data are not collected in a central database and are therefore not exposed to be part of a central analysis for advertising purposes. 
  
-This app for Windows needs the credentials for an existing Friendica account. If you don't have yet your own Friendica server with an account, you must setup a server and an account before using this app. Alternatively you can register an account on a public servers. You will find a list of available servers, as well as more information about the Friendica project on the official project homepage </value>
+This app needs the credentials for an existing Friendica account. If you don't have yet your own Friendica server with an account, you must setup a server and an account before using this app. Alternatively you can register an account on a public servers. You will find a list of available servers, as well as more information about the Friendica project on the official project homepage </value>
     <comment>About.xaml: description text on Friendica project</comment>
   </data>
   <data name="textAboutDescriptionPart2.Text" xml:space="preserve">
@@ -893,7 +893,7 @@ You can additionally display the number of new notifications on the lock screen.
     <comment>Help.xaml: header for the part with help to Friendica in general</comment>
   </data>
   <data name="textHelpAppSupport1.Text" xml:space="preserve">
-    <value>Do you have questions about this app for Windows? Have problems occured to you, that you would like to share with the developers (bug reporting)? Are there important Friendica features which you are missing in the Windows app? Or do you want to keep yourself informed on the further development of the app?</value>
+    <value>Do you have questions about this app? Have problems occured to you, that you would like to share with the developers (bug reporting)? Are there important Friendica features which you are missing in the app? Or do you want to keep yourself informed on the further development of the app?</value>
     <comment>Help.xaml: 1st paragraph introducing link to forum "Friendica Mobile Support"</comment>
   </data>
   <data name="textHelpAppSupport2.Text" xml:space="preserve">
@@ -2246,5 +2246,13 @@ Do you want to continue?</value>
   <data name="TextSettingsDefaultOn" xml:space="preserve">
     <value>(Default: on)</value>
     <comment>Settings.xaml: showing a hint when the default settings is on/enabled</comment>
+  </data>
+  <data name="TextAboutAlertHeaderLoading" xml:space="preserve">
+    <value>Loading config</value>
+    <comment>About.xaml: header in alert dialog to ask user for reloading config if error occurred</comment>
+  </data>
+  <data name="TextAboutLoadingConfig" xml:space="preserve">
+    <value>Loading config data of server...</value>
+    <comment>About.xaml: showing server activity during loading config data of server (version, db version etc.)</comment>
   </data>
 </root>

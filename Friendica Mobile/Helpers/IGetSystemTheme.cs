@@ -9,5 +9,8 @@ namespace Friendica_Mobile
         // depending on the system we will try to get the system default theme (UWP, macos?)
         // secondly we will check the user settings, as user can define a preferred theme within the app
         // as a fallback the system will define Light theme as a default value
+
+        // get appversion from the platform assemblies
+        string GetAppVersion();
     }
 }

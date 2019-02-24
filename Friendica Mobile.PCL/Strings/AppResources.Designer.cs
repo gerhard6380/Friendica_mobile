@@ -2826,7 +2826,16 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die You have probably selected Friendica as your preferred social network because you have doubts about privacy on the well-known global networks. Also I take privacy very seriously. The app is designed so that as little data as possible must be stored on the Smartphone - as a result, the data need to be reloaded from your server each time you start the app.  ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Loading config ähnelt.
+        /// </summary>
+        public static string TextAboutAlertHeaderLoading {
+            get {
+                return ResourceManager.GetString("TextAboutAlertHeaderLoading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You have probably selected Friendica as your preferred social network because you have doubts about privacy on the well-known global networks. Also I take privacy very seriously. The app is designed so that as little data as possible must be stored on the device- as a result, the data need to be reloaded from your server each time you start the app.  ähnelt.
         /// </summary>
         public static string textAboutDataProtection1_Text {
             get {
@@ -2835,8 +2844,8 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Storing user data on the device is necessary for some features, other apps may not access to this data. When roaming for using the app on multiple devices, it is necessary that some information are stored on Microsoft servers to keep the devices in sync. The app has been programmed so that stored information contain any personal data. 
-        ///You can switch on or off these functions in the settings, as well as interactions with other apps (contacts, pictures, Cortana, etc.).  ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Storing user data on the device is necessary for some features, other apps may not access to this data.  
+        ///You can switch on or off these functions in the settings, as well as interactions with other apps (contacts, pictures, speech recognition, etc.).  ähnelt.
         /// </summary>
         public static string textAboutDataProtection2_Text {
             get {
@@ -2856,7 +2865,7 @@ namespace Friendica_Mobile.PCL.Strings {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Friendica (formerly known as the Friendika) is a decentralized social network, which is constructed as an open source application. In contrast to Facebook, the personal data are not collected in a central database and are therefore not exposed to be part of a central analysis for advertising purposes. 
         /// 
-        ///This app for Windows needs the credentials for an existing Friendica account. If you don&apos;t have yet your own Friendica server with an account, you must setup a server and an account before using this app. [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///This app needs the credentials for an existing Friendica account. If you don&apos;t have yet your own Friendica server with an account, you must setup a server and an account before using this app. Alternative [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         public static string textAboutDescriptionPart1_Text {
             get {
@@ -2879,6 +2888,15 @@ namespace Friendica_Mobile.PCL.Strings {
         public static string textAboutDisclaimer_Text {
             get {
                 return ResourceManager.GetString("textAboutDisclaimer.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Loading config data of server... ähnelt.
+        /// </summary>
+        public static string TextAboutLoadingConfig {
+            get {
+                return ResourceManager.GetString("TextAboutLoadingConfig", resourceCulture);
             }
         }
         
@@ -4373,7 +4391,7 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Do you have questions about this app for Windows? Have problems occured to you, that you would like to share with the developers (bug reporting)? Are there important Friendica features which you are missing in the Windows app? Or do you want to keep yourself informed on the further development of the app? ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Do you have questions about this app? Have problems occured to you, that you would like to share with the developers (bug reporting)? Are there important Friendica features which you are missing in the app? Or do you want to keep yourself informed on the further development of the app? ähnelt.
         /// </summary>
         public static string textHelpAppSupport1_Text {
             get {

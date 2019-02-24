@@ -479,15 +479,15 @@ voglia di provare di nuovo?</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Name on top of view About</note>
         </trans-unit>
         <trans-unit id="textAboutDataProtection1.Text" translate="yes" xml:space="preserve">
-          <source>You have probably selected Friendica as your preferred social network because you have doubts about privacy on the well-known global networks. Also I take privacy very seriously. The app is designed so that as little data as possible must be stored on the Smartphone - as a result, the data need to be reloaded from your server each time you start the app. </source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Probabilmente avete selezionato Friendica come il tuo social network preferito perché hai dubbi sulla privacy sulle reti globali, ben note. Inoltre prendo molto sul serio la privacy. L'app è progettato in modo che come pochi dati come possibile deve essere memorizzati sullo Smartphone - di conseguenza, i dati devono essere ricaricati dal server ogni volta che si avvia l'applicazione. </target>
+          <source>You have probably selected Friendica as your preferred social network because you have doubts about privacy on the well-known global networks. Also I take privacy very seriously. The app is designed so that as little data as possible must be stored on the device- as a result, the data need to be reloaded from your server each time you start the app. </source>
+          <target state="translated">Probabilmente avete selezionato Friendica come il tuo social network preferito perché hai dubbi sulla privacy sulle reti globali, ben note. Inoltre prendo molto sul serio la privacy. L'app è progettato in modo che come pochi dati come possibile deve essere memorizzati sullo dispositivo - di conseguenza, i dati devono essere ricaricati dal server ogni volta che si avvia l'applicazione. </target>
           <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: general statement to data protection</note>
         </trans-unit>
         <trans-unit id="textAboutDataProtection2.Text" translate="yes" xml:space="preserve">
-          <source>Storing user data on the device is necessary for some features, other apps may not access to this data. When roaming for using the app on multiple devices, it is necessary that some information are stored on Microsoft servers to keep the devices in sync. The app has been programmed so that stored information contain any personal data. 
-You can switch on or off these functions in the settings, as well as interactions with other apps (contacts, pictures, Cortana, etc.). </source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Archiviazione dei dati utente sul dispositivo è necessario per alcune funzionalità, altre applicazioni non possono accedere a questi dati. Durante il roaming per usare l'app su più dispositivi, è necessario che alcune informazioni sono memorizzate sui server di Microsoft per mantenere sincronizzati i dispositivi. L'app è stata programmata in modo che informazioni memorizzate contengono dati personali. 
-Può attivare o disattivare queste funzioni in impostazioni, così come interazioni con altre applicazioni (contatti, foto, Cortana, ecc.). </target>
+          <source>Storing user data on the device is necessary for some features, other apps may not access to this data.  
+You can switch on or off these functions in the settings, as well as interactions with other apps (contacts, pictures, speech recognition, etc.). </source>
+          <target state="translated">Archiviazione dei dati utente sul dispositivo è necessario per alcune funzionalità, altre applicazioni non possono accedere a questi dati. 
+Può attivare o disattivare queste funzioni in impostazioni, così come interazioni con altre applicazioni (contatti, foto, riconoscimento vocale, ecc.). </target>
           <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: description of data exchange function for system integration</note>
         </trans-unit>
         <trans-unit id="textAboutDataProtection3.Text" translate="yes" xml:space="preserve">
@@ -498,10 +498,10 @@ Può attivare o disattivare queste funzioni in impostazioni, così come interazi
         <trans-unit id="textAboutDescriptionPart1.Text" translate="yes" xml:space="preserve">
           <source>Friendica (formerly known as the Friendika) is a decentralized social network, which is constructed as an open source application. In contrast to Facebook, the personal data are not collected in a central database and are therefore not exposed to be part of a central analysis for advertising purposes. 
  
-This app for Windows needs the credentials for an existing Friendica account. If you don't have yet your own Friendica server with an account, you must setup a server and an account before using this app. Alternatively you can register an account on a public servers. You will find a list of available servers, as well as more information about the Friendica project on the official project homepage </source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Friendica (precedentemente noto come il Friendika) è una rete sociale decentralizzata, che è costruita come un'applicazione open source. A differenza di Facebook, i dati personali non sono raccolti in un database centrale e pertanto non sono esposti per essere parte di un'analisi centrale per scopi pubblicitari. 
+This app needs the credentials for an existing Friendica account. If you don't have yet your own Friendica server with an account, you must setup a server and an account before using this app. Alternatively you can register an account on a public servers. You will find a list of available servers, as well as more information about the Friendica project on the official project homepage </source>
+          <target state="translated">Friendica (precedentemente noto come il Friendika) è una rete sociale decentralizzata, che è costruita come un'applicazione open source. A differenza di Facebook, i dati personali non sono raccolti in un database centrale e pertanto non sono esposti per essere parte di un'analisi centrale per scopi pubblicitari. 
  
-Questa app per Windows richiede le credenziali per un account esistente Friendica. Se non hai ancora il tuo Friendica server con un account, è necessario impostare un server e un account prima di utilizzare questa app. in alternativa è possibile registrare un account su un server pubblico. Troverete un elenco di server disponibili, nonché ulteriori informazioni sul progetto Friendica sulla homepage ufficiale del progetto </target>
+Questa app richiede le credenziali per un account esistente Friendica. Se non hai ancora il tuo Friendica server con un account, è necessario impostare un server e un account prima di utilizzare questa app. in alternativa è possibile registrare un account su un server pubblico. Troverete un elenco di server disponibili, nonché ulteriori informazioni sul progetto Friendica sulla homepage ufficiale del progetto </target>
           <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: description text on Friendica project</note>
         </trans-unit>
         <trans-unit id="textAboutDescriptionPart2.Text" translate="yes" xml:space="preserve">
@@ -987,8 +987,8 @@ Chiedere al server avviene in background, l'app non verrà avviato a farlo. Si p
           <note from="MultilingualBuild" annotates="source" priority="2">Help.xaml: header for the part with help to Friendica in general</note>
         </trans-unit>
         <trans-unit id="textHelpAppSupport1.Text" translate="yes" xml:space="preserve">
-          <source>Do you have questions about this app for Windows? Have problems occured to you, that you would like to share with the developers (bug reporting)? Are there important Friendica features which you are missing in the Windows app? Or do you want to keep yourself informed on the further development of the app?</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Avete domande circa questo app per Windows? Problemi si sono verificati a voi, che volete condividere con gli sviluppatori (segnalazione bug)? Ci sono caratteristiche importanti di Friendica che ti stai perdendo nell'app Windows? O vuoi tenerti informato sull'ulteriore sviluppo dell'app?</target>
+          <source>Do you have questions about this app? Have problems occured to you, that you would like to share with the developers (bug reporting)? Are there important Friendica features which you are missing in the app? Or do you want to keep yourself informed on the further development of the app?</source>
+          <target state="translated">Avete domande circa questo app? Problemi si sono verificati a voi, che volete condividere con gli sviluppatori (segnalazione bug)? Ci sono caratteristiche importanti di Friendica che ti stai perdendo nell'app? O vuoi tenerti informato sull'ulteriore sviluppo dell'app?</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Help.xaml: 1st paragraph introducing link to forum "Friendica Mobile Support"</note>
         </trans-unit>
         <trans-unit id="textHelpAppSupport2.Text" translate="yes" xml:space="preserve">
@@ -2702,6 +2702,16 @@ Attualmente ciò non è possibile, perché non hai ancora impostato predefinite 
           <source>(Default: on)</source>
           <target state="translated">(Predefinito: on)</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: showing a hint when the default settings is on/enabled</note>
+        </trans-unit>
+        <trans-unit id="TextAboutAlertHeaderLoading" translate="yes" xml:space="preserve">
+          <source>Loading config</source>
+          <target state="translated">Caricamento configurazione</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: header in alert dialog to ask user for reloading config if error occurred</note>
+        </trans-unit>
+        <trans-unit id="TextAboutLoadingConfig" translate="yes" xml:space="preserve">
+          <source>Loading config data of server...</source>
+          <target state="translated" state-qualifier="mt-suggestion">Caricamento dei dati di configurazione del server...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: showing server activity during loading config data of server (version, db version etc.)</note>
         </trans-unit>
       </group>
     </body>

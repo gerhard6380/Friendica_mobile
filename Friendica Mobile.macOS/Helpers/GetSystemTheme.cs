@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Friendica_Mobile;
 using Xamarin.Forms;
 
@@ -25,6 +26,11 @@ namespace Friendica_Mobile.macOS
 
             // as a fallback the system will define Light theme as a default value
             return App.ApplicationTheme.Light;
+        }
+
+        public string GetAppVersion()
+        {
+            return Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
     }
 }

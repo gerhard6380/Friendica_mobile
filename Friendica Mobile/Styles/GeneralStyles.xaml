@@ -31,7 +31,7 @@
 
     <Style x:Key="LabelHeader1" TargetType="Label">
         <Setter Property="FontAttributes" Value="Bold" />
-        <Setter Property="FontSize" Value="Medium" />
+        <Setter Property="FontSize" Value="20" />
         <Setter Property="Margin" Value="0,12,0,4" />
         <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
     </Style>

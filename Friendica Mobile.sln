@@ -18,6 +18,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Friendica Mobile", "Friendica Mobile\Friendica Mobile.csproj", "{1EA70EC9-BA7C-4B4B-BC41-4C98B65E4189}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Friendica Mobile.UWP", "Friendica Mobile.UWP\Friendica Mobile.UWP.csproj", "{8141C51D-88BF-455D-91E3-F56DBA4FA0DA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6D25D629-13A8-4320-8E59-28B05319668E} = {6D25D629-13A8-4320-8E59-28B05319668E}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

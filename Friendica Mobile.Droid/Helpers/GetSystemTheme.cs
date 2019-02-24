@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(Friendica_Mobile.Droid.GetSystemTheme))]
@@ -17,6 +18,11 @@ namespace Friendica_Mobile.Droid
 
             // as a fallback the system will define Light theme as a default value
             return App.ApplicationTheme.Light;
+        }
+
+        public string GetAppVersion()
+        {
+            return Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
     }
 }

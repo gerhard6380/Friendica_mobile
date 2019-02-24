@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="a954654d-c6bc-446a-b947-5518925cd5fe" Publisher="CN=8fd53aab-34bd-46a7-a0a7-01a696c69984" Version="3.0.0.0" />
+  <Identity Name="a954654d-c6bc-446a-b947-5518925cd5fe" Publisher="CN=A24C543B-F1A6-46B4-8764-DEFA022C3251" Version="3.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="ec0cc741-fd3e-485c-81be-68815c480690" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Friendica_Mobile.UWP</DisplayName>
