@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Friendica_Mobile.Strings;
+using System;
 using System.Globalization;
 using System.Reflection;
 using System.Resources;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace Friendica_Mobile
@@ -25,8 +27,8 @@ namespace Friendica_Mobile
             {
                 ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
             }
-            else
-                ci = CultureInfo.CurrentUICulture;
+            //else
+              //  ci = CultureInfo.CurrentUICulture;
         }
         
         public object ProvideValue(IServiceProvider serviceProvider)
@@ -36,17 +38,25 @@ namespace Friendica_Mobile
 
             var translation = ResMgr.Value.GetString(Text, ci);
             if (translation == null)
+                translation = ResMgr.Value.GetString(Text.Replace("_", "."), ci);
+            
+            if (translation == null)
             {
                 // try to get the string with a dot intead of a dash if otherwise not working
-                translation = ResMgr.Value.GetString(Text.Replace("_", "."), ci);
+                translation = ResMgr.Value.GetString(Text.Replace(".", "/"), ci);
             }
-
+            if (translation == null)
+            {
+                // try to get the string with a dot intead of a dash if otherwise not working
+                translation = ResMgr.Value.GetString(Text.Replace("_", "/"), ci);
+            }
+        
             if (translation == null)
             {
 #if DEBUG
-                throw new ArgumentException(
-                    string.Format("Key '{0}' was not found in resources '{1}' for culture '{2}'.", Text, ResourceId, ci.Name),
-                    "Text");
+                //throw new ArgumentException(
+                //    string.Format("Key '{0}' was not found in resources '{1}' for culture '{2}'.", Text, ResourceId, ci.Name),
+                //    "Text");
 #else
                 translation = Text; // HACK: returns the key, which GETS DISPLAYED TO THE USER
 #endif
