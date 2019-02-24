@@ -21,7 +21,7 @@ namespace Friendica_Mobile.UWP
         private Xamarin.Forms.Grid GetNavigationPane()
         {
             // retrieve the Grid "GridNavigationPane" from MasterDetailControl
-            var shell = (_app.MainPage as NavigationPage).RootPage as Shell;
+            var shell = (_app.MainPage as NavigationPage).RootPage as CustomShell;
             // number 2 used, because 0 = Detail and 1 = GridTapRecognizer
             var pane = ((Grid)shell?.Content)?.Children[2] as Grid;
             return pane;

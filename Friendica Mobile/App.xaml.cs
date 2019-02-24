@@ -73,14 +73,14 @@ namespace Friendica_Mobile
                 AppResources.Culture = ci;
             }
 
-            MainPage = MasterDetailControl.Create<Views.Shell, ShellViewModel>();
+            MainPage = MasterDetailControl.Create<Views.CustomShell, ShellViewModel>();
 
             // navigate to first page
             // TODO: user can define which page should be the first one
             var nav = Application.Current.MainPage as NavigationPage;
-            var shell = nav.RootPage as Views.Shell;
+            var shell = nav.RootPage as Views.CustomShell;
             var vm = shell.BindingContext as ShellViewModel;
-            vm.Detail = new Views.Help();
+            vm.Detail = new Views.About();
         }
 
         public static void DefineResources()

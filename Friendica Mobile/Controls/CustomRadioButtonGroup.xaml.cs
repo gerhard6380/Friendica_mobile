@@ -15,7 +15,7 @@ namespace SeeberXamarin.Controls
                                                             true, BindingMode.OneWay,
                                                             propertyChanged: (bindable, value, newValue) =>
         {
-            (bindable as CustomRadioButtonGroup).FrameRadioButtonGroup.OutlineColor = ((bool)newValue) ? Color.LightGray : Color.Transparent;
+            (bindable as CustomRadioButtonGroup).FrameRadioButtonGroup.BorderColor = ((bool)newValue) ? Color.LightGray : Color.Transparent;
             (bindable as CustomRadioButtonGroup).FrameRadioButtonGroup.HasShadow = (bool)newValue;
         });
 

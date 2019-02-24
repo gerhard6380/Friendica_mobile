@@ -5,13 +5,13 @@ structure in SideContent property -->
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:styles="clr-namespace:Friendica_Mobile.Styles;assembly=Friendica_Mobile"
              xmlns:i18n="clr-namespace:Friendica_Mobile"
-             x:Class="Friendica_Mobile.Views.Shell">
+             x:Class="Friendica_Mobile.Views.CustomShell">
 
     <styles:MasterDetailControl.SideContent>
         <StackLayout Spacing="0">
             <!-- module "Home" -->
             <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIHome}"
-                                           Text="{i18n:Translate pageTitleHome.Text}"
+                                           Text="{i18n:Translate pageTitleHome_Text}"
                                            ClassName="Home"
                                            Command="{Binding ToHomeCommand}" />
             <!-- module "network" -->

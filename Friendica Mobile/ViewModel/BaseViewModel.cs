@@ -73,7 +73,7 @@ namespace Friendica_Mobile.ViewModel
         {
             // get shell environment and load the new page
             var nav = Application.Current.MainPage as NavigationPage;
-            var shell = nav.RootPage as Views.Shell;
+            var shell = nav.RootPage as Views.CustomShell;
             var vm = shell.BindingContext as ShellViewModel;
             vm.Detail = page;
         }
@@ -84,7 +84,7 @@ namespace Friendica_Mobile.ViewModel
             // dont't forget to add a xyzCounter property in ShellViewModel and the binding
             // to this property in the Shell.xaml
             var nav = Application.Current.MainPage as NavigationPage;
-            var shell = nav.RootPage as Views.Shell;
+            var shell = nav.RootPage as Views.CustomShell;
 
             var page = shell.Detail.GetType().Name;
 
@@ -99,7 +99,7 @@ namespace Friendica_Mobile.ViewModel
             // or when background activities started and probably could slow the app)
             // true = start spinning, false = stop spinning
             var nav = Application.Current.MainPage as NavigationPage;
-            var shell = nav.RootPage as Views.Shell;
+            var shell = nav.RootPage as Views.CustomShell;
             var vm = shell.BindingContext as ShellViewModel;
             vm.IsNavigationRunning = isRunning;
         }
@@ -107,7 +107,7 @@ namespace Friendica_Mobile.ViewModel
         internal void SetNavigationAllowed(bool navAllowed)
         {
             var nav = Application.Current.MainPage as NavigationPage;
-            var shell = nav.RootPage as Views.Shell;
+            var shell = nav.RootPage as Views.CustomShell;
             var vm = shell.BindingContext as ShellViewModel;
             vm.SideContentVisible = navAllowed;
             vm.NavigationAllowed = navAllowed;
