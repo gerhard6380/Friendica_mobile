@@ -113,6 +113,9 @@ namespace Friendica_Mobile.Styles
                     masterPage.ToolbarItems.Add(item);
 
                 masterPage.OnPropertyChanged("SideContentVisible");
+
+                // reload the dynamicresources
+                App.DefineResources();
             });
 
 
@@ -185,6 +188,11 @@ namespace Friendica_Mobile.Styles
 
         void ButtonHamburgerSymbol_Clicked(object sender, System.EventArgs e)
         {
+            OnButtonHamburgerSymbolPressed();
+        }
+
+        protected void OnButtonHamburgerSymbolPressed()
+        {
             if (GridNavigationPane.WidthRequest == 48)
             {
                 GridNavigationPane.WidthRequest = 240;
@@ -211,6 +219,11 @@ namespace Friendica_Mobile.Styles
         }
 
         void ButtonNavScrollUp_Clicked(object sender, System.EventArgs e)
+        {
+            DoNavScrollUp();
+        }
+
+        protected void DoNavScrollUp()
         {
             var newPos = (ScrollViewNavigation.ScrollY - 48 > 0) ? ScrollViewNavigation.ScrollY - 48 : 0;
             ScrollViewNavigation.ScrollToAsync(0, newPos, true);
