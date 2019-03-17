@@ -8,6 +8,8 @@ namespace Friendica_Mobile.macOS
         {
             NSApplication.Init();
             NSApplication.SharedApplication.Delegate = new AppDelegate();
+            // to avoid errors when trying to load an image where no image is available
+            ObjCRuntime.Class.ThrowOnInitFailure = false;
             NSApplication.Main(args);
         }
     }
