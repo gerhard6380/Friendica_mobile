@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Friendica_Mobile;
 using Xamarin.Forms;
 
 namespace SeeberXamarin.Controls
@@ -81,6 +82,7 @@ namespace SeeberXamarin.Controls
             this.GridTabContent.Children.Clear();
             if (item.TabContent != null)
                 this.GridTabContent.Children.Add(item.TabContent);
+            App.DefineResources();
         }
     }
 }
