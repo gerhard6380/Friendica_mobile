@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using AppKit;
+﻿using AppKit;
 using Friendica_Mobile.macOS;
 using Friendica_Mobile.Styles;
 using SeeberXamarin.Controls;
@@ -20,6 +19,8 @@ namespace Friendica_Mobile.macOS
                 return;
 
             Control.Bordered = false;
+            // implement tooltip shown if user places mouse cursor over button
+            Control.ToolTip = (e.NewElement as FramelessButton).Tooltip;
         }
 
     }

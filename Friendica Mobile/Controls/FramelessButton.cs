@@ -8,8 +8,16 @@ namespace SeeberXamarin.Controls
     /// </summary>
     public class FramelessButton : Button
     {
-        public FramelessButton()
+        // prepare Bindable Property for Tooltip 
+        public static readonly BindableProperty TooltipProperty = BindableProperty.Create("Tooltip",
+                                                            typeof(string), typeof(IconButton),
+                                                            "", BindingMode.OneWay);
+
+        public string Tooltip
         {
+            get { return (string)GetValue(TooltipProperty); }
+            set { SetValue(TooltipProperty, value); }
         }
+
     }
 }
