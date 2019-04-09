@@ -1,24 +1,302 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<styles:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+<?xml version="1.0" encoding="utf-8" ?>
+<styles:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                        xmlns:vm="clr-namespace:Friendica_Mobile.ViewModel"
-                        xmlns:controls="clr-namespace:SeeberXamarin.Controls"
                         xmlns:styles="clr-namespace:Friendica_Mobile.Styles"
+                        xmlns:controls="clr-namespace:SeeberXamarin.Controls"
+                        xmlns:i18n="clr-namespace:Friendica_Mobile"                        
+                        xmlns:vm="clr-namespace:Friendica_Mobile.ViewModel"
                         x:Class="Friendica_Mobile.Views.Contacts">
 
     <ContentPage.BindingContext>
         <vm:ContactsViewModel />
     </ContentPage.BindingContext>
     
-    <ContentPage.Content>
+    <!-- define the command bar for this page -->
+    <styles:BaseContentPage.CommandBarCommandList>
+        <styles:CustomCommandBarItem x:Name="CommandBarRefreshContacts"
+                                     FontIcon="{x:Static styles:Icon.FIRefresh}"
+                                     Text="{i18n:Translate appBarContactsRefresh_Label}"
+                                     IsEnabled="{Binding RefreshContactsEnabled}"
+                                     Level="Primary"
+                                     Priority="1"
+                                     Command="{Binding RefreshContactsCommand}" />
+        <styles:CustomCommandBarItem x:Name="CommandBarFindLocal"
+                                     FontIcon="{x:Static styles:Icon.FIFindLocal}"
+                                     Text="{i18n:Translate appBarContactsFindLocal_Label}"
+                                     Level="Primary"
+                                     Priority="2"
+                                     Command="{Binding FindLocalCommand}"/>
+        <styles:CustomCommandBarItem x:Name="CommandBarFindGlobal"
+                                     FontIcon="{x:Static styles:Icon.FIFindGlobal}"
+                                     Text="{i18n:Translate appBarContactsFindGlobal_Label}"
+                                     Level="Primary"
+                                     Priority="3"
+                                     Command="{Binding FindGlobalCommand}"/>
+    </styles:BaseContentPage.CommandBarCommandList>
+
+    <!-- define the content for this page -->
+    <styles:BaseContentPage.PageContent>
         <StackLayout>
-        <Label Text="Das ist der Kontakt-Bereich" />
-            <controls:CustomButton x:Name="SetValue"
-                                   Command="{Binding SetValueCommand}"
-                                   Text="Set value" />
-            <controls:CustomButton x:Name="ShowSetting"
-                                   Command="{Binding ShowSettingCommand}"
-                                   Text="Show setting" />
+            <!-- showing a hint if there are no settings and we will display sample data -->
+            <StackLayout IsVisible="{Binding NoSettings}">
+                <Label Text="{i18n:Translate textblockContactsNoSettings_Text}"
+                       TextColor="Red"
+                       FontAttributes="Italic" />
+                <controls:CustomButton Text="{i18n:Translate textblockAboutButtonSettings_Text}"
+                                       Command="{Binding NavigateSettingsCommand}" />    
             </StackLayout>
-    </ContentPage.Content>
+
+            <!-- showing a hint if there was an error during loading data -->
+            <StackLayout IsVisible="{Binding ServerActivityFailed}">
+                <Label Text="{Binding LabelServerActivityFailed}"
+                       TextColor="Red"
+                       FontAttributes="Italic" />
+            </StackLayout>
+
+            <!-- tab view to show the 3 main categories of contacts -->
+            <controls:CustomTabView IsVisible="{Binding ServerActivityFailed, Converter={StaticResource NegateBool}}">
+                <controls:CustomTabView.TabViewItems>
+                    <!-- displaying real friends (forum accounts are separated) -->
+                    <controls:CustomTabViewItem Header="{i18n:Translate pivotContactsFriends_Header}"
+                                                IsActiveTab="true">
+                        <controls:CustomTabViewItem.TabContent>
+                            <StackLayout>
+                               <!-- show info if there are no friends returned from server -->
+                                <StackLayout IsVisible="{Binding NoDataAvailableFriends}">
+                                    <Label Text="{i18n:Translate textblockNoDataAvailableFriends_Text}"
+                                           TextColor="Gray"
+                                           FontAttributes="Italic" />
+                                </StackLayout>
+
+                                <!-- show friends if data is returned -->
+                                <StackLayout IsVisible="{Binding NoDataAvailableFriends, Converter={StaticResource NegateBool}}">
+                                    <!-- show a search input box to filter the list -->
+                                    <StackLayout Orientation="Horizontal">
+                                        <controls:FontIconLabel Text="{x:Static styles:Icon.FISearch}"
+                                                                VerticalOptions="Center"
+                                                                TextColor="{DynamicResource MainTextColor}"/>
+                                        <Entry x:Name="EntrySearchFriends"
+                                               Keyboard="Text"
+                                               Text="{Binding SearchFriends}"
+                                               WidthRequest="200" />
+                                    </StackLayout>
+                                    <!-- show the (filtered) list of the friends -->
+                                    <ListView x:Name="ListViewFriends"
+                                              ItemsSource="{Binding FilteredFriends}"
+                                              HasUnevenRows="true"
+                                              HorizontalOptions="StartAndExpand"
+                                              SelectionMode="None"
+                                              ItemTemplate="{DynamicResource TemplateListViewContactsFriends}">
+                                        <ListView.Header>
+                                            <Label FontSize="12"
+                                                           FontAttributes="Italic"
+                                                           TextColor="Gray">
+                                                <Label.Text>
+                                                    <OnPlatform Android="{i18n:Translate LabelContactsHintFriendsAndroid}"
+                                                                        iOS="{i18n:Translate LabelContactsHintFriendsIos}"
+                                                                        Default="{i18n:Translate LabelContactsHintFriendsDefault}"/>
+                                                </Label.Text>
+                                            </Label>
+                                        </ListView.Header>
+                                        <ListView.Footer>
+                                            <Label />
+                                        </ListView.Footer>
+                                    </ListView>
+                                </StackLayout>
+                            </StackLayout>
+                        </controls:CustomTabViewItem.TabContent>
+                    </controls:CustomTabViewItem>
+
+                    <!-- displaying forum accounts -->
+                    <controls:CustomTabViewItem Header="{i18n:Translate pivotContactsForums_Header}">
+                        <controls:CustomTabViewItem.TabContent>
+                            <StackLayout>
+                               <!-- show info if there are no forums returned from server -->
+                                <StackLayout IsVisible="{Binding NoDataAvailableForums}">
+                                    <Label Text="{i18n:Translate textblockNoDataAvailableForums_Text}"
+                                           TextColor="Gray"
+                                           FontAttributes="Italic" />
+                                </StackLayout>
+
+                                <!-- show forums if data is returned -->
+                                <StackLayout IsVisible="{Binding NoDataAvailableForums, Converter={StaticResource NegateBool}}">
+                                    <!-- show a search input box to filter the list -->
+                                    <StackLayout Orientation="Horizontal">
+                                        <controls:FontIconLabel Text="{x:Static styles:Icon.FISearch}"
+                                                                VerticalOptions="Center"
+                                                                TextColor="{DynamicResource MainTextColor}"/>
+                                        <Entry x:Name="EntrySearchForums"
+                                               Keyboard="Text"
+                                               Text="{Binding SearchForums}"
+                                               WidthRequest="200" />
+                                    </StackLayout>
+                                    <!-- show the (filtered) list of the forums -->
+                                    <ListView x:Name="ListViewForums"
+                                              ItemsSource="{Binding FilteredForums}"
+                                              HorizontalOptions="StartAndExpand"
+                                              HasUnevenRows="true"
+                                              SelectionMode="None"
+                                              ItemTemplate="{StaticResource TemplateListViewContactsFriends}">
+                                        <ListView.Header>
+                                            <Label FontSize="12"
+                                                           FontAttributes="Italic"
+                                                           TextColor="Gray">
+                                                <Label.Text>
+                                                    <OnPlatform Android="{i18n:Translate LabelContactsHintFriendsAndroid}"
+                                                                        iOS="{i18n:Translate LabelContactsHintFriendsIos}"
+                                                                        Default="{i18n:Translate LabelContactsHintFriendsDefault}"/>
+                                                </Label.Text>
+                                            </Label>
+                                        </ListView.Header>
+                                        <ListView.Footer>
+                                            <Label />
+                                        </ListView.Footer>
+                                    </ListView> 
+                                </StackLayout>
+                            </StackLayout>
+                        </controls:CustomTabViewItem.TabContent>
+                    </controls:CustomTabViewItem>
+
+                    <!-- displaying groups of user -->
+                    <controls:CustomTabViewItem Header="{i18n:Translate pivotContactsGroups_Header}">
+                        <controls:CustomTabViewItem.TabContent>
+                            <Grid x:Name="GridContactsGroups">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Stack with the list of groups -->
+                                <StackLayout x:Name="StackLayoutGroups"
+                                             Grid.Column="0"
+                                             Grid.ColumnSpan="2">
+                                    <!-- show info if there are no groups returned from server -->
+                                    <StackLayout IsVisible="{Binding NoDataAvailableGroups}">
+                                        <Label Text="{i18n:Translate textblockNoDataAvailableGroups_Text}"
+                                               TextColor="Gray"
+                                               FontAttributes="Italic" />
+                                    </StackLayout>
+                                
+                                    <!-- show groups if data is returned -->
+                                    <Grid x:Name="GridGroupList"
+                                          IsVisible="{Binding NoDataAvailableGroups, Converter={StaticResource NegateBool}}">
+                                        <StackLayout>
+                                            <!-- button to add a new group -->
+                                            <controls:CustomButton Text="{i18n:Translate buttonContactsAddGroup_Content}"
+                                                                   Command="{Binding CreateNewGroupCommand}" />  
+                                            <!-- list of all groups available on server -->
+                                            <ListView x:Name="ListViewGroups"
+                                                      ItemsSource="{Binding FilteredGroups}"
+                                                      HorizontalOptions="StartAndExpand"
+                                                      HasUnevenRows="true"
+                                                      SelectionMode="Single"
+                                                      ItemTapped="ListViewGroups_ItemTapped"
+                                                      ItemTemplate="{StaticResource TemplateListViewContactsGroups}">
+                                                <ListView.Header>
+                                                    <Label FontSize="12"
+                                                           FontAttributes="Italic"
+                                                           TextColor="Gray">
+                                                    <Label.Text>
+                                                            <OnPlatform Android="{i18n:Translate LabelContactsHintGroupsAndroid}"
+                                                                        iOS="{i18n:Translate LabelContactsHintGroupsIos}"
+                                                                        Default="{i18n:Translate LabelContactsHintGroupsDefault}"/>                                                       
+                                                        </Label.Text>
+                                                    </Label>
+                                                </ListView.Header>
+                                                <ListView.Footer>
+                                                    <Label />
+                                                </ListView.Footer>
+                                            </ListView>
+                                        </StackLayout>
+                                    </Grid>
+                                </StackLayout>
+
+                                <!-- Stack with the details of the selected group -->
+                                <Frame x:Name="FrameGroupDetails"
+                                       BorderColor="{DynamicResource AccentColor}"
+                                       BackgroundColor="{DynamicResource NavigationBackgroundColor}"
+                                       Grid.Column="1"
+                                       Grid.ColumnSpan="1"
+                                       VerticalOptions="Start"
+                                       IsVisible="{Binding IsGroupEditorVisible}">
+                                    <Grid>
+                                        <!-- details of the selected group -->
+                                        <StackLayout x:Name="StackLayoutGroupDetails">
+                                            <Label x:Name="LabelHeaderGroupEditor" 
+                                                   Text="{Binding GroupEditorHeader}"
+                                                   Style="{StaticResource LabelHeaderFlyoutTitle}" />
+                                            <StackLayout x:Name="StackLayoutGroupNumber" 
+                                                         Margin="0,16,0,0"
+                                                         IsVisible="{Binding IsGroupEditorInChangeMode}"
+                                                         Orientation="Horizontal">
+                                                <Label Text="{i18n:Translate textblockManageGroupGid_Text}"
+                                                       VerticalOptions="Center"
+                                                       Style="{StaticResource LabelHeader1WithoutMargin}" />
+                                                <Label Text="{Binding GroupInEditor.GroupGid}"
+                                                       VerticalOptions="Center"/>
+                                            </StackLayout>
+                                            <Label Text="{i18n:Translate textblockManageGroupName_Text}"
+                                                   Style="{StaticResource LabelHeader1}" />
+                                            <Entry x:Name="EntryGroupName"
+                                                   Text="{Binding GroupName}"
+                                                   WidthRequest="200"
+                                                   PropertyChanged="Entry_PropertyChanged"
+                                                   IsEnabled="{Binding IsGroupEditorInChangeMode, Converter={StaticResource NegateBool}}" />
+                                            <Label Text="{i18n:Translate textblockNoDataAvailableFriends_Text}"
+                                                   IsVisible="{Binding NoDataAvailableFriends}"
+                                                   TextColor="Gray"
+                                                   FontAttributes="Italic" />
+                                            <ListView x:Name="ListViewContacts"
+                                                      IsVisible="{Binding NoDataAvailableFriends, Converter={StaticResource NegateBool}}"
+                                                      Style="{StaticResource ListViewGroupEditor}"
+                                                      ItemsSource="{Binding FriendsInGroup}"
+                                                      HorizontalOptions="StartAndExpand"
+                                                      ItemSelected="ListViewContacts_ItemSelected"
+                                                      ItemTemplate="{StaticResource TemplateListViewSettingsContacts}">
+                                                <ListView.Footer>
+                                                    <Label />
+                                                </ListView.Footer>
+                                            </ListView> 
+                                        </StackLayout>
+
+                                        <!-- buttons for saving changes / cancelling group editing -->
+                                        <controls:IconButton FontIcon="{x:Static styles:Icon.FISave}"
+                                                             IsEnabled="{Binding IsGroupSaveEnabled}"
+                                                             Tooltip="{i18n:Translate ButtonGroupEditorSaveTooltip}"
+                                                             Command="{Binding GroupEditorSaveCommand}"
+                                                             BackgroundColor="{DynamicResource CommandBarBackgroundColor}"
+                                                             HorizontalOptions="End"
+                                                             Margin="0,0,52,0"/>
+                                        <controls:IconButton FontIcon="{x:Static styles:Icon.FICancel}"
+                                                             IsEnabled="true"
+                                                             Command="{Binding GroupEditorCancelCommand}"
+                                                             BackgroundColor="{DynamicResource CommandBarBackgroundColor}"
+                                                             HorizontalOptions="End"/>
+
+                                        <!-- button for selecting all friends (not forums) / deselecting all contacts -->
+                                        <StackLayout Orientation="Horizontal" 
+                                                     HorizontalOptions="End"
+                                                     Margin="0,72,0,0"
+                                                     Spacing="4"
+                                                     IsVisible="{Binding NoDataAvailableFriends, Converter={StaticResource NegateBool}}">
+                                            <controls:IconButton FontIcon="{x:Static styles:Icon.FISelectAll}"
+                                                                 Tooltip="{i18n:Translate ButtonGroupEditorSelectAllTooltip}"
+                                                                 BackgroundColor="{DynamicResource CommandBarBackgroundColor}"
+                                                                 Command="{Binding SelectAllCommand}"/>
+                                            <controls:IconButton FontIcon="{x:Static styles:Icon.FIDeselectAll}"
+                                                                 Tooltip="{i18n:Translate ButtonGroupEditorDeselectAllTooltip}"
+                                                                 BackgroundColor="{DynamicResource CommandBarBackgroundColor}"
+                                                                 Command="{Binding DeselectAllCommand}"/>    
+                                        </StackLayout>
+
+                                    </Grid>
+                                </Frame>
+                            </Grid>
+                       </controls:CustomTabViewItem.TabContent>
+                    </controls:CustomTabViewItem>
+                </controls:CustomTabView.TabViewItems>
+            </controls:CustomTabView>
+        </StackLayout> 
+    </styles:BaseContentPage.PageContent>
+ 
 </styles:BaseContentPage>

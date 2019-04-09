@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Input;
 using Newtonsoft.Json;
+using Xamarin.Forms;
 
 namespace Friendica_Mobile.Models
 {
@@ -76,5 +78,13 @@ namespace Friendica_Mobile.Models
 
         [JsonProperty(PropertyName = "network")]
         public string UserNetwork { get; set; }
+
+
+        private ICommand _openProfileCommand;
+        public ICommand OpenProfileCommand => _openProfileCommand ?? (_openProfileCommand = new Command(OpenProfile));
+        private void OpenProfile()
+        {
+            Launchers.OpenUrlWithZrl(UserStatusnetProfileUrl, true);
+        }
     }
 }

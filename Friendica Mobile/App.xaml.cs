@@ -80,7 +80,7 @@ namespace Friendica_Mobile
             var nav = Application.Current.MainPage as NavigationPage;
             var shell = nav.RootPage as Views.CustomShell;
             var vm = shell.BindingContext as ShellViewModel;
-            vm.Detail = new Views.About();
+            vm.Detail = new Views.Contacts();
         }
 
         public static void DefineResources()
@@ -92,7 +92,7 @@ namespace Friendica_Mobile
             Current.Resources["CommandBarBackgroundColor"] = (isDark) ? Color.FromHex("#282724") : Color.WhiteSmoke;
             Current.Resources["NavigationTextColor"] = (isDark) ? Color.White : Color.Black;
             Current.Resources["EntryBackgroundColor"] = (isDark) ? Color.FromHex("#999999") : Color.White;
-            Current.Resources["EntryDisabledBackgroundColor"] = (isDark) ? Color.FromHex("#333333") : Color.WhiteSmoke;
+            Current.Resources["EntryDisabledBackgroundColor"] = (isDark) ? Color.FromHex("#333333") : Color.LightGray;
             Current.Resources["ButtonBackgroundColor"] = (isDark) ? Color.FromHex("#333333") : Color.FromHex("#E6E6E6");
             if (Device.RuntimePlatform == Device.iOS)
                 Current.Resources["ButtonTextColor"] = Color.FromHex("#007AFF");

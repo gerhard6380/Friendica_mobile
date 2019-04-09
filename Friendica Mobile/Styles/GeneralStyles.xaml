@@ -36,6 +36,12 @@
         <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
     </Style>
 
+    <Style x:Key="LabelHeader1WithoutMargin" TargetType="Label">
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
+    </Style>
+
     <Style x:Key="LabelHeaderFlyoutTitle" TargetType="Label">
         <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="FontSize" Value="24" />
@@ -62,11 +68,13 @@
                      Value="true"
                      TargetType="Entry">
                 <Setter Property="BackgroundColor" Value="{DynamicResource EntryBackgroundColor}" />
+                <Setter Property="TextColor" Value="{DynamicResource MainTextColor}" />
             </Trigger>
             <Trigger Property="IsEnabled"
                      Value="false"
                      TargetType="Entry">
                 <Setter Property="BackgroundColor" Value="{DynamicResource EntryDisabledBackgroundColor}" />
+                <Setter Property="TextColor" Value="Gray" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -92,5 +100,9 @@
     <Style TargetType="ListView">
         <Setter Property="BackgroundColor" Value="{DynamicResource ListViewBackgroundColor}" />
     </Style>
-   
+
+    <Style x:Key="ListViewGroupEditor" TargetType="ListView">
+        <Setter Property="BackgroundColor" Value="{DynamicResource NavigationBackgroundColor}" />
+    </Style>
+    
 </ResourceDictionary>

@@ -128,7 +128,7 @@ namespace Friendica_Mobile.Styles
             (bindable as CustomCommandBarItem).ButtonCommandBarItemHorizontal.InputTransparent = !(bool)newvalue;
         }
 
-        // change enabled status of button 
+        // change orientation of button 
         private static void IsHorizontalValueChanged(BindableObject bindable, object oldvalue, object newvalue)
         {
             (bindable as CustomCommandBarItem).StackLayoutVertical.IsVisible = !(bool)newvalue;

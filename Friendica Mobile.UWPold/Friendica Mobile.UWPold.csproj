@@ -171,7 +171,6 @@
     <Compile Include="Converters\NetworkModeToIntConverter.cs" />
     <Compile Include="Converters\StartPageToIntConverter.cs" />
     <Compile Include="Converters\ToFlowDirectionConverter.cs" />
-    <Compile Include="Helpers\CustomEntryRenderer.cs" />
     <Compile Include="HttpRequests\AuthenticationTest.cs" />
     <Compile Include="HttpRequests\clsHttpRequests.cs" />
     <Compile Include="HttpRequests\clsHttpRequests_old.cs" />
@@ -189,9 +188,6 @@
     <Compile Include="HttpRequests\GetFriendicaNetwork.cs" />
     <Compile Include="HttpRequests\GetOEmbedYouTube.cs" />
     <Compile Include="LocalizeUWP.cs" />
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MessageDialogUWP.cs" />
     <Compile Include="Models\FriendicaPhotolist.cs" />
     <Compile Include="Models\FriendicaPhotoalbumSamples.cs" />
@@ -246,7 +242,6 @@
     <Compile Include="Mvvm\NetworkViewmodel.cs" />
     <Compile Include="Mvvm\NewPostViewmodel.cs" />
     <Compile Include="Mvvm\SettingsViewmodel.cs" />
-    <Compile Include="NavigationPaneAcrylic.cs" />
     <Compile Include="PreviewUnavailable.xaml.cs">
       <DependentUpon>PreviewUnavailable.xaml</DependentUpon>
     </Compile>
@@ -375,10 +370,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="PreviewUnavailable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -588,21 +579,21 @@
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>3.1.1</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms">
-      <Version>2.5.1.527436</Version>
-    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>xcopy "D:\Programme\Nextcloud\Visual Studio Projekte\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.de.resx" "$(ProjectDir)Strings\de\Resources.resw*" /Y
-xcopy "D:\Programme\Nextcloud\Visual Studio Projekte\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.resx" "$(ProjectDir)Strings\en\Resources.resw*" /Y
-xcopy "D:\Programme\Nextcloud\Visual Studio Projekte\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.es.resx" "$(ProjectDir)Strings\es\Resources.resw*" /Y
-xcopy "D:\Programme\Nextcloud\Visual Studio Projekte\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.fr.resx" "$(ProjectDir)Strings\fr\Resources.resw*" /Y
-xcopy "D:\Programme\Nextcloud\Visual Studio Projekte\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.it.resx" "$(ProjectDir)Strings\it\Resources.resw*" /Y
-xcopy "D:\Programme\Nextcloud\Visual Studio Projekte\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.pt.resx" "$(ProjectDir)Strings\pt\Resources.resw*" /Y</PreBuildEvent>
+    <PreBuildEvent>xcopy "D:\Programme\Nextcloud_dev\Visual Studio Projekte\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.de.resx" "$(ProjectDir)Strings\de\Resources.resw*" /Y
+xcopy "D:\Programme\Nextcloud_dev\Visual Studio Projekte\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.resx" "$(ProjectDir)Strings\en\Resources.resw*" /Y
+xcopy "D:\Programme\Nextcloud_dev\Visual Studio Projekte\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.es.resx" "$(ProjectDir)Strings\es\Resources.resw*" /Y
+xcopy "D:\Programme\Nextcloud_dev\Visual Studio Projekte\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.fr.resx" "$(ProjectDir)Strings\fr\Resources.resw*" /Y
+xcopy "D:\Programme\Nextcloud_dev\Visual Studio Projekte\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.it.resx" "$(ProjectDir)Strings\it\Resources.resw*" /Y
+xcopy "D:\Programme\Nextcloud_dev\Visual Studio Projekte\Friendica Mobile\Friendica Mobile.PCL\Strings\AppResources.pt.resx" "$(ProjectDir)Strings\pt\Resources.resw*" /Y</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -17,7 +17,6 @@ namespace Friendica_Mobile.UWP
 
             if (Control != null)
             {
-                // remove text "on" "off", because for Android and Ios we will add separate labels next to the switches
                 // change the requested theme according to the defined app theme 
                 Settings.AppThemeModeChanged += (sender, args) => { SetTheme(); };
                 SetTheme();
@@ -32,7 +31,10 @@ namespace Friendica_Mobile.UWP
                 if (Friendica_Mobile.App.SelectedTheme == Friendica_Mobile.App.ApplicationTheme.Light)
                     Control.RequestedTheme = Windows.UI.Xaml.ElementTheme.Light;
                 else
+                {
                     Control.RequestedTheme = Windows.UI.Xaml.ElementTheme.Dark;
+                    Control.Foreground = new SolidColorBrush(Colors.White);
+                }
             }
         }
 

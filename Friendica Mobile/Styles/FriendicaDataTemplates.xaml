@@ -2,6 +2,7 @@
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" 
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
                     xmlns:styles="clr-namespace:Friendica_Mobile.Styles"
+                    xmlns:i18n="clr-namespace:Friendica_Mobile"
                     xmlns:controls="clr-namespace:SeeberXamarin.Controls"
                     x:Class="Friendica_Mobile.FriendicaDataTemplates">
 
@@ -80,6 +81,69 @@
                                        IsToggled="{Binding IsSelected}"
                                        HorizontalOptions="End"/>
             </Grid>
+        </ViewCell>
+    </DataTemplate>
+
+    <!-- displaying friends/forums in Contacts.xaml -->
+    <DataTemplate x:Key="TemplateListViewContactsFriends">
+        <ViewCell>
+            <Grid Margin="0,4,0,24">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0"
+                       WidthRequest="48"
+                       VerticalOptions="Start"
+                       HorizontalOptions="Start"
+                       HeightRequest="48"
+                       Source="{Binding UserProfileImageUrlHttps}" />
+                <StackLayout Grid.Column="1">
+                    <Label FontAttributes="Bold"
+                           TextColor="Gray"
+                           SizeChanged="LabelContactsFriends_SizeChanged"
+                           FontSize="16"
+                           Text="{Binding UserName}" />
+                    <Label FontAttributes="Italic"
+                           SizeChanged="LabelContactsFriends_SizeChanged"
+                           TextColor="{DynamicResource MainTextColor}"
+                           FontSize="12"
+                           Text="{Binding UserUrl}" />
+                </StackLayout>
+            </Grid>
+            <ViewCell.ContextActions>  
+                <MenuItem Text="{i18n:Translate textblockShowProfile_Text}" 
+                          Command="{Binding OpenProfileCommand}" />  
+            </ViewCell.ContextActions>
+        </ViewCell>
+    </DataTemplate>
+
+    <!-- displaying groups in Contacts.xaml -->
+    <DataTemplate x:Key="TemplateListViewContactsGroups">
+        <ViewCell>
+            <Grid HeightRequest="48">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <BoxView BackgroundColor="{StaticResource AccentColor}" />
+                    <controls:FontIconLabel Text="{x:Static styles:Icon.FIContactGroup}"
+                                            TextColor="White"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Center"/>         
+                </Grid>
+                <Label Grid.Column="1"
+                       SizeChanged="LabelContactsFriends_SizeChanged"
+                       VerticalOptions="Center"
+                       FontSize="16"
+                       Text="{Binding GroupName}" />
+            </Grid>
+            <ViewCell.ContextActions>  
+                <MenuItem Text="{i18n:Translate MenuItemDelete}" 
+                          IsDestructive="true"
+                          Command="{Binding DeleteGroupCommand}" />  
+            </ViewCell.ContextActions>
         </ViewCell>
     </DataTemplate>
 </ResourceDictionary>

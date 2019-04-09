@@ -25,7 +25,7 @@ namespace Friendica_Mobile.macOS.Helpers
 
         void NewElement_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "IsEnabled")
+            if (Control != null && e.PropertyName == "IsEnabled")
             {
                 var entry = sender as Entry;
                 SetColors(entry); 

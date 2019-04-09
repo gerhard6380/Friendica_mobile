@@ -15,45 +15,21 @@ namespace Friendica_Mobile.ViewModel
         public ICommand  LinkAppSupportpageCommand => _linkAppSupportpageCommand ?? (_linkAppSupportpageCommand = new Command(LinkAppSupportpage));
         private void LinkAppSupportpage()
         {
-            string baseUrl = "https://friendica.hasecom.at/profile/friendicamobile{0}";
-            var profile = "";
-            if (Settings.IsFriendicaLoginDefined())
-            {
-                // show support page with zrl link of user
-                profile = "?zrl=" + Uri.EscapeUriString(Settings.FriendicaServer) + "/profile/" + Uri.EscapeUriString(Settings.FriendicaUsername);
-            }
-            var url = new Uri(String.Format(baseUrl, profile));
-            Device.OpenUri(url);
+            Launchers.OpenUrlWithZrl("https://friendica.hasecom.at/profile/friendicamobile", true);
         }
 
         private ICommand _linkFriendicaSupportCommand;
         public ICommand LinkFriendicaSupportCommand => _linkFriendicaSupportCommand ?? (_linkFriendicaSupportCommand = new Command(LinkFriendicaSupport));
         private void LinkFriendicaSupport()
         {
-            string baseUrl = "https://forum.friendi.ca/profile/helpers{0}";
-            var profile = "";
-            if (Settings.IsFriendicaLoginDefined())
-            {
-                // show support page with zrl link of user
-                profile = "?zrl=" + Uri.EscapeUriString(Settings.FriendicaServer) + "/profile/" + Uri.EscapeUriString(Settings.FriendicaUsername);
-            }
-            var url = new Uri(String.Format(baseUrl, profile));
-            Device.OpenUri(url);
+            Launchers.OpenUrlWithZrl("https://forum.friendi.ca/profile/helpers", true);
         }
 
         private ICommand _linkFriendicaDevelopersCommand;
         public ICommand LinkFriendicaDevelopersCommand => _linkFriendicaDevelopersCommand ?? (_linkFriendicaDevelopersCommand = new Command(LinkFriendicaDevelopers));
         private void LinkFriendicaDevelopers()
         {
-            string baseUrl = "https://forum.friendi.ca/profile/developers{0}";
-            var profile = "";
-            if (Settings.IsFriendicaLoginDefined())
-            {
-                // show support page with zrl link of user
-                profile = "?zrl=" + Uri.EscapeUriString(Settings.FriendicaServer) + "/profile/" + Uri.EscapeUriString(Settings.FriendicaUsername);
-            }
-            var url = new Uri(String.Format(baseUrl, profile));
-            Device.OpenUri(url);
+            Launchers.OpenUrlWithZrl("https://forum.friendi.ca/profile/developers", true);
         }
 
         private ICommand _hyperlinkGithubCommand;

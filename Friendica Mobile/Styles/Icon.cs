@@ -4,6 +4,7 @@ namespace Friendica_Mobile.Styles
 {
     public static class Icon
     {
+        // navigation icons
         public static readonly string FIHamburger = "\uE700"; // symbol showing 3 horizontal lines indicating the menu
         public static readonly string FIMore = "\uE712"; // symbol showing 3 dots to indicate more elements
         public static readonly string FIBackArrow = "\uE72B"; // arrow to left indicating back navigation
@@ -25,6 +26,14 @@ namespace Friendica_Mobile.Styles
         public static readonly string FIInfo = "\uE946"; // "i" in a circle to indicate further information
         public static readonly string FIExit = "\uE805"; // symbol of a moving man to indicate the exit button from the app
 
+        // user interaction
+        public static readonly string FIRefresh = "\uE72C"; // symbol showing circeling arrow indicating to refresh/reload data
+        public static readonly string FIFindLocal = "\uE8CE"; // symbol showing a mapped drive to indicate local search within server
+        public static readonly string FIFindGlobal = "\uE774"; // symbol showign a globe to indicate global search on public directory
+        public static readonly string FISearch = "\uE11A"; // symbol of a lens for searching
+        public static readonly string FISelectAll = "\uF0B5"; // symbol of 4 horizontal lines with a tick at each end
+        public static readonly string FIDeselectAll = "\uEA42"; // symbol of 4 horizontal lines with a dot at each end
+
         public static readonly string FICancelCircle = "\uEA39"; // "x" in a circle 
         public static readonly string FIUserAdmin = "\uEF58"; // symbol showing a user icon with a small gearwheel bottom right
         public static readonly string FIAddUser = "\uE8FA"; // symbol showing a user icon with a small plus sign bottom right
@@ -36,5 +45,8 @@ namespace Friendica_Mobile.Styles
         public static readonly string FICancel = "\uE711"; // symbol of an X for cancelling current activity 
         public static readonly string FIQRCode = "\uE8B3"; // symbol of a 2x2 table surrounded by dots simulating a QR code to scan
         public static readonly string FIRolesAdmin = "\uE7EF"; // symbol of a square with a shield indicating defending ACL
+
+
+
     }
 }

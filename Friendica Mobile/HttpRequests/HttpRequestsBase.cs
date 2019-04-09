@@ -165,10 +165,12 @@ namespace Friendica_Mobile.HttpRequests
             if (_isSampleMode)
                 return string.Empty;
 
-            var config = new HttpClientHandler()
+            var config = new HttpClientHandler();
+            if (_username != null && _password != null)
             {
-                Credentials = new NetworkCredential(_username, _password)
-            };
+                config.Credentials = new NetworkCredential(_username, _password);
+            }
+
             var httpClient = new HttpClient(config);
 
             var headers = httpClient.DefaultRequestHeaders;
@@ -240,8 +242,9 @@ namespace Friendica_Mobile.HttpRequests
                 var uri = new Uri(url);
                 try
                 {
-                    var jsonContent = new StringContent(content, System.Text.Encoding.UTF8, "application/json");
-                    var response = await httpClient.PostAsync(uri, jsonContent);
+                    var multipartContent = new MultipartFormDataContent(_boundary);
+                    multipartContent.Add(new StringContent(content), "json");
+                    var response = await httpClient.PostAsync(uri, multipartContent);
                     _statusCode = response.StatusCode;
                     _returnString = await response.Content.ReadAsStringAsync();
                     // TODO: rework Error Message reading

@@ -2712,6 +2712,74 @@ Atualmente isto não é possível, porque você ainda não definir as configura�
           <target state="translated">Carregando dados de configuração do servidor...</target>
           <note from="MultilingualBuild" annotates="source" priority="2">About.xaml: showing server activity during loading config data of server (version, db version etc.)</note>
         </trans-unit>
+        <trans-unit id="MessageDialogNoSettingsNoProfileUrl" translate="yes" xml:space="preserve">
+          <source>Normally your browser would now display the profile page of the selected user. But this is not possible for sample data in demo mode. </source>
+          <target state="translated">Normalmente, seu navegador agora exibe a página de perfil do usuário selecionado. Mas isso não é possível para dados de amostra no modo de demonstração.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Helpers/Launchers: if user tries to jump to the profile of a contact in demo mode, we tell him that there is no profile available.</note>
+        </trans-unit>
+        <trans-unit id="MenuItemDelete" translate="yes" xml:space="preserve">
+          <source>Delete</source>
+          <target state="translated" state-qualifier="mt-suggestion">Excluir</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">General use: Listviews (e.g. Groups in contacts module) can have a swipe action to delete the item - this is the caption for this action</note>
+        </trans-unit>
+        <trans-unit id="LabelContactsHintGroupsAndroid" translate="yes" xml:space="preserve">
+          <source>Tap on group for details. Tap and hold group for delete.</source>
+          <target state="translated">Toque no grupo para mais detalhes. Toque e segure o grupo para excluir.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: hint for actions on groups in Android</note>
+        </trans-unit>
+        <trans-unit id="LabelContactsHintGroupsDefault" translate="yes" xml:space="preserve">
+          <source>Click on group for details. Right click for delete.</source>
+          <target state="translated">Clique no grupo para detalhes. Clique com o botão direito para excluir.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: hint for actions on groups in UWP and MacOS</note>
+        </trans-unit>
+        <trans-unit id="LabelContactsHintGroupsIos" translate="yes" xml:space="preserve">
+          <source>Tap on group for details. Swipe left for delete</source>
+          <target state="translated">Toque no grupo para mais detalhes. Deslize para a esquerda para excluir.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: hint for actions on groups in ios</note>
+        </trans-unit>
+        <trans-unit id="ButtonGroupEditorSaveTooltip" translate="yes" xml:space="preserve">
+          <source>Saves changes on group to server</source>
+          <target state="translated">Salva as alterações no grupo para o servidor</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: tooltip for button to save changes shown on UWP Desktop and MacOS on mouseover</note>
+        </trans-unit>
+        <trans-unit id="ButtonGroupEditorDeselectAllTooltip" translate="yes" xml:space="preserve">
+          <source>Unselect all contacts for the group.</source>
+          <target state="translated">Desmarque todos os contatos para o grupo.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml. button in group editor to unselect all contacts from the list</note>
+        </trans-unit>
+        <trans-unit id="ButtonGroupEditorSelectAllTooltip" translate="yes" xml:space="preserve">
+          <source>Select all friends for the group (but no forums).</source>
+          <target state="translated">Selecione todos os amigos para o grupo (mas não há fóruns).</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: button in Group editor to select all friends from the list (but no forums)</note>
+        </trans-unit>
+        <trans-unit id="MessageDialogGroupEditorClose" translate="yes" xml:space="preserve">
+          <source>Your changes will not be saved on the server. Do you want to close the editor?</source>
+          <target state="translated">Suas alterações não serão salvas no servidor. Você quer fechar o editor?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: question to user when trying to close the group editor, asked for closing without saving</note>
+        </trans-unit>
+        <trans-unit id="MessageDialogGroupDeleteError" translate="yes" xml:space="preserve">
+          <source>Delete group - the server has returned this error: '{0}'</source>
+          <target state="translated">Excluir grupo - o servidor retornou este erro: '{0}'</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: error message if server returned error upon deleting a group of users, {0} is showing the error message in English</note>
+        </trans-unit>
+        <trans-unit id="LabelContactsHintFriendsAndroid" translate="yes" xml:space="preserve">
+          <source>Tap and hold contact for more options.</source>
+          <target state="translated">Toque e segure o contato para funções.
+</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: hint for actions on friends/forums in Android</note>
+        </trans-unit>
+        <trans-unit id="LabelContactsHintFriendsDefault" translate="yes" xml:space="preserve">
+          <source>Right click on contact for more options.</source>
+          <target state="translated">Clique com o botão direito no contato para mais funções.
+</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: hint for actions on friends/forums in UWP and MacOS</note>
+        </trans-unit>
+        <trans-unit id="LabelContactsHintFriendsIos" translate="yes" xml:space="preserve">
+          <source>Swipe contact left for more options.</source>
+          <target state="translated">Deslize o contato para a esquerda para mais funções.
+</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: hint for actions on friends/forums in ios</note>
+        </trans-unit>
       </group>
     </body>
   </file>

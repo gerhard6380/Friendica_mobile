@@ -83,7 +83,11 @@ namespace Friendica_Mobile.Styles
                 _listSecondary = new List<CustomCommandBarItem>();
 
                 // how many commands can we display in available space?
-                var maxPrimary = Convert.ToInt32(Math.Floor((App.ShellWidth - 48) / 72));
+                int maxPrimary = 0;
+                if (App.ShellWidth != 0)
+                    maxPrimary = Convert.ToInt32(Math.Floor((App.ShellWidth - 48) / 72));
+                else
+                    maxPrimary = 4;
 
                 // separate primary buttons from secondaries
                 foreach (var item in CommandList)

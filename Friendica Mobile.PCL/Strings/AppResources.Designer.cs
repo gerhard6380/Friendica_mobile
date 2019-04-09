@@ -685,6 +685,33 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Unselect all contacts for the group. ähnelt.
+        /// </summary>
+        public static string ButtonGroupEditorDeselectAllTooltip {
+            get {
+                return ResourceManager.GetString("ButtonGroupEditorDeselectAllTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Saves changes on group to server ähnelt.
+        /// </summary>
+        public static string ButtonGroupEditorSaveTooltip {
+            get {
+                return ResourceManager.GetString("ButtonGroupEditorSaveTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Select all friends for the group (but no forums). ähnelt.
+        /// </summary>
+        public static string ButtonGroupEditorSelectAllTooltip {
+            get {
+                return ResourceManager.GetString("ButtonGroupEditorSelectAllTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Insert ähnelt.
         /// </summary>
         public static string buttonInsertLink_Content {
@@ -1253,6 +1280,60 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Tap and hold contact for more options. ähnelt.
+        /// </summary>
+        public static string LabelContactsHintFriendsAndroid {
+            get {
+                return ResourceManager.GetString("LabelContactsHintFriendsAndroid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Right click on contact for more options. ähnelt.
+        /// </summary>
+        public static string LabelContactsHintFriendsDefault {
+            get {
+                return ResourceManager.GetString("LabelContactsHintFriendsDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Swipe contact left for more options. ähnelt.
+        /// </summary>
+        public static string LabelContactsHintFriendsIos {
+            get {
+                return ResourceManager.GetString("LabelContactsHintFriendsIos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Tap on group for details. Tap and hold group for delete. ähnelt.
+        /// </summary>
+        public static string LabelContactsHintGroupsAndroid {
+            get {
+                return ResourceManager.GetString("LabelContactsHintGroupsAndroid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Click on group for details. Right click for delete. ähnelt.
+        /// </summary>
+        public static string LabelContactsHintGroupsDefault {
+            get {
+                return ResourceManager.GetString("LabelContactsHintGroupsDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Tap on group for details. Swipe left for delete ähnelt.
+        /// </summary>
+        public static string LabelContactsHintGroupsIos {
+            get {
+                return ResourceManager.GetString("LabelContactsHintGroupsIos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Dark Mode ähnelt.
         /// </summary>
         public static string LabelSettingsAppThemeDarkMode {
@@ -1349,6 +1430,15 @@ namespace Friendica_Mobile.PCL.Strings {
         public static string menuflyoutSettings_Text {
             get {
                 return ResourceManager.GetString("menuflyoutSettings.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Delete ähnelt.
+        /// </summary>
+        public static string MenuItemDelete {
+            get {
+                return ResourceManager.GetString("MenuItemDelete", resourceCulture);
             }
         }
         
@@ -1533,6 +1623,24 @@ namespace Friendica_Mobile.PCL.Strings {
         public static string messageDialogGroupChangeSamples {
             get {
                 return ResourceManager.GetString("messageDialogGroupChangeSamples", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Delete group - the server has returned this error: &apos;{0}&apos; ähnelt.
+        /// </summary>
+        public static string MessageDialogGroupDeleteError {
+            get {
+                return ResourceManager.GetString("MessageDialogGroupDeleteError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Your changes will not be saved on the server. Do you want to close the editor? ähnelt.
+        /// </summary>
+        public static string MessageDialogGroupEditorClose {
+            get {
+                return ResourceManager.GetString("MessageDialogGroupEditorClose", resourceCulture);
             }
         }
         
@@ -1764,6 +1872,15 @@ namespace Friendica_Mobile.PCL.Strings {
         public static string messageDialogNewsfeedNotLikable {
             get {
                 return ResourceManager.GetString("messageDialogNewsfeedNotLikable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Normally your browser would now display the profile page of the selected user. But this is not possible for sample data in demo mode.  ähnelt.
+        /// </summary>
+        public static string MessageDialogNoSettingsNoProfileUrl {
+            get {
+                return ResourceManager.GetString("MessageDialogNoSettingsNoProfileUrl", resourceCulture);
             }
         }
         

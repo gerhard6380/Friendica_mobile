@@ -2255,4 +2255,56 @@ Do you want to continue?</value>
     <value>Loading config data of server...</value>
     <comment>About.xaml: showing server activity during loading config data of server (version, db version etc.)</comment>
   </data>
+  <data name="MessageDialogNoSettingsNoProfileUrl" xml:space="preserve">
+    <value>Normally your browser would now display the profile page of the selected user. But this is not possible for sample data in demo mode. </value>
+    <comment>Helpers/Launchers: if user tries to jump to the profile of a contact in demo mode, we tell him that there is no profile available.</comment>
+  </data>
+  <data name="MenuItemDelete" xml:space="preserve">
+    <value>Delete</value>
+    <comment>General use: Listviews (e.g. Groups in contacts module) can have a swipe action to delete the item - this is the caption for this action</comment>
+  </data>
+  <data name="LabelContactsHintGroupsAndroid" xml:space="preserve">
+    <value>Tap on group for details. Tap and hold group for delete.</value>
+    <comment>Contacts.xaml: hint for actions on groups in Android</comment>
+  </data>
+  <data name="LabelContactsHintGroupsDefault" xml:space="preserve">
+    <value>Click on group for details. Right click for delete.</value>
+    <comment>Contacts.xaml: hint for actions on groups in UWP and MacOS</comment>
+  </data>
+  <data name="LabelContactsHintGroupsIos" xml:space="preserve">
+    <value>Tap on group for details. Swipe left for delete</value>
+    <comment>Contacts.xaml: hint for actions on groups in ios</comment>
+  </data>
+  <data name="ButtonGroupEditorSaveTooltip" xml:space="preserve">
+    <value>Saves changes on group to server</value>
+    <comment>Contacts.xaml: tooltip for button to save changes shown on UWP Desktop and MacOS on mouseover</comment>
+  </data>
+  <data name="ButtonGroupEditorDeselectAllTooltip" xml:space="preserve">
+    <value>Unselect all contacts for the group.</value>
+    <comment>Contacts.xaml. button in group editor to unselect all contacts from the list</comment>
+  </data>
+  <data name="ButtonGroupEditorSelectAllTooltip" xml:space="preserve">
+    <value>Select all friends for the group (but no forums).</value>
+    <comment>Contacts.xaml: button in Group editor to select all friends from the list (but no forums)</comment>
+  </data>
+  <data name="MessageDialogGroupEditorClose" xml:space="preserve">
+    <value>Your changes will not be saved on the server. Do you want to close the editor?</value>
+    <comment>Contacts.xaml: question to user when trying to close the group editor, asked for closing without saving</comment>
+  </data>
+  <data name="MessageDialogGroupDeleteError" xml:space="preserve">
+    <value>Delete group - the server has returned this error: '{0}'</value>
+    <comment>Contacts.xaml: error message if server returned error upon deleting a group of users, {0} is showing the error message in English</comment>
+  </data>
+  <data name="LabelContactsHintFriendsAndroid" xml:space="preserve">
+    <value>Tap and hold contact for more options.</value>
+    <comment>Contacts.xaml: hint for actions on friends/forums in Android</comment>
+  </data>
+  <data name="LabelContactsHintFriendsDefault" xml:space="preserve">
+    <value>Right click on contact for more options.</value>
+    <comment>Contacts.xaml: hint for actions on friends/forums in UWP and MacOS</comment>
+  </data>
+  <data name="LabelContactsHintFriendsIos" xml:space="preserve">
+    <value>Swipe contact left for more options.</value>
+    <comment>Contacts.xaml: hint for actions on friends/forums in ios</comment>
+  </data>
 </root>

@@ -15,14 +15,10 @@ namespace Friendica_Mobile.macOS.Helpers
             base.OnElementChanged(e);
             if (e.OldElement == null)
             {
-                
-                var label = new NSTextField();
-                label.StringValue = e.NewElement.Text;
-                label.Bordered = false;
-                label.DrawsBackground = false;
-                label.TextColor = e.NewElement.TextColor.ToNSColor();
-                label.Font = NSFont.FromFontName("Segoe MDL2 Assets", 20);
-                SetNativeControl(label);
+                Control.Bordered = false;
+                Control.DrawsBackground = false;
+                Control.Font = NSFont.FromFontName("Segoe MDL2 Assets", 20);
+                Control.Selectable = false;
             }
         }
     }

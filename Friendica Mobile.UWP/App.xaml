@@ -3,7 +3,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Friendica_Mobile.UWP"
-    RequestedTheme="Light">
+    RequestedTheme="Light"
+    xmlns:Custom="using:Xamarin.Forms.Platform.UWP">
 
     <Application.Resources>
         <ResourceDictionary>

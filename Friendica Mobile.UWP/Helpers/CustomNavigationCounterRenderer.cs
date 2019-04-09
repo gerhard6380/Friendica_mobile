@@ -67,7 +67,7 @@ namespace Friendica_Mobile.UWP.Helpers
                 try { SetNativeControl(border); } catch { }
                 // vanish original counter
                 ((Xamarin.Forms.Frame)counter.Content).BackgroundColor = Xamarin.Forms.Color.Transparent;
-                ((Xamarin.Forms.Frame)counter.Content).BorderColor = Xamarin.Forms.Color.Transparent;
+                ((Xamarin.Forms.Frame)counter.Content).OutlineColor = Xamarin.Forms.Color.Transparent;
                 ((Xamarin.Forms.Frame)counter.Content).Content = null;
             }
             else

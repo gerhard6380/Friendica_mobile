@@ -34,6 +34,7 @@ namespace Friendica_Mobile.Styles
             }
         }
 
+        public event EventHandler UnallowedBackNavigationDetected;
 
         public MasterDetailControl()
         {
@@ -174,8 +175,13 @@ namespace Friendica_Mobile.Styles
             var viewModel = BindingContext as MasterDetailControlViewModel;
             if (viewModel != null)
             {
-                var navigation = (INavigation)viewModel;
-                navigation.PopAsync();
+                if (viewModel.NavigationAllowed)
+                {
+                    var navigation = (INavigation)viewModel;
+                    navigation.PopAsync();
+                }
+                else
+                    UnallowedBackNavigationDetected?.Invoke(this, EventArgs.Empty);
                 return true;
             }
             return base.OnBackButtonPressed();

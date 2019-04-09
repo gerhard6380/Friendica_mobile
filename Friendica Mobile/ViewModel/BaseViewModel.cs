@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Friendica_Mobile.Strings;
 using Friendica_Mobile.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -112,6 +113,8 @@ namespace Friendica_Mobile.ViewModel
             vm.SideContentVisible = navAllowed;
             vm.NavigationAllowed = navAllowed;
         }
+
+
 
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName]string propertyName = "",
