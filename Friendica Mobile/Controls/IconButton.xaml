@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:SeeberXamarin.Controls"
+             x:Class="SeeberXamarin.Controls.IconButton"
+             VerticalOptions="Start"
+             HorizontalOptions="Start">
+    <ContentView.Content>
+        <Grid x:Name="GridIconButton" 
+              WidthRequest="48"
+              HeightRequest="48">
+            <controls:FontIconLabel x:Name="LabelIconButton" 
+                                    Text="x"
+                                    TextColor="{DynamicResource NavigationTextColor}"
+                                    VerticalTextAlignment="Center"
+                                    HorizontalTextAlignment="Center"
+                                    FontSize="20" />
+            <controls:FramelessButton x:Name="ButtonIconButton" 
+                                      BackgroundColor="Transparent"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>
