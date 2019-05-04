@@ -432,6 +432,22 @@ namespace Friendica_Mobile.ViewModel
                 DefineDefaultCredentials();
         }
 
+        private ICommand _resetSettingsCommand;
+        public ICommand ResetSettingsCommand => _resetSettingsCommand ?? (_resetSettingsCommand = new Command(ResetSettings));
+        private async void ResetSettings()
+        {
+            var answer = await Application.Current.MainPage.DisplayAlert(AppResources.ButtonSettingsResetComplete,
+                                                                        AppResources.MessageDialogSettingsResetComplete,
+                                                                         AppResources.buttonYes, AppResources.buttonNo);
+            if (answer)
+            {
+                Settings.ClearAllSettings();
+                DefineDefaultCredentials();
+                ReloadContactData();
+            }
+
+        }
+
         private ICommand _reloadContactsCommand;
         public ICommand ReloadContactsCommand => _reloadContactsCommand ?? (_reloadContactsCommand = new Command(ReloadContacts));
         void ReloadContacts()
@@ -617,7 +633,8 @@ namespace Friendica_Mobile.ViewModel
                 //StaticGlobalParameters.CounterUnseenNetwork = 0;
                 //StaticGlobalParameters.CounterUnseenNewsfeed = 0;
                 //StaticGlobalParameters.CounterUnseenMessages = 0;
-                //App.NetworkVm = null;
+                App.Posts = null;
+                App.Contacts = null;
                 //// clear everything related to private messages
                 //App.IsSendingNewMessage = false;
                 //App.MessagesNavigatedIntoConversation = false;
