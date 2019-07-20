@@ -151,6 +151,13 @@ namespace Friendica_Mobile.ViewModel
 
 
         // add a counter for each of the buttons where we want to display a counter of new elements
+        private int _homeCounter;
+        public int HomeCounter
+        {
+            get { return _homeCounter; }
+            set { SetProperty(ref _homeCounter, value); }
+        }
+
         private int _networkCounter;
         public int NetworkCounter
         {
@@ -163,6 +170,16 @@ namespace Friendica_Mobile.ViewModel
         {
             get { return _newsfeedCounter; }
             set { SetProperty(ref _newsfeedCounter, value); }
+        }
+
+        public ShellViewModel()
+        {
+            MessagingCenter.Subscribe<Models.PostsModel>(this, "CounterUpdated", (sender) => {
+                // retrieve the counter values from the Model
+                HomeCounter = App.Posts.CounterUnseenHome;
+                NetworkCounter = App.Posts.CounterUnseenNetwork;
+                NewsfeedCounter = App.Posts.CounterUnseenNewsfeed;
+            });
         }
 
     }

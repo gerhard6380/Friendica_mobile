@@ -355,7 +355,7 @@ envie d’essayer à nouveau ?</target>
         </trans-unit>
         <trans-unit id="sliderShowMorePosts.OffContent" translate="yes" xml:space="preserve">
           <source>Show only recent comments</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Afficher uniquement les commentaires récents</target>
+          <target state="translated">Afficher les commentaires récents</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: toggle in thread to show all comments or only newest one</note>
         </trans-unit>
         <trans-unit id="sliderShowMorePosts.OnContent" translate="yes" xml:space="preserve">
@@ -1410,12 +1410,12 @@ Vous pouvez en outre afficher le nombre de nouvelles notifications sur l’écra
         </trans-unit>
         <trans-unit id="buttonUnDislike.Content" translate="yes" xml:space="preserve">
           <source>Withdraw dislike</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Retirer l’aversion</target>
+          <target state="translated" state-qualifier="mt-suggestion">Retirer l’aversion</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml/Home.xaml: caption of flyout menu item to undo disliking a post</note>
         </trans-unit>
         <trans-unit id="buttonUnLike.Content" translate="yes" xml:space="preserve">
           <source>Withdraw like</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Retirer comme</target>
+          <target state="translated" state-qualifier="mt-suggestion">Retirer comme</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml/Home.xaml: caption of flyout menu item to undo liking a post</note>
         </trans-unit>
         <trans-unit id="messageDialogLikesNotSentToServer" translate="yes" xml:space="preserve">
@@ -2777,6 +2777,86 @@ Actuellement ce n’est pas possible, parce que vous n’avez pas encore configu
           <source>Swipe contact left for more options.</source>
           <target state="translated">Glissez le contact à gauche pour plus de fonctions.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Contacts.xaml: hint for actions on friends/forums in ios</note>
+        </trans-unit>
+        <trans-unit id="LabelNetworkNoDataAvailable" translate="yes" xml:space="preserve">
+          <source>There are no posts from your community on your server.</source>
+          <target state="translated">Il n’y a pas de messages de votre communauté sur votre serveur.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: info text shown to user if server has no posts returned</note>
+        </trans-unit>
+        <trans-unit id="ButtonLikeText" translate="yes" xml:space="preserve">
+          <source>I like it.</source>
+          <target state="final" state-qualifier="mt-suggestion">Je l'aime bien.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml/Home.xaml: caption of flyout menu item to like a post</note>
+        </trans-unit>
+        <trans-unit id="ButtonDislikeText" translate="yes" xml:space="preserve">
+          <source>I don't like it.</source>
+          <target state="final">Je n'aime pas.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml/Home.xaml: caption of flyout menu item to dislike a post</note>
+        </trans-unit>
+        <trans-unit id="ButtonUnDislikeText" translate="yes" xml:space="preserve">
+          <source>Withdraw dislike</source>
+          <target state="translated" state-qualifier="mt-suggestion">Retirer l’aversion</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml/Home.xaml: caption of flyout menu item to undo disliking a post</note>
+        </trans-unit>
+        <trans-unit id="ButtonUnLikeText" translate="yes" xml:space="preserve">
+          <source>Withdraw like</source>
+          <target state="translated" state-qualifier="mt-suggestion">Retirer comme</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml/Home.xaml: caption of flyout menu item to undo liking a post</note>
+        </trans-unit>
+        <trans-unit id="SliderShowMorePostsOff" translate="yes" xml:space="preserve">
+          <source>Show only recent comments</source>
+          <target state="translated">Afficher les commentaires récents</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: toggle in thread to show all comments or only newest one</note>
+        </trans-unit>
+        <trans-unit id="SliderShowMorePostsOn" translate="yes" xml:space="preserve">
+          <source>Show all comments</source>
+          <target state="translated" state-qualifier="mt-suggestion">Voir tous les commentaires</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Network.xaml: toggle in thread to show all comments or only newest</note>
+        </trans-unit>
+        <trans-unit id="ButtonLoadMapTooltip" translate="yes" xml:space="preserve">
+          <source>Open map and show the location...</source>
+          <target state="translated">Ouvrez la carte et montrer l’emplacement...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Home/Network/Newsfeed.xaml: tooltip shown on each post if it has a location explaining that the button will open maps app and show the location on map</note>
+        </trans-unit>
+        <trans-unit id="ButtonRetweetTooltip" translate="yes" xml:space="preserve">
+          <source>Share this post with others...</source>
+          <target state="translated">Partagez cette publication avec les autres...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Home/Network/Newsfeed.xaml: tooltip shown on each post explaining the button for retweeting the post</note>
+        </trans-unit>
+        <trans-unit id="ButtonShowProfileTooltip" translate="yes" xml:space="preserve">
+          <source>Open user profile in browser...</source>
+          <target state="translated">Ouvrir le profil de l'utilisateur dans le navigateur...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Home/Network/Newsfeed.xaml: tooltip shown on each post explaining the button to open profile</note>
+        </trans-unit>
+        <trans-unit id="ButtonSettingsResetComplete" translate="yes" xml:space="preserve">
+          <source>Reset settings</source>
+          <target state="translated" state-qualifier="tm-suggestion">Réinitialiser les paramètres</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: caption of the button used to delete all settings</note>
+        </trans-unit>
+        <trans-unit id="LabelSettingsResetComplete" translate="yes" xml:space="preserve">
+          <source>Complete reset of all settings:</source>
+          <target state="translated">Réinitialisation complète de tous les paramètres:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: header for the button to delete all settings</note>
+        </trans-unit>
+        <trans-unit id="MessageDialogSettingsResetComplete" translate="yes" xml:space="preserve">
+          <source>This will delete all your settings and cannot be undone. Are you sure?</source>
+          <target state="translated">Cela supprimera tous vos paramètres et ne pourra pas être annulé. Es-tu sûr?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: dialog questioning user if he/she is sure to delete all settings and data</note>
+        </trans-unit>
+        <trans-unit id="TextDisplayCodeFullscreenHint" translate="yes" xml:space="preserve">
+          <source>tap for full code</source>
+          <target state="translated">appuyez sur pour le code complet</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">HtmlToXamarinViews: code blocks with more than 3 lines are shortened, so add a hint that user needs to tap/click for full code view</note>
+        </trans-unit>
+        <trans-unit id="MessageDialogPostsErrorOnLoadingMap" translate="yes" xml:space="preserve">
+          <source>An error occurred on trying to open the map with the location.</source>
+          <target state="translated">Une erreur s'est produite lors de la tentative d'ouverture de la carte avec l'emplacement.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Home/Network/Newsfeed.xaml: error message if coordinates cannot be processed for showing in map</note>
+        </trans-unit>
+        <trans-unit id="LabelHomeNoDataAvailable" translate="yes" xml:space="preserve">
+          <source>There are no posts from you on your server.</source>
+          <target state="translated" state-qualifier="mt-suggestion">Il n’y a pas de postes auprès de vous sur votre serveur.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Home.xaml: info text shown to user if server has no posts returned for the own timeline</note>
         </trans-unit>
       </group>
     </body>

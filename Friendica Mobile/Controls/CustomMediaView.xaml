@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:forms="clr-namespace:Plugin.MediaManager.Forms;assembly=Plugin.MediaManager.Forms"
+             xmlns:controls="clr-namespace:SeeberXamarin.Controls"
+             xmlns:styles="clr-namespace:Friendica_Mobile.Styles"
+             x:Class="SeeberXamarin.Controls.CustomMediaView"
+             x:Name="CustomMediaControl">
+
+    <ContentView.Content>
+        <Grid x:Name="GridContent"
+              BindingContext="{x:Reference Name=CustomMediaControl}">
+            <!-- display video player -->
+            <forms:VideoView x:Name="MediaPlayer" 
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand"
+                             AspectMode="AspectFit" />
+            
+            <!-- showing a circling symbol indicating that app is loading the content -->
+            <controls:FontIconLabel x:Name="LoadingSymbol" 
+                                    Text="{x:Static styles:Icon.FILoading}"
+                                    TextColor="Aqua"
+                                    FontSize="36"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    IsVisible="{Binding IsLoading}" />    
+           
+            <!-- showing a x symbol indicating that there was an error with loading the file -->
+            <controls:FontIconLabel Text="{x:Static styles:Icon.FICancelCircle}"
+                                    FontAttributes="Bold"
+                                    TextColor="DarkRed"
+                                    FontSize="36"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    IsVisible="{Binding IsFailed}" />
+                                    
+            <StackLayout BackgroundColor="#961A1A1A"
+                         VerticalOptions="End"
+                         IsVisible="{Binding IsShowingControls}">
+
+                <!-- display information to the file to be played -->
+                <StackLayout Orientation="Horizontal"
+                             Margin="4,4,4,0">
+                    <!-- audio symbol indicating that this is not a video -->
+                    <controls:FontIconLabel Text="{x:Static styles:Icon.FIAudio}"
+                                            FontSize="36"
+                                            VerticalOptions="Start"
+                                            TextColor="White"
+                                            IsVisible="{Binding IsAudioOnly}"/>
+                    <controls:FontIconLabel Text="{x:Static styles:Icon.FIVideo}"
+                                            FontSize="36"
+                                            VerticalOptions="Start"
+                                            TextColor="White"
+                                            IsVisible="{Binding IsAudioOnly, Converter={StaticResource NegateBool}}" />
+                    <!-- information about the audio file when available -->
+                    <StackLayout Spacing="0">
+                        <Label Text="{Binding SongTitle}"
+                               TextColor="White"
+                               FontSize="12"
+                               FontAttributes="Bold"/>
+                        <Label Text="{Binding Artist}"
+                               TextColor="White"
+                               FontSize="10" />
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Album}"
+                                   TextColor="White"
+                                   FontSize="8"
+                                   FontAttributes="Italic" />
+                            <Label Text="{Binding Year}"
+                                   TextColor="White"
+                                   FontSize="8"
+                                   FontAttributes="Italic" />
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            
+                <!-- show current and total time with a progress bar -->
+                <Grid>
+                    <ProgressBar HorizontalOptions="Fill"
+                                 VerticalOptions="Start"
+                                 Progress="{Binding CurrentPosition}"
+                                 ProgressColor="Gray" />
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="0,12,0,0"
+                                 HorizontalOptions="Center">
+                        <Label Text="{Binding CurrentTime, StringFormat='{0:mm\\:ss}'}"
+                               TextColor="White"
+                               FontSize="10" />
+                        <Label Text=" / "
+                               TextColor="White"
+                               FontSize="10" />
+                        <Label Text="{Binding TotalTime, StringFormat='{0:mm\\:ss}'}"
+                               TextColor="White"
+                               FontSize="10" />
+                    </StackLayout>
+                </Grid>
+        
+                <!-- buttons to control the playback -->
+                <StackLayout Orientation="Horizontal"
+                             Spacing="0"
+                             HorizontalOptions="Center">
+                    <!-- back 10 seconds or to start if less then 10 seconds -->
+                    <controls:IconButton FontIcon="{x:Static styles:Icon.FISkipBack10}"
+                                         FontIconColor="White"
+                                         IconButtonClicked="SkipBack_IconButtonClicked"/>
+                    <!-- play or pause the current media file -->
+                    <StackLayout>
+                        <controls:IconButton FontIcon="{x:Static styles:Icon.FIPlay}"
+                                             FontIconColor="White"
+                                             IsVisible="{Binding IsPlaying, Converter={StaticResource NegateBool}}"
+                                             IconButtonClicked="PlayPause_IconButtonClicked"/>
+                        <controls:IconButton FontIcon="{x:Static styles:Icon.FIPause}"
+                                             FontIconColor="White"
+                                             IsVisible="{Binding IsPlaying}"
+                                             IconButtonClicked="PlayPause_IconButtonClicked"/>
+                    </StackLayout>
+                    <!-- stop playback of the current media file -->
+                    <controls:IconButton FontIcon="{x:Static styles:Icon.FIStop}"
+                                         FontIconColor="White"
+                                         IconButtonClicked="Stop_IconButtonClicked"/>
+                    <!-- skip forward 30 seconds -->
+                    <controls:IconButton FontIcon="{x:Static styles:Icon.FISkipForward30}"
+                                         FontIconColor="White"
+                                         Margin="0,0,36,0"
+                                         IconButtonClicked="SkipForward_IconButtonClicked"/>
+                    <!-- volume controls do not work currently -->
+                    <!-- volume controls - decrease volume -->
+                    <!--<controls:IconButton FontIcon="{x:Static styles:Icon.FIVolumeMinus}"
+                                         FontIconColor="White"
+                                         IconButtonClicked="VolumeMinus_IconButtonClicked"/>-->
+                    <!-- volume controls - symbol showing if volume is muted or not -->
+                    <!--<StackLayout>
+                        <controls:IconButton FontIcon="{x:Static styles:Icon.FIVolumeMute}"
+                                             FontIconColor="White"
+                                             IsVisible="{Binding IsVolumeMute}"
+                                             IconButtonClicked="Mute_IconButtonClicked"/>
+                        <controls:IconButton FontIcon="{x:Static styles:Icon.FIVolumeOn}"
+                                             IsVisible="{Binding IsVolumeMute, Converter={StaticResource NegateBool}}"
+                                             FontIconColor="White"
+                                             IconButtonClicked="Mute_IconButtonClicked"/>
+                    </StackLayout>-->
+                    <!-- volume controls - increase volume -->
+                    <!--<controls:IconButton FontIcon="{x:Static styles:Icon.FIVolumePlus}"
+                                         FontIconColor="White"
+                                         IconButtonClicked="VolumePlus_IconButtonClicked"/>-->
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Foundation;
 using Friendica_Mobile;
+using Plugin.MediaManager.Forms.iOS;
 using UIKit;
 
 namespace Friendica_Mobile.iOS
@@ -22,6 +23,7 @@ namespace Friendica_Mobile.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            VideoViewRenderer.Init();
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 

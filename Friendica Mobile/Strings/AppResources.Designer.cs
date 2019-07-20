@@ -3262,5 +3262,101 @@ namespace Friendica_Mobile.Strings {
                 return ResourceManager.GetString("LabelContactsHintFriendsIos", resourceCulture);
             }
         }
+        
+        public static string LabelNetworkNoDataAvailable {
+            get {
+                return ResourceManager.GetString("LabelNetworkNoDataAvailable", resourceCulture);
+            }
+        }
+        
+        public static string ButtonLikeText {
+            get {
+                return ResourceManager.GetString("ButtonLikeText", resourceCulture);
+            }
+        }
+        
+        public static string ButtonDislikeText {
+            get {
+                return ResourceManager.GetString("ButtonDislikeText", resourceCulture);
+            }
+        }
+        
+        public static string ButtonUnDislikeText {
+            get {
+                return ResourceManager.GetString("ButtonUnDislikeText", resourceCulture);
+            }
+        }
+        
+        public static string ButtonUnLikeText {
+            get {
+                return ResourceManager.GetString("ButtonUnLikeText", resourceCulture);
+            }
+        }
+        
+        public static string SliderShowMorePostsOff {
+            get {
+                return ResourceManager.GetString("SliderShowMorePostsOff", resourceCulture);
+            }
+        }
+        
+        public static string SliderShowMorePostsOn {
+            get {
+                return ResourceManager.GetString("SliderShowMorePostsOn", resourceCulture);
+            }
+        }
+        
+        public static string ButtonLoadMapTooltip {
+            get {
+                return ResourceManager.GetString("ButtonLoadMapTooltip", resourceCulture);
+            }
+        }
+        
+        public static string ButtonRetweetTooltip {
+            get {
+                return ResourceManager.GetString("ButtonRetweetTooltip", resourceCulture);
+            }
+        }
+        
+        public static string ButtonShowProfileTooltip {
+            get {
+                return ResourceManager.GetString("ButtonShowProfileTooltip", resourceCulture);
+            }
+        }
+        
+        public static string ButtonSettingsResetComplete {
+            get {
+                return ResourceManager.GetString("ButtonSettingsResetComplete", resourceCulture);
+            }
+        }
+        
+        public static string LabelSettingsResetComplete {
+            get {
+                return ResourceManager.GetString("LabelSettingsResetComplete", resourceCulture);
+            }
+        }
+        
+        public static string MessageDialogSettingsResetComplete {
+            get {
+                return ResourceManager.GetString("MessageDialogSettingsResetComplete", resourceCulture);
+            }
+        }
+        
+        public static string TextDisplayCodeFullscreenHint {
+            get {
+                return ResourceManager.GetString("TextDisplayCodeFullscreenHint", resourceCulture);
+            }
+        }
+        
+        public static string MessageDialogPostsErrorOnLoadingMap {
+            get {
+                return ResourceManager.GetString("MessageDialogPostsErrorOnLoadingMap", resourceCulture);
+            }
+        }
+        
+        public static string LabelHomeNoDataAvailable {
+            get {
+                return ResourceManager.GetString("LabelHomeNoDataAvailable", resourceCulture);
+            }
+        }
     }
 }

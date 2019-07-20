@@ -286,7 +286,7 @@ quer tentar de novo?</value>
     <comment>Settings.xaml: caption of the combobox item to select display mode for Network page</comment>
   </data>
   <data name="sliderShowMorePosts.OffContent" xml:space="preserve">
-    <value>Mostrar apenas os comentários recentes</value>
+    <value>Mostrar os comentários recentes</value>
     <comment>Network.xaml: toggle in thread to show all comments or only newest one</comment>
   </data>
   <data name="sliderShowMorePosts.OnContent" xml:space="preserve">
@@ -2203,5 +2203,69 @@ Atualmente isto não é possível, porque você ainda não definir as configura�
     <value>Deslize o contato para a esquerda para mais funções.
 </value>
     <comment>Contacts.xaml: hint for actions on friends/forums in ios</comment>
+  </data>
+  <data name="LabelNetworkNoDataAvailable" xml:space="preserve">
+    <value>Não há posts de sua comunidade no seu servidor.</value>
+    <comment>Network.xaml: info text shown to user if server has no posts returned</comment>
+  </data>
+  <data name="ButtonLikeText" xml:space="preserve">
+    <value>Eu gosto disso.</value>
+    <comment>Network.xaml/Home.xaml: caption of flyout menu item to like a post</comment>
+  </data>
+  <data name="ButtonDislikeText" xml:space="preserve">
+    <value>Não me agrada.</value>
+    <comment>Network.xaml/Home.xaml: caption of flyout menu item to dislike a post</comment>
+  </data>
+  <data name="ButtonUnDislikeText" xml:space="preserve">
+    <value>Retirar a antipatia</value>
+    <comment>Network.xaml/Home.xaml: caption of flyout menu item to undo disliking a post</comment>
+  </data>
+  <data name="ButtonUnLikeText" xml:space="preserve">
+    <value>Retirar a gosto</value>
+    <comment>Network.xaml/Home.xaml: caption of flyout menu item to undo liking a post</comment>
+  </data>
+  <data name="SliderShowMorePostsOff" xml:space="preserve">
+    <value>Mostrar os comentários recentes</value>
+    <comment>Network.xaml: toggle in thread to show all comments or only newest one</comment>
+  </data>
+  <data name="SliderShowMorePostsOn" xml:space="preserve">
+    <value>Mostrar todos os comentários</value>
+    <comment>Network.xaml: toggle in thread to show all comments or only newest</comment>
+  </data>
+  <data name="ButtonLoadMapTooltip" xml:space="preserve">
+    <value>Abra o mapa e mostre a localização...</value>
+    <comment>Home/Network/Newsfeed.xaml: tooltip shown on each post if it has a location explaining that the button will open maps app and show the location on map</comment>
+  </data>
+  <data name="ButtonRetweetTooltip" xml:space="preserve">
+    <value>Compartilhe essa postagem com outras pessoas...</value>
+    <comment>Home/Network/Newsfeed.xaml: tooltip shown on each post explaining the button for retweeting the post</comment>
+  </data>
+  <data name="ButtonShowProfileTooltip" xml:space="preserve">
+    <value>Abra o perfil de usuário no navegador...</value>
+    <comment>Home/Network/Newsfeed.xaml: tooltip shown on each post explaining the button to open profile</comment>
+  </data>
+  <data name="ButtonSettingsResetComplete" xml:space="preserve">
+    <value>Redefinir configurações</value>
+    <comment>Settings.xaml: caption of the button used to delete all settings</comment>
+  </data>
+  <data name="LabelSettingsResetComplete" xml:space="preserve">
+    <value>Restauração completa de todas as configurações:</value>
+    <comment>Settings.xaml: header for the button to delete all settings</comment>
+  </data>
+  <data name="MessageDialogSettingsResetComplete" xml:space="preserve">
+    <value>Isto irá apagar todas as suas configurações e não pode ser desfeito. Tem certeza?</value>
+    <comment>Settings.xaml: dialog questioning user if he/she is sure to delete all settings and data</comment>
+  </data>
+  <data name="TextDisplayCodeFullscreenHint" xml:space="preserve">
+    <value>toque para código completo</value>
+    <comment>HtmlToXamarinViews: code blocks with more than 3 lines are shortened, so add a hint that user needs to tap/click for full code view</comment>
+  </data>
+  <data name="MessageDialogPostsErrorOnLoadingMap" xml:space="preserve">
+    <value>Ocorreu um erro ao tentar abrir o mapa com a localização.</value>
+    <comment>Home/Network/Newsfeed.xaml: error message if coordinates cannot be processed for showing in map</comment>
+  </data>
+  <data name="LabelHomeNoDataAvailable" xml:space="preserve">
+    <value>Não há posts seus em seu servidor.</value>
+    <comment>Home.xaml: info text shown to user if server has no posts returned for the own timeline</comment>
   </data>
 </root>

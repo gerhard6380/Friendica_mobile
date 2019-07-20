@@ -1,19 +1,24 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Friendica_Mobile.Views;
 using Friendica_Mobile.ViewModel;
 using Friendica_Mobile.Styles;
 using Plugin.DeviceInfo;
 using Plugin.DeviceInfo.Abstractions;
 using Friendica_Mobile.Strings;
+using System.IO;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Friendica_Mobile
 {
     public partial class App : Application
     {
+        public static Models.PostsModel Posts;
         public static HttpRequests.HttpFriendicaContacts Contacts;
+
+        // local storing when message has been shown once to the user
+        public static bool NetworkNoSettingsAlreadyShownRefresh;
+        public static bool HomeNoSettingsAlreadyShownRefresh;
 
         // selectable themes
         public enum ApplicationTheme { Dark, Light }
@@ -49,6 +54,7 @@ namespace Friendica_Mobile
                 ShellSizeChanged?.Invoke(null, EventArgs.Empty);
             }
         }
+
         public static event EventHandler ShellSizeChanged;
 
         public App()
@@ -80,7 +86,7 @@ namespace Friendica_Mobile
             var nav = Application.Current.MainPage as NavigationPage;
             var shell = nav.RootPage as Views.CustomShell;
             var vm = shell.BindingContext as ShellViewModel;
-            vm.Detail = new Views.Contacts();
+            vm.Detail = new Views.NewPost();
         }
 
         public static void DefineResources()

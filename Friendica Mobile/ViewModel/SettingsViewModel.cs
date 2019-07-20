@@ -391,7 +391,8 @@ namespace Friendica_Mobile.ViewModel
                     ServerActivityFailed = false;
 
                     // clear out all settings, list of contacts/groups if changed
-                    ResetSettingsUponChangedCredentials();
+                    if (Settings.FriendicaServer != FriendicaServer || Settings.FriendicaUsername != FriendicaUsername)
+                        ResetSettingsUponChangedCredentials();
 
                     // save data to appsettings
                     Settings.FriendicaServer = FriendicaServer;
@@ -444,6 +445,7 @@ namespace Friendica_Mobile.ViewModel
                 Settings.ClearAllSettings();
                 DefineDefaultCredentials();
                 ReloadContactData();
+                ResetSettingsUponChangedCredentials();
             }
 
         }
@@ -618,8 +620,6 @@ namespace Friendica_Mobile.ViewModel
         {
             // Settings to be reset upon changed server or username
             // TODO: implement the following step by step
-            if (Settings.FriendicaServer != FriendicaServer || Settings.FriendicaUsername != FriendicaUsername)
-            {
                 // clear out current App.Contacts to start with new credentials
                 App.Contacts = new HttpFriendicaContacts(FriendicaServer, FriendicaUsername, FriendicaPassword);
                 Settings.ACLPrivateSelectedContacts = String.Empty;
@@ -645,7 +645,6 @@ namespace Friendica_Mobile.ViewModel
                 //App.PhotosVm = null;
                 //// delete locally stored data of the old user@server
                 //await DeleteLocalDataAsync();
-            }
 
             // Settings to be reset upon every change of credentials
             // TODO: implement the following step by step 
@@ -664,6 +663,9 @@ namespace Friendica_Mobile.ViewModel
         private async void ReloadContactData()
         {
             // check if data is already loaded, if not let's load it
+            if (App.Contacts == null)
+                return;
+
             if (App.Contacts.Friends == null && App.Contacts.Groups == null)
             {
                 ActivityIndicatorText = AppResources.TextSettingsLoadingContacts;

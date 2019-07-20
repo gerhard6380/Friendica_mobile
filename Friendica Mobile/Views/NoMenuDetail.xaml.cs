@@ -20,5 +20,10 @@ namespace Friendica_Mobile.Views
             //vm.NavigationAllowed = !vm.NavigationAllowed;
             //labelSetting.Text = vm.NavigationAllowed.ToString();
         }
+
+        void Handle_Clicked_1(object sender, System.EventArgs e)
+        {
+            Application.Current.MainPage.DisplayAlert("", "Das ist ein Test", "OK");
+        }
     }
 }

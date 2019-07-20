@@ -51,6 +51,51 @@
                                          Text="{Binding ActivityIndicatorText}"
                                          VerticalOptions="Start"/>
             
+            <!-- showing video/audio player if respective link is clicked in a post -->
+            <Frame x:Name="BoxViewMediaPlayer"
+                   BackgroundColor="#1A1A1A"
+                   Padding="0"
+                   VerticalOptions="End"
+                   HorizontalOptions="End"
+                   IsVisible="{Binding IsMediaPlayerVisible}">
+                <Grid>
+                    <controls:CustomMediaView x:Name="MediaPlayer"
+                                              WidthRequest="460"
+                                              MediaUrl="{Binding MediaUrlVM}"/>
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Start"
+                                 HorizontalOptions="End">
+                        <controls:IconButton FontIcon="{x:Static styles:Icon.FIFullscreen}"
+                                             FontIconColor="White"
+                                             IsVisible="{Binding IsAudioOnly, Converter={StaticResource NegateBool}}"
+                                             IconButtonClicked="FullscreenMediaPlayer_IconButtonClicked" />
+                        <controls:IconButton FontIcon="{x:Static styles:Icon.FICancel}"
+                                             FontIconColor="White"
+                                             IconButtonClicked="CloseMediaPlayer_IconButtonClicked" />                        
+                    </StackLayout>
+                </Grid>
+            </Frame>
+            
+            <!-- showing code in fullscreen if codebox is tapped in a post -->
+            <Frame x:Name="BoxViewCodeFullscreen"
+                   BackgroundColor="#FAEBD7"
+                   Padding="8"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   IsVisible="{Binding IsCodeFullscreenVisible}">
+                <Grid>
+                    <ScrollView>
+                        <ContentPresenter Content="{Binding CodeFullscreenContent}" />
+                    </ScrollView>
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Start"
+                                 HorizontalOptions="End">
+                        <controls:IconButton FontIcon="{x:Static styles:Icon.FICancel}"
+                                             FontIconColor="DarkGray"
+                                             IconButtonClicked="CloseCodeFullscreen_IconButtonClicked" />                        
+                    </StackLayout>
+                </Grid>
+            </Frame>
         </Grid>
     </ContentPage.Content>
 

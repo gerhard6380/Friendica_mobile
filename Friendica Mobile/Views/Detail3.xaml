@@ -10,21 +10,7 @@
     <ContentPage.Content>
         <StackLayout Margin="48">
 
-            <Label Text="{i18n:Translate PageAppSettings}"
-                   BackgroundColor="Lime"
-                   VerticalOptions="Start"
-                   HorizontalOptions="Center"
-               TextColor="Purple"/>
-
-            <Label Text="Test"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-
-            <Stepper Increment="1"
-                     Minimum="0"
-                     Maximum="9"
-                     Value="{Binding Counter}" />
-            <Label Text="{Binding Counter}" />
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

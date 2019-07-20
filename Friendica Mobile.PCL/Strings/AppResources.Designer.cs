@@ -685,6 +685,15 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die I don&apos;t like it. ähnelt.
+        /// </summary>
+        public static string ButtonDislikeText {
+            get {
+                return ResourceManager.GetString("ButtonDislikeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Unselect all contacts for the group. ähnelt.
         /// </summary>
         public static string ButtonGroupEditorDeselectAllTooltip {
@@ -739,6 +748,15 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die I like it. ähnelt.
+        /// </summary>
+        public static string ButtonLikeText {
+            get {
+                return ResourceManager.GetString("ButtonLikeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Friendica Mobile Support ähnelt.
         /// </summary>
         public static string buttonLinkAppSupportpage_Content {
@@ -789,6 +807,15 @@ namespace Friendica_Mobile.PCL.Strings {
         public static string buttonLoadImage_Content {
             get {
                 return ResourceManager.GetString("buttonLoadImage.Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Open map and show the location... ähnelt.
+        /// </summary>
+        public static string ButtonLoadMapTooltip {
+            get {
+                return ResourceManager.GetString("ButtonLoadMapTooltip", resourceCulture);
             }
         }
         
@@ -928,6 +955,15 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Share this post with others... ähnelt.
+        /// </summary>
+        public static string ButtonRetweetTooltip {
+            get {
+                return ResourceManager.GetString("ButtonRetweetTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Save ähnelt.
         /// </summary>
         public static string buttonSave_Content {
@@ -964,6 +1000,15 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Reset settings ähnelt.
+        /// </summary>
+        public static string ButtonSettingsResetComplete {
+            get {
+                return ResourceManager.GetString("ButtonSettingsResetComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Reset credentials ähnelt.
         /// </summary>
         public static string ButtonSettingsResetCredentials {
@@ -978,6 +1023,15 @@ namespace Friendica_Mobile.PCL.Strings {
         public static string buttonShowPhotoConversation_ToolTipService_ToolTip {
             get {
                 return ResourceManager.GetString("buttonShowPhotoConversation.ToolTipService.ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Open user profile in browser... ähnelt.
+        /// </summary>
+        public static string ButtonShowProfileTooltip {
+            get {
+                return ResourceManager.GetString("ButtonShowProfileTooltip", resourceCulture);
             }
         }
         
@@ -1009,11 +1063,29 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Withdraw dislike ähnelt.
+        /// </summary>
+        public static string ButtonUnDislikeText {
+            get {
+                return ResourceManager.GetString("ButtonUnDislikeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Withdraw like ähnelt.
         /// </summary>
         public static string buttonUnLike_Content {
             get {
                 return ResourceManager.GetString("buttonUnLike.Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Withdraw like ähnelt.
+        /// </summary>
+        public static string ButtonUnLikeText {
+            get {
+                return ResourceManager.GetString("ButtonUnLikeText", resourceCulture);
             }
         }
         
@@ -1334,6 +1406,24 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There are no posts from you on your server. ähnelt.
+        /// </summary>
+        public static string LabelHomeNoDataAvailable {
+            get {
+                return ResourceManager.GetString("LabelHomeNoDataAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There are no posts from your community on your server. ähnelt.
+        /// </summary>
+        public static string LabelNetworkNoDataAvailable {
+            get {
+                return ResourceManager.GetString("LabelNetworkNoDataAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Dark Mode ähnelt.
         /// </summary>
         public static string LabelSettingsAppThemeDarkMode {
@@ -1375,6 +1465,15 @@ namespace Friendica_Mobile.PCL.Strings {
         public static string LabelSettingsNavigationSideRight {
             get {
                 return ResourceManager.GetString("LabelSettingsNavigationSideRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Complete reset of all settings: ähnelt.
+        /// </summary>
+        public static string LabelSettingsResetComplete {
+            get {
+                return ResourceManager.GetString("LabelSettingsResetComplete", resourceCulture);
             }
         }
         
@@ -2186,6 +2285,15 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die An error occurred on trying to open the map with the location. ähnelt.
+        /// </summary>
+        public static string MessageDialogPostsErrorOnLoadingMap {
+            get {
+                return ResourceManager.GetString("MessageDialogPostsErrorOnLoadingMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die You can currently add no profiles, this function is built into the app later. Please use your Friendica Server Web access to add profiles. ähnelt.
         /// </summary>
         public static string messageDialogProfilesAddingNotSupported {
@@ -2227,6 +2335,15 @@ namespace Friendica_Mobile.PCL.Strings {
         public static string messageDialogSettingsNotSaved {
             get {
                 return ResourceManager.GetString("messageDialogSettingsNotSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This will delete all your settings and cannot be undone. Are you sure? ähnelt.
+        /// </summary>
+        public static string MessageDialogSettingsResetComplete {
+            get {
+                return ResourceManager.GetString("MessageDialogSettingsResetComplete", resourceCulture);
             }
         }
         
@@ -2849,6 +2966,24 @@ namespace Friendica_Mobile.PCL.Strings {
         public static string sliderShowMorePosts_OnContent {
             get {
                 return ResourceManager.GetString("sliderShowMorePosts.OnContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show only recent comments ähnelt.
+        /// </summary>
+        public static string SliderShowMorePostsOff {
+            get {
+                return ResourceManager.GetString("SliderShowMorePostsOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show all comments ähnelt.
+        /// </summary>
+        public static string SliderShowMorePostsOn {
+            get {
+                return ResourceManager.GetString("SliderShowMorePostsOn", resourceCulture);
             }
         }
         
@@ -4504,6 +4639,15 @@ namespace Friendica_Mobile.PCL.Strings {
         public static string textboxSearchString_Header {
             get {
                 return ResourceManager.GetString("textboxSearchString.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die tap for full code ähnelt.
+        /// </summary>
+        public static string TextDisplayCodeFullscreenHint {
+            get {
+                return ResourceManager.GetString("TextDisplayCodeFullscreenHint", resourceCulture);
             }
         }
         

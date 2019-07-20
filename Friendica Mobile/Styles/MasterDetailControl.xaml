@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="Friendica_Mobile.Styles.MasterDetailControl"
-             xmlns:controls="clr-namespace:SeeberXamarin.Controls;assembly=Friendica_Mobile"
+             xmlns:controls="clr-namespace:SeeberXamarin.Controls"
              xmlns:styles="clr-namespace:Friendica_Mobile.Styles;assembly=Friendica_Mobile"
              x:Name="Parent">
     <!-- design file for the customized masterDetailPage, here we need to define 
@@ -104,22 +104,23 @@ navigation and the back button handling; design of the menu buttons is done in S
 
         </Grid>
 
-    <!-- grid with flyout for more options -->
-    <Grid x:Name="GridFlyoutBase"
-            BackgroundColor="#1AD3D3D3"
-          IsVisible="false">
-       <Frame x:Name="GridFlyout" 
-               TranslationX="24"
-               TranslationY="-24"
-               BackgroundColor="{DynamicResource NavigationBackgroundColor}"
-               OutlineColor="{DynamicResource AccentColor}"
-               WidthRequest="240"
-               HorizontalOptions="Start"
-               VerticalOptions="End">
-            <StackLayout>
-                <StackLayout x:Name="MoreOptionsContainer"/>
-            </StackLayout>           
-        </Frame>
-    </Grid>
-</Grid>    
+        <!-- grid with flyout for more options -->
+        <Grid x:Name="GridFlyoutBase"
+              BackgroundColor="#1AD3D3D3"
+              IsVisible="false">
+            <Frame x:Name="GridFlyout" 
+                   TranslationX="24"
+                   TranslationY="-24"
+                   BackgroundColor="{DynamicResource NavigationBackgroundColor}"
+                   OutlineColor="{DynamicResource AccentColor}"
+                   WidthRequest="240"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End">
+                <StackLayout>
+                    <StackLayout x:Name="MoreOptionsContainer"/>
+                </StackLayout>           
+            </Frame>
+        </Grid>
+
+    </Grid>    
 </ContentPage>

@@ -4,6 +4,7 @@
                     xmlns:styles="clr-namespace:Friendica_Mobile.Styles"
                     xmlns:i18n="clr-namespace:Friendica_Mobile"
                     xmlns:controls="clr-namespace:SeeberXamarin.Controls"
+                    xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                     x:Class="Friendica_Mobile.FriendicaDataTemplates">
 
     <!-- displaying contacts in settings for selecting standard ACL rights -->
@@ -146,4 +147,268 @@
             </ViewCell.ContextActions>
         </ViewCell>
     </DataTemplate>
+    
+    <!-- display content of a thread -->
+    <DataTemplate x:Key="TemplateFriendicaThreads">
+        <StackLayout>
+            <!-- display a progress ring as long as details are still loading -->
+            <StackLayout Orientation="Horizontal"
+                         IsVisible="{Binding IsThreadLoaded, Converter={StaticResource NegateBool}}">
+                <controls:CustomActivityIndicator IsEnabled="true"
+                                                  IsRunning="true"
+                                                  HorizontalOptions="Center"
+                                                  HeightRequest="28"
+                                                  WidthRequest="52"
+                                                  Color="{DynamicResource MainTextColor}" />
+                <Label Text="{i18n:Translate textblockThreadLoading_Text}"
+                       VerticalOptions="Center"/>
+            </StackLayout>
+            
+            <!-- display content of the thread -->
+            <StackLayout IsVisible="{Binding IsThreadLoaded}">
+                <!-- display the main post -->
+                <StackLayout BindableLayout.ItemsSource="{Binding MainPost}"
+                             BindableLayout.ItemTemplate="{StaticResource TemplateFriendicaPosts}" />
+
+                <!-- toggle switch to show older comments or not -->
+                <StackLayout Orientation="Horizontal"
+                             IsVisible="{Binding ShowCommentsToggle}">
+                    <controls:CustomSwitch IsToggled="{Binding ShowAllComments}" />
+                    <Label Text="{Binding CommentsToggleText}"
+                           VerticalOptions="Center"
+                           TextColor="{DynamicResource MainTextColor}"/>
+                    <!--PropertyChanged="Label_PropertyChanged"-->
+                </StackLayout>
+
+                <!-- display the comments -->
+                <StackLayout BindableLayout.ItemsSource="{Binding CommentsDisplay}"
+                             BindableLayout.ItemTemplate="{StaticResource TemplateFriendicaPosts}" />
+            </StackLayout>
+
+            <!-- close the item entry with a bold line to separate threads -->
+            <BoxView BackgroundColor="DarkGray"
+                     HeightRequest="8"
+                     Margin="0,8,0,12"/>
+        </StackLayout>
+    </DataTemplate>
+    
+    <!-- display content of a post -->
+    <DataTemplate x:Key="TemplateFriendicaPosts">
+        <!-- two frames to create a border when item is unread -->
+        <Frame BackgroundColor="{Binding IsNewEntry, Converter={StaticResource BoolToBorderColor}}"
+               CornerRadius="0"
+               IsVisible="{Binding IsVisible}"
+               HasShadow="false"
+               Padding="4">
+            <Frame BackgroundColor="{Binding IsComment, Converter={StaticResource BoolToPostBackgroundColor}}"
+                   CornerRadius="0"
+                   Padding="4"
+                   HasShadow=" false">
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="5*" />
+                    </Grid.ColumnDefinitions>
+                    <!-- images of user and retweeted user -->
+                    <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+                        <RelativeLayout>
+                            <Image x:Name="MainImage"
+                                   VerticalOptions="Start"
+                                   Aspect="AspectFill"
+                                   HorizontalOptions="FillAndExpand"
+                                   Source="{Binding Post.PostUser.UserProfileImageUrlLarge}"/>
+                            <Image VerticalOptions="Center"
+                                   Source="{Binding RetweetedStatus.Post.PostUser.UserProfileImageUrlLarge}"
+                                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,ElementName=MainImage,Property=Height,Factor=0.7}"
+                                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView,ElementName=MainImage,Property=Width,Factor=0.6}"
+                                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView,ElementName=MainImage,Property=Width,Factor=0.5}"
+                                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView,ElementName=MainImage,Property=Height,Factor=0.5}" />
+                        </RelativeLayout>
+                    </Grid>
+                    <!-- name of sender to display -->
+                    <Label Grid.Row="0" Grid.Column="1" 
+                           Text="{Binding SenderNameConcat}" 
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           VerticalOptions="Start"
+                           FontSize="16"/>
+                    <!-- info on timestamp of post -->
+                    <StackLayout Grid.Row="1" Grid.Column="1">
+                        <Label Text="{Binding CreatedAtLocalized}"
+                               FontSize="12"
+                               HorizontalOptions="End"
+                               FontAttributes="Italic"
+                               TextColor="White" />
+                        <!-- button showing the location of the sender and open map if tapped -->
+                        <controls:FramelessButton Text="{Binding LocationWithIcon}"
+                                                  Tooltip="{i18n:Translate ButtonLoadMapTooltip}"
+                                                  IsVisible="{Binding PostHasLocation}"
+                                                  FontSize="12"
+                                                  BackgroundColor="Transparent"
+                                                  HorizontalOptions="End"
+                                                  FontAttributes="Italic"
+                                                  TextColor="White"
+                                                  Command="{Binding LoadMapCommand}"/>
+                    </StackLayout>
+                    <!-- content of post -->
+                    <controls:HtmlStackLayout Grid.Row="2" Grid.Column="1"
+                                              VerticalOptions="StartAndExpand"
+                                              HtmlContent="{Binding PostHtml, Converter={StaticResource HtmlToStackLayout}}">
+                    </controls:HtmlStackLayout>
+                    
+                    <!-- buttons for actions on the post -->
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="0,8,0,0"
+                                 Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                        <!-- button for like and display a flyout for likes and unlike -->
+                        <StackLayout IsVisible="{Binding ActivitiesNotSupported, Converter={StaticResource NegateBool}}">
+                            <StackLayout Orientation="Horizontal">
+                                <Grid HorizontalOptions="Start">
+                                    <StackLayout Orientation="Horizontal"
+                                                 Spacing="0">
+                                        <Grid Margin="-4,0,0,0">
+                                            <controls:IconButton FontIcon="{x:Static styles:Icon.FILike}"
+                                                                 FontIconColor="{Binding IsLikedByMe, Converter={StaticResource BoolToFontColorLike}}" />
+                                            <controls:CustomActivityIndicator IsRunning="true"
+                                                                              IsVisible="{Binding IsUpdatingLikes}"/>                                                     
+                                        </Grid>
+                                        <Label Text="{Binding CountLikes}"
+                                               Margin="-8,0,8,0"
+                                               VerticalOptions="CenterAndExpand"
+                                               TextColor="White"/>
+                                    </StackLayout>
+                                    <Button BackgroundColor="Transparent"
+                                            Command="{Binding ShowLikesCommand}"/> 
+                                </Grid>
+                            </StackLayout>
+                        </StackLayout>
+                        <!-- button for dislike and display a flyout for dislikes and undislike -->
+                        <StackLayout IsVisible="{Binding ActivitiesNotSupported, Converter={StaticResource NegateBool}}">
+                            <StackLayout Orientation="Horizontal">
+                                <Grid HorizontalOptions="Start">
+                                    <StackLayout Orientation="Horizontal"
+                                                 Spacing="0">
+                                        <Grid Margin="-4,0,0,0">
+                                            <controls:IconButton FontIcon="{x:Static styles:Icon.FIDislike}"
+                                                                 FontIconColor="{Binding IsDislikedByMe, Converter={StaticResource BoolToFontColorLike}}"/>
+                                            <controls:CustomActivityIndicator IsRunning="true"
+                                                                              IsVisible="{Binding IsUpdatingDislikes}"/>                                                     
+                                        </Grid>
+                                        <Label Text="{Binding CountDislikes}"
+                                               Margin="-8,0,8,0"
+                                               VerticalOptions="CenterAndExpand"
+                                               TextColor="White"/>
+                                    </StackLayout>
+                                    <Button BackgroundColor="Transparent"
+                                            Command="{Binding ShowDislikesCommand}"/> 
+                                </Grid>
+                            </StackLayout>
+                        </StackLayout>
+                        <!-- button for retweeting -->
+                        <controls:IconButton FontIcon="{x:Static styles:Icon.FIRetweet}"
+                                             Command="{Binding RetweetCommand}"
+                                             BackgroundColor="#4DFFFFFF"
+                                             Tooltip="{i18n:Translate ButtonRetweetTooltip}" />
+                        <!-- button for displaying the profile of the author - not used in Newsfeed posts -->
+                        <controls:IconButton FontIcon="{x:Static styles:Icon.FIHome}"
+                                             Command="{Binding ShowProfileCommand}"
+                                             IsVisible="{Binding PostType, Converter={StaticResource PostTypeToVisibleNewsfeed}}"
+                                             BackgroundColor="#4DFFFFFF"
+                                             Tooltip="{i18n:Translate ButtonShowProfileTooltip}" />
+                        <!-- button for adding a comment to the selected item - not used in Newsfeed posts -->
+                        <controls:IconButton FontIcon="{x:Static styles:Icon.FIAdd}"
+                                             Command="{Binding AddCommentCommand}"
+                                             IsVisible="{Binding PostType, Converter={StaticResource PostTypeToVisibleNewsfeed}}"
+                                             BackgroundColor="#4DFFFFFF"
+                                             Tooltip="{i18n:Translate buttonAddComment.ToolTipService.ToolTip}" />
+                    </StackLayout>
+                    <!-- space for showing the likes -->
+                    <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                           Margin="0,8,0,0"
+                           IsVisible="{Binding IsLikesVisible}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="3*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{i18n:Translate textblockProfilesLikes}"
+                               TextDecorations="Underline"
+                               TextColor="White"
+                               HorizontalOptions="End"
+                               VerticalOptions="Start"
+                               FontAttributes="Bold"/>
+                        <StackLayout Grid.Column="1">
+                            <!-- button to set the post as like/unset like -->
+                            <controls:CustomButton Text="{Binding ButtonLikeText}"
+                                                   Command="{Binding LikeCommand}"
+                                                   BackgroundColor="#4DFFFFFF" />
+                            <!-- list of users liking the post too -->
+                            <StackLayout BindableLayout.ItemsSource="{Binding LikesForDisplay}"
+                                         BindableLayout.ItemTemplate="{StaticResource TemplateListViewLikesDislikes}" />
+                        </StackLayout>
+                    </Grid>
+                    <!-- space for showing the dislikes -->
+                    <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                          Margin="0,8,0,0"
+                          IsVisible="{Binding IsDislikesVisible}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="3*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{i18n:Translate textblockProfilesDislikes}"
+                               TextDecorations="Underline"
+                               TextColor="White"
+                               HorizontalOptions="End"
+                               VerticalOptions="Start"
+                               FontAttributes="Bold"/>
+                        <StackLayout Grid.Column="1">
+                            <!-- button to set the post as dislike/unset dislike -->
+                            <controls:CustomButton Text="{Binding ButtonDislikeText}"
+                                                   Command="{Binding DislikeCommand}"
+                                                   BackgroundColor="#4DFFFFFF" />
+                            <!-- list of users disliking the post too -->
+                            <StackLayout BindableLayout.ItemsSource="{Binding DislikesForDisplay}"
+                                         BindableLayout.ItemTemplate="{StaticResource TemplateListViewLikesDislikes}" />
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+            </Frame>
+        </Frame>
+    </DataTemplate>
+    
+    <!-- displaying persons in posts (likes/dislikes) -->
+    <DataTemplate x:Key="TemplateListViewLikesDislikes">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="36" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="36" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0"
+                       WidthRequest="36"
+                       VerticalOptions="Start"
+                       HorizontalOptions="Start"
+                       HeightRequest="36"
+                       Source="{Binding UserProfileImageUrlHttps}" />
+                <Label Grid.Column="1"
+                       VerticalOptions="Center"
+                       TextColor="White"
+                       FontSize="16"
+                       Text="{Binding UserName}" />
+                <controls:IconButton Grid.Column="2" 
+                                     HeightRequest="36"
+                                     FontIconColor="White"
+                                     FontIcon="{x:Static styles:Icon.FIHome}"
+                                     Tooltip="{i18n:Translate textblockShowProfile_Text}"
+                                     BackgroundColor="Transparent"
+                                     Command="{Binding OpenProfileCommand}" />
+            </Grid>
+    </DataTemplate>
+    
 </ResourceDictionary>

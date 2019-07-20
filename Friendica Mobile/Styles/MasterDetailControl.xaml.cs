@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using Friendica_Mobile.ViewModel;
 using Friendica_Mobile.Styles;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace Friendica_Mobile.Styles
 {
@@ -73,8 +74,9 @@ namespace Friendica_Mobile.Styles
             propertyChanged: (bindable, value, newValue) =>
             {
                 var masterPage = (MasterDetailControl)bindable;
-                masterPage.DetailContainer.Content = newValue != null ?
+                masterPage.DetailContainer.Content = (newValue != null) ?
                 ((ContentPage)newValue).Content : null;
+
 
                 // after setting detail to a new page we need to reestablish the local BindingContext (otherwise we have ShellViewModel as total context)
                 var context = ((ContentPage)newValue).BindingContext;
@@ -309,5 +311,6 @@ namespace Friendica_Mobile.Styles
                 SetNavigationSide();
             }
         }
+
     }
 }

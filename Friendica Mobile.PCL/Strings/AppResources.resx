@@ -2307,4 +2307,68 @@ Do you want to continue?</value>
     <value>Swipe contact left for more options.</value>
     <comment>Contacts.xaml: hint for actions on friends/forums in ios</comment>
   </data>
+  <data name="LabelNetworkNoDataAvailable" xml:space="preserve">
+    <value>There are no posts from your community on your server.</value>
+    <comment>Network.xaml: info text shown to user if server has no posts returned</comment>
+  </data>
+  <data name="ButtonLikeText" xml:space="preserve">
+    <value>I like it.</value>
+    <comment>Network.xaml/Home.xaml: caption of flyout menu item to like a post</comment>
+  </data>
+  <data name="ButtonDislikeText" xml:space="preserve">
+    <value>I don't like it.</value>
+    <comment>Network.xaml/Home.xaml: caption of flyout menu item to dislike a post</comment>
+  </data>
+  <data name="ButtonUnDislikeText" xml:space="preserve">
+    <value>Withdraw dislike</value>
+    <comment>Network.xaml/Home.xaml: caption of flyout menu item to undo disliking a post</comment>
+  </data>
+  <data name="ButtonUnLikeText" xml:space="preserve">
+    <value>Withdraw like</value>
+    <comment>Network.xaml/Home.xaml: caption of flyout menu item to undo liking a post</comment>
+  </data>
+  <data name="SliderShowMorePostsOff" xml:space="preserve">
+    <value>Show only recent comments</value>
+    <comment>Network.xaml: toggle in thread to show all comments or only newest one</comment>
+  </data>
+  <data name="SliderShowMorePostsOn" xml:space="preserve">
+    <value>Show all comments</value>
+    <comment>Network.xaml: toggle in thread to show all comments or only newest</comment>
+  </data>
+  <data name="ButtonLoadMapTooltip" xml:space="preserve">
+    <value>Open map and show the location...</value>
+    <comment>Home/Network/Newsfeed.xaml: tooltip shown on each post if it has a location explaining that the button will open maps app and show the location on map</comment>
+  </data>
+  <data name="ButtonRetweetTooltip" xml:space="preserve">
+    <value>Share this post with others...</value>
+    <comment>Home/Network/Newsfeed.xaml: tooltip shown on each post explaining the button for retweeting the post</comment>
+  </data>
+  <data name="ButtonShowProfileTooltip" xml:space="preserve">
+    <value>Open user profile in browser...</value>
+    <comment>Home/Network/Newsfeed.xaml: tooltip shown on each post explaining the button to open profile</comment>
+  </data>
+  <data name="ButtonSettingsResetComplete" xml:space="preserve">
+    <value>Reset settings</value>
+    <comment>Settings.xaml: caption of the button used to delete all settings</comment>
+  </data>
+  <data name="LabelSettingsResetComplete" xml:space="preserve">
+    <value>Complete reset of all settings:</value>
+    <comment>Settings.xaml: header for the button to delete all settings</comment>
+  </data>
+  <data name="MessageDialogSettingsResetComplete" xml:space="preserve">
+    <value>This will delete all your settings and cannot be undone. Are you sure?</value>
+    <comment>Settings.xaml: dialog questioning user if he/she is sure to delete all settings and data</comment>
+  </data>
+  <data name="TextDisplayCodeFullscreenHint" xml:space="preserve">
+    <value>tap for full code</value>
+    <comment>HtmlToXamarinViews: code blocks with more than 3 lines are shortened, so add a hint that user needs to tap/click for full code view</comment>
+  </data>
+  <data name="MessageDialogPostsErrorOnLoadingMap" xml:space="preserve">
+    <value>An error occurred on trying to open the map with the location.</value>
+    <comment>Home/Network/Newsfeed.xaml: error message if coordinates cannot be processed for showing in map</comment>
+  </data>
+  <data name="LabelHomeNoDataAvailable" xml:space="preserve">
+    <value>There are no posts from you on your server.</value>
+    <comment>Home.xaml: info text shown to user if server has no posts returned for the own timeline</comment>
+  </data>
 </root>

@@ -33,6 +33,7 @@
                        VerticalTextAlignment="Start"
                        IsVisible="false"
                        Margin="4,-4,4,4"
+                       PropertyChanged="Label_PropertyChanged"
                        HorizontalTextAlignment="Center" />
             </StackLayout>
 

@@ -82,10 +82,6 @@ namespace Friendica_Mobile.HttpRequests
         // call a GET method without basic authentication 
         public virtual async Task<string> GetStringWithoutCredentials(string url)
         {
-            // exit method if we are in Sample mode
-            if (_isSampleMode)
-                return string.Empty;
-            
             var httpClient = new HttpClient();
             var headers = httpClient.DefaultRequestHeaders;
             headers.UserAgent.ParseAdd("ie");

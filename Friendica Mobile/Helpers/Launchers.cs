@@ -20,12 +20,13 @@ namespace Friendica_Mobile
             else
             {
                 if (openInDemoMode)
-                    Device.OpenUri(new Uri(url));
-                else
                 {
                     Application.Current.MainPage.DisplayAlert(AppResources.pageTitleContacts_Text,
                                                               AppResources.MessageDialogNoSettingsNoProfileUrl, "OK");
                 }
+                else
+                    Device.OpenUri(new Uri(url));
+
             }
         }
     }

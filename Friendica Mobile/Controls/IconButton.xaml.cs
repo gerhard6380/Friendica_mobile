@@ -6,6 +6,8 @@ namespace SeeberXamarin.Controls
 {
     public partial class IconButton : ContentView
     {
+        public event EventHandler IconButtonClicked;
+
         // prepare Bindable Property for FontIcon 
         public static readonly BindableProperty FontIconProperty = BindableProperty.Create("FontIcon",
                                                             typeof(string), typeof(IconButton),
@@ -42,18 +44,31 @@ namespace SeeberXamarin.Controls
             }
         });
 
-
         // prepare Bindable Property for BackgroundColor (decide correct background on using the control, sometimes we want to have it a transparent background)
         public new static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create("BackgroundColor",
                                                             typeof(Color), typeof(IconButton),
                                                             Color.Transparent, BindingMode.OneWay,
                                                             propertyChanged: (bindable, value, newValue) =>
                                                             {
-                                                                if (newValue != null && newValue.GetType() == typeof(Color))
+                                                                if (newValue != null && newValue is Color)
                                                                 {
                                                                     (bindable as IconButton).GridIconButton.BackgroundColor = (Color)newValue;
                                                                 }
                                                             });
+
+        // prepare Bindable Property for FontIconColor (normally same as NavigationTextColor, but sometimes we need a different coloring
+        public static readonly BindableProperty FontIconColorProperty = BindableProperty.Create("FontIconColor",
+                                                            typeof(Color), typeof(IconButton),
+                                                            Color.Transparent, BindingMode.OneWay,
+                                                            propertyChanged: (bindable, value, newValue) =>
+                                                            {
+                                                                (bindable as IconButton).SetTextColor();
+                                                                //if (newValue != null && newValue is Color)
+                                                                //{
+                                                                //    (bindable as IconButton).LabelIconButton.TextColor = (Color)newValue;
+                                                                //}
+                                                            });
+
 
         public string FontIcon
         {
@@ -80,6 +95,11 @@ namespace SeeberXamarin.Controls
             get { return (Color)GetValue(BackgroundColorProperty); }
             set { SetValue(BackgroundColorProperty, value); }
         }
+        public Color FontIconColor
+        {
+            get { return (Color) GetValue(FontIconColorProperty); }
+            set { SetValue(FontIconProperty, value); }
+        }
 
 
         public IconButton()
@@ -102,8 +122,18 @@ namespace SeeberXamarin.Controls
             if (!IsEnabled)
                 LabelIconButton.TextColor = Color.Gray;
             else
-                LabelIconButton.SetDynamicResource(Label.TextColorProperty, "NavigationTextColor");
+            {
+                if (FontIconColor == Color.Transparent)
+                    LabelIconButton.SetDynamicResource(Label.TextColorProperty, "NavigationTextColor");
+                else
+                    LabelIconButton.TextColor = FontIconColor;
+            }
         }
 
+        void IconButton_Clicked(object sender, System.EventArgs e)
+        {
+            // fire event if button is clicked, this will be used in A2_ImageFullscreen to switch back to main program page
+                IconButtonClicked?.Invoke(this, EventArgs.Empty);    
+        }
     }
 }

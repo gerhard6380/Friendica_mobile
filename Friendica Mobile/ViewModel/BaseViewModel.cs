@@ -66,8 +66,45 @@ namespace Friendica_Mobile.ViewModel
             set { SetProperty(ref _labelServerActivityFailed, value); }
         }
 
+        // mediaUrl for MediaPlayer
+        private string _mediaUrlVM;
+        public string MediaUrlVM
+        {
+            get { return _mediaUrlVM; }
+            set { SetProperty(ref _mediaUrlVM, value); }
+        }
 
+        // indicator to show the media player
+        private bool _isMediaPlayerVisible;
+        public bool IsMediaPlayerVisible
+        {
+            get { return _isMediaPlayerVisible; }
+            set { SetProperty(ref _isMediaPlayerVisible, value); }
+        }
 
+        // indicator to show the button for fullscreen media player
+        private bool _isAudioOnly;
+        public bool IsAudioOnly
+        {
+            get { return _isAudioOnly;  }
+            set { SetProperty(ref _isAudioOnly, value); }
+        }
+
+        // content for code fullscreen
+        private View _codeFullscreenContent;
+        public View CodeFullscreenContent
+        {
+            get { return _codeFullscreenContent; }
+            set { SetProperty(ref _codeFullscreenContent, value); }
+        }
+
+        // indicator to show the fullscreen for code
+        private bool _isCodeFullscreenVisible;
+        public bool IsCodeFullscreenVisible
+        {
+            get { return _isCodeFullscreenVisible; }
+            set { SetProperty(ref _isCodeFullscreenVisible, value); }
+        }
 
 
         public void NavigateTo(ContentPage page)

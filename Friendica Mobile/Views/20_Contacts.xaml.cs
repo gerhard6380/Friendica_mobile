@@ -26,7 +26,7 @@ namespace Friendica_Mobile.Views
             base.OnDisappearing();
             var nav = Application.Current.MainPage as NavigationPage;
             var shell = nav.RootPage as Views.CustomShell;
-            shell.UnallowedBackNavigationDetected += Shell_UnallowedBackNavigationDetected;
+            shell.UnallowedBackNavigationDetected -= Shell_UnallowedBackNavigationDetected;
         }
 
         async void Shell_UnallowedBackNavigationDetected(object sender, System.EventArgs e)

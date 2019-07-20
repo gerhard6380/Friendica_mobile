@@ -13,8 +13,17 @@ namespace Friendica_Mobile.Models
         [JsonProperty(PropertyName = "id_str")]
         public string UserIdStr { get; set; }
 
+        private string _username;
         [JsonProperty(PropertyName = "name")]
-        public string UserName { get; set; }
+        public string UserName 
+        { 
+            get { return _username; } 
+            set
+            {
+                _username = value;
+                SetIsAuthenticatedUser();
+            } 
+        }
 
         [JsonProperty(PropertyName = "screen_name")]
         public string UserScreenName { get; set; }
@@ -31,8 +40,20 @@ namespace Friendica_Mobile.Models
         [JsonProperty(PropertyName = "profile_image_url_https")]
         public string UserProfileImageUrlHttps { get; set; }
 
+        [JsonProperty(PropertyName = "profile_image_url_large")]
+        public string UserProfileImageUrlLarge { get; set; }
+
+        private string _userUrl;
         [JsonProperty(PropertyName = "url")]
-        public string UserUrl { get; set; }
+        public string UserUrl 
+        { 
+            get { return _userUrl; } 
+            set
+            {
+                _userUrl = value;
+                SetIsAuthenticatedUser();
+            } 
+        }
 
         [JsonProperty(PropertyName = "protected")]
         public bool UserProtected { get; set; }
@@ -80,11 +101,32 @@ namespace Friendica_Mobile.Models
         public string UserNetwork { get; set; }
 
 
+        // property to identify if a user dataset is referring to the user himself (in activities used)
+        [JsonIgnore]
+        public bool IsAuthenticatedUser { get; set; }
+
+
         private ICommand _openProfileCommand;
         public ICommand OpenProfileCommand => _openProfileCommand ?? (_openProfileCommand = new Command(OpenProfile));
         private void OpenProfile()
         {
             Launchers.OpenUrlWithZrl(UserStatusnetProfileUrl, true);
+        }
+
+        // method to check if user is the authenticated user
+        private bool SetIsAuthenticatedUser()
+        {
+            if (UserScreenName == null || UserUrl == null)
+                return false;
+
+            // no authenticated user if there is no server set so far (sample mode)
+            if (Settings.IsFriendicaLoginDefined())
+            {
+                // check url as well as there could be users with identic screen names on different servers
+                return (Settings.FriendicaUsername.ToLower() == UserScreenName.ToLower() &&
+                        UserUrl.Contains(Settings.FriendicaServer));
+            }
+            return false;
         }
     }
 }

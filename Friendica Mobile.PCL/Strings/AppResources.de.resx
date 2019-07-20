@@ -2202,4 +2202,68 @@ Dies ist derzeit nicht möglich, weil du noch keine Standard-Datenschutzeinstell
     <value>Streichen Sie für weitere Funktionen nach links.</value>
     <comment>Contacts.xaml: hint for actions on friends/forums in ios</comment>
   </data>
+  <data name="LabelNetworkNoDataAvailable" xml:space="preserve">
+    <value>Es gibt keine Beiträge aus Ihrer Community auf Ihrem Server.</value>
+    <comment>Network.xaml: info text shown to user if server has no posts returned</comment>
+  </data>
+  <data name="ButtonLikeText" xml:space="preserve">
+    <value>Ich mag es.</value>
+    <comment>Network.xaml/Home.xaml: caption of flyout menu item to like a post</comment>
+  </data>
+  <data name="ButtonDislikeText" xml:space="preserve">
+    <value>Ich mag das nicht.</value>
+    <comment>Network.xaml/Home.xaml: caption of flyout menu item to dislike a post</comment>
+  </data>
+  <data name="ButtonUnDislikeText" xml:space="preserve">
+    <value>Dislike zurücknehmen</value>
+    <comment>Network.xaml/Home.xaml: caption of flyout menu item to undo disliking a post</comment>
+  </data>
+  <data name="ButtonUnLikeText" xml:space="preserve">
+    <value>Like zurücknehmen</value>
+    <comment>Network.xaml/Home.xaml: caption of flyout menu item to undo liking a post</comment>
+  </data>
+  <data name="SliderShowMorePostsOff" xml:space="preserve">
+    <value>Nur neueste Kommentare angezeigt</value>
+    <comment>Network.xaml: toggle in thread to show all comments or only newest one</comment>
+  </data>
+  <data name="SliderShowMorePostsOn" xml:space="preserve">
+    <value>Alle Kommentare angezeigt</value>
+    <comment>Network.xaml: toggle in thread to show all comments or only newest</comment>
+  </data>
+  <data name="ButtonLoadMapTooltip" xml:space="preserve">
+    <value>Karte öffnen und den Standort anzeigen...</value>
+    <comment>Home/Network/Newsfeed.xaml: tooltip shown on each post if it has a location explaining that the button will open maps app and show the location on map</comment>
+  </data>
+  <data name="ButtonRetweetTooltip" xml:space="preserve">
+    <value>Teile diesen Beitrag mit anderen...</value>
+    <comment>Home/Network/Newsfeed.xaml: tooltip shown on each post explaining the button for retweeting the post</comment>
+  </data>
+  <data name="ButtonShowProfileTooltip" xml:space="preserve">
+    <value>Benutzerprofil im Browser öffnen...</value>
+    <comment>Home/Network/Newsfeed.xaml: tooltip shown on each post explaining the button to open profile</comment>
+  </data>
+  <data name="ButtonSettingsResetComplete" xml:space="preserve">
+    <value>Einstellungen zurücksetzen</value>
+    <comment>Settings.xaml: caption of the button used to delete all settings</comment>
+  </data>
+  <data name="LabelSettingsResetComplete" xml:space="preserve">
+    <value>Vollständiges Zurücksetzen aller Einstellungen:</value>
+    <comment>Settings.xaml: header for the button to delete all settings</comment>
+  </data>
+  <data name="MessageDialogSettingsResetComplete" xml:space="preserve">
+    <value>Dadurch werden alle deine Einstellungen gelöscht und können nicht rückgängig gemacht werden. Bist du sicher?</value>
+    <comment>Settings.xaml: dialog questioning user if he/she is sure to delete all settings and data</comment>
+  </data>
+  <data name="TextDisplayCodeFullscreenHint" xml:space="preserve">
+    <value>tippen für vollständigen Code</value>
+    <comment>HtmlToXamarinViews: code blocks with more than 3 lines are shortened, so add a hint that user needs to tap/click for full code view</comment>
+  </data>
+  <data name="MessageDialogPostsErrorOnLoadingMap" xml:space="preserve">
+    <value>Beim Versuch, die Karte mit dem Standort zu öffnen, ist ein Fehler aufgetreten.</value>
+    <comment>Home/Network/Newsfeed.xaml: error message if coordinates cannot be processed for showing in map</comment>
+  </data>
+  <data name="LabelHomeNoDataAvailable" xml:space="preserve">
+    <value>Es gibt keine Beiträge von Ihnen auf Ihrem Server.</value>
+    <comment>Home.xaml: info text shown to user if server has no posts returned for the own timeline</comment>
+  </data>
 </root>

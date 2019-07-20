@@ -13,11 +13,17 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Plugin.MediaManager" Version="0.4.5" />
+    <PackageReference Include="Plugin.MediaManager.Forms" Version="0.4.5" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.3.0" />
     <PackageReference Include="System.ComponentModel" Version="4.3.0" />
     <PackageReference Include="Xam.Plugin.DeviceInfo" Version="4.0.0.13" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
-    <PackageReference Include="Xamarin.Forms" Version="3.5.0.169047" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.0.0" />
+    <PackageReference Include="Xamarin.Forms" Version="3.5.0.274416" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.3" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.9.961" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.7.944" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModel\" />
@@ -27,12 +33,15 @@
     <Compile Remove="Views\MasterDetail.cs" />
     <Compile Remove="MainPage.xaml.cs" />
     <Compile Remove="Styles\CustomNavigationButton2.xaml.cs" />
-    <Compile Remove="HttpRequests\GetFriendicaNetwork.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Styles\CustomNavigationButton2.xaml" />
     <EmbeddedResource Remove="MainPage.xaml" />
     <EmbeddedResource Remove="Styles\CustomCommandBarItem %28Kopie%29.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="noimage.jpg" />
+    <EmbeddedResource Include="loadingimage.gif" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Controls\CustomNavigationCounter.xaml">
@@ -143,6 +152,10 @@
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\00_Shell.xaml.cs">
       <DependentUpon>00_CustomShell.xaml</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="noimage.jpg" />
+    <None Remove="loadingimage.gif" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\10_Home.xaml" />

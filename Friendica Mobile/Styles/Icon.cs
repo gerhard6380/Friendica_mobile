@@ -33,11 +33,34 @@ namespace Friendica_Mobile.Styles
         public static readonly string FISearch = "\uE11A"; // symbol of a lens for searching
         public static readonly string FISelectAll = "\uF0B5"; // symbol of 4 horizontal lines with a tick at each end
         public static readonly string FIDeselectAll = "\uEA42"; // symbol of 4 horizontal lines with a dot at each end
+        public static readonly string FIAdd = "\uE710"; // symbol showing a big plus sign
+        public static readonly string FIScrollToTop = "\uEDDB"; // symbol of a filled triangle to indicate scrolling to top of the list 
+        public static readonly string FIRetweet = "\uE8EB"; // symbol of circling arrows to indicate that user can retweet the post under his name
+        public static readonly string FILike = "\uE19F"; // symbol of thumb up to indicate like of the post
+        public static readonly string FIDislike = "\uE19E"; // symbol of thumb down to indicate dislike of the post
+        public static readonly string FILoading = "\uE895"; // symbol showing 2 circling arrows indicating to sync
+        public static readonly string FIFullscreen = "\uE740"; // diagonal line with two arrows indicating that user can switch to fullscreen
+        public static readonly string FISetAllSeen = "\uF19D"; // rectangle with an eye in right bottom corner indicating that user has read all elements
+
+        // user interaction media element
+        public static readonly string FISkipBack10 = "\uED3C"; // arrow back + 10 as numeric, skip back for 10 seconds (forward 10 not available)
+        public static readonly string FISkipForward30 = "\uED3D"; // arrow forward + 30 as numeric, skip forward for 30 seconds (back 30 not available)
+        public static readonly string FIPlay = "\uE768"; // triangle showing to right indicating that user can start playback
+        public static readonly string FIPause = "\uE769"; // two vertical bars indicating that user can pause playback
+        public static readonly string FIStop = "\uF12A"; // sqare indicating that user can stop playback (play afterwards starts at beginning
+        public static readonly string FIAudio = "\uE189"; // showing music notes indicating that this item is audio only
+        public static readonly string FIVideo = "\uE714"; // showing a video cam indicating that this item is a video 
+        public static readonly string FIVolumeMinus = "\uECC9"; // symbol of a minus in a circle indicating reducing the volume
+        public static readonly string FIVolumeMute = "\uE74F"; // symbol of a speaker with x indicating mute
+        public static readonly string FIVolumeOn = "\uE767"; // symbol of a speaker with two lines indicating volume on
+        public static readonly string FIVolumePlus = "\uECC8"; // symbol of a plus in a circle indicating increasing the volume
+
+
+
 
         public static readonly string FICancelCircle = "\uEA39"; // "x" in a circle 
         public static readonly string FIUserAdmin = "\uEF58"; // symbol showing a user icon with a small gearwheel bottom right
         public static readonly string FIAddUser = "\uE8FA"; // symbol showing a user icon with a small plus sign bottom right
-        public static readonly string FIAdd = "\uE710"; // symbol showing a big plus sign
         public static readonly string FIEdit = "\uE70F"; // symbol showing a pencil indicating that user can edit something
         public static readonly string FIDelete = "\uE74D"; // symbol showing a trash can indicating that user can delete the item
         public static readonly string FIKey = "\uE8D7"; // symbol showing a key for the registry token
@@ -47,6 +70,10 @@ namespace Friendica_Mobile.Styles
         public static readonly string FIRolesAdmin = "\uE7EF"; // symbol of a square with a shield indicating defending ACL
 
 
+        
+
+
+        
 
     }
 }

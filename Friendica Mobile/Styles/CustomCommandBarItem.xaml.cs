@@ -185,5 +185,10 @@ namespace Friendica_Mobile.Styles
             LabelFontIcon.VerticalTextAlignment = (view.Height > 48) ? TextAlignment.Start : TextAlignment.Center;
             LabelFontIcon.Margin = (view.Height > 48) ? new Thickness(0, 4, 0, 0) : new Thickness(0, 0, 0, 0);
         }
+
+        void Label_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            SetTextColor();
+        }
     }
 }

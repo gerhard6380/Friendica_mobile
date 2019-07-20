@@ -11,11 +11,12 @@
               HeightRequest="48">
             <controls:FontIconLabel x:Name="LabelIconButton" 
                                     Text="x"
-                                    TextColor="{DynamicResource NavigationTextColor}"
                                     VerticalTextAlignment="Center"
                                     HorizontalTextAlignment="Center"
                                     FontSize="20" />
+            <!--{DynamicResource NavigationTextColor}-->
             <controls:FramelessButton x:Name="ButtonIconButton" 
+                                      Clicked="IconButton_Clicked"
                                       BackgroundColor="Transparent"/>
         </Grid>
     </ContentView.Content>

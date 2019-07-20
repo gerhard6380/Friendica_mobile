@@ -1,8 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="Friendica_Mobile.Views.Newsfeed">
-    <ContentPage.Content>
-        <Label Text="Das ist der Newsfeed-Bereich" />
-    </ContentPage.Content>
-</ContentPage>
+<styles:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                        xmlns:styles="clr-namespace:Friendica_Mobile.Styles"
+                        xmlns:controls="clr-namespace:SeeberXamarin.Controls"
+                        xmlns:i18n="clr-namespace:Friendica_Mobile"                        
+                        xmlns:vm="clr-namespace:Friendica_Mobile.ViewModel"
+                        x:Class="Friendica_Mobile.Views.Newsfeed">
+             
+    <ContentPage.BindingContext>
+        <vm:NewsfeedViewModel />
+    </ContentPage.BindingContext>
+
+    <!-- define the command bar for this page -->
+    <styles:BaseContentPage.CommandBarCommandList>
+        <styles:CustomCommandBarItem x:Name="CommandBarNewsfeedRefresh"
+                                     FontIcon="{x:Static styles:Icon.FIRefresh}"
+                                     Text="{i18n:Translate appBarNetworkRefresh_Label}"
+                                     IsEnabled="{Binding RefreshNewsfeedEnabled}"
+                                     Level="Primary"
+                                     Priority="1"
+                                     Command="{Binding RefreshNewsfeedCommand}" />
+        <styles:CustomCommandBarItem x:Name="CommandBarNewsfeedSetAllSeen"
+                                     FontIcon="{x:Static styles:Icon.FISetAllSeen}"
+                                     Text="{i18n:Translate appBarNewsfeedSetAllSeen_Label}"
+                                     IsEnabled="{Binding RefreshNewsfeedEnabled}"
+                                     Level="Primary"
+                                     Priority="2"
+                                     Command="{Binding NewsfeedSetAllSeenCommand}"/>
+    </styles:BaseContentPage.CommandBarCommandList>
+
+    <!-- define the content for this page -->
+    <styles:BaseContentPage.PageContent>
+        <Grid>            
+            <StackLayout>
+                <!-- showing info if no settings are available -->
+                <StackLayout x:Name="StackLayoutNoSettings"
+                             IsVisible="{Binding PostsModel.NoSettings}">
+                    <Label Text="{i18n:Translate textblockNewsfeedNoSettings_Text}"
+                           TextColor="Red"
+                           FontAttributes="Italic" />
+                    <controls:CustomButton Text="{i18n:Translate textblockNetworkSettings_Text}"
+                                           Command="{Binding NavigateSettingsCommand}" />
+                </StackLayout>
+
+                <!-- showing info if no data was loaded from server (but not being in demo mode) -->
+                <StackLayout x:Name="StackLayoutNoDataAvailableNewsfeed"
+                             IsVisible="{Binding PostsModel.NoDataAvailableNewsfeed}">
+                    <Label Text="{i18n:Translate LabelNetworkNoDataAvailable}"
+                           TextColor="Gray"
+                           FontAttributes="Italic" />
+                </StackLayout>
+
+                <!-- stacklayout showing the threads returned, no scrolling without ScrollView -->
+                <ScrollView x:Name="ScrollViewNewsfeedThreads" 
+                            Scrolled="ScrollViewNewsfeedThreads_Scrolled">
+                    <StackLayout x:Name="ListNewsfeedThreads"
+                                 IsVisible="{Binding PostsModel.NoDataAvailableNewsfeed, Converter={StaticResource NegateBool}}"
+                                 BindableLayout.ItemsSource="{Binding PostsModel.NewsfeedThreads}"
+                                 BindableLayout.ItemTemplate="{StaticResource TemplateFriendicaThreads}" />
+                </ScrollView>
+            </StackLayout>
+
+            <!-- button shown to jump easily to the top of the list -->
+            <Grid x:Name="GridScrollToTop" 
+                  WidthRequest="48"
+                  HeightRequest="48"
+                  Margin="0,12,12,0"
+                  IsVisible="false"
+                  VerticalOptions="Start"
+                  HorizontalOptions="End">
+                <controls:FontIconLabel x:Name="LabelButtonScrollToTop" 
+                                        Text="{x:Static styles:Icon.FIScrollToTop}"
+                                        TextColor="{Binding PostsModel.CounterUnseenNewsfeed, Converter={StaticResource IntToColorCounter}}"
+                                        BackgroundColor="{DynamicResource CommandBarBackgroundColor}"
+                                        VerticalTextAlignment="Center"
+                                        HorizontalTextAlignment="Center"
+                                        FontSize="20" />
+                <controls:CustomButton x:Name="ButtonIconButton" 
+                                       Clicked="ButtonIconButton_Clicked"
+                                       BackgroundColor="Transparent"/>
+            </Grid>
+            
+            <!-- show a progress ring at the bottom if user reached end of listview and next entries will be loaded -->
+            <controls:CustomProgressRing x:Name="ProgressRingLoadingNextEntries"
+                                         IsVisible="{Binding PostsModel.IsLoadingNext}"
+                                         Text="{i18n:Translate textblockIndicatorLoadingNextEntries_Text}"
+                                         VerticalOptions="End"/>
+        </Grid>
+    </styles:BaseContentPage.PageContent>
+</styles:BaseContentPage>

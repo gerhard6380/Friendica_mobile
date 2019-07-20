@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Friendica_Mobile.ViewModel;
+using Plugin.MediaManager;
 using Xamarin.Forms;
 
 namespace Friendica_Mobile.Styles
@@ -43,7 +45,6 @@ namespace Friendica_Mobile.Styles
                 CommandBar.CommandList = list;  
             };
         }
-
 
         void Handle_OnCommandBarPositionChanged(object sender, System.EventArgs e)
         {
@@ -117,5 +118,34 @@ namespace Friendica_Mobile.Styles
             GridFlyoutBase.GestureRecognizers.Add(gridTap);
         }
 
+        void CloseMediaPlayer_IconButtonClicked(object sender, System.EventArgs e)
+        {
+            var mvvm = this.BindingContext as ViewModel.BaseViewModel;
+            CrossMediaManager.Current.Stop();
+            mvvm.IsMediaPlayerVisible = false;
+        }
+
+        void CloseCodeFullscreen_IconButtonClicked(object sender, System.EventArgs e)
+        {
+            var mvvm = this.BindingContext as ViewModel.BaseViewModel;
+            mvvm.IsCodeFullscreenVisible = false;
+        }
+
+        void FullscreenMediaPlayer_IconButtonClicked(object sender, System.EventArgs e)
+        {
+            // set title bar to black is looking better for fullscreen displaying
+            var nav = Application.Current.MainPage as NavigationPage;
+            nav.BarBackgroundColor = Color.Black;
+            nav.Popped += (sender2, e2) =>
+            {
+                // go back to correct title bar color after returning from fullscreen
+                nav.BarBackgroundColor = (OnPlatform<Color>)Application.Current.Resources["AccentColor"];
+            };
+            CrossMediaManager.Current.Pause();
+            var mvvm = this.BindingContext as BaseViewModel;
+            mvvm.IsMediaPlayerVisible = false;
+            var fullscreen = new Views.MediaFullscreen(mvvm.MediaUrlVM, MediaPlayer.CurrentTime);
+            Application.Current.MainPage.Navigation.PushAsync(fullscreen);
+        }
     }
 }

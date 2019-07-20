@@ -6,6 +6,12 @@
                     x:Class="Friendica_Mobile.GeneralStyles">
 
     <conv:NegateBoolConverter x:Key="NegateBool" />
+    <conv:BoolToBorderColorConverter x:Key="BoolToBorderColor" />
+    <conv:BoolToPostBackgroundColorConverter x:Key="BoolToPostBackgroundColor" />
+    <conv:BoolToFontColorLikeConverter x:Key="BoolToFontColorLike" />
+    <conv:HtmlToStackLayoutConverter x:Key="HtmlToStackLayout" />
+    <conv:IntToColorCounterConverter x:Key="IntToColorCounter" />
+    <conv:PostTypeToVisibleNewsfeedConverter x:Key="PostTypeToVisibleNewsfeed" />
     
     <Color x:Key="BackgroundColor">White</Color>
     <Color x:Key="MainTextColor">Black</Color>
@@ -16,7 +22,7 @@
     <Color x:Key="EntryDisabledBackgroundColor">WhiteSmoke</Color>
     <Color x:Key="ButtonBackgroundColor">#E6E6E6</Color>
     <Color x:Key="ButtonTextColor">Black</Color>
-    <Color x:Key="ListViewBackgroundColor">WhiteSmoke</Color>>
+    <Color x:Key="ListViewBackgroundColor">WhiteSmoke</Color>
     
     <OnPlatform x:Key="AccentColor" x:TypeArguments="Color"
            iOS="Accent"
@@ -101,8 +107,43 @@
         <Setter Property="BackgroundColor" Value="{DynamicResource ListViewBackgroundColor}" />
     </Style>
 
+    <Style x:Key="ListViewThreads" TargetType="ListView">
+        <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundColor}" />    
+    </Style>
+
+    <Style x:Key="ListViewLikesDislikes" TargetType="ListView">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+    </Style>
+    
     <Style x:Key="ListViewGroupEditor" TargetType="ListView">
         <Setter Property="BackgroundColor" Value="{DynamicResource NavigationBackgroundColor}" />
+    </Style>
+
+    <!-- styles used in html content in posts -->
+    <Style x:Key="LabelHtmlContent" TargetType="Label">
+        <Setter Property="TextColor" Value="White" />
+    </Style>
+
+    <Style x:Key="LabelHtmlHeader" TargetType="Label" BasedOn="{StaticResource LabelHtmlContent}">
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="20" />
+    </Style>
+    
+    <Style x:Key="LabelHtmlSharedTime" TargetType="Label" BasedOn="{StaticResource LabelHtmlContent}">
+        <Setter Property="FontSize" Value="10" />
+    </Style>
+
+    <Style x:Key="SpanStandard" TargetType="Span">
+        <Setter Property="TextColor" Value="White" />
+    </Style>
+    
+    <Style x:Key="SpanBold" TargetType="Span" BasedOn="{StaticResource SpanStandard}">
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+    
+    <Style x:Key="SpanHyperlink" TargetType="Span" BasedOn="{StaticResource SpanStandard}">
+        <Setter Property="TextColor" Value="Lavender" />
+        <Setter Property="TextDecorations" Value="Underline" />
     </Style>
     
 </ResourceDictionary>

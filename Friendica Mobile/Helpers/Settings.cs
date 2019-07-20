@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 
@@ -44,6 +46,8 @@ namespace Friendica_Mobile
             NotificationEachNewsfeedAllowed = NotificationEachNewsfeedAllowedDefault;
             NotificationShowMessageContent = NotificationShowMessageContentDefault;
             NotificationFreshnessTime = NotificationFreshnessTimeDefault;
+            LastReadNetworkPost = LastReadNetworkPostDefault;
+            UnseenNewsfeedItems = new List<int>();
         }
 
         /// <summary>
@@ -99,7 +103,10 @@ namespace Friendica_Mobile
         private static readonly bool NotificationShowMessageContentDefault = true;
         private const string NotificationFreshnessTimeKey = "NotificationFreshnessTime";
         private static readonly int NotificationFreshnessTimeDefault = 15;
-
+        private const string LastReadNetworkPostKey = "LastReadNetworkPost";
+        private static readonly int LastReadNetworkPostDefault = 0;
+        private const string UnseenNewsfeedItemsKey = "UnseenNewsfeedItems";
+        private static readonly string UnseenNewsfeedItemsDefault = String.Empty;
 
 
 		#endregion
@@ -233,6 +240,37 @@ namespace Friendica_Mobile
         {
             get { return AppSettings.GetValueOrDefault(NotificationFreshnessTimeKey, NotificationFreshnessTimeDefault); }
             set { AppSettings.AddOrUpdateValue(NotificationFreshnessTimeKey, value); }
+        }
+
+        public static int LastReadNetworkPost
+        {
+            get { return AppSettings.GetValueOrDefault(LastReadNetworkPostKey, LastReadNetworkPostDefault); }
+            set { AppSettings.AddOrUpdateValue(LastReadNetworkPostKey, value); }
+        }
+
+        // store the id's of the unseen newsfeed posts for marking them as unseen until user manually set the seen flag
+        public static List<int> UnseenNewsfeedItems
+        {
+            get
+            {
+                var setting = AppSettings.GetValueOrDefault(UnseenNewsfeedItemsKey, UnseenNewsfeedItemsDefault);
+                if (string.IsNullOrEmpty(setting))
+                    return new List<int>();
+                else
+                    return JsonConvert.DeserializeObject<List<int>>(setting);
+            }
+            set
+            {
+                try
+                {
+                    var serializedList = JsonConvert.SerializeObject(value);
+                    AppSettings.AddOrUpdateValue(UnseenNewsfeedItemsKey, serializedList);
+                }
+                catch
+                {
+                    AppSettings.AddOrUpdateValue(UnseenNewsfeedItemsKey, null);
+                }
+            }
         }
     }
 
