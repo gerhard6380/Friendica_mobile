@@ -4,17 +4,23 @@
              xmlns:controls="clr-namespace:SeeberXamarin.Controls"
              x:Class="SeeberXamarin.Controls.IconButton"
              VerticalOptions="Start"
-             HorizontalOptions="Start">
+             HorizontalOptions="StartAndExpand">
     <ContentView.Content>
         <Grid x:Name="GridIconButton" 
-              WidthRequest="48"
               HeightRequest="48">
-            <controls:FontIconLabel x:Name="LabelIconButton" 
+            <StackLayout Orientation="Horizontal" Spacing="0">
+                <controls:FontIconLabel x:Name="LabelIconButton" 
                                     Text="x"
+                                        WidthRequest="48"
                                     VerticalTextAlignment="Center"
                                     HorizontalTextAlignment="Center"
                                     FontSize="20" />
-            <!--{DynamicResource NavigationTextColor}-->
+                <Label x:Name="LabelTextButton"
+                       Text="x"
+                       Margin="0,0,8,0"
+                       IsVisible="False"
+                       VerticalOptions="Center" />
+            </StackLayout>
             <controls:FramelessButton x:Name="ButtonIconButton" 
                                       Clicked="IconButton_Clicked"
                                       BackgroundColor="Transparent"/>

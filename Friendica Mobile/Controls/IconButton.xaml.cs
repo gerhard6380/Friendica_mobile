@@ -15,6 +15,23 @@ namespace SeeberXamarin.Controls
                                                             propertyChanged: (bindable, value, newValue) =>
                                                             {
                                                                 (bindable as IconButton).LabelIconButton.Text = (string)newValue;
+                                                                (bindable as IconButton).SetTextColor();
+                                                            });
+
+        // prepare Bindable Property for Caption
+        public static readonly BindableProperty CaptionProperty = BindableProperty.Create("Caption",
+                                                            typeof(string), typeof(IconButton),
+                                                            "", BindingMode.OneWay,
+                                                            propertyChanged: (bindable, value, newValue) =>
+                                                            {
+                                                                var text = (string)newValue;
+                                                                if (!string.IsNullOrEmpty(text))
+                                                                {
+                                                                    (bindable as IconButton).LabelTextButton.Text = (string)newValue;
+                                                                    (bindable as IconButton).LabelTextButton.IsVisible = true;
+                                                                }
+                                                                else
+                                                                    (bindable as IconButton).LabelTextButton.IsVisible = false;
                                                             });
 
         // prepare Bindable Property for IsEnabled 
@@ -85,6 +102,11 @@ namespace SeeberXamarin.Controls
             get { return (string)GetValue(TooltipProperty); }
             set { SetValue(TooltipProperty, value); }
         }
+        public string Caption
+        {
+            get { return (string)GetValue(CaptionProperty); }
+            set { SetValue(CaptionProperty, value); }
+        }
         public Command Command
         {
             get { return (Command)GetValue(CommandProperty); }
@@ -124,7 +146,7 @@ namespace SeeberXamarin.Controls
             else
             {
                 if (FontIconColor == Color.Transparent)
-                    LabelIconButton.SetDynamicResource(Label.TextColorProperty, "NavigationTextColor");
+                    LabelIconButton.SetDynamicResource(Label.TextColorProperty, "ButtonTextColor");
                 else
                     LabelIconButton.TextColor = FontIconColor;
             }
