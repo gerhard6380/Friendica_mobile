@@ -16,6 +16,7 @@ namespace SeeberXamarin.Controls
                                                             {
                                                                 (bindable as IconButton).LabelIconButton.Text = (string)newValue;
                                                                 (bindable as IconButton).SetTextColor();
+                                                                (bindable as IconButton).SetCaptionState();
                                                             });
 
         // prepare Bindable Property for Caption
@@ -24,14 +25,8 @@ namespace SeeberXamarin.Controls
                                                             "", BindingMode.OneWay,
                                                             propertyChanged: (bindable, value, newValue) =>
                                                             {
-                                                                var text = (string)newValue;
-                                                                if (!string.IsNullOrEmpty(text))
-                                                                {
-                                                                    (bindable as IconButton).LabelTextButton.Text = (string)newValue;
-                                                                    (bindable as IconButton).LabelTextButton.IsVisible = true;
-                                                                }
-                                                                else
-                                                                    (bindable as IconButton).LabelTextButton.IsVisible = false;
+                                                                (bindable as IconButton).LabelTextButton.Text = (string)newValue;
+                                                                (bindable as IconButton).SetCaptionState();
                                                             });
 
         // prepare Bindable Property for IsEnabled 
@@ -80,10 +75,6 @@ namespace SeeberXamarin.Controls
                                                             propertyChanged: (bindable, value, newValue) =>
                                                             {
                                                                 (bindable as IconButton).SetTextColor();
-                                                                //if (newValue != null && newValue is Color)
-                                                                //{
-                                                                //    (bindable as IconButton).LabelIconButton.TextColor = (Color)newValue;
-                                                                //}
                                                             });
 
 
@@ -134,6 +125,7 @@ namespace SeeberXamarin.Controls
         private static void IsEnabledValueChanged(BindableObject bindable, object oldvalue, object newvalue)
         {
             (bindable as IconButton).SetTextColor();
+            (bindable as IconButton).SetCaptionState();
             (bindable as IconButton).ButtonIconButton.IsVisible = (bool)newvalue;
 
         }
@@ -149,6 +141,21 @@ namespace SeeberXamarin.Controls
                     LabelIconButton.SetDynamicResource(Label.TextColorProperty, "ButtonTextColor");
                 else
                     LabelIconButton.TextColor = FontIconColor;
+            }
+        }
+
+        private void SetCaptionState()
+        {
+            if (string.IsNullOrEmpty(Caption))
+            {
+                LabelTextButton.IsVisible = false;
+                GridIconButton.WidthRequest = 48;
+            }
+            else
+            {
+                LabelTextButton.IsVisible = true;
+                // doesn't automatically expand the button, so we need to estimate the width from count of characters
+                GridIconButton.WidthRequest = 48 + Caption.Length * 8;
             }
         }
 

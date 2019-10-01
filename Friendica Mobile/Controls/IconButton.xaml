@@ -6,9 +6,9 @@
              VerticalOptions="Start"
              HorizontalOptions="StartAndExpand">
     <ContentView.Content>
-        <Grid x:Name="GridIconButton" 
+        <Grid x:Name="GridIconButton"
               HeightRequest="48">
-            <StackLayout Orientation="Horizontal" Spacing="0">
+            <StackLayout x:Name="StackButton" Orientation="Horizontal" Spacing="0">
                 <controls:FontIconLabel x:Name="LabelIconButton" 
                                     Text="x"
                                         WidthRequest="48"
@@ -16,6 +16,7 @@
                                     HorizontalTextAlignment="Center"
                                     FontSize="20" />
                 <Label x:Name="LabelTextButton"
+                       LineBreakMode="NoWrap"
                        Text="x"
                        Margin="0,0,8,0"
                        IsVisible="False"
