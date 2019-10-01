@@ -103,6 +103,7 @@
     <Compile Include="Helpers\CustomPickerRenderer.cs" />
     <Compile Include="Helpers\CustomNavigationCounterRenderer.cs" />
     <Compile Include="Helpers\CustomSliderRenderer.cs" />
+    <Compile Include="Helpers\CustomWebViewRenderer.cs" />
     <Compile Include="Helpers\CustomSwitchRenderer.cs" />
     <Compile Include="Helpers\FramelessButtonRenderer.cs" />
     <Compile Include="Helpers\NavigationPaneAcrylic.cs" />

@@ -122,5 +122,41 @@ navigation and the back button handling; design of the menu buttons is done in S
             </Frame>
         </Grid>
 
+        <!-- internal notification -->
+        <Frame x:Name="NotificationBox"
+               BackgroundColor="DarkGreen"
+               IsVisible="false"
+               BorderColor="DarkGray"
+               Padding="8"
+               Opacity="0"
+               HasShadow="True"
+               VerticalOptions="Start"
+               HorizontalOptions="Fill">
+            <Grid HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <!-- image i.e. on posting images showing which image has been posted -->
+                <Image x:Name="NotificationImage"
+                       Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"
+                       VerticalOptions="Start"
+                       HeightRequest="72" WidthRequest="72"/>
+                <StackLayout Grid.Column="1"
+                             VerticalOptions="Center">
+                    <Label x:Name="NotificationTitle"
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           FontSize="12"
+                           HorizontalTextAlignment="Center"
+                           Text="--- title placeholder ---" />
+                    <Label x:Name="NotificationBody"
+                           TextColor="White"
+                           FontSize="10"
+                           HorizontalTextAlignment="Center"
+                           Text="--- body placeholder ---" />
+                </StackLayout>
+            </Grid>
+        </Frame>
     </Grid>    
 </ContentPage>

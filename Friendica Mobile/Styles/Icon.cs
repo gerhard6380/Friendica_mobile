@@ -41,6 +41,13 @@ namespace Friendica_Mobile.Styles
         public static readonly string FILoading = "\uE895"; // symbol showing 2 circling arrows indicating to sync
         public static readonly string FIFullscreen = "\uE740"; // diagonal line with two arrows indicating that user can switch to fullscreen
         public static readonly string FISetAllSeen = "\uF19D"; // rectangle with an eye in right bottom corner indicating that user has read all elements
+        public static readonly string FILink = "\uE71B"; // two chained rings indicating a hyperlink
+        public static readonly string FISend = "\uE122"; // a paperplane indicating sending the content
+        public static readonly string FIDelete = "\uE74D"; // symbol showing a trash can indicating that user can delete the item
+        public static readonly string FIWarningFilled = "\uE814"; // symbol showing an exclamation mark in a filled triangle indicating a hint or warning
+        public static readonly string FIMaximizeTop = "\uE146"; // a rectangle with a small rectangle on right side, use with 90% rotation = small rectangle on bottom
+        public static readonly string FIMaximizeBottom = "\uE145"; // a rectangle with a small rectangel on left side, use with 90% rotation = small rectangle on top
+        public static readonly string FISplitScreen = "\uE985"; // a rectangle in portrait mode split into two sections, indicating the editor/ACL sections split
 
         // user interaction media element
         public static readonly string FISkipBack10 = "\uED3C"; // arrow back + 10 as numeric, skip back for 10 seconds (forward 10 not available)
@@ -62,7 +69,6 @@ namespace Friendica_Mobile.Styles
         public static readonly string FIUserAdmin = "\uEF58"; // symbol showing a user icon with a small gearwheel bottom right
         public static readonly string FIAddUser = "\uE8FA"; // symbol showing a user icon with a small plus sign bottom right
         public static readonly string FIEdit = "\uE70F"; // symbol showing a pencil indicating that user can edit something
-        public static readonly string FIDelete = "\uE74D"; // symbol showing a trash can indicating that user can delete the item
         public static readonly string FIKey = "\uE8D7"; // symbol showing a key for the registry token
         public static readonly string FISave = "\uE74E"; // symbol of a disk to save changes
         public static readonly string FICancel = "\uE711"; // symbol of an X for cancelling current activity 

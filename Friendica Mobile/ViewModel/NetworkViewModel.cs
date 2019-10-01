@@ -64,10 +64,9 @@ namespace Friendica_Mobile.ViewModel
         public ICommand AddNewPostCommand => _addNewPostCommand ?? (_addNewPostCommand = new Command(AddNewPost));
         private async void AddNewPost()
         {
-            // TODO: implement routine = navigation to A0_NewPost.xaml
             // TODO: don't forget to show an activity indicator after returning from newPost during sending to server
             // TODO: textblockIndicatorSendingNewPost_Text
-            await Application.Current.MainPage.DisplayAlert("", "### new Post noch nicht implementiert ###", AppResources.buttonOK);
+            NavigateTo(new Views.NewPost());
         }
 
         private ICommand _navigateSettingsCommand;

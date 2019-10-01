@@ -26,10 +26,11 @@
     <DocumentationFile>bin\iPhoneSimulator\Debug\Friendica.iOS.xml</DocumentationFile>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>i386, x86_64</MtouchArch>
-    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchLink>Full</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
     <CodesignProvision>iOS Team Provisioning Profile: com.seeber.Friendica-Mobile</CodesignProvision>
     <CodesignKey>iPhone Developer: test@seeber.at (2KS85X8D2R)</CodesignKey>
+    <MtouchFloat32>false</MtouchFloat32>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -102,6 +103,12 @@
     <Compile Include="Helpers\GetSystemTheme.cs" />
     <Compile Include="Helpers\LocalizeIOS.cs" />
     <Compile Include="Helpers\StatusBarIOS.cs" />
+    <BundleResource Include="Resources\es.lproj\InfoPlist.strings" />
+    <BundleResource Include="Resources\de.lproj\InfoPlist.strings" />
+    <BundleResource Include="Resources\fr.lproj\InfoPlist.strings" />
+    <BundleResource Include="Resources\it.lproj\InfoPlist.strings" />
+    <BundleResource Include="Resources\pt.lproj\InfoPlist.strings" />
+    <BundleResource Include="Resources\en.lproj\InfoPlist.strings" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -189,5 +196,10 @@
   <ItemGroup>
     <Folder Include="Assets.xcassets\loadingimage.gif.imageset\" />
     <Folder Include="Assets.xcassets\noimage.jpg.imageset\" />
+    <Folder Include="Resources\de.lproj\" />
+    <Folder Include="Resources\fr.lproj\" />
+    <Folder Include="Resources\it.lproj\" />
+    <Folder Include="Resources\pt.lproj\" />
+    <Folder Include="Resources\en.lproj\" />
   </ItemGroup>
 </Project>

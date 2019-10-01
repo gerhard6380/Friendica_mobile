@@ -1045,7 +1045,7 @@ Sie können zusätzlich die Anzahl der neuen Benachrichtigungen auf dem Sperrbil
     <comment>Messagesxaml: if no settings user can play around with the editor, but on tapping the send button, they will get this error message</comment>
   </data>
   <data name="paragraphMessagesNoContent" xml:space="preserve">
-    <value>---kein Nachrichtentext---</value>
+    <value>FRIENDICA MOBILE</value>
     <comment>Messages.xaml: placeholder if there is no content in a private message (should be a very rare case)</comment>
   </data>
   <data name="messageDialogMessagesDeleteConversation" xml:space="preserve">
@@ -2265,5 +2265,131 @@ Dies ist derzeit nicht möglich, weil du noch keine Standard-Datenschutzeinstell
   <data name="LabelHomeNoDataAvailable" xml:space="preserve">
     <value>Es gibt keine Beiträge von Ihnen auf Ihrem Server.</value>
     <comment>Home.xaml: info text shown to user if server has no posts returned for the own timeline</comment>
+  </data>
+  <data name="ButtonNewPostEditorBold" xml:space="preserve">
+    <value>F</value>
+    <comment>NewPost.xaml: caption of button for bold formatting</comment>
+  </data>
+  <data name="ButtonNewPostEditorItalic" xml:space="preserve">
+    <value>k</value>
+    <comment>NewPost.xaml: caption of button for italic formatting</comment>
+  </data>
+  <data name="ButtonNewPostEditorUnderline" xml:space="preserve">
+    <value>u</value>
+    <comment>NewPost.xaml: caption of button for underline formatting</comment>
+  </data>
+  <data name="ButtonLinkCaptionTooltip" xml:space="preserve">
+    <value>Öffne einen Dialog, um den Hyperlink einzugeben ...</value>
+    <comment>NewPost.xaml: tooltip of button for link insert</comment>
+  </data>
+  <data name="TextNewLinkHint" xml:space="preserve">
+    <value>Vergewissern Sie sich, dass Sie einen Text ausgewählt haben, bevor Sie einen Hyperlink einfügen.</value>
+    <comment>NewPost.xaml: hint on prompt for adding a hyperlink indicating that a text must be selected to insert the link.</comment>
+  </data>
+  <data name="TextEditorBackgroundHeader" xml:space="preserve">
+    <value>Hintergrund</value>
+    <comment>NewPost.xaml: header of dropdown for background color in editor-website</comment>
+  </data>
+  <data name="TextEditorColorHeader" xml:space="preserve">
+    <value>Farbe</value>
+    <comment>NewPost.xaml: header of dropdown for text color in editor-website</comment>
+  </data>
+  <data name="TextEditorFormatHeader" xml:space="preserve">
+    <value>Format</value>
+    <comment>NewPost.xaml: header of dropdown for formatting in editor-website</comment>
+  </data>
+  <data name="TextEditorShowHtmlCheckbox" xml:space="preserve">
+    <value>HTML anzeigen</value>
+    <comment>NewPost.xaml: checkbox in editor-website to display HTML code</comment>
+  </data>
+  <data name="TextEditorBoldTooltip" xml:space="preserve">
+    <value>Fett</value>
+    <comment>NewPost.xaml: tooltip shown on bold button</comment>
+  </data>
+  <data name="TextEditorCodeTooltip" xml:space="preserve">
+    <value>Als Code-Block (pre-Tag) formatieren</value>
+    <comment>NewPost.xaml: tooltip shown on code button</comment>
+  </data>
+  <data name="TextEditorDottedListTooltip" xml:space="preserve">
+    <value>Gepunktete Liste</value>
+    <comment>NewPost.xaml: tooltip shown on unordered list button</comment>
+  </data>
+  <data name="TextEditorItalicTooltip" xml:space="preserve">
+    <value>Kursiv</value>
+    <comment>NewPost.xaml: tooltip shown on italic button</comment>
+  </data>
+  <data name="TextEditorNumberedListTooltip" xml:space="preserve">
+    <value>Nummerierte Liste</value>
+    <comment>NewPost.xaml: tooltip shown on ordered list button</comment>
+  </data>
+  <data name="TextEditorQuoteTooltip" xml:space="preserve">
+    <value>Als Zitat formatieren</value>
+    <comment>NewPost.xaml: tooltip shown on quote button</comment>
+  </data>
+  <data name="TextEditorRemoveFormattingTooltip" xml:space="preserve">
+    <value>Entfernt die meisten Formate</value>
+    <comment>NewPost.xaml: tooltip shown on remove format button</comment>
+  </data>
+  <data name="TextEditorUnderlineTooltip" xml:space="preserve">
+    <value>Unterstrichen</value>
+    <comment>NewPost.xaml: tooltip shown on underline button</comment>
+  </data>
+  <data name="TextEditorUndoTooltip" xml:space="preserve">
+    <value>Vorherige Schritte rückgängig machen</value>
+    <comment>NewPost.xaml: tooltip shown on undo button</comment>
+  </data>
+  <data name="MessageDialogGeneralErrorMessage" xml:space="preserve">
+    <value>Ein unerwarteter Fehler ist aufgetreten: {0}/n({1})</value>
+    <comment>General use: something resulted in an error, giving back the Message as  first parameter and the StackTrace as second parameter</comment>
+  </data>
+  <data name="MessageDialogPhotoGalleryForbidden" xml:space="preserve">
+    <value>Der Zugriff auf die Fotogalerie ist nicht gestattet.</value>
+    <comment>NewPost.xaml: error message shown if access to photo gallery through Plugin.Media is forbidden.</comment>
+  </data>
+  <data name="MessageDialogLocationServicesNotAllowed" xml:space="preserve">
+    <value>Keine Berechtigung zum Verwendung von Ortungsdiensten auf diesem Gerät, der neue Beitrag wird ohne Standort gesendet.</value>
+    <comment>NewPost.xaml: info to user if "send coordinates" is active, but not allowed to retrieve current location on this device.</comment>
+  </data>
+  <data name="LabelNewPostNoImage" xml:space="preserve">
+    <value>Kein Foto ausgewählt</value>
+    <comment>NewPost.xaml: text shown as a placeholder as long the user has not selected a photo </comment>
+  </data>
+  <data name="TextNewPostImageTooltip" xml:space="preserve">
+    <value>Tippe hier für eine größere Ansicht...</value>
+    <comment>NewPost.xaml: tooltip shown if user hovers over photo, explaining that a click/tap will open the image in a bigger view</comment>
+  </data>
+  <data name="MessageDialogNewPostImageExceedWarnLimit" xml:space="preserve">
+    <value>Das geladene Bild hat eine Größe von {0}. Dies kann für Ihren Server abhängig von den Servereinstellungen zu groß sein (Warnlimit bei {1}).</value>
+    <comment>NewPost.xaml: if loaded image is bigger than a set limit, showing an exclamation mark on image. this is the message shown if user clicks the warning sign. parameter 1 is actual size of image, parameter 2 is warn limit.</comment>
+  </data>
+  <data name="MessageDialogNewPostImageUploadError" xml:space="preserve">
+    <value>Beim Hochladen des Bildes ist ein Fehler aufgetreten. Dieser Beitrag wird verworfen. Ein häufiger Grund dafür ist, dass die Bildgröße die Upload-Grenzwerte auf deinem Server überschreitet. Du kannst versuchen, eine kleinere Version des Bildes neu hochzuladen. Oder wende dich an deinen Administrator, um das Limit für PHP-Uploads zu erhöhen.</value>
+    <comment>NewPost.xaml: message displayed to user if server returns an error on uploading images. </comment>
+  </data>
+  <data name="MessageDialogNewPostNotAnsweredError" xml:space="preserve">
+    <value>Der Server hat beim Versuch, den neuen Beitrag hochzuladen, nicht geantwortet.
+Willst du es nochmal versuchen?
+(Der neue Beitrag wird verworfen, wenn du"Nein" auswählst)</value>
+    <comment>NewPost.xaml: message display to user if server has not answered. User can decide to re-try, otherwise post will be discarded.</comment>
+  </data>
+  <data name="MessageDialogNewPostSuccessfullSent" xml:space="preserve">
+    <value>Neuer Beitrag erfolgreich auf den Server übertragen</value>
+    <comment>NewPost.xaml: internal notification header if post has successfully sent to server</comment>
+  </data>
+  <data name="MessageDialogNewPostTooManyRequestsError" xml:space="preserve">
+    <value>Der Server akzeptiert keine weiteren Beiträge, da das tägliche, wöchentliche oder monatliche Limit überschritten wird. Der neue Beitrag wird verworfen. Wende dich an den Administrator deines Servers, wenn du glaubst, dass es sich um einen Fehler handelt.</value>
+    <comment>NewPost.xaml: message displayed to user if server returns the TooManyRequests error (if daily, weekly or monthly limits of API posts are exceeded).</comment>
+  </data>
+  <data name="MessageDialogNewPostNoContentSendCancelled" xml:space="preserve">
+    <value>Der Beitrag enthält weder Text noch Bild. Der Versand des Beitrags wurde abgebrochen.</value>
+    <comment>NewPost.xaml: dialog shown if new post neither contains text nor image, nothing to send, process cancelled</comment>
+  </data>
+  <data name="MessageDialogNewPostPublicPostOk" xml:space="preserve">
+    <value>Sie sind gerade dabei, einen öffentlichen Beitrag zu senden. Ist das gewünscht?</value>
+    <comment>NewPost.xaml: warning if user is sending a public post, yes or no as answers</comment>
+  </data>
+  <data name="TextNewPostRetweetingHint" xml:space="preserve">
+    <value>Erneutes Tweeten eines Beitrags: Der ursprüngliche Beitrag wird beim Senden des neuen Beitrags nach Ihrer Nachricht eingefügt.</value>
+    <comment>NewPost.xaml: hint shown if user wants to retweet an existing post</comment>
   </data>
 </root>

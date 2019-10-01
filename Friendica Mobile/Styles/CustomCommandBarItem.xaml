@@ -42,6 +42,7 @@
                                             VerticalOptions="Start" />
         
             <Button x:Name="ButtonCommandBarItem"
+                    Clicked="ButtonCommandBarItem_Clicked"
                     BackgroundColor="Transparent"/>
         </Grid>
 

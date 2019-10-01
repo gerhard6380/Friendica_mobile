@@ -1,0 +1,2 @@
+﻿NSPhotoLibraryUsageDescription = "Diese App benötigt Zugriff auf Ihre Galerie, um Fotos auszuwählen.";
+NSLocationWhenInUseUsageDescription = "Sie können neue Posts mit Ihrem aktuellen Standort kennzeichnen (kann im Posting Editor deaktiviert werden).";

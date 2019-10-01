@@ -42,5 +42,11 @@
 	<string>Assets.xcassets/LaunchImage.launchimage</string>
 	<key>CFBundleShortVersionString</key>
 	<string>2.6.0</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app needs access to your gallery to pick photos.</string>
+	<key>Custom Property</key>
+	<string></string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>You can tag new postings with your current location (can be disabled in posting editor).</string>
 </dict>
 </plist>

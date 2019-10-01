@@ -775,6 +775,15 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Open a dialog to enter the hyperlink... ähnelt.
+        /// </summary>
+        public static string ButtonLinkCaptionTooltip {
+            get {
+                return ResourceManager.GetString("ButtonLinkCaptionTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Insert Hyperlink ähnelt.
         /// </summary>
         public static string buttonLinkInsert {
@@ -825,6 +834,33 @@ namespace Friendica_Mobile.PCL.Strings {
         public static string buttonMessagesLoadOlderMessages_ToolTipService_ToolTip {
             get {
                 return ResourceManager.GetString("buttonMessagesLoadOlderMessages.ToolTipService.ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die B ähnelt.
+        /// </summary>
+        public static string ButtonNewPostEditorBold {
+            get {
+                return ResourceManager.GetString("ButtonNewPostEditorBold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die I ähnelt.
+        /// </summary>
+        public static string ButtonNewPostEditorItalic {
+            get {
+                return ResourceManager.GetString("ButtonNewPostEditorItalic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die u ähnelt.
+        /// </summary>
+        public static string ButtonNewPostEditorUnderline {
+            get {
+                return ResourceManager.GetString("ButtonNewPostEditorUnderline", resourceCulture);
             }
         }
         
@@ -1424,6 +1460,15 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No photo selected ähnelt.
+        /// </summary>
+        public static string LabelNewPostNoImage {
+            get {
+                return ResourceManager.GetString("LabelNewPostNoImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Dark Mode ähnelt.
         /// </summary>
         public static string LabelSettingsAppThemeDarkMode {
@@ -1690,6 +1735,15 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die An unexpected error has occurred: {0}/n({1}) ähnelt.
+        /// </summary>
+        public static string MessageDialogGeneralErrorMessage {
+            get {
+                return ResourceManager.GetString("MessageDialogGeneralErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The group with the name &apos;{0}&apos; is already set. Please choose a different name for a new group. ähnelt.
         /// </summary>
         public static string messageDialogGroupAlreadyExisting {
@@ -1798,6 +1852,15 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No permission to use location services on this device, the new post will be sent without location. ähnelt.
+        /// </summary>
+        public static string MessageDialogLocationServicesNotAllowed {
+            get {
+                return ResourceManager.GetString("MessageDialogLocationServicesNotAllowed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die An error occurred during transmission to the server. Here is the error: 
         ///HTML status: {0}
         ///error message: {1} ähnelt.
@@ -1899,6 +1962,24 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The loaded image has a size of {0}. This could be to big for your server depending on the server settings (warn limit at {1}). ähnelt.
+        /// </summary>
+        public static string MessageDialogNewPostImageExceedWarnLimit {
+            get {
+                return ResourceManager.GetString("MessageDialogNewPostImageExceedWarnLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Something went wrong on uploading the image. This post will be discarded. A common reason is the image size is exceeding upload limits on your server. You could try newly uploading a smaller version of the image. Or contact your administrator to increase limit for PHP uploads. ähnelt.
+        /// </summary>
+        public static string MessageDialogNewPostImageUploadError {
+            get {
+                return ResourceManager.GetString("MessageDialogNewPostImageUploadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die There was a problem when inserting the hyperlink! ähnelt.
         /// </summary>
         public static string messageDialogNewPostLinkError {
@@ -1917,6 +1998,15 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The post don&apos;t contain text or image, sending the post has been cancelled. ähnelt.
+        /// </summary>
+        public static string MessageDialogNewPostNoContentSendCancelled {
+            get {
+                return ResourceManager.GetString("MessageDialogNewPostNoContentSendCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die You cannot post in the test mode. Please specify in the settings your server and your credentials. ähnelt.
         /// </summary>
         public static string messageDialogNewPostNoSettings {
@@ -1926,11 +2016,31 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Server has not answered when trying to upload the new post. 
+        ///Do you want to try again? 
+        ///(The new post will be discarded if you select &quot;No&quot;) ähnelt.
+        /// </summary>
+        public static string MessageDialogNewPostNotAnsweredError {
+            get {
+                return ResourceManager.GetString("MessageDialogNewPostNotAnsweredError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The new post has not been sent yet. Are you sure that you want to leave the page? ähnelt.
         /// </summary>
         public static string messageDialogNewPostNotSent {
             get {
                 return ResourceManager.GetString("messageDialogNewPostNotSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You are just about to send a public post. Is this wished? ähnelt.
+        /// </summary>
+        public static string MessageDialogNewPostPublicPostOk {
+            get {
+                return ResourceManager.GetString("MessageDialogNewPostPublicPostOk", resourceCulture);
             }
         }
         
@@ -1949,6 +2059,24 @@ namespace Friendica_Mobile.PCL.Strings {
         public static string messageDialogNewPostSentAppClosing {
             get {
                 return ResourceManager.GetString("messageDialogNewPostSentAppClosing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New post successfully transferred to server ähnelt.
+        /// </summary>
+        public static string MessageDialogNewPostSuccessfullSent {
+            get {
+                return ResourceManager.GetString("MessageDialogNewPostSuccessfullSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Server is not accepting further posts, because exceeding daily, weekly or monthly limits. The new post will be discarded. Contact your server&apos;s administrator if you think it is an error. ähnelt.
+        /// </summary>
+        public static string MessageDialogNewPostTooManyRequestsError {
+            get {
+                return ResourceManager.GetString("MessageDialogNewPostTooManyRequestsError", resourceCulture);
             }
         }
         
@@ -1980,6 +2108,15 @@ namespace Friendica_Mobile.PCL.Strings {
         public static string MessageDialogNoSettingsNoProfileUrl {
             get {
                 return ResourceManager.GetString("MessageDialogNoSettingsNoProfileUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Access to the photo gallery is not allowed. ähnelt.
+        /// </summary>
+        public static string MessageDialogPhotoGalleryForbidden {
+            get {
+                return ResourceManager.GetString("MessageDialogPhotoGalleryForbidden", resourceCulture);
             }
         }
         
@@ -4652,6 +4789,123 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die background ähnelt.
+        /// </summary>
+        public static string TextEditorBackgroundHeader {
+            get {
+                return ResourceManager.GetString("TextEditorBackgroundHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bold ähnelt.
+        /// </summary>
+        public static string TextEditorBoldTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorBoldTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Format as code block (pre-tag) ähnelt.
+        /// </summary>
+        public static string TextEditorCodeTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorCodeTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die color ähnelt.
+        /// </summary>
+        public static string TextEditorColorHeader {
+            get {
+                return ResourceManager.GetString("TextEditorColorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Dotted list ähnelt.
+        /// </summary>
+        public static string TextEditorDottedListTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorDottedListTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die format ähnelt.
+        /// </summary>
+        public static string TextEditorFormatHeader {
+            get {
+                return ResourceManager.GetString("TextEditorFormatHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Italic ähnelt.
+        /// </summary>
+        public static string TextEditorItalicTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorItalicTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Numbered list ähnelt.
+        /// </summary>
+        public static string TextEditorNumberedListTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorNumberedListTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Format as quote ähnelt.
+        /// </summary>
+        public static string TextEditorQuoteTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorQuoteTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Removes most formats ähnelt.
+        /// </summary>
+        public static string TextEditorRemoveFormattingTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorRemoveFormattingTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show HTML ähnelt.
+        /// </summary>
+        public static string TextEditorShowHtmlCheckbox {
+            get {
+                return ResourceManager.GetString("TextEditorShowHtmlCheckbox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Underline ähnelt.
+        /// </summary>
+        public static string TextEditorUnderlineTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorUnderlineTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Undo previous steps ähnelt.
+        /// </summary>
+        public static string TextEditorUndoTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorUndoTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Do you have questions about this app? Have problems occured to you, that you would like to share with the developers (bug reporting)? Are there important Friendica features which you are missing in the app? Or do you want to keep yourself informed on the further development of the app? ähnelt.
         /// </summary>
         public static string textHelpAppSupport1_Text {
@@ -4702,6 +4956,33 @@ namespace Friendica_Mobile.PCL.Strings {
         public static string textHelpFriendicaSupport_Text {
             get {
                 return ResourceManager.GetString("textHelpFriendicaSupport.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please verify to select a text before inserting a hyperlink. ähnelt.
+        /// </summary>
+        public static string TextNewLinkHint {
+            get {
+                return ResourceManager.GetString("TextNewLinkHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Tap here for a bigger view... ähnelt.
+        /// </summary>
+        public static string TextNewPostImageTooltip {
+            get {
+                return ResourceManager.GetString("TextNewPostImageTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Retweeting a post: original post will be added after your message during sending the new post. ähnelt.
+        /// </summary>
+        public static string TextNewPostRetweetingHint {
+            get {
+                return ResourceManager.GetString("TextNewPostRetweetingHint", resourceCulture);
             }
         }
         

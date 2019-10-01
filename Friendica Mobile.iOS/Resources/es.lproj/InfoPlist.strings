@@ -1,0 +1,2 @@
+﻿NSPhotoLibraryUsageDescription = "Esta aplicación necesita acceso a su galería para elegir fotos.";
+NSLocationWhenInUseUsageDescription = "Puede etiquetar nuevas publicaciones con su ubicación actual (puede deshabilitarse en el editor de publicaciones).";

@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<styles:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                        xmlns:styles="clr-namespace:Friendica_Mobile.Styles"
+                        xmlns:controls="clr-namespace:SeeberXamarin.Controls"
+                        xmlns:i18n="clr-namespace:Friendica_Mobile"                        
+                        xmlns:vm="clr-namespace:Friendica_Mobile.ViewModel"
+                        x:Class="Friendica_Mobile.Views.NewPost">
+    <ContentPage.BindingContext>
+        <vm:NewPostViewModel />
+    </ContentPage.BindingContext>
+    
+    <!-- define the command bar for this page -->
+    <styles:BaseContentPage.CommandBarCommandList>
+        <styles:CustomCommandBarItem x:Name="CommandBarNewPostLoadImage"
+                                     FontIcon="{x:Static styles:Icon.FICamera}"
+                                     Text="{i18n:Translate buttonLoadImage_Content}"
+                                     Level="Primary"
+                                     Priority="1"
+                                     Command="{Binding LoadImageCommand}" />
+        <styles:CustomCommandBarItem x:Name="CommandBarNewPostSend"
+                                     FontIcon="{x:Static styles:Icon.FISend}"
+                                     Text="{i18n:Translate buttonNewPostSend_Content}"
+                                     Level="Primary"
+                                     Priority="2"
+                                     CustomCommandBarItemClicked="CommandBarNewPostSend_Clicked" />
+    </styles:BaseContentPage.CommandBarCommandList>
+
+    <styles:BaseContentPage.PageContent>
+        <Grid>
+            <!-- background in accent color to create a thin line between the sections to indicate the separate scroll areas -->
+            <Grid x:Name="MainContainerGrid"
+                  ColumnSpacing="2" RowSpacing="2"
+                  BackgroundColor="{DynamicResource AccentColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition x:Name="GridRow1" Height="3*" />
+                    <RowDefinition x:Name="GridRow2" Height="2*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>   
+
+                <!-- post editor area -->
+                <ScrollView x:Name="ScrollViewEditor"
+                            BackgroundColor="{DynamicResource BackgroundColor}"
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Padding="0,0,0,12"
+                            Grid.Column="0">
+                    <StackLayout Margin="0,0,0,12">
+                        <!-- hint that retweet content will be added at the bottom of the post on sending -->
+                        <Label Text="{i18n:Translate TextNewPostRetweetingHint}"
+                               FontSize="12"
+                               TextColor="DarkOrchid"
+                               IsVisible="{Binding IsRetweeting}"
+                               FontAttributes="Italic" />
+
+                        <!-- title of the post (optional field for user) -->
+                        <Label Text="{i18n:Translate textBoxNewPostTitle_Header}"
+                               Style="{StaticResource LabelHeader1}" />
+                        <Entry x:Name="EntryNewPostTitle"
+                               Text="{Binding NewPost.Title}"
+                               HorizontalOptions="Fill" />       
+
+                        <!-- webview for editor (format buttons created in Javascript in HTML) -->
+                        <Label Text="{i18n:Translate textBlockNewPostStatusHeader_Text}"
+                               Style="{StaticResource LabelHeader1}" />
+                        <controls:CustomWebView x:Name="NewPostEditor"
+                                                WidthRequest="1000">
+                            <controls:CustomWebView.HeightRequest>
+                                <!-- UWP needs more space for editor to display full color selector without scrolling, otherwise losing focus -->
+                                <OnPlatform x:TypeArguments="x:Double" Default="424">
+                                    <On Platform="UWP" Value="450" />
+                                </OnPlatform>
+                            </controls:CustomWebView.HeightRequest>
+                        </controls:CustomWebView>
+
+                        <!-- button to add a link (only needed in UWP as Javascript prompt not shown there) others have logic in js -->
+                        <controls:IconButton x:Name="ButtonInsertLink" 
+                                             FontIcon="{x:Static styles:Icon.FILink}"
+                                             Caption="{i18n:Translate buttonLinkCaption_Text}"
+                                             Tooltip="{i18n:Translate ButtonLinkCaptionTooltip}"
+                                             BackgroundColor="{DynamicResource ButtonBackgroundColor}"
+                                             IconButtonClicked="ButtonInsertLink_Clicked">
+                            <controls:IconButton.IsVisible>
+                                <OnPlatform x:TypeArguments="x:Boolean" Default="False">
+                                    <On Platform="UWP" Value="True" />
+                                </OnPlatform>
+                            </controls:IconButton.IsVisible>
+                        </controls:IconButton>
+                        
+                        <!-- switch for sending GPS coordinates -->
+                        <StackLayout Orientation="Horizontal">
+                            <controls:CustomSwitch x:Name="SwitchSendCoordinates"
+                                                   HorizontalOptions="Start"
+                                                   IsToggled="{Binding SendCoordinates}" />
+                            <Label Text="{i18n:Translate toggleSendCoordinates_Header}"
+                                   VerticalOptions="Center"
+                                   VerticalTextAlignment="Center"
+                                   FontSize="12" />
+                        </StackLayout> 
+                        
+                        <!-- switch to send coordinates from image if it contains data -->
+                        <StackLayout Orientation="Horizontal"
+                                     IsVisible="{Binding SendCoordinatesImageVisible}">
+                            <controls:CustomSwitch x:Name="SwitchSendCoordinatesImage"
+                                                   Margin="48,0,0,0"
+                                                   HorizontalOptions="Start"
+                                                   IsToggled="{Binding SendCoordinatesImage}" />
+                            <Label Text="{i18n:Translate checkboxSendCoordinatesImage_Content}"
+                                   VerticalOptions="Center"
+                                   VerticalTextAlignment="Center"
+                                   FontSize="12" />
+                        </StackLayout> 
+                        
+                        <!-- header for the image section -->
+                        <Label Text="{i18n:Translate textBlockNewPostImageHeader_Text}"
+                               Style="{StaticResource LabelHeader1}" />
+                        
+                        <!-- hint if no image yet selected -->
+                        <Label Text="{i18n:Translate LabelNewPostNoImage}" 
+                               FontSize="12"
+                               TextColor="Gray"
+                               IsVisible="{Binding ImageLoaded, Converter={StaticResource NegateBool}}"
+                               FontAttributes="Italic"/>
+                               
+                        <!-- image selected for adding to the post -->
+                        <Grid IsVisible="{Binding ImageLoaded}">
+                            <RelativeLayout>
+                                <!-- selected image as a preview displayed -->
+                                <controls:CustomImage x:Name="ImageNewPost"
+                                                      Source="{Binding NewPostImage}"
+                                                      HorizontalOptions="Center"
+                                                      Tooltip="{i18n:Translate TextNewPostImageTooltip}"
+                                                      HeightRequest="300"
+                                                      WidthRequest="300">
+                                    <controls:CustomImage.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="ImageNewPost_Tapped" />
+                                    </controls:CustomImage.GestureRecognizers>
+                                </controls:CustomImage>   
+                                <!-- button to delete the image -->
+                                <controls:IconButton FontIcon="{x:Static styles:Icon.FIDelete}"
+                                                     HorizontalOptions="Center"
+                                                     VerticalOptions="Center"
+                                                     FontIconColor="Red"
+                                                     BackgroundColor="{DynamicResource ButtonBackgroundColor}"
+                                                     Command="{Binding DeleteImageCommand}"
+                                                     Tooltip="{i18n:Translate buttonDeleteImage_Content}"
+                                                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView,
+                                                        ElementName=ImageNewPost, Property=Width, Factor=0.5, Constant=-24}"
+                                                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
+                                                        ElementName=ImageNewPost, Property=Height, Factor=0.5, Constant=-24}"/>
+                                <!-- button to show a hint if image is bigger than 2MB -->
+                                <controls:IconButton FontIcon="{x:Static styles:Icon.FIWarningFilled}"
+                                                     IsVisible="{Binding ImageSizeIsBig}"
+                                                     FontIconColor="Orange"
+                                                     VerticalOptions="Start"
+                                                     HorizontalOptions="End"
+                                                     BackgroundColor="Transparent"
+                                                     Command="{Binding ShowHintOnImageCommand}"
+                                                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView,
+                                                        ElementName=ImageNewPost, Property=Width, Factor=0.8, Constant=-4}"
+                                                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
+                                                        ElementName=ImageNewPost, Property=Height, Factor=0.2, Constant=4}" />
+                            </RelativeLayout>
+                        </Grid>                        
+                    </StackLayout>   
+                </ScrollView>
+
+                <!-- acl rights and if needed recent posts in this conversation-->
+                <ScrollView x:Name="ACLConversationLayout"
+                            BackgroundColor="{DynamicResource BackgroundColor}"
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Grid.Column="1">
+                    <StackLayout>
+                        <StackLayout x:Name="StackACLSettings"
+                                     Margin="0,0,0,48"
+                                     IsVisible="{Binding ShowACLSettings}">
+                            <!-- header for the acl section -->
+                            <Label Text="{i18n:Translate textblockAccessRightsHeader_Text}"
+                               Style="{StaticResource LabelHeader1}" />
+
+                            <!-- Radio buttons to select public or private posts as ACL for this post -->
+                            <controls:CustomRadioButtonGroup x:Name="RadioButtonACLPost"
+                                                             IsBordered="False"
+                                                             CanDeselectAll="True"
+                                                             SelectedIndex="{Binding PostACLSetting}">
+                                <controls:CustomRadioButtonGroup.RadioButtons>
+                                    <controls:CustomRadioButton x:Name="RadioButtonPublicPost"
+                                                                ItemName="PublicPost"
+                                                                Text="{i18n:Translate radiobuttonPublicPost_Content}" />
+                                    <controls:CustomRadioButton x:Name="RadioButtonPrivatePost"
+                                                                ItemName="PrivatePost"
+                                                                Text="{i18n:Translate radiobuttonPrivatePost_Content}" />
+                                </controls:CustomRadioButtonGroup.RadioButtons>
+                            </controls:CustomRadioButtonGroup>
+
+                            <!-- show details if user wants a private post (can select users and groups) -->
+                            <StackLayout x:Name="StackPrivateACLDetails"
+                                         IsVisible="{Binding IsPrivateACLVisible}">
+                                <!-- label if loading data has failed -->
+                                <StackLayout x:Name="StackLabelErrorMessage"
+                                             IsVisible="{Binding IsListViewsVisible, Converter={StaticResource NegateBool}}">
+                                    <Label x:Name="LabelErrorMessage"
+                                           Text="{Binding LabelServerActivityFailed}"
+                                           TextColor="Maroon"
+                                           FontAttributes="Italic" />
+                                    <!-- in some case we will add a button to reload -->
+                                    <controls:CustomButton x:Name="ButtonReload"
+                                                           IsVisible="{Binding IsButtonReloadVisible}"
+                                                           Text="{i18n:Translate ButtonSettingsReloadContacts}"
+                                                           Command="{Binding ReloadContactsCommand}" />
+                                </StackLayout>
+
+                                <!-- show hint as long no contact or group is selected -->
+                                <Label Text="{i18n:Translate textblockNoContactsGroupsSelected_Text}"
+                                       TextColor="Red"
+                                       IsVisible="{Binding NoContactsGroupsSelected}"
+                                       FontAttributes="Italic" />
+
+                                <!-- list box with contacts and groups for default private posts settings -->
+                                <ListView x:Name="ListViewContacts"
+                                          ItemsSource="{Binding Friends}"
+                                          Margin="48,0,0,0"
+                                          IsVisible="{Binding IsListViewsVisible}"
+                                          HorizontalOptions="StartAndExpand"
+                                          ItemSelected="ListViewContacts_ItemSelected"
+                                          ItemTemplate="{StaticResource TemplateListViewSettingsContacts}"
+                                          HeightRequest="150" />
+                                        
+                                <ListView x:Name="ListViewGroups"
+                                          ItemsSource="{Binding Groups}"
+                                          Margin="48,0,0,0"
+                                          IsVisible="{Binding IsListViewsVisible}"
+                                          HorizontalOptions="StartAndExpand"
+                                          ItemSelected="ListViewGroups_ItemSelected"
+                                          ItemTemplate="{StaticResource TemplateListViewSettingsGroups}"
+                                          HeightRequest="150" /> 
+                            </StackLayout>
+
+                            <!-- switch to set that current setting should be saved in app settings after sending the post -->
+                            <StackLayout Orientation="Horizontal">
+                                <controls:CustomSwitch x:Name="SwitchSaveACLStandard"
+                                                       HorizontalOptions="Start"
+                                                       IsToggled="{Binding SaveACLStandard}" />
+                                <Label Text="{i18n:Translate checkboxSaveACLStandard_Content}"
+                                       VerticalOptions="Center"
+                                       VerticalTextAlignment="Center"
+                                       FontSize="12" />
+                            </StackLayout>
+                        </StackLayout>
+
+                        <StackLayout x:Name="StackCurrentThread"
+                                     IsVisible="{Binding ShowCurrentThread}">
+                            <!-- label with setion header -->
+                            <Label Text="{i18n:Translate textblockConversationHeader_Text}"
+                                   Style="{StaticResource LabelHeader1}" />
+                            <!-- stacklayout showing the thread returned, no scrolling without ScrollView -->
+                                <StackLayout x:Name="ListCurrentThread"
+                                             Margin="24,0,0,0"
+                                             BindableLayout.ItemsSource="{Binding CurrentThread}"
+                                             BindableLayout.ItemTemplate="{StaticResource TemplateFriendicaThreads}" />
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+
+                <!-- button to change area sizes on smartphones (bigger editor, bigger acl section, 3/5+2/5 shares), this
+                     gives user more view on each area -->
+                <controls:IconButton x:Name="ButtonChangeAreas"
+                                     FontIcon="{x:Static styles:Icon.FIMaximizeTop}"
+                                     BackgroundColor="{DynamicResource ButtonBackgroundColor}"
+                                     HeightRequest="36"
+                                     WidthRequest="36"
+                                     FontIconColor="{DynamicResource ButtonTextColor}"
+                                     Rotation="90"
+                                     Grid.Column="0" Grid.Row="1"
+                                     Grid.ColumnSpan="2" Grid.RowSpan="1"
+                                     Margin="0,-18,0,0"
+                                     VerticalOptions="Start"
+                                     HorizontalOptions="End"
+                                     IconButtonClicked="ButtonChangeAreas_Clicked">
+                </controls:IconButton>
+            </Grid>
+
+            <!-- prompt shown on UWP platform to enter hyperlink after clicking 'ButtonInsertLink' -->
+            <Grid x:Name="PromptInsertLink"
+                  BackgroundColor="Gray"
+                  Opacity="0.9"
+                  IsVisible="False">
+                <Grid.GestureRecognizers>
+                    <!-- tap outside of frame will close the prompt -->
+                    <TapGestureRecognizer x:Name="PromptInsertLinkTap"
+                                          Tapped="PromptInsertLinkTap_Tapped" />
+                </Grid.GestureRecognizers>
+                <!-- draw a nice border around the elements -->
+                <Frame BorderColor="{DynamicResource AccentColor}"
+                       BackgroundColor="{DynamicResource ListViewBackgroundColor}"
+                       HasShadow="True"
+                       Margin="2"
+                       WidthRequest="300"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center">
+                    <StackLayout>
+                        <Label Text="{i18n:Translate inputLink_Header}"
+                               Style="{DynamicResource LabelHeader1}" />
+                        <Label Text="{i18n:Translate TextNewLinkHint}"
+                               FontAttributes="Italic" />
+                        <Entry x:Name="EntryLink"
+                               WidthRequest="250"
+                               Keyboard="Url"
+                               Completed="EntryLink_Completed"
+                               Placeholder="https://" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="125" />
+                                <ColumnDefinition Width="125" />
+                            </Grid.ColumnDefinitions>
+                            <controls:CustomButton x:Name="ButtonCloseLinkPromptOk"
+                                                   Grid.Column="0"
+                                                   Text="{i18n:Translate buttonOK}"
+                                                   Clicked="ButtonCloseLinkPrompt_Clicked" />
+                            <controls:CustomButton x:Name="ButtonCloseLinkPromptCancel"
+                                                   Grid.Column="1"
+                                                   Text="{i18n:Translate buttonCancel}"
+                                                   Clicked="ButtonCloseLinkPromptCancel_Clicked" />
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </Grid>
+    </styles:BaseContentPage.PageContent>
+</styles:BaseContentPage>

@@ -116,6 +116,15 @@ namespace Friendica_Mobile.ViewModel
             vm.Detail = page;
         }
 
+        public void NavigateBack()
+        {
+            var nav = Application.Current.MainPage as NavigationPage;
+            var shell = nav.RootPage as Views.CustomShell;
+            var vm = shell.BindingContext as ShellViewModel;
+            vm.PopAsync();
+        }
+
+
         private void SetCounter()
         {
             // get shell environment and set counter to new value

@@ -262,12 +262,12 @@
                                                   HeightRequest="150" /> 
                                     </StackLayout>
                                     
-                                        <!-- button to reset settings back to ex-works state -->
-                                        <Label Text="{i18n:Translate LabelSettingsResetComplete}"
+                                    <!-- button to reset settings back to ex-works state -->
+                                    <Label Text="{i18n:Translate LabelSettingsResetComplete}"
                                            Style="{StaticResource LabelHeader1}" />
-                                        <controls:CustomButton x:Name="ButtonResetSettings"
-                                                               Text="{i18n:Translate ButtonSettingsResetComplete}"
-                                                               Command="{Binding ResetSettingsCommand}" />
+                                    <controls:CustomButton x:Name="ButtonResetSettings"
+                                                           Text="{i18n:Translate ButtonSettingsResetComplete}"
+                                                           Command="{Binding ResetSettingsCommand}" />
                                 </StackLayout>
                             </StackLayout>
                         </controls:CustomTabViewItem.TabContent>

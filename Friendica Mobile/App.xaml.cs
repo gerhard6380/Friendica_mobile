@@ -7,14 +7,25 @@ using Plugin.DeviceInfo;
 using Plugin.DeviceInfo.Abstractions;
 using Friendica_Mobile.Strings;
 using System.IO;
+using Friendica_Mobile.Models;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Friendica_Mobile
 {
     public partial class App : Application
     {
+        // property for holding internal notification
+        private static InternalNotification _notification;
+        public static InternalNotification Notification
+        {
+            get { return _notification; }
+            set { _notification = value;
+                NotificationChanged?.Invoke(null, EventArgs.Empty); }
+        }
+
         public static Models.PostsModel Posts;
         public static HttpRequests.HttpFriendicaContacts Contacts;
+        public static Models.NewPostsAdmin NewPosts;
 
         // local storing when message has been shown once to the user
         public static bool NetworkNoSettingsAlreadyShownRefresh;
@@ -56,6 +67,8 @@ namespace Friendica_Mobile
         }
 
         public static event EventHandler ShellSizeChanged;
+        public static event EventHandler NotificationChanged; //fired when a new internal notification should be displayed
+
 
         public App()
         {
@@ -86,7 +99,7 @@ namespace Friendica_Mobile
             var nav = Application.Current.MainPage as NavigationPage;
             var shell = nav.RootPage as Views.CustomShell;
             var vm = shell.BindingContext as ShellViewModel;
-            vm.Detail = new Views.NewPost();
+            vm.Detail = new Views.Network();
         }
 
         public static void DefineResources()
@@ -104,7 +117,7 @@ namespace Friendica_Mobile
                 Current.Resources["ButtonTextColor"] = Color.FromHex("#007AFF");
             else
                 Current.Resources["ButtonTextColor"] = (isDark) ? Color.White : Color.Black;
-            Current.Resources["ListViewBackgroundColor"] = (isDark) ? Color.FromHex("#0D0D0D") : Color.WhiteSmoke;
+            Current.Resources["ListViewBackgroundColor"] = (isDark) ? Color.FromHex("#1A1A1A") : Color.WhiteSmoke;
         }
 
         protected override void OnStart()

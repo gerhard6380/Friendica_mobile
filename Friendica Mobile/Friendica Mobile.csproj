@@ -24,6 +24,8 @@
     <PackageReference Include="HtmlAgilityPack" Version="1.11.3" />
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.9.961" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.7.944" />
+    <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
+    <PackageReference Include="ExifLib.PCL" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModel\" />
@@ -44,21 +46,6 @@
     <EmbeddedResource Include="loadingimage.gif" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Controls\CustomNavigationCounter.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Controls\CustomRadioButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Controls\CustomRadioButtonGroup.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Controls\CustomTabView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Controls\CustomTabViewItem.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Strings\AppResources.de.resx">
       <Generator></Generator>
     </EmbeddedResource>
@@ -81,42 +68,6 @@
     <EmbeddedResource Update="Styles\CustomNavigationButton.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\10_Home.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\15_Network.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\16_Newsfeed.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\20_Contacts.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\25_Messages.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\30_Profiles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\35_Photos.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\40_Videos.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\45_Events.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\50_PersonalNotes.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\92_Help.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\93_About.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\Detail1.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -129,9 +80,6 @@
     <EmbeddedResource Update="Styles\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Tabbed2.xaml">
-      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +126,7 @@
     <None Include="Controls\CustomTabViewItem.xaml" />
     <None Include="Controls\CustomNavigationCounter.xaml" />
     <None Include="Controls\CustomNavigationCounter.xaml" />
+    <None Include="**/*" />
   </ItemGroup>
   <ItemGroup>
     <None Update="App.xaml">

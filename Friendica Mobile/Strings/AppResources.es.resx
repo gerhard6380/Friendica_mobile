@@ -2265,4 +2265,130 @@ En la actualidad esto no es posible, porque aún no han fijado predeterminado co
     <value>No hay entradas de usted en su servidor.</value>
     <comment>Home.xaml: info text shown to user if server has no posts returned for the own timeline</comment>
   </data>
+  <data name="ButtonNewPostEditorBold" xml:space="preserve">
+    <value>N</value>
+    <comment>NewPost.xaml: caption of button for bold formatting</comment>
+  </data>
+  <data name="ButtonNewPostEditorItalic" xml:space="preserve">
+    <value>K</value>
+    <comment>NewPost.xaml: caption of button for italic formatting</comment>
+  </data>
+  <data name="ButtonNewPostEditorUnderline" xml:space="preserve">
+    <value>S</value>
+    <comment>NewPost.xaml: caption of button for underline formatting</comment>
+  </data>
+  <data name="ButtonLinkCaptionTooltip" xml:space="preserve">
+    <value>Abra un cuadro de diálogo para ingresar el hipervínculo ...</value>
+    <comment>NewPost.xaml: tooltip of button for link insert</comment>
+  </data>
+  <data name="TextNewLinkHint" xml:space="preserve">
+    <value>Verifique para seleccionar un texto antes de insertar un hipervínculo.</value>
+    <comment>NewPost.xaml: hint on prompt for adding a hyperlink indicating that a text must be selected to insert the link.</comment>
+  </data>
+  <data name="TextEditorBackgroundHeader" xml:space="preserve">
+    <value>fondo</value>
+    <comment>NewPost.xaml: header of dropdown for background color in editor-website</comment>
+  </data>
+  <data name="TextEditorColorHeader" xml:space="preserve">
+    <value>color</value>
+    <comment>NewPost.xaml: header of dropdown for text color in editor-website</comment>
+  </data>
+  <data name="TextEditorFormatHeader" xml:space="preserve">
+    <value>formato</value>
+    <comment>NewPost.xaml: header of dropdown for formatting in editor-website</comment>
+  </data>
+  <data name="TextEditorShowHtmlCheckbox" xml:space="preserve">
+    <value>Mostrar HTML</value>
+    <comment>NewPost.xaml: checkbox in editor-website to display HTML code</comment>
+  </data>
+  <data name="TextEditorBoldTooltip" xml:space="preserve">
+    <value>Negrita</value>
+    <comment>NewPost.xaml: tooltip shown on bold button</comment>
+  </data>
+  <data name="TextEditorCodeTooltip" xml:space="preserve">
+    <value>Formato como bloque de código (etiqueta HTML 'pre')</value>
+    <comment>NewPost.xaml: tooltip shown on code button</comment>
+  </data>
+  <data name="TextEditorDottedListTooltip" xml:space="preserve">
+    <value>Lista punteada</value>
+    <comment>NewPost.xaml: tooltip shown on unordered list button</comment>
+  </data>
+  <data name="TextEditorItalicTooltip" xml:space="preserve">
+    <value>Cursiva</value>
+    <comment>NewPost.xaml: tooltip shown on italic button</comment>
+  </data>
+  <data name="TextEditorNumberedListTooltip" xml:space="preserve">
+    <value>Lista numerada</value>
+    <comment>NewPost.xaml: tooltip shown on ordered list button</comment>
+  </data>
+  <data name="TextEditorQuoteTooltip" xml:space="preserve">
+    <value>Formato como cita</value>
+    <comment>NewPost.xaml: tooltip shown on quote button</comment>
+  </data>
+  <data name="TextEditorRemoveFormattingTooltip" xml:space="preserve">
+    <value>Elimina la mayoría de los formatos</value>
+    <comment>NewPost.xaml: tooltip shown on remove format button</comment>
+  </data>
+  <data name="TextEditorUnderlineTooltip" xml:space="preserve">
+    <value>Subrayar</value>
+    <comment>NewPost.xaml: tooltip shown on underline button</comment>
+  </data>
+  <data name="TextEditorUndoTooltip" xml:space="preserve">
+    <value>Deshacer los pasos anteriores</value>
+    <comment>NewPost.xaml: tooltip shown on undo button</comment>
+  </data>
+  <data name="MessageDialogGeneralErrorMessage" xml:space="preserve">
+    <value>Se produjo un error inesperado: {0}/n({1})</value>
+    <comment>General use: something resulted in an error, giving back the Message as  first parameter and the StackTrace as second parameter</comment>
+  </data>
+  <data name="MessageDialogPhotoGalleryForbidden" xml:space="preserve">
+    <value>El acceso a la galería de fotos no está permitido.</value>
+    <comment>NewPost.xaml: error message shown if access to photo gallery through Plugin.Media is forbidden.</comment>
+  </data>
+  <data name="MessageDialogLocationServicesNotAllowed" xml:space="preserve">
+    <value>Sin permiso para usar los servicios de ubicación en este dispositivo, la nueva publicación se enviará sin ubicación.</value>
+    <comment>NewPost.xaml: info to user if "send coordinates" is active, but not allowed to retrieve current location on this device.</comment>
+  </data>
+  <data name="LabelNewPostNoImage" xml:space="preserve">
+    <value>Ninguna foto seleccionada</value>
+    <comment>NewPost.xaml: text shown as a placeholder as long the user has not selected a photo </comment>
+  </data>
+  <data name="TextNewPostImageTooltip" xml:space="preserve">
+    <value>Toque aquí para una vista más grande ...</value>
+    <comment>NewPost.xaml: tooltip shown if user hovers over photo, explaining that a click/tap will open the image in a bigger view</comment>
+  </data>
+  <data name="MessageDialogNewPostImageExceedWarnLimit" xml:space="preserve">
+    <value>La imagen cargada tiene un tamaño de {0}. Esto podría ser demasiado grande para su servidor dependiendo de la configuración del servidor (límite de advertencia en {1}).</value>
+    <comment>NewPost.xaml: if loaded image is bigger than a set limit, showing an exclamation mark on image. this is the message shown if user clicks the warning sign. parameter 1 is actual size of image, parameter 2 is warn limit.</comment>
+  </data>
+  <data name="MessageDialogNewPostImageUploadError" xml:space="preserve">
+    <value>Algo salió mal al subir la imagen. Esta publicación será descartada. Una razón común es que el tamaño de la imagen excede los límites de carga en su servidor. Podría intentar subir una versión más pequeña de la imagen. O comuníquese con su administrador para aumentar el límite de carga de PHP.</value>
+    <comment>NewPost.xaml: message displayed to user if server returns an error on uploading images. </comment>
+  </data>
+  <data name="MessageDialogNewPostNotAnsweredError" xml:space="preserve">
+    <value>El servidor no ha respondido al intentar cargar la nueva publicación.
+¿Quieres intentarlo de nuevo?
+(La nueva publicación se descartará si selecciona "No")</value>
+    <comment>NewPost.xaml: message display to user if server has not answered. User can decide to re-try, otherwise post will be discarded.</comment>
+  </data>
+  <data name="MessageDialogNewPostSuccessfullSent" xml:space="preserve">
+    <value>Nueva publicación transferida correctamente al servidor</value>
+    <comment>NewPost.xaml: internal notification header if post has successfully sent to server</comment>
+  </data>
+  <data name="MessageDialogNewPostTooManyRequestsError" xml:space="preserve">
+    <value>El servidor no acepta más publicaciones porque excede los límites diarios, semanales o mensuales. La nueva publicación será descartada. Póngase en contacto con el administrador de su servidor si cree que es un error.</value>
+    <comment>NewPost.xaml: message displayed to user if server returns the TooManyRequests error (if daily, weekly or monthly limits of API posts are exceeded).</comment>
+  </data>
+  <data name="MessageDialogNewPostNoContentSendCancelled" xml:space="preserve">
+    <value>La publicación no contiene texto o imagen, el envío de la publicación ha sido cancelado.</value>
+    <comment>NewPost.xaml: dialog shown if new post neither contains text nor image, nothing to send, process cancelled</comment>
+  </data>
+  <data name="MessageDialogNewPostPublicPostOk" xml:space="preserve">
+    <value>Estás a punto de enviar una publicación pública. ¿Esto es deseado?</value>
+    <comment>NewPost.xaml: warning if user is sending a public post, yes or no as answers</comment>
+  </data>
+  <data name="TextNewPostRetweetingHint" xml:space="preserve">
+    <value>Retwittear una publicación: la publicación original se agregará después de su mensaje durante el envío de la nueva publicación.</value>
+    <comment>NewPost.xaml: hint shown if user wants to retweet an existing post</comment>
+  </data>
 </root>

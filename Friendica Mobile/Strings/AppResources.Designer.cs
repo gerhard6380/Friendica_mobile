@@ -3358,5 +3358,191 @@ namespace Friendica_Mobile.Strings {
                 return ResourceManager.GetString("LabelHomeNoDataAvailable", resourceCulture);
             }
         }
+        
+        public static string ButtonNewPostEditorBold {
+            get {
+                return ResourceManager.GetString("ButtonNewPostEditorBold", resourceCulture);
+            }
+        }
+        
+        public static string ButtonNewPostEditorItalic {
+            get {
+                return ResourceManager.GetString("ButtonNewPostEditorItalic", resourceCulture);
+            }
+        }
+        
+        public static string ButtonNewPostEditorUnderline {
+            get {
+                return ResourceManager.GetString("ButtonNewPostEditorUnderline", resourceCulture);
+            }
+        }
+        
+        public static string ButtonLinkCaptionTooltip {
+            get {
+                return ResourceManager.GetString("ButtonLinkCaptionTooltip", resourceCulture);
+            }
+        }
+        
+        public static string TextNewLinkHint {
+            get {
+                return ResourceManager.GetString("TextNewLinkHint", resourceCulture);
+            }
+        }
+        
+        public static string TextEditorBackgroundHeader {
+            get {
+                return ResourceManager.GetString("TextEditorBackgroundHeader", resourceCulture);
+            }
+        }
+        
+        public static string TextEditorBoldTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorBoldTooltip", resourceCulture);
+            }
+        }
+        
+        public static string TextEditorCodeTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorCodeTooltip", resourceCulture);
+            }
+        }
+        
+        public static string TextEditorColorHeader {
+            get {
+                return ResourceManager.GetString("TextEditorColorHeader", resourceCulture);
+            }
+        }
+        
+        public static string TextEditorDottedListTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorDottedListTooltip", resourceCulture);
+            }
+        }
+        
+        public static string TextEditorFormatHeader {
+            get {
+                return ResourceManager.GetString("TextEditorFormatHeader", resourceCulture);
+            }
+        }
+        
+        public static string TextEditorItalicTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorItalicTooltip", resourceCulture);
+            }
+        }
+        
+        public static string TextEditorNumberedListTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorNumberedListTooltip", resourceCulture);
+            }
+        }
+        
+        public static string TextEditorQuoteTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorQuoteTooltip", resourceCulture);
+            }
+        }
+        
+        public static string TextEditorRemoveFormattingTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorRemoveFormattingTooltip", resourceCulture);
+            }
+        }
+        
+        public static string TextEditorShowHtmlCheckbox {
+            get {
+                return ResourceManager.GetString("TextEditorShowHtmlCheckbox", resourceCulture);
+            }
+        }
+        
+        public static string TextEditorUnderlineTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorUnderlineTooltip", resourceCulture);
+            }
+        }
+        
+        public static string TextEditorUndoTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorUndoTooltip", resourceCulture);
+            }
+        }
+        
+        public static string MessageDialogGeneralErrorMessage {
+            get {
+                return ResourceManager.GetString("MessageDialogGeneralErrorMessage", resourceCulture);
+            }
+        }
+        
+        public static string MessageDialogPhotoGalleryForbidden {
+            get {
+                return ResourceManager.GetString("MessageDialogPhotoGalleryForbidden", resourceCulture);
+            }
+        }
+        
+        public static string MessageDialogLocationServicesNotAllowed {
+            get {
+                return ResourceManager.GetString("MessageDialogLocationServicesNotAllowed", resourceCulture);
+            }
+        }
+        
+        public static string LabelNewPostNoImage {
+            get {
+                return ResourceManager.GetString("LabelNewPostNoImage", resourceCulture);
+            }
+        }
+        
+        public static string TextNewPostImageTooltip {
+            get {
+                return ResourceManager.GetString("TextNewPostImageTooltip", resourceCulture);
+            }
+        }
+        
+        public static string MessageDialogNewPostImageExceedWarnLimit {
+            get {
+                return ResourceManager.GetString("MessageDialogNewPostImageExceedWarnLimit", resourceCulture);
+            }
+        }
+        
+        public static string MessageDialogNewPostImageUploadError {
+            get {
+                return ResourceManager.GetString("MessageDialogNewPostImageUploadError", resourceCulture);
+            }
+        }
+        
+        public static string MessageDialogNewPostNotAnsweredError {
+            get {
+                return ResourceManager.GetString("MessageDialogNewPostNotAnsweredError", resourceCulture);
+            }
+        }
+        
+        public static string MessageDialogNewPostSuccessfullSent {
+            get {
+                return ResourceManager.GetString("MessageDialogNewPostSuccessfullSent", resourceCulture);
+            }
+        }
+        
+        public static string MessageDialogNewPostTooManyRequestsError {
+            get {
+                return ResourceManager.GetString("MessageDialogNewPostTooManyRequestsError", resourceCulture);
+            }
+        }
+        
+        public static string MessageDialogNewPostNoContentSendCancelled {
+            get {
+                return ResourceManager.GetString("MessageDialogNewPostNoContentSendCancelled", resourceCulture);
+            }
+        }
+        
+        public static string MessageDialogNewPostPublicPostOk {
+            get {
+                return ResourceManager.GetString("MessageDialogNewPostPublicPostOk", resourceCulture);
+            }
+        }
+        
+        public static string TextNewPostRetweetingHint {
+            get {
+                return ResourceManager.GetString("TextNewPostRetweetingHint", resourceCulture);
+            }
+        }
     }
 }

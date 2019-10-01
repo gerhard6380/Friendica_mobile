@@ -28,5 +28,7 @@
 	<string>2.6.0</string>
 	<key>CFBundleVersion</key>
 	<string>2.6.0</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app needs access to photos.</string>
 </dict>
 </plist>

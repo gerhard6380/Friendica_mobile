@@ -2857,6 +2857,165 @@ En la actualidad esto no es posible, porque aún no han fijado predeterminado co
           <target state="translated" state-qualifier="mt-suggestion">No hay entradas de usted en su servidor.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Home.xaml: info text shown to user if server has no posts returned for the own timeline</note>
         </trans-unit>
+        <trans-unit id="ButtonNewPostEditorBold" translate="yes" xml:space="preserve">
+          <source>B</source>
+          <target state="final">N</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: caption of button for bold formatting</note>
+        </trans-unit>
+        <trans-unit id="ButtonNewPostEditorItalic" translate="yes" xml:space="preserve">
+          <source>I</source>
+          <target state="final">K</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: caption of button for italic formatting</note>
+        </trans-unit>
+        <trans-unit id="ButtonNewPostEditorUnderline" translate="yes" xml:space="preserve">
+          <source>u</source>
+          <target state="final">S</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: caption of button for underline formatting</note>
+        </trans-unit>
+        <trans-unit id="ButtonLinkCaptionTooltip" translate="yes" xml:space="preserve">
+          <source>Open a dialog to enter the hyperlink...</source>
+          <target state="final">Abra un cuadro de diálogo para ingresar el hipervínculo ...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: tooltip of button for link insert</note>
+        </trans-unit>
+        <trans-unit id="TextNewLinkHint" translate="yes" xml:space="preserve">
+          <source>Please verify to select a text before inserting a hyperlink.</source>
+          <target state="final">Verifique para seleccionar un texto antes de insertar un hipervínculo.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: hint on prompt for adding a hyperlink indicating that a text must be selected to insert the link.</note>
+        </trans-unit>
+        <trans-unit id="TextEditorBackgroundHeader" translate="yes" xml:space="preserve">
+          <source>background</source>
+          <target state="final" state-qualifier="tm-suggestion">fondo</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: header of dropdown for background color in editor-website</note>
+        </trans-unit>
+        <trans-unit id="TextEditorColorHeader" translate="yes" xml:space="preserve">
+          <source>color</source>
+          <target state="final" state-qualifier="tm-suggestion">color</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: header of dropdown for text color in editor-website</note>
+        </trans-unit>
+        <trans-unit id="TextEditorFormatHeader" translate="yes" xml:space="preserve">
+          <source>format</source>
+          <target state="final" state-qualifier="tm-suggestion">formato</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: header of dropdown for formatting in editor-website</note>
+        </trans-unit>
+        <trans-unit id="TextEditorShowHtmlCheckbox" translate="yes" xml:space="preserve">
+          <source>Show HTML</source>
+          <target state="final" state-qualifier="mt-suggestion">Mostrar HTML</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: checkbox in editor-website to display HTML code</note>
+        </trans-unit>
+        <trans-unit id="TextEditorBoldTooltip" translate="yes" xml:space="preserve">
+          <source>Bold</source>
+          <target state="final" state-qualifier="tm-suggestion">Negrita</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: tooltip shown on bold button</note>
+        </trans-unit>
+        <trans-unit id="TextEditorCodeTooltip" translate="yes" xml:space="preserve">
+          <source>Format as code block (pre-tag)</source>
+          <target state="final">Formato como bloque de código (etiqueta HTML 'pre')</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: tooltip shown on code button</note>
+        </trans-unit>
+        <trans-unit id="TextEditorDottedListTooltip" translate="yes" xml:space="preserve">
+          <source>Dotted list</source>
+          <target state="final">Lista punteada</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: tooltip shown on unordered list button</note>
+        </trans-unit>
+        <trans-unit id="TextEditorItalicTooltip" translate="yes" xml:space="preserve">
+          <source>Italic</source>
+          <target state="final" state-qualifier="tm-suggestion">Cursiva</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: tooltip shown on italic button</note>
+        </trans-unit>
+        <trans-unit id="TextEditorNumberedListTooltip" translate="yes" xml:space="preserve">
+          <source>Numbered list</source>
+          <target state="final" state-qualifier="tm-suggestion">Lista numerada</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: tooltip shown on ordered list button</note>
+        </trans-unit>
+        <trans-unit id="TextEditorQuoteTooltip" translate="yes" xml:space="preserve">
+          <source>Format as quote</source>
+          <target state="final">Formato como cita</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: tooltip shown on quote button</note>
+        </trans-unit>
+        <trans-unit id="TextEditorRemoveFormattingTooltip" translate="yes" xml:space="preserve">
+          <source>Removes most formats</source>
+          <target state="final" state-qualifier="mt-suggestion">Elimina la mayoría de los formatos</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: tooltip shown on remove format button</note>
+        </trans-unit>
+        <trans-unit id="TextEditorUnderlineTooltip" translate="yes" xml:space="preserve">
+          <source>Underline</source>
+          <target state="final">Subrayar</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: tooltip shown on underline button</note>
+        </trans-unit>
+        <trans-unit id="TextEditorUndoTooltip" translate="yes" xml:space="preserve">
+          <source>Undo previous steps</source>
+          <target state="final" state-qualifier="mt-suggestion">Deshacer los pasos anteriores</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: tooltip shown on undo button</note>
+        </trans-unit>
+        <trans-unit id="MessageDialogGeneralErrorMessage" translate="yes" xml:space="preserve">
+          <source>An unexpected error has occurred: {0}/n({1})</source>
+          <target state="final">Se produjo un error inesperado: {0}/n({1})</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">General use: something resulted in an error, giving back the Message as  first parameter and the StackTrace as second parameter</note>
+        </trans-unit>
+        <trans-unit id="MessageDialogPhotoGalleryForbidden" translate="yes" xml:space="preserve">
+          <source>Access to the photo gallery is not allowed.</source>
+          <target state="final">El acceso a la galería de fotos no está permitido.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: error message shown if access to photo gallery through Plugin.Media is forbidden.</note>
+        </trans-unit>
+        <trans-unit id="MessageDialogLocationServicesNotAllowed" translate="yes" xml:space="preserve">
+          <source>No permission to use location services on this device, the new post will be sent without location.</source>
+          <target state="final">Sin permiso para usar los servicios de ubicación en este dispositivo, la nueva publicación se enviará sin ubicación.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: info to user if "send coordinates" is active, but not allowed to retrieve current location on this device.</note>
+        </trans-unit>
+        <trans-unit id="LabelNewPostNoImage" translate="yes" xml:space="preserve">
+          <source>No photo selected</source>
+          <target state="final">Ninguna foto seleccionada</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: text shown as a placeholder as long the user has not selected a photo </note>
+        </trans-unit>
+        <trans-unit id="TextNewPostImageTooltip" translate="yes" xml:space="preserve">
+          <source>Tap here for a bigger view...</source>
+          <target state="final">Toque aquí para una vista más grande ...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: tooltip shown if user hovers over photo, explaining that a click/tap will open the image in a bigger view</note>
+        </trans-unit>
+        <trans-unit id="MessageDialogNewPostImageExceedWarnLimit" translate="yes" xml:space="preserve">
+          <source>The loaded image has a size of {0}. This could be to big for your server depending on the server settings (warn limit at {1}).</source>
+          <target state="final">La imagen cargada tiene un tamaño de {0}. Esto podría ser demasiado grande para su servidor dependiendo de la configuración del servidor (límite de advertencia en {1}).</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: if loaded image is bigger than a set limit, showing an exclamation mark on image. this is the message shown if user clicks the warning sign. parameter 1 is actual size of image, parameter 2 is warn limit.</note>
+        </trans-unit>
+        <trans-unit id="MessageDialogNewPostImageUploadError" translate="yes" xml:space="preserve">
+          <source>Something went wrong on uploading the image. This post will be discarded. A common reason is the image size is exceeding upload limits on your server. You could try newly uploading a smaller version of the image. Or contact your administrator to increase limit for PHP uploads.</source>
+          <target state="final">Algo salió mal al subir la imagen. Esta publicación será descartada. Una razón común es que el tamaño de la imagen excede los límites de carga en su servidor. Podría intentar subir una versión más pequeña de la imagen. O comuníquese con su administrador para aumentar el límite de carga de PHP.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: message displayed to user if server returns an error on uploading images. </note>
+        </trans-unit>
+        <trans-unit id="MessageDialogNewPostNotAnsweredError" translate="yes" xml:space="preserve">
+          <source>Server has not answered when trying to upload the new post. 
+Do you want to try again? 
+(The new post will be discarded if you select "No")</source>
+          <target state="final">El servidor no ha respondido al intentar cargar la nueva publicación.
+¿Quieres intentarlo de nuevo?
+(La nueva publicación se descartará si selecciona "No")</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: message display to user if server has not answered. User can decide to re-try, otherwise post will be discarded.</note>
+        </trans-unit>
+        <trans-unit id="MessageDialogNewPostSuccessfullSent" translate="yes" xml:space="preserve">
+          <source>New post successfully transferred to server</source>
+          <target state="final">Nueva publicación transferida correctamente al servidor</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: internal notification header if post has successfully sent to server</note>
+        </trans-unit>
+        <trans-unit id="MessageDialogNewPostTooManyRequestsError" translate="yes" xml:space="preserve">
+          <source>Server is not accepting further posts, because exceeding daily, weekly or monthly limits. The new post will be discarded. Contact your server's administrator if you think it is an error.</source>
+          <target state="final">El servidor no acepta más publicaciones porque excede los límites diarios, semanales o mensuales. La nueva publicación será descartada. Póngase en contacto con el administrador de su servidor si cree que es un error.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: message displayed to user if server returns the TooManyRequests error (if daily, weekly or monthly limits of API posts are exceeded).</note>
+        </trans-unit>
+        <trans-unit id="MessageDialogNewPostNoContentSendCancelled" translate="yes" xml:space="preserve">
+          <source>The post don't contain text or image, sending the post has been cancelled.</source>
+          <target state="final">La publicación no contiene texto o imagen, el envío de la publicación ha sido cancelado.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: dialog shown if new post neither contains text nor image, nothing to send, process cancelled</note>
+        </trans-unit>
+        <trans-unit id="MessageDialogNewPostPublicPostOk" translate="yes" xml:space="preserve">
+          <source>You are just about to send a public post. Is this wished?</source>
+          <target state="final">Estás a punto de enviar una publicación pública. ¿Esto es deseado?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: warning if user is sending a public post, yes or no as answers</note>
+        </trans-unit>
+        <trans-unit id="TextNewPostRetweetingHint" translate="yes" xml:space="preserve">
+          <source>Retweeting a post: original post will be added after your message during sending the new post.</source>
+          <target state="final">Retwittear una publicación: la publicación original se agregará después de su mensaje durante el envío de la nueva publicación.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: hint shown if user wants to retweet an existing post</note>
+        </trans-unit>
       </group>
     </body>
   </file>

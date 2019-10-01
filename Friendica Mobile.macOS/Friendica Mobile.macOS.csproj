@@ -139,6 +139,15 @@
     <Reference Include="FFImageLoading.Forms.Platform">
       <HintPath>..\packages\Xamarin.FFImageLoading.Forms.2.4.7.944\lib\Xamarin.Mac20\FFImageLoading.Forms.Platform.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.Permissions">
+      <HintPath>..\packages\Plugin.Permissions.3.0.0.12\lib\netstandard2.0\Plugin.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Media">
+      <HintPath>..\packages\Xam.Plugin.Media.4.0.1.5\lib\netstandard2.0\Plugin.Media.dll</HintPath>
+    </Reference>
+    <Reference Include="ExifLib">
+      <HintPath>..\packages\ExifLib.PCL.1.0.1\lib\portable-net45+sl50+win+WindowsPhoneApp81+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\ExifLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -176,6 +185,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\CustomImageRenderer.cs" />
     <Compile Include="Helpers\StatusBarMacOS.cs" />
+    <Compile Include="Helpers\CustomWebViewRenderer.cs" />
+    <Compile Include="Helpers\FilePickerMacOS.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />

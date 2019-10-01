@@ -292,6 +292,7 @@ namespace Friendica_Mobile.Models
         public event EventHandler ButtonShowProfileClicked;
         public event EventHandler ButtonRetweetClicked;
         public event EventHandler LikeNewsfeedClicked;
+        public event EventHandler ButtonAddCommentClicked;
 
 
 #region Commands
@@ -326,18 +327,16 @@ namespace Friendica_Mobile.Models
         public ICommand AddCommentCommand => _addCommentCommand ?? (_addCommentCommand = new Command(AddComment));
         private async void AddComment()
         {
-            // TODO: implement
-            // TODO: navigate to A0_NewPost.xaml with current post as parameter
-            await Application.Current.MainPage.DisplayAlert("### Add comment ###", "### Funktion ist noch nicht implementiert ###", AppResources.buttonOK);
+            // invoke in FriendicaThread to add the thread to the NewPost.xaml navigation
+            ButtonAddCommentClicked?.Invoke(this, EventArgs.Empty);
         }
 
         private ICommand _retweetCommand;
         public ICommand RetweetCommand => _retweetCommand ?? (_retweetCommand = new Command(Retweet));
         private async void Retweet()
         {
-            // TODO: implement
-            // TODO: navigate to A0_NewPost.xaml with current post as parameter (no info in past implementation, how do we know that we will retweet it)
-            await Application.Current.MainPage.DisplayAlert("### Retweet ###", "### Funktion ist noch nicht implementiert ###", AppResources.buttonOK);
+            // invoke in FriendicaThread to add the thread to the NewPost.xaml navigation
+            ButtonRetweetClicked?.Invoke(this, EventArgs.Empty);
         }
 
         private ICommand _showLikesCommand;
@@ -392,6 +391,40 @@ namespace Friendica_Mobile.Models
                 IsVisible = true;
             }
         }
+
+
+        public string CreateRetweetContent()
+        {
+            // prepare needed data 
+            var username = Post.PostUser.UserName;
+            var profile = Post.PostUser.UserUrl;
+            var avatar = Post.PostUser.UserProfileImageUrl;
+            var guid = "";
+            var date = CreatedAtDateTime.ToString("yyyy-MM-dd hh:mm:ss");
+
+            // create content - this part is in BBcode style, Friendica API will convert HTMl into BBcode, so this should be kept
+            string content = "";
+            content += "[share";
+            if (!string.IsNullOrEmpty(username))
+                content += " author='" + username + "'";
+            if (!string.IsNullOrEmpty(profile))
+                content += " profile='" + profile + "'";
+            if (!string.IsNullOrEmpty(avatar))
+                content += " avatar='" + avatar + "'";
+            if (!string.IsNullOrEmpty(guid))
+                content += " guid='" + guid + "'";
+            if (!string.IsNullOrEmpty(date))
+                content += " posted='" + date + "'";
+            content += "]";
+
+            // now add the html content of the post
+            if (!string.IsNullOrEmpty(PostHtml))
+                content += PostHtml;
+
+            content += "[/share]";
+            return content;
+        }
+
 
         private void SetSenderNameConcat()
         {

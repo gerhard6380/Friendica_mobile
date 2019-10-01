@@ -2,6 +2,7 @@
 using Friendica_Mobile.PCL.HttpRequests;
 using Friendica_Mobile.PCL.Models;
 using Friendica_Mobile.PCL.Strings;
+using Friendica_Mobile.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -147,6 +148,9 @@ namespace Friendica_Mobile.Models
             var listComments = new List<FriendicaPost>();
             foreach (var post in posts)
             {
+                // react if a user clicked the add commment button
+                post.ButtonAddCommentClicked += Post_ButtonAddCommentClicked;
+                post.ButtonRetweetClicked += Post_ButtonRetweetClicked;
                 if (post.IsComment)
                     listComments.Add(post);
                 else
@@ -173,6 +177,25 @@ namespace Friendica_Mobile.Models
             ThreadIsLoaded?.Invoke(this, EventArgs.Empty);
         }
 
+        private void Post_ButtonRetweetClicked(object sender, EventArgs e)
+        {
+            // user has clicked the retweet icon on a post (only for newsfeed items), use the current thread and post to navigate to NewPost.xaml
+            var post = sender as FriendicaPost;
+            var nav = Application.Current.MainPage as NavigationPage;
+            var shell = nav.RootPage as Views.CustomShell;
+            var vm = shell.BindingContext as ShellViewModel;
+            vm.NavigateTo(new Views.NewPost(this, post, true));
+        }
+
+        private void Post_ButtonAddCommentClicked(object sender, EventArgs e)
+        {
+            // user has clicked on a distinct post, use this and the current thread to navigate to NewPost.xaml
+            var post = sender as FriendicaPost;
+            var nav = Application.Current.MainPage as NavigationPage;
+            var shell = nav.RootPage as Views.CustomShell;
+            var vm = shell.BindingContext as ShellViewModel;
+            vm.NavigateTo(new Views.NewPost(this, post));
+        }
 
         public void CollapseComments()
         {

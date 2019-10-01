@@ -3196,5 +3196,293 @@ namespace Friendica_Mobile.PCL.Strings {
                 return ResourceManager.GetString("MenuItemDelete", resourceCulture);
             }
         }
+        
+        internal static string LabelContactsHintGroupsAndroid {
+            get {
+                return ResourceManager.GetString("LabelContactsHintGroupsAndroid", resourceCulture);
+            }
+        }
+        
+        internal static string LabelContactsHintGroupsDefault {
+            get {
+                return ResourceManager.GetString("LabelContactsHintGroupsDefault", resourceCulture);
+            }
+        }
+        
+        internal static string LabelContactsHintGroupsIos {
+            get {
+                return ResourceManager.GetString("LabelContactsHintGroupsIos", resourceCulture);
+            }
+        }
+        
+        internal static string ButtonGroupEditorSaveTooltip {
+            get {
+                return ResourceManager.GetString("ButtonGroupEditorSaveTooltip", resourceCulture);
+            }
+        }
+        
+        internal static string ButtonGroupEditorDeselectAllTooltip {
+            get {
+                return ResourceManager.GetString("ButtonGroupEditorDeselectAllTooltip", resourceCulture);
+            }
+        }
+        
+        internal static string ButtonGroupEditorSelectAllTooltip {
+            get {
+                return ResourceManager.GetString("ButtonGroupEditorSelectAllTooltip", resourceCulture);
+            }
+        }
+        
+        internal static string MessageDialogGroupEditorClose {
+            get {
+                return ResourceManager.GetString("MessageDialogGroupEditorClose", resourceCulture);
+            }
+        }
+        
+        internal static string MessageDialogGroupDeleteError {
+            get {
+                return ResourceManager.GetString("MessageDialogGroupDeleteError", resourceCulture);
+            }
+        }
+        
+        internal static string LabelContactsHintFriendsAndroid {
+            get {
+                return ResourceManager.GetString("LabelContactsHintFriendsAndroid", resourceCulture);
+            }
+        }
+        
+        internal static string LabelContactsHintFriendsDefault {
+            get {
+                return ResourceManager.GetString("LabelContactsHintFriendsDefault", resourceCulture);
+            }
+        }
+        
+        internal static string LabelContactsHintFriendsIos {
+            get {
+                return ResourceManager.GetString("LabelContactsHintFriendsIos", resourceCulture);
+            }
+        }
+        
+        internal static string LabelNetworkNoDataAvailable {
+            get {
+                return ResourceManager.GetString("LabelNetworkNoDataAvailable", resourceCulture);
+            }
+        }
+        
+        internal static string ButtonLikeText {
+            get {
+                return ResourceManager.GetString("ButtonLikeText", resourceCulture);
+            }
+        }
+        
+        internal static string ButtonDislikeText {
+            get {
+                return ResourceManager.GetString("ButtonDislikeText", resourceCulture);
+            }
+        }
+        
+        internal static string ButtonUnDislikeText {
+            get {
+                return ResourceManager.GetString("ButtonUnDislikeText", resourceCulture);
+            }
+        }
+        
+        internal static string ButtonUnLikeText {
+            get {
+                return ResourceManager.GetString("ButtonUnLikeText", resourceCulture);
+            }
+        }
+        
+        internal static string SliderShowMorePostsOff {
+            get {
+                return ResourceManager.GetString("SliderShowMorePostsOff", resourceCulture);
+            }
+        }
+        
+        internal static string SliderShowMorePostsOn {
+            get {
+                return ResourceManager.GetString("SliderShowMorePostsOn", resourceCulture);
+            }
+        }
+        
+        internal static string ButtonLoadMapTooltip {
+            get {
+                return ResourceManager.GetString("ButtonLoadMapTooltip", resourceCulture);
+            }
+        }
+        
+        internal static string ButtonRetweetTooltip {
+            get {
+                return ResourceManager.GetString("ButtonRetweetTooltip", resourceCulture);
+            }
+        }
+        
+        internal static string ButtonShowProfileTooltip {
+            get {
+                return ResourceManager.GetString("ButtonShowProfileTooltip", resourceCulture);
+            }
+        }
+        
+        internal static string ButtonSettingsResetComplete {
+            get {
+                return ResourceManager.GetString("ButtonSettingsResetComplete", resourceCulture);
+            }
+        }
+        
+        internal static string LabelSettingsResetComplete {
+            get {
+                return ResourceManager.GetString("LabelSettingsResetComplete", resourceCulture);
+            }
+        }
+        
+        internal static string MessageDialogSettingsResetComplete {
+            get {
+                return ResourceManager.GetString("MessageDialogSettingsResetComplete", resourceCulture);
+            }
+        }
+        
+        internal static string TextDisplayCodeFullscreenHint {
+            get {
+                return ResourceManager.GetString("TextDisplayCodeFullscreenHint", resourceCulture);
+            }
+        }
+        
+        internal static string MessageDialogPostsErrorOnLoadingMap {
+            get {
+                return ResourceManager.GetString("MessageDialogPostsErrorOnLoadingMap", resourceCulture);
+            }
+        }
+        
+        internal static string LabelHomeNoDataAvailable {
+            get {
+                return ResourceManager.GetString("LabelHomeNoDataAvailable", resourceCulture);
+            }
+        }
+        
+        internal static string ButtonNewPostEditorBold {
+            get {
+                return ResourceManager.GetString("ButtonNewPostEditorBold", resourceCulture);
+            }
+        }
+        
+        internal static string ButtonNewPostEditorItalic {
+            get {
+                return ResourceManager.GetString("ButtonNewPostEditorItalic", resourceCulture);
+            }
+        }
+        
+        internal static string ButtonNewPostEditorUnderline {
+            get {
+                return ResourceManager.GetString("ButtonNewPostEditorUnderline", resourceCulture);
+            }
+        }
+        
+        internal static string ButtonLinkCaptionTooltip {
+            get {
+                return ResourceManager.GetString("ButtonLinkCaptionTooltip", resourceCulture);
+            }
+        }
+        
+        internal static string TextNewLinkHint {
+            get {
+                return ResourceManager.GetString("TextNewLinkHint", resourceCulture);
+            }
+        }
+        
+        internal static string TextEditorBackgroundHeader {
+            get {
+                return ResourceManager.GetString("TextEditorBackgroundHeader", resourceCulture);
+            }
+        }
+        
+        internal static string TextEditorColorHeader {
+            get {
+                return ResourceManager.GetString("TextEditorColorHeader", resourceCulture);
+            }
+        }
+        
+        internal static string TextEditorFormatHeader {
+            get {
+                return ResourceManager.GetString("TextEditorFormatHeader", resourceCulture);
+            }
+        }
+        
+        internal static string TextEditorShowHtmlCheckbox {
+            get {
+                return ResourceManager.GetString("TextEditorShowHtmlCheckbox", resourceCulture);
+            }
+        }
+        
+        internal static string TextEditorBoldTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorBoldTooltip", resourceCulture);
+            }
+        }
+        
+        internal static string TextEditorCodeTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorCodeTooltip", resourceCulture);
+            }
+        }
+        
+        internal static string TextEditorDottedListTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorDottedListTooltip", resourceCulture);
+            }
+        }
+        
+        internal static string TextEditorItalicTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorItalicTooltip", resourceCulture);
+            }
+        }
+        
+        internal static string TextEditorNumberedListTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorNumberedListTooltip", resourceCulture);
+            }
+        }
+        
+        internal static string TextEditorQuoteTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorQuoteTooltip", resourceCulture);
+            }
+        }
+        
+        internal static string TextEditorRemoveFormattingTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorRemoveFormattingTooltip", resourceCulture);
+            }
+        }
+        
+        internal static string TextEditorUnderlineTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorUnderlineTooltip", resourceCulture);
+            }
+        }
+        
+        internal static string TextEditorUndoTooltip {
+            get {
+                return ResourceManager.GetString("TextEditorUndoTooltip", resourceCulture);
+            }
+        }
+        
+        internal static string MessageDialogGeneralErrorMessage {
+            get {
+                return ResourceManager.GetString("MessageDialogGeneralErrorMessage", resourceCulture);
+            }
+        }
+        
+        internal static string MessageDialogPhotoGalleryForbidden {
+            get {
+                return ResourceManager.GetString("MessageDialogPhotoGalleryForbidden", resourceCulture);
+            }
+        }
+        
+        internal static string MessageDialogLocationServicesNotAllowed {
+            get {
+                return ResourceManager.GetString("MessageDialogLocationServicesNotAllowed", resourceCulture);
+            }
+        }
     }
 }

@@ -6,6 +6,7 @@ using Friendica_Mobile.ViewModel;
 using Friendica_Mobile.Styles;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using System.Threading.Tasks;
 
 namespace Friendica_Mobile.Styles
 {
@@ -46,6 +47,44 @@ namespace Friendica_Mobile.Styles
             SetGridTapGestureTap();
             Settings.NavigationSideChanged += (sender, e) => { SetNavigationSide(); };
             SetNavigationSide();
+
+            // reacht on changes of notification text
+            App.NotificationChanged += App_NotificationChanged;
+        }
+
+
+        /// <summary>
+        /// display the notification with the text stored in App.NotificationText, shown for some seconds and then vanishing again
+        /// tap removes it immediately; only intended for quick information to user, without the need of user actions (use DisplayAlert
+        /// if user response is needed); use toast notification if app is closed or in background
+        /// </summary>
+        private async void App_NotificationChanged(object sender, EventArgs e)
+        {
+            var tapRecognizer = new TapGestureRecognizer();
+            tapRecognizer.Tapped += (s, e2) => { NotificationBox.IsVisible = false; };
+            NotificationBox.GestureRecognizers.Add(tapRecognizer);
+
+            if (App.Notification.Image != null)
+            {
+                NotificationImage.Source = App.Notification.Image;
+                NotificationImage.IsVisible = true;
+            }
+            else
+                NotificationImage.IsVisible = false;
+            if (!string.IsNullOrEmpty(App.Notification.Title))
+            {
+                NotificationTitle.Text = App.Notification.Title;
+                NotificationTitle.IsVisible = true;
+            }
+            else
+                NotificationTitle.IsVisible = false;
+            NotificationBody.Text = App.Notification.Text;
+
+            NotificationBox.IsVisible = true;
+            await NotificationBox.FadeTo(1, 1000, Easing.CubicInOut);
+            await Task.Delay(4000);
+            await NotificationBox.FadeTo(0, 1000, Easing.CubicInOut);
+            NotificationBox.IsVisible = false;
         }
 
 

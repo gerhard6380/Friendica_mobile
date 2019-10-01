@@ -1,9 +1,12 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 
 namespace Friendica_Mobile.Styles
 {
     public partial class CustomCommandBarItem : ContentView
     {
+        public event EventHandler CustomCommandBarItemClicked;
+
         public enum CommandLevel { Primary, Secondary }
 
         // prepare Bindable Property for the icon symbol 
@@ -189,6 +192,12 @@ namespace Friendica_Mobile.Styles
         void Label_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             SetTextColor();
+        }
+
+        void ButtonCommandBarItem_Clicked(object sender, System.EventArgs e)
+        {
+            // fire event if button is clicked, this will be used in NewPost.xaml to grab html from editor before firing sending to server
+            CustomCommandBarItemClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }

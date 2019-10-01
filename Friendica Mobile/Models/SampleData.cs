@@ -10,9 +10,9 @@ namespace Friendica_Mobile.Models
         public static List<FriendicaPost> HomePosts;
         public static List<FriendicaPost> NetworkPosts;
 
-        public static List<FriendicaThread> HomeThreads;
-        public static List<FriendicaThread> NetworkThreads;
-        public static List<FriendicaThread> NewsfeedThreads;
+        //public static List<FriendicaThread> HomeThreads;
+        //public static List<FriendicaThread> NetworkThreads;
+        //public static List<FriendicaThread> NewsfeedThreads;
 
         public static List<FriendicaUser> Friends;
         public static List<FriendicaUser> Forums;
