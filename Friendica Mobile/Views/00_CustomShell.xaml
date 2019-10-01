@@ -35,16 +35,19 @@ structure in SideContent property -->
             <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIMessage}"
                                            Text="{i18n:Translate pageTitleMessages.Text}"
                                            ClassName="Messages"
+                                           IsButtonEnabled="false"
                                            Command="{Binding ToMessagesCommand}" />
             <!-- module "Profiles" -->
             <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIContact}"
                                            Text="{i18n:Translate pageTitleProfiles.Text}"
                                            ClassName="Profiles"
+                                           IsButtonEnabled="false"
                                            Command="{Binding ToProfilesCommand}" />
             <!-- module "Photos" -->
             <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FICamera}"
                                            Text="{i18n:Translate pageTitlePhotos.Text}"
                                            ClassName="Photos"
+                                           IsButtonEnabled="false"
                                            Command="{Binding ToPhotosCommand}" />
             <!-- module "Videos" -->
             <styles:CustomNavigationButton FontIcon="{x:Static styles:Icon.FIVideoCamera}"

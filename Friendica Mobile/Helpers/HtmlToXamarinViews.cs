@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using Friendica_Mobile.HttpRequests;
 using Friendica_Mobile.Strings;
 using HtmlAgilityPack;
@@ -218,6 +219,14 @@ namespace Friendica_Mobile
                 ruleDic.Add(hType.TagName, hType);
         }
 
+        /// <summary>
+        /// return text from html 
+        /// </summary>
+        /// <returns></returns>
+        public string ConvertHtmlToPlainText()
+        {
+            return htmlDoc.DocumentNode.InnerText; 
+        }
 
         // convert html to view elements and return list of View elements
         public List<View> ApplyHtmlToXamarinViews()
@@ -244,6 +253,7 @@ namespace Friendica_Mobile
             {
                 if (htmlNode.GetAttributeValue("class", "") == "shared-wrapper")
                 {
+                    components.CloseSpan();
                     // shared content to be separated from post content by a gray border
                     PrepareSharedContent(htmlNode);
                 }
@@ -326,7 +336,12 @@ namespace Friendica_Mobile
                             ConvertHtmlNode(childHtmlNode2, elements);
                             try
                             {
-                                var image = elements.ViewElements[0];
+                                // now take the profile image and set parameters for displaying
+                                var imageGrid = elements.ViewElements[0] as Grid;
+                                var image = imageGrid.Children[1];
+                                image.Margin = new Thickness(4, 4, 0, 0);
+                                image.WidthRequest = 48;
+                                image.HeightRequest = 48;
                                 grid.Children.Add(image);
                                 Grid.SetColumn(image, 0);
                                 Grid.SetRowSpan(image, 2);
@@ -858,14 +873,20 @@ namespace Friendica_Mobile
 
         public override void ApplyType(HtmlNode htmlNode, ViewComponents components)
         {
-            // retrieve alt text from img html tag to use in tooltips (Windows, macOS)
             var src = htmlNode.Attributes["src"];
             if (src == null)
                 throw new Exception("missing src");
+            // retrieve alt text from img html tag to use in tooltips (Windows, macOS)
             var altAtt = htmlNode.Attributes["alt"];
             string alt = "";
             if (altAtt != null)
                 alt = altAtt.DeEntitizeValue;
+            // check if we have a smiley
+            var classSmiley = htmlNode.Attributes["class"];
+            var isSmiley = (classSmiley == null) ? false : htmlNode.Attributes["class"].Value == "smiley";
+            // check if there is a defined size request in url
+            var sizeStyle = htmlNode.Attributes["style"];
+            var sizeRequested = (sizeStyle == null) ? 0 : Convert.ToDouble(Regex.Match(sizeStyle.Value, @"\d+").Value) * 5;
 
             // tried using CachedImage from FFImageLoading instead of XF.Image as CachedImage provides LoadingPlaceholder 
             // and ErrorPlaceholder, but CachedImage was not working on old iPad2, so realized ErrorPlaceholder with two
@@ -987,60 +1008,76 @@ namespace Friendica_Mobile
                 WidthRequest = 96,
                 HeightRequest = 96
             };
+            if (isSmiley)
+                errorImage.WidthRequest = errorImage.HeightRequest = 32;
+
             var grid = new Grid() { Margin = new Thickness(0, 24, 0, 24) };
+
+            // set small size if we are displaying a user profile image in a retweeted post
             if (htmlNode.ParentNode.Name == "a" && htmlNode.ParentNode.GetAttributeValue("class", "") == "shared-userinfo")
             {
                 grid.WidthRequest = 48;
                 grid.HeightRequest = 48;
             }
+
             grid.Children.Add(errorImage);
             grid.Children.Add(image);
 
             grid.SizeChanged += (sender, e) =>
             {
+                
                 var gridImage = sender as Grid;
 
-                var imageInGrid = gridImage.Children[1] as Image;
-                var errorImageInGrid = gridImage.Children[0] as Image;
+                var imageInGrid = gridImage.Children[1] as CustomImage;
+                var errorImageInGrid = gridImage.Children[0] as CustomImage;
                 if (imageInGrid.IsLoading)
                     return;
 
                 // in case we have a user profile photo in a retweet we want to show it as a small icon only
-                if (htmlNode.ParentNode.Name == "a")
+                if (htmlNode.ParentNode.Name == "a") // TODO: && htmlNode.ParentNode.GetAttributeValue("class", "") == "shared-userinfo"
                 {
                     var classType = htmlNode.ParentNode.GetAttributeValue("class", "");
                     if (classType == "shared-userinfo")
                     {
                         imageInGrid.WidthRequest = 48;
                         imageInGrid.HeightRequest = 48;
-                        errorImageInGrid.WidthRequest = 48;
-                        errorImageInGrid.HeightRequest = 48;
+                        errorImageInGrid.WidthRequest = 1;
+                        errorImageInGrid.HeightRequest = 1;
                     }
                 }
                 else
                 {
-                    // limit height to 1/3 of screen on landscape images or 1/2 on portrait images
-                    var isLandscape = (imageInGrid.Width > imageInGrid.Height);
-                    var factor = imageInGrid.Width / imageInGrid.Height;
-                    var maxHeight = App.ShellHeight / (isLandscape ? 3 : 2);
+                    //if (isSmiley)
+                    //{
+                    //    gridImage.WidthRequest = gridImage.HeightRequest = 32;
+                    //}
+                    //else
+                    //{
+                        // limit height to 1/3 of screen on landscape images or 1/2 on portrait images
+                        var isLandscape = (imageInGrid.Width > imageInGrid.Height);
+                        var factor = imageInGrid.Width / imageInGrid.Height;
+                        var maxHeight = App.ShellHeight / (isLandscape ? 3 : 2);
+                        //if (sizeRequested > 0 && sizeRequested < maxHeight)
+                        //    maxHeight = sizeRequested;
 
-                    // calculate scal of image to available size
-                    var scale = gridImage.Width / imageInGrid.Width;
-                    var requestedImageHeight = (imageInGrid.Height * scale > maxHeight) ? maxHeight : imageInGrid.Height * scale;
-                    var requestedImageWidth = requestedImageHeight * factor;
-                    var newScale = requestedImageWidth / imageInGrid.Width;
+                        // calculate scal of image to available size
+                        var scale = gridImage.Width / imageInGrid.Width;
+                        var requestedImageHeight = (imageInGrid.Height * scale > maxHeight) ? maxHeight : imageInGrid.Height * scale;
+                        var requestedImageWidth = requestedImageHeight * factor;
+                        var newScale = requestedImageWidth / imageInGrid.Width;
 
-                    // scale image up or down and set grid to scaled image size
-                    if (imageInGrid.Scale == 1)
-                    {
-                        gridImage.WidthRequest = requestedImageWidth;
-                        gridImage.HeightRequest = requestedImageHeight;
-                        imageInGrid.Scale = newScale;
-                    }
+                        // scale image up or down and set grid to scaled image size
+                        if (imageInGrid.Scale == 1)
+                        {
+                            gridImage.WidthRequest = requestedImageWidth;
+                            gridImage.HeightRequest = requestedImageHeight;
+                            imageInGrid.Scale = newScale;
+                        }
+                    //}
                 }
 
                 // make errorimage invisible if loading has succeed, otherwise it could happen that real image is smaller than 96px and noimage.jpg gets visibile behind it
-                if (image.Height > 0 && image.Width > 0)
+                if (imageInGrid.Height > 0 && imageInGrid.Width > 0)
                     errorImageInGrid.IsVisible = false;
             };
             components.AddElement(grid);
@@ -1141,18 +1178,49 @@ namespace Friendica_Mobile
                 };
                 var stack = new StackLayout();
                 innerFrame.Content = stack;
-                var label = new Label()
-                {
-                    TextColor = Color.Black,
-                    FontAttributes = FontAttributes.Italic,
-                    FontSize = 12
-                };
-                // basic preparation of text
-                string cContent = GetCleanContent(htmlNode.InnerText);
-                cContent = ChangeIcons(cContent);
-                label.Text = cContent;
 
-                stack.Children.Add(label);
+                var quoteComponents = new ViewComponents();
+                quoteComponents.ViewElements = new List<View>();
+                foreach (var childHtmlNode in htmlNode.ChildNodes)
+                {
+                    // the remainder of the retweeted text can be displayed as usual (blockquote style)
+                    var blockquoteContent = new HtmlToXamarinViews(childHtmlNode.InnerHtml);
+                    blockquoteContent.ConvertHtmlNode(childHtmlNode, quoteComponents);
+                }
+
+                foreach (var element in quoteComponents.ViewElements)
+                {
+                    if (element.GetType() == typeof(Label))
+                    {
+                        var label = new Label()
+                        {
+                            TextColor = Color.Black,
+                            FontAttributes = FontAttributes.Italic,
+                            FontSize = 12
+                        };
+                        string text = "";
+                        foreach (var span in ((Label)element).FormattedText.Spans)
+                            text += span.Text;
+                        label.Text = text;
+                        stack.Children.Add(label);
+                    }
+                    else
+                        stack.Children.Add(element);
+                }
+
+
+                //var label = new Label()
+                //{
+                //    TextColor = Color.Black,
+                //    FontAttributes = FontAttributes.Italic,
+                //    FontSize = 12
+                //};
+                //// basic preparation of text
+                //string cContent = GetCleanContent(htmlNode.InnerText);
+                //cContent = ChangeIcons(cContent);
+                //label.Text = cContent;
+
+                //stack.Children.Add(label);
                 outerFrame.Content = innerFrame;
                 components.AddElement(outerFrame);
             }
