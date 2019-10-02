@@ -12,7 +12,7 @@ namespace Friendica_Mobile.Droid
 {
     // CrossMediaManager: You must request AccessWifiState, Internet, MediaContentControl and WakeLock permissions
 
-    [Activity(Label = "Friendica_Mobile", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Friendica_Mobile", Icon = "@drawable/app_icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         private Friendica_Mobile.App _application;
