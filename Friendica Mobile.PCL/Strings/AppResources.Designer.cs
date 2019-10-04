@@ -2103,6 +2103,15 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This is a RSS/Atom post. Your contacts will not see if you flag this post with like/dislike. Do you want to retweet the post instead? ähnelt.
+        /// </summary>
+        public static string MessageDialogNewsfeedNotLikableRetweet {
+            get {
+                return ResourceManager.GetString("MessageDialogNewsfeedNotLikableRetweet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Normally your browser would now display the profile page of the selected user. But this is not possible for sample data in demo mode.  ähnelt.
         /// </summary>
         public static string MessageDialogNoSettingsNoProfileUrl {

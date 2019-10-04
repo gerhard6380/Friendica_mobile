@@ -21,7 +21,7 @@ namespace Friendica_Mobile.Models
             set
             {
                 _username = value;
-                SetIsAuthenticatedUser();
+                IsAuthenticatedUser = SetIsAuthenticatedUser();
             } 
         }
 
@@ -51,7 +51,7 @@ namespace Friendica_Mobile.Models
             set
             {
                 _userUrl = value;
-                SetIsAuthenticatedUser();
+                IsAuthenticatedUser = SetIsAuthenticatedUser();
             } 
         }
 
@@ -113,18 +113,17 @@ namespace Friendica_Mobile.Models
             Launchers.OpenUrlWithZrl(UserStatusnetProfileUrl, true);
         }
 
+
         // method to check if user is the authenticated user
         private bool SetIsAuthenticatedUser()
         {
-            if (UserScreenName == null || UserUrl == null)
-                return false;
-
             // no authenticated user if there is no server set so far (sample mode)
             if (Settings.IsFriendicaLoginDefined())
             {
                 // check url as well as there could be users with identic screen names on different servers
-                return (Settings.FriendicaUsername.ToLower() == UserScreenName.ToLower() &&
-                        UserUrl.Contains(Settings.FriendicaServer));
+                return (UserScreenName != null && UserUrl != null 
+                    && Settings.FriendicaUsername.ToLower() == UserScreenName.ToLower() 
+                    && UserUrl.Contains(Settings.FriendicaServer));
             }
             return false;
         }

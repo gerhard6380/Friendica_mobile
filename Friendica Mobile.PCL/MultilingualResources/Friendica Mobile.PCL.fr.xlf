@@ -3017,6 +3017,11 @@ Voulez-vous essayer à nouveau?
           <target state="final">Retweeting un poste: le poste original sera ajouté après votre poste lors de l'envoi du nouveau poste.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">NewPost.xaml: hint shown if user wants to retweet an existing post</note>
         </trans-unit>
+        <trans-unit id="MessageDialogNewsfeedNotLikableRetweet" translate="yes" xml:space="preserve">
+          <source>This is a RSS/Atom post. Your contacts will not see if you flag this post with like/dislike. Do you want to retweet the post instead?</source>
+          <target state="final">Ceci est un article RSS/Atom. Vos contacts ne verront pas si vous signalez ce poste avec un goût similaire ou négatif. Voulez-vous retweeter le poste à la place?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Newsfeed.xaml: alert shown if user tries to like/dislike a RSS feed item as other users will not see the like/dislike, asking user to start a retweet in NewPostEditor</note>
+        </trans-unit>
       </group>
     </body>
   </file>

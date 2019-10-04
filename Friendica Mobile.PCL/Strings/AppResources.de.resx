@@ -2392,4 +2392,8 @@ Willst du es nochmal versuchen?
     <value>Erneutes Tweeten eines Beitrags: Der ursprüngliche Beitrag wird beim Senden des neuen Beitrags nach Ihrer Nachricht eingefügt.</value>
     <comment>NewPost.xaml: hint shown if user wants to retweet an existing post</comment>
   </data>
+  <data name="MessageDialogNewsfeedNotLikableRetweet" xml:space="preserve">
+    <value>Dies ist ein RSS / Atom-Beitrag. Ihre Kontakte werden nicht sehen, ob Sie diesen Beitrag mit "Gefällt mir" oder "Gefällt mir nicht" kennzeichnen. Möchten Sie den Beitrag stattdessen erneut twittern?</value>
+    <comment>Newsfeed.xaml: alert shown if user tries to like/dislike a RSS feed item as other users will not see the like/dislike, asking user to start a retweet in NewPostEditor</comment>
+  </data>
 </root>

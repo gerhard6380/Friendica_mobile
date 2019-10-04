@@ -256,19 +256,7 @@ namespace Friendica_Mobile.HttpRequests
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
         public enum PostFriendicaActivityResults { SampleMode, OK, NotAnswered, NotAuthenticated, UnexpectedError }
-
 
         // calls [POST] /api/friendica/activity
         public async Task<PostFriendicaActivityResults> PostFriendicaActivityAsync(double id, FriendicaActivity activity)
@@ -294,39 +282,6 @@ namespace Friendica_Mobile.HttpRequests
                 default:
                     return PostFriendicaActivityResults.UnexpectedError;
             }
-        }
-
-
-
-
-        
-
-
-
-
-
-
-        private void ConvertReturnString()
-        {
-            //if (ReturnString != null)
-            //{
-            //    // convert the returned string into a list of objects
-            //    try
-            //    {
-            //        _postsRaw = JsonConvert.DeserializeObject<List<JsonFriendicaPost>>(ReturnString);
-            //    }
-            //    catch
-            //    {
-            //        // TODO: issue with "User not found" resulting in 400 Bad Request not solved yet
-
-            //        _postsRaw = new List<JsonFriendicaPost>();
-            //    }
-
-            //    foreach (var post in _postsRaw)
-            //    {
-            //        Posts.Add(new FriendicaPost(post));
-            //    }
-            //}
         }
 
     }

@@ -2497,4 +2497,8 @@ Do you want to try again?
     <value>Retweeting a post: original post will be added after your message during sending the new post.</value>
     <comment>NewPost.xaml: hint shown if user wants to retweet an existing post</comment>
   </data>
+  <data name="MessageDialogNewsfeedNotLikableRetweet" xml:space="preserve">
+    <value>This is a RSS/Atom post. Your contacts will not see if you flag this post with like/dislike. Do you want to retweet the post instead?</value>
+    <comment>Newsfeed.xaml: alert shown if user tries to like/dislike a RSS feed item as other users will not see the like/dislike, asking user to start a retweet in NewPostEditor</comment>
+  </data>
 </root>

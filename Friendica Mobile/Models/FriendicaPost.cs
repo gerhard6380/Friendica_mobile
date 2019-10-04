@@ -4,7 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Resources;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Friendica_Mobile.HttpRequests;
 using Friendica_Mobile.Strings;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -16,7 +18,6 @@ namespace Friendica_Mobile.Models
     public class FriendicaPost : BindableClass
     {
         public enum PostTypes { UserGenerated, Newsfeed }
-
 
         // property containing the original post returned from server
         private JsonFriendicaPost _post;
@@ -45,7 +46,7 @@ namespace Friendica_Mobile.Models
                 SetSenderNameConcat();
 
                 // set flag for showing textblock with location and add globe icon to the location
-                // TODO: missing location in Posts
+                // TO DO: missing location in Posts
                 PostHasLocation = !(string.IsNullOrEmpty(Post.PostLocation));
                 if (PostHasLocation)
                     LocationWithIcon = Post.PostLocation + " " + WebUtility.HtmlDecode("&#x1F30D;");
@@ -54,15 +55,6 @@ namespace Friendica_Mobile.Models
                 SetActivitiesParameters();
             }
         }
-
-        // TODO: delete
-        //// property containing the converted user (extended by commands, events etc.)
-        //private FriendicaUser _user;
-        //public FriendicaUser User
-        //{
-        //    get { return _user; }
-        //    set { _user = value; }
-        //
 
         // property containing the html code, if available we will use the rendered_html, else the statusnet_html
         // the statusnet_html has less information, e.g. RSS feeds don#t contain preview stuff in statusment_html but probably in renderend_html
@@ -82,25 +74,13 @@ namespace Friendica_Mobile.Models
                 SetSenderNameConcat(); }
         }
 
-        // TODO: delete
-        //// property containing the converted activities (extended by commands, events etc.)
-        //private FriendicaActivities _activities;
-        //public FriendicaActivities Activities
+        //// store activity on newsfeed items where user wants to like/dislike them
+        //private FriendicaActivity _intendedActivity;
+        //public FriendicaActivity IntendedActivity
         //{
-        //    get { return _activities; }
-        //    set { _activities = value;
-        //        SetActivitiesParameters();
-        //    }
+        //    get { return _intendedActivity; }
+        //    set { _intendedActivity = value; }
         //}
-
-        // store activity on newsfeed items where user wants to like/dislike them
-        private FriendicaActivity _intendedActivity;
-        public FriendicaActivity IntendedActivity
-        {
-            get { return _intendedActivity; }
-            set { _intendedActivity = value; }
-        }
-
 
         // property containing the type of the post
         private PostTypes _postType;
@@ -197,7 +177,7 @@ namespace Friendica_Mobile.Models
 
         // indicator for showing dislike symbol in color or not
         private bool _isDislikedByMe;
-        public bool IsDislikedByMe
+        public bool     IsDislikedByMe
         {
             get { return _isDislikedByMe; }
             set
@@ -212,7 +192,7 @@ namespace Friendica_Mobile.Models
         public string CountLikes
         {
             get { return _countLikes; }
-            set { _countLikes = value; }
+            set { SetProperty(ref _countLikes, value); }
         }
 
         // string showing the count of dislikes
@@ -220,7 +200,7 @@ namespace Friendica_Mobile.Models
         public string CountDislikes
         {
             get { return _countDislikes; }
-            set { _countDislikes = value; }
+            set { SetProperty(ref _countDislikes, value); }
         }
 
         // indicator if likes are visible 
@@ -276,7 +256,7 @@ namespace Friendica_Mobile.Models
         public bool IsUpdatingLikes
         {
             get { return _isUpdatingLikes; }
-            set { _isUpdatingLikes = value; }
+            set { SetProperty(ref _isUpdatingLikes, value); }
         }
 
         // indicator for showing progress ring for dislike button
@@ -284,7 +264,7 @@ namespace Friendica_Mobile.Models
         public bool IsUpdatingDislikes
         {
             get { return _isUpdatingDislikes; }
-            set { _isUpdatingDislikes = value; }
+            set { SetProperty(ref _isUpdatingDislikes, value); }
         }
 
 
@@ -315,6 +295,7 @@ namespace Friendica_Mobile.Models
                 await Map.OpenAsync(new Placemark { Locality = Post.PostLocation });
         }
 
+
         private ICommand _showProfileCommand;
         public ICommand ShowProfileCommand => _showProfileCommand ?? (_showProfileCommand = new Command(ShowProfile));
         private void ShowProfile()
@@ -322,6 +303,7 @@ namespace Friendica_Mobile.Models
             // open link to user profile incl. the users ZRL for displaying the connect button correctly
             Launchers.OpenUrlWithZrl(Post.PostUser.UserStatusnetProfileUrl, true);
         }
+
 
         private ICommand _addCommentCommand;
         public ICommand AddCommentCommand => _addCommentCommand ?? (_addCommentCommand = new Command(AddComment));
@@ -331,6 +313,7 @@ namespace Friendica_Mobile.Models
             ButtonAddCommentClicked?.Invoke(this, EventArgs.Empty);
         }
 
+
         private ICommand _retweetCommand;
         public ICommand RetweetCommand => _retweetCommand ?? (_retweetCommand = new Command(Retweet));
         private async void Retweet()
@@ -338,6 +321,7 @@ namespace Friendica_Mobile.Models
             // invoke in FriendicaThread to add the thread to the NewPost.xaml navigation
             ButtonRetweetClicked?.Invoke(this, EventArgs.Empty);
         }
+
 
         private ICommand _showLikesCommand;
         public ICommand ShowLikesCommand => _showLikesCommand ?? (_showLikesCommand = new Command(ShowLikes));
@@ -348,6 +332,7 @@ namespace Friendica_Mobile.Models
             IsLikesVisible = !IsLikesVisible;
         }
 
+
         private ICommand _showDislikesCommand;
         public ICommand ShowDislikesCommand => _showDislikesCommand ?? (_showDislikesCommand = new Command(ShowDislikes));
         private void ShowDislikes()
@@ -357,20 +342,54 @@ namespace Friendica_Mobile.Models
             IsDislikesVisible = !IsDislikesVisible;
         }
 
+
         private ICommand _likeCommand;
         public ICommand LikeCommand => _likeCommand ?? (_likeCommand = new Command(Like));
         private async void Like()
         {
-            // TODO: implement function - Achtung: like setzen und zurücknehmen in einem Command
-            await Application.Current.MainPage.DisplayAlert("### Like ###", "### Funktion ist noch nicht implementiert ###", AppResources.buttonOK);
+            // as the setting of the like can take some seconds we show a progress ring to the user
+            IsUpdatingLikes = true;
+
+            // if we are in sample mode, we cannot send data to a server
+            var isTestMode = await CheckTestModeAsync(FriendicaActivity.like);
+            if (isTestMode)
+            {
+                ChangeListAfterSuccessfulUpdate(FriendicaActivity.like);
+            }
+            else
+            {
+                // now we can set/unset the like, except for Newsfeed items where we need to retweet them before set/unset
+                if (PostType == PostTypes.Newsfeed)
+                    await RetweetItemAsync(FriendicaActivity.like);
+                else
+                    await UpdateActivityOnServerAsync(FriendicaActivity.like);
+            }
+            IsUpdatingLikes = false;
         }
+
 
         private ICommand _dislikeCommand;
         public ICommand DislikeCommand => _dislikeCommand ?? (_dislikeCommand = new Command(Dislike));
         private async void Dislike()
         {
-            // TODO: implement function - Achtung: dislike setzen und zurücknehmen in einem Command
-            await Application.Current.MainPage.DisplayAlert("### Dislike ###", "### Funktion ist noch nicht implementiert ###", AppResources.buttonOK);
+            // as the setting of the like can take some seconds we show a progress ring to the user
+            IsUpdatingDislikes = true;
+
+            // if we are in sample mode, we cannot send data to a server
+            var isTestMode = await CheckTestModeAsync(FriendicaActivity.dislike);
+            if (isTestMode)
+            {
+                ChangeListAfterSuccessfulUpdate(FriendicaActivity.dislike);
+            }
+            else
+            {
+                // now we can set/unset the like, except for Newsfeed items where we need to retweet them before set/unset
+                if (PostType == PostTypes.Newsfeed)
+                    await RetweetItemAsync(FriendicaActivity.dislike);
+                else
+                    await UpdateActivityOnServerAsync(FriendicaActivity.dislike);
+            }
+            IsUpdatingDislikes = false;
         }
 #endregion
 
@@ -381,13 +400,8 @@ namespace Friendica_Mobile.Models
             if (post != null)
             {
                 Post = post;
-                //if (post.PostUser != null)
-                    //User = new FriendicaUser(post.PostUser);
-                    // TODO: missing PostRetweetedStatus in conversation data
                 if (post.PostRetweetedStatus != null)
                     RetweetedStatus = new FriendicaPost(post.PostRetweetedStatus);
-                //if (post.PostFriendicaActivities != null)
-                    //Activities = new FriendicaActivities(post.PostFriendicaActivities);
                 IsVisible = true;
             }
         }
@@ -437,127 +451,6 @@ namespace Friendica_Mobile.Models
                 SenderNameConcat = "";
         }
 
-        // TODO: delete
-        //public FriendicaPost()
-        //{ }
-// TODO: bis hierher geprüft
-        // button clicked to like/unlike the post
-        //Command _likeCommand;
-        //public Command LikeCommand { get { return _likeCommand ?? (_likeCommand = new Command(ExecuteLike)); } }
-        //private async void ExecuteLike()
-        //{
-        //    IsUpdatingLikes = true;
-
-        //    if (Settings.IsFriendicaLoginDefined())
-        //    {
-        //        // check if we are on a newsfeed-item; we cannot like this item so that contacts will see the like
-        //        if (PostType == PostTypes.Newsfeed)
-        //        {
-        //            if (ActivitiesNotSupported)
-        //                return;
-        //            RetweetandSetActivity(FriendicaActivity.like);
-        //            IsUpdatingLikes = false;
-        //        }
-        //        else
-        //        {
-        //            // update on server
-        //            if (ActivitiesNotSupported)
-        //                return;
-        //            UpdateActivityOnServer(FriendicaActivity.like);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        // we are in sample mode, don't send commands to a server just inform
-        //        if (!StaticGlobalParameters.FriendicaPostTestModeInfoAlreadyShown)
-        //        {
-        //            // when no settings we cannot send likes/dislikes to a server - inform user once about this
-        //            string errorMsg;
-        //            errorMsg = AppResources.messageDialogLikesNotSentToServer;
-        //            await StaticMessageDialog.ShowDialogAsync("", errorMsg, AppResources.buttonOK);
-
-        //            StaticGlobalParameters.FriendicaPostTestModeInfoAlreadyShown = true;
-        //        }
-
-        //        var postActivity = new PostFriendicaActivities();
-        //        if (IsLikedByMe)
-        //            postActivity.Activity = FriendicaActivity.unlike;
-        //        else
-        //            postActivity.Activity = FriendicaActivity.like;
-        //        ChangeListAfterSuccessfulUpdate(postActivity);
-        //        IsUpdatingLikes = false;
-        //    }
-        //}
-
-        //// button clicked to like/unlike the post
-        //Command _dislikeCommand;
-        //public Command DislikeCommand { get { return _dislikeCommand ?? (_dislikeCommand = new Command(ExecuteDislike)); } }
-        //private async void ExecuteDislike()
-        //{
-        //    IsUpdatingDislikes = true;
-
-        //    if (Settings.IsFriendicaLoginDefined())
-        //    {
-        //        // check if we are on a newsfeed-item; we cannot like this item so that contacts will see the like
-        //        if (PostType == PostTypes.Newsfeed)
-        //        {
-        //            if (ActivitiesNotSupported)
-        //                return;
-        //            RetweetandSetActivity(FriendicaActivity.dislike);
-        //            IsUpdatingDislikes = false;
-        //        }
-        //        else
-        //        {
-        //            // update on server
-        //            if (ActivitiesNotSupported)
-        //                return;
-        //            UpdateActivityOnServer(FriendicaActivity.dislike);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        // we are in sample mode, don't send commands to a server, just inform
-        //        if (!StaticGlobalParameters.FriendicaPostTestModeInfoAlreadyShown)
-        //        {
-        //            // when no settings we cannot send likes/dislikes to a server - inform user once about this
-        //            string errorMsg;
-        //            errorMsg = AppResources.messageDialogLikesNotSentToServer;
-        //            await StaticMessageDialog.ShowDialogAsync("", errorMsg, AppResources.buttonOK);
-
-        //            StaticGlobalParameters.FriendicaPostTestModeInfoAlreadyShown = true;
-        //        }
-
-        //        var postActivity = new PostFriendicaActivities();
-        //        if (IsDislikedByMe)
-        //            postActivity.Activity = FriendicaActivity.undislike;
-        //        else
-        //            postActivity.Activity = FriendicaActivity.dislike;
-        //        ChangeListAfterSuccessfulUpdate(postActivity);
-        //        IsUpdatingDislikes = false;
-
-        //    }
-        //}
-
-
-
-
-        //// fire event for button clicked to show profile of the author
-        //Command<FriendicaPost> _showProfileCommand;
-        //public Command<FriendicaPost> ShowProfileCommand { get { return _showProfileCommand ?? (_showProfileCommand = new Command<FriendicaPost>(ExecuteShowProfile)); } }
-        //private void ExecuteShowProfile(FriendicaPost post)
-        //{
-        //    ButtonShowProfileClicked?.Invoke(this, EventArgs.Empty);
-        //}
-
-
-        //// fire event for button clicked to retweet the post
-        //Command<FriendicaPost> _retweetCommand;
-        //public Command<FriendicaPost> RetweetCommand { get { return _retweetCommand ?? (_retweetCommand = new Command<FriendicaPost>(ExecuteRetweet)); } }
-        //private void ExecuteRetweet(FriendicaPost post)
-        //{
-        //    ButtonRetweetClicked?.Invoke(this, EventArgs.Empty);
-        //}
-
 
         // get thread id of the post
         public int GetThreadId()
@@ -574,149 +467,134 @@ namespace Friendica_Mobile.Models
         }
 
 
-        private async void UpdateActivityOnServer(FriendicaActivity activity)
+        private async Task<bool> CheckTestModeAsync(FriendicaActivity friendicaActivity)
         {
-            //if (App.Posts == null)
-            //    App.Posts = new HttpRequests.HttpFriendicaPosts(Settings.FriendicaServer, Settings.FriendicaUsername, Settings.FriendicaPassword);
-
-            //PostFriendicaActivityResults result = PostFriendicaActivityResults.UnexpectedError;
-            //if (activity == FriendicaActivity.like)
-            //{
-            //    if  (IsLikedByMe)
-            //        result = await App.Posts.PostFriendicaActivityAsync(Post.PostId, FriendicaActivity.unlike);
-            //    else
-            //        result = await App.Posts.PostFriendicaActivityAsync(Post.PostId, FriendicaActivity.like);
-            //}
-            //else if (activity == FriendicaActivity.dislike)
-            //{
-            //    if (IsDislikedByMe)
-            //        result = await App.Posts.PostFriendicaActivityAsync(Post.PostId, FriendicaActivity.undislike);
-            //    else
-            //        result = await App.Posts.PostFriendicaActivityAsync(Post.PostId, FriendicaActivity.dislike);
-            //}
-
-            //switch (result)
-            //{
-                //case PostFriendicaActivityResults.NotAnswered:
-                //case PostFriendicaActivityResults.NotAuthenticated:
-                //case PostFriendicaActivityResults.OK:   
-                //case PostFriendicaActivityResults.UnexpectedError:
-                //default:
-                    //break;
-                    
-                //case HttpStatusCode.OK:
-                //    var success = ChangeListAfterSuccessfulUpdate(postActivity);
-                //    if (!success)
-                //    {
-                //        // an error has occurred, info to user with error message
-                //        errorMsg = AppResources.messageDialogErrorOnActivitySettingBadRequest;
-                //        errorMsg = String.Format(errorMsg, "error on updating lists in app");
-                //        await StaticMessageDialog.ShowDialogAsync("", errorMsg, AppResources.buttonOK, null, null, 0, 0);
-                //    }
-                //    break;
-                //case HttpStatusCode.BadGateway:
-                //    // server is not available, ask user if he wants to retry
-                //    errorMsg = AppResources.messageDialogErrorOnActivitySetting;
-                //    var result = await StaticMessageDialog.ShowDialogAsync("", errorMsg, AppResources.buttonYes, AppResources.buttonNo, null, 0, 1);
-
-                //    // retry
-                //    if (result == 0)
-                //    {
-                //        if (postActivity.Activity == FriendicaActivity.unlike)
-                //            UpdateActivityOnServer(FriendicaActivity.like);
-                //        else if (postActivity.Activity == FriendicaActivity.undislike)
-                //            UpdateActivityOnServer(FriendicaActivity.dislike);
-                //        else
-                //            UpdateActivityOnServer(postActivity.Activity);
-                //    }
-                //    break;
-                //case HttpStatusCode.BadRequest:
-                //default:
-                    //// an error has occurred, info to user with error message
-                    //errorMsg = AppResources.messageDialogErrorOnActivitySettingBadRequest;
-                    //errorMsg = String.Format(errorMsg, postActivity.ReturnString);
-                    //await StaticMessageDialog.ShowDialogAsync("", errorMsg, AppResources.buttonOK);
-                    //break;
-            //}
-
-            //if (postActivity.Activity == FriendicaActivity.like || postActivity.Activity == FriendicaActivity.unlike)
-            //    IsUpdatingLikes = false;
-            //else if (postActivity.Activity == FriendicaActivity.dislike || postActivity.Activity == FriendicaActivity.undislike)
-                //IsUpdatingDislikes = false;
-
+            if (!Settings.IsFriendicaLoginDefined())
+            {
+                // show a hint to the user once per session if we are in demo mode
+                if (!App.LikeDislikeInTestModeInfoAlreadyShown)
+                {
+                    var title = (friendicaActivity == FriendicaActivity.like) ? AppResources.ButtonLikeText : AppResources.ButtonDislikeText;
+                    await Application.Current.MainPage.DisplayAlert(title,
+                                                            AppResources.messageDialogLikesNotSentToServer,
+                                                            AppResources.buttonOK);
+                    App.LikeDislikeInTestModeInfoAlreadyShown = true;
+                }
+                return true;
+            }
+            return false;
         }
 
-        private async void RetweetandSetActivity(FriendicaActivity activity)
+
+        private async Task UpdateActivityOnServerAsync(FriendicaActivity activity)
         {
-            // inform user that we cannot like the item directly
-            string errorMsg;
-            string defaultSettings = "";
+            var title = (activity == FriendicaActivity.like) ? AppResources.ButtonLikeText : AppResources.ButtonDislikeText;
+            var postActivity = new HttpFriendicaPosts(Settings.FriendicaServer, Settings.FriendicaUsername, Settings.FriendicaPassword);
+            PostFriendicaActivityResults result = PostFriendicaActivityResults.UnexpectedError;
 
-            // check if we have a default ACL setting available
-            if (Settings.ACLPublicPost || Settings.ACLPrivatePost)
+            if (activity == FriendicaActivity.like)
             {
-                if (Settings.ACLPublicPost)
-                    defaultSettings = AppResources.radiobuttonPublicPost_Content;
-                else if (Settings.ACLPrivatePost)
-                {
-                    // show numbers of contacts/groups if available, currently not possible to post names instead of the numbers as the contacts are not yet in the PCL
-                    var contacts = (Settings.ACLPrivateSelectedContacts == "") ? "---" : Settings.ACLPrivateSelectedContacts;
-                    var groups = (Settings.ACLPrivateSelectedGroups == "") ? "---" : Settings.ACLPrivateSelectedGroups;
-                    defaultSettings = AppResources.radiobuttonPrivatePost_Content + ": " + contacts + "/" + groups;
-                }
-                errorMsg = String.Format(AppResources.messageDialogNewsfeedNotLikable, defaultSettings);
-                var result = await Application.Current.MainPage.DisplayAlert("", errorMsg, AppResources.buttonYes, AppResources.buttonNo);
-
-                // user wants to continue with the retweet
-                if (result)
-                {
-                    // save the activity in this class and move on to Newsfeed.xaml.cs as the PCL currently perform the retweet in background
-                    IntendedActivity = activity;
-                    LikeNewsfeedClicked?.Invoke(this, EventArgs.Empty);
-                }
+                if (IsLikedByMe)
+                    result = await postActivity.PostFriendicaActivityAsync(Post.PostId, FriendicaActivity.unlike);
+                else
+                    result = await postActivity.PostFriendicaActivityAsync(Post.PostId, FriendicaActivity.like);
             }
-            else
+            else if (activity == FriendicaActivity.dislike)
             {
-                // like/dislike not possible because there is no standard acl
-                errorMsg = AppResources.messageDialogNewsfeedLikesNoDefault;
-                await Application.Current.MainPage.DisplayAlert("", errorMsg, AppResources.buttonOK);
+                if (IsDislikedByMe)
+                    result = await postActivity.PostFriendicaActivityAsync(Post.PostId, FriendicaActivity.undislike);
+                else
+                    result = await postActivity.PostFriendicaActivityAsync(Post.PostId, FriendicaActivity.dislike);
+            }
+
+            // react on server results
+            switch (result)
+            {
+                case PostFriendicaActivityResults.SampleMode:
+                case PostFriendicaActivityResults.NotAuthenticated:
+                case PostFriendicaActivityResults.UnexpectedError:
+                    // info to user with the error message
+                    var errorMsg = string.Format(AppResources.messageDialogErrorOnActivitySettingBadRequest, postActivity.ReturnString);
+                    await Application.Current.MainPage.DisplayAlert(title, errorMsg, AppResources.buttonOK);
+                    break;
+                case PostFriendicaActivityResults.NotAnswered:
+                    // server has not answered, ask user to retry
+                    var answer = await Application.Current.MainPage.DisplayAlert(title,
+                                            AppResources.messageDialogErrorOnActivitySetting,
+                                            AppResources.buttonYes, AppResources.buttonNo);
+                    if (answer)
+                        await UpdateActivityOnServerAsync(activity);
+                    break;
+                case PostFriendicaActivityResults.OK:
+                    // let's update the lists in the app
+                    var success = ChangeListAfterSuccessfulUpdate(activity);
+                    if (!success)
+                    {
+                        // an error has occurred, info to user with error message
+                        errorMsg = string.Format(AppResources.messageDialogErrorOnActivitySettingBadRequest, "error on updating lists in app");
+                        await Application.Current.MainPage.DisplayAlert(title, errorMsg, AppResources.buttonOK);
+                    }
+                    break;
             }
         }
 
-        private bool ChangeListAfterSuccessfulUpdate()
+
+        private async Task RetweetItemAsync(FriendicaActivity activity)
         {
-            //switch (App.Posts.Activity)
-            //{
-            //    case FriendicaActivity.like:
-            //        // add authenticated user
-            //        var user = new FriendicaUser()
-            //        {
-            //            IsAuthenticatedUser = true
-            //        };
-            //        Post.PostFriendicaActivities.ActivitiesLike.Add(user);
-            //        break;
-            //    case FriendicaActivity.dislike:
-            //        // add authenticated user
-            //        user = new FriendicaUser()
-            //        {
-            //            IsAuthenticatedUser = true
-            //        };
-            //        Post.PostFriendicaActivities.ActivitiesDislike.Add(user);
-            //        break;
-            //    case FriendicaActivity.unlike:
-            //        // remove authenticated user
-            //        var post = Post.PostFriendicaActivities.ActivitiesLike.SingleOrDefault(u => u.IsAuthenticatedUser == true);
-            //        Post.PostFriendicaActivities.ActivitiesLike.Remove(post);
-            //        break;
-            //    case FriendicaActivity.undislike:
-            //        // remove authenticated user
-            //        post = Post.PostFriendicaActivities.ActivitiesDislike.SingleOrDefault(u => u.IsAuthenticatedUser == true);
-            //        Post.PostFriendicaActivities.ActivitiesDislike.Remove(post);
-            //        break;
-            //    default:
-            //        return false;
-            //}
-            //SetActivitiesParameters();
+            // like/dislike on RSS feed item is not useful as other user cannot see the activity, old Windows version retweeted the post
+            // with standard ACL setting (if available) and then set the like/dislike, however this is not useful, better to retweet by
+            // opening NewPost.xaml for user to add a comment showing his/her mood on this post before sending the retweet to server
+            var title = (activity == FriendicaActivity.like) ? AppResources.ButtonLikeText : AppResources.ButtonDislikeText;
+            var answer = await Application.Current.MainPage.DisplayAlert(title,
+                            AppResources.MessageDialogNewsfeedNotLikableRetweet,
+                            AppResources.buttonYes, AppResources.buttonNo);
+            if (answer)
+            {
+                // invoke in FriendicaThread to add the thread to the NewPost.xaml navigation
+                ButtonRetweetClicked?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+
+        private bool ChangeListAfterSuccessfulUpdate(FriendicaActivity friendicaActivity)
+        {
+            if (friendicaActivity == FriendicaActivity.like && IsLikedByMe)
+                friendicaActivity = FriendicaActivity.unlike;
+            else if (friendicaActivity == FriendicaActivity.dislike && IsDislikedByMe)
+                friendicaActivity = FriendicaActivity.undislike;
+
+            switch (friendicaActivity)
+            {
+                case FriendicaActivity.like:
+                    // add authenticated user
+                    var user = new FriendicaUser()
+                    {
+                        IsAuthenticatedUser = true
+                    };
+                    Post.PostFriendicaActivities.ActivitiesLike.Add(user);
+                    break;
+                case FriendicaActivity.dislike:
+                    // add authenticated user
+                    user = new FriendicaUser()
+                    {
+                        IsAuthenticatedUser = true
+                    };
+                    Post.PostFriendicaActivities.ActivitiesDislike.Add(user);
+                    break;
+                case FriendicaActivity.unlike:
+                    // remove authenticated user
+                    var post = Post.PostFriendicaActivities.ActivitiesLike.SingleOrDefault(u => u.IsAuthenticatedUser == true);
+                    Post.PostFriendicaActivities.ActivitiesLike.Remove(post);
+                    break;
+                case FriendicaActivity.undislike:
+                    // remove authenticated user
+                    post = Post.PostFriendicaActivities.ActivitiesDislike.SingleOrDefault(u => u.IsAuthenticatedUser == true);
+                    Post.PostFriendicaActivities.ActivitiesDislike.Remove(post);
+                    break;
+                default:
+                    return false;
+            }
+            SetActivitiesParameters();
             return true;
         }
 
@@ -808,9 +686,9 @@ namespace Friendica_Mobile.Models
             }
             else if (PostType == PostTypes.Newsfeed)
             {
-                // TODO: Achtung: auf Windows möchten wir hier nicht auf die LocalSettings sondern auf die RemoteSettings zurückgreifen,
-                // TODO: falls User das nicht deaktiviert hat, bei Android kann man das auch irgendwie synchronisieren (siehe Wear und Phone)
-                // TODO: Achtung: Liste der Id's alleine genügt nicht, es könnte auf einem anderen Gerät ein anderes Friendica-Konto eingerichtet sein
+                // TO DO: Achtung: auf Windows möchten wir hier nicht auf die LocalSettings sondern auf die RemoteSettings zurückgreifen,
+                // TO DO: falls User das nicht deaktiviert hat, bei Android kann man das auch irgendwie synchronisieren (siehe Wear und Phone)
+                // TO DO: Achtung: Liste der Id's alleine genügt nicht, es könnte auf einem anderen Gerät ein anderes Friendica-Konto eingerichtet sein
                 IsNewEntry = (Post.PostId > Settings.LastReadNetworkPost) ? true : false;
                 if (Settings.UnseenNewsfeedItems.Contains((int)Post.PostId))
                     IsNewEntry = true;

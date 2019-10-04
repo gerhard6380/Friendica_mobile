@@ -2394,4 +2394,8 @@ Você quer tentar novamente?
     <value>Retweetando uma postagem: a postagem original será adicionada após a sua mensagem durante o envio da nova postagem.</value>
     <comment>NewPost.xaml: hint shown if user wants to retweet an existing post</comment>
   </data>
+  <data name="MessageDialogNewsfeedNotLikableRetweet" xml:space="preserve">
+    <value>Esta é uma publicação RSS/Atom. Seus contatos não verão se você sinaliza esta postagem com gostar/não gostar. Deseja retweetar a postagem?</value>
+    <comment>Newsfeed.xaml: alert shown if user tries to like/dislike a RSS feed item as other users will not see the like/dislike, asking user to start a retweet in NewPostEditor</comment>
+  </data>
 </root>

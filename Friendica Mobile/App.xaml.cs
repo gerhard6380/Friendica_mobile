@@ -30,6 +30,7 @@ namespace Friendica_Mobile
         // local storing when message has been shown once to the user
         public static bool NetworkNoSettingsAlreadyShownRefresh;
         public static bool HomeNoSettingsAlreadyShownRefresh;
+        public static bool LikeDislikeInTestModeInfoAlreadyShown;
 
         // selectable themes
         public enum ApplicationTheme { Dark, Light }
