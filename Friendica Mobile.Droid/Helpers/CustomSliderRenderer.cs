@@ -1,5 +1,4 @@
-﻿//using System.Runtime.Remoting.Contexts;
-using Android.Content;
+﻿using Android.Content;
 using Android.Graphics;
 using Friendica_Mobile.Droid;
 using Xamarin.Forms;
@@ -13,6 +12,7 @@ namespace Friendica_Mobile.Droid
         public CustomSliderRenderer(Context context) : base(context)
         {
         }
+
 
         protected override void OnElementChanged(ElementChangedEventArgs<Slider> e)
         {
@@ -37,6 +37,5 @@ namespace Friendica_Mobile.Droid
                     Control.ProgressDrawable.SetColorFilter(Xamarin.Forms.Color.FromHex("#FFFFFF").ToAndroid(), PorterDuff.Mode.SrcIn);
             }
         }
-
     }
 }
