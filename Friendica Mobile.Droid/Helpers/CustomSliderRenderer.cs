@@ -1,4 +1,6 @@
-﻿using Android.Graphics;
+﻿//using System.Runtime.Remoting.Contexts;
+using Android.Content;
+using Android.Graphics;
 using Friendica_Mobile.Droid;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
@@ -8,6 +10,10 @@ namespace Friendica_Mobile.Droid
 {
     public class CustomSliderRenderer : SliderRenderer
     {
+        public CustomSliderRenderer(Context context) : base(context)
+        {
+        }
+
         protected override void OnElementChanged(ElementChangedEventArgs<Slider> e)
         {
             base.OnElementChanged(e);
