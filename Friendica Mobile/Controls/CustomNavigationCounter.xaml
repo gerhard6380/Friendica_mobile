@@ -8,8 +8,8 @@
                CornerRadius="12"
                HeightRequest="24"
                WidthRequest="24"
-               BackgroundColor="{StaticResource AccentColor}"
-               OutlineColor="{StaticResource AccentColor}"
+               BackgroundColor="{DynamicResource AccentColor}"
+               OutlineColor="{DynamicResource AccentColor}"
                HorizontalOptions="Start"
                VerticalOptions="End"
                Padding="0">

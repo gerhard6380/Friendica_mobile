@@ -7,7 +7,16 @@ namespace Friendica_Mobile
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            Color color = (OnPlatform<Color>)Application.Current.Resources["AccentColor"];
+            Color color;
+            try
+            {
+                color = (Color)Application.Current.Resources["AccentColor"];
+            }
+            catch
+            {
+                App.DefineResources();
+                color = (Color)Application.Current.Resources["AccentColor"];
+            }
             return ((bool)value) ? color.MultiplyAlpha(0.75) : color;
         }
 

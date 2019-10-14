@@ -14,7 +14,7 @@
                     <Grid x:Name="GridActivePage"
                           IsVisible="false"
                           Grid.Column="0" Grid.ColumnSpan="2"
-                          BackgroundColor="{StaticResource AccentColor}"
+                          BackgroundColor="{DynamicResource AccentColor}"
                           Opacity="0.5" />
             
                     <!-- FontIconLabel needed to activate renderer on android -->

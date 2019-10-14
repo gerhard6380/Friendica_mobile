@@ -94,6 +94,18 @@ namespace Friendica_Mobile.ViewModel
             set { Settings.AppThemeDarkModeEnabled = value; }
         }
 
+        public bool UseDefaultAccentColor
+        {
+            get { return Settings.UseDefaultAccentColor; }
+            set { Settings.UseDefaultAccentColor = value; }
+        }
+
+        public int SelectedAccentColor
+        {
+            get { return Settings.SelectedAccentColor; }
+            set { Settings.SelectedAccentColor = value; }
+        }
+
         private bool _isNavigationSideVisible;
         public bool IsNavigationSideVisible
         {

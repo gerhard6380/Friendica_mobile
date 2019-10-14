@@ -33,6 +33,8 @@ namespace Friendica_Mobile
             FriendicaPassword = FriendicaPasswordDefault;
             AppThemeUseSystemTheme = AppThemeUseSystemThemeDefault;
             AppThemeDarkModeEnabled = AppThemeDarkModeEnabledDefault;
+            UseDefaultAccentColor = UseDefaultAccentColorDefault;
+            SelectedAccentColor = SelectedAccentColorDefault;
             NavigationOnRightSide = NavigationOnRightSideDefault;
             StartPage = StartPageDefault;
             ACLPublicPost = ACLPublicPostDefault;
@@ -77,6 +79,10 @@ namespace Friendica_Mobile
 		private static readonly bool AppThemeUseSystemThemeDefault = false;
         private const string AppThemeDarkModeEnabledKey = "AppThemeDarkModeEnabled";
         private static readonly bool AppThemeDarkModeEnabledDefault = false;
+        private const string UseDefaultAccentColorKey = "UseDefaultAccentColor";
+        private static readonly bool UseDefaultAccentColorDefault = true;
+        private const string SelectedAccentColorKey = "SelectedAccentColor";
+        private static readonly int SelectedAccentColorDefault;
         private const string NavigationOnRightSideKey = "NavigationOnRightSide";
         private static readonly bool NavigationOnRightSideDefault = true;
         private const string StartPageKey = "StartPage";
@@ -144,6 +150,26 @@ namespace Friendica_Mobile
             set
             {
                 AppSettings.AddOrUpdateValue(AppThemeDarkModeEnabledKey, value);
+                AppThemeModeChanged?.Invoke(null, EventArgs.Empty);
+            }
+        }
+
+        public static bool UseDefaultAccentColor
+        {
+            get { return AppSettings.GetValueOrDefault(UseDefaultAccentColorKey, UseDefaultAccentColorDefault); }
+            set
+            {
+                AppSettings.AddOrUpdateValue(UseDefaultAccentColorKey, value);
+                AppThemeModeChanged?.Invoke(null, EventArgs.Empty);
+            }
+        }
+
+        public static int SelectedAccentColor
+        {
+            get { return AppSettings.GetValueOrDefault(SelectedAccentColorKey, SelectedAccentColorDefault); }
+            set
+            {
+                AppSettings.AddOrUpdateValue(SelectedAccentColorKey, value);
                 AppThemeModeChanged?.Invoke(null, EventArgs.Empty);
             }
         }

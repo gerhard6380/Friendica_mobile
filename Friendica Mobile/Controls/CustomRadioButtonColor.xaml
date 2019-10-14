@@ -2,20 +2,20 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:controls="clr-namespace:SeeberXamarin.Controls"
-             x:Class="SeeberXamarin.Controls.CustomRadioButton"
+             x:Class="SeeberXamarin.Controls.CustomRadioButtonColor"
              x:Name="RadioButtonParent">
     <ContentView.Content>
-        <Grid x:Name="GridCustomRadioButton"
+        <Grid x:Name="GridCustomRadioButtonColor"
               HorizontalOptions="StartAndExpand">
             <StackLayout Orientation="Horizontal"
-                         Margin="8,0,8,0"
+                         Margin="0,0,0,0"
                          HorizontalOptions="StartAndExpand">
                 <!-- icon with the checked/filled circle -->
                 <controls:FontIconLabel x:Name="FontIconCheckedRadioButton"
-                                        Text="{x:Static controls:CustomRadioButton.FIRadioButtonChecked}" 
+                                        Text="{x:Static controls:CustomRadioButtonColor.FIRadioButtonChecked}" 
                                         HorizontalTextAlignment="Start"
                                         VerticalTextAlignment="Center"
-                                        TextColor="{DynamicResource AccentColor}"
+                                        TextColor="{DynamicResource MainTextColor}"
                                         IsVisible="false"
                                         FontSize="20"
                                         WidthRequest="48"
@@ -32,7 +32,7 @@
                 
                 <!-- icon with the unchecked/empty circle -->
                 <controls:FontIconLabel x:Name="FontIconUncheckedRadioButton"
-                                        Text="{x:Static controls:CustomRadioButton.FIRadioButtonUnchecked}" 
+                                        Text="{x:Static controls:CustomRadioButtonColor.FIRadioButtonUnchecked}" 
                                         HorizontalTextAlignment="Start"
                                         VerticalTextAlignment="Center"
                                         TextColor="{DynamicResource MainTextColor}"

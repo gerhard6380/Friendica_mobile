@@ -15,7 +15,7 @@
 
         <!-- show a colored line below the header if this is the active tab -->
         <BoxView x:Name="BoxViewIndicator" 
-                 BackgroundColor="{StaticResource AccentColor}"
+                 BackgroundColor="{DynamicResource AccentColor}"
                  HeightRequest="4"
                  IsVisible="false"
                  Margin="0,0,8,0"

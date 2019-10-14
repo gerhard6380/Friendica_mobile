@@ -3025,6 +3025,11 @@ Vuoi provare ancora?
           <target state="final">Questo è un post RSS/Atom. I tuoi contatti non vedranno se contrassegni questo post con Mi piace/Non mi piace. Vuoi invece ritwittare il post?</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Newsfeed.xaml: alert shown if user tries to like/dislike a RSS feed item as other users will not see the like/dislike, asking user to start a retweet in NewPostEditor</note>
         </trans-unit>
+        <trans-unit id="LabelSettingsUseSystemAccentColor" translate="yes" xml:space="preserve">
+          <source>Use default accent color from system</source>
+          <target state="final">Usa il colore accento predefinito dal sistema</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: default is to use accent color on UWP or Friendica blue as fallback on other systems for post background and hightlighting, if false user can select a separate color</note>
+        </trans-unit>
       </group>
     </body>
   </file>

@@ -1523,6 +1523,15 @@ namespace Friendica_Mobile.PCL.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use default accent color from system ähnelt.
+        /// </summary>
+        public static string LabelSettingsUseSystemAccentColor {
+            get {
+                return ResourceManager.GetString("LabelSettingsUseSystemAccentColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die About ähnelt.
         /// </summary>
         public static string menuflyoutAbout_Text {

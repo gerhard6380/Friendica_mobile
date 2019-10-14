@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:SeeberXamarin.Controls"
+             x:Class="SeeberXamarin.Controls.CustomRadioButtonGroupColor" >
+    <ContentView.Content>
+        <Frame x:Name="FrameRadioButtonGroup" 
+               VerticalOptions="StartAndExpand"
+               HorizontalOptions="StartAndExpand"
+               OutlineColor="LightGray"
+               BackgroundColor="{DynamicResource BackgroundColor}"
+               HasShadow="true" >
+            <StackLayout x:Name="StackRadioButtons" 
+                         HorizontalOptions="Start"
+                         Orientation="Vertical"
+                         Spacing="0" />
+        </Frame>
+    </ContentView.Content>
+</ContentView>

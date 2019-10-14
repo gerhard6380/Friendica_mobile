@@ -178,6 +178,54 @@
                                                Text="{i18n:Translate LabelSettingsAppThemeDarkMode}" />
                                     </StackLayout>
 
+                                    <!-- switch to use default accent color or select one from the radio group-->
+                                    <StackLayout Orientation="Horizontal">
+                                        <controls:CustomSwitch x:Name="SwitchUseDefaultAccentColor"
+                                                               IsToggled="{Binding UseDefaultAccentColor}" />
+                                        <Label x:Name="LabelSwitchUseDefaultAccentColor" 
+                                               VerticalOptions="Center"
+                                               Text="{i18n:Translate LabelSettingsUseSystemAccentColor}" />
+                                    </StackLayout>
+
+                                    <!-- Radio buttons to select a color if user don't want to use default color -->
+                                    <controls:CustomRadioButtonGroupColor x:Name="RadioButtonAccentColor"
+                                                                          IsVisible="{Binding Source={x:Reference Name=SwitchUseDefaultAccentColor}, Path=IsToggled, Converter={StaticResource NegateBool} }"
+                                                                          IsBordered="True"
+                                                                          Margin="48, 0, 0, 0"
+                                                                          Orientation="Horizontal"
+                                                                          CanDeselectAll="False"
+                                                                          SelectedIndex="{Binding SelectedAccentColor}">
+                                        <controls:CustomRadioButtonGroupColor.RadioButtons>
+                                            <controls:CustomRadioButtonColor x:Name="RadioButtonRed"
+                                                                             TextColor="Firebrick"
+                                                                             ItemName="Red" />
+                                            <controls:CustomRadioButtonColor x:Name="RadioButtonBlue"
+                                                                             TextColor="MediumBlue"
+                                                                             ItemName="Blue" />
+                                            <controls:CustomRadioButtonColor x:Name="RadioButtonPurple"
+                                                                             TextColor="Purple"
+                                                                             ItemName="Purple" />
+                                            <controls:CustomRadioButtonColor x:Name="RadioButtonRose"
+                                                                             TextColor="Orchid"
+                                                                             ItemName="Rose" />
+                                            <controls:CustomRadioButtonColor x:Name="RadioButtonOrange"
+                                                                             TextColor="Coral"
+                                                                             ItemName="Orange" />
+                                            <controls:CustomRadioButtonColor x:Name="RadioButtonYellow"
+                                                                             TextColor="#FFBA00"
+                                                                             ItemName="Yellow" />
+                                            <controls:CustomRadioButtonColor x:Name="RadioButtonGreen"
+                                                                             TextColor="DarkGreen"
+                                                                             ItemName="Green" />
+                                            <controls:CustomRadioButtonColor x:Name="RadioButtonGray"
+                                                                             TextColor="SlateGray"
+                                                                             ItemName="Gray" />
+                                            <controls:CustomRadioButtonColor x:Name="RadioButtonBrown"
+                                                                             TextColor="Sienna"
+                                                                             ItemName="Brown" />
+                                        </controls:CustomRadioButtonGroupColor.RadioButtons>
+                                    </controls:CustomRadioButtonGroupColor>
+
                                     <!-- set navigaton on right or left side -->
                                     <StackLayout x:Name="StackLayoutNavigationSide"
                                                  IsVisible="{Binding IsNavigationSideVisible}">

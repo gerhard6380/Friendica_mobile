@@ -103,7 +103,7 @@
     </Reference>
     <Reference Include="Xamarin.Mac" />
     <Reference Include="Plugin.DeviceInfo">
-      <HintPath>..\..\packages\Xam.Plugin.DeviceInfo.4.0.0.13\lib\xamarinmac20\Plugin.DeviceInfo.dll</HintPath>
+      <HintPath>..\packages\Xam.Plugin.DeviceInfo.4.0.0.13\lib\xamarinmac20\Plugin.DeviceInfo.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.Settings.Abstractions">
       <HintPath>..\..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.Mac20\Plugin.Settings.Abstractions.dll</HintPath>

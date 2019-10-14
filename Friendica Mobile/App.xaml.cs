@@ -119,6 +119,77 @@ namespace Friendica_Mobile
             else
                 Current.Resources["ButtonTextColor"] = (isDark) ? Color.White : Color.Black;
             Current.Resources["ListViewBackgroundColor"] = (isDark) ? Color.FromHex("#1A1A1A") : Color.WhiteSmoke;
+            SetAccentColor();
+        }
+
+        private static void SetAccentColor()
+        {
+            if (Settings.UseDefaultAccentColor)
+            {
+                // we shall keep the standards
+                switch (Device.RuntimePlatform)
+                {
+                    case Device.iOS:
+                        Current.Resources["AccentColor"] = Color.Accent;
+                        break;
+                    case Device.Android:
+                        Current.Resources["AccentColor"] = Color.FromHex("#1872A2");
+                        break;
+                    case Device.macOS:
+                        Current.Resources["AccentColor"] = Color.Accent;
+                        break;
+                    case Device.UWP:
+                        Current.Resources["AccentColor"] = Color.Accent;
+                        break;
+                    default:
+                        Current.Resources["AccentColor"] = Color.FromHex("#1872A2");
+                        break;
+                }
+            }
+            else
+            {
+                // set the color depending on the selected color
+                var isDark = (SelectedTheme == ApplicationTheme.Dark);
+                switch (Settings.SelectedAccentColor)
+                {
+                    case 0:
+                        // red
+                        Current.Resources["AccentColor"] = (isDark) ? Color.Firebrick : Color.Crimson;
+                        break;
+                    case 1:
+                        // blue
+                        Current.Resources["AccentColor"] = (isDark) ? Color.MediumBlue : Color.Blue;
+                        break;
+                    case 2:
+                        // purple
+                        Current.Resources["AccentColor"] = (isDark) ? Color.Purple : Color.DarkViolet;
+                        break;
+                    case 3:
+                        // rose
+                        Current.Resources["AccentColor"] = (isDark) ? Color.Orchid : Color.Violet;
+                        break;
+                    case 4:
+                        // orange
+                        Current.Resources["AccentColor"] = (isDark) ? Color.Coral : Color.Coral;
+                        break;
+                    case 5:
+                        // yellow
+                        Current.Resources["AccentColor"] = Color.FromHex("#FFBA00");
+                        break;
+                    case 6:
+                        // green
+                        Current.Resources["AccentColor"] = (isDark) ? Color.DarkGreen : Color.Green;
+                        break;
+                    case 7:
+                        // gray
+                        Current.Resources["AccentColor"] = (isDark) ? Color.SlateGray : Color.LightSlateGray;
+                        break;
+                    case 8:
+                        // brown
+                        Current.Resources["AccentColor"] = (isDark) ? Color.Sienna : Color.Peru;
+                        break;
+                }
+            }
         }
 
         protected override void OnStart()

@@ -128,7 +128,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <BoxView BackgroundColor="{StaticResource AccentColor}" />
+                    <BoxView BackgroundColor="{DynamicResource AccentColor}" />
                     <controls:FontIconLabel Text="{x:Static styles:Icon.FIContactGroup}"
                                             TextColor="White"
                                             VerticalOptions="Center"

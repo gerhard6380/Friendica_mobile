@@ -168,8 +168,8 @@ namespace Friendica_Mobile.Views
             nav.BarBackgroundColor = Color.Black;
             nav.Popped += (sender2, e2) =>
             {
-                    // go back to correct title bar color after returning from fullscreen
-                    nav.BarBackgroundColor = (OnPlatform<Color>)Application.Current.Resources["AccentColor"];
+                // go back to correct title bar color after returning from fullscreen
+                nav.BarBackgroundColor = (Color)Application.Current.Resources["AccentColor"];
             };
             Application.Current.MainPage.Navigation.PushAsync(fullscreen);
         }

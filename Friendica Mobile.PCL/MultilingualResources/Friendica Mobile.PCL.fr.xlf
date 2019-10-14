@@ -3022,6 +3022,11 @@ Voulez-vous essayer à nouveau?
           <target state="final">Ceci est un article RSS/Atom. Vos contacts ne verront pas si vous signalez ce poste avec un goût similaire ou négatif. Voulez-vous retweeter le poste à la place?</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Newsfeed.xaml: alert shown if user tries to like/dislike a RSS feed item as other users will not see the like/dislike, asking user to start a retweet in NewPostEditor</note>
         </trans-unit>
+        <trans-unit id="LabelSettingsUseSystemAccentColor" translate="yes" xml:space="preserve">
+          <source>Use default accent color from system</source>
+          <target state="final">Utiliser la couleur d'accentuation par défaut du système</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Settings.xaml: default is to use accent color on UWP or Friendica blue as fallback on other systems for post background and hightlighting, if false user can select a separate color</note>
+        </trans-unit>
       </group>
     </body>
   </file>
